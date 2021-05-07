@@ -1,5 +1,10 @@
-
-This is general content about rust & webassembly, and how i got to this topic. This is nice information to know, as a topic introduction
+# Existing libraries 
+|||
+|---|---|
+| name | Jos Feenstra |
+| email | me@josfeenstra.nl |
+| date | 2021-05-07 - Friday |
+| purpose | general research about rust & webassembly, and partially how I got to this topic. This is nice information to have for the purpose of a topic introduction |
 
 # 1
 

@@ -1,9 +1,9 @@
 # IDEA 
-Geon, stands for GEOometry Nodes. FME on the web. 
+Geonode. FME on the web. 
 Flowcharts are sharable using nothing but a link a la: `https://geon-flow.com/share/((hash))`;
 
 
-## USE CASE  
+## Motivation 
 A very user friendly way of doing `cjio` -level of operations.
 - users load a `cityjson` by giving the link
 - this city is then visible a la `ninja`, but not directly editable like `ninja`.
