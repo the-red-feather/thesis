@@ -8,23 +8,9 @@
   - Simple KD tree 
 
 
-
 # Ideas for implementation
 - Triangulation
 - Mass Intersection (polygon queries)
-- 
-
-
-
-
-# Ideas  
-- 
-
-
-
-
-
-
 
 
 ### improving the client-side performance of geometry processing & modelling in Geo-web applications by utilizing Rust & WebAssembly 
@@ -39,7 +25,7 @@
 
 
 
-### Intro
+### Intro from a visual programming language's perspective
 
 In recent years, the demand for parametric design modelling has increased. Parametric design has entered the domains of Industrial Design & Architecture in the form of Mcneel's Grasshopper, Autodesks Dynamo, as well as industry standards 
 

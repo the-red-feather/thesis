@@ -1,21 +1,47 @@
 # meeting 2 
-- lets do it formal this time :) 
+- lets do it formal this time :)
+
+1. General introduction
+=======================
+
+_Maybe it is nice to do some general introductions, we haven't really spoken in a long time, 
+and I would love to know what you guys are mainly working on at the moment_
+
+Ken
+---
+
+...
+
+Stelios
+-------
+
+...
+
+Jos
+---
+
+...
 
 
-## 1. General introduction of everyone
-- Stelios
-- Ken
-- Jos
+2. Results from last meeting 
+============================
 
-## 2. Results from last meeting: 
+2.1 list of existing related libraries
+------------------------------------
 
+...
 
+2.2 word web sketch
+-------------------
 
-## 3. Discussion
+...
 
+2.3 web-fme-sketch
+------------------
 
+...
 
-## 4. For the next meeting:
+3. For the next meeting
+=======================
 
-
-
+...
