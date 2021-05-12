@@ -11,7 +11,7 @@ Ken
 
 geometry processing
 3d city mmodelling
-bim 
+bim, which is a hellhole :)
 900 diff entries 
 
 
@@ -34,7 +34,8 @@ own viewers
 
 
 
-phd versioning
+phd is on versioning:
+4d datastructures, but it is turning more on like a git versioning system
 
 
 

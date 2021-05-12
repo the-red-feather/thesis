@@ -15,14 +15,14 @@ A very user friendly way of doing `cjio` -level of operations.
 
 ## SETUP : 3 related repositories
 
-  - **geon-core**
+  - **geonode-core**
     - rust crate
-    - core geometry library, with `Vector3`, ` Matrix4`, `Mesh`. and others.
+    - purpose: core geometry library, with `Vector3`, ` Matrix4`, `Mesh`. and others.
       - native `cityjson` support, like `cjio`.
       - support for `georust` crates (crs translations, gdal functions).
 
 
-  - **geon-web**
+  - **geonode-web**
     - rust crate ( / typescript package ? )
     - purpose: using geon-core in real-time on the web. 
       - meaning: change a parameter, immediately see results.
@@ -33,7 +33,7 @@ A very user friendly way of doing `cjio` -level of operations.
     - basic DOM.api abstractions
     
 
-  - **geon-flow**
+  - **geonode-flow**
     - web-application
     - visual programming language, exposing the functionalities of **geon-core** & **geon-web**.
 
