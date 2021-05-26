@@ -9,10 +9,12 @@ _Maybe it is nice to do some general introductions, we haven't really spoken in 
 Ken
 ---
 
-geometry processing
-3d city mmodelling
-bim, which is a hellhole :)
-900 diff entries 
+has a background in geometry processing
+and 3d city modelling.
+right now working on BIM, which is a hellhole :)
+- 900 diff entries 
+- 20 different geometries
+
 
 
 
@@ -21,9 +23,9 @@ bim, which is a hellhole :)
 Stelios
 -------
 
-wants to 
-
-ken supervises stelios.
+Wants to &^%$& -> is fine during corona :).
+Important fact: Ken supervises Stelios.
+Has a great Teckel named Monty.
 
 lelated things
 
@@ -79,4 +81,6 @@ _I created three things the past week which I would like to discuss_
 
 _suggestions on more pre-research I can do?_
 
-...
+- Read and digest all aforementioned papers.
+- Create a formal research proposal.
+  - refine the proposal, make it clear
