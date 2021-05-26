@@ -33,4 +33,8 @@ Related visual programming languages:
 
 
 
+> ravi: rapid prototyping
+> fast visualizing of in-between steps
+> c++ -> fast & many libraries. 
+
 

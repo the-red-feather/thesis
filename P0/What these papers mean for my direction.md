@@ -11,6 +11,7 @@ MAIN
       - server: wasm  (wont be tested / expanded upon, but client implementation implies that the same can be used on a server)
     - improve **re-usability** by making it incredibly easy to find and add plugins
 
+> [SV] mutliple sources are preferable
 
 STANDARDIZATION & INTEROPERABILITY
 - Preserve data models & processes in client & server & local.
