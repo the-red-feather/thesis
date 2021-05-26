@@ -3,32 +3,35 @@
 
 
 
-1. Introduction
+.1. Introduction
 =======================
 
 
 
 
-2. Results from last meeting 
-============================
-
-- Papers read
-- Conclusions made
-- Questions for ken & stelios 
+.2. Results from last meeting & Discussion 
+===========================================
 
 
-
-3. For the next meeting
-=======================
-
+Papers read
+-------------
 
 
-4. A request...
+Conclusions made
+----------------
+
+
+Questions for ken & stelios 
+---------------------------
+
+
+
+.3. A request...
 ===============
 
 
 
 
-5. For the next meeting
+.4. For the next meeting
 =======================
 

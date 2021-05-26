@@ -17,3 +17,5 @@ STANDARDIZATION & INTEROPERABILITY
 - Same standard can be applied everywhere and anywhere
 - Of every process we do, we can expect the same outcome in all three of these environments. 
 
+
+

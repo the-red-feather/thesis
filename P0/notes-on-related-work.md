@@ -32,6 +32,7 @@
 
 > [JF] quite a broad topic
 
+> [JF] geojson is related to this research: updating xml encodings to the 21st century & making it 'fit' better with the current state of the web. 
 
 > [QUOTE] Decades of work and a large, international standardization effort have resulted in a lot of geospatial data now being available for reuse on the web.  However, because the semantics, formats, and dissemination methods used are still very specific to the geospatial domain, a lot of this data is only findable  and  usable  by  geospatial  ICT  experts.   And  yet,  there  is  a  huge potential  for  the  use  of  geospatial  data  in  other  domains.   To  achieve  the wide reuse of geospatial data, i.e.  beyond the geospatial domain, data users need to be able to  find, access, and use geospatial data on the web without expert knowledge of geospatial standards.  Geospatial data needs to become a common part of the web of data.
 
@@ -41,6 +42,18 @@
 > If this is the case, this will open up new ways for the reuse of geospatial data via the web across communities.  While the geospatial web of data is growing, new technological developments will create unforeseen possibilities for its use.  One such development is the availability of ever greater bandwith(5G) combined with more effcient handling of heavy data loads and tasks in web browsers.  New standards such as **WebAssembly** (Rossberg, 2018) will support this. Thus it will, for example, become possible in the near future to work with voluminous, 3D geospatial data natively in a browser | perhaps supported by CityJSON. Augmented and virtual reality applications, using 3D and other geospatial data, will be implemented in web browsers.
 
 > overall: very nice paper! I truly agree with most of her statements, and in the introduction of this wasm thesis, I will be refering to this. I think this wasm thesis can be considered part of her 'future fork'.
+
+
+
+
+<br/><br/><br/>
+
+# Ken Stelios Jantien
+
+(TODO)
+
+
+
 
 
 <br/><br/><br/>
