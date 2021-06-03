@@ -14,16 +14,22 @@
 
 <br/>
 
-### AANLEIDING
+### Reason
 - geometry processing is a notoriously hard endeavour. You need an expert.
-- experts often do this by creating batch scripts, without insight.
-  - (One to one relationship of problem & solution.)
-  - (difficult to parameterize. (settings.json))
-- not trivial to make it cooperate with other environments.
+- experts often solve geo-processing problems by creating cli tools.
+- this is fast, and makes sense from a programmer's perspective, but has a few drawbacks:
+  - One to one relationship of problem & solution.
+  - Difficult to parameterize. (settings.json / settings.yaml)
+  - not trivial to make cli tools cooperate with other environments.
+  - difficult to debug, visualize.
+
+Resulting in:
 - **hard to share methodologies among colleagues,** 
 - **hard to publish to end-users**.
 
 ### WHAT TO DO ABOUT IT
+- FAIR paradigm, usually applied to geodata, should extend to geodata processing as well.
+
 - "Collect once, use multiple times" SDI paradigm should extend to geodata processing & code: "write once, run anywhere & everywhere".
    - everywhere really means everywhere in this case. Not just cross platform: 
      - native (win / linux / mac)

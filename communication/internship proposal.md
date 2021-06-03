@@ -17,22 +17,27 @@ Allow me to go straight to the point: Would you be willing to supervise an inter
 
 - My perspective is as follows:
   - Internships are often a leadup to a thesis, and this is similar to a degree.   
-  - I find what I do for this company very much related to what im doing now at geomatics & for my thesis. 
-  - I wish to continue this work, and use it as background knowledge during my thesis.
-  - **Most Importantly: I wish to gain 10 etcs for work which complements my thesis as opposed to 10 etcs worth of unrelated endevaours that will only distract me from the thesis.\***
+  - I find what I do for this company very much related to what im doing now at geomatics.
+  - Most Importantly: I wish to gain 10 etcs for work which complements my thesis as opposed to 10 etcs worth of unrelated endevaours that will distract me from the thesis.\*
 
 - Background info: 
-  - Both Bastiaan & Frederika agreed with this proposal, as long as I could guarantee to them there would be no conflict of interest. This whole Internship is actually Bastiaan's idea. I believe the fact that all code I will write for this internship will be `open-source` will ensure this. I have been working for Sfered for the past three years now, and they have always allowed me to let study & education take precedence over work, as long as I communicate this clearly. 
+  - Frederika agreed with this proposal, as long as I could guarantee there would be no conflict of interest. I believe the fact that all code I will write for this internship will be `open-source` will ensure this. I have been working for Sfered for the past three years now, and they have always allowed me to let study & education take precedence over work, as long as I communicate this clearly. 
 
-> \*I have tried doing a couple of related electives, like the 'web programming languages' EWI course. They turned out to be not very relevant at the end, since  'web programming languages' for example, is a very broad topic. Maybe 5 percent of the knowledge & skills gained are applicable to my use case. I much rather make that something like 50%.
 
 I would love to have you, Ken & Stelios as internship supervisors. I know this is not entirely geomatics related. Still, I believe having practical experience with web-based geometry processing, and some insight in this use case, will be extremely beneficial to the thesis. If you agree to this, the internship will start next year in Q1. 
 
+<br/>
 
 I look forward hearing what you think of all this! 
 
+<br/>
 
 Cheers,
 
+<br/>
 
 Jos
+
+<br/><br/><br/>
+
+> \*I have tried doing a couple of related electives, like the 'web programming languages' EWI course. They turned out to be not very relevant at the end, since  'web programming languages' for example, is a very broad topic. Maybe 5 percent of the knowledge & skills gained are applicable to my use case. I much rather make that something like 50%.

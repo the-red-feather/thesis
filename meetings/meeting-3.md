@@ -2,7 +2,7 @@
 |          |                         |
 | -------- | ----------------------- |
 | date     | 2021-05-26 - Wednesday
-| present  | Ken, Stelios, Jos 
+| present  | Ken, Stelios, Jos
 | Location | cyberspace
 
 
@@ -12,7 +12,8 @@
 
 
 
-.2. Results from last meeting & Discussion 
+
+.2. Results from last meeting & Discussion
 ===========================================
 
 
@@ -22,10 +23,10 @@ Papers read
 
 Conclusions made
 ----------------
--> FAIR is a good flag to rally behind. 
+-> FAIR is a good flag to rally behind.
 
 
-Questions for ken & stelios 
+Questions for ken & stelios
 ---------------------------
 
 
@@ -39,4 +40,4 @@ Questions for ken & stelios
 .4. For the next meeting
 =======================
 
--> 
+-> Build something? Build something!

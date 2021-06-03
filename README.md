@@ -7,3 +7,9 @@ This is the current sketch of what this thesis will be about
 
 <img src="./P0/wordweb-thesis.png">
 
+
+
+
+# Planning 
+
+TODO MAKE GENERAL PLANNING
