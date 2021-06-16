@@ -28,7 +28,12 @@ Resulting in:
 - **hard to publish to end-users**.
 
 ### WHAT TO DO ABOUT IT
-- FAIR paradigm, usually applied to geodata, should extend to geodata processing as well.
+- FAIR paradigm, usually applied to geodata, should extend to geodata processing as well. 
+   geo-processing should be findable, accessible, interoperable and re-usable"
+   - CGAL-level operations must be trivially easy to use for non-expert users. 
+   - TIN from pointcloud on demand. for small area's.
+   - Extruding parcel polygons to pointclouds, for only the exact area you need, with exactly the precision you require for this particular dataset.
+
 
 - "Collect once, use multiple times" SDI paradigm should extend to geodata processing & code: "write once, run anywhere & everywhere".
    - everywhere really means everywhere in this case. Not just cross platform: 
@@ -36,10 +41,6 @@ Resulting in:
      - web-client (all browsers, on mobile phones using web-wrapper-apps)
      - web-server (server-side, context-agnostic like docker)
 
-- "geodata should be findable, accessible, usable" SDI paradigm should extend to geodata processing itself. examples:
-   -  CGAL-level operations must be trivially easy to use for non-expert users. 
-   - TIN from pointcloud on demand.
-   - Extruding parcel polygons to pointclouds, for only the exact area you need, with exactly the precision you require for this particular dataset.
 
 - WebAssembly + tools that play nice with WebAssembly are vital for achieving these properties. 
 

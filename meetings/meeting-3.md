@@ -41,3 +41,6 @@ Questions for ken & stelios
 =======================
 
 -> Build something? Build something!
+   -> I will finish the Research Assignment(RA), to gain vital insight in `rust-wasm-javascript` interactions
+   -> I will set the first baby steps in creating the visual programming language (VPL)
+   -> I will use the RA as a take-off point: lets see if we can offer the same functionality as 
