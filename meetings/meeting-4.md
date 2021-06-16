@@ -32,11 +32,49 @@ Results from last meeting
 -------------------------------------------------------------
 
 
+- Type checking is not something to think lightly of. 
+- Json solution? 
+- Type checking = Type Validation = a big deal!
+
+```
+MeshToJson() {
+}
+```
+
+Don't automate too many things
+
+...
+
+many times a type is not whats important, its the data within
+Wrapping is hard to avoid
+
+...
+
+We define the types (and essentially, create a new language, large wrappers, etc.)
+vs 
+We delegate everything to the language (and inherrit its problems. Not exactly user friendly)
+
+...
+
+geoflow deserves a second look.
+
+
+
 .3. the internship
 ------------------
+
+Set up meeting! 
 
 
 
 Promises for the next meeting
 =============================
+
+I will
+- Finish up till Phase 2 
+- Think about how to implement types
+
+
+
+
 
