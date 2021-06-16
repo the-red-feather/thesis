@@ -12,4 +12,4 @@ This is the current sketch of what this thesis will be about
 
 # Planning 
 
-TODO MAKE GENERAL PLANNING
+see [Nodes](https://github.com/josfeenstra/geon-nodes)
