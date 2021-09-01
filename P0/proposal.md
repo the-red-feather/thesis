@@ -14,6 +14,11 @@
 
 <br/>
 
+### Knowledge gap 
+GIS Processing should be more operational & less obscure without losing any potency.
+
+
+
 ### Reason
 - geometry processing is a notoriously hard endeavour. You need an expert.
 - experts often solve geo-processing problems by creating cli tools.
@@ -130,6 +135,15 @@ A very user friendly way of doing `cjio` -level of operations.
     - *geon-flow itself is written as a geon-web application*
 
 
+
+
+
+
+# Inspiration 
+
+- [Ladder](https://en.wikipedia.org/wiki/Ladder_logic) + [IL](https://en.wikipedia.org/wiki/Instruction_list) workflow common in the field of PLC Engineering.
+- paper from Floris Bruinsma
+- 
 
 <br/><br/><br/>
 
