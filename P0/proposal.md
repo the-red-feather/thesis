@@ -137,8 +137,6 @@ A very user friendly way of doing `cjio` -level of operations.
 
 
 
-
-
 # Inspiration 
 
 - [Ladder](https://en.wikipedia.org/wiki/Ladder_logic) + [IL](https://en.wikipedia.org/wiki/Instruction_list) workflow common in the field of PLC Engineering.

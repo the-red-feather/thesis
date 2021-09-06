@@ -8,4 +8,6 @@ new developments in Client Side webapplications now make it possible to do compl
 
 we propose the creation of an environment
 
- 
+
+
+WebAssembly [...] became a World Wide Web Consortium recommendation on 5 December 2019,[11] alongside HTML, CSS, and JavaScript.[12]

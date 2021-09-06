@@ -19,6 +19,7 @@ Related visual programming languages:
 | Save Software's `FME`        | https://www.safe.com/fme/fme-desktop/
 
 > Drawbacks of all of these: 
+> 0. need to be installed
 > 1. no way to compile the tool to a CLI or web-app. > not `re-usable`
 > 2. always strongly tied to its host environment > not `interoperable`
 > 3. plugins must always be specifically created for these environments. no way of directly using some repo, like you can with a regular programming language. > not `re-usable`
