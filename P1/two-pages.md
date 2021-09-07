@@ -1,18 +1,26 @@
-geo-vpl | geo-web-vpl
+# A Web-based Visual Programming Language for client-side geo-processing : P1 Sketch
 
-# Problems
+|       |                        |
+|------ | ---------------------  |
+| name  | Jos Feenstra           | 
+| nr    | 4465768                |
+| email | feenstrajos@gmail.com  | 
+| date  | June 11, 2021          | 
+
+
+# Problem
 
 ## Problem 1 : Client-side geoprocessing is underdeveloped
 Geodata processing client-side in a browser is very underdeveloped. This is a huge inhibition for many applications. Client-side geoprocessing offers tremendous potential:
  - Users will never have to install anything except a web-browser.
-    - This will make geoprocessing more accessible to a large, non-geodata expert audience. It allows more people to do more interesting things with geodata, and reach more interesting conclusions. 
+    - This will make geoprocessing more accessible & operational to a large, non-geodata expert audience. It allows more people to do more things with geodata, and reach more interesting conclusions quicker. 
 
  - Client-side geoprocessing would offload processing to the end user, allowing the end user to tailor geodata to their exact needs. 
 
  - Client-side geoprocessing allows direct user feedback unlike server-side geoprocessing. Users can be on top of the calculations, look at in betweens steps, etc. 
 - Instead of having large, preprocessed datasets, geodata could be processed on demand from the source. If a user is only interested in a small area of the source dataset, this could save vast amounts of time, storage space and computational resources. 
  
-This gives client side geoprocessing both an ecological & economical reason. The accelerated effects of climate change gives geomatics experts a moral reason to avoid huge renderfarms and other power consuming methods whenever possible. Additionally, client-side can also be much cheaper, since all of the processing and rendering will happen on the machines of the user, and not on the servers of the organization. 
+The last point gives client side geoprocessing both an ecological & economical reason. The accelerated effects of climate change gives geomatics experts a moral reason to avoid huge render farms and other power consuming methods whenever possible. Additionally, client-side can also be much cheaper, since all of the processing and rendering will happen on the machines of the user, and not on the servers of the organization. 
 
 
 ## Problem 2 : Geoprocessing overall lacks ergonomics
@@ -45,14 +53,17 @@ ergonomic -> web-vpl
 not merely to offer suggestions, but also aims to fully deliver a prototype. 
 
 
-I want to explore three potential improvements over VPL's like FME / Grasshopper / houdini. 
+Technical -> Wasm 
+
+
+Ergonomic -> I want to explore three potential improvements over VPL's like FME / Grasshopper / houdini. 
 
 The research will be focussed in two aspects, one technical aspect, and one ergonomic / design aspect. The application will be successful if the right balance between technical and ergonomical aspects can be found. 
 
 
 # Research Question
 
-_"How to create a web-geo-vpl?"_
+_"... How to create a web-geo-VPL? ..."_
 
 ## sub questions
 
@@ -74,11 +85,15 @@ _"How to create a web-geo-vpl?"_
   - How 
 
 
+------------------------------------------------------------------------
+
 # Q/A 
 
+
 ## why vpl?
-- I would argue that VPL's offer a perfect UI for geodata processing. 
-- code is only a process. VPL's can have input, process and output within the same environment.
+I would argue that VPL's offer a perfect UI for geodata processing. Code is only a process. VPL's can have input, process and output within the same environment. This poses an advantage for geometry processing, or other coding with a strong visual component, such as textures or shaders. 
+
+example: 
 
 - input: 
   - draw a polyline on a map
@@ -94,113 +109,20 @@ _"How to create a web-geo-vpl?"_
   - visualize geometry on a map
 
 
+------------------------------------------------------------------------
 
-## what do I use this VPL for? 
+## What can this proposed VPL do exactly? 
 - on demand geoprocessing
+- parametric modelling similar to other geo-VPL's
 - see **Applications**
-(- parametric modelling similar to other geo-VPL's)
 
+
+------------------------------------------------------------------------
 
 ## why do we need a new geo-VPL? 
-why not grasshopper / FME / ravi's geo-flow? Three features: 
+To answer this question, a bit of analysis of the current geo-vpl's are needed: 
 
-- 1. Web Based 
-  - No need to install anything.
-  - Instantly sharable with others.
-  - Context-agnostic: desktop / mobile / web-client / server 
-
-
-- 2. WebAssembly ready
-  - Language-agnostic: 
-    - plugins can be created using C++, Rust, and anything compilable to WebAssembly.
-  - Wasm binaries can directly be loaded as plugins, no / minimal wrapper code needed
-  - these libraries can be mixed
-
-
-- 3. (Java)script interoperability
-  - Graph can be saved to javascript.
-  - Graph can be loaded from javascript (subset).
-  - Graph has a one-to-one relationship to javascript. 
-    - One Operation / Node has a one-to-one relationship to a javascript function.
-  - Resulting code is just javascript: the VPL itself is not needed to run code. 
-  - Best of both worlds.
-    - js: Encapsulation, version control, run time, loops, if statements, 
-    - geon-nodes: Insight, Overview, UI
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Applications
-Geoprocessing remains a rather vague term used throughout these descriptions. I will define concrete geo-processing applications, which I aim to create using the VPL:
-
-
-### Application 1: On Demand Triangulator + Isocurves: 
-
-Input: 
-- Point Cloud
-
-Output
-- Mesh
-
-Steps: 
-- Load ahn3 point-cloud (WFS Input Widget | WFS Preview Widget)
-- Visualize point cloud on top of base map of the netherlands (WMS Input Widget | WMS Preview Widget)
-- Only select terrain points (list filter Operation)
-- Select Area of interest using a 2d polygon (Boundary Include Operation)
-- Triangulate point cloud with a certain resolution (Triangulate Operation)
-- Intersect the mesh surface with a series of planes (Isocurves from Mesh Operation)
-- Preview data (MultiLine Preview Widget)
-- Export data (MultiLine export Widget)
-
-
-### Application 2: Get geometry of a street based on a street name
-
-Input
-- adress string 
-
-Output
-- Vector (center)
-- Mesh
-
-Steps
-- 
-- 
-- 
-- 
-
-
-
-
-
-
-=====================================
-taken from elsewhere
-=====================================
-
-### Knowledge gap 
-GIS Processing should be more operational & less obscure without losing any potency.
-
-
-
-
-=====================================
-Moved these remarks to down here 
-=====================================
-
-Thesis = FAIR geodata processing using the `web`, `a VPL`, and `wasm`.
-
-## Related visual programming languages focussed on geometry:
+### Related visual programming languages focussed on geometry:
 
 | Name            | Author                | Availability       | Source    | Audience                     | Purpose              | Link                | Notes          
 |---------------- | --------------------- | ------------------ | --------- | ---------------------------- | -------------------- | ------------------- | ----------
@@ -214,14 +136,14 @@ Thesis = FAIR geodata processing using the `web`, `a VPL`, and `wasm`.
 
 Drawbacks of all of these: They are not FAIR:  
 1. not `findable` & `accessible`: most have a large barrier of entry: the tool needs to be installed \ Requires an account \ Requires several thousands of euros
-2. not `re-usable`: plugins must always be specifically created for these environments. no way of directly using a repo, like you can with a regular programming language.
-3. not `interoperable`: all vpl's are strongly tied to their host environment / no way to turn a script into a CLI or web-app.
+2. not `interoperable`: plugins must always be specifically created for these environments. no way of directly using a repo, like you can with a regular programming language.
+3. not `re-usable`: all vpl's are strongly tied to their host environment / no way to turn a script into a CLI or web-app.
 
 
 
 > idea to fix (2): wasm as plugin: just a collection of functions / classes / etc. 
-- automatic js library from wasm builder
-- updating a list of all available plugins
+> - automatic js library from wasm builder
+> - updating a list of all available plugins
 > idea to fix (2): direct exposure: make all functions found within wasm binaries callable from visual programming canvas. 
 > with these two ideas, there is no need to specifically create plugins, any wasm binary can be utilized. 
 
@@ -230,13 +152,108 @@ Drawbacks of all of these: They are not FAIR:
 
 
 
-
-> ravi: rapid prototyping
+> comments on why ravi created geoflow: (expand upon this later!!!)
+> - rapid prototyping
 > fast visualizing of in-between steps
 > c++ -> fast & many libraries. 
 
 
+## why do we need a new geo-VPL? 
+So why why not grasshopper / FME / ravi's geo-flow? Three improvements need to be made to solve the drawbacks mentioned above: 
 
+- (1) To solve `findable` & `accessible` -> **Web Based** 
+  - No need to install anything.
+  - Instantly sharable with others.
+  - Context-agnostic: desktop / mobile / web-client / server 
+
+
+- (2) To solve `interoperable` -> **WebAssembly**
+  - Language-agnostic architecture: 
+    - plugins can be created using C++, Rust, and anything compilable to WebAssembly.
+  - Wasm binaries can directly be loaded as plugins, no / minimal wrapper code needed
+  - these libraries can be mixed
+
+
+- (3) To solve `re-usable` -> **(Java)script interoperability**
+  - Define the graph in the form of a textual script (subset javascript).
+  - Graph can be saved to textual script form.
+  - Graph can be loaded from textual script form.
+  - Script can be run without a VPL environment, (because it is just javascript)
+  - Graph has a one-to-one relationship to javascript. 
+    - One Operation / Node has a one-to-one relationship to a javascript function.
+  - Enables the best of both worlds.
+    - js: Encapsulation, version control, run time, loops, if statements, 
+    - vpl: Insight, Overview, UI
+
+
+
+
+
+
+
+
+
+# Applications
+
+Geoprocessing remains a rather vague term used throughout these descriptions. I will define concrete geo-processing applications, which I aim to create using the VPL:
+
+
+## Application 1: On Demand Triangulator + Isocurves: 
+--------------------------
+
+Input: 
+- Point Cloud
+
+Output
+- Line Curves / .png render of line curves
+
+Steps: 
+- Load ahn3 point-cloud (WFS Input Widget | WFS Preview Widget)
+- Visualize point cloud on top of base map of the netherlands (WMS Input Widget | WMS Preview Widget)
+- Only select terrain points (list filter Operation)
+- Select Area of interest using a 2d polygon (Boundary Include Operation)
+- Triangulate point cloud with a certain resolution (Triangulate Operation)
+- Intersect the mesh surface with a series of planes (Isocurves from Mesh Operation)
+- Preview data (MultiLine Preview Widget)
+- Export data (MultiLine export Widget)
+
+
+## Application 2: Get geometry of a street based on a street name
+--------------------------
+
+Input
+- adress string 
+
+Output
+- Vector (center)
+- cityjson of buildings in this street
+
+Steps
+- 1
+- 2
+- 3
+- 4
+
+## Application 3: ????
+--------------------------
+
+Input
+- todo
+
+Output
+- todo
+
+Steps
+- todo
+
+
+# Random Comments
+
+
+Thesis = FAIR geodata processing using the `web`, `a VPL`, and `wasm`.
+
+### Knowledge gap 
+GIS Processing should be more operational & less obscure without losing any potency.
 
 
 
