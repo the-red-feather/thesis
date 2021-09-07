@@ -10,21 +10,23 @@ Related Geometry Libraries
 Related visual programming languages:
 =====================================
 
-| Name                         | Link                            
-|----------------------------- | --------------------------------
-| Ravi Peter's `geoflow`       | https://github.com/geoflow3d/geoflow 
-| Blender's `Geometry Nodes`   | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html  
-| David Rutten's `Grasshopper` | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html  
-| Autodesks's `dynamo`         | https://www.autodesk.com/products/dynamo-studio/overview?plc=DYNSTD&term=1-YEAR&support=ADVANCED&quantity=1
-| Save Software's `FME`        | https://www.safe.com/fme/fme-desktop/
+| Name                         | Company | Link                            
+|----------------------------- | ------- |-----------------------------
+| Ravi Peter's `geoflow`       | | https://github.com/geoflow3d/geoflow 
+| Blender's `Geometry Nodes`   | | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html  
+| David Rutten's `Grasshopper` | | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html  
+| Autodesks's `dynamo`         | | https://www.autodesk.com/products/dynamo-studio/overview?plc=DYNSTD&term=1-YEAR&support=ADVANCED&quantity=1
+| Save Software's `FME`        | | https://www.safe.com/fme/fme-desktop/
+| SideFX's Houdini 
 
-> Drawbacks of all of these: 
-> 0. need to be installed
-> 1. no way to compile the tool to a CLI or web-app. > not `re-usable`
-> 2. always strongly tied to its host environment > not `interoperable`
-> 3. plugins must always be specifically created for these environments. no way of directly using some repo, like you can with a regular programming language. > not `re-usable`
+Drawbacks of all of these: They are not FAIR:  
+> 1. not `findable` & `accessible`: the tool needs to be installed | requires an account | requires payment > entry barrier 
+> 2. not `interoperable`: always strongly tied to its host environment | no way to run a script without the tool to a CLI or web-app
+> 3. not `re-usable`: plugins must always be specifically created for these environments. no way of directly using a repo, like you can with a regular programming language.
 
 > idea to fix (3): wasm as plugin: just a collection of functions / classes / etc. 
+- automatic js library from wasm builder
+- updating a list of all available plugins
 > idea to fix (3): direct exposure: make all functions found within wasm binaries callable from visual programming canvas. 
 > with these two ideas, there is no need to specifically create plugins, any wasm binary can be utilized. 
 
@@ -39,3 +41,13 @@ Related visual programming languages:
 > c++ -> fast & many libraries. 
 
 
+
+
+
+
+
+
+> 
+geon.nl??
+
+>
