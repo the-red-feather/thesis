@@ -42,7 +42,7 @@ The last point gives client side geoprocessing both an ecological & economical r
 <br><br>
 
 ## Problem 2 : Geoprocessing overall lacks ergonomics
-Geodata processing is very unfriendly to non-experts:
+Geodata processing can be very unfriendly to non-experts:
   - It is a notoriously hard endeavour. You pretty much require an expert.
   - Software is often hard to find, sometimes hard to install.
   - Software is often difficult to operate.
