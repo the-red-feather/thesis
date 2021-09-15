@@ -20,6 +20,10 @@ This document is a very early draft for the eventual thesis. It aims to frame th
 # Problem Statement
 
 ## Problem 1 : Client-side geoprocessing is underdeveloped
+
+> [Ken] client-side geo-proceesing is 'not researched', instead of underdeveloped.
+In literature & pratise. If you say underdeveloped -> answer is develop. so if you say underresearched -> answer is research. 
+
 Geodata processing client-side in a browser is very underdeveloped. This is a huge inhibition for many applications. Client-side geoprocessing offers tremendous potential:
  - Users will never have to install anything except a web-browser.
     - This will make geoprocessing more accessible & operational to a large, non-geodata expert audience. It allows more people to do more things with geodata, and reach more interesting    
@@ -42,6 +46,13 @@ The last point gives client side geoprocessing both an ecological & economical r
 <br><br>
 
 ## Problem 2 : Geoprocessing overall lacks ergonomics
+
+> [Ken] : maybe this is more of a motivation than a direct 
+
+> [Stelios]: non-expert is a hard term to use. 
+
+> [K & S] : name debugging as a major reason.
+
 Geodata processing can be very unfriendly to non-experts:
   - It is a notoriously hard endeavour. You pretty much require an expert.
   - Software is often hard to find, sometimes hard to install.
@@ -59,23 +70,23 @@ To expand upon that last point. experts often solve specific geo-processing prob
   - relatively hard to 'publish' the tools to end-users.
 
 
-> [JF]: The main problem with Qgis is how ui heavy and static it is. People often quickly reach for other appoaches such as python + geopanda's, to have a more direct relationship with the geodata, and to create processes which can be reused, rather than to create one map, and one map only. 
+> [JF]: The main problem with Qgis is how ui heavy and static it is. People often quickly reach for other approaches such as python + geopanda's, to have a more direct relationship with the geodata, and to create processes which can be reused, rather than to create one map, and one map only. 
 
 <br><br><div class="page">
 
 # Solution 
 
-> [JF]: I need to rephrase this. Not : _the goal is to build an application_ But: _the goal is to explore the possibility of improving client-side geoprocessing_
+> [JF]: I need to rephrase this. Not : _the goal is to build an application_ But: _the goal is to improve client-side geoprocessing_
 
 This research intents to solve both problems by researching and developing a new geodata processing application. The first problem will be solved by making the application run in a web browser, and by using `WebAssembly` to make this environment access the libraries needed for professional geoprocessing. The second problem will be solved by making this application operable by means of a visual programming language. The aim of this research is to give give both geomatics experts & non-expert users alike an effective and ergonomic way to process and visualize geodata client-side in a web browser. The research question is: _"How to create an `effective` and `ergonomic` web-geo-VPL?"_
 
 <!-- Duality -->
-
 The qualities `effective` and `ergonomic` are important to re-emphasize. They refer to the two problems this research simultaneously attempts to tackle. This is also reflected in the two main categories of sub-research questions. This duality is a necessity since  both the two problems as well as these two aspects are interrelated (the Q/A will cover more). 
 
 <!-- Method -->
 The most direct way to answer the main question is to practically design and create the type of application suggested, and analyse its effectiveness and ergonomics afterwards.  Many design decisions will occur, and these will be documented within the written thesis.
 
+> This Method needs expanding
 
 # Research Question
 
@@ -85,7 +96,7 @@ _"How to create a web-geo-VPL which is both `effective` and `ergonomic`?"_
 
 > JF: most of these are design decision questions. Don't know if that is a good or bad thing
 
-- A : Technical Aspect
+- A : Technical Aspects
   - How to use wasm to compile an existing geoprocessing library?
     - and to make it ready for web usage
   - When is `javascript` faster, and when is `WebAssembly` faster?
@@ -94,7 +105,7 @@ _"How to create a web-geo-VPL which is both `effective` and `ergonomic`?"_
     - Npm ?  
   - How to handle types between multiple, unrelated `wasm` libraries?
 
-- B : Ergonomic Aspect
+- B : Ergonomic Aspects
   - What are existing ways of geodata processing? 
     - _Who_ uses _What_ and _Why_? 
   - What lessons can be learned from existing VPL's?
@@ -139,6 +150,9 @@ example:
 <br><br><div class="page">
 
 ## Why does this research need to solve both problem 1 and 2? Is solving one of them not enough? 
+
+> [Ken] : I think it is correct, but down the non-expert part a bit, because that would mean surveys about UI & UX. You have arguments, like communication between researches, share code. 
+
 I think these two problems are mutually dependent: one cannot truly solve one without solving the other. 
 Getting the technicalities right of client-side geoprocessing is only part of the problem. One of the big reasons why anyone would want client-side geoprocessing would be the fact that it is accessible to a very large audience. If client-side geoprocessing technically becomes available, but in the form of a 'classic' web-cli, why would anyone want to use it? what was gained by publishing this online? why not do this offline, where it is quicker, and we have better tools available? The reverse is also true: if we would dodge the web and develop a new geo-vpl natively to solve the geo-processing ergonomic problems mentioned above, then the research would be 'just' another native geoprocessing tool. then why not use one of the many other geoprocessing-vpl's and improve it, instead of making a new one?
 
@@ -160,6 +174,7 @@ To answer this question, a bit of analysis of the current geo-vpl's are needed:
 | geoflow         | Ravi Peter            | Free               | Open      | Geoprocessing experts        | Geoprocessing: Rapid prototyping & Visualizing in between steps | https://github.com/geoflow3d/geoflow  |
 | Dynamo          | Autodesk              | +revit €3,330 p.y. | Semi-open | Expert Revit Users           | BIM automation       | https://dynamobim.org/ | 
 
+> [Ken] this is sort of 'related work'. Related work doesn't 
 
 Drawbacks of all of these: They are not FAIR:  
 1. not `findable` & `accessible`: most have a large barrier of entry: the tool needs to be installed \ Requires an account \ Requires several thousands of euros per year. 
@@ -210,6 +225,8 @@ So why why not grasshopper / FME / ravi's geo-flow? Three improvements need to b
     - vpl: Insight, Overview, UI
 
 
+> [Stelios]: bigger fact: I like these things more than your problem statement. This is a nicer problem statement for 
+
 <div class="page"><br>
 
 # Applications
@@ -240,6 +257,8 @@ _difficulty to code: Hard_
 - Preview data (MultiLine Preview Widget)
 - Export data (MultiLine export Widget)
 
+
+> [Ken] Nice, reusable, doable. Issue might be: these are quite Input-> output focussed. Maybe a stronger focus on processing. Maybe something which does not rely on a huge intake of geodata. I Think all three apps require a web-load module. Maybe a local-loader would also be nice. Also for local debugging. 
 
 
 ## Application 2: Get geometry of a street based on a street name
@@ -409,3 +428,23 @@ I will regard research within the scope of this thesis as _"choosing the shoulde
 
 
  -->
+
+
+> [Ken] The Big difference between developing & Exploring | investigation | Analysis
+> is documentation. 
+> including dead ends & negative results. 
+
+
+> [Stelios]: Doesn't really make sense to attach a whole file system to this. 
+
+
+> [Stelios]: Geodata in its nature is always big. We have to see to which extend this can actually be use. 
+> but: node.js web service: half of it client, half of it on web. 
+
+
+
+> [Ken]: Have a look at P2 docs, and especially the scientific arguments mentioned, to steer this away from a development-project and towards a proper thesis. 
+
+
+
+> [Stelios]: one sentence per line! 
