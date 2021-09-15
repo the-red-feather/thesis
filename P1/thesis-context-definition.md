@@ -1,5 +1,6 @@
 # Client-side geo-processing using WebAssembly and Visual Programming : Context Definition
 <!-- # "A Web-based Visual Programming Language for geo-processing and visualizing using WebAssembly" -->
+cd..
 
 |       |                        |
 |------ | ---------------------  |
@@ -28,8 +29,7 @@ Geodata processing client-side in a browser is very underdeveloped. This is a hu
 
  - Client-side geoprocessing allows direct user feedback unlike server-side geoprocessing. Users can be on top of the calculations, look at in betweens steps, etc. 
  
- - Instead of having large, preprocessed datasets, geodata could be processed on demand from the source. If a user is only interested in a small area of the source dataset, this could save 
-   vast amounts of time, storage space and computational resources. 
+ - "Just In Time" geoprocessing: Instead of having large, preprocessed datasets, geodata could be processed on demand from the source. If a user is only interested in a small area of the source dataset, this could save vast amounts of time, storage space and computational resources. 
  
 The last point gives client side geoprocessing both an ecological & economical reason. The accelerated effects of climate change gives geomatics experts a moral reason to avoid huge render farms and other power consuming methods whenever possible. Additionally, client-side can also be much cheaper, since all of the processing and rendering will happen on the machines of the user, and not on the servers of the organization. 
 
@@ -37,7 +37,7 @@ The last point gives client side geoprocessing both an ecological & economical r
 >
 > the client-side software ecosystem is run by `javascript` and various languages 
 > which compile to `js`, such as typescript. this ecosystem lacks powerful geoprocessing 
-> tools found in python and C++ ecosystems like `cgal`, `geopanda`, `3dfier`, etc. Javascript is also not a very fast language compared to C++. So, developing these tools from scratch in `js` would be both a lot of redundant work, and probably not very effective. 
+> tools found in mature python and C++ ecosystems like `cgal`, `geopanda`, `3dfier`, etc. Javascript is also not a very fast language compared to C++. So, developing these tools from scratch in `js` would be both a lot of redundant work, and probably not very effective. 
 
 <br><br>
 
@@ -283,7 +283,10 @@ _difficulty to code: Easy_
 - make it downloadable (csv.download() Widget)
 
 ### Description
-This is something I would use geopandas for
+This is something I would use geopandas for, but this would also be a nice way of doing things
+
+
+
 
 
 <br><br><div class="page">
@@ -295,7 +298,6 @@ I'm starting to realise that the specific types of geoprocessing applications th
 
 ## note on VPL
 Still consider a non-vpl method. a web-ide where selecting a variable will make it light up on the map. This will be more programmer-friendly, at the cost of being more non-programmer-unfriendly.
-
 consider a code / vpl tab, like in `blockly`. This way you could make both.
 
 ## some alternative title:
@@ -303,7 +305,6 @@ consider a code / vpl tab, like in `blockly`. This way you could make both.
 _FAIR geodata processing in a `Browser` using `WebAssembly`._
 
 ## some knowledge gap 
-
 - GIS Processing should be more operational & less obscure without losing any potency.
 
 ## note on project title 
@@ -320,4 +321,91 @@ _FAIR geodata processing in a `Browser` using `WebAssembly`._
 
 
 
+<!-- 
 
+<div class="page"><br>
+
+# WORK IN PROGRESS
+
+
+<div class="page"><br>
+
+# Development Direction:
+Different Ingredients needed to offer a complete solution to the question at hand. These Ingredients can be developed independently of each other, but will in the end have to be integrated. 
+
+<br>
+
+## MUST: 1. A fully-fledged web-vpl. 
+Right now, a geo-web-vpl does not exist. It will have to be created. Take the design of geo-vpl's as a starting point, and add from there what is needed for geospatial business.  
+
+the 'nodes' of this web-vpl represent building blocks within this environment. we distinguish between two different types of nodes:
+
+### Operations: 
+These are the equivalent of pure functions. They represent a **process**. It asks for a number of inputs, and delivers multiple outputs.
+
+### Widgets:
+These represent an **Input** of **Output**.  
+...
+
+### Nodes which are needed
+- json creation and editing.
+  - take advantage of the fact we are operating in the home of `json`'s 
+
+### Nodes 
+
+<br>
+
+## 2. MUST: A simple 3d-modelling interface to use alongside the VPL
+We want to be able to draw polygons, select 3d objects, and more. Consider multiple tools for this, such as `three.js`. Also, since we are already using vectors, matrices and more, consider adding this natively. 
+
+<br>
+
+## 3. MUST: C++ library compiled to Wasm.
+take `CGAL` preferably, or otherwise a smaller, more managable geoprocessing library.
+Then compile it to wasm using Emscriptem. Test the functionalities with a small javascript-only demo. 
+
+<br>
+
+## 4. MAYBE: A Plugin catalogue website
+We at the very least need a 'place' on the web to put these Wasm libraries, so they can be loaded using `<script>` tags within the VPL. This could be expanded upon as a website where users can submit their own plugins, and then load then within the VPL.
+
+## 5. MAYBE: A catalogue website containing projects created using the VPL
+
+
+
+...
+
+--------
+
+If 1, 2 and 3 are finished, they can be connected. 
+
+<br>
+
+<div class="page"><br>
+
+# Research Directions:
+
+I will regard research within the scope of this thesis as _"choosing the shoulders to stand upon"_, primarily to make sure this work is not redundant in any way.  
+
+
+## Software study questions: 
+
+- What is the state of the art regarding Wasm & Emscriptem. 
+  - What do people use these technologies for? what are current limitations?
+- ?
+- ?
+- ?
+
+
+## Literature Study Questions and topics, in no particular order: 
+
+
+
+
+- I need to look at what has been done up to this point regarding client-side 3d geometry, and client-side geo tools. 
+
+- What research has been done for user-friendly geo-processing
+
+
+
+ -->
