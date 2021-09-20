@@ -202,7 +202,12 @@ Drawbacks of all of these: They are not FAIR:
 ## So: why do we need a new geo-VPL? 
 So why why not grasshopper / FME / ravi's geo-flow? Three improvements need to be made to solve the drawbacks mentioned above: 
 
-- (1) To solve `findable` & `accessible` -> **Web Based** 
+
+- (0) To solve `findable` -> **Plugin Website + Application Website**
+  - one site where users can submit new WebAssembly plugins.
+  - one site where users can submit new Applications using these plugins. 
+
+- (1) To solve `accessible` -> **Web Based** 
   - No need to install anything.
   - Instantly sharable with others.
   - Context-agnostic: desktop / mobile / web-client / server 
