@@ -26,7 +26,7 @@ P2
 
 - Research questions 
   - Sub Questions
-- Main steps
+- Main step
 - 
 
 - fill in the form

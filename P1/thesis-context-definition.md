@@ -92,6 +92,8 @@ The most direct way to answer the main question is to practically design and cre
 
 _"How to create a web-geo-VPL which is both `effective` and `ergonomic`?"_
 
+_"Can client-side geoprocessing using WebAssembly and a visual programming language make geoprocessing more `findable`, `accessible`, `interoperable`, and `reusable`?"_
+
 ## sub questions
 
 > JF: most of these are design decision questions. Don't know if that is a good or bad thing
@@ -225,7 +227,7 @@ So why why not grasshopper / FME / ravi's geo-flow? Three improvements need to b
     - vpl: Insight, Overview, UI
 
 
-> [Stelios]: bigger fact: I like these things more than your problem statement. This is a nicer problem statement for 
+> [Stelios]: bigger fact: I like these things more than your problem statement. This is a nicer problem statement Than the one you use right now. The current problem statement is more of a Motivation than an actual problem
 
 <div class="page"><br>
 
