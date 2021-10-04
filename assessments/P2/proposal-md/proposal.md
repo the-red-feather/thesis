@@ -1,5 +1,9 @@
 <!-- 
 
+[ ------- FROM THE MANUAL ---------------- ]
+
+
+
 [ ------- FROM THE GEO2020 WEBSITE ------- ]
 
 P2 template
@@ -24,3 +28,41 @@ As an example, here’s a good project plan from a previous year. It contains:
     - the references.
 
  -->
+
+<!-- 'header' -->
+<script src=".\js\post-process.js"></script>
+
+<!-- body -->
+
+<article id="title">
+
+<span class="first-title">MSc Geomatics Thesis Proposal</span>
+
+<span class="sub-title">J. Feenstra</span>
+
+<span class=auto-date>xx - xx - xxxx</span>
+
+</article><article class="page" id="content">
+
+# Introduction
+
+
+# Related work
+
+
+
+
+# Research Objectives 
+
+
+# Methodology
+
+# Schedule 
+
+# Tools and Data
+
+</article><article class="page" id="references">
+
+
+
+</article>
