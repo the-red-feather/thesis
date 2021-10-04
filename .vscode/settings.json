@@ -10,5 +10,7 @@
         ".gitignore": true,
         "README.md": true,
     },
-    "markdown.preview.scrollEditorWithPreview":false
+    "markdown.preview.scrollEditorWithPreview": false,
+    "latex-workshop.message.error.show": false,
+    "latex-workshop.message.warning.show": false, 
 }
