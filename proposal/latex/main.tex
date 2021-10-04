@@ -1,0 +1,86 @@
+\documentclass[a4paper,11pt]{scrartcl}
+
+\usepackage{biblatex}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, total={14cm, 24cm}]{geometry}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{paralist}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage[font={footnotesize,it}]{caption}
+\usepackage{amsmath,amssymb,amsthm} 
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{algorithmic}
+\usepackage{mathpazo}
+\usepackage{booktabs}
+\usepackage{subfiles}
+
+\newcommand{\ie}{ie}
+\newcommand{\eg}{eg}
+\newcommand{\reffig}[1]{Figure~\ref{#1}}
+\newcommand{\refsec}[1]{Section~\ref{#1}}
+
+\setcapindent{1em} %-- for captions of Figures
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\addbibresource{ref.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\titlehead{\centering\includegraphics[width=12cm]{images/thumbnail.png}}
+\title{Client-side geo-processing using WebAssembly and Visual Programming}
+
+\author{
+  Jos Feenstra\\
+  student \#4465768 \\
+  \url{me@josfeenstra.nl}\\
+  \\
+  1st supervisor: Stelios Vitalis \\
+  2nd supervisor: Ken Arroyo Ohori \\
+}
+
+\date{x November, 2021}
+
+\begin{document}
+\maketitle
+
+\begin{figure}
+  \centering
+  \graphicspath{ {images/} }
+  \includegraphics[width=12cm]{thumbnail.png}
+  \caption{The main elements of an SDI}
+  \label{fig:thumbnail}
+\end{figure}
+
+\begin{flushleft}
+  \textbf{Key words:} A, B, C, D, E, 
+\end{flushleft}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{quote}
+  The mystery of Life is not a problem to solve, but a reality to experience \cite{einstein}
+\end{quote}
+
+As seen in \reffig{fig:thumbnail}, I am bad at photoshop.
+
+\newpage
+
+\include{body}
+
+
+\newpage
+\printbibliography
+
+\end{document}

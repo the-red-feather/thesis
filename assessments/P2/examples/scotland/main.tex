@@ -1,0 +1,108 @@
+% OVERALL TODO
+% - Sources & Citations fix -  ALEX
+% ✓ Abstract (start when intro & conclusion are done) 
+% ✓ Chapter 1: 
+%   ✓ research question leadup DONE  
+% - Chapter 2: ALEX
+%   ✓ Role of NMA and Parcel part - fix it up
+%   ✓ Adding picture of Assessment Framework. WITH A GOOD FONT
+% ✓ Chapter 3: ALEX
+%   - Add a better picture of the filled in assessment framework. 
+%   - Reassess scores & explanations, according to their comments
+%   - Dont change too much, remove parts rather than adding parts.
+%   - Hendrik thought that we didnt look good enough at the parcel 
+%     parcel dataset, lets see %     if he's right or wrong. 
+% ✓ Chapter 4: JOS
+%   ✓ Janitorial duties: cleanup, delete unused parts, sources
+% ✓ Chapter 5: JOS
+%   ✓ Also janitorial duties: Everything is already in place, just 
+%     some cleanup and verbal ergonomics required.  
+% ✓ Conclusion, Recommendations, Future Work JOS
+%   ✓ This should be partially rewritten, so that it works with the introduction. 
+%   ✓ Look at the corresponding slides, copy, paste & change, and we will be fine :)
+% 
+% - After all of that, do a final read-through, fix spelling (Open SDI, SSDI, etc), fix sources
+% - And we are done!
+% 
+% 
+% MONDAY
+% 
+% 
+% TUESDAY
+% 
+% 
+% WEDNESDAY
+% 
+% 
+
+\documentclass[12pt]{article}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, total={14cm, 24cm}]{geometry}
+\usepackage{sectsty}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{paralist}
+\usepackage{xcolor}
+\usepackage[round]{natbib} %Bibliography package
+\usepackage{subcaption}
+\usepackage[font={footnotesize,it}]{caption}
+\sectionfont{\fontsize{14}{14}\selectfont}
+\subsectionfont{\fontsize{12}{12}\selectfont}
+\usepackage{amsmath,amssymb,amsthm} 
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{algorithmic}
+\usepackage{mathpazo}
+\usepackage{booktabs}
+\usepackage{subfiles}
+
+
+\begin{document}
+
+\begin{center}
+ \large \textbf{Strategy towards an Open Spatial Data Infrastructure in Scotland}\\
+\vspace{0.8cm} 
+ \normalsize \textbf{Jos Feenstra, Mihai-Alexandru Erbașu}\\
+ Delft University of Technology, Faculty of Architecture and The Built Environment
+ The Netherlands\\
+ Email: {j.feenstra-1@student.tudelft.nl, m.a.erbasu@student.tudelft.nl}
+\end{center}
+
+%----------------------------------------------------
+
+\begin{flushleft}\textbf{Abstract} 
+
+The European INSPIRE and PSI directives bring consequential changes to the SDIs of EU member states, and mandate further development of these infrastructures. At the same time, the country of Scotland has seen insufficient research on the current state of 'openness' of the Scottish SDI (SSDI). This study analysed the current openness status of the Scottish Spatial Data Infrastructure, the barriers in the way of a more open SDI, and the strategies which can be taken for achieving this. This state was assessed using a custom SDI assessment framework, based on the works by Vancauwenberghe, Mulder, and Olausson. This concluded that the SSDI in general can be considered a second generation SDI, which still needs several steps before it can be called an Open SDI. While The SSDI is easy to discover, uses a lenient licensing framework, and its data is properly machine readable, the lack of especially sufficient user involvement limits the openness status. However, open participation in policy making \& standardization regarding is, thanks to the Open Government Partnership, well on its way on a general level. The three major barriers found were legislative complications due to Brexit negotiations, A reluctance by the SSDI to improve user participation, and a lack of agreement of key stakeholders. The main strategy suggested, based on the Government Instrument paradigm and the Kindon policy model, is to solve the discrepancies between stakeholders in order to improve collective decision making.
+
+\end{flushleft}
+\begin{flushleft}
+\textbf{Key words: } SDI, Open SDI, Scotland, PSI Directive, Open Data Directive, Open Government
+\end{flushleft}
+
+\newpage
+\subfile{1_introduction}
+
+\newpage
+\subfile{2_theory}
+
+\newpage
+\subfile{3_status}
+
+\newpage
+\subfile{4_barriers}
+
+\newpage
+\subfile{5_strategy}
+
+\newpage
+\subfile{6_conclusion_recommendation}
+
+\newpage
+\bibliographystyle{apalike}
+\bibliography{bibliography}
+
+\end{document}
