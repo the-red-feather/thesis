@@ -21,6 +21,9 @@
 \usepackage{mathpazo}
 \usepackage{booktabs}
 \usepackage{subfiles}
+\usepackage{silence}
+
+\WarningFilter{DuplicateLabels}
 
 \newcommand{\ie}{ie}
 \newcommand{\eg}{eg}
@@ -54,14 +57,6 @@
 \begin{document}
 \maketitle
 
-\begin{figure}
-  \centering
-  \graphicspath{ {images/} }
-  \includegraphics[width=12cm]{thumbnail.png}
-  \caption{The main elements of an SDI}
-  \label{fig:thumbnail}
-\end{figure}
-
 \begin{flushleft}
   \textbf{Key words:} A, B, C, D, E, 
 \end{flushleft}
@@ -69,15 +64,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{quote}
-  The mystery of Life is not a problem to solve, but a reality to experience \cite{einstein}
-\end{quote}
-
-As seen in \reffig{fig:thumbnail}, I am bad at photoshop.
-
 \newpage
-
-\include{body}
+\include{sections/body}
 
 
 \newpage

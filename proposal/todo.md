@@ -1,10 +1,20 @@
 
-TODO
+ # [ ------------------ TODO ---------------- ] #
  - [✓] Get Latex to work 
  - [✓] Get Citations & bibtex to work
- - [ ] Get Figures to work
+ - [✓] Get Figures to work
  - [ ] Add all needed sections
  - [ ] Write a small bit 
+
+
+
+
+
+
+
+
+
+
 
  
  # [ ------------ FROM THE MANUAL ----------- ] #
