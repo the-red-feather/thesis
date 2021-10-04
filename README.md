@@ -1,15 +1,12 @@
-# thesis-documentation
-All documents created for the Msc Geomatics Thesis: GEO2010 &amp; GEO2020, aside from `code`.
+# Thesis
+All documentation created for the Msc Geomatics Thesis: GEO2010 &amp; GEO2020, aside from the actual practical products (the code).
 
-# What does this thesis look like?
+
+
+
+
+# Sketch of ideas
 
 This is the current sketch of what this thesis will be about
 
 <img src="./P0/wordweb-thesis.png">
-
-
-
-
-# Practial Roadmap
-
-see [Nodes](https://github.com/josfeenstra/geon-nodes)
