@@ -9,4 +9,4 @@ All documentation created for the Msc Geomatics Thesis: GEO2010 &amp; GEO2020, a
 
 This is the current sketch of what this thesis will be about
 
-<img src="./P0/wordweb-thesis.png">
+<img src="./notepad/wordweb-thesis.png">
