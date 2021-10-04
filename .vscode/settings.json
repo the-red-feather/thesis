@@ -1,9 +1,11 @@
 {
     "cSpell.words": [
+        "debugable",
         "emscriptem",
         "Lemmen's",
         "Ohori",
-        "Vitalis"
+        "Vitalis",
+        "VPL's"
     ],
     "files.exclude": {
         "thesis": true,
