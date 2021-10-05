@@ -9,7 +9,7 @@
     ],
     "files.exclude": {
         "thesis": true,
-        ".gitignore": true,
+        // ".gitignore": true,
         "README.md": true,
     },
     "markdown.preview.scrollEditorWithPreview": false,

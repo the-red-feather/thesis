@@ -1,9 +1,9 @@
-# meeting 4
+# meeting 7
 |          |                         |
 | -------- | ----------------------- |
 | date     | 2021-10-08 - Wednesday
 | present  | Ken, Stelios, Jos
-| Location | cyberspace + IRL (???)
+| Location | Bouwkunde, 3dgeo-office
 
 
 Planning
@@ -27,11 +27,13 @@ Internship
 P2: Thesis Proposal
 -----------------------------
 - LaTeX setup
-  - ~~Is it always such a pain in the butt? Sometimes it feels like catching a fly with a rocket launcher~~
   - Tips about setup? styling? citations?
 
-- references & related work
-  - 
+- Introduction
+  - Shall I make a separate paper as an in-depth analysis and judgement of existing VPL's? I feel like this might be needed to make a proper case for this thesis.
+
+- References 
+  - Does Ravi have a paper about geoflow?
 
 # notes: 
 

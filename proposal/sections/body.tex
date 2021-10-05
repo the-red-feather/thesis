@@ -1,5 +1,3 @@
-\WarningFilter{DuplicateLabels}
-
 %-------------------------------------------------------------------------------------------------%
 % An introduction in which the relevance of the project and its place in the 
 % context of geomatics is described, along with a clearly-defined problem statement.
@@ -10,48 +8,74 @@
 Geodata processing is important.
 
 % [2]
+% [JF]: This is nice, By 'improving a VPL' I dont have to go all 'use case testing' and make a case for a vpl, 
+% because I can just state in this introduction "they are useful, look, multiple people are working on them"
 \par
-Vpl's makes geodata processing debugable and more insightful. 
+Visual programming languages, or Vpl's for short, can make geodata processing debugable and more insightful. 
 
-[Name relevant VPL's, their reason of existence, their target audience] 
+[Name some relevant VPL's, their reason of existence, their target audience.
+this will be more in-depth during the 'related work' section] 
 
 
 % [3]
-\par
-BUT current VPL's lack certain aspects. 
-
-The well established FAIR paradigm. to criticize current VPL's 
-
-% [5]
-\par
-go from this to research question
-
-% [JF]: This is super nice, By 'improving a VPL' I dont have to go all 'use case testing' and make a case for a vpl, 
-% because I can just state in this introduction "they are useful, look, multiple people are working on them"
+% [JF]: these criteria are Ideals, of course software falls short on meeting them, make this more nuanced)
+\subsection{Problem}
+The main advantage of vpl's is usability. 
+However, vpl's used within the field of geomatics still fall short on certain usability aspects. 
+The well established FAIR paradigm has been used to judge the usability of geodata, and geodata portals (SOURCE: GEOLEGAL). 
+This paper will use this paradigm instead on vpl's, for geodata processing itself can have varying degrees of Findability, Accessibility, Interoperability, and Reusability. 
+When we judge the aforementioned vpl's on these aspects, compared to regular programming languages we find the following: 
 
 
-\subsection{"making the Case"}
+\subsubsection*{Accessibility}
+Accessibility is arguably the strongest advantage of a visual programming language over a regular language. 
+Users whom are not familiar with programming can often still use a VPL. 
+However, many VPL's are still hard to actually acquire. 
+The tool needs to be installed, an account is required, and most VPL's are not free and open source like the vast majority of programming languages are. (Study on advantage of web-based tools over native ones)
 
-\subsubsection{Findable}
-la la la 
+\subsubsection*{Interoperability}
+Besides a large barrier of entry, Visual programming languages are also not platform agnostic. 
+\dots
+are usually strongly tied to their host environments
+\dots
+This also makes Bindings to different languages or programs harder. A regular programming language like python can accepts bindings, which makes it possible to run scripts written in C++ or Rust. Similar actions are often difficult to accomplish with VPL's.
 
-\subsubsection{Accessible}
-Most vpl's are not 
+\subsubsection*{Findability}
+It is often hard to get an overview of 
 
 
-\subsubsection{Interoperable}
-la la la 
+\subsubsection*{Reusability}
+Reusability is arguably a core concept within computer programming in general. 
+A function is defined with the idea that it may be used multiple times, in multiple different contexts, with a variety of different input data.
+Vpl's are often not as reusable as 'normal' code. The flowchart-scripts often cannot be turned into standalone applications or tools.
 
-\subsubsection{Reusable}
-reusability is arguably the main reason why code is important: a structured way of defining a process. 
-This way the process itself can be taken and used in different contexts.
-vpl's are often not reusable in the same way as code. they are strongly tied to their host environments
+
+
+% [5] go from this to research question
+\newpage
+\subsection{Solution}
+
+
+\subsubsection*{Accessible}
+
+
+\subsubsection*{Interoperable}
+
+
+
+\subsubsection*{Findable}
+
+
+\subsubsection*{Reusable}
+
+
 
 %-------------------------------------------------------------------------------------------------%
 % A related work section in which the relevant literature is presented and 
 % linked to the project. 
 % It should show that you clearly know the problem you plan to solve, 
 % and that you master the related work. 
+\newpage
 \section{Related work}
 
 % [Research]
@@ -71,6 +95,7 @@ vpl's are often not reusable in the same way as code. they are strongly tied to 
 % The research questions are clearly defined, along with the scope (ie what you will not be doing).
 % To help you define a "good" research question, 
 % read \url{https://sites.duke.edu/urgws/files/2014/02/Research-Questions_WS-handout.pdf}.
+\newpage
 \section{Research questions}
 
 % ----
@@ -80,27 +105,55 @@ vpl's are often not reusable in the same way as code. they are strongly tied to 
 
 %-------------------------------------------------------------------------------------------------%
 % This is not an official section, but important nonetheless
+\newpage
 \section{Motivation}
 
+(copy paste, but this is also a nice motivation)
+This prototype will be used as the stage to develop the tools and knowledge necessary to utilize the Web \& WebAssembly for geodata processing.   
 
 
 %-------------------------------------------------------------------------------------------------%
 % Overview of the methodology to be used.
+\newpage
 \section{Methodology}
+This research attempts to improve the Accessibility and Interoperability issues of VPL's by developing a prototype VPL. 
+This prototype will be used as the stage to develop the tools and knowledge necessary to utilize the Web \& WebAssembly for geodata processing.   
 
+\par
+A logbook will be maintained to explain how this prototype was constructed, what design choices were made and why, and exactly in which way the FAIR principles influenced its design. 
+
+\par
+When the VPL contains all tools necessary to be used to properly process geodata, a final assessment is needed. 
+Three different applications will be created using regular means (jupyter notebook, python, panda's, etc)
+and these same applications will be created using the prototype web-VPL. 
+These two methods will then be compared on usability aspects and performance.   
 
 %-------------------------------------------------------------------------------------------------%
 % Having a Gantt chart is probably a better idea then just a list.
+\newpage
 \section{Time planning}
+
+todo
+\begin{itemize}
+    \item write P2
+    \item write P2 presentation
+    \item build the VPL
+    \item build the applications within the VPL
+    \item build the comparison applications using Python
+    \item perform tests and compare the two
+\end{itemize}
+
+
 
 % start with a todo list 
 % make workload estimations
 
-% gantt chart? nah, I dont want to do things in parallel if I can help it
+% gantt chart? nah, I don't want to do things in parallel if I can help it
 
 
 %-------------------------------------------------------------------------------------------------%
 % Since specific data and tools have to be used, it’s good to present these concretely, 
 % so that the mentors know that you have a grasp of all aspects of the project.
+\newpage
 \section{Tools and datasets used}
 
