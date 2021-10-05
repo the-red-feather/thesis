@@ -23,6 +23,8 @@
 \usepackage{subfiles}
 \usepackage{silence}
 
+% [Settings]
+
 \WarningFilter{DuplicateLabels}
 
 \newcommand{\ie}{ie}
@@ -31,14 +33,20 @@
 \newcommand{\refsec}[1]{Section~\ref{#1}}
 
 \setcapindent{1em} %-- for captions of Figures
+\setlength\parskip{1em plus 0.1em minus 0.2em}
+\setlength\parindent{0pt}
 
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
 \addbibresource{ref.bib}
 
+% [Title Page] (could be split away)
+
 \titlehead{\centering\includegraphics[width=12cm]{images/thumbnail.png}}
-\title{Client-side geo-processing using WebAssembly and Visual Programming}
+\title{Thesis Proposal: \\
+Client-side geo-processing using WebAssembly and Visual Programming
+}
 
 \author{
   Jos Feenstra\\
@@ -49,7 +57,7 @@
   2nd supervisor: Ken Arroyo Ohori \\
 }
 
-\date{x November, 2021}
+\date{November, 2021}
 
 \begin{document}
 \clearpage\maketitle
@@ -59,9 +67,15 @@
   \textbf{Key words:} Geomatics, WebAssembly, 3D geometry, Geodata, Visual programming, 
 \end{center}
 
+% [Table of Content] 
+\newpage
+\tableofcontents
+
+% [Content]
 \newpage
 \include{sections/body}
 
+% [Appendix]
 \newpage
 \printbibliography
 
