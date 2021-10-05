@@ -8,8 +8,8 @@
         "VPL's"
     ],
     "files.exclude": {
-        "thesis": true,
-        // ".gitignore": true,
+        // "thesis": true,
+        ".gitignore": true,
         "README.md": true,
     },
     "markdown.preview.scrollEditorWithPreview": false,

@@ -19,6 +19,8 @@ Related visual programming languages:
 | Save Software's `FME`        | | https://www.safe.com/fme/fme-desktop/
 | SideFX's Houdini 
 
+
+
 Drawbacks of all of these: They are not FAIR:  
 > 1. not `findable` & `accessible`: the tool needs to be installed | requires an account | requires payment > entry barrier 
 > 2. not `interoperable`: always strongly tied to its host environment | no way to run a script without the tool to a CLI or web-app
