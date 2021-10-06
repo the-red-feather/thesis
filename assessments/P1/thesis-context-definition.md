@@ -1,5 +1,5 @@
 # Client-side geo-processing using WebAssembly and Visual Programming : Context Definition
-<!-- # "A Web-based Visual Programming Language for geo-processing and visualizing using WebAssembly" -->
+<!-- # "Geofront: A Web-based Visual Programming Language for geo-processing and visualizing using WebAssembly" -->
 cd..
 
 |       |                        |

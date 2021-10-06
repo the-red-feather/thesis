@@ -1,13 +1,88 @@
 %-------------------------------------------------------------------------------------------------%
-% The research questions are clearly defined, along with the scope (ie what you will not be doing).
+% [HUGO]: The research questions are clearly defined, along with the scope (ie what you will not be doing).
 % To help you define a "good" research question, 
 % read \url{https://sites.duke.edu/urgws/files/2014/02/Research-Questions_WS-handout.pdf}.
+% [ From Hugo's handout: ]
+% 
+% clear | focussed | unique | 
+% start asking open-ended “How?” “What?” and Why?” questions. 
+% Then evaluate possible responses to those questions
+% While a good research question allows the writer to take an arguable position, 
+% it DOES NOT leave room for ambiguity.
+% 
+% 1)Is the research question something I/others care about? Is it arguable?
+% 2)Is the research question a new spin on an old idea, or does it solve a problem?
+% 3)Is it too broad or too narrow?
+% 4)Is the research question researchable within the given time frame and location?
+% 5)What information is needed?
+% 
+% are you trying to accomplish one of these goals? 
+% 1) Define or measure a specific fact or gather facts about a specific phenomenon. -> NO
+% 2) Match facts and theory. -> NO
+% 3) Evaluate and compare two theories, models, or hypotheses. -> SORT OF
+% 4) Prove that a certain method is more effective than other methods. -> YES
+% Moreover, the research question should address what the variables of the experiment are, their relationship, 
+% and state something about the testing ofthose relationships. 
+% 
+% [JF] : I really know what I want to do, and I am convinced improving the usability of geoprocessing tools 
+% is both valuable and Good. 
+% 
 \newpage
 \section{Research questions}
+
+\subsection{problem}
+Client side geoprocessing is underdeveloped \& vpl's are not FAIR 
+
+\subsection{testable hypotheses}
+\textbf{By utilizing WebAssembly, C++ geoprocessing libraries such as CGAL \& 3dfier will run within a browser without needing to be installed.}
+\begin{itemize}
+    \item right, full functionality
+    \item right, but with limitations 
+    \item wrong, but could be done
+    \item wrong, Impossible 
+\end{itemize}
+
+\textbf{These WebAssembly compiled libraries will achieve similar performance as native, cli usage of the same libraries.}
+\begin{itemize}
+    \item Right, it is slower, but the difference is negligible 
+    \item Half Right, Users can notice it is a bit slower.
+    \item wrong, it is significantly slower, borderline unusable  
+\end{itemize}
+
+\textbf{A web-based geo-vpl equipped with these libraries will be more \emph{Usable} for the given case study than a conventional method using Python}
+
+\begin{itemize}
+    \item Right, the web-geo-vpl scores better on all FAIR usability criteria.
+    \item Half right, it scores better on some of the FAIR criteria.
+    \item wrong, this way of working scores worse on all FAIR criteria.
+\end{itemize}
+
+
+
+\subsection{report results}
+??? dont know how to interprete this 
+
+
+
+%-------------------------------------------------------------------------------------------------%
+\subsection{Research Questions}
+
+
+
+
 
 % ----
 \subsection{Scope}
 
+
 \subsubsection*{Will Include}
 
+- design decisions informed by (Usability analysis...)
+- 
+
+
 \subsubsection*{Will Not Include}
+This research will exclude web processing services, since these services are not about \emph{client} side geoprocessing, but instead cover \emph{server} side geoprocessing. 
+Future work could, however, research the possibility of utilizing a vpl for server orchestration. 
+
+
