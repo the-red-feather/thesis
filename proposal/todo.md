@@ -8,7 +8,7 @@
  - [✓] Collect all 'edge data' (assessment criteria, tips, templates)
  - [✓] Add all needed sections
  - [ ] Make a planning
- - [ ] Write a small bit 
+ - [✓] Write a small bit 
 
 
 

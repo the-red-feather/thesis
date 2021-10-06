@@ -26,8 +26,7 @@ In literature & pratise. If you say underdeveloped -> answer is develop. so if y
 
 Geodata processing client-side in a browser is very underdeveloped. This is a huge inhibition for many applications. Client-side geoprocessing offers tremendous potential:
  - Users will never have to install anything except a web-browser.
-    - This will make geoprocessing more accessible & operational to a large, non-geodata expert audience. It allows more people to do more things with geodata, and reach more interesting    
-      conclusions quicker. 
+    - This will make geoprocessing more accessible & operational to a large, non-geodata expert audience. It allows more people to do more things with geodata, and reach more interesting   conclusions quicker. 
 
  - Client-side geoprocessing would offload postprocessing to the end user, allowing the end user to tailor geodata to their exact needs. 
 
