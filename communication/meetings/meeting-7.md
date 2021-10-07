@@ -38,6 +38,7 @@ P2: Thesis Proposal
 
 - References 
   - Does Ravi have a paper about geoflow?
+    [STELIOS]: might be named in 3d bag
 
 
 
@@ -50,4 +51,50 @@ Internship
 
 # notes: 
 
+- [KEN]: 1, 2 vs. 3  differences 
+define the overal scope, then we can
 
+
+- [KEN]: motivation vs introduction
+
+- [STELIOS]: make sure that you use the FAIR stuff as motivation only, leave it out as a proof burden. 
+
+
+- [stelios]: use fair as a wrapper, a sandwich
+you can still make the statements, just not with the weight of a research question. 
+
+- [KEN]: you dont even need to define specific things,
+
+related work: evaluate according to the criteria specified
+
+- is there a niche for a Wel VPL or not
+
+benefit of only focussing
+
+leave doubts in introduction
+use related work for the VPL assessment: is there a niche for a new vpl. 
+
+Fair papers
+
+
+- acronym package 
+
+2 . related work
+
+- background concepts
+
+- background
+  
+
+- related work
+   - competitors
+
+
+- [Stelios]: related work: minimal material to convince me 
+
+2 kinds of references 
+- find & discarded
+- find & use it later 
+
+
+- [STelios]: don't hesitate, just make something 
