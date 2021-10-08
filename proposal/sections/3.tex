@@ -19,8 +19,8 @@
 % are you trying to accomplish one of these goals? 
 % 1) Define or measure a specific fact or gather facts about a specific phenomenon. -> NO
 % 2) Match facts and theory. -> NO
-% 3) Evaluate and compare two theories, models, or hypotheses. -> SORT OF
-% 4) Prove that a certain method is more effective than other methods. -> YES
+% 3) Evaluate and compare two theories, models, or hypotheses. -> NO
+% 4) Prove that a certain method is more effective than other methods. -> ONLY WASM compared to native
 % Moreover, the research question should address what the variables of the experiment are, their relationship, 
 % and state something about the testing ofthose relationships. 
 % 
@@ -30,32 +30,10 @@
 \newpage
 \section{Research questions}
 
+
+
 \subsection{problem}
-Client side geoprocessing is underdeveloped \& vpl's are not FAIR 
 
-\subsection{testable hypotheses}
-\textbf{By utilizing WebAssembly, C++ geoprocessing libraries such as CGAL \& 3dfier will run within a browser without needing to be installed.}
-\begin{itemize}
-    \item right, full functionality
-    \item right, but with limitations 
-    \item wrong, but could be done
-    \item wrong, Impossible 
-\end{itemize}
-
-\textbf{These WebAssembly compiled libraries will achieve similar performance as native, cli usage of the same libraries.}
-\begin{itemize}
-    \item Right, it is slower, but the difference is negligible 
-    \item Half Right, Users can notice it is a bit slower.
-    \item wrong, it is significantly slower, borderline unusable  
-\end{itemize}
-
-\textbf{A web-based geo-vpl equipped with these libraries will be more \emph{Usable} for the given case study than a conventional method using Python}
-
-\begin{itemize}
-    \item Right, the web-geo-vpl scores better on all FAIR usability criteria.
-    \item Half right, it scores better on some of the FAIR criteria.
-    \item wrong, this way of working scores worse on all FAIR criteria.
-\end{itemize}
 
 
 %-------------------------------------------------------------------------------------------------%
@@ -74,9 +52,13 @@ Client side geoprocessing is underdeveloped \& vpl's are not FAIR
 \subsection{Will Include}
 
 
+\subsubsection*{Features and limitations of using wasm for geoprocessing}
 
 
-\subsubsection*{Implementation details}
+\subsubsection*{Performance analysis of C++ geoprocessing libraries native versus wasm}
+
+
+\subsubsection*{Implementation details of creating a geo-web-vpl}
 Design decisions informed by research (the VPL usability paper) and previous vpl's.
 
 The paper will state usability considerations within the implementation details of the VPL, but will make no attempt to proof these statements. 
@@ -92,6 +74,7 @@ While usability* is the primary motivation for conducting this research, no clai
 * (Usability within this context is meant as a collection of aspects such as "performance", "ease of use", and FAIR principles. )
 
 \subsubsection*{Web Processing Services}
+
 This research will exclude web processing services, since these services are not about \emph{client} side geoprocessing, but instead cover \emph{server} side geoprocessing. 
 Future work could, however, research the possibility of utilizing a vpl for server orchestration. 
 
