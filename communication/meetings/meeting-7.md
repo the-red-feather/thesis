@@ -35,10 +35,11 @@ P2: Thesis Proposal
 
 - Introduction
   - Shall I make a separate paper as an in-depth analysis and judgement of existing VPL's? I feel like this might be needed to make a proper case for this thesis.
+    [KEN]: no. this is related work
 
 - References 
   - Does Ravi have a paper about geoflow?
-    [STELIOS]: might be named in 3d bag
+    [STELIOS]: might be mentioned in the 3d bag paper
 
 
 
@@ -60,7 +61,7 @@ define the overal scope, then we can
 - [STELIOS]: make sure that you use the FAIR stuff as motivation only, leave it out as a proof burden. 
 
 
-- [stelios]: use fair as a wrapper, a sandwich
+- [STELIOS]: use fair as a wrapper, a sandwich
 you can still make the statements, just not with the weight of a research question. 
 
 - [KEN]: you dont even need to define specific things,
@@ -91,10 +92,8 @@ Fair papers
 
 
 - [Stelios]: related work: minimal material to convince me 
-
 2 kinds of references 
 - find & discarded
 - find & use it later 
 
-
-- [STelios]: don't hesitate, just make something 
+- [STelios]: don't hesitate, just make something, dont plan too much ahead, it will change anyhow

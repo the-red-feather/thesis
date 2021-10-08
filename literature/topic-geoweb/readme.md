@@ -1,4 +1,3 @@
-
 ## very nice abstract
 > from https://www.tandfonline.com/doi/full/10.1080/13658816.2016.1227441
 
@@ -11,4 +10,8 @@ I'm fascinated by the sort of 'freudian slip visuals' like this one:
 ![image](./capture.png)
 
 They use this diagram to explain the diagram they are trying to create. I think this **is** the diagram they should create. 
+
+## native-vs-mobile-web-apps
+This raises an interesting point: mobile (web) applications are FAR more common in developing countries than desktop applications. 
+Better client-side web-app experiences would thus mean
 
