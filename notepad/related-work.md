@@ -101,6 +101,6 @@
 
 - Benchmarks -> so we can say something about speed & consistency
 - User Testing -> so we can say something concrete about 'how accessible it is to use'
-- 
+  - lets not do this 
 
 

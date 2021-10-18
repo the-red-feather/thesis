@@ -1,22 +1,22 @@
 # THESIS
 ## Must
-- Wasm
+- Wasm 
 - Wasm
 - Wasm
 
 ## Should
 - Workable VPL
+- Compile to JS
+- 
+
+## Could
+- local version / vscode plugin
 - 
 -
 
-## Could
-- Usability Analysis
--
--
-
 ## Wont
--
--
+- Usability Analysis
+- 
 -
 
 # GEOFRONT 
