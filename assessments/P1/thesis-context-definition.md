@@ -19,14 +19,14 @@ This document is a very early draft for the eventual thesis. It aims to frame th
 
 # Problem Statement
 
-## Problem 1 : Client-side geoprocessing is underdeveloped
+## Problem 1 : Client-side geoprocessing is underutilized
 
 > [Ken] client-side geo-proceesing is 'not researched', instead of underdeveloped.
 In literature & pratise. If you say underdeveloped -> answer is develop. so if you say underresearched -> answer is research. 
 
 Geodata processing client-side in a browser is very underdeveloped. This is a huge inhibition for many applications. Client-side geoprocessing offers tremendous potential:
  - Users will never have to install anything except a web-browser.
-    - This will make geoprocessing more accessible & operational to a large, non-geodata expert audience. It allows more people to do more things with geodata, and reach more interesting   conclusions quicker. 
+    - This will make geoprocessing more accessible & operational to a larger audience. It allows more people to do more things with geodata, and reach more interesting conclusions quicker. 
 
  - Client-side geoprocessing would offload postprocessing to the end user, allowing the end user to tailor geodata to their exact needs. 
 
@@ -46,13 +46,15 @@ The last point gives client side geoprocessing both an ecological & economical r
 
 ## Problem 2 : Geoprocessing overall lacks ergonomics
 
+> [JF]: Ignore this poitn going forward. Ergonomics is implied in "usability" concepts 
+
 > [Ken] : maybe this is more of a motivation than a direct 
 
 > [Stelios]: non-expert is a hard term to use. 
 
 > [K & S] : name debugging as a major reason.
 
-Geodata processing can be very unfriendly to non-experts:
+Geodata processing can be very user unfriendly:
   - It is a notoriously hard endeavour. You pretty much require an expert.
   - Software is often hard to find, sometimes hard to install.
   - Software is often difficult to operate.
@@ -169,8 +171,9 @@ To answer this question, a bit of analysis of the current geo-vpl's are needed:
 | Name            | Author                | Availability       | Source    | Audience                     | Purpose              | Link                | Notes          
 |---------------- | --------------------- | ------------------ | --------- | ---------------------------- | -------------------- | ------------------- | ----------
 | FME             | Save Software         | €2,000 one time    | Closed    | Geoprocessing intermediaries | Geoprocessing        | https://www.safe.com/fme/fme-desktop/ | 
+| The graphical modeler            | QGIS Contributors         | Free    | Open    | QGIS users | Geoprocessing        | https://www.safe.com/fme/fme-desktop/ | 
 | Houdini         | SideFX                | ~€1,690 p.y.       | Closed    | 3D modellers & SFX           | Procedural Modelling & Special effects | https://www.sidefx.com/ |
-| Geometry Nodes  | Blender               | Free               | Open      | 3D modellers & SFX           | Procedural Modelling & Special effects | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   |
+| Geometry Nodes  | Blender Foundation & Contributors             | Free               | Open      | 3D modellers & SFX           | Procedural Modelling & Special effects | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   |
 | Grasshopper     | David Rutten / McNeel | €995 one time      | Closed    | 3D modellers & architects    | Parametric Design    | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   |
 | geoflow         | Ravi Peter            | Free               | Open      | Geoprocessing experts        | Geoprocessing: Rapid prototyping & Visualizing in between steps | https://github.com/geoflow3d/geoflow  |
 | Dynamo          | Autodesk              | +revit €3,330 p.y. | Semi-open | Expert Revit Users           | BIM automation       | https://dynamobim.org/ | 

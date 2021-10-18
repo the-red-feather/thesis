@@ -1,0 +1,3 @@
+## 1. The 'Last-mile' problem 
+Most geo-processing research and development is done in a, I would say, limited context.
+I've noticed that a common problem occurs when people try to actually create something for end users out of tools and libraries developed for geomatics purposes. During that very last step, it often proofs to be very difficult to utilize and access all this research. This 'last mile' problem stems from a lack of interoperability, which WebAssembly partially tries to solve. 

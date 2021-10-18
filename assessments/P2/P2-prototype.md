@@ -1,4 +1,5 @@
-# 1. INTRODUCTION
+1- INTRODUCTION
+===============================================================================
 
 <br> --- *Standards*
 
@@ -74,10 +75,10 @@ This can be seen as a "geo-wasm case study", as this application would be imposs
 
 
 
-<div class="page">
+<br><br><br><div class="page">
 
-# 2. RELATED WORK
-
+2- RELATED WORK
+===============================================================================
 
 ## 2.1 On WebAssembly
 - the not so fast paper
@@ -92,9 +93,11 @@ This can be seen as a "geo-wasm case study", as this application would be imposs
 
 
 
-<div class="page">
 
-# 3. RESEARCH QUESTIONS
+<br><br><br><div class="page">
+
+3- RESEARCH QUESTIONS
+===============================================================================
 
 ## 3.1 Objectives
 
@@ -153,31 +156,82 @@ NOT:
  -->
 
 
-<div class="page">
+<br><br><br><div class="page"></div>
 
-# 4. Motivation 
+4- MOTIVATION 
+===============================================================================
 
-This paper contains auxiliary motivations, in addition to the main purpose of this research. 
+> [JF]: This needs 'professionalization'
 
-- Last-mile problem 
 
-- insight, sandboxing & Debugging
 
-<div class="page">
+## 4.1 Additional problems the software tries to solve, and features it tries to present:
 
-# 5. Methodology
+### - Real-time geodata processing
+
+- A number of use-cases exist with a growing need for real-time geodata processing. (SOURCE: INCIDENT MAPPER)
+
+### - Improved Geoprocessing Ergonomics
+
+- Insightful debugging: Client-side geoprocessing together with a VPL allows direct user feedback unlike server-side geoprocessing. Users can be on top of the calculations, look at in betweens steps, reconfigure the procedure without recompilation, see the immediate effects of parameter changes. 
+
+- Improved communications: Researchers will be able to share demo's and procedures with a link.
+
+- Improved accessibility: Users will not have to install anything except a web-browser.
+  This will make geoprocessing more accessible & operational to a larger audience. It allows more people to do more things with geodata, and reach more interesting conclusions quicker. 
+
+### - Personal, Just In Time Geodata
+
+- Instead of having large, preprocessed datasets, geodata could be processed on demand from the source client-side. If a user is only interested in a small area of the source dataset, this could save vast amounts of time, storage space and computational resources. 
+
+- It also allows the end user to tailor geodata to their exact needs. 
+
+
+
+
+
+
+<br><br><br><div class="page"></div>
+
+5- METHODOLOGY
+===============================================================================
+
 
 (utilize pre-work)
 
+## 5.1 Software
 
 
+## 5.2 Tests
 
-# 5.4 Measure
+
+## 5.3 Case Study
+
+> ### *Demo Application: On Demand Triangulator + Isocurves* 
+> 
+> ### Input: 
+> - Point Cloud
+> 
+> ### Output
+> - Line Curves / .png render of line curves
+> 
+> ### Steps: 
+> - Load ahn3 point-cloud (WFS Input Widget | WFS Preview Widget)
+> - Visualize point cloud on top of base map of the netherlands (WMS Input Widget | WMS > Preview Widget)
+> - Only select terrain points (list filter Operation)
+> - Construct a 2d polygon by clicking points on a map (Polygon Input Widget)
+> - Select Area of interest using a 2d polygon (Boundary Include Operation)
+> - Triangulate point cloud with a certain resolution (Triangulate Operation)
+> - Intersect the mesh surface with a series of planes (Isocurves from Mesh Operation)
+> - Preview data (MultiLine Preview Widget)
+> - Export data (MultiLine export Widget)
 
 
-<div class="page">
+<br><br><br><div class="page">
 
-# 6. Planning
+6- PLANNING
+===============================================================================
+
 
 TODO
 - write P2 presentation
@@ -186,10 +240,10 @@ TODO
 - build a similar application using python + jupyler, or some other conventional method
 - perform tests and compare the two
 
-<div class="page">
+<br><br><br><div class="page">
 
-# 7. Tools used
-
+7- TOOLS USED
+===============================================================================
 
 Languages
   - C++ & Rust 
