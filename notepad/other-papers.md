@@ -28,6 +28,17 @@
 | Question          | How  to  reuse  geospatial  data,  from  different,  heterogeneous  sources, via the web across communities?
 
 
+
+
+# Ravi Peters' Msc Thesis
+
+> Ravi's thesis heeft een heel duidelijk ankerpunt: de "four hydrographic generalization constraints". Hiermee kan hij zijn eigen werk en andermans werk beoordelen. Vind zo'n zelfde ankerpunt
+
+
+
+
+
+
 > [JF] FAIR: findability, **accessibility**, interoperability, reusability
 
 > [JF] quite a broad topic

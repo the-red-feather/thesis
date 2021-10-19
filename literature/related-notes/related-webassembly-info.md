@@ -38,7 +38,7 @@ _https://www.youtube.com/watch?v=CMB6AlE1QuI&t=1732s_
 _Michael Yuan — Tensorflow inference on WebAssembly_
 
 _https://www.youtube.com/watch?v=poe0Z7GR8uI_
-
+https://www.secondstate.io/
 
 ## notes
 - clearly states the advantages of something like wasm, and the philosophy behind it.
@@ -61,7 +61,7 @@ _https://www.youtube.com/watch?v=poe0Z7GR8uI_
     - crashes from bugs & attacks 
     - unsafe: coursely grained, OS-level access control
 
-  - Better than python, beause python ...
+  - Better than python, because python ...
     - 60.000x slower than C 
     - does not run on edge devices and platforms
     - limited support in web & application frameworks

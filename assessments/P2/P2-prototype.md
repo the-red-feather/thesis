@@ -1,5 +1,48 @@
-1- INTRODUCTION
+<!-- 
+
+[ ------- FROM THE GEO2020 WEBSITE ------- ]
+
+P2 template
+
+The document for P2 is a research proposal that must contain:
+- all the elements listed in the template available in the graduation manual (Appendix 2).
+- You are free to write your project plan with the word processor of your choice (including LaTeX), as long as all the asked parts are present, in the same order. You can use that simple LaTeX template as starting point.
+  - (LaTeX is strongly recommended tho...) [JF]: Ill try to use markdown for the time being. I think I will not need the advanced features of LaTeX (just yet). 
+- We expect a project plan to be around 10-15 pages (maximum). 
+- It should show that you clearly know the problem you plan to solve, 
+- and that you master the related work. 
+- We expect you to present the methodology you will use to solve your scientific problem(s), and to present preliminary results. 
+- Also, this is a scientific proposal, so references are mandatory (even if there is no specific section in the template).
+
+As an example, here’s a good project plan from a previous year. It contains:
+    - an introduction in which the relevance of the project and its place in the context of geomatics is described, along with a clearly-defined problem statement;
+    - a related work section in which the relevant literature is presented and linked to the project;
+    - the research questions are clearly defined, along with the scope (ie what you will not be doing); to help you define a “good” research question, read this document
+    - overview of the methodology to be used;
+    - time planning—having a 'Gantt chart' is probably a better idea than just a list;
+    - since specific data and tools have to be used, it’s good to present these concretely, so that the mentors know that you have a grasp of all aspects of the project;
+    - the references.
+'
+
+
+MY NOTES
+
+WebAssembly for geomatics?
+- Why should we want to use it for geomatics?
+- Can we technically use it for geomatics?
+- Can we practically use if for geomatics? 
+
+
+
+
+
+
+ -->
+
+1.- INTRODUCTION
 ===============================================================================
+
+> [JF] NOTE: maybe this should even be more concrete. Like: CGAL in a browser would be nice. Can we do that? 
 
 <br> --- *Standards*
 
@@ -23,7 +66,7 @@ This runtime is also containerized, improving privacy, security against malware,
 
 <!-- The possibility to run a system-level language in the browser already existed before, but it involved a compilation to an optimized type of javascript. Now that WebAssembly, which is specifically meant as a compilation target, runs in a browser too, this has become unnecessary.  -->
 
-The possibility of a save, platform-independent binary target which also targets the web gives WebAssembly many interesting applications. 
+A save, platform-independent binary target which also targets the web gives makes many interesting things now possible. 
 Like Docker, it can be used to run foreign software in a save, containerized manner (SOURCE: DOCKER, WASI).
 This is one of the reasons why wasm is also supported by most major browsers, making it the 4th type of 'code' to run in a browser, alongside javascript, css and html. 
 
@@ -65,43 +108,163 @@ Both the technical capabilities of wasm for geomatics purposes need to be resear
 
 <br>--- *The Paper*
 
-This paper attempts to judge the fitness of WebAssembly for web-geo-processing purposes. 
-This fitness will be judged quantitatively by means of a performance analysis, as well as qualitatively by documenting the creation of a web-based geoprocessing application using WebAssembly. 
+This paper attempts to judge the 'fitness' of WebAssembly for web-geo-processing purposes. 
+
+This fitness will be defined technically / quantitatively by means of a performance analysis, as well as practically / qualitatively, by documenting the creation of a web-based geoprocessing application.
+ 
 <!-- [JF] Increase granularity, now this is just a copy  -->
-This paper will perform research into the possibilities and effectiveness of compiling C++ geoprocessing libraries such as CGAL & 3dfier into WebAssembly. 
-To explore the utilization of WebAssembly, this research will involve creating an application using these libraries. 
-This can be seen as a "geo-wasm case study", as this application would be impossible to create without wasm. The application will take the shape of a visual programming language, or VPL for short, to further build upon the web's advantage of accessibility. 
+The research into the technical effectiveness of WebAssembly will involve compiling C++ geoprocessing libraries such as CGAL & GDAL into WebAssembly, and then comparing the performance of these libraries against their compilation by other means (native / asm.js). 
+
+The research into the practical effectiveness of WebAssembly will be done by creating a case study geoprocessing environment using these wasm-compiled libraries. The environment will take the shape of a visual programming language, or VPL for short. 
+This, together with the web's advantage of accessibility, will demonstrate 
 
 
+ using WebAssembly-compiled geoprocessing libraries
 
 
 <br><br><br><div class="page">
 
-2- RELATED WORK
+2.- RELATED WORK
 ===============================================================================
 
-## 2.1 On WebAssembly
-- the not so fast paper
+The execution of this research requires adequate background knowledge on:
+- wasm itself 
+- wasm performance in diverse circumstances 
+- Relevant wasm based applications
+- wasm's surrounding tools and compilers
+
+In addition, since the case study application 
+
+<br><br><br>
+
+## x.x On WebAssembly
 
 
-## 2.3 On geo-vpls: 
-- Ravi peter's geoflow
-
-- the relevant vpl paper 
-
-### Existing VPL's
+### x.x.x Bringing the Web up to Speed with WebAssembly
+This is the original paper introducing WebAssembly
 
 
 
+The
 
-<br><br><br><div class="page">
+
+### x.x.x Not So Fast WebAssembly Paper 
+Paper on general performance of webassembly
+
+
+### x.x.x Michael Yuan — Tensorflow inference on WebAssembly
+
+_Michael Yuan — Tensorflow inference on WebAssembly_
+
+
+
+_https://www.youtube.com/watch?v=poe0Z7GR8uI_
+
+
+This talk by Dr. Michael Yuan explains the advantages of WebAssembly for especially the utilization (inference) of trained AI models. 
+This is relevant, since the field of AI is, like the field of geo-informatics, concerned with complex calculations and the efficient processing of large datasets. 
+Dr. Yuan states that, while python might be a fine choice for training AI models, the actual inference / usage of those models is very inefficient using contemporary tools. 
+Python is very slow, does not run on edge devices, and offers limited support in (web) application frameworks. 
+A native application ís fast, but offers different challenges. 
+A native app is tied to its specific hardware platform, cannot be orchestrated, is very sensitive to bugs or attacks, is not save since it has OS-level access, and just like python, cannot easily be integrated in web or application frameworks.
+
+The lecturer claims that WebAssembly solves these problems because it is containerized and thus save, while at the same time being very performant. Additionally, the fact that is is a language agnostic compile target, and can be used together with many (web) applications, makes it an excellent solution to the earlier mentioned problems.
+
+this talk further supports the claims made that geodata processing would benefit from adopting WebAssembly. At the same time, it is mainly concerned with improving server side performance, which is outside the scope of this paper. 
+
+<!-- 
+
+related article 
+https://www.secondstate.io/articles/why-webassembly-server/
+
+related paper 
+https://arxiv.org/abs/2010.07115
+
+
+related company (supported by the linux foundation)
+https://www.secondstate.io/ 
+
+why relevant: 
+this talk further supports the claims made that geodata processing would benefit from WebAssembly. 
+
+notes:
+- clearly states the advantages of something like wasm, and the philosophy behind it.
+- focus on INFERENCE
+  - Very important point to me as well: inference represents the operational step, what I started calling the "last mile problem".
+- shows webassembly benefits to advanced computation use cases like machine learning. 
+
+from the slides: 
+
+- WebAssembly
+  - high performance
+  - sandbox safety
+  - capability-based security 
+  - language-agnostic
+  - product-community fit
+  
+  - Better than native apps, because native apps ...
+    - are not portable (Tied to specific OS or hardware platforms)
+    - cannot be integrated into web or application frameworks 
+    - cannot be managed or orchestrated
+    - crashes from bugs & attacks 
+    - unsafe: coursely grained, OS-level access control
+
+  - Better than python, because python ...
+    - 60.000x slower than C 
+    - does not run on edge devices and platforms
+    - limited support in web & application frameworks 
+    -->
+
+
+
+
+
+
+<br><br><br>
+
+## x.x Relevant WebAssembly Tools
+
+
+### x.x.x Emscriptem
+Emscriptem is a tool 
+
+### x.x.x Wasm-Pack 
+wasm-pack can be seen as the emscriptem equivalent, but created to serve the `Rust` programming language. 
+
+## x.x Relevant 
+
+### x.x.x CGAL 
+
+
+### x.x.x 3dfier ???? 
+
+
+<br><br><br>
+
+## x.x On VPLs
+Lastly, the third topic requiring background knowledge is the topic of visual programming languages
+
+
+
+### x.x.x The relevant vpl paper
+
+
+
+### x.x.x Existing VPL's
+
+
+
+
+
+
+<br><br><br>
 
 3- RESEARCH QUESTIONS
 ===============================================================================
 
 ## 3.1 Objectives
 
-This paper main objective is to judge the fitness of WebAssembly for web-geo-processing purposes. 
+This paper's main objective is to judge the fitness of WebAssembly for client-side geo-processing purposes. 
 This fitness will be judged quantitatively by means of a performance analysis, as well as qualitatively by documenting the creation of a web-based geoprocessing application using WebAssembly. 
 
 The main research question goes: 
@@ -119,6 +282,7 @@ This question contains two main components: WebAssembly for geo-processing, and 
     - 2b: How to handle types / data models between multiple, unrelated `wasm` libraries?
     - 2c: How do C++ geoprocessing libraries differ from all other C++ libraries?
     - 2d: What does this difference mean for `wasm` compilation and usage? 
+
 
 2. **GEO-WEB-VPL**: How to make a web-based, client-side, vpl geoprocessing environment?
     - 1a. **GEO**: What basic features does a geoprocessing environment need?
@@ -161,30 +325,46 @@ NOT:
 4- MOTIVATION 
 ===============================================================================
 
-> [JF]: This needs 'professionalization'
+## 4.1 'higher level' questions. 
 
+The research questions chosen for this research are part of a set of larger questions. While the research will not completely answer the following questions, I believe the questions are nonetheless important to adress.
 
+> What should the field of geomatics do with WebAssembly?
+> - Why should the field of geomatics be interested? 
+>   <!-- A: Yes  -->
+> - Can we technically use it for geomatics? 
+>   <!-- A: Probably  -->
+> - Can we practically use if for geomatics? 
+>   <!-- A: Unsure -->
 
-## 4.1 Additional problems the software tries to solve, and features it tries to present:
+This also further explains the need for the vpl application within this research. I believe it necessary to develop an application whom's existence serves as a starting point for answering the more complicated "why should we", and "practical" sub-questions.
+
+<br><br><br>
+
+## 4.2 Additional problems the software tries to solve, and features it tries to present:
+
+I would like to state an additional range of 
 
 ### - Real-time geodata processing
 
 - A number of use-cases exist with a growing need for real-time geodata processing. (SOURCE: INCIDENT MAPPER)
 
+- Moving tools like CGAL closer to the final product (Web Application) can create more dynamic applications. 
+
 ### - Improved Geoprocessing Ergonomics
 
 - Insightful debugging: Client-side geoprocessing together with a VPL allows direct user feedback unlike server-side geoprocessing. Users can be on top of the calculations, look at in betweens steps, reconfigure the procedure without recompilation, see the immediate effects of parameter changes. 
 
-- Improved communications: Researchers will be able to share demo's and procedures with a link.
+- Improved communications: Users will be able to share demo's and procedures with a link.
 
 - Improved accessibility: Users will not have to install anything except a web-browser.
   This will make geoprocessing more accessible & operational to a larger audience. It allows more people to do more things with geodata, and reach more interesting conclusions quicker. 
 
-### - Personal, Just In Time Geodata
+### - Just In Time / Personal Geodata
 
-- Instead of having large, preprocessed datasets, geodata could be processed on demand from the source client-side. If a user is only interested in a small area of the source dataset, this could save vast amounts of time, storage space and computational resources. 
+- JIT: Instead of having large, preprocessed datasets, geodata could be processed on demand from the source client-side. If a user is only interested in a small area of the source dataset, this could save vast amounts of time, storage space and computational resources. 
 
-- It also allows the end user to tailor geodata to their exact needs. 
+- Personal: It also allows the end user to tailor geodata to their exact needs. 
 
 
 
@@ -246,22 +426,29 @@ TODO
 ===============================================================================
 
 Languages
-  - C++ & Rust 
-    - 
-    
-  - Typescript / Javascript 
-    - Front-end code
   - WebAssembly
     - As compile target 
 
+  - C++
+    - 
+  - Typescript / Javascript 
+    - Front-end code
+    - WebGl & javascript Canvas api
+      - visualization 
+
+  - Rust ????
+
 
 Libraries & Tools 
+
 - Emscriptem
-  - 
+
 - Wasm-Pack
-  - 
-- WebGl & javascript Canvas api
-  - visualization 
+
+- SSVM ???
+  - : WebAssembly high performant virtual machine meant for server side
+
+
 
 Data
   - WMS \& WFS services hosted by PDOK.
