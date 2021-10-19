@@ -25,24 +25,22 @@ As an example, here’s a good project plan from a previous year. It contains:
 '
 
 
-MY NOTES
+[ ------ MY NOTES ------ ]
 
-WebAssembly for geomatics?
-- Why should we want to use it for geomatics?
-- Can we technically use it for geomatics?
-- Can we practically use if for geomatics? 
-
-
+***NOTE: Whats remarkable about all the papers I've been reading, is how the best papers are often filled with diagrams. 
+I must do the same, many abstract ideas are much easier to explain with small little diagrams.***
 
 
 
 
  -->
 
-1.- INTRODUCTION
+1.. INTRODUCTION
 ===============================================================================
 
 > [JF] NOTE: maybe this should even be more concrete. Like: CGAL in a browser would be nice. Can we do that? 
+
+> [JF] NOTE2: the introduction definitely takes too long to get going. get to the point quicker
 
 <br> --- *Standards*
 
@@ -51,11 +49,13 @@ This is done to prevent an *interrelating mess*: a graph with each node connecti
 Software engineers are taught to avoid O(n^2) algorithms as much as possible, and this is a similar phenomenon. 
 Sometimes, this problem can be solved by introducing one intermediary node, after which all different nodes only need to be concerned about its read-write relationship to only that intermediary. (name a vivid example + SOURCE)
 
+[DIARGAM: INTERRELATION PROBLEM]
+
 <br>--- *WebAssembly*
 
 WebAssembly is an emergent technology / standard which the exact same goal (SOURCE: WASM paper). 
 It is a compilation target meant to be platform & source independent. 
-It attempts to be the ultimate intermediary between software and hardware, which would be a dream for developers in that sense: "Run Anything Anywhere". 
+It attempts to be the ultimate intermediary between software and hardware, which would be a dream for developers in that sense: "Run Anything Anywhere". (SOURCE: WASM PAPER | NUANCE THIS STATEMENT)
 
 "Run Anything" means that a platitude of languages (C, C++, Rust) can be compiled to WebAssembly, with the promise that these wasm-binaries are almost as fast as native binary compilations of those same languages. 
 
@@ -70,7 +70,11 @@ A save, platform-independent binary target which also targets the web gives make
 Like Docker, it can be used to run foreign software in a save, containerized manner (SOURCE: DOCKER, WASI).
 This is one of the reasons why wasm is also supported by most major browsers, making it the 4th type of 'code' to run in a browser, alongside javascript, css and html. 
 
-This means that all existing libraries written in any language are now able to be distributed by the web, enabling applications which are both powerful and accessible. The Google Earth web application uses WebAssembly for example (SOURCE: Google Earth). This way, the C++ codebase used for the desktop application could be re-used and repurposed for the web, instead of starting over again. 
+This means that all existing libraries written in any language are now able to be distributed by the web, enabling applications which are both powerful and accessible. 
+The Google Earth web application uses WebAssembly for example (SOURCE: Google Earth). 
+This way, the C++ codebase used for the desktop application could be re-used and repurposed for the web, instead of starting over again. 
+
+[DIAGRAM: EXPLAINING CONCEPTS OF WASM]
 
 <br>--- *FAIR*
 
@@ -87,20 +91,25 @@ Write once, use anywhere <-> Collect once, use multiple times
 
 <br>--- *Uncertainty* 
 <!-- ( WebAssembly is not all sunshine and rainbows ) -->
-Many aspects of WebAssembly remain, however, uncertain. The performance gain over compiling to javascript, or native development of javascript, are highly application dependent (SOURCE: NOT SO FAST). 
+Many aspects of WebAssembly remain, however, uncertain. 
+The performance gain over compiling to javascript, or native development of javascript, are highly application dependent (SOURCE: NOT SO FAST). 
 The performance lost by using a 'virtual binary' like wasm over a native binary optimized specifically for certain hardware is also application dependent (SOURCE: NOT SO FAST). 
 Lastly, since WebAssembly is very bare-bones and does not make many assumptions about its host environment, it is unclear how 'usable' wasm is in practice.
 Many tools around it exist to make working with wasm easier (wasm-pack & emscriptem), but it remains unsure what practical troubles could arise when using WebAssembly for certain applications. 
 
-<br>--- *Relevance*
+<br>--- *Problem statement*
 <!-- ( Bring it back to geomatics) -->
 
-It is unclear what WebAssembly exactly means for the geospatial community. The potential of improving the FAIR qualities of geoprocessing software seems very promising: 
+[DIAGRAM: PROBLEM STATEMENT]
+
+It is unclear what WebAssembly exactly means for the geospatial community. 
+It could potentially fix many problems:
 - What if the exact same code could be used client-side and server-side?
 - What if all C++ based libraries such as CGAL could be accessed from a browser, without needing to be installed? 
 - What if processes which were previously hard to chain together could suddenly work together perfectly? 
 
-At the same time, we do not know if these advantages mean anything if it turns out that wasm is too difficult to use in practice, or just not performant enough to be a viable alternative to native geoprocessing tools. Websites with many wasm files could take too long to load, or accessing certain old C++ libraries on the web might not yield any real benefits for end-users. 
+At the same time, we do not know if these advantages mean anything if it turns out that wasm is too difficult to use in practice, or just not performant enough to be a viable alternative to native geoprocessing tools. 
+Websites with many wasm files could take too long to load, or accessing certain old C++ libraries on the web might not yield any real benefits for end-users. 
 
 The potential benefits of WebAssembly, together with the many uncertainties, make research into utilizing wasm a crucial endeavour for the geospatial community. 
 Both the technical capabilities of wasm for geomatics purposes need to be researched, as well as the capabilities in practical utilization. 
@@ -110,47 +119,190 @@ Both the technical capabilities of wasm for geomatics purposes need to be resear
 
 This paper attempts to judge the 'fitness' of WebAssembly for web-geo-processing purposes. 
 
-This fitness will be defined technically / quantitatively by means of a performance analysis, as well as practically / qualitatively, by documenting the creation of a web-based geoprocessing application.
- 
-<!-- [JF] Increase granularity, now this is just a copy  -->
+This fitness will be defined technically / quantitatively by means of a performance analysis, as well as practically / qualitatively, by documenting the creation of a web-based geoprocessing application, and judging its capabilities and effectiveness in relation to other geoprocessing methods. 
+
 The research into the technical effectiveness of WebAssembly will involve compiling C++ geoprocessing libraries such as CGAL & GDAL into WebAssembly, and then comparing the performance of these libraries against their compilation by other means (native / asm.js). 
 
-The research into the practical effectiveness of WebAssembly will be done by creating a case study geoprocessing environment using these wasm-compiled libraries. The environment will take the shape of a visual programming language, or VPL for short. 
-This, together with the web's advantage of accessibility, will demonstrate 
+The research into the practical effectiveness of WebAssembly will be done by creating a case study geoprocessing environment using these wasm-compiled geoprocessing libraries. 
+The environment will take the shape of a visual programming language, or VPL for short. 
+This, together with the web's advantage of accessibility, will hypothetically demonstrate how WebAssembly can make complex geoprocessing more easy to distribute, access and use. 
 
+<br><br><br><div class="page"></div>
 
- using WebAssembly-compiled geoprocessing libraries
-
-
-<br><br><br><div class="page">
-
-2.- RELATED WORK
+2.. RELATED WORK
 ===============================================================================
+
+{DIAGRAM: DEPENDENCY TREE OF RELATED WORKS}
+
+This section of the thesis proposal covers how this research relates to prior research. 
 
 The execution of this research requires adequate background knowledge on:
 - wasm itself 
-- wasm performance in diverse circumstances 
+- wasm performance
 - Relevant wasm based applications
 - wasm's surrounding tools and compilers
 
-In addition, since the case study application 
+In addition, since the case study application contains the creation of a VPL, it is important to relate this work to other geometry-based visual programming languages, as well as a paper which analysed the advantages and disadvantages of using a VPL as opposed to a programming language.
 
 <br><br><br>
 
-## x.x On WebAssembly
+## x.x On WebAssembly & Wasm Performance
 
+### x.x.x Website
+https://webassembly.org/
+(THE WEBSITE OF WASM ITSELF??)
 
 ### x.x.x Bringing the Web up to Speed with WebAssembly
-This is the original paper introducing WebAssembly
+This is the original paper introducing WebAssembly in 2017, co-written by software engineers from the major browser vendors Mozilla, Google, Apple and Microsoft. 
+It defines that a low-level compilation target should be
+save, fast, portable and compact.
+It continues by showing how previous attempts at low-level code on the web fail in at least one of these criteria, and that WebAssembly is the first to delivers on all of them. 
+The chapters following this up cover the design details of the language, and the decisions which had to be made to live up to the four criteria. 
+These details will become relevant when reasoning about why WebAssembly might be faster in one case versus another.
+<!-- proof of memory savety, proof of soundness  -->
+
+<!-- EXPLORE TYPES & EFFICIENT LOADING OF DATA TYPES BETWEEN UNRELATED LIBRARIES -->
+
+Chapter 6 and 7 also require special attention.
+Chapter 6 shows the possibilities available to a host environment for compiling, instantiating and invoking wasm binaries. 
+
+
+Chapter 7 : Implementation: 
+- validate
+- execution time
+- binary size 
+
+
+Initial benchmarks look promising
+large portion of benchmarks within 10% 
 
 
 
-The
+<!-- 
+Interoperability It is possible to link multiple modules that
+have been created by different producers. However, as a low-
+level language, WebAssembly does not provide any built-in
+object model. It is up to producers to map their data types
+to numbers or the memory. This design provides maximum
+flexibility to producers, and unlike previous VMs, does not
+privilege any specific programming or object model while
+penalizing others. Though WebAssembly has a program-
+ming language shape, it is an abstraction over hardware, not
+over a programming language.
+Interested producers can define common ABIs on top of
+WebAssembly such that modules can interoperate in hetero-
+geneous applications. This separation of concerns is vital for
+making WebAssembly universal as a code format -->
 
 
 ### x.x.x Not So Fast WebAssembly Paper 
-Paper on general performance of webassembly
+Paper exploring performance of WebAssembly more thorough.
 
+Starts out positive: current benchmarks (2019) are even better than those of the original paper (2017). 
+
+BUT 
+
+Those original papers cover a type of benchmark which uses mainly scientific operations as benchmarks. 
+Each of these operations are roughly 100 lines of code.
+This paper created a way to compile full, large-scale applications into WebAssembly, and proceeds to benchmark them. 
+They found that these types of applications run significantly slower and spikier.
+
+BUT 
+
+This might not be a problem for the scope of this research. 
+This research will deal with the originally criticized scientific purposes anyway.
+If it does turn out that wasm performs significantly slower the larger the binaries are, This research might explore disecting the C++ libraries into a number of tiny wasm Binaries, one per function for example, or per .cpp file. 
+As stated in the Wasm paper (SOURCE), it is possible to inject precompiled wasm binaries within other wasm binaries. 
+This way, the functionalities of one library could be lazy-initialized, so only the parts that are necessairy are being compiled and used. 
+Food for thought...
+
+...
+
+A telling example of the cause of the loss in speed is this: 
+
+NATIVE: 
+C --{CLANG}-> x86-64 code
+
+WEB
+C --{EMSC}-> WASM --{JIT}-> x86-64 code 
+
++ Chapter 6 is very significant
+
+<!-- 6.4 Discussion
+It is worth asking if the performance issues identified here
+are fundamental. We believe that two of the identified is-
+sues are not: that is, they could be ameliorated by improved
+implementations. WebAssembly implementations today use
+register allocators (§6.1.2) and code generators (§6.2.1) that
+perform worse than Clang’s counterparts. However, an offline
+compiler like Clang can spend considerably more time to
+generate better code, whereas WebAssembly compilers must
+be fast enough to run online. Therefore, solutions adopted
+by other JITs, such as further optimizing hot code, are likely
+applicable here [19, 32].
+The four other issues that we have identified appear to
+USENIX Association 2019 USENIX Annual Technical Conference    117
+arise from the design constraints of WebAssembly: the stack
+overflow checks (§6.2.2), indirect call checks (§6.2.3), and
+reserved registers (§6.1.1) have a runtime cost and lead to in-
+creased code size (§6.3). Unfortunately, these checks are nec-
+essary for WebAssembly’s safety guarantees. A redesigned
+WebAssembly, with richer types for memory and function
+pointers [23], might be able to perform some of these checks
+at compile time, but that could complicate the implementa-
+tion of compilers that produce WebAssembly. Finally, a Web-
+Assembly implementation in a browser must interoperate with
+a high-performance JavaScript implementation, which may
+impose its own constraints. For example, current JavaScript
+implementations reserve a few registers for their own use,
+which increases register pressure on WebAssembly. -->
+
+<!-- 
+WHY PERFORMANCE LOST: LOST IN TRANSLATION 
+
+NATIVE: 
+C --{CLANG}-> x86-64 code
+
+WEB
+C --{EMSC}-> WASM --{JIT}-> x86-64 code 
+
+Seems to be
+
+ -->
+
+
+<!-- 
+
+TODO
+look into the specifics of the benchmarks provided 
+PolyBenchC seems to contain a lot of geometry operatinos, which seems good news for us
+
+
+
+SIGNIFICANT FOR GEOMATICS: 
+sync I/O is hard to do with webassembly. This could be detremental for many geomatics applciations
+
+
+
+The standard approach to running these applications today
+is to use Emscripten, a toolchain for compiling C and C++ to
+WebAssembly [39]. Unfortunately, Emscripten only supports
+the most trivial system calls and does not scale up to large-
+scale applications. For example, to enable applications to use
+synchronous I/O, the default Emscripten MEMFS filesystem
+loads the entire filesystem image into memory before the
+program begins executing. For SPEC, these files are too large
+to fit into memory
+
+ -->
+
+
+
+<br><br><br>
+
+
+
+## x.x On WebAssembly Applications:
 
 ### x.x.x Michael Yuan — Tensorflow inference on WebAssembly
 
@@ -218,31 +370,39 @@ from the slides:
 
 
 
-
-
-<br><br><br>
-
 ## x.x Relevant WebAssembly Tools
 
 
 ### x.x.x Emscriptem
 Emscriptem is a tool 
+PAPERRRR
+
+
+
 
 ### x.x.x Wasm-Pack 
 wasm-pack can be seen as the emscriptem equivalent, but created to serve the `Rust` programming language. 
 
-## x.x Relevant 
+NO PAPER
+
+
+
+
+## x.x Relevant Geoprocessing libraries
 
 ### x.x.x CGAL 
+(SOURCE)
+
+### x.x.x GDAL 
+...
 
 
-### x.x.x 3dfier ???? 
 
 
 <br><br><br>
 
-## x.x On VPLs
-Lastly, the third topic requiring background knowledge is the topic of visual programming languages
+## x.x VPL
+The last topic requiring background knowledge is the topic of visual programming languages (VPL's). 
 
 
 
@@ -250,19 +410,35 @@ Lastly, the third topic requiring background knowledge is the topic of visual pr
 
 
 
-### x.x.x Existing VPL's
+### x.x.x Related visual programming languages focussed on geometry:
+
+What follows is a brief analysis of existing visual programming languages. While many more exist, such as Unity's Shader Graph, This list limits itself on vpl's meant for generating & processing geometry. 
+
+
+| Name            | Author                | Availability       | Source    | Audience                     | Purpose              | Link                | Notes          
+|---------------- | --------------------- | ------------------ | --------- | ---------------------------- | -------------------- | ------------------- | ----------
+| FME             | Save Software         | €2,000 one time    | Closed    | Geoprocessing intermediaries | Geoprocessing        | https://www.safe.com/fme/fme-desktop/ | 
+| The graphical modeler            | QGIS Contributors         | Free    | Open    | QGIS users | Geoprocessing        | https://www.safe.com/fme/fme-desktop/ | 
+| Houdini         | SideFX                | ~€1,690 p.y.       | Closed    | 3D modellers & SFX           | Procedural Modelling & Special effects | https://www.sidefx.com/ |
+| Geometry Nodes  | Blender Foundation & Contributors             | Free               | Open      | 3D modellers & SFX           | Procedural Modelling & Special effects | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   |
+| Grasshopper     | David Rutten / McNeel | €995 one time      | Closed    | 3D modellers & architects    | Parametric Design    | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   |
+| GeoFlow         | Ravi Peter            | Free               | Open      | Geoprocessing experts        | Geoprocessing: Rapid prototyping & Visualizing in between steps | https://github.com/geoflow3d/geoflow  |
+| Dynamo          | Autodesk              | +revit €3,330 p.y. | Semi-open | Expert Revit Users           | BIM automation       | https://dynamobim.org/ | 
 
 
 
+- Of these seven vpl's, two are focussed on procedural design (Grasshopper / Dynamo), two are focussed on modelling in the context of special effects (Blender, Houdini), and three are focused on geo-processing (FME, Graphical Mod). I would argue that while the 
 
 
 
-<br><br><br>
+<br><br><br><div class="page"></div>
 
-3- RESEARCH QUESTIONS
+3.. RESEARCH QUESTIONS
 ===============================================================================
 
 ## 3.1 Objectives
+
+[DIAGRAM: TECHNICAL & PRACTICAL ASPECTS???]
 
 This paper's main objective is to judge the fitness of WebAssembly for client-side geo-processing purposes. 
 This fitness will be judged quantitatively by means of a performance analysis, as well as qualitatively by documenting the creation of a web-based geoprocessing application using WebAssembly. 
@@ -322,7 +498,7 @@ NOT:
 
 <br><br><br><div class="page"></div>
 
-4- MOTIVATION 
+4.. MOTIVATION 
 ===============================================================================
 
 ## 4.1 'higher level' questions. 
@@ -343,7 +519,7 @@ This also further explains the need for the vpl application within this research
 
 ## 4.2 Additional problems the software tries to solve, and features it tries to present:
 
-I would like to state an additional range of 
+additionally, 
 
 ### - Real-time geodata processing
 
@@ -373,7 +549,7 @@ I would like to state an additional range of
 
 <br><br><br><div class="page"></div>
 
-5- METHODOLOGY
+5.. METHODOLOGY
 ===============================================================================
 
 
@@ -407,9 +583,9 @@ I would like to state an additional range of
 > - Export data (MultiLine export Widget)
 
 
-<br><br><br><div class="page">
+<br><br><br><div class="page"></div>
 
-6- PLANNING
+6.. PLANNING
 ===============================================================================
 
 
@@ -420,9 +596,9 @@ TODO
 - build a similar application using python + jupyler, or some other conventional method
 - perform tests and compare the two
 
-<br><br><br><div class="page">
+<br><br><br><div class="page"></div>
 
-7- TOOLS USED
+7.. TOOLS USED
 ===============================================================================
 
 Languages
