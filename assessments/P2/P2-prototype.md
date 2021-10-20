@@ -38,98 +38,74 @@ I must do the same, many abstract ideas are much easier to explain with small li
 1.. INTRODUCTION
 ===============================================================================
 
-> [JF] NOTE: maybe this should even be more concrete. Like: CGAL in a browser would be nice. Can we do that? 
+> TODO: add sources, make more readable for a general audience, make it more professional. 
 
-> [JF] NOTE2: the introduction definitely takes too long to get going. get to the point quicker
+<!-- Social Impact -->
 
-<br> --- *Standards*
+**I describe the main goal of the field of geomatics to be: *Give as many people as possible as much insight in their surroundings as possible.***
+This is why we scan the earth, why we 'geo-process' these raw findings into more clean, meaningful forms, why we put these results in databases the size of dozens of terabytes, and why we build applications to view this data. All of it should be in the service of the general public, to give them the tools and data they need to gain meaningful information and insight into our surroundings, our Earth. 
 
-Geodata experts are often concerned with the creation and adoption of common standards. (WFS WMS, cityJSON). 
-This is done to prevent an *interrelating mess*: a graph with each node connecting to every other node.
-Software engineers are taught to avoid O(n^2) algorithms as much as possible, and this is a similar phenomenon. 
-Sometimes, this problem can be solved by introducing one intermediary node, after which all different nodes only need to be concerned about its read-write relationship to only that intermediary. (name a vivid example + SOURCE)
+**The web plays a vital role in pursuing this goal.** The vast majority of geodata end-products are web applications. this seams to stem from the web's excellent ability to publish cross-platform, and the fact that web-apps require no installations. 
 
-[DIARGAM: INTERRELATION PROBLEM]
+**However, web-applications have their limitations.** It is usually only a visualization, without any user interactivity other than panning & zooming, toggling layers, or maybe adding annotations. 
 
-<br>--- *WebAssembly*
+**This has its reasons.**. It makes sense from the "dumb-client + smart-server" design principle, prevalent in most geodata web applications. All complex operations should be done server-side, where these tools can be central, calculated with more powerful languages such as C++, and we don't have to worry about the differences between the clients. It leads to a concrete division of labour: The server deals with processing and pre-rendering, and the clients only purpose is visualization, a window into preprocessed data. 
 
-WebAssembly is an emergent technology / standard which the exact same goal (SOURCE: WASM paper). 
-It is a compilation target meant to be platform & source independent. 
-It attempts to be the ultimate intermediary between software and hardware, which would be a dream for developers in that sense: "Run Anything Anywhere". (SOURCE: WASM PAPER | NUANCE THIS STATEMENT)
+<!-- The problem in one sentence: 
+the discrepancy between visualization & processing in web-apps.
+ -->
 
-"Run Anything" means that a platitude of languages (C, C++, Rust) can be compiled to WebAssembly, with the promise that these wasm-binaries are almost as fast as native binary compilations of those same languages. 
+**But, this hard divide between processing & visualization causes <!--serious--> problems.** The "dumb-client + smart-server" design principle leaves the end-users of web applications with static, non-interactive, and downright slow tools. 
 
-"Run Anywhere" means that it is possible to run a wasm-binary on Windows, Mac & Linux Desktops, natively on mobile devices, on servers, and even client-side in web-browsers. 
-This runtime is also containerized, improving privacy, security against malware, and user control. 
+- Static and non-interactive, because all data shown needs to be pre-processed and pre-rendered. All possibilities granted to end-users will have to be thought about beforehand by the creators, and the possibilities are often limited since every additional option takes up vital database storage space. This leaves the user no room for experimentation, exploration, or personalization. 
 
-<br>--- *Applications*
+- And slow, since any post-processing needed by a "dumb-client" requires additional web calls. It requires the server in question to:
+  1. Be activated by the client by means of a web call. 
+  2. Posses of the exact same data the client is looking at. If this is not the case, it requires additional web calls to acquire this.
+  3. deliver all the resulting data back to the client using even more web-calls.
+  
+  All the while, the client has little to no insight in the going-ons on the server. Status updates would require yet additional web calls.  
 
-<!-- The possibility to run a system-level language in the browser already existed before, but it involved a compilation to an optimized type of javascript. Now that WebAssembly, which is specifically meant as a compilation target, runs in a browser too, this has become unnecessary.  -->
+<!-- SIDENOTE: This slowness problem will become more serious the more advanced web-applications become. Examples of this are 3D geo-web applications, applications reacting on incoming geodata in real-time (digital twins), and web-vr-applications. This becomes apparent when analyzing the design of Online video games. these applications usually make the clients calculate as much as possible, while making as little synchronization calls as possible. The more geo-web applications will start to resemble these types of video games, the more they will have to be programmed like one.  -->
 
-A save, platform-independent binary target which also targets the web gives makes many interesting things now possible. 
-Like Docker, it can be used to run foreign software in a save, containerized manner (SOURCE: DOCKER, WASI).
-This is one of the reasons why wasm is also supported by most major browsers, making it the 4th type of 'code' to run in a browser, alongside javascript, css and html. 
-
-This means that all existing libraries written in any language are now able to be distributed by the web, enabling applications which are both powerful and accessible. 
-The Google Earth web application uses WebAssembly for example (SOURCE: Google Earth). 
-This way, the C++ codebase used for the desktop application could be re-used and repurposed for the web, instead of starting over again. 
-
-[DIAGRAM: EXPLAINING CONCEPTS OF WASM]
-
-<br>--- *FAIR*
-
-An important side-note is the relationship of WebAssembly and the FAIR principles. The FAIR principles are a collection of four well-established assessment criteria used for judging the usability of software applications (SOURCE). They stand for Findable, Accessible, Interoperable, and Reusable. WebAssembly has the potential to improve all four of those criteria for a piece of software:  
-
-WASM web apps: 
-There is no delay between Findability and Accessibility. 
-As soon as it can be found, it can be accessed. 
-
-WASM containerized:
-If the core logic of something is compiled into a wasm library, than this logic becomes Interoperable and Reusable. 
-We can be sure that it will produce the same results, wherever it is run. 
-Write once, use anywhere <-> Collect once, use multiple times
-
-<br>--- *Uncertainty* 
-<!-- ( WebAssembly is not all sunshine and rainbows ) -->
-Many aspects of WebAssembly remain, however, uncertain. 
-The performance gain over compiling to javascript, or native development of javascript, are highly application dependent (SOURCE: NOT SO FAST). 
-The performance lost by using a 'virtual binary' like wasm over a native binary optimized specifically for certain hardware is also application dependent (SOURCE: NOT SO FAST). 
-Lastly, since WebAssembly is very bare-bones and does not make many assumptions about its host environment, it is unclear how 'usable' wasm is in practice.
-Many tools around it exist to make working with wasm easier (wasm-pack & emscriptem), but it remains unsure what practical troubles could arise when using WebAssembly for certain applications. 
-
-<br>--- *Problem statement*
-<!-- ( Bring it back to geomatics) -->
-
-[DIAGRAM: PROBLEM STATEMENT]
-
-It is unclear what WebAssembly exactly means for the geospatial community. 
-It could potentially fix many problems:
-- What if the exact same code could be used client-side and server-side?
-- What if all C++ based libraries such as CGAL could be accessed from a browser, without needing to be installed? 
-- What if processes which were previously hard to chain together could suddenly work together perfectly? 
-
-At the same time, we do not know if these advantages mean anything if it turns out that wasm is too difficult to use in practice, or just not performant enough to be a viable alternative to native geoprocessing tools. 
-Websites with many wasm files could take too long to load, or accessing certain old C++ libraries on the web might not yield any real benefits for end-users. 
-
-The potential benefits of WebAssembly, together with the many uncertainties, make research into utilizing wasm a crucial endeavour for the geospatial community. 
-Both the technical capabilities of wasm for geomatics purposes need to be researched, as well as the capabilities in practical utilization. 
+<!-- More on the link between geo and games: (https://www.isprs2022-nice.com/index.php/session/keynote-a-serious-game-the-netherlands-in-3d-minecraft/) -->
 
 
-<br>--- *The Paper*
+**These problems could be fixed by introducing client-side geoprocessing.** If the tools used traditionally at the server-side, like the C++ geoprocessing libraries CGAL and GDAL, could be utilized client-side, the discrepancy between visualization & processing in web-apps could be bridged. This would allow a new range of interactive, dynamic web applications, in which geodata can be post-processed quickly, uniquely, and on demand. 
 
-This paper attempts to judge the 'fitness' of WebAssembly for web-geo-processing purposes. 
+**This poses its own set of problems.** Normally, only the `javascript` programming language can be utilized in client-side web applications. This would mean that the aforementioned geoprocessing libraries often containing tens of thousands lines of code, would have to be rewritten in javascript, or would have to be compiled to javascript. The first option would be a time-consuming task, and would have to be repeated every time the underlying libraries change. the second option is possible. C++-based libraries such as CGAL could technically be converted to a special, fast subset of javascript called `asm.js` using the `emscripten` compiler. Even this, however, is often time consuming. The rather large javascript files take a long time to download, to scan, and to be properly optimized by a javascript Just In Time (JIT) Compiler. 
 
-This fitness will be defined technically / quantitatively by means of a performance analysis, as well as practically / qualitatively, by documenting the creation of a web-based geoprocessing application, and judging its capabilities and effectiveness in relation to other geoprocessing methods. 
+**A recent, emergent technology poses a third option: WebAssembly.** WebAssembly, shortend as wasm, is a compilation target meant to be fast, save, and platform & source independent (SOURCE). It performs better than `asm.js` in almost all aspects: it loads quicker, it is scanned quicker, and since it is far closer to bytecode than javascript, it can perform at a speed comparable to its native counterpart. 
 
-The research into the technical effectiveness of WebAssembly will involve compiling C++ geoprocessing libraries such as CGAL & GDAL into WebAssembly, and then comparing the performance of these libraries against their compilation by other means (native / asm.js). 
+This development means that technically, there is not much preventing a client-side application to be almost just as powerful as a server-side application. 
 
-The research into the practical effectiveness of WebAssembly will be done by creating a case study geoprocessing environment using these wasm-compiled geoprocessing libraries. 
-The environment will take the shape of a visual programming language, or VPL for short. 
-This, together with the web's advantage of accessibility, will hypothetically demonstrate how WebAssembly can make complex geoprocessing more easy to distribute, access and use. 
+The question remains:
+- How well would WebAssembly enable client-side Geoprocessing?
+and
+- What would a web-application equipped with client-side geoprocessing look like? How could it be used in practice? 
+
+### This paper
+
+This research will explore the possibility of WebAssembly to answer the first question, and poses an experiment to explore the second question. The experiment is roughly this: Instead of minimizing the responsibilities of a web-client application, what happens if we do the reverse and maximize the responsibilities? 
+
+(write a bit about a vpl)
+
+
+<!-- 
+
+, allowing a new range of interactive, dynamic web applications. 
+
+hard divide between geo-processing tools only running locally on server-side is detrimental to the end-user
+
+The goal is to remove the discrepancy between visualization & processing, allowing a new range of interactive, dynamic web applications.
+
+It is time to extend the same level of distribution qualities pointed at geodata (FAIR-geodata) to geodata processing as well. 
+
+-->
 
 <br><br><br><div class="page"></div>
 
-2.. RELATED WORK
+2.. BACKGROUND & RELATED WORK
 ===============================================================================
 
 {DIAGRAM: DEPENDENCY TREE OF RELATED WORKS}
@@ -143,6 +119,50 @@ The execution of this research requires adequate background knowledge on:
 - wasm's surrounding tools and compilers
 
 In addition, since the case study application contains the creation of a VPL, it is important to relate this work to other geometry-based visual programming languages, as well as a paper which analysed the advantages and disadvantages of using a VPL as opposed to a programming language.
+
+
+
+<br><br><br>
+
+## x.x On Fair 
+
+An important side-note is the relationship of WebAssembly and the FAIR principles. The FAIR principles are a collection of four well-established assessment criteria used for judging the usability of software applications (SOURCE). They stand for Findable, Accessible, Interoperable, and Reusable. WebAssembly has the potential to improve all four of those criteria for a piece of software:  
+
+WASM web apps: 
+There is no delay between Findability and Accessibility. 
+As soon as it can be found, it can be accessed. 
+
+WASM containerized:
+If the core logic of something is compiled into a wasm library, than this logic becomes Interoperable and Reusable. 
+We can be sure that it will produce the same results, wherever it is run. 
+Write once, use anywhere <-> Collect once, use multiple times
+
+
+
+
+<br><br><br>
+
+## x.x On Native tools with web-publishing support 
+
+Why many geodata processing tools such as FME and QGIS are integrating ways of web-publishing. 
+
+This research proposes to reverse this reasoning. Instead of giving native applications tools to publish, it proposes to grant the most common distribution destination, the web, the tools needed to perform geodata processing. 
+
+
+
+
+
+<br><br><br>
+
+## x.x On Web Processing Services 
+
+This is covered briefly in the introduction, but Web Processing Services ....
+
+Very applicable to big-data 
+
+but even so, even server side processing would benefit from the speed, security and containerization WebAssembly poses over workflows which utilize a combination of python and C++. This, sadly, is outside the scope of this research.
+
+
 
 <br><br><br>
 
@@ -369,6 +389,14 @@ from the slides:
 
 
 
+## x.x On Interactive Web Applications
+
+### x.x.x VAT: A Scientific Toolbox for Interactive Geodata Exploration 
+
+
+
+
+
 
 ## x.x Relevant WebAssembly Tools
 
@@ -427,8 +455,9 @@ What follows is a brief analysis of existing visual programming languages. While
 
 
 
-- Of these seven vpl's, two are focussed on procedural design (Grasshopper / Dynamo), two are focussed on modelling in the context of special effects (Blender, Houdini), and three are focused on geo-processing (FME, Graphical Mod). I would argue that while the 
+- Of these seven vpl's, two are focussed on procedural design (Grasshopper / Dynamo), two are focussed on modelling in the context of special effects (Blender, Houdini), and three are focused on geo-processing (FME, Graphical Mod). I would argue that while these goals differ, all of these vpls have a lot in common. All of them have some representation of vectors, points, line segments, polygons, surfaces and solids, in one way or another.
 
+- huge differences in availability. If they are not free (QGIS / Blender / Geoflow), these vpls are extremely expensive. this availability roughly correlates to the open / closed source nature of the packages. 
 
 
 <br><br><br><div class="page"></div>
