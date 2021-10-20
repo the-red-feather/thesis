@@ -49,6 +49,8 @@ This is why we scan the earth, why we 'geo-process' these raw findings into more
 
 **However, web-applications have their limitations.** It is usually only a visualization, without any user interactivity other than panning & zooming, toggling layers, or maybe adding annotations. 
 
+<!-- Gaining insight into geodata would entail more than just looking at data. I would say, It must be interacted with to gain true insight -->
+
 **This has its reasons.**. It makes sense from the "dumb-client + smart-server" design principle, prevalent in most geodata web applications. All complex operations should be done server-side, where these tools can be central, calculated with more powerful languages such as C++, and we don't have to worry about the differences between the clients. It leads to a concrete division of labour: The server deals with processing and pre-rendering, and the clients only purpose is visualization, a window into preprocessed data. 
 
 <!-- The problem in one sentence: 
@@ -65,6 +67,8 @@ the discrepancy between visualization & processing in web-apps.
   3. deliver all the resulting data back to the client using even more web-calls.
   
   All the while, the client has little to no insight in the going-ons on the server. Status updates would require yet additional web calls.  
+
+Reasoning from the overarching goal of allowing people to gain insight, I pose that insight is more than just visualizing data. I would say that geodata interaction is a much needed component for people to gain more insight into their surroundings. 
 
 <!-- SIDENOTE: This slowness problem will become more serious the more advanced web-applications become. Examples of this are 3D geo-web applications, applications reacting on incoming geodata in real-time (digital twins), and web-vr-applications. This becomes apparent when analyzing the design of Online video games. these applications usually make the clients calculate as much as possible, while making as little synchronization calls as possible. The more geo-web applications will start to resemble these types of video games, the more they will have to be programmed like one.  -->
 

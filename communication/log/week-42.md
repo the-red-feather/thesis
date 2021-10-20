@@ -13,8 +13,12 @@ note: I think it
 
 
 # Wednesday 
-- met up with Stelios, very nice comments on the introduction, 
+- met up with Stelios, very nice comments on the introduction and chapter 2 & 3
+
+- as a response: rewritten introduction completely
 
 # Thursday
+<!-- TODO: rewrite chapter 3 -->
 
 # Friday
+<!-- Start coding again -->
