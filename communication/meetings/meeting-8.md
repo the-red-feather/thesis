@@ -10,3 +10,5 @@ A quick but very insightful talk with stelios at bk 🙏.
 main points: 
 
 Introduction must be rewritten from a slightly different angle. i'm actually very glad about it! The story stelios proposed has way more merit.
+
+Differences between 
