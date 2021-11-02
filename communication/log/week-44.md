@@ -17,10 +17,10 @@ From a workflow POV:
 
 From a scientific POV:
 - bad UI leads to bad insight. 
-  - Lots of operations and actions leading to a tiny sliver of insight has a small change of meaning anything, scientificly
-- if exploration is not fun and encouraged, people will not explore.
+  - Lots of operations and actions leading to a tiny sliver of insight has a small change of meaning anything, scientifically
+- if exploration and experimentation is not fun and encouraged, people will not explore.
   - This will put a lit on discoveries. 
-  - Accidents therefore are less likely to happen.
+  - Positive accidents therefore are less likely to happen.
 
 
-Dont throw the baby out with the bathwater. Salvaging operation: do not dismiss the tools, just move them to the 21st century
+Don't throw the baby out with the bathwater. Salvaging operation: do not dismiss the tools, just move them to the 21st century
