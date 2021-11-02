@@ -40,6 +40,8 @@ I must do the same, many abstract ideas are much easier to explain with small li
 
 > TODO: add sources, make it more professional. 
 
+> TODO: add more 'timely' comments like "The last decade has seen a rapid evolution of processing, analysis and visualization of freely available geographic data using Open Source Web-GIS. "
+
 <!-- Social Impact -->
 
 **I describe the main goal of the field of geomatics to be: *Give as many people as possible as much insight in their surroundings as possible.***
@@ -47,7 +49,7 @@ This is why we scan the earth, why we 'geo-process' these raw findings into more
 
 <!-- Geoprocessing is a core application of geographic information systems (GIS) and refers to the spatial analysis of data to derive information. [SOURCE: https://www.tandfonline.com/doi/full/10.1080/13658816.2016.1227441]-->
 
-**The web plays a vital role in pursuing this goal.** The vast majority of geodata end-products are web applications. this seams to stem from the web's excellent ability to publish cross-platform, and the fact that web-apps require no installations. 
+**The web plays a vital role in pursuing this goal.** The vast majority of geodata end-products are web applications. this seems to stem from the web's excellent ability to publish cross-platform, and the fact that web-apps require no installations. 
 
 **However, geoweb-applications have their limitations.** They are mostly meant as a visualization. User interactivity is limited to moving the camera, toggling layers, adding annotations. 
 
