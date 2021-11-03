@@ -10,10 +10,11 @@ A:
 
 - 3d geodata heeft ook een complexe nature. een klein foutje vroeg in de pipeline kan hele kettingreactie aan artefacten met zich meebregen.
 
+Ravi had iets nodig wat:
 - interactief
 - snel
 - experiemntel 
-
+is.
 
 
 # Eerste ontwerp
@@ -23,29 +24,26 @@ A:
 - maar:
   - peformance 
   - C++ is gewoon veel sneller 
+  - Niet altijd de juiste algoritmes ter beschikking
   
-- langzame delen zijn algoritmes zelf 
-
-
+- langzame delen zijn algoritmes zelf, de flowchart is negligible.
 
 
 # 3d bag : geoflow 
 
 - 2 modi:
-  - als visuele programmeer tool
-  - als compiled C++ command line
+  - as visual programming tool
+  - as compiled C++ command line tool.
 
-  Het is ongelovelijk belangrijk dat de hele flowchart gecompiled kan worden in beide een json, èn een 
-
+  This is an incredibly important feature.
+  Het is ongelovelijk belangrijk dat de hele flowchart gecompiled kan worden in beide een json, èn een script
 - slim systeem voor alle parameters. 
 
-
-
-- hoe werkt een loop 
-
-
-
 - alles wordt in een json gecompiled
+
+- hoe werkt een loop ? lastig. Ravi gebruikt alleen maar generic lijsten, werkt best wel goed
+
+
 
 nest nodes
 
@@ -88,8 +86,6 @@ uitdaging: logica afhankelijk maken van types
 
 # Rust
 - wel nice, maar geen libs
-
-
 - simpel mogelijk houden 
 
 
