@@ -40,52 +40,73 @@ I must do the same, many abstract ideas are much easier to explain with small li
 
 > TODO: add sources, make it more professional. 
 
-> TODO: add more 'timely' comments like "The last decade has seen a rapid evolution of processing, analysis and visualization of freely available geographic data using Open Source Web-GIS. "
-
 <!-- Social Impact -->
 
 **I describe the main goal of the field of geomatics to be: *Give as many people as possible as much insight in their surroundings as possible.***
-This is why we scan the earth, why we 'geo-process' these raw findings into more clean, meaningful forms, why we put these results in databases the size of dozens of terabytes, and why we build applications to view this data. All of it should be in the service of the general public, to give them the tools and data they need to gain meaningful information and insight into our surroundings, our Earth. 
+This is why we scan the earth, why we 'geo-process' these raw findings into more clean, meaningful forms, why we put these results in databases the size of dozens of terabytes, and why we build applications to view this data. All of it should be in the service of the general public, to give them the tools and data they need to gain meaningful information and insight into our surroundings. (SOUCE: MAYBE HUGO'S KEYNOTE?)
 
 <!-- Geoprocessing is a core application of geographic information systems (GIS) and refers to the spatial analysis of data to derive information. [SOURCE: https://www.tandfonline.com/doi/full/10.1080/13658816.2016.1227441]-->
 
 **The web plays a vital role in pursuing this goal.** The vast majority of geodata end-products are web applications (I NEED A SOURCE). this seems to stem from the web's excellent ability to publish cross-platform, and the fact that web-apps require no installation besides the browser. 
 
-**However, geo web applications are functionally very limited, compared to native geo applications.** They are mostly used as data visualizers. User interactivity is limited to moving the camera, toggling layers, adding annotations. 
+**This accessibility is improved by the "thin client fat server" design principle, prevalent in most geodata web applications (SOURCE: GEOWEB)**. This paradigm states that the server must handle complex procedures like geoprocessing and pre-rendering, and the clients remain as lightweight as possible. The big **advantage** of this paradigm is that client side applications remain small and thus easy to download. Additionally, a server side process can rely on fast, system level programming languages like C++, and powerful hardware. Both ensure speed and a level of reliability.  Client-side devices with low-end hardware can have access to powerful tools, far exceeding the processing capabilities of their own hardware. 
 
-<!-- Gaining insight into geodata would entail more than just looking at data. I would say, It must be interacted with to gain true insight -->
+**However, not all web applications benefit from this paradigm.** 
 
-**This is explainable from the "thin client fat server" design principle, prevalent in most geodata web applications (SOURCE: GEOWEB)**. This paradigm states that complex operations should be done server-side, where these tools can be central, where calculations can use more powerful languages such as C++, and where the differences between low-end and high-end clients can be mitigated. It leads to a concrete division of labour: The server deals with geoprocessing and pre-rendering, and the clients only purpose is visualization, a window into preprocessed data. 
+<!-- 1 : expensive server bad  -->
+
+- First of all, thin web applications depend on powerful, complex servers. The maintenance of this complexity, together with the acquisition and uptake costs of a performant server, drives up the costs of thin applications which require a unique backend. 
+
+<!-- 2 : dependency bad -->
+
+- Secondly, the fact that thin web applications do not just *utilize* a server, but *depend* on them to function normally, means that these applications will become less reliable. A strong internet connection is needed and must be maintained for the duration of the utilization of the app. This direct tie of the application to the corresponding server also raises privacy concerns. 
+
+<!-- 3 : slow = bad -->
+
+- Moreover, offloading processing to a server is not necessarily faster. In certain cases, the hardware improvements of client devices outperform a full round trip to a server carrying sizable geodata. 
+
+<!-- 4 : large != bad -->
+<!-- 
+
+STATIC because: all options presented need to be pre-processed, pre-rendered, and stored in a server-side database. All possibilities granted to end-users will have to be thought about beforehand by the creators of the tool, and these possibilities are often limited since every additional option takes up vital database storage space. This leaves the user little room for experimentation, exploration, or personalization -->
+
+And lastly, the discrepancy between visualization & processing in thin web applications makes these applications static, and thus inhibits their usefulness as sizable GIS applications. Not all applications desire to be small in scale. Many geo web applications desire to be insightful, and Insight is often more than just visualizing data. I pose that interaction and dynamic experimentation with geodata leads to a higher level of understanding into our geospatial surroundings. And, if the overarching goal of geomatics is to improve and **share** geospatial insight, then more accessible geoprocessing is a worthwhile pursuit.
 
 <!-- The problem in one sentence: 
 the discrepancy between visualization & processing in web-apps.
  -->
 
-**Still, this hard divide between processing & visualization causes <!--serious--> problems.** The thin-client web applications users are left with are static, non-interactive, and slow tools. 
+<!-- **Still, this hard divide between processing & visualization causes problems.** The thin-client web applications users are left with are static, non-interactive, and slow tools. 
 
 - Static and non-interactive, because post-processing in a thin client is not possible. this means that all options presented need to be pre-processed, pre-rendered, and stored in a server-side database. All possibilities granted to end-users will have to be thought about beforehand by the creators of the tool, and these possibilities are often limited since every additional option takes up vital database storage space. This leaves the user little room for experimentation, exploration, or personalization. 
 
-- And slow, since any type of interaction between a thin client and corresponding thick server requires many steps:
+- And slow, since any type of off-site processing requires geodata to be trafficked across the web.  -->
+
+<!-- - And slow, since any type of interaction between a thin client and corresponding thick server requires many steps:
   1. The server must be activated by the client by means of a web call. 
   2. It must posses of the exact same data the client is looking at. If this is not the case, it requires additional web calls to acquire this data. 
   3. The server can then perform the desired function. While this is happening, the client often has no insight in the progress of the server. Status updates can be given, but would yet again require more web traffic, especially when containing visualizations.
-  4. After this is done, The server has to deliver all the resulting data back to the client using even more web-calls.
+  4. After this is done, The server has to deliver all the resulting data back to the client using even more web-calls. -->
 
+<br>
 
-**These problems could be mitigated by introducing client-side geoprocessing.** If the tools used traditionally at the server-side, like the mature C++ geoprocessing libraries CGAL and GDAL, could be utilized client-side, the discrepancy between visualization & processing in web-apps could be bridged. This would allow a new range of interactive, dynamic web applications, in which geodata can be post-processed quickly, uniquely, and on demand. 
-
-**Insight is more than just visualizing data.** I pose that interaction and dynamic experimentation with geodata leads to a higher level of understanding into our geospatial surroundings. And, if the overarching goal of geomatics is to improve and **share** geospatial insight, then client-side geoprocessing is a worthwhile pursuit.
-
+**These tradeoffs are why the opposite idea of a *thick* web client capable of client-side geoprocessing is gaining momentum** (SOURCE: PAPER I READ ABOUT HYBRID GEOPROCESSING, PAPER ABOUT THICK WEB CLIENTS IN GENERAL). If the tools used traditionally at the server-side, like the mature C++ geoprocessing libraries CGAL and GDAL, could be utilized client-side, the discrepancy between visualization & processing in most web-apps could be bridged. This would allow a new range of interactive, dynamic web applications, in which geodata can be post-processed quickly, uniquely, serverless, and on demand. 
 
 <!-- Ties into a general JIT design philosophy -->
 
-**However, client-side geoprocessing poses its own set of problems.** Normally, only the `javascript` programming language can be utilized in client-side web applications. This would mean that the aforementioned geoprocessing libraries often containing tens of thousands lines of code, would have to be rewritten in javascript, or would have to be compiled to javascript. The first option would be a time-consuming task, and would have to be repeated every time the underlying libraries change. The second option is also a possibility. C++-based libraries such as CGAL can be converted to a special, fast subset of javascript called `asm.js` using the `emscripten` compiler [SOURCE: emscriptem]. This, however, can result in inefficiencies. The rather large javascript files usually take a long time to download, to scan, and to be properly optimized by a javascript Just In Time (JIT) Compiler [SOURCE: wasm]. 
+**However, client-side geoprocessing is held back by a serious problem.** Normally, only the `javascript` programming language can be utilized in client-side web applications. Previous attempts at client-side geoprocessing have shown that `javascript` based geoprocessing libraries are often not performant enough (SOURCE: BENCHMARK PAPER). Moreover, the javascript library ecosystem does not offer viable alternatives to libraries like CGAL & GDAL. This would mean that alternatives would have to be rewritten in javascript, or the source code would have to be compiled to javascript. 
 
-**A recent, emergent technology poses a third option.** WebAssembly, shortened as wasm, is a binary compilation target meant to be small, fast, save, and platform & source independent [SOURCE: wasm]. 
-<!-- A line about virtual machines, containerized -->
-It outperforms `asm.js` in almost all aspects: it loads quicker, it is scanned quicker, and since it is far closer to bytecode than javascript, it can often perform at a speed comparable to its native counterpart [SOURCE: wasm, not-so-fast]. 
+<!-- often containing tens of thousands lines of code, -->
 
-This development means that theoretically, there is not much preventing a wasm-powered client-side application to be almost as powerful as a server-side application. The question remains, however, if this is also practically the case. Several practical uncertainties remain, such as: 
+Both these solutions are imperfect. The first option would be a time-consuming task, and would have to be repeated every time the underlying libraries change. The second option is also a possibility. C++-based libraries such as CGAL can be converted to a special, fast subset of javascript called `asm.js` using the `emscripten` compiler [SOURCE: emscriptem]. This, however, can result in inefficiencies. The rather large javascript files usually take a long time to download, to scan, and to be properly optimized by a javascript Just In Time (JIT) Compiler [SOURCE: wasm]. 
+
+<br>
+
+**An emergent technology poses a third option.** WebAssembly, shortened as `wasm`, is a binary compilation target meant to be small, fast, save, and platform & source independent [SOURCE: wasm]. It outperforms `asm.js` in almost all aspects: it loads quicker, it is scanned quicker, and since it is far closer to bytecode than javascript, it can often perform at a speed comparable to its native counterpart [SOURCE: wasm, not-so-fast]. 
+
+<br>
+
+This development means that theoretically, there is not much preventing a wasm-powered client-side application to be almost as powerful as a server-side application. **The question remains, however, if this is also practically the case.** Several practical uncertainties remain, such as: 
 
 - Do geoprocessing libraries directly compile into WebAssembly? If not, which workarounds are needed? 
 
