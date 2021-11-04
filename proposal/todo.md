@@ -1,15 +1,22 @@
 
 # [ ------------------ TODO ---------------- ] #
  
+ Context
  - [✓] Get Latex to work 
  - [✓] Get Citations & bibtex to work
  - [✓] Get Figures to work
  - [✓] Get separate files to work
  - [✓] Collect all 'edge data' (assessment criteria, tips, templates)
  - [✓] Add all needed sections
- - [ ] Make a planning
+ - [✓] Make a planning
+   - [ ] Past P2 assessment
  - [✓] Write a small bit 
-
+ 
+ P2 Paper
+ - [ ] chapter 1 : introduction
+ - [ ] chapter 2 : related work
+ - [ ] chapter 3 : this study
+ - [ ] chapter 4 : 
 
 
 # [ ------- FROM THE GEO2020 WEBSITE ------- ] #
