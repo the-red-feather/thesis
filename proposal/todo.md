@@ -13,10 +13,14 @@
  - [✓] Write a small bit 
  
  P2 Paper
- - [ ] chapter 1 : introduction
- - [ ] chapter 2 : related work
- - [ ] chapter 3 : this study
- - [ ] chapter 4 : 
+ - [✓] Introduction
+ - [ ] Related work
+ - [✓] This study
+ - [ ] Motivation
+ - [ ] Preliminary work
+ - [ ] Methodology
+ - [ ] Planning
+ - [✓] Tools & Data 
 
 
 # [ ------- FROM THE GEO2020 WEBSITE ------- ] #

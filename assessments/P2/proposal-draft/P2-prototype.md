@@ -241,7 +241,7 @@ Write once, use anywhere <-> Collect once, use multiple times
 
 ## x.x On Native tools with web-publishing support 
 
-Why many geodata processing tools such as FME and QGIS are integrating ways of web-publishing. 
+While many geodata processing tools such as FME and QGIS are integrating ways of web-publishing. 
 
 This research proposes to reverse this reasoning. Instead of giving native applications tools to publish, it proposes to grant the most common distribution destination, the web, the tools needed to perform geodata processing. 
 
@@ -250,15 +250,6 @@ This research proposes to reverse this reasoning. Instead of giving native appli
 
 
 <br><br><br>
-
-## x.x On Web Processing Services 
-
-This is covered briefly in the introduction, but Web Processing Services ....
-
-Very applicable to big-data 
-
-but even so, even server side processing would benefit from the speed, security and containerization WebAssembly poses over workflows which utilize a combination of python and C++. This, sadly, is outside the scope of this research.
-
 
 
 <br><br><br>
