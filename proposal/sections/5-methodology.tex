@@ -1,25 +1,65 @@
-%-------------------------------------------------------------------------------------------------%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Overview of the methodology to be used.
 % \newpage
 
 \section{Methodology}
 
+% <img src="../../../proposal/schemas/methodology/method.svg">
+
+The study described by this proposal will be sizable, as well as complex. 
+It contains many interlinked and interdependent components. 
+As such, this study applies an incremental methodology with clear phases and in-between products, as a means of quality control while the study is carried out. 
+It also eases the development process, as well as ensures sufficient results in the case the full scope of this study might become unfeasible. 
+
+The five phases, based on the five sub-questions, are 1. Compile, 2. Develop, 3. Synthesize, 4. Benchmark, and 5. Utilize. Every phase will be concluded by an answer to its corresponding research question. See \reffig{fig:method} for a complete overview. As the figure suggests, Phase 1 and 2 can be executed in parallel, as well as phases 4 and 5. However, for the sake of clarity, this will be avoided. 
+
+\begin{figure}
+    \centering
+    \graphicspath{ {../schemas/methodology/} }
+    \includegraphics[width=14cm]{method.png}
+    \caption{Methodology schema}
+    \label{fig:method}
+\end{figure}
+
+
+\subsection{Phase 1: Compile}
+
+The first phase will be about the procedure to successfully compile CGAL and GDAL to WebAssembly.
+
+This will require research into the technicalities of the compilation target, as well as the compilation tool Emscripten (SOURCE).
+
+The first phase will contrive of a number of steps:
+
+- 1.1. Compile a small geoprocessing C++ script to wasm.
+- 1.2  Compile CGAL \& GDAL to wasm.
+- 1.3  Comparison and discussion of multiple wasm compilation methods and considerations for large libraries.
+
+
+(mention preliminary work with hugo, and the knowledge gained by using WebAssembly)
+
+
+\subsection{Phase 2: Develop}
+
+% The second phase is the development of the aforementioned web-based geoprocessing tools. 
+
+% The current plan is to shape this like a visual programming language. 
+
+The second phase is characterized by the creation of a client-side geoprocessing environment. While all phases will entail some level of software development, this is the phase where an entire application will have to be created.
+
+Just like the entire project, the development trajectory during phase 2 will be done incrementally, ensuring results can be produced and shown during all steps of the development. 
+
+Creating a client-side geoprocessing application comes with many design considerations. 
+
+
+
+Phase 2. Develop. ** a browser-based visual programming language (web-vpl), which can visualize geometry, and contains basic GIS functionalities.  
+
+
 To provide an environment meant for client-side geoprocessing using WebAssembly,
 
 
-This will require research into the technical effectiveness of WebAssembly. C++ geo-
-processing libraries such as CGAL \& GDAL will be tested on their ability to be compiled,
-loaded, and used from a browser. This is compared against their compilation by other
-means, such as native binaries or the aforementioned ‘asm.js‘.
-This research is complemented by an extensive ’case study’ to explore the design possi-
-bilities of a web-application equipped with client-side geoprocessing. A thick-client web
-application will be created, and this will serve as platform for testing the aforementioned
-‘wagl‘’s. The tool and can be additionally used for acquiring, visualizing, and saving
-geodata.
 
-The methodology, in board terms, involves Four major steps. 
-
-The first step is the development of the aforementioned web based visual programming language. 
+A thick-client web application will be created, and this will serve as platform for testing the aforementioned ‘wagl‘’s. The tool and can be additionally used for acquiring, visualizing, and saving geodata.
 
 At the end of this step, This environment will be usable 
 
@@ -27,104 +67,58 @@ basic mathematical and geometry procedures.
 
 and will not contain any geodata processing capabilities, nor WebAssembly. 
 
-This development will be done incrementally, where in between steps 
-
-% hello
-
-
-The second step is determining how CGAL \& GDAL can be compiled
-
-
-
-Third step is joining step 1 and 2
-
-
-
-Fourth step is using the entire environment to create demo's
 
 
 
 
+(mention preliminary work)
 
-% This research attempts to improve the Accessibility and Interoperability issues of VPL's by % developing a prototype VPL. 
-% This prototype will be used as the stage to develop the tools and knowledge necessary to % utilize the Web \& WebAssembly for geodata processing.   
-% 
-% \par
-% A logbook will be maintained to explain how this prototype was constructed, what design % choices were made and why, and exactly in which way the FAIR principles influenced its % design. 
-% 
-% \par
-% When the VPL contains all tools necessary to be used to properly process geodata, a final % assessment is needed. 
+- 2D Canvas API / SVG 
+
+- DAG : Directed Acyclic Graph
+
+- Granular classes
+
+
+
+\subsection{Phase 3: Synthesize}
+
+Phase 3. Synthesize. **Combine** wasm to the environment to use the wasm-compiled CGAL and GDAL libraries.
+
+in terms of distributing, loading, and using 
+What is the optimal way of distributing, loading, and using?
+
+hypothesis: splitting large C++ libraries up in smaller, maybe even "per function" compilation targets. 
+Utilize WebAssemblies ability to accept dependencies.
+Need to research more into Emscripten's capabilities.
+
+\subsection{Phase 4: Benchmark}
+
+The fourth phase will be a benchmarking phase. This is one of the later phases, to make use of the fact that an entire geoprocessing environment will have been created at this stage,which can then be used as a benchmarking test suite. 
+
+The most important benchmarks that will have to be made is the comparison of the CGAL \& GDAL libraries natively versus fully integrated in the environment. Additionally, many "in-between" version are possible, which might pose valuable insight. In total, per method or functionality, five different states are of interest to this study:
+
+\begin{itemize}
+    \item Compiled and run as native binary (g++),
+    \item Compiled to asm.js, run natively (node.js),
+    \item Compiled to asm.js, run in a browser.
+    \item Compiled to wasm, run natively (WASI),
+    \item Compiled to wasm, run in a browser,
+\end{itemize}
+
+
+
+\subsection{Phase 5: Utilize}
+
+Finally, When the VPL contains all tools necessary to be used to properly process geodata, a final assessment can be made by actually using the environment to create applications.
+I hypothesize that applications equipped with client-side geoprocessing open up a whole range of new possibilities for both academic \& commercial benefits. 
+I intent to discuss these aspects of the study during this phase. 
+
+
+
 % Three different applications will be created using regular means (jupyter notebook, python, % panda's, etc)
 % and these same applications will be created using the prototype web-VPL. 
 % These two methods will then be compared on usability aspects and performance.   
-
-
-
-
-
-% <img src="../../../proposal/schemas/methodology/method.svg">
-
-% The study described by this proposal will be sizable, as well as complex. It contains many interlinked and interdependent components. As such, this study applies an incremental methodology with clear phases and in-between products, as a means of quality control while the study is carried out. It also eases the development process, as well as ensures sufficient results in the case the full scope of this study might become unfeasible. 
-
-% The four phases, based on the four sub-questions, are as follows: 
-
-% 1. **Define** a procedure to successfully compile CGAL and GDAL to WebAssembly.
-% 2. **Develop** a browser-based visual programming language (web-vpl), which can visualize geometry, and contains basic GIS functionalities.  
-% 3. **Add** wasm support to this environment to use the wasm-compiled CGAL and GDAL libraries.
-% 4. **Assess** the quality and functionality of said environment by using it to create geoprocessing applications. 
-
-% Every phase will be concluded by an answer to its corresponding research question. 
-
-% # phase 1 
-
-% The first phase will contrive of a number of steps:
-
-% - 1.1. Compile a small geoprocessing C++ script to wasm.
-% - 1.2  Compile CGAL & GDAL to wasm.
-% - 1.3  Comparison and discussion of multiple wasm compilation methods and considerations for large libraries.
-% - 1.4  Benchmark the CGAL & GDAL libraries native versus wasm.
-%       • Compiled and run as native binary (g++),
-%       • Compiled to wasm, run natively (WASI),
-%       • Compiled to wasm, run in a browser,
-%       • Compiled to asm.js, run natively (NODE.js),
-%       • Compiled to wasm, run in a browser.
-
-% (mention preliminary work with hugo, and the knowledge gained by using WebAssembly)
-
-% # phase 2 
-
-
-
-% The second phase is the development of the aforementioned web-based geoprocessing tools. 
-
-% The current plan is to shape this like a visual programming language. 
-
-% web based visual programming language. This will be developed parallel to the first phase, informed by
-
-% ...
-
-% At the end of this step, This environment will be usable 
-
-% basic mathematical and geometry procedures. 
-
-% and will not contain any geodata processing capabilities, nor WebAssembly. 
-
-% Just like the entire project, the development trajectory during phase 2 will be done incrementally, ensuring results can be produced and shown during all steps of the development. 
-
-
-% (mention preliminary work)
-% - 2D Canvas API / SVG 
-% - DAG : Directed Acyclic Graph
-% - Granular classes
-
-% # phase 3
-
-% The third phase 
-
-% # phase 4
-
-% Finally, the fourth phase is characterized by actually using and testing the developed environment. I hypothesize that applications equiped with client-side geoprocessing open up a whole range of new possibilities for both academic & commercial benefits. I intent to discuss these aspects of the study during this phase. 
-
 
 % ## 5.3 Case Study
 
@@ -146,7 +140,3 @@ Fourth step is using the entire environment to create demo's
 % > - Intersect the mesh surface with a series of planes (Isocurves from Mesh Operation)
 % > - Preview data (MultiLine Preview Widget)
 % > - Export data (MultiLine export Widget)
-
-
-
-

@@ -12,7 +12,7 @@
 - But today a lot of progress!
 
 # Things to go over:
-- chapter 3: Research questions + chapter 5: methodology (they are directly related)
+- The methodology schema. its important, since it will determine the content of chapter 3, 5, and 6, basically.
 
 
 
