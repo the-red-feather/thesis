@@ -77,8 +77,10 @@ Both these solutions contain imperfections. The first option would be an ineffic
 
 **An emergent technology poses a third option.** WebAssembly, shortened as `wasm`, is a binary compilation target meant to be small, fast, containerized, and platform \& source independent [SOURCE: wasm]. It outperforms `asm.js` in almost all aspects: it loads quicker, it is scanned quicker, and since it is far closer to bytecode than javascript, it can often perform at a speed comparable to its native counterpart [SOURCE: wasm, not-so-fast]. 
 
+% The existing software around WebAssembly pose enough evidence that this is theoretically possible (SOURCE: Emscriptem). 
+% However, this leaves the question whether it is practically possible unanswered, evident by the fact that no wasm-powered geoprocessing tools exists at the time of writing this study. 
 
-This development means that theoretically, there is not much preventing a wasm-powered client-side application to be almost as powerful and useful as a server-side application. **The question remains, however, if this is also practically the case.** Several practical uncertainties remain, such as: 
+This development means that theoretically, there is not much preventing a wasm-powered client-side application to be almost as powerful and useful as a server-side application. **The question remains, however, if this is also practically the case, evident by the fact that no wasm-powered geoprocessing tools exists at the time of writing this study.** Several practical uncertainties remain, such as: 
 \begin{itemize}
   \item Do geoprocessing libraries directly compile into WebAssembly? If not, which workarounds are needed? 
   \item Will WebAssembly-compiled geoprocessing libraries (`wagl`'s), load efficiently, or should they be split up into parts, and loaded lazily? 

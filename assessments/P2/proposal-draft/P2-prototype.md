@@ -561,48 +561,12 @@ Their similarities end there. huge differences exist between them:
 
 <br><br><br><div class="page"></div>
 
-3.. RESEARCH QUESTIONS
+3.. RESEARCH QUESTIONS  &  5.. METHODOLOGY
 ===============================================================================
 
 
-
-How well does WebAssembly support client-side geoprocessing & GIS activities ?
-OR
-How can a client-side GIS web application using visual programming and WebAssembly be designed to ensure accessible, insightful, and usable geoprocessing?
-OR
-
-
-
-1 : What is the most effective methodology of compiling sizable C++ geoprocessing libraries to WebAssembly?
-- effective: Minimum manual labour, Maximum performance, minimum load times.
-
-2 : What should a web-vpl be capable of to classify itself as a GIS?
-OR
-2 : How should a GIS & web vpl be implemented?
-OR
-2 : How to make a web-based, client-side, vpl geoprocessing environment?
-
-3 : How to integrate WebAssembly into the web-gis-vpl?
-OR
-3 : What is the performance penalty for using C++ geoprocessing libraries in WebAssembly versus native binaries?
-
-4 : What are the advantages and disadvantages of GIS applications created using this web-gis-vpl environment?
-
-
-
-
-
-
-
-
-> Do this again, this is old
-
-## 3.1 Objectives
-
-[DIAGRAM: TECHNICAL & PRACTICAL ASPECTS???]
-
 This paper's main objective is to judge the fitness of WebAssembly for client-side geo-processing purposes. 
-This fitness will be judged quantitatively by means of a performance analysis, as well as qualitatively by documenting the creation of a web-based geoprocessing application using WebAssembly. 
+This fitness will be judged quantitatively by means of a performance analysis, as well as qualitatively by documenting the creation of 
 
 The main research question goes: 
 
@@ -614,171 +578,38 @@ This question contains two main components: WebAssembly for geo-processing, and 
 "How can someone one do this?" is answered by showing how this was implemented
  -->
 
-1. **GEO-WASM**: How well can C++ geoprocessing libraries such as CGAL & 3dfier be used within a web browser without needing to be installed, by using WebAssembly?
-    - 2a: How well do WebAssembly compiled geoprocessing (geo-wasm) libraries perform compared to native, cli usage?
-    - 2b: How to handle types / data models between multiple, unrelated `wasm` libraries?
-    - 2c: How do C++ geoprocessing libraries differ from all other C++ libraries?
-    - 2d: What does this difference mean for `wasm` compilation and usage? 
 
+## Phase 1. | WebAssembly
+
+    - How do C++ geoprocessing libraries differ from all other C++ libraries?
+   - What does this difference mean for `wasm` compilation and usage? 
+
+
+## Phase 2. | VPL Architecture
 
 2. **GEO-WEB-VPL**: How to make a web-based, client-side, vpl geoprocessing environment?
-    - 1a. **GEO**: What basic features does a geoprocessing environment need?
+    - **GEO**: What basic features does a geoprocessing environment need?
       <!-- - *answer: MOSKOW* -->
-    - 1b. **WEB**: What advantages and limitations does a HTML5, CSS & JS based environment and interface give us?
+    - **WEB**: What advantages and limitations does a HTML5, CSS & JS based environment and interface give us?
       <!-- - *answer: Canvas, HTML as ui, webgl limitations, javascript as scripting, JIT compiler, etc* -->
-    - 1c. **VPL**: What are the advantages and disadvantages of using a vpl?
+    - **VPL**: What are the advantages and disadvantages of using a vpl?
       <!-- - *answer from the vpl papers*  -->
+    - **ARCH**: 
+    - How to handle types / data models between multiple, unrelated `wasm` libraries?
 
+## Phase 3. | wasm plugin architecture
 
-3. **GEO_WASM + GEO-WEB-VPL**: How well can geo-wasm libs be used within the context of a geo-web-vpl?
     - 3a: What data must a geo-wasm provide in order to become usable within a geo-web-vpl?
       <!-- - *answer: descriptors of operations and variables, how many inputs and outputs, etc.* -->
-    - 3b: How can this data be utilized by the geo-web-vpl? 
-      <!-- - " -->
-    - 3c: How are the geo-wasm libraries distributed?
-      <!-- - *answer: web service like npm or pip? Something like an app store?* -->
-    
-
-Some question I would like to answer: 
-
+    b: How can this data be utilized by the geo-web-vpl? 
+     3c: How are the geo-wasm libraries distributed?
 - Is there a difference between compiling the full CGAL / GDAL library into one binary and loading this in one go, versus compiling parts of it into several smaller binaries, which can be downloaded and loaded lazely?
 
+## Phase 4. | Benchmarks
 
+    - 2a: How well do WebAssembly compiled geoprocessing (geo-wasm) libraries perform compared to native, cli usage?
 
-## 3.2 Scope 
-
-LIMITED TO:
-- WebAssembly for web-usage 
-- Geo-processing client-side
-
-NOT:
-- web processing services or server orchestration 
-- WASI
-
-<!-- 
-(WebAssembly could be just a buzzword, a hype-based virus which hops from conference to conference. )
- -->
-
-
-<br><br><br><div class="page"></div>
-
-4.. MOTIVATION 
-===============================================================================
-
-## 4.1 'higher level' questions. 
-
-The research questions chosen for this research are part of a set of larger questions. While the research will not completely answer the following questions, I believe the questions are nonetheless important to adress.
-
-> What should the field of geomatics do with WebAssembly?
-> - Why should the field of geomatics be interested? 
->   <!-- A: Yes  -->
-> - Can we technically use it for geomatics? 
->   <!-- A: Probably  -->
-> - Can we practically use if for geomatics? 
->   <!-- A: Unsure -->
-
-This also further explains the need for the vpl application within this research. I believe it necessary to develop an application whom's existence serves as a starting point for answering the more complicated "why should we", and "practical" sub-questions.
-
-<br><br><br>
-
-## 4.2 Additional problems the software tries to solve, and features it tries to present:
-
-additionally, 
-
-### - Real-time geodata processing
-
-- A number of use-cases exist with a growing need for real-time geodata processing. (SOURCE: INCIDENT MAPPER)
-
-- Moving tools like CGAL closer to the final product (Web Application) can create more dynamic applications. 
-
-### - Improved Geoprocessing Ergonomics
-
-- Insightful debugging: Client-side geoprocessing together with a VPL allows direct user feedback unlike server-side geoprocessing. Users can be on top of the calculations, look at in betweens steps, reconfigure the procedure without recompilation, see the immediate effects of parameter changes. 
-
-- Improved communications: Users will be able to share demo's and procedures with a link.
-
-- Improved accessibility: Users will not have to install anything except a web-browser.
-  This will make geoprocessing more accessible & operational to a larger audience. It allows more people to do more things with geodata, and reach more interesting conclusions quicker. 
-
-### - Just In Time / Personal Geodata
-
-- JIT: Instead of having large, preprocessed datasets, geodata could be processed on demand from the source client-side. If a user is only interested in a small area of the source dataset, this could save vast amounts of time, storage space and computational resources. 
-
-- Personal: It also allows the end user to tailor geodata to their exact needs. 
-
-
-
-
-
-
-<br><br><br><div class="page"></div>
-
-5.. METHODOLOGY
-===============================================================================
-
-<img src="../../../proposal/schemas/methodology/methodology.svg">
-
-The study described by this proposal will be sizable, as well as complex. It contains many interlinked and interdependent components. As such, this study applies an incremental methodology with clear phases and in-between products, as a means of quality control while the study is carried out. It also eases the development process, as well as ensures sufficient results in the case the full scope of this study might become unfeasible. 
-
-The four phases, based on the four sub-questions, are as follows: 
-
-1. **Define** a procedure to successfully compile CGAL and GDAL to WebAssembly.
-2. **Develop** a browser-based visual programming language (web-vpl), which can visualize geometry, and contains basic GIS functionalities.  
-3. **Add** wasm support to this environment to use the wasm-compiled CGAL and GDAL libraries.
-4. **Assess** the quality and functionality of said environment by using it to create geoprocessing applications. 
-
-Every phase will be concluded by an answer to its corresponding research question. 
-
-# phase 1 
-
-The first phase will contrive of a number of steps:
-
-- 1.1. Compile a small geoprocessing C++ script to wasm.
-- 1.2  Compile CGAL & GDAL to wasm.
-- 1.3  Comparison and discussion of multiple wasm compilation methods and considerations for large libraries.
-- 1.4  Benchmark the CGAL & GDAL libraries native versus wasm.
-      • Compiled and run as native binary (g++),
-      • Compiled to wasm, run natively (WASI),
-      • Compiled to wasm, run in a browser,
-      • Compiled to asm.js, run natively (NODE.js),
-      • Compiled to wasm, run in a browser.
-
-(mention preliminary work with hugo, and the knowledge gained by using WebAssembly)
-
-# phase 2 
-
-The second phase is the development of the aforementioned web based visual programming language. This will be developed parallel to the first phase, informed by
-
-...
-
-At the end of this step, This environment will be usable 
-
-basic mathematical and geometry procedures. 
-
-and will not contain any geodata processing capabilities, nor WebAssembly. 
-
-Just like the entire project, the development trajectory during phase 2 will be done incrementally, ensuring results can be produced and shown during all steps of the development. 
-
-
-(mention preliminary work)
-- 2D Canvas API / SVG 
-- DAG : Directed Acyclic Graph
-- Granular classes
-
-# phase 3
-
-The third phase 
-
-# phase 4
-
-Finally, the fourth phase is characterized by actually using and testing the developed environment.  
-
-
-
-To provide 
-
-
-## 5.3 Case Study
+## Phase 5. | Utilization
 
 > ### *Demo Application: On Demand Triangulator + Isocurves* 
 > 
@@ -800,20 +631,9 @@ To provide
 > - Export data (MultiLine export Widget)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- 
+(WebAssembly could be just a buzzword, a hype-based virus which hops from conference to conference. )
+ -->
 
 
 
@@ -834,27 +654,6 @@ old stuff
 
 A Visual Programming Language (VPL) will be created
 
-## 5.3 Use Case Study
-
-> ### *Demo Application: On Demand Triangulator + Isocurves* 
-> 
-> ### Input: 
-> - Point Cloud
-> 
-> ### Output
-> - Line Curves / .png render of line curves
-> 
-> ### Steps: 
-> - Load ahn3 point-cloud (WFS Input Widget | WFS Preview Widget)
-> - Visualize point cloud on top of base map of the netherlands (WMS Input Widget | WMS > Preview Widget)
-> - Only select terrain points (list filter Operation)
-> - Construct a 2d polygon by clicking points on a map (Polygon Input Widget)
-> - Select Area of interest using a 2d polygon (Boundary Include Operation)
-> - Triangulate point cloud with a certain resolution (Triangulate Operation)
-> - Intersect the mesh surface with a series of planes (Isocurves from Mesh Operation)
-> - Preview data (MultiLine Preview Widget)
-> - Export data (MultiLine export Widget)
-
 
 <br><br><br><div class="page"></div>
 
@@ -871,34 +670,3 @@ TODO
 
 <br><br><br><div class="page"></div>
 
-7.. TOOLS USED
-===============================================================================
-
-Languages
-  - WebAssembly
-    - As compile target 
-
-  - C++
-    - 
-  - Typescript / Javascript 
-    - Front-end code
-    - WebGl & javascript Canvas api
-      - visualization 
-
-  - Rust ????
-
-
-Libraries & Tools 
-
-- Emscriptem
-
-- Wasm-Pack
-
-- SSVM ???
-  - : WebAssembly high performant virtual machine meant for server side
-
-
-
-Data
-  - WMS \& WFS services hosted by PDOK.
-  - sample Geojsons from the geojson site 

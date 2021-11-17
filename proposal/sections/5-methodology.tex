@@ -57,3 +57,96 @@ Fourth step is using the entire environment to create demo's
 % Three different applications will be created using regular means (jupyter notebook, python, % panda's, etc)
 % and these same applications will be created using the prototype web-VPL. 
 % These two methods will then be compared on usability aspects and performance.   
+
+
+
+
+
+% <img src="../../../proposal/schemas/methodology/method.svg">
+
+% The study described by this proposal will be sizable, as well as complex. It contains many interlinked and interdependent components. As such, this study applies an incremental methodology with clear phases and in-between products, as a means of quality control while the study is carried out. It also eases the development process, as well as ensures sufficient results in the case the full scope of this study might become unfeasible. 
+
+% The four phases, based on the four sub-questions, are as follows: 
+
+% 1. **Define** a procedure to successfully compile CGAL and GDAL to WebAssembly.
+% 2. **Develop** a browser-based visual programming language (web-vpl), which can visualize geometry, and contains basic GIS functionalities.  
+% 3. **Add** wasm support to this environment to use the wasm-compiled CGAL and GDAL libraries.
+% 4. **Assess** the quality and functionality of said environment by using it to create geoprocessing applications. 
+
+% Every phase will be concluded by an answer to its corresponding research question. 
+
+% # phase 1 
+
+% The first phase will contrive of a number of steps:
+
+% - 1.1. Compile a small geoprocessing C++ script to wasm.
+% - 1.2  Compile CGAL & GDAL to wasm.
+% - 1.3  Comparison and discussion of multiple wasm compilation methods and considerations for large libraries.
+% - 1.4  Benchmark the CGAL & GDAL libraries native versus wasm.
+%       • Compiled and run as native binary (g++),
+%       • Compiled to wasm, run natively (WASI),
+%       • Compiled to wasm, run in a browser,
+%       • Compiled to asm.js, run natively (NODE.js),
+%       • Compiled to wasm, run in a browser.
+
+% (mention preliminary work with hugo, and the knowledge gained by using WebAssembly)
+
+% # phase 2 
+
+
+
+% The second phase is the development of the aforementioned web-based geoprocessing tools. 
+
+% The current plan is to shape this like a visual programming language. 
+
+% web based visual programming language. This will be developed parallel to the first phase, informed by
+
+% ...
+
+% At the end of this step, This environment will be usable 
+
+% basic mathematical and geometry procedures. 
+
+% and will not contain any geodata processing capabilities, nor WebAssembly. 
+
+% Just like the entire project, the development trajectory during phase 2 will be done incrementally, ensuring results can be produced and shown during all steps of the development. 
+
+
+% (mention preliminary work)
+% - 2D Canvas API / SVG 
+% - DAG : Directed Acyclic Graph
+% - Granular classes
+
+% # phase 3
+
+% The third phase 
+
+% # phase 4
+
+% Finally, the fourth phase is characterized by actually using and testing the developed environment. I hypothesize that applications equiped with client-side geoprocessing open up a whole range of new possibilities for both academic & commercial benefits. I intent to discuss these aspects of the study during this phase. 
+
+
+% ## 5.3 Case Study
+
+% > ### *Demo Application: On Demand Triangulator + Isocurves* 
+% > 
+% > ### Input: 
+% > - Point Cloud
+% > 
+% > ### Output
+% > - Line Curves / .png render of line curves
+% > 
+% > ### Steps: 
+% > - Load ahn3 point-cloud (WFS Input Widget | WFS Preview Widget)
+% > - Visualize point cloud on top of base map of the netherlands (WMS Input Widget | WMS > Preview Widget)
+% > - Only select terrain points (list filter Operation)
+% > - Construct a 2d polygon by clicking points on a map (Polygon Input Widget)
+% > - Select Area of interest using a 2d polygon (Boundary Include Operation)
+% > - Triangulate point cloud with a certain resolution (Triangulate Operation)
+% > - Intersect the mesh surface with a series of planes (Isocurves from Mesh Operation)
+% > - Preview data (MultiLine Preview Widget)
+% > - Export data (MultiLine export Widget)
+
+
+
+
