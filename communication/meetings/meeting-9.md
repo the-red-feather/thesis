@@ -51,3 +51,43 @@
   - It should show what to expect at P4  
   - Plan
   - Scope
+
+
+
+  
+# Notes later from Ken on Discord: 
+
+the doc looks well overall
+you ideas seem a lot clearer now
+the first paragraph is nice, 
+
+but I don't think it's very suitable to start the document
+it's more the kind of thing that you can put in your conclusions 
+(something strong and opinionated)
+instead, I think you can start by saying that web applications are popular
+explain the benefits briefly
+apart from having no installation
+
+by the way, there's no need to say that the vast majority are web applications
+it doesn't help your argument
+then, I think you can make a better argument for your thesis overall
+explain that historically, thin client fat server was the standard
+for the reasons you listed
+and then directly explain why this is potentially changing now
+
+the stuff you have in "the case" and "the problem" is nice, but I think it's too detailed for the P2
+for the rest: my advice is to develop further the methodology
+focus on that
+define steps better and provide a rough timeline 
+it would be great if you have a research subquestion that could be answered by each step
+
+# Action I will undertake based on these notes:
+
+[] 1. Finish methodology
+  - Define steps, then research sub-questions for every step
+
+[] 2. Clarify introduction
+  - Less in-depth
+  - Less opinionated
+
+[] 3. Related works

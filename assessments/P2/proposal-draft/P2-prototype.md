@@ -564,6 +564,37 @@ Their similarities end there. huge differences exist between them:
 3.. RESEARCH QUESTIONS
 ===============================================================================
 
+
+
+How well does WebAssembly support client-side geoprocessing & GIS activities ?
+OR
+How can a client-side GIS web application using visual programming and WebAssembly be designed to ensure accessible, insightful, and usable geoprocessing?
+OR
+
+
+
+1 : What is the most effective methodology of compiling sizable C++ geoprocessing libraries to WebAssembly?
+- effective: Minimum manual labour, Maximum performance, minimum load times.
+
+2 : What should a web-vpl be capable of to classify itself as a GIS?
+OR
+2 : How should a GIS & web vpl be implemented?
+OR
+2 : How to make a web-based, client-side, vpl geoprocessing environment?
+
+3 : How to integrate WebAssembly into the web-gis-vpl?
+OR
+3 : What is the performance penalty for using C++ geoprocessing libraries in WebAssembly versus native binaries?
+
+4 : What are the advantages and disadvantages of GIS applications created using this web-gis-vpl environment?
+
+
+
+
+
+
+
+
 > Do this again, this is old
 
 ## 3.1 Objectives
@@ -684,6 +715,112 @@ additionally,
 
 5.. METHODOLOGY
 ===============================================================================
+
+<img src="../../../proposal/schemas/methodology/methodology.svg">
+
+The study described by this proposal will be sizable, as well as complex. It contains many interlinked and interdependent components. As such, this study applies an incremental methodology with clear phases and in-between products, as a means of quality control while the study is carried out. It also eases the development process, as well as ensures sufficient results in the case the full scope of this study might become unfeasible. 
+
+The four phases, based on the four sub-questions, are as follows: 
+
+1. **Define** a procedure to successfully compile CGAL and GDAL to WebAssembly.
+2. **Develop** a browser-based visual programming language (web-vpl), which can visualize geometry, and contains basic GIS functionalities.  
+3. **Add** wasm support to this environment to use the wasm-compiled CGAL and GDAL libraries.
+4. **Assess** the quality and functionality of said environment by using it to create geoprocessing applications. 
+
+Every phase will be concluded by an answer to its corresponding research question. 
+
+# phase 1 
+
+The first phase will contrive of a number of steps:
+
+- 1.1. Compile a small geoprocessing C++ script to wasm.
+- 1.2  Compile CGAL & GDAL to wasm.
+- 1.3  Comparison and discussion of multiple wasm compilation methods and considerations for large libraries.
+- 1.4  Benchmark the CGAL & GDAL libraries native versus wasm.
+      • Compiled and run as native binary (g++),
+      • Compiled to wasm, run natively (WASI),
+      • Compiled to wasm, run in a browser,
+      • Compiled to asm.js, run natively (NODE.js),
+      • Compiled to wasm, run in a browser.
+
+(mention preliminary work with hugo, and the knowledge gained by using WebAssembly)
+
+# phase 2 
+
+The second phase is the development of the aforementioned web based visual programming language. This will be developed parallel to the first phase, informed by
+
+...
+
+At the end of this step, This environment will be usable 
+
+basic mathematical and geometry procedures. 
+
+and will not contain any geodata processing capabilities, nor WebAssembly. 
+
+Just like the entire project, the development trajectory during phase 2 will be done incrementally, ensuring results can be produced and shown during all steps of the development. 
+
+
+(mention preliminary work)
+- 2D Canvas API / SVG 
+- DAG : Directed Acyclic Graph
+- Granular classes
+
+# phase 3
+
+The third phase 
+
+# phase 4
+
+Finally, the fourth phase is characterized by actually using and testing the developed environment.  
+
+
+
+To provide 
+
+
+## 5.3 Case Study
+
+> ### *Demo Application: On Demand Triangulator + Isocurves* 
+> 
+> ### Input: 
+> - Point Cloud
+> 
+> ### Output
+> - Line Curves / .png render of line curves
+> 
+> ### Steps: 
+> - Load ahn3 point-cloud (WFS Input Widget | WFS Preview Widget)
+> - Visualize point cloud on top of base map of the netherlands (WMS Input Widget | WMS > Preview Widget)
+> - Only select terrain points (list filter Operation)
+> - Construct a 2d polygon by clicking points on a map (Polygon Input Widget)
+> - Select Area of interest using a 2d polygon (Boundary Include Operation)
+> - Triangulate point cloud with a certain resolution (Triangulate Operation)
+> - Intersect the mesh surface with a series of planes (Isocurves from Mesh Operation)
+> - Preview data (MultiLine Preview Widget)
+> - Export data (MultiLine export Widget)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------
+
+old stuff 
 
 
 (utilize pre-work)

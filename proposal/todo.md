@@ -18,10 +18,13 @@
  - [✓] This study
  - [ ] Motivation
  - [ ] Preliminary work
- - [ ] Methodology
+ - [ ] ⚙️ Methodology ⚙️
  - [ ] Planning
  - [✓] Tools & Data 
-
+ - [ ] Bibliography
+ 
+ BONUS
+ - [ ] Adding graphs 
 
 # [ ------- FROM THE GEO2020 WEBSITE ------- ] #
 

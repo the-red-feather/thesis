@@ -4,6 +4,19 @@
 
 \section{Methodology}
 
+To provide an environment meant for client-side geoprocessing using WebAssembly,
+
+
+This will require research into the technical effectiveness of WebAssembly. C++ geo-
+processing libraries such as CGAL \& GDAL will be tested on their ability to be compiled,
+loaded, and used from a browser. This is compared against their compilation by other
+means, such as native binaries or the aforementioned ‘asm.js‘.
+This research is complemented by an extensive ’case study’ to explore the design possi-
+bilities of a web-application equipped with client-side geoprocessing. A thick-client web
+application will be created, and this will serve as platform for testing the aforementioned
+‘wagl‘’s. The tool and can be additionally used for acquiring, visualizing, and saving
+geodata.
+
 The methodology, in board terms, involves Four major steps. 
 
 The first step is the development of the aforementioned web based visual programming language. 
@@ -16,6 +29,7 @@ and will not contain any geodata processing capabilities, nor WebAssembly.
 
 This development will be done incrementally, where in between steps 
 
+% hello
 
 
 The second step is determining how CGAL \& GDAL can be compiled
