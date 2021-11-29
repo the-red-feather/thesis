@@ -32,21 +32,29 @@
 % The study aims to provide a guide for using WebAssembly for Geoprocessing
 
 
+% ### This Study
+
+% The aim of this study is to provide an environment meant for client-side geoprocessing using WebAssembly. This environment will be used to demonstrate if and how wasm-based, client-side geoprocessing is possible. At the same time, by presenting this environment, the study aims to explore the design possibilities of a web-GIS application equipped with such tools. 
+
+% This will require research into the technical effectiveness of WebAssembly. C++ geoprocessing libraries such as CGAL & GDAL will be tested on their ability to be compiled, loaded, and used from a browser. This is compared against their compilation by other means, such as native binaries or the aforementioned `asm.js`. This research is complemented by an extensive 'case study' to explore the design possibilities of a web-application equipped with client-side geoprocessing. A thick-client web application will be created, and this will serve as platform for testing the aforementioned `wagl`'s. The tool and can be additionally used for acquiring, visualizing, and saving geodata. 
 
 
 
-% The studies final objective is to make client-side geoprocessing a viable alternative to native geoprocessing. It does this by researching if the current state of web technologies are ready for geoprocessing:
+
+
 % "Can WebAssembly offer the performance and interoperablility with C++ needed for geoprocessing?"
 % Can the "web ui", consisting of HTML, css and javascript, offer us enough to work with to create a UI needed for proper geoprocessing?% 
 
-This study's main objective is to determine if and how WebAssembly can practically enable client-side geoprocessing. It aims to gather facts and develop tools around both wasm and client-side geoprocessing, so that this judgement can be fairly made. 
-% 1 / 3
-The required facts will be gathered by means of performance benchmarks, as well as a compilation method comparison, and a distribution method comparison.  
+The studies main objective is to make geoprocessing more sharable, accessible and insightful by using the web. It does this by researching if the current state of client web technologies are ready for geoprocessing.
+% This study's main objective is to determine if and how WebAssembly can practically enable client-side geoprocessing. 
+It aims to gather facts and develop tools around both these technologies and client-side geoprocessing, so that this judgement can be fairly made. 
+% 1 & 3
+The required facts will be gathered by means of performance benchmarks, a compilation method comparison, and a distribution method comparison.  
 % 2
 The tools take the shape of a client-side GIS application using WebAssembly.
 To ensure that these facts \& tools are unambiguous, reproducible, and re-usable, the study will offer guides on exactly how certain C++ geoprocessing libraries are converted to wasm. For the same reasons, it also presents implementation details and considerations of the geoprocessing environment.  
 % 4
-Finally, by presenting and using this environment, the study aims to explore the advantages and disadvantages of a client-side-GIS application equipped with powerful geoprocessing tools. 
+Finally, by presenting and using this environment, the study aims to explore the advantages and disadvantages of a client-side-GIS application equipped with native-level geoprocessing tools. 
 
 % This will require research into the technical effectiveness of WebAssembly. 
 % C++ geoprocessing libraries such as CGAL \& GDAL will be tested on their ability to be compiled, loaded, and used from a browser. 
@@ -59,19 +67,43 @@ Finally, by presenting and using this environment, the study aims to explore the
 % (WebAssembly geoprocessing libraries -> `wagl`'s)
 
 %-------------------------------------------------------------------------------------------------%
-\subsection{Research Questions}
+\subsection{Research Question}
 
-"How well does the current state of web technologies support a client-side geoprocessing vpl?"
+How to \textbf{design and create} a GIS environment which can \textbf{utilize} \textbf{existing geoprocessing libraries} within a web browser, using the \textbf{current state} of \textbf{standard client-side web technologies}?
+
+% "How well can the \textbf{current state} of \textbf{standard client-side web technologies} make \textbf{existing geoprocessing libraries} \textbf{usable} in a browser?"
+
+\subsubsection*{Explanation}
+
+% The research question is written purposefully written in the "how well does X support Y question" shape. To unpack its components: 
+
+- \textbf{design and create}: ...
+
+- \textbf{Current state}: Note how the Related works section named (SOURCE)'s paper outdated, even though it was written in 2016. This is why this study will also be very timely. It will use contemporary, even bleeding edge features, but its findings will nonetheless be bound to this time of writing, as web technologies can quickly change in the future. 
+
+- \textbf{Standard client-side web technologies}: This phrase is meant in a first principles sense: Examine the raw, core technologies the major browsers (Chrome (Edge), Safari, Firefox) offer without plugins or libraries. This study will cover: CSS, JS, HTML5, the DOM, WebGl, the 2d Canvas API, SVG's, and, its most recent addition, WebAssembly. 
+
+- \textbf{Existing geoprocessing libraries}. This wording expresses this studies desire to explore the usage of existing geoprocessing libraries, rather than to recreate geoprocessing libraries from scratch.
+
+- \textbf{Usable}: The study intends to not only find out how the geo-libs can be \textit{run} in a browser, but also how geo-libs can be \textit{used}. So besides covering qualities like performance and loading times, we will also be asking questions like: \textit{how do we specify the input?}, \textit{how do we recieve and evaluate the output?} and \textit{how can multiple steps be chained together?}, which is a vital component of geoprocessing. To seek answers to these questions, the study will regard questions of this nature as \textit{Interface} questions, and will explore the creation of a geoprocessing interface. 
+
+% (name something about geoprocessing environment)
+
+% * (Usability within this context is meant as a collection of aspects such as "performance", "ease of use", and FAIR principles. )
+
+
 
 \subsubsection*{Sub Questions}
 
 1 : What is the most effective methodology of compiling sizable C++ geoprocessing libraries to WebAssembly?
 
-2 : How to design and create a client-side geoprocessing interface?
+2 : How to design and create a geoprocessing interface using client-side web technologies?
 
-3 : How can wasm-compiled geoprocessing libraries be used with a client-side geoprocessing interface?
+3 : How can wasm-compiled geoprocessing libraries be used in a client-side geoprocessing interface?
 
 4 : What are the advantages and disadvantages of GIS applications created using a client-side geoprocessing environment powered by WebAssembly?
+
+These will be further explained in the upcoming methodology chapter.
 
 % ----
 \newpage
@@ -80,7 +112,7 @@ Finally, by presenting and using this environment, the study aims to explore the
 
 \subsection*{Will Include}
 
-The 'will include' scope is represented by the Methodology chapter. 
+The 'will include' scope is also represented by the Methodology chapter. 
 
 %-----------------------------------------------------------------------------%
 \subsection*{Will not include}
@@ -103,22 +135,10 @@ Future work could, however, research the possibility of utilizing a vpl for WPS 
 
 
 
-\subsubsection*{Usability Analysis of geoprocessing VPL's} % 
+\subsubsection*{Usability Analysis} % 
 
-While usability* is a primary motivation for conducting this research, no claims will be made that a client-side vpl geoprocessing environment is more usable to native GIS applications or geoprocessing methods. This research attempts to solve practical inhibitions in order to discover whether or not client-side is \textbf{an} option. If it turns out that this method is viable technically, future research will be needed to definitively proof \textbf{how} usable it is compared to all other existing methods.  
+While usability is a primary motivation for conducting this research, no claims will be made that the developed geoprocessing environment is more usable to native GIS applications or geoprocessing methods. This research attempts to solve practical inhibitions in order to discover whether or not client-side is \textbf{an} usable option. If it turns out that this method is viable technically, future research will be needed to definitively proof \textbf{how} usable it is compared to all other existing methods.  
 
 % This paper seeks to first close this gap, limiting itself to overcoming the technical and design boundaries in the pursuit of practical client-side geoprocessing.
 
-* (Usability within this context is meant as a collection of aspects such as "performance", "ease of use", and FAIR principles. )
-
 Similarly, a survey analyzing how users experience client-side geoprocessing in comparison to native geoprocessing must also be left to subsequent research. While this would gain us tremendous insight, client-side geoprocessing is too new to make a balanced comparison. Native environments like GRASSGIS, QGIS, FME or Esri simply have a 20+ year lead in research and development. 
-
-
-
-
-
-% ### This Study
-
-% The aim of this study is to provide an environment meant for client-side geoprocessing using WebAssembly. This environment will be used to demonstrate if and how wasm-based, client-side geoprocessing is possible. At the same time, by presenting this environment, the study aims to explore the design possibilities of a web-GIS application equipped with such tools. 
-
-% This will require research into the technical effectiveness of WebAssembly. C++ geoprocessing libraries such as CGAL & GDAL will be tested on their ability to be compiled, loaded, and used from a browser. This is compared against their compilation by other means, such as native binaries or the aforementioned `asm.js`. This research is complemented by an extensive 'case study' to explore the design possibilities of a web-application equipped with client-side geoprocessing. A thick-client web application will be created, and this will serve as platform for testing the aforementioned `wagl`'s. The tool and can be additionally used for acquiring, visualizing, and saving geodata. 

@@ -12,29 +12,30 @@
 
 \section{Methodology}
 
-To find answers to the research questions posed, many different aspects of client-side web technology will have to be studied, and sizable, complex software will have to be written. Moreover, these aspects and the software are all interlinked and interdependent.
+To find answers to the research questions posed, many different aspects of client-side web technology will have to be studied, and complex software will have to be written. Moreover, these aspects and the software are all interlinked and interdependent.
 
-This chapter covers the methodology posed to untangle this, and the choices made to eventually create this method. \reffig{fig:method} overs an overview. As shown, this study will be divided into four phases, matching the four sub-research questions. Every phase will cover two goals. The primary goal is to answer its corresponding research question, and to cover the process towards this answer. The secondary goal is to describe the development of the software required to form this answer. This software can be seen as a "side product", and will be a required starting point to answer subsequent questions. 
+This chapter covers the methodology posed to untangle this, and the choices made to eventually create this method. \reffig{fig:method} offers an overview of the full methodology. The schema acts as a general guide, and is subject to change, based on the obstacles encountered during the study. 
 
-% 1. Compile, 2. Interface, 3. Synthesize, and 4. Utilize.
+As shown, this study will be divided into four phases, matching the four sub-research questions. Every phase has two goals. The primary goal is to answer its corresponding research question, and to cover the process towards this answer. The secondary goal is to describe the development of the software required to form this answer. This software can be seen as a "side product", and will be a required starting point to answer subsequent questions. 
 
-Every phase contains a number of development \& analysis steps. The reasoning behind these steps are covered by the following sub-chapters.  
+Please note this causality between the different phases, represented by the thick arrows. The Compile and Interface phases can be executed in parallel, and require no particular order. The Synthesize and Utilize phases phases depend on side products from phases before it. 
 
 The methodology used can be characterized as both incremental and iterative. Its incremental nature means that every phase, and every step within a phase, will produce meaningful in-between products \& results. This ensures the study will be insightful, even in the case the full scope of this study might become unfeasible. It is also vital for making the methodology iterative. 
 
 The study's iterative nature, represented by the cyclic paths within \reffig{fig:method}, means that analysis and benchmarks will not be postponed until the end of the study, and will instead be carried out during each step. This makes sure obstacles are discovered early, and the trajectory of the study can be adjusted dynamically.  
 
-This is important to restate. The schema acts as a general guide, and is subject to change, based on the obstacles encountered during the study. Also, as \reffig{fig:method} suggests, Phase 1 and 2 can be executed in parallel, and require no particular order. 
+Every phase contains a number of development \& analysis steps. The reasoning behind these steps are covered by the following sub-chapters.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Phase 1: Compile}
 
 % not as easy 
-The first phase will be about the procedure to successfully compile C++ geoprocessing libraries to WebAssembly. This might not be as easy as using normal C++ compilers, based on the experience gained by preliminary work (SOURCE: CITYJSON CHECKER). WebAssembly is containerized and platform independent, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. These aspects might be solved by using or writing wrapper libraries and using file system workarounds. 
+The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (SOURCE: CITYJSON CHECKER). WebAssembly is containerized and platform independent, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. These aspects might be solved by using or writing wrapper libraries and using file system workarounds. 
 
 % question & steps to answer
-This is why an entire research question is dedicated to finding an answer to this problem: \textbf{"What is the most fitting methodology of compiling C++ geoprocessing libraries to WebAssembly?"}. 'Fitting' in this context refers to the specific requirements posed by geoprocessing libraries. The libraries are complex and sizable, and the geodata used as input even more so. This means special attention will be given to these aspects. Standard compiler effectiveness criteria, such as portability (smallest file size), and performance, will also be considerations during the assessment of methodologies.  
+This is why an entire research question is dedicated to finding an answer to this problem: \textbf{"What is the most fitting methodology of compiling C++ geoprocessing libraries to WebAssembly?"}.
+We specify ourselves to C++, since this seems to be the language of choice for almost all well established geoprocessing libraries. 'Fitting' in this context refers to the specific requirements posed by geoprocessing libraries. The libraries are complex and sizable, and the geodata used as input even more so. This means special attention will be given to these aspects. Standard compiler effectiveness criteria, such as portability (smallest file size), and performance, will also be considerations during the assessment of methodologies.  
 
 While the question poses to find the \textit{best} compilation method, if it turns out that only one method makes it possible to compile sizable geo-libraries, this phase will nonetheless regard itself as successful. The question will have to be rephrased in that case. 
 
@@ -159,7 +160,7 @@ One of the hypothetical obstacles during this phase is that an entire geoprocess
 Finally, When the VPL contains all tools necessary to be used to properly process geodata, a final assessment can be made by using the environment to serve as an application. this assessment will try to answer: \textit{What are the advantages and disadvantages of GIS applications created using a client-side geoprocessing environment powered by WebAssembly?}. This question requires a native but comparable GIS application to test this against.  
 
 
-I hypothesize that applications equipped with client-side geoprocessing open up a whole range of new possibilities for both academic \& commercial benefits. 
+I hypothesize that applications equipped with client-side geoprocessing open up a whole range of new possibilities posing both academic \& commercial benefits. 
 I intent to discuss these aspects of the study during this phase. 
 
 
@@ -170,6 +171,8 @@ I intent to discuss these aspects of the study during this phase.
 % ## 5.3 Case Study
 
 \subsubsection*{Case Study}
+
+This is a sketch of such an application, and all steps \& geoprocessing operations needed to make it functional.
 
 \begin{lstlisting}
 # Demo Application: On Demand Triangulator + Isocurves
