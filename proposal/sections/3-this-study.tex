@@ -69,7 +69,7 @@ Finally, by presenting and using this environment, the study aims to explore the
 %-------------------------------------------------------------------------------------------------%
 \subsection{Research Question}
 
-How to \textbf{design and create} a GIS environment which can \textbf{utilize} \textbf{existing geoprocessing libraries} within a web browser, using the \textbf{current state} of \textbf{standard client-side web technologies}?
+\textit{How to \textbf{design and create} a GIS environment which can \textbf{effectively utilize} \textbf{existing geoprocessing libraries} within a web browser, using only the \textbf{current state} of \textbf{standard client-side web technologies}?}
 
 % "How well can the \textbf{current state} of \textbf{standard client-side web technologies} make \textbf{existing geoprocessing libraries} \textbf{usable} in a browser?"
 
@@ -77,7 +77,7 @@ How to \textbf{design and create} a GIS environment which can \textbf{utilize} \
 
 % The research question is written purposefully written in the "how well does X support Y question" shape. To unpack its components: 
 
-- \textbf{design and create}: ...
+- \textbf{design and create}: The wording 'design and create' is used to signal that this will cover both how this environment could theoretically be designed
 
 - \textbf{Current state}: Note how the Related works section named (SOURCE)'s paper outdated, even though it was written in 2016. This is why this study will also be very timely. It will use contemporary, even bleeding edge features, but its findings will nonetheless be bound to this time of writing, as web technologies can quickly change in the future. 
 
@@ -85,25 +85,43 @@ How to \textbf{design and create} a GIS environment which can \textbf{utilize} \
 
 - \textbf{Existing geoprocessing libraries}. This wording expresses this studies desire to explore the usage of existing geoprocessing libraries, rather than to recreate geoprocessing libraries from scratch.
 
-- \textbf{Usable}: The study intends to not only find out how the geo-libs can be \textit{run} in a browser, but also how geo-libs can be \textit{used}. So besides covering qualities like performance and loading times, we will also be asking questions like: \textit{how do we specify the input?}, \textit{how do we recieve and evaluate the output?} and \textit{how can multiple steps be chained together?}, which is a vital component of geoprocessing. To seek answers to these questions, the study will regard questions of this nature as \textit{Interface} questions, and will explore the creation of a geoprocessing interface. 
+- \textbf{Effectively utilize}: The study intends to not only find out how the geo-libs can be \textit{run} in a browser, but also how geo-libs can be \textit{used}. So besides covering qualities like performance and loading times, we will also be asking questions like: \textit{how do we specify the input?}, \textit{how do we recieve and evaluate the output?} and \textit{how can multiple steps be chained together?}, which is a vital component of geoprocessing. To seek answers to these questions, the study will regard questions of this nature as \textit{Interface} questions, and will explore the creation of a geoprocessing interface. 
 
-% (name something about geoprocessing environment)
+\subsubsection*{At the conclusion}
 
-% * (Usability within this context is meant as a collection of aspects such as "performance", "ease of use", and FAIR principles. )
+At the final conclusion of the proposed thesis, we will answer if the designed and created GIS environment can indeed effectively utilize these geo-libraries.
+this will be answered by quantitative and qualitative means:
 
+Quantity
+\begin{itemize}
+    \item Have all required features been implemented?
+    \item Which libraries can be used?
+    \item What are the load \& run times of these libraries, compared to native?
+\end{itemize} 
 
+Quality
+\begin{itemize}
+    \item Have all design goals been met?
+    \item Can users 'effectively' handle input, process and output?
+    \item Can the load \& run times be regarded as acceptable? 
+\end{itemize} 
+
+% this can also be answered by qualitative means:
+% - 
+% - 
+% - 
 
 \subsubsection*{Sub Questions}
 
-1 : What is the most effective methodology of compiling sizable C++ geoprocessing libraries to WebAssembly?
+The following sub-research questions are needed in order to answer the main question. The upcoming methodology chapter will further explain the choices of these sub-questions. 
 
-2 : How to design and create a geoprocessing interface using client-side web technologies?
+\textit{1 : What is the most fitting methodology of compiling C++ geoprocessing libraries to WebAssembly?}
 
-3 : How can wasm-compiled geoprocessing libraries be used in a client-side geoprocessing interface?
+\textit{2 : How to design and create a client-side geoprocessing interface?}
 
-4 : What are the advantages and disadvantages of GIS applications created using a client-side geoprocessing environment powered by WebAssembly?
+\textit{3 : How can wasm-compiled geoprocessing libraries be distributed and used in a client-side geoprocessing interface?}
 
-These will be further explained in the upcoming methodology chapter.
+\textit{4 : What are the advantages and disadvantages of GIS applications created using a client-side geoprocessing environment powered by WebAssembly?}
 
 % ----
 \newpage

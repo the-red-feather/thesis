@@ -1,6 +1,8 @@
+
 \documentclass[a4paper,11pt]{scrartcl}
 
-\usepackage{biblatex}
+% \usepackage[style=numeric]{biblatex}
+% \usepackage{natbib}
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage[a4paper, total={14cm, 24cm}]{geometry}
@@ -42,7 +44,7 @@
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
-\addbibresource{ref.bib}
+% \addbibresource{lib.bib}
 % [Title Page] (could be split away)
 
 \titlehead{\centering\includegraphics[width=12cm]{images/thumbnail.png}}
@@ -63,6 +65,9 @@ Client-side geo-processing using WebAssembly and Visual Programming
 
 \begin{document}
   
+
+
+\cite{w3c_world_2019}
 
 \clearpage\maketitle
 \thispagestyle{empty}
@@ -94,6 +99,8 @@ Client-side geo-processing using WebAssembly and Visual Programming
 
 % [Appendix]
 \newpage
-\printbibliography
+\bibliographystyle{apalike}
+\bibliography{lib}
+% \printbibliography
 
 \end{document}
