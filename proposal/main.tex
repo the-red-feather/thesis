@@ -1,6 +1,14 @@
 
 \documentclass[a4paper,11pt]{scrartcl}
 
+% [packages I understand]\
+\usepackage{cite}
+
+\usepackage[colorlinks]{hyperref}
+\usepackage{acro}
+% \usepackage[printonlyused,withpage]{acronym}
+
+% [packages I don't understand]
 % \usepackage[style=numeric]{biblatex}
 % \usepackage{natbib}
 \usepackage{lmodern}
@@ -11,7 +19,6 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{caption}
-\usepackage{hyperref}
 \usepackage{paralist}
 \usepackage{xcolor}
 \usepackage{subcaption}
@@ -35,6 +42,7 @@
 \newcommand{\eg}{eg}
 \newcommand{\reffig}[1]{Figure~\ref{#1}}
 \newcommand{\refsec}[1]{Section~\ref{#1}}
+\newcommand{\citeer}[1]{~\textbf{#1}}
 
 \setcapindent{1em} %-- for captions of Figures
 \setlength\parskip{1em plus 0.1em minus 0.2em}
@@ -63,12 +71,11 @@ Client-side geo-processing using WebAssembly and Visual Programming
 
 \date{November, 2021}
 
+% [Load Acronyms]
+\include{declare-acronym}
+
 \begin{document}
   
-
-
-\cite{w3c_world_2019}
-
 \clearpage\maketitle
 \thispagestyle{empty}
 \sffamily
@@ -99,8 +106,12 @@ Client-side geo-processing using WebAssembly and Visual Programming
 
 % [Appendix]
 \newpage
+
 \bibliographystyle{apalike}
-\bibliography{lib}
+\bibliography{library}
+
+\printacronyms
+
 % \printbibliography
 
 \end{document}

@@ -213,17 +213,12 @@ This paper proposes a hybrid strategy, using the OGC Web Processing services as 
 
 <br><br><br>
 
-### x.x.x Analysis of server-side and client-side Web-GIS data processing methods on the example of JTS and JSTS using open data from OSM and geoportal
-
-<!-- The last decade has seen a rapid evolution of processing, analysis and visualization of freely available geographic data using Open Source Web-GIS. In the beginning, Web-based Geographic Information Systems employed a thick-client approach which required installation of platform-specific browser plugins. Later on, research focus shifted to platform-independent thin client solutions in which data processing and analysis was performed by the server machine. More recently, however, the rapid development of computer hardware as well as software technologies such has HTML5 has enabled the creation of platform-independent thick clients which offer advanced GIS functionalities such as geoprocessing. This article aims to analyse the current state of Open Source technologies and publicly available geographic data sources in the context of creating cost-effective Web-GIS applications for integration and processing of spatial data. For this purpose the article discusses the availability and potential of Web-GIS architectures, software libraries and data sources. The analysis of freely available data sources includes a discussion of the quality and accuracy of crowd-sourced as well as public sector data, while the investigation of software libraries and architectures involves a comparison of server-side and client-side data processing performance under a set of real-world scenarios. The article concludes with a discussion of the choice of cost-effective Web-GIS architectures, software libraries and data sources in the context of the institution and environment of system deployment. -->
-
-This is a very relevant source
 
 <br><br><br>
 
 ## x.x On Fair 
 
-An important side-note is the relationship of WebAssembly and the FAIR principles. The FAIR principles are a collection of four well-established assessment criteria used for judging the usability of software applications (SOURCE). They stand for Findable, Accessible, Interoperable, and Reusable. WebAssembly has the potential to improve all four of those criteria of a program:
+An important side-note is the relationship of WebAssembly and the FAIR principles. The FAIR principles are a collection of four well-established assessment criteria used for judging the usability of data (SOURCE). They stand for Findable, Accessible, Interoperable, and Reusable. WebAssembly has the potential to improve all four of those criteria of a program:
 
 WASM web apps: 
 If an application is published on the web without login requirements, makes it so there is no delay between Findability and Accessibility. 
@@ -303,106 +298,6 @@ geneous applications. This separation of concerns is vital for
 making WebAssembly universal as a code format -->
 
 
-### x.x.x Not So Fast WebAssembly Paper 
-Paper exploring performance of WebAssembly more thorough.
-
-Starts out positive: current benchmarks (2019) are even better than those of the original paper (2017). 
-
-BUT 
-
-Those original papers cover a type of benchmark which uses mainly scientific operations as benchmarks. 
-Each of these operations are roughly 100 lines of code.
-This paper created a way to compile full, large-scale applications into WebAssembly, and proceeds to benchmark them. 
-They found that these types of applications run significantly slower and spikier.
-
-BUT 
-
-This might not be a problem for the scope of this research. 
-This research will deal with the originally criticized scientific purposes anyway.
-If it does turn out that wasm performs significantly slower the larger the binaries are, This research might explore disecting the C++ libraries into a number of tiny wasm Binaries, one per function for example, or per .cpp file. 
-As stated in the Wasm paper (SOURCE), it is possible to inject precompiled wasm binaries within other wasm binaries. 
-This way, the functionalities of one library could be lazy-initialized, so only the parts that are necessairy are being compiled and used. 
-Food for thought...
-
-...
-
-A telling example of the cause of the loss in speed is this: 
-
-NATIVE: 
-C --{CLANG}-> x86-64 code
-
-WEB
-C --{EMSC}-> WASM --{JIT}-> x86-64 code 
-
-+ Chapter 6 is very significant
-
-<!-- 6.4 Discussion
-It is worth asking if the performance issues identified here
-are fundamental. We believe that two of the identified is-
-sues are not: that is, they could be ameliorated by improved
-implementations. WebAssembly implementations today use
-register allocators (§6.1.2) and code generators (§6.2.1) that
-perform worse than Clang’s counterparts. However, an offline
-compiler like Clang can spend considerably more time to
-generate better code, whereas WebAssembly compilers must
-be fast enough to run online. Therefore, solutions adopted
-by other JITs, such as further optimizing hot code, are likely
-applicable here [19, 32].
-The four other issues that we have identified appear to
-USENIX Association 2019 USENIX Annual Technical Conference    117
-arise from the design constraints of WebAssembly: the stack
-overflow checks (§6.2.2), indirect call checks (§6.2.3), and
-reserved registers (§6.1.1) have a runtime cost and lead to in-
-creased code size (§6.3). Unfortunately, these checks are nec-
-essary for WebAssembly’s safety guarantees. A redesigned
-WebAssembly, with richer types for memory and function
-pointers [23], might be able to perform some of these checks
-at compile time, but that could complicate the implementa-
-tion of compilers that produce WebAssembly. Finally, a Web-
-Assembly implementation in a browser must interoperate with
-a high-performance JavaScript implementation, which may
-impose its own constraints. For example, current JavaScript
-implementations reserve a few registers for their own use,
-which increases register pressure on WebAssembly. -->
-
-<!-- 
-WHY PERFORMANCE LOST: LOST IN TRANSLATION 
-
-NATIVE: 
-C --{CLANG}-> x86-64 code
-
-WEB
-C --{EMSC}-> WASM --{JIT}-> x86-64 code 
-
-Seems to be
-
- -->
-
-
-<!-- 
-
-TODO
-look into the specifics of the benchmarks provided 
-PolyBenchC seems to contain a lot of geometry operatinos, which seems good news for us
-
-
-
-SIGNIFICANT FOR GEOMATICS: 
-sync I/O is hard to do with webassembly. This could be detremental for many geomatics applciations
-
-
-
-The standard approach to running these applications today
-is to use Emscripten, a toolchain for compiling C and C++ to
-WebAssembly [39]. Unfortunately, Emscripten only supports
-the most trivial system calls and does not scale up to large-
-scale applications. For example, to enable applications to use
-synchronous I/O, the default Emscripten MEMFS filesystem
-loads the entire filesystem image into memory before the
-program begins executing. For SPEC, these files are too large
-to fit into memory
-
- -->
 
 
 
@@ -498,37 +393,7 @@ from the slides:
 
 ## x.x Relevant WebAssembly Tools
 
-### x.x.x Emscriptem
-Emscriptem is a tool 
-PAPERRRR
-
-
-
-
-### x.x.x Wasm-Pack 
-wasm-pack can be seen as the emscriptem equivalent, but created to serve the `Rust` programming language. 
-
-NO PAPER
-
-
-
-
-## x.x Relevant Geoprocessing libraries
-
-### x.x.x CGAL 
-(SOURCE)
-
-### x.x.x GDAL 
-...
-
-
-
-
 <br><br><br>
-
-## x.x VPL
-The last topic requiring background knowledge is the topic of visual programming languages (VPL's). 
-
 
 
 ### x.x.x The relevant vpl paper
@@ -557,6 +422,12 @@ Their similarities end there. huge differences exist between them:
 - differences in availability. If they are not free (QGIS / Blender / Geoflow), these vpls are extremely expensive. this availability roughly correlates to the open / closed source nature of the packages. 
 
 - differences in "usefulness". ... ...
+
+
+
+
+
+
 
 
 <br><br><br><div class="page"></div>
