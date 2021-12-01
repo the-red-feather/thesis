@@ -14,14 +14,18 @@
  
  P2 Paper
  - [✓] Introduction
- - [ ] Related work
+   - [ ] If you want, put motivation in here
+ - [⚙️] Related work
+   - [✓] Part 1 
+   - [ ] Part 2 
+   - [ ] Part 3 
+   - [ ] Part 4
  - [✓] This study
- - [ ] Motivation
+ - [⚙️] Methodology ⚙️
  - [ ] Preliminary work
- - [ ] ⚙️ Methodology ⚙️
  - [ ] Planning
  - [✓] Tools & Data 
- - [ ] Bibliography
+ - [⚙️] Bibliography
  
  BONUS
  - [ ] Adding graphs 
