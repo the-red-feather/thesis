@@ -1,29 +1,17 @@
 
 # [ ------------------ TODO ---------------- ] #
- 
- Context
- - [✓] Get Latex to work 
- - [✓] Get Citations & bibtex to work
- - [✓] Get Figures to work
- - [✓] Get separate files to work
- - [✓] Collect all 'edge data' (assessment criteria, tips, templates)
- - [✓] Add all needed sections
- - [✓] Make a planning
-   - [ ] Past P2 assessment
- - [✓] Write a small bit 
- 
+  
  P2 Paper
  - [✓] Introduction
-   - [ ] If you want, put motivation in here
- - [⚙️] Related work
+ - [✓] Related work
    - [✓] Part 1 
-   - [ ] Part 2 
-   - [ ] Part 3 
-   - [ ] Part 4
+   - [✓] Part 2 
+   - [✓] Part 3 
+   - [✓] Part 4
  - [✓] This study
- - [⚙️] Methodology ⚙️
- - [ ] Preliminary work
- - [ ] Planning
+ - [⚙️] Methodology
+ - [⚙️] Preliminary work
+ - [✓] Planning
  - [✓] Tools & Data 
  - [⚙️] Bibliography
  

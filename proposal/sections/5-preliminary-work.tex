@@ -55,16 +55,38 @@ Creating this application was very insightful. I would like to point out a few k
 
 \subsection*{VPL Prototype}
 
-The question of what a geoprocessing interface should look like was the topic of a second preliminary study. 
+The question of what a FAIR geoprocessing interface should look like was the topic of a second preliminary study. 
 
-which was deemed important to give definition prior to starting the thesis was the . 
+% bit out of scope so do it beforehand
 
-Inspired
+An interface in the shape \ac{vpl} was chosen for several reasons:
 
-During its creation, 
+\begin{itemize}
+  \item A \ac{vpl} can be seen as a compromise between a programming language and a full \ac{gui}. This has the advantage of serving both geodata experts, as well as the "data user" group depicted by \cite{brink_geospatial_2018}. The latter group might not be prepared to code, but would like to chain together geodata processing functions.
+  \item \ac{vpl}'s have a clear advantage when dealing with data containing a visual component. Even programmers often use \ac{vpl}'s when programming shaders, for instance. Making in-between steps graphically debugable is very difficult to do with regular programming languages.  
+  \item Geodata processing experts often depict geodata pipelines as a flowchart, graph, or a literal pipeline. 
+\end{itemize}
+
+Using a \ac{vpl} for geodata processing, or geometry manipulation in general is not uncommon. To name a few: 
 
 
 
-Nodes 
+Author of one of these applications states that these where the reasons for development: 
+% \cite{RAVI}
 
-Geon engine
+This paper also states the cognitive advantages 
+
+% Lots of research has been done on the topic of VPL's, and their advantages and disadvantages. 
+% (I explicitly want to name the cognitive dimentions paper, it is very good and appropriate, and contains many suggestions for future VPL's)
+
+
+
+\subsubsection*{Geofront}
+
+This is how the development of this \ac{vpl} came to be
+
+- early build -> only booleans
+- blocks can be chained together
+- blocks can be compiled to javascript
+- this javascript can be put in a block, composing higher-order algorithms
+- 

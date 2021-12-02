@@ -1,24 +1,11 @@
-%-------------------------------------------------------------------------------------------------%
-% Having a Gantt chart is probably a better idea then just a list.
-\newpage
-\section{Planning and Organization}
-
-This study will be written as a MSc Geomatics Thesis. As such, several assessment dates are in order:   
-
-\begin{itemize}
-    \item The go / no-go presentation (P2) will take place at January 28th. 
-    \item The final presentation (P4) will take place mid May.
-    \item The final presentation (P5) will take place end June.
-\end{itemize}
-
-A Gantt chart (\reffig{fig:gantt}) explains how these assessment dates relate to the overall methodology.
-
-
-
+\usepackage{pgfgantt}
+\usepackage{lscape}
+\usepackage{afterpage}
 
 \afterpage{
   \begin{landscape}
   \begin{figure}
+  %\begin{rotate}{90}
   \newganttlinktype{f-m}{
   \ganttsetstartanchor{on right=1}
   \ganttsetendanchor{on left=0}
@@ -51,7 +38,7 @@ A Gantt chart (\reffig{fig:gantt}) explains how these assessment dates relate to
     link bulge 2/.link=/pgfgantt/link bulge}
   \definecolor{barpurple}{RGB}{195, 208, 212}
   \definecolor{grouppurple}{RGB}{150, 217, 217}
-  \definecolor{progressgreen}{RGB}{255, 199, 99}
+  \definecolor{progressgreen}{RGB}{142, 219, 141}
   \definecolor{groupprogress}{RGB}{110, 219, 110}
   \definecolor{linkblue}{RGB}{65,105,225}
   \setganttlinklabel{s-s}{}
@@ -66,7 +53,7 @@ A Gantt chart (\reffig{fig:gantt}) explains how these assessment dates relate to
       y unit chart=6.2mm,
       hgrid style/.style={draw=black!5, line width=.75pt},
       vgrid={*{30}{draw=black!5}},% line width=.75pt},
-      today=4,
+      today=6,
       today rule/.style={
         draw=black!64,
         dash pattern=on 3.5pt off 4.5pt,
@@ -89,51 +76,79 @@ A Gantt chart (\reffig{fig:gantt}) explains how these assessment dates relate to
       group height=.5,
       group peaks tip position=0,
       group label node/.append style={left=0cm},
+      %group progress label font=\bfseries\small,
       link/.style={-latex, line width=1.5pt, linkblue},
+      %link label font=\scriptsize\bfseries,
       link label node/.append style={below left=-2pt and 0pt},
       link bulge=.5
     ]{1}{30}
-
-    \gantttitle[title label node/.append style={below left=7pt and -3pt}]{WEEKS}{1}
-    \gantttitlelist{2,...,25}{1} \\
+    %\caption{GANTT chart of planning, made with pgfgantt package}
+    %\label{tab:gantt}
+    \gantttitle[
+      title label node/.append style={below left=7pt and -3pt}
+    ]{WEEKS:\quad1}{1}
+    \gantttitlelist{2,...,30}{1} \\
+    \ganttgroup[progress=100]{Research plan (P2)}{1}{6} \\
+    \ganttbar[
+    progress=100,
+    name = L1]{Literature study}{1}{4} \\
+    \ganttbar[
+    progress=100,
+    name = L2]{Project definition}{5}{6} \\
+    \ganttmilestone[name = M1]{P2 presentation}{7} \ganttnewline [grid]
+    %Start research
+    \ganttgroup[progress=66]{Data preparation}{5}{7} \\
+    \ganttbar[
+    progress=100,
+    name = D1]{Find test areas}{5}{6} \\
+    \ganttbar[
+    progress=0,
+    name = D2]{Extract data areas}{7}{7} \\ [grid]
+    % develop programs
+    \ganttgroup[progress=0]{Define parameters}{8}{9} \\
+    \ganttbar[
+    progress=0,
+    name = P1]{Review parameters}{8}{8} \\
+      \ganttbar[
+    progress=0,
+    name = P2]{Select parameters, and parameter settings}{9}{9} \\ [grid]
+    \ganttgroup[progress=0]{Implement TIN generation with parameters}{9}{20} \\
+    \ganttmilestone[name = M1]{Summer break}{11} \ganttnewline
+    \ganttbar[
+    progress=0,
+    name = G1]{Implement road and building parameters}{9}{12} \\
+    \ganttbar[
+    progress=0,
+    name = G2]{implement surface type parameters}{12}{15} \\
+    \ganttbar[
+    progress=0,
+    name = G3]{Implement topologic parameters}{16}{20} \\ [grid]
+    \ganttgroup[progress=0]{Define parameter settings}{20}{23} \\
+    \ganttbar[
+    progress=0,
+    name = S1]{Asses influence individual parameters}{20}{21}\\
+    \ganttbar[
+    progress=0,
+    name = S2]{Evaluate performance gain versus accuracy loss}{22}{23} \\
+    \ganttbar[
+    progress=0,
+    name = U1]{Unforeseen}{24}{25} \\
+    \ganttbar[
+    progress=10,
+    name = P4]{Write P4 report}{6}{25}\\
+    \ganttmilestone[name = M3]{P4}{25} \ganttnewline
+    \ganttmilestone[name = M4]{P5}{30}
+    %define relations
     
-    % Phase 1
-    % \ganttnewline 
-    \ganttgroup[progress=20]{Phase 1: Compile}{5}{9} \\
-    \ganttbar[progress=80]{compile a small C++ geoprocessing script to wasm}{5}{6} \\
-    \ganttbar[progress=0]{compile CGAL \& GDAL to wasm}{7}{9} \\
-    \ganttbar[progress=0]{experiment with compilation methods}{7}{9} \\ 
-    % [grid]
+    \ganttlink[link type=rdldr*]{P1}{P2}
+    \ganttlink[link type=rdldr*]{D1}{D2}
+    \ganttlink[link type=rdldr*]{G1}{G2}
+    \ganttlink[link type=rdldr*]{G2}{G3}
+    \ganttlink[link type=rdldr*]{G3}{S1}
     
-    % Phase 2
-    % \ganttnewline 
-    \ganttgroup[progress=20]{Phase 2: Interface}{10}{14} \\
-    \ganttbar[progress=60]{Develop the basics of a browser based vpl}{10}{11} \\
-    \ganttbar[progress=0]{Add basic geometry processing and visualization support}{12}{13} \\ 
-    \ganttbar[progress=0]{Add auxiliary utilities}{13}{13} \\ 
-    \ganttbar[progress=0]{Add WFS \& WMS inputs}{14}{14} \\ 
-    % [grid]
-    
-    % Phase 3
-    % \ganttnewline 
-    \ganttgroup[progress=0]{Phase 3: Distribute}{15}{20} \\
-    \ganttbar[progress=0]{Add Wasm plugin support to the VPL}{15}{15} \\ 
-    \ganttbar[progress=0]{Add gdal \& cgal as plugins}{16}{17} \\
-    \ganttbar[progress=0]{Experiment using different distribution strategies}{17}{20} \\
-    
-    % Phase 4
-    % \ganttnewline 
-    \ganttgroup[progress=0]{Phase 4: Utilize}{18}{20} \\
-    \ganttbar[progress=0]{Create and assess an application using this environment}{18}{20}\\
-
-    \ganttnewline 
-    \ganttbar[progress=10]{Write P4 report}{4}{20}\\
-    \ganttmilestone[]{P4 Assessment}{20} \ganttnewline
-    \ganttmilestone[]{P5 Assessment}{25}
-
   \end{ganttchart}
 
-  \caption{Gantt chart of the methodology, made with pgfgantt, Source: Author}
+  \caption{Gantt chart of the planning, made with pgfgantt}
   \label{fig:gantt}
   \end{figure}
   \end{landscape}
