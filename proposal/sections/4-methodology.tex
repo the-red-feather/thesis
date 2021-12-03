@@ -61,79 +61,39 @@ It is important to consider how a user interface facilitating geodata processing
 
 Phase two seeks and answer to this with the research question: \textit{How to design and create a client-side geoprocessing interface for data-users?}. 
 
-This question can be split in two. A: \textit{What is the interface data-users desire for a geoprocessing interface?} and B:  \textit{How can client-side web technologies facilitate this interface?}. 
+This question can be split in two. A: \textit{What is the interface data-users desire for a geoprocessing interface?} and B:  \textit{How can client-side web technologies facilitate this interface?}. The phase will consist of conceptualizing and developing the environment to the level where WebAssembly can be integrated.  
 
 % WHY vpl
 \subsubsection*{A: Conceptualization}
 
 Finding a definitive answer for question A is an endeavour so large that it is beyond the scope of this study. Instead, this study will make an informed assumption, and start its reasoning from there. 
-Prior research and experiments \refsec{sec:preliminary-vpl} have culminated to the choice of designing a \ac{vpl} to act as a geoprocessing interface. The full reasoning behind this decision can be read in \refsec{sec:preliminary-vpl}, but to summarize, 
-a \ac{vpl} forms a balance between programmer and non-programmer users, visual debugging is advantageous when dealing with spatial data, and \ac{vpl}'s for geoprocessing have seen precedence in environments like FME, (SOURCE), QGIS (SOURCE), and GEOFLOW (SOURCE).
+Prior research and experiments \refsec{sec:preliminary-vpl} have culminated to the choice of designing a \ac{vpl} to act as a geoprocessing interface. The full reasoning behind this decision can be read in \refsec{sec:preliminary-vpl}, but to summarize:
+A \ac{vpl} forms a balance between programmer and non-programmer users, visual debugging is advantageous when dealing with spatial data, and \ac{vpl}'s for geoprocessing have seen precedence in environments like FME, (SOURCE), QGIS's Model Builder (SOURCE), and Geoflow (SOURCE).
 
-This study will include implementation details of the VPL, and the design considerations made during its development. These decisions will be informed by analysis of exiting geo-vpl's, and studies discussing the usability aspects of VPL's \cite{green_usability_1996,peters_geoflow_2019}.
+This study will include implementation details of the VPL, and the design considerations made during its development. These decisions will be informed by analysis of exiting geo-vpl's, and studies discussing the usability aspects of VPL's \cite{green_usability_1996, peters_geoflow_2019}.
 
 
 \subsubsection*{B: Implementation}
 
-Now the question, how to get there from a browser?
-- no vpl's exist yet, so have to be developed from scratch
-- What features from HTML / CSS / JS can we utilize to get there
-- go over all extra features you described earlier, like the need to be compiled to an app, 
-- etc. etc. etc.
+Since most of the conceptualization of the \ac{vpl} has already been done, Phase 2 will primarily be about implementation. 
 
-- this is also why we are not trying to build a full native application and put it online using wasm, utilizing the web interface to the fullest is actually a huge advantage for us.
+None of the existing web-based \ac{vpl}'s were deemed acceptable for the scope of this study, so the application will have to be created from scratch. 
+The application will be created using JavaScript, or its type-save equivalent TypeScript. 
+A choice can be made to write the whole environment as a native application which then, as a whole, can be published to the web using WebAssembly. 
+This would probably be the most performant. 
+However, referring back to the FAIR principles \cite{mark_d_wilkinson_fair_2016}, this would be detrimental to the concept of Interoperability and Reusability. 
+We wish the environment to contain small, standalone components which could be useful in of themselves. 
+For example, users might want to integrate a geodata process on their own website without the full \ac{gui} attached.
 
-What makes a GIS VPL different from just any VPL???? 
+The modern web contains many technologies we can possibly use to facilitate all required features. WebGL offers the ability to efficiently visualize 3D data. The 2d canvas API and SVG's can be used to visualize 2D data. HTML can be used to build the interface.
 
-The tool and can be additionally used for acquiring, visualizing, and saving geodata.
+\subsubsection*{Steps}
 
-
-This phase seeks to answer this question in a practical manner, by creating this interface / environment.
-
-
-% \subsubsection*{Conclusions and Discussion on using a web based VPL for geo-processing}
-
-% Additionally, this study will give an answer to if and how a VPL contributed to more usable geoprocessing. This will be a purely qualitative assessment, based on the findings and experience using the environment.  
-
-
-% The current plan is to shape this like a visual programming language. 
-
-Just like the entire project, the development trajectory during phase 2 will be done incrementally, ensuring results can be produced and shown during all steps of the development. 
-
-
-
-
-\subsubsection*{Detais}
-
-
-Creating a client-side geoprocessing application comes with many specific design considerations. 
-
-
-
-(mention preliminary work)
-
-- 2D Canvas API / SVG 
-
-- DAG : Directed Acyclic Graph
-
-- Granular classes 
-
-
-\subsubsection*{Go over all steps}
-
-
-basic mathematical and geometry procedures. 
-
-and will not contain any geodata processing capabilities, nor WebAssembly. 
-
-Write down MOSCOW
-
-
-
-
-
+Just like the entire study, the development trajectory during phase 2 will be done incrementally, ensuring results can be shown during all steps of the development. 
+The first step of the phase will consist of creating the basics of the \ac{gui} itself. a basic \ac{vpl} will be created which can only process boolean statements. The second step adds types, geometry, and the visualization of this geometry in 3D, as well as textures / images in 2d. The third step will add geospatial data support, like Web Feature Services, Web Map Services, and coordinate reference systems.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Phase 3: Distribute}
 
 % performant and sharable geoprocessing
