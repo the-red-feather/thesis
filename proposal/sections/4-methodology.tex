@@ -22,7 +22,7 @@ Please note this causality between the different phases, represented by the thic
 
 The methodology used can be characterized as both incremental and iterative. Its incremental nature means that every phase, and every step within a phase, will produce meaningful in-between products \& results. This ensures the study will be insightful, even in the case the full scope of this study might become unfeasible. It is also vital for making the methodology iterative. 
 
-The study's iterative nature, represented by the cyclic paths within \reffig{fig:method}, means that analysis and benchmarks will not be postponed until the end of the study, and will instead be carried out during each step. This makes sure obstacles are discovered early, and the trajectory of the study can be adjusted dynamically.  
+The study's iterative nature, represented by the cyclic paths within \reffig{fig:method}, means that analysis and benchmarks will not be postponed until the end of the study, and will instead be an intricate part of each step. This makes sure obstacles are discovered early, and the trajectory of the study can be adjusted dynamically.  
 
 Every phase contains a number of development \& analysis steps. The reasoning behind these steps are covered by the following sub-chapters.  
 
@@ -31,7 +31,7 @@ Every phase contains a number of development \& analysis steps. The reasoning be
 \subsection{Phase 1: Compile}
 
 % not as easy 
-The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (SOURCE: CITYJSON CHECKER). WebAssembly is containerized and platform independent, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. These aspects might be solved by using or writing wrapper libraries and using file system workarounds. 
+The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. These aspects might be solved by using or writing wrapper libraries and using file system workarounds, as proposed by \cite{jangda_not_2019}. 
 
 % question & steps to answer
 This is why an entire research question is dedicated to finding an answer to this problem: \textbf{"What is the most fitting methodology of compiling C++ geoprocessing libraries to WebAssembly?"}.
@@ -57,33 +57,31 @@ CGAL \& GDAL will be used as examples of "C++ geoprocessing libraries" for this 
 
 \subsection{Phase 2: Interface}
 
-The possibility of geodata processing in a web application seriously transforms its nature. Because of this, it is important to consider how the user interface of said applications will have to change in order to facilitate geodata processing. 
-Phase two seeks and answer to this with the research question: \textit{How to design and create a client-side geoprocessing interface?}. 
+It is important to consider how a user interface facilitating geodata processing in a browser should be designed. \refsec{sec:geoweb} Explains this studies aim to not only make geoprocessing runnable in a library, but actually usable, and usable to a wider audience than just geodata processing experts, called "data-users". 
 
-This question can be split in two. A: \textit{What is a desired interface for geoprocessing?} and B:  \textit{How can client-side web technologies facilitate this interface?}. 
+Phase two seeks and answer to this with the research question: \textit{How to design and create a client-side geoprocessing interface for data-users?}. 
+
+This question can be split in two. A: \textit{What is the interface data-users desire for a geoprocessing interface?} and B:  \textit{How can client-side web technologies facilitate this interface?}. 
 
 % WHY vpl
-\subsubsection*{A: VPL}
+\subsubsection*{A: Conceptualization}
+
 Finding a definitive answer for question A is an endeavour so large that it is beyond the scope of this study. Instead, this study will make an informed assumption, and start its reasoning from there. 
-User experience studies (SOURCE), preliminary experiments (SOURCE) and interviews (SOURCE), have culminated to the choice of designing a Visual Programming Language(VPL) to act as a geoprocessing interface. This has several reasons behind it.
+Prior research and experiments \refsec{sec:preliminary-vpl} have culminated to the choice of designing a \ac{vpl} to act as a geoprocessing interface. The full reasoning behind this decision can be read in \refsec{sec:preliminary-vpl}, but to summarize, 
+a \ac{vpl} forms a balance between programmer and non-programmer users, visual debugging is advantageous when dealing with spatial data, and \ac{vpl}'s for geoprocessing have seen precedence in environments like FME, (SOURCE), QGIS (SOURCE), and GEOFLOW (SOURCE).
+
+This study will include implementation details of the VPL, and the design considerations made during its development. These decisions will be informed by analysis of exiting geo-vpl's, and studies discussing the usability aspects of VPL's \cite{green_usability_1996,peters_geoflow_2019}.
 
 
-
-Web -> Sharable -> User friendly -> increase reach of geodata processing
-Debuggable- > visualizing in-between steps. rendering, caching, experimenting
-Geodata processing -> It is often the drawing people make when explaining geodata pipelines
-
-This study will include implementation details of the VPL, and the design considerations made during its development. These decisions will be informed by analysis of exsting geo-vpl's, and studies discussing the usability aspects of VPL's (SOURCE: VPL Usability paper,  Ravi Peter)
-
-
-\subsubsection*{B: VPL}
+\subsubsection*{B: Implementation}
 
 Now the question, how to get there from a browser?
 - no vpl's exist yet, so have to be developed from scratch
 - What features from HTML / CSS / JS can we utilize to get there
-
 - go over all extra features you described earlier, like the need to be compiled to an app, 
 - etc. etc. etc.
+
+- this is also why we are not trying to build a full native application and put it online using wasm, utilizing the web interface to the fullest is actually a huge advantage for us.
 
 What makes a GIS VPL different from just any VPL???? 
 
