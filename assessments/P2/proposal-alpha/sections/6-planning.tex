@@ -1,0 +1,140 @@
+%-------------------------------------------------------------------------------------------------%
+% Having a Gantt chart is probably a better idea then just a list.
+\newpage
+\section{Planning and Organization}
+
+This study will be written as a MSc Geomatics Thesis. As such, several assessment dates are in order:   
+
+\begin{itemize}
+    \item The go / no-go presentation (P2) will take place at January 28th. 
+    \item The final presentation (P4) will take place mid May.
+    \item The final presentation (P5) will take place end June.
+\end{itemize}
+
+A Gantt chart (\reffig{fig:gantt}) explains how these assessment dates relate to the overall methodology.
+
+
+
+
+\afterpage{
+  \begin{landscape}
+  \begin{figure}
+  \newganttlinktype{f-m}{
+  \ganttsetstartanchor{on right=1}
+  \ganttsetendanchor{on left=0}
+  \draw[/pgfgantt/link]
+    ([xshift=-.2pt]\xLeft, \yUpper) --       % xshift to fit arrow
+    node[pos=.5, /pgfgantt/link label node] {\ganttlinklabel} 
+    (\xRight, \yLower);
+  }
+  \newganttlinktype{rdldr*}{%
+    \draw [/pgfgantt/link]
+      (\xLeft, \yUpper) --
+      (\xLeft + \ganttvalueof{link bulge 1} * \ganttvalueof{x unit},
+        \yUpper) --
+      ($(\xLeft + \ganttvalueof{link bulge 1} * \ganttvalueof{x unit},
+        \yUpper)!%
+        \ganttvalueof{link mid}!%
+        (\xLeft + \ganttvalueof{link bulge 1} * \ganttvalueof{x unit},
+        \yLower)$) --
+      ($(\xRight - \ganttvalueof{link bulge 2} * \ganttvalueof{x unit},
+        \yUpper)!%
+        \ganttvalueof{link mid}!%
+        (\xRight - \ganttvalueof{link bulge 2} * \ganttvalueof{x unit},
+        \yLower)$) --
+      (\xRight - \ganttvalueof{link bulge 2} * \ganttvalueof{x unit},
+        \yLower) --
+      (\xRight, \yLower);%
+  }
+  \ganttset{
+    link bulge 1/.link=/pgfgantt/link bulge,
+    link bulge 2/.link=/pgfgantt/link bulge}
+  \definecolor{barpurple}{RGB}{195, 208, 212}
+  \definecolor{grouppurple}{RGB}{150, 217, 217}
+  \definecolor{progressgreen}{RGB}{255, 199, 99}
+  \definecolor{groupprogress}{RGB}{110, 219, 110}
+  \definecolor{linkblue}{RGB}{65,105,225}
+  \setganttlinklabel{s-s}{}
+  \setganttlinklabel{f-s}{}
+  \setganttlinklabel{f-f}{}
+  \setganttlinklabel{f-m}{}
+  \sffamily
+
+  \begin{ganttchart}[
+      canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+      x unit=5.5mm,
+      y unit chart=6.2mm,
+      hgrid style/.style={draw=black!5, line width=.75pt},
+      vgrid={*{30}{draw=black!5}},% line width=.75pt},
+      today=4,
+      today rule/.style={
+        draw=black!64,
+        dash pattern=on 3.5pt off 4.5pt,
+        line width=1.5pt
+      },
+      %today label font=\small\bfseries,
+      title/.style={draw=none, fill=none},
+      %title label font=\bfseries\footnotesize,
+      title label node/.append style={below=7pt},
+      include title in canvas=false,
+      %bar label font=\mdseries\small\color{black!70},
+      bar label node/.append style={left=0cm},
+      bar/.append style={draw=none, fill=progressgreen},
+      bar incomplete/.append style={fill=barpurple},
+      %bar progress label font=\mdseries\footnotesize\color{black!70},
+      group/.append style={draw=none, fill=groupprogress}
+      group incomplete/.append style={fill=grouppurple},
+      group left shift=0,
+      group right shift=0,
+      group height=.5,
+      group peaks tip position=0,
+      group label node/.append style={left=0cm},
+      link/.style={-latex, line width=1.5pt, linkblue},
+      link label node/.append style={below left=-2pt and 0pt},
+      link bulge=.5
+    ]{1}{30}
+
+    \gantttitle[title label node/.append style={below left=7pt and -3pt}]{WEEKS}{1}
+    \gantttitlelist{2,...,25}{1} \\
+    
+    % Phase 1
+    % \ganttnewline 
+    \ganttgroup[progress=20]{Phase 1: Compile}{5}{9} \\
+    \ganttbar[progress=80]{compile a small C++ geoprocessing script to wasm}{5}{6} \\
+    \ganttbar[progress=0]{compile CGAL \& GDAL to wasm}{7}{9} \\
+    \ganttbar[progress=0]{experiment with compilation methods}{7}{9} \\ 
+    % [grid]
+    
+    % Phase 2
+    % \ganttnewline 
+    \ganttgroup[progress=20]{Phase 2: Interface}{10}{14} \\
+    \ganttbar[progress=60]{Develop the basics of a browser based vpl}{10}{11} \\
+    \ganttbar[progress=0]{Add basic geometry processing and visualization support}{12}{13} \\ 
+    \ganttbar[progress=0]{Add auxiliary utilities}{13}{13} \\ 
+    \ganttbar[progress=0]{Add WFS \& WMS inputs}{14}{14} \\ 
+    % [grid]
+    
+    % Phase 3
+    % \ganttnewline 
+    \ganttgroup[progress=0]{Phase 3: Distribute}{15}{20} \\
+    \ganttbar[progress=0]{Add Wasm plugin support to the VPL}{15}{15} \\ 
+    \ganttbar[progress=0]{Add gdal \& cgal as plugins}{16}{17} \\
+    \ganttbar[progress=0]{Experiment using different distribution strategies}{17}{20} \\
+    
+    % Phase 4
+    % \ganttnewline 
+    \ganttgroup[progress=0]{Phase 4: Utilize}{18}{20} \\
+    \ganttbar[progress=0]{Create and assess an application using this environment}{18}{20}\\
+
+    \ganttnewline 
+    \ganttbar[progress=10]{Write P4 report}{4}{20}\\
+    \ganttmilestone[]{P4 Assessment}{20} \ganttnewline
+    \ganttmilestone[]{P5 Assessment}{25}
+
+  \end{ganttchart}
+
+  \caption{Gantt chart of the methodology, made with pgfgantt, Source: Author}
+  \label{fig:gantt}
+  \end{figure}
+  \end{landscape}
+}

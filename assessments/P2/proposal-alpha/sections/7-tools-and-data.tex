@@ -1,0 +1,32 @@
+%-------------------------------------------------------------------------------------------------%
+% Since specific data and tools have to be used, it’s good to present these concretely, 
+% so that the mentors know that you have a grasp of all aspects of the project.
+\newpage
+\section{Tools and data}
+
+\subsection{Tools}
+In order to perform the study this paper describes, several tools are needed. All tools mentioned are free and open source.
+
+\subsubsection*{Typescript}
+Typescript will be the programming language used for creating the main visual programming language application. Typescript is chosen over plain javascript, since the safeguards and type checks provided at compile time are very useful, especially when creating medium to large scale applications. 
+
+Depending on the size of the application, a framework such as React or Vue might be used to offer structure.
+
+\subsubsection*{HTML5}
+HTML5 provides adequate features in order to create the actual \ac{gui}. Buttons and panels can be created using just HTML. The Canvas 2d API is an excellent method of drawing 2d shapes, and can be used to draw the components and cables of the VPL itself. Alternatively, this can also be done using Scalable Vector Graphics (SVG's). 
+
+\subsubsection*{WebGl}
+WebGl allows for performant web visualizations using syntax similar to OpenGL. This will be used to make preview visualizations of 2D and 3D data. Modern web browsers are equipped with WebGl by default. 
+
+\subsubsection*{WebAssembly}
+WebAssembly binaries, and its surrounding tooling, will of course be used. Modern browsers provide WebAssembly support by default. For running WebAssembly files locally, WASI, a native WebAssembly Runtime will be utilized. 
+
+\subsubsection*{C++ \& Emscriptem}
+Most geoprocessing libraries commonly used within the geospatial community are C++ based libraries, such as CGAL \& GDAL. A tool called Emscripten will be used to compile these libraries into WebAssembly. Additional C++ wrapper libraries might be written if direct compilation proves to be difficult. 
+
+\subsubsection*{Rust \& wasm-pack}
+Rust is the community preference for developing programs targeting wasm. 
+The rust ecosystem contains a number of powerful tools such as wasm-pack, and the standard rust compiler includes wasm as a compilation target by default. If during this study a need arises for newly written geoprocessing libraries, Rust will be preferred over C++ for these reasons. But, by default, Rust will not be used during this study, since no well-known geoprocessing libraries exist within its ecosystem.
+
+\subsection{Data}
+This study is not dependent on specific datasets. However, in order to use Geodata processing libraries, we will have need of some data to start with. Demo data of the netherlands will be used, using the WFS and WMS services provided by the Dutch geodata portal PDOK. 
