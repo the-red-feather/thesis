@@ -8,75 +8,40 @@
 
 \section{Related work}
 
-To answer the posed research question, this study will have to draw from prior studies on the topic of the Geoweb, Prior studies on browser-based geoprocessing, and prior studies on (the performance of) WebAssembly.
+To answer the posed research question, this study will draw from prior studies on the topic of the Geoweb, Prior studies on browser-based geoprocessing, and prior studies on WebAssembly.
 
-\subsection{On The Geoweb}
+\subsection{Related works on the Geoweb}
 \label{sec:geoweb}
 
-% Line of reasoning: 
-%
-% - Geo-informatics papers on geoprocessing UX are not very impressive (in my humble opinion)
-% - Geo-informatics papers on SDI UX and geodata as a whole are impressive 
-%                                || 
-%                                \/                            
-% - Extend the conclusions of these papers to geoprocessing 
-% - Make this the starting point of all UX reasoning within the study
-%                                || 
-%                                \/
-% - The FAIR principles & Ilse's idea of 'community inclusivity' dictate the creation of a user friendly VPL
+The main research question speaks of 'utilization'. 'Usability' can mean different things depending on the context used, and which user this applies to. We will define both the type of \emph{usability} and \emph{user} this study speaks of based upon the larger context this study is part of: the Geoweb.
 
-% This proposal wishes to examine the state of the art regarding user interface and user experience . Unfortunately, most studies concerned specifically with geodata processing interfaces have a one to one relationship between application and interface. most papers do not state general web-GIS user interface principles. At the same time, general UI studies are too broad, and while insightful, the scope is too big. 
+The Geoweb, or Geospatial Web, covers a broad collection of topics located at intersection of the field of geo-information and the web. A noteworthy study on the Geoweb is Van den Brink's phd titled "Geospatial Data on the Web". \cite{brink_geospatial_2018}. She claims that even though geodata is vital to a diverse range of applications and people, the ability to properly retrieve geodata remains almost exclusively to experts in the field. This is to the determent of all these applications and people, jeopardizing value, opportunity, and decision making. She makes this argument by using the concept of FAIR geodata. Coined by \cite{mark_d_wilkinson_fair_2016}, The FAIR principles are a collection of four assessment criteria used to judge the usability of (scientific) data: Findable, Accessible, Interoperable, and Reusable. 
 
-% (Therefore, we stay close to home, and instead base interface considerations on topic SDI research \& geoweb)
+We argue that if these concerns count for geodata \textit{retrieval}, they should just as well count for geodata \textit{processing}. After all, if a user is unable to convert the retrieved geodata to their particular use case, then the information they seek remains inaccessible. Therefore, this study introduces the concept of \emph{FAIR geoprocessing}. 
 
-% (interesting links can be made between)
+Based on the arguments presented by \cite{brink_geospatial_2018}, we can also extrapolate that a \ac{gis} environment shouldn't exclusively be used by only experts. Van den Brink mentions a group called 'data users', presented as "web developers, data journalists etc. who use different kinds of data, including geospatial data, directly to create applications or visualizations that supply information to end users (citizens)". 
 
-% In it, a number of statements are made, relevant to any study located at 
-
-On a general level, it is important to place this study within the larger context of the Geoweb. 
-
-The term "Geoweb", or Geospatial Web, covers a broad collection of topics located at intersection of the field of geo-information and the web.
-A noteworthy study on the Geoweb is Van den Brink's phd titled "Geospatial Data on the Web". \cite{brink_geospatial_2018}. 
-Van den Brink reinforces the importance of geodata, stating: "Geospatial data is an increasingly important information asset for decision-making, from simple every day decision like where to park your car, to national and international policy on topics like infrastructure and environment". 
-She then claims that even though geodata is vital to a diverse range of applications and people, the ability to properly retrieve geodata remains almost exclusively to experts in the field. 
-This is to the determent of all these applications and people, jeopardizing value, opportunity, and decision making.
-
-Not unrelated is the concept of FAIR geodata, also mentioned by Van den Brink. 
-Coined by \cite{mark_d_wilkinson_fair_2016}, The FAIR principles are a collection of four well-established assessment criteria used for judging the usability of (scientific) data: Findable, Accessible, Interoperable, and Reusable. 
-We could therefore state that currently, geodata is only to a limited degree "FAIR".
-
-\subsubsection*{FAIR Geodata processing}
-
-The proposed thesis accepts the importance of these concerns. 
-It recognizes the vital effort to improve the usability and accessibly of geodata, and wishes to continue this effort. However, this proposal argues that if these concerns count for geodata \textit{retrieval}, it should just as well count geodata \textit{processing}. After all, if a user is unable to convert the retrieved geodata to their particular use case, then the information they seek remains inaccessible. 
-
-Therefore, this study starts out by extending the concept of "community inclusively" and the FAIR principles to geoprocessing. The thesis will involve a number of tools, and an effort will be made to make these tools as Findable, Accessible, Interoperable, and Reusable to a general audience as possible. It is for these reasons that the topic of user interface and user experience will play an important role during research. 
-
-The audience chosen to roughly represent this "general audience" is the same \cite{brink_geospatial_2018} uses, called "data users". Van den Brink presents these as "web developers, data journalists etc. who use different kinds of data, including geospatial data, directly to create applications or visualizations that supply information to end users (citizens)".
-
-This case for more FAIR geodata processing applications also forms the backbone of this study's effort of making native software run in a web browser. If an application is published on the web without login requirements, then the difference between Findability and Accessibility can be eliminated. As soon as it can be found, it can be accessed. 
-Moreover, the web has always been an excellent cross-platform target, making software more \textit{Interoperable} and \textit{Reusable}. 
-Websites should work the same, regardless of browser, operating system, or device. 
-It is a manifestation of the famous \textit{Write once, use anywhere} paradigm (SOURCE), not completely unrelated to the \textit{Collect once, use multiple times} paradigm (SOURCE: VAN LOENEN), as both aim to minimize redundancy.
-
-This study will, however, refrain from \textit{proving} the developed tools are FAIR, or more FAIR than alternatives. Such claims are difficult to definitively proof, and would involve extensive user experience surveys, extending the scope of this study beyond reasonable proportions.  
-
-
+We use both extrapolations to define the users and 'usability' for the context of this study. We will judge the proposed \ac{gis} environment as 'usable', if it is deemed Findable, Accessible, Interoperable, and Reusable. The user group intended to use this environment is defined as both experts in the field of geo-information and more general data users.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{On client-side geoprocessing}
+\subsection{Related works on client-side geoprocessing}
 
-This study will specifically be about client-side, browser based geoprocessing, as dictated by this study's general efforts to FAIR geoprocessing. This is not to be confused with native geoprocessing clients, which would include applcations like QGIS (SOURCE). As such, it is important to relate to previous attempts and efforts regarding this subject. 
+% the latest in a series of geoprocessing attempts 
+% we want to know what happened the previous times, so we will not try things that have already been tried before.
 
-Client-side, JavaScript based geoprocessing has seen some level of academic interest throughout the last decade. The papers \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019} all speak of an emergent trend of thick-client websites. Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. And by still being a webpage rather than a native application, users can access these applications without installment. The trend is made possible because of hardware improvements of client devices, as well as software improvements, such as HTML5. 
+This study will be the latest in a series of studies concerned with client-side geoprocessing. As such, it is important to relate to previous attempts and efforts, to learn from their findings, and to make sure the exact same research will not be performed twice. 
 
-The aforementioned papers each try to apply this trend to the field of geo-informatics. \cite{hamilton_client-side_2014} Hamilton et. al. created a such a 'thick-client', capable of replacing certain elements of server-side geoprocessing. However, the results are unfavorable towards JavaScript. The paper states how "the current implementation of web browsers are limited in their ability to execute JavaScript geoprocessing and not yet prepared to process data sizes larger than about 7,000 to 10,000 vertices before either prompting an unresponsive script warning in the browser or potentially losing the interest of the user.". While these findings are insightful, they are not directly applicable to the efforts of this study proposal. Three reasons for this:
+As a side note, client-side geoprocessing is not to be confused with native geoprocessing clients, which would include applications like QGIS (SOURCE). 
+
+Client-side, JavaScript based geoprocessing has seen some level academic interest throughout the last decade. The papers \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019} all speak of an emergent trend of thick-client websites. Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. And by still being a webpage rather than a native application, users can access these applications without installment. The trend is made possible because of hardware improvements of client devices, as well as software improvements, such as HTML5. 
+
+The aforementioned papers each try to apply this trend to the field of geo-informatics. Hamilton et. al. created a such a 'thick-client', capable of replacing certain elements of server-side geoprocessing \cite{hamilton_client-side_2014}. However, the results are unfavorable towards JavaScript. The paper states how "the current implementation of web browsers are limited in their ability to execute JavaScript geoprocessing and not yet prepared to process data sizes larger than about 7,000 to 10,000 vertices before either prompting an unresponsive script warning in the browser or potentially losing the interest of the user.". While these findings are insightful, they are not directly applicable to the efforts of this study proposal. Three reasons for this:
 
 \begin{itemize}
   \item The paper stems from 2014. Since then, web browsers have seen a significant increase in performance thanks to advancements in JavaScript JIT compilers \cite{haas_bringing_2017, kulawiak_analysis_2019}. 
-  \item The paper does not use compile-time optimizations. WebAssembly wasn't invented yet, but the authors could have utilized 'asm.js' \cite{mozilla_asmjs_2013} which did exist at the time. The authors chose not to, for unknown reasons. More about WebAssembly and 'asm.js' in the following subchapter. 
-  \item The paper uses an 'of the shelf', javascript library which was never designed to handle large datasets.
+  \item The paper does not use compile-time optimizations. WebAssembly wasn't invented yet, but the authors could have utilized 'asm.js' \cite{mozilla_asmjs_2013} which did exist at the time. The authors chose not to, for unknown reasons. 
+  \item The paper uses an 'off the shelf', javascript library which was never designed to handle large datasets.
 \end{itemize}
 
 The same statements can be made about similar efforts of Panidi et. al. \cite{panidi_hybrid_2015}. However, Panidi et. al. never proposed client-side geoprocessing as a replacement of server-side geoprocessing, and spends no time on comparing the performance of the two. Instead, the authors propose a Hybrid approach, combining the advantages of server-side and client-side geoprocessing. They also present the interesting observation that client-side versus server-side geoprocessing shouldn't necessarily be a compassion of performance. "User convenience" as they put it, might dictate the usage of client-side geoprocessing in certain situations, despite speed considerations \cite{panidi_hybrid_2015}. 
@@ -89,7 +54,7 @@ From these papers we can conclude a true academic and even commercial interest i
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{WebAssembly \& Geoprocessing performance}
+\subsection{Related works on WebAssembly}
 
 From all client-side web technologies, WebAssembly one of the newest, and is most likely to be a deciding factor of this study. This require us to be aware of the state of WebAssembly, its performance considerations, and how this relates to geoprocessing performance. But first, an introduction on the compilation target itself is in order.
 
