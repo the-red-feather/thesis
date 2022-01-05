@@ -1,57 +1,42 @@
 %-------------------------------------------------------------------------------------------------%
 % An introduction in which the relevance of the project and its place in the 
 % context of geomatics is described, along with a clearly-defined problem statement.
-% [KEN]
-% instead, I think you can start by saying that web applications are popular
-% explain the benefits briefly
-% apart from having no installation
-
-% then, I think you can make a better argument for your thesis overall
-% explain that historically, thin client fat server was the standard
-% for the reasons you listed
-% and then directly explain why this is potentially changing now
 
 \newpage
 \section{Introduction}
 
+\subsection{Motivation}
+
 % Dissolving the discrepancy between visualization \& processing in web-apps.
+% geoweb-applications are popular
+% "For the common person, a web app is often their first and only exposure to a \ac{gis} system."  
+% name something like Google Maps, visual geodata portals, pandemic dashboards
+Interactive, browser-based \ac{gis} applications form an indispensable component of the modern geospatial software landscape. For the common person, a web app is often their first and only exposure to a \ac{gis} system, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. A web application is cross-platform by nature, and offers ease of maintainability and access, since no installment or app-store interaction is required to run or update the app. The ability to be shared with a link, or to be embedded within the larger context of a webpage is also not trivial. These aspects have made the browser a popular host for many \ac{gis} applications, especially when targeting end-users. 
 
-% web is popular 
-% geoweb-applications are popular 
-% online geodata processing is popular 
-% client-side geodata processing 
+% problem: despite popularity, they are limited. 
+Despite the popularity of \ac{gis} web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geoprocessing} abilities, like CRS translations, interpolation, boolean operations, or raster transformation kernels, are usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as not much more than viewers; visualizers of pre-processed data. 
 
+% this limits their usefulness and range 
+% Q: are examples desired ????
+This limitation of capabilities inhibits the usefulness of \ac{gis} web applications, and with it the number of users and use cases a \ac{gis} web application can serve. If web applications gain \ac{geoprocessing} capabilities, they could grow to be just as diverse and useful as desktop \ac{gis} applications, with the added benefits of being a web application. It would allow for a new range of highly accessible and sharable geoprocessing and analysis tools, which end-users can use to post-process and analyse geodata quickly, uniquely, and on demand.
 
-% STELIOS: Relatively slow
- 
-% show an example 
+% all of this is to say: web-based geoprocessing is a valuable topic 
+It becomes clear that \ac{geoprocessing} within a web application, also known as \ac{csg}, forms an important step in the advancement of web \ac{gis}. This is why the topic is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. Interactive geospatial data manipulation and online geospatial data processing techniques are described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. But this also raises the question: \textit{Why is geoprocessing within a web application as of today still nowhere to be found?} By studying the prior research mentioned, three obstacles are identified, hindering a smooth, widespread adoption of \ac{csg}: 
+\begin{itemize}
+  \item 1: Geoprocessing within a web application is impractical
+  \item 2: Geoprocessing within a web application knows no precedence
+  \item 3: Geoprocessing within a web application can be considered unnecessary 
+\end{itemize}
 
-Interactive, browser-based \ac{gis} applications form an indispensable component of the modern geospatial software landscape. A web application is cross-platform in nature, and offers ease of maintainability and access, since no installment or app-store interaction is required to update or run the app. The ability be placed as a supplement within the larger context of a webpage is also not trivial. These features have made the browser a popular host for many \ac{gis} applications, especially when targeting end-users. 
+The study proposed by this paper seeks the advancement of web \ac{gis} \& client-side geoprocessing by attempting to overcome these three obstacles. It will do this by researching solutions to key components of all three obstacles. However, we must first regard the obstacles more closely, in order to explain the significance of these key components. 
 
-% streamline these three paragraphs.
-% I want something like -> problem: limitations. 
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROBLEM:  Client-side geoprocessing is hindered by javascript and the web environment
+% SOLUTION: WebAssembly (among other things...)
+\subsubsection*{Obstacle 1: Geoprocessing within a web application is impractical}
 
-Despite the popularity of \ac{gis} web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. For example, \ac{geoprocessing}, like CRS translations, interpolation, boolean operations, or raster transformation kernels are usually not present within the same software environment as the web app. This limited range of capabilities limits the usefulness of \ac{gis} web applications, and with it the number of use cases a \ac{gis} web application can serve. Current geospatial web applications serve for the most part only as lightweight viewers; visualizers of pre-processed data. If web applications gain these functionalities, they could grow to be just as diverse and useful as desktop \ac{gis} applications. It would allow for a new range of interactive web applications, in which data users can post-process geodata quickly, uniquely, and on demand.
-
-This raises the question of Why. Why are web \ac{gis} applications limited to just be viewers?
-
-% This raises the question: why is this not done yet? two reasons 
-% 1. People are content with server-side geoprocessing 
-%    -> BUT: this does not serve every use-case 
-% 2. Client-side geoprocessing is hindered by javascript and the web environment
-%    -> NOT ANYMORE: WebAssembly
-% 
-% 
-% To solve 2: WebAssembly
-% To solve 1: We offer a case study which demonstrates a unique type of application which would not be possible without client-side geoprocessing. 
-
-However, by making the functionality of an application not self-contained but distributed, 
-
-The improvements of client-side hardware have opened up a second possibility: client-side geoprocessing, directly within a web application. By doing this, the hard divide between client visualization and server processing could be bridged.  while at the same time driving down the operational costs of geoprocessing servers. This is why client-side \ac{geoprocessing} in web applications is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
-
-% Interactive geospatial data manipulation and online geospatial data processing techniques are described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. 
-
-However, serious drawbacks to client-side geoprocessing where encountered during these studies. Browser-based geoprocessing suffers from the fact that it will need to be written in the `JavaScript` programming language. Previous attempts at client-side geoprocessing have shown that JavaScript based geoprocessing libraries do not offer the performance required for proper geodata processing \cite{hamilton_client-side_2014}. 
+During the prior studies on client-side geoprocessing, serious drawback where encountered \cite{panidi_hybrid_2015, hamilton_client-side_2014}. Browser-based geoprocessing suffers from the fact that it will need to be written in the `JavaScript` programming language. Previous attempts at client-side geoprocessing have shown that JavaScript based geoprocessing libraries do not offer the performance required for proper geodata processing \cite{hamilton_client-side_2014}. 
 Moreover, the JavaScript library ecosystem does not offer viable alternatives to industry-standard libraries like CGAL and GDAL. 
 % This would require alternatives to be rewritten in JavaScript, or would require the source code of mature libraries to be compiled to JavaScript. Both these solutions would be difficult to maintain, and would still end 
 % Both these solutions contain many imperfections. The first option would be an inefficient, time-consuming task, and would mean code duplication. 
@@ -59,21 +44,9 @@ Moreover, the JavaScript library ecosystem does not offer viable alternatives to
 % While this is more fast and reliable, it contains its own set of problems. 
 % The generated, rather large JavaScript files usually take a long time to download, to scan, and to be properly optimized by a JavaScript Just In Time (JIT) Compiler \cite{haas_bringing_2017}. 
 
-An emergent technology poses a solution to both problems. At the end of 2019, the \ac{w3c} officially pronounced WebAssembly as the fourth programming language of the web \cite{w3c_world_2019}. Since then, all major browsers have added official WebAssembly support. \ac{wasm} is a binary compilation target meant to be small, fast, containerized, and platform \& source independent \cite{haas_bringing_2017}. \ac{wasm} surpasses javascript in almost all performance aspects: it loads quicker, it is scanned quicker, and since it is close to bytecode, it can often run at a speed comparable to system level programming languages like C++ and Rust \cite{jangda_not_2019}. 
+An emergent technology poses a possible solution to both problems of obstacle A. At the end of 2019, the \ac{w3c} officially pronounced WebAssembly as the fourth programming language of the web \cite{w3c_world_2019}. Since then, all major browsers have added official WebAssembly support. \ac{wasm} is a binary compilation target meant to be small, fast, containerized, and platform \& source independent \cite{haas_bringing_2017}. \ac{wasm} surpasses javascript in almost all performance aspects: it loads quicker, it is scanned quicker, and since it is close to bytecode, it can often run at a speed comparable to system bytecode \cite{jangda_not_2019}. 
 
-% \cite{beilschmidt_vat_2017}
-
-
-% Related studies concerned with the performance of WebAssembly, together with the existing software around WebAssembly, pose enough evidence to suggest  theoretically possible (SOURCE: Emscriptem). 
-% However, this leaves the question whether it is practically possible unanswered, evident by the fact that no wasm-powered geoprocessing tools exists at the time of writing this study. 
-
-\newpage
-
-% stelios: Speed up 
-
-\subsection{Problem}
-
-If WebAssembly performs as described by \cite{haas_bringing_2017} and \cite{jangda_not_2019}, it could theoretically be the missing link to make client-side geoprocessing viable. However, no wasm-powered geoprocessing tools exists yet at the time of writing. Hypothetically, this is because of two reasons. Firstly, WebAssembly brings along many practical uncertainties:
+While these features sound promising, this does not automatically mean obstacle 1 can be overcome. WebAssembly brings along many practical uncertainties such as:
 
 \begin{itemize}
   \item Do geoprocessing libraries directly compile into WebAssembly? If not, which workarounds are needed? 
@@ -81,27 +54,78 @@ If WebAssembly performs as described by \cite{haas_bringing_2017} and \cite{jang
   \item How well do \ac{wagl} operations perform in a browser, compared to their native counterparts? What can be done to make this difference as small as possible?
 \end{itemize}
 
-Secondly, the way geoprocessing is supposed to be performed within the context of a web-browser remains unknown. The above list of implementation considerations cover only how \ac{wagl}'s can be \emph{run}. Potential answers do not indicate how \ac{wagl}'s can be \emph{used}. \cite{jangda_not_2019} warns against assessing WebAssembly in a vacuum, and notes how its performance is highly dependent on the way it is used, and the context in which it is used. This context of geoprocessing within a web-browser brings up many considerations as well: 
+These uncertainties remain, as of today, unanswered.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROBLEM:  Knows little to no precedence 
+% SOLUTION: Make it
+\subsubsection*{Obstacle 2: Geoprocessing within a web application knows no precedence}
+
+Secondly, the way geoprocessing is supposed to be performed within the context of a web-browser remains unknown, as it knows little to no precedence. Obstacle 1's list of implementation considerations cover only how \ac{wagl}'s can be \emph{run}. Potential answers do not indicate how \ac{wagl}'s can be \emph{used}. \cite{jangda_not_2019} warns against assessing WebAssembly in a vacuum, and notes how its performance is highly dependent on the way it is used, and the context in which it is used. This context of geoprocessing within a web-browser brings up many considerations as well: 
 
 \begin{itemize}
   \item How will users upload or specify the input in a web-browser?
   \item Can the transformations offered by \ac{wagl}'s be used like functions? Or do they require special services, such as a wrapper library, virtual file system, or a virtual Command line interface? 
-  \item How can users recieve and evaluate the output in a web-browser?
   \item How can a sequence of geoprocessing steps be chained together in a web-browser?
-  \item How can a web-based \ac{ui} or \ac{gui} facilitate all these functionalities?
+  \item How can users recieve and evaluate the output in a web-browser?
+  \item How can a browser-based \ac{ui} or \ac{gui} facilitate all these functionalities?
 \end{itemize}
 
-These two sets of unknowns are highly dependent upon each other. Together, they form a barrier preventing further development of client-side geoprocessing. Since no wasm-powered, client-side geoprocessing application exist yet, there is no way to answer these questions, and no way to confirm the theoretical benefits of WebAssembly for client-side geoprocessing, and the geospatial community at large.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROBLEM:  People are content with server-side geoprocessing 
+% SOLUTION: Demonstrate that this does not serve every use-case 
+\subsubsection*{Obstacle 3: Geoprocessing within a web browser can be considered unnecessary}
 
+The third obstacle is presented by the older counterpart of client-side geoprocessing: server-side geoprocessing. server-side geoprocessing seems to offer a solution to the problem of client-side geoprocessing, and because of this, \ac{csg} can be considered unnecessary.
 
+The OGC standard of the \ac{wps} offers a set of protocols to standardize geoprocessing on a server. By specifying input data and instructions to one of these services, polling the status of the process, and then downloading the results once finished, a user can process geodata on a server. If a client-side application creates an interface to use such a service, it can offer geoprocessing to a client.
+
+This can be preferable. A Web Processing Service is an excellent solution when client-side hardware is limited, and when server-side resources are abundant. It is also more efficient if the datasets required for geoprocessing are already located on these servers, and when working with geo-datasets too large to store locally. 
+
+However, this does not mean server-side processing is in all cases preferable over client-side geoprocessing. the choice of which one is 'preferred' is situational, and this cuts both ways. Using a server for geoprocessing will make a client application not self-contained, but distributed and dependent. It leads to a hard divide between visualization and processing, easily disrupted by connectivity failure, or changes within either the client or server. Such a system also fails to take advantage of client-side hardware improvements, and servers performing geoprocessing calculations could lead to high operational costs.
+
+The choice between client or server also does not need to be binary. For example, hybrid strategies have already been theorized and (partially) implemented \cite{panidi_hybrid_2015}.
+
+Nonetheless, developers implementing client-side geoprocessing must be conscious of this situational nature.
+Obstacle C can be overcome if client-side geoprocessing can demonstrate clear advantages over server-side geoprocessing in specific situations. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Problem Statement}
+
+From these three obstacles, we can summarize that research around client-side geoprocessing has gathered enough theoretical underpinnings, thanks to the works of \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. However, the applicability of these studies is held back by their timing, and a lack in practical implementation details and guidance. The potential of WebAssembly is, due to its novelty, also underresearched.
+
+Instead of focussing on only one of these obstacles, this study recognizes the causal and interdependent nature of all three problems. If WebAssembly performs as described by \cite{haas_bringing_2017} and \cite{jangda_not_2019}, it could theoretically be the missing link to make client-side geoprocessing viable. However since no client-side geoprocessing application exist yet, there is no way to contextually test this, and this in turn offers us no way to confirm the theoretical benefits of client-side geoprocessing over server-side geoprocessing. Taken together, these three obstacles form a barrier preventing web \ac{gis} applications of adopting client-side geoprocessing. 
+
+\subsection{This study}
+
+Therefore, This study will make a new attempt at actualizing client-side geoprocessing. 
+It will differ from previous attempts, by adjusting its methodology to tackle key components of three obstacles which together prevent widespread adoption of \ac{csg}.
+The first obstacle of \ac{csg} being impractical will be addressed by researching how well WebAssembly can host existing, industry-standard geoprocessing libraries. 
+This research includes both The ability of existing geoprocessing libraries to be compiled to WebAssembly can be questioned, as well as the performance of the resulting binaries.  
+The second obstacle of \ac{csg} being novel will be addressed by developing a use case application to assist this research. This application serves to contextualize the research, and to force the research to solve the practical inhibitions of how \ac{csg} can actually be used. 
+This use case will also be used to address the third obstacle of \ac{csg} being regarded as unnecessary. The use case will be a unique type of application, one which would be highly impractical without client-side geoprocessing. 
+If successful, the application can demonstrate the advantages of \ac{csg} over server-side equivalents, as well as offer guidance to other applications seeking the benefits of \ac{csg}.
 
 \subsection{Use Case}
-% mini methodolody??
+
+% what is it
+The use case application for this project is the so called "GeoFront" environment. GeoFront will be developed as a web-based \ac{gis} environment, offering users the ability to load, process, and then visualize or save various types of geodata. The entire application will run client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
+For input, the environment offers WMS and WFS, as well as ways for users to load local geodata.
+For processing, geofront offers basic data querying and filtering, as well as geoprocessing functions provided by GDAL and CGAL. being a visual programming language, GeoFront can be used to chain multiple processing steps together, while still being able to inspect in-between products. 
+For output, the environment can be used to either save data to the users local machine, or to visualize the results within the geofront application using a WebGL based viewport.
+
+% why
+The choice for a \ac{vpl} is made to demonstrate the advantage of client-side geoprocessing, and thus overcome the third obstacle. Using visual programming \& \ac{csg}, the geoprocessing methodology can be altered on the fly, and in-between products can be inspected quickly. This way, a user can easily experiment with different methodologies and parameters, which hypothetically improves the quality of the processed geodata.
+Additionally, a \ac{vpl} forms a balance between a programming language and a full \ac{gui}, making the tool useful to both programmers and non-programmers alike.
 
 
-in order to demonstrate 
 
-visual programming language.
+% how -> methodology
+% GeoFront will be build using contemporary web technologies. 
+% minimal reliance on external stuff
+% in order to demonstrate 
+
 
 
 
@@ -146,8 +170,8 @@ The following sub-research questions are needed in order to answer the main ques
 \newpage
 \subsubsection*{Assessment}
 
-At the final conclusion of the proposed thesis, we can answer if the designed and created GIS environment can indeed effectively utilize these geo-libraries.
-this will be answered by quantitative and qualitative means:
+At the final conclusion of the proposed thesis, we will answer if the designed and created GIS environment can indeed effectively utilize these geo-libraries.
+This will be answered by quantitative and qualitative means:
 
 Quantity
 \begin{itemize}
@@ -165,9 +189,8 @@ Quality
 
 
 % ----
+\newpage
 \subsection{Scope}
-
-
 \subsection*{Will Include}
 
 The 'will include' scope is represented by the Methodology chapter. 
@@ -181,7 +204,7 @@ This study will limit itself to the \emph{client-side} usage of WebAssembly.
 A powerful case can be made for \emph{server-side}, or native level usage of WebAssembly, especially in conjunction with a programming language such as Rust. 
 Rust compiled to WebAssembly could, compared to using python, java or C++, make geoprocessing more maintainable and reliable, while at the same time ensuring memory safety, security, and performance \cite{clack_standardizing_2019}. 
 
-Server-side or native wasm is beyond the scope of this paper, but would be an excellent starting point for future work. Note that this also means that research into \ac{wagl}'s is important for more than just client-side geoprocessing. All geoprocessing could benefit from it.
+Server-side or native wasm is beyond the scope of this paper, but would be an excellent starting point for future work. Note that this also means that research into WebAssembly is important for more than just client-side geoprocessing. All geoprocessing could benefit from it.
 
 
 
@@ -192,30 +215,6 @@ Similarly, this study will exclude the OGC standard of the \ac{wps} \cite{ogc_we
 
 This is not to say that client-side geoprocessing replaces the need for \ac{wps}. 
 future work could research the possibility of utilizing a hybrid strategy of both client-side and server-side geoprocessing, following in the footsteps of \cite{panidi_hybrid_2015}. 
-
-% Still, We must briefly discuss the \ac{wps}, since it seems to offer a solution to the problems addressed.
-
-%The OGC standard of the \ac{wps} offers a set of protocols to standardize geoprocessing on a server. By specifying input data and instructions to one of these services, polling the status of the process, and then downloading the results once finished, a user can process geodata on a server. If a client-side application creates an interface to use such a service, it can essentially offer client-side geoprocessing.
-
-% While this is more like a workaround for client-side geoprocessing than a solution, it can nonetheless be preferred. A Web Processing Service is an excellent solution when client-side hardware is limited, and when server-side resources are abundant. It is also more efficient if the datasets required for geoprocessing are already located on these servers, and when working with geo-datasets too large to store locally. 
-
-% situational cuts both ways 
-
-% a \ac{wps} do not replace the need for client-side geoprocessing, for much of the same reasons a \ac{wps} does not replace the need for native \ac{gis} applications like QGIS or ArcGIS.  
-
-% The usefulness of a \ac{wps} is, just like client-side geoprocessing, situational. 
-
-% For much of the same reasons \ac{wps} does not replace the 
-
-
-% reasoning from the perspective of client-side geoprocessing, a \ac{wps} does not offer a true solution to the problem of client-side geoprocessing, but only a workaround. 
-
-
-% When the reverse is true however, and when the application needs to remain interactive and responsive, other solutions are required.
-
-% While 
-
-% Future work could research the possibility of utilizing a hybrid strategy of both client-side and server-side geoprocessing, following in the footsteps of \cite{panidi_hybrid_2015}. 
 
 
 \subsubsection*{Usability Analysis} % 
