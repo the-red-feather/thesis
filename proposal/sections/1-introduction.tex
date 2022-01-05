@@ -28,7 +28,7 @@ It becomes clear that \ac{geoprocessing} within a web application, also known as
   \item 3: Geoprocessing within a web application can be considered unnecessary 
 \end{itemize}
 
-The study proposed by this paper seeks the advancement of web \ac{gis} \& client-side geoprocessing by attempting to overcome these three obstacles. It will do this by researching solutions to key components of all three obstacles. However, we must first regard the obstacles more closely, in order to explain the significance of these key components. 
+The study proposed by this paper seeks the advancement of web \ac{gis} \& client-side geoprocessing by attempting to overcome these three obstacles. It will do this by researching possible solutions to key components of all three obstacles. However, we must first regard the obstacles more closely, in order to explain the significance of these key components. 
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -44,9 +44,9 @@ Moreover, the JavaScript library ecosystem does not offer viable alternatives to
 % While this is more fast and reliable, it contains its own set of problems. 
 % The generated, rather large JavaScript files usually take a long time to download, to scan, and to be properly optimized by a JavaScript Just In Time (JIT) Compiler \cite{haas_bringing_2017}. 
 
-An emergent technology poses a possible solution to both problems of obstacle A. At the end of 2019, the \ac{w3c} officially pronounced WebAssembly as the fourth programming language of the web \cite{w3c_world_2019}. Since then, all major browsers have added official WebAssembly support. \ac{wasm} is a binary compilation target meant to be small, fast, containerized, and platform \& source independent \cite{haas_bringing_2017}. \ac{wasm} surpasses javascript in almost all performance aspects: it loads quicker, it is scanned quicker, and since it is close to bytecode, it can often run at a speed comparable to system bytecode \cite{jangda_not_2019}. 
+An emergent technology poses a possible solution to both problems. At the end of 2019, the \ac{w3c} officially pronounced WebAssembly as the fourth programming language of the web \cite{w3c_world_2019}. Since then, all major browsers have added official WebAssembly support. \ac{wasm} is a binary compilation target meant to be small, fast, containerized, and platform \& source independent \cite{haas_bringing_2017}. \ac{wasm} surpasses javascript in almost all performance aspects: it loads quicker, it is scanned quicker, and since it is close to bytecode, it can often run at a speed comparable to system bytecode \cite{jangda_not_2019}. 
 
-While these features sound promising, this does not automatically mean obstacle 1 can be overcome. WebAssembly brings along many practical uncertainties such as:
+While these features sound promising, this does not automatically mean this obstacle can be overcome. WebAssembly brings along many practical uncertainties such as:
 
 \begin{itemize}
   \item Do geoprocessing libraries directly compile into WebAssembly? If not, which workarounds are needed? 
@@ -91,16 +91,23 @@ Obstacle C can be overcome if client-side geoprocessing can demonstrate clear ad
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\subsection{Problem Statement}
+\subsection{Problem statement}
 
-From these three obstacles, we can summarize that research around client-side geoprocessing has gathered enough theoretical underpinnings, thanks to the works of \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. However, the applicability of these studies is held back by their timing, and a lack in practical implementation details and guidance. The potential of WebAssembly is, due to its novelty, also underresearched.
+% this part is weird, rewrite it
+% client-side geoprocessing is well conceptualized, but lacks in practice
+% we do see potential for 
+% From these three obstacles, we can summarize that research around client-side geoprocessing has gathered enough theoretical underpinnings, thanks to the works of \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. However, the success of these studies is held back by their age, and the studies lack in practical implementation details and guidance. The potential of WebAssembly is, due to its novelty, also underresearched.
+
+From these three obstacles, we can summarize the following problem: 
+Client-side geoprocessing as a concept is not being adopted by geoweb applications, for it is impractical, novel, and considered unnecessary. 
+Prior studies into \ac{csg} show its potential, and novel web technologies offer possible solutions to its impracticalities. However, these technologies are, due to their novelty, underresearched. As a consequence,  practical implementation details and guidance regarding \ac{csg} is lacking.
 
 Instead of focussing on only one of these obstacles, this study recognizes the causal and interdependent nature of all three problems. If WebAssembly performs as described by \cite{haas_bringing_2017} and \cite{jangda_not_2019}, it could theoretically be the missing link to make client-side geoprocessing viable. However since no client-side geoprocessing application exist yet, there is no way to contextually test this, and this in turn offers us no way to confirm the theoretical benefits of client-side geoprocessing over server-side geoprocessing. Taken together, these three obstacles form a barrier preventing web \ac{gis} applications of adopting client-side geoprocessing. 
 
 \subsection{This study}
 
-Therefore, This study will make a new attempt at actualizing client-side geoprocessing. 
-It will differ from previous attempts, by adjusting its methodology to tackle key components of three obstacles which together prevent widespread adoption of \ac{csg}.
+% made possible by the current advancements of web technologies 
+Therefore, This study will make a new attempt at actualizing client-side geoprocessing. It will differ from previous attempts by adjusting its methodology to tackle key components of three obstacles, in order to enable the widespread adoption of \ac{csg}.
 The first obstacle of \ac{csg} being impractical will be addressed by researching how well WebAssembly can host existing, industry-standard geoprocessing libraries. 
 This research includes both The ability of existing geoprocessing libraries to be compiled to WebAssembly can be questioned, as well as the performance of the resulting binaries.  
 The second obstacle of \ac{csg} being novel will be addressed by developing a use case application to assist this research. This application serves to contextualize the research, and to force the research to solve the practical inhibitions of how \ac{csg} can actually be used. 
@@ -111,29 +118,18 @@ If successful, the application can demonstrate the advantages of \ac{csg} over s
 
 % what is it
 The use case application for this project is the so called "GeoFront" environment. GeoFront will be developed as a web-based \ac{gis} environment, offering users the ability to load, process, and then visualize or save various types of geodata. The entire application will run client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
-For input, the environment offers WMS and WFS, as well as ways for users to load local geodata.
-For processing, geofront offers basic data querying and filtering, as well as geoprocessing functions provided by GDAL and CGAL. being a visual programming language, GeoFront can be used to chain multiple processing steps together, while still being able to inspect in-between products. 
-For output, the environment can be used to either save data to the users local machine, or to visualize the results within the geofront application using a WebGL based viewport.
+For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load local geodata files.
+For processing, geofront offers geoprocessing functions provided by GDAL and CGAL. 
+Being a visual programming language, GeoFront can be used to chain multiple processing steps together, while still being able to inspect in-between products. 
+For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
 
 % why
-The choice for a \ac{vpl} is made to demonstrate the advantage of client-side geoprocessing, and thus overcome the third obstacle. Using visual programming \& \ac{csg}, the geoprocessing methodology can be altered on the fly, and in-between products can be inspected quickly. This way, a user can easily experiment with different methodologies and parameters, which hypothetically improves the quality of the processed geodata.
-Additionally, a \ac{vpl} forms a balance between a programming language and a full \ac{gui}, making the tool useful to both programmers and non-programmers alike.
-
-
-
-% how -> methodology
-% GeoFront will be build using contemporary web technologies. 
-% minimal reliance on external stuff
-% in order to demonstrate 
-
-
-
-
+The choice for a \ac{vpl} is made to demonstrate the advantage of client-side geoprocessing, and thus overcome the third obstacle. Using visual programming \& \ac{csg}, the geoprocessing sequence can be altered on the fly, and in-between products can be inspected quickly. This way, a user can easily experiment with different methodologies and parameters which, hypothetically, improves the quality of the processed geodata.
+Additionally, a \ac{vpl} forms a balance between a programming language and a full \ac{gui}, making the tool usable by both programmers and non-programmers alike.
 
 %-------------------------------------------------------------------------------------------------%
+
 \newpage
-
-%-------------------------------------------------------------------------------------------------%
 \subsection{Research Questions}
 
 This study intends to discover if contemporary web technologies can facilitate client-side geoprocessing by seeking an answer to the following question:  
