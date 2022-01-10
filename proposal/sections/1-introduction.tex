@@ -27,7 +27,7 @@ This is why \ac{geoprocessing} within a web application, also known as \ac{csg},
 By studying the prior research mentioned, three obstacles are identified, hindering a smooth, widespread adoption of \ac{csg}: 
 \begin{itemize}
   \item 1: \ac{csg} is impractical.
-  \item 2: \ac{csg} knows no precedence.
+  \item 2: \ac{csg} is too novel.
   \item 3: \ac{csg} can be considered unnecessary.
 \end{itemize}
 
@@ -65,9 +65,9 @@ Obstacle 1 remains in place as long as these uncertainties remain unanswered.
 % [JF]: I think this is the weakest obstacle. 
 %       No precendence also means that there is no existing ecosystem to draw from
 % SOLUTION: Make it
-\subsubsection*{Obstacle 2: \ac{csg} knows no precedence}
+\subsubsection*{Obstacle 2: \ac{csg} is too novel}
 
-Secondly, the way geoprocessing is supposed to be performed within the context of a web-browser remains unknown, as it knows little to no precedence. Obstacle 1's list of implementation considerations cover only how \ac{wagl}'s can be \emph{run}. Potential answers do not indicate how \ac{wagl}'s can be \emph{used}. Jangda et al. warn against assessing WebAssembly in a vacuum, and notes how its performance is highly dependent on the way it is used, and the context in which it is used. This context of geoprocessing within a web-browser brings up many considerations as well: 
+Secondly, geoprocessing within a web browser is too novel. That is to say, no supporting software exists for it, and the way geoprocessing is supposed to be performed within the context of a web-browser remains unknown. Obstacle 1's list of implementation considerations cover only how \ac{wagl}'s can be \emph{run}. Potential answers do not indicate how \ac{wagl}'s can be \emph{used}. Jangda et al. warn against assessing WebAssembly in a vacuum, and notes how its performance is highly dependent on the way it is used, and the context in which it is used. This context of geoprocessing within a web-browser brings up many considerations as well: 
 
 \begin{itemize}
   \item How will users upload or specify the input in a web-browser?
@@ -108,7 +108,7 @@ Obstacle 3 can be overcome if client-side geoprocessing can demonstrate clear ad
 
 From these three obstacles, the following problem can be summarized: 
 Client-side geoprocessing as a concept is not being adopted by geoweb applications, because it is impractical, too novel, and considered unnecessary. 
-Prior studies into \ac{csg} show its potential, and novel web technologies offer possible solutions to its impracticalities. However, these technologies are, due to their novelty, underresearched. As a consequence,  practical implementation details and guidance regarding \ac{csg} is lacking.
+Prior studies into \ac{csg} show its potential, and novel web technologies offer possible solutions to its impracticalities. However, these technologies are, due to their novelty, underresearched. As a consequence, no existing libraries or applications exist around \ac{csg}, and practical implementation details and guidance regarding \ac{csg} is lacking.
 
 Instead of focussing on only one of these obstacles, this study recognizes the causal and interdependent nature of all three problems. If WebAssembly performs as described by \cite{haas_bringing_2017} and \cite{jangda_not_2019}, it could theoretically be the missing link to make client-side geoprocessing viable. However since no client-side geoprocessing application exist yet, there is no way to contextually test this, and this in turn offers us no way to confirm the theoretical benefits of client-side geoprocessing over server-side geoprocessing. Taken together, these three obstacles form a barrier preventing web \ac{gis} applications of adopting client-side geoprocessing. 
 
