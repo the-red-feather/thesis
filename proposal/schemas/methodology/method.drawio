@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="R9lZvX5LPHoqeBm0NEup" name="Page-1">
-        <mxGraphModel dx="283" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
+        <mxGraphModel dx="152" dy="643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -48,7 +48,7 @@
                         <mxPoint x="-31" y="-8" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="Jx8LPu8znm7WMN3goJe4-1" value="&lt;b&gt;Compare performance and capabilities &lt;br&gt;to native &lt;br&gt;applications&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;shadow=1;arcSize=9;fontFamily=Helvetica;fontColor=#ffffff;strokeColor=#005700;fillColor=#008a00;" parent="1" vertex="1">
+                <mxCell id="Jx8LPu8znm7WMN3goJe4-1" value="&lt;b&gt;Compare performance and capabilities &lt;br&gt;to native &lt;br&gt;applications&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;shadow=1;arcSize=9;fontFamily=Helvetica;fontColor=#ffffff;strokeColor=#005700;fillColor=#008A00;" parent="1" vertex="1">
                     <mxGeometry x="320" y="840" width="190" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="Jx8LPu8znm7WMN3goJe4-5" value="&lt;i&gt;&lt;b&gt;Add the wasm-compiled C++ libraries to the geo web vpl as plugins or dependencies&lt;br&gt;&lt;/b&gt;&lt;/i&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;" parent="1" vertex="1">
@@ -83,7 +83,7 @@
                 <mxCell id="Jx8LPu8znm7WMN3goJe4-15" value="&lt;div&gt;&lt;i&gt;&lt;b&gt;Try to &lt;br&gt;&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;b&gt;compile GDAL &lt;br&gt;&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;b&gt;to wasm.&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;" parent="1" vertex="1">
                     <mxGeometry x="378" y="120" width="115" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="n1NXSLkz1-SfZJEVITjv-17" value="&lt;b&gt;&lt;i&gt;Discuss what this&lt;br&gt;means for the &lt;br&gt;geospatial community&lt;br&gt;&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;fontColor=#ffffff;strokeColor=#A50040;fillColor=#d80073;" parent="1" vertex="1">
+                <mxCell id="n1NXSLkz1-SfZJEVITjv-17" value="&lt;b&gt;&lt;i&gt;Discuss what this&lt;br&gt;means for the &lt;br&gt;geospatial community&lt;br&gt;&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;fontColor=#ffffff;fillColor=#00331A;strokeColor=#002100;" parent="1" vertex="1">
                     <mxGeometry x="499" y="840" width="170" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="n1NXSLkz1-SfZJEVITjv-22" value="&lt;b&gt;&lt;i&gt;Side product:&lt;br&gt;&lt;/i&gt;&lt;/b&gt;&lt;b&gt;&lt;i&gt;Example projects utilizing&amp;nbsp;&lt;br&gt;the vpl environment&lt;br&gt;&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;fontColor=#ffffff;strokeColor=#001DBC;fillColor=#0050ef;" parent="1" vertex="1">
@@ -105,7 +105,7 @@
                 <mxCell id="n1NXSLkz1-SfZJEVITjv-29" value="&lt;b&gt;&lt;i&gt;Add Input&lt;br&gt;&amp;nbsp;functionalities&lt;br&gt;&amp;nbsp;including WFS and&lt;br&gt;&amp;nbsp;WMS&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;" parent="1" vertex="1">
                     <mxGeometry x="460" y="357" width="150" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="n1NXSLkz1-SfZJEVITjv-30" value="&lt;b&gt;&lt;i&gt;Choose an effective&lt;br&gt;method, and explain why&lt;br&gt;&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;fontColor=#ffffff;strokeColor=#A50040;fillColor=#d80073;" parent="1" vertex="1">
+                <mxCell id="n1NXSLkz1-SfZJEVITjv-30" value="&lt;b&gt;&lt;i&gt;Choose an effective&lt;br&gt;method, and explain why&lt;br&gt;&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;fontColor=#ffffff;fillColor=#00331A;strokeColor=#002100;" parent="1" vertex="1">
                     <mxGeometry x="600" y="600" width="185" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="JAychxo9crdE4-j-2Qq6-14" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;shadow=0;endArrow=open;endFill=0;strokeColor=#575757;strokeWidth=4;" parent="1" source="n1NXSLkz1-SfZJEVITjv-31" target="oR36HvQrZMrKDbQmu3Ou-17" edge="1">
@@ -122,7 +122,7 @@
                 <mxCell id="n1NXSLkz1-SfZJEVITjv-31" value="&lt;b&gt;&lt;i&gt;Side product:&lt;br&gt;&lt;/i&gt;&lt;/b&gt;&lt;b&gt;&lt;i&gt;A &quot;geo-web-vpl&quot; with&amp;nbsp;&lt;br&gt;GDAL &amp;amp; CGAL support&lt;br&gt;&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;fontColor=#ffffff;strokeColor=#001DBC;fillColor=#0050ef;" parent="1" vertex="1">
                     <mxGeometry x="775" y="600" width="185" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="n1NXSLkz1-SfZJEVITjv-34" value="&lt;b&gt;&lt;i&gt;Examine the state of &lt;br&gt;this environment as &lt;br&gt;it is right now&lt;br&gt;&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;gradientDirection=west;fontColor=#ffffff;strokeColor=#A50040;fillColor=#d80073;" parent="1" vertex="1">
+                <mxCell id="n1NXSLkz1-SfZJEVITjv-34" value="&lt;b&gt;&lt;i&gt;Examine the state of &lt;br&gt;this environment as &lt;br&gt;it is right now&lt;br&gt;&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;gradientDirection=west;fontColor=#ffffff;fillColor=#00331A;strokeColor=#002100;" parent="1" vertex="1">
                     <mxGeometry x="801" y="357" width="160" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="n1NXSLkz1-SfZJEVITjv-36" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;shadow=0;fontFamily=Helvetica;fontColor=#333333;endArrow=open;endFill=0;strokeColor=#575757;strokeWidth=4;" parent="1" source="n1NXSLkz1-SfZJEVITjv-35" target="oR36HvQrZMrKDbQmu3Ou-8" edge="1">
@@ -156,7 +156,7 @@
                 <mxCell id="n1NXSLkz1-SfZJEVITjv-6" value="" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=10;shadow=1;size=10;fontFamily=Helvetica;container=0;strokeColor=#005700;fillColor=#008a00;fontColor=#ffffff;" parent="JAychxo9crdE4-j-2Qq6-15" vertex="1">
                     <mxGeometry x="100" y="75" width="50" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="n1NXSLkz1-SfZJEVITjv-7" value="" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=10;shadow=1;size=10;fontFamily=Helvetica;container=0;strokeColor=#A50040;fillColor=#d80073;fontColor=#ffffff;" parent="JAychxo9crdE4-j-2Qq6-15" vertex="1">
+                <mxCell id="n1NXSLkz1-SfZJEVITjv-7" value="" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;size=10;fontFamily=Helvetica;container=0;strokeColor=#002100;fillColor=#00331A;fontColor=#ffffff;" parent="JAychxo9crdE4-j-2Qq6-15" vertex="1">
                     <mxGeometry x="100" y="105" width="50" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="n1NXSLkz1-SfZJEVITjv-16" value="&lt;div&gt;&lt;b&gt;&lt;i&gt;Development&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=1;fontColor=#575757;fontFamily=Helvetica;container=0;" parent="JAychxo9crdE4-j-2Qq6-15" vertex="1">
@@ -189,7 +189,7 @@
                 <mxCell id="n1NXSLkz1-SfZJEVITjv-23" value="&lt;b&gt;&lt;i&gt;Side product:&lt;br&gt;GDAL &amp;amp; CGAL&lt;br&gt;compiled &lt;br&gt;to wasm&lt;br&gt;&lt;/i&gt;&lt;/b&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;fontColor=#ffffff;strokeColor=#001DBC;fillColor=#0050ef;" parent="1" vertex="1">
                     <mxGeometry x="831" y="120" width="138" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="Jx8LPu8znm7WMN3goJe4-21" value="&lt;div&gt;&lt;i&gt;&lt;b&gt;Define a guide&lt;br&gt;&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;b&gt;of compiling large &lt;br&gt;(C++) geo libraries&amp;nbsp;&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;b&gt;to Wasm&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;fontColor=#ffffff;strokeColor=#A50040;fillColor=#d80073;" parent="1" vertex="1">
+                <mxCell id="Jx8LPu8znm7WMN3goJe4-21" value="&lt;div&gt;&lt;i&gt;&lt;b&gt;Define a guide&lt;br&gt;&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;b&gt;of compiling large &lt;br&gt;(C++) geo libraries&amp;nbsp;&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;i&gt;&lt;b&gt;to Wasm&lt;/b&gt;&lt;/i&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;strokeWidth=3;arcSize=9;shadow=1;fontFamily=Helvetica;fontColor=#ffffff;fillColor=#00331A;strokeColor=#002100;" parent="1" vertex="1">
                     <mxGeometry x="668" y="120" width="175" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="JAychxo9crdE4-j-2Qq6-45" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;shadow=0;fontSize=10;fontColor=#4D4D4D;endArrow=open;endFill=0;strokeColor=#575757;strokeWidth=2;" parent="1" source="Jx8LPu8znm7WMN3goJe4-22" target="oR36HvQrZMrKDbQmu3Ou-9" edge="1">
