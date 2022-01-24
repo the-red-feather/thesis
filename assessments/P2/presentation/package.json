@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "build": "npx @marp-team/marp-cli@latest slides.md -o build/index.html"
+    }
+}
