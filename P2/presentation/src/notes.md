@@ -7,22 +7,7 @@ and show us what you've done so far
 
 <!--------------------------------- [ 0. Intro ] ---------------------------->
 
-- Thank you for coming!
 
-- Today I wish to share my master thesis proposal with you. 
-
-- My Masters thesis for Geomatics for the Built Environment
-
-- On the topic of Accessible, browser-based Geoprocessing.
-
-
----
-
-- I will first explain to you what 'Client-side Geoprocessing' exactly means and **Why** it motivates this study 
-
-- We can then go into **What** specifically this study seeks out to do.   
-
-- And after that, **How** this study will be carried out.
 
 ---
 <!--------------------------------- [ 1. Motivation / Why ] ------------------>
@@ -32,9 +17,12 @@ But first, the why
 
 ---
 
-## GEODATA 
+## GEOMATICS
+- CORE VALUE OF GEOMATICS : spatial insight into surroundings
 
-CORE 
+## GEODATA 
+- We do this by developing and promoting open geodata. 
+
 - geodata in desision making,
 - all the other benefits
 
@@ -44,35 +32,14 @@ Open Street map,
 Dutch Government, 
 PDOK Web Portal
 
-## BUT, Web Portals are often limited 
+## BUT, Suffer from limitation: 
+- only visualize
 
-
-
-
-## WHY : THE GEOWEB 
-
-CSG -> GeoWeb -> The Geoweb Application
-
-Google maps , Open Street map, Dutch Government, 
-- Explain significance of web applications
-
-- Why there are so many
-
-- GeoWeb studies concerned with sharability of data. 
-
-
-
-## BUT 
-HERE we run into the limitations of the current state of the art
-
-- not _exactly_ what was asked for by the user
-  - Too much / too little information 
-  - Post-Processing With whatever tools the user knows (Illustrator, Blender) 
-  - _Easier to just draw on top of google maps screenshots_
+- we sometimes call them web gis, even though they do not utilize a great many GIS tools.  
 
 - If the shared geodata cannot easily and readily be used by a wider audience, then we will never see the widespead geodata usage the field of geomatics has been promoting 
 
-## Major Cause: no geoprocessing available. 
+## Major Cause: No geoprocessing available. 
 
 - Data has to be pre-processed 
 - Data 
