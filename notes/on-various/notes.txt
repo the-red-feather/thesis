@@ -1,0 +1,10 @@
+
+> [Ken]: You can use 1 paper for a strong motivation. 
+
+> [Stelios]: Dont do this to validate
+
+> [Stelios]: We careful with the FAIR statements, they could undermine certain implementation choices.
+
+> [Ken]: If the main question is about usability, it would mitigate
+
+> 

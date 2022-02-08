@@ -1,2 +1,0 @@
-- My dear friend Tim Boot, for proofreading the thesis proposal with exceptional attention to detail.
-- Laurens & Victor, as great Thesis colleagues we spend many lunch hours discussing all sorts of interesting topics

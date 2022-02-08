@@ -20,13 +20,13 @@ I am considering a do-over of the flow-chart rendering. We need svg based render
 
 - You are now finally allowed to continue development, but the writing introduced many considerations, resulting in choice paralysis. Find a component small enough to continue development, and make something
 
-## TUE | 8 feb 2021 | Picking up the pieces
+## TUE | 8 feb 2021 | Picking up the pieces | FOCUS: UI
 
 Finally picking up where I left off. The Thesis proposal and presentation are finished, quite satisfied with both. The writing did generate a ton of new ideas which now make it hard to continue the work. 
 
-# WEEK 02 / 15
+# WEEK 02 / 15 -> UI
 
-# WEEK 03 / 15
+# WEEK 03 / 15 -> UI
 
 # WEEK 04 / 15
 

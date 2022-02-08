@@ -52,7 +52,17 @@ h3 { color: lightgrey; filter: drop-shadow(5px 7px 5px #000000); }
 <!-- 
 Thank you for coming!
 
-- First of all, André, thank you 
+- First of all, André, thank you for getting us this great room
+  - I'm sure Ken & Stelios
+
+- Present the content of my thesis proposal 
+
+- If you read => 'familiar'
+
+- Nonetheless hope good overview - Link together
+
+- Name the title
+
 -->
 
 
@@ -72,7 +82,7 @@ Thank you for coming!
 
 #### MSc Geomatics for the Built Environment 
 
-#### January 28, 2022 @ TU Delft Faculty of Architecture, Room U
+#### [January 28, 2022 @ TU Delft Faculty of Architecture, Room U](https://tudelft.zoom.us/j/99384770684?pwd=d05ZRTBoOWRuak53elVTODBNNHdKZz09)
 
 
 ###### Proposer: Jos Feenstra
@@ -93,13 +103,12 @@ Thank you for coming!
 ## 4. Preliminary Results
 
 <!-- 
-- I will quickly introduce what 'Client-side Geoprocessing' exactly means and **Why** it motivates this study 
+- I will quickly introduce what 'Geoprocessing in a browser' exactly means and **Why** it motivates this study 
 
 - We can then go into **What** specifically this study seeks out to do, and how this relates to what already has been done.  
 
 - And after that, **How** this study will be carried out.
 
-- 
  -->
 
 -----------------------------------------------------------------------------------
@@ -115,18 +124,6 @@ h3 {color: #cccccc}
 
 -----------------------------------------------------------------------------------
 
-![bg right:33% opacity:0.9](./images/1/google-earth.png)
-
-# Geographical Web Applications
-
-- Type of GIS
-- Important Component of Geo Informatics
-- Often first and only experience of GIS for the general public.
-- Extremely accessible
-- Easy to update & maintain
-
------------------------------------------------------------------------------------
-
 ![bg right:33% opacity:0.7](./images/1/osm.png)
 
 # Geographical Web Applications
@@ -135,8 +132,6 @@ Examples
 - Google Maps
 - Open Street Map
 - PDOK viewer
-
-# Focus: _Looking_ at geodata
 
 <!-- 
 Central to this study is the geographical Web Application.
@@ -148,6 +143,24 @@ Examples:
 - Pdok Viewer
 
  -->
+
+-----------------------------------------------------------------------------------
+
+
+![bg right:33% opacity:0.9](./images/1/google-earth.png)
+
+# Geographical Web Applications
+
+
+### Features 
+- Type of GIS
+- Accessible
+- Indispensable component of Geo Informatics
+<!-- - Often first and only experience of GIS for the general public.
+- Extremely accessible
+- Easy to update & maintain -->
+
+# Focus: _Looking_ at geodata
 
 -----------------------------------------------------------------------------------
 
@@ -170,15 +183,15 @@ it for a variety of purposes.
 -->
 
 - Who? Data Users
-    - Scientists, analysts, architects, urban planners, municipalities
+    <!-- - Scientists, analysts, architects, urban planners, municipalities -->
   <!-- Any non-geodata expert who still would like to _use_ geographical information and data -->
 - Simple queries
-  <!--"Visualize all roads of a city < 50kmh" -->  
+  <!--"Visualize all roads of a city of a certain speed limit" -->  
 - Advanced queries
   <!-- solar potential, noise propagation, Viewshed & Shadow analysis. -->
-- Involves Processing & analyzing geodata 
+- Involves Processing & analyzing geodata : Geoprocessing
 <!-- This is important: the geodata will need to be altered in some sense -->
-
+<!-- GeoData processing -->
 
 
 ----------------------------------------------------------------------------------
@@ -192,7 +205,7 @@ It is here where geographical web applications show their limitations
 
 - Only viewers
 <!-- - No processing or analysis tools  -->
-- Very limited Geoprocessing or analysis
+- limited Geoprocessing capabilities
 <!--  -->
 
 - Data users are left to their own devices. <!-- They have a couple of options: -->
@@ -260,13 +273,18 @@ This brings us to the central idea of this study:
 1. CSG is technically challenging
 <!-- Javascript  -->
 
-2. CSG is underdeveloped
-<!-- No  -->
+<!-- - JavaScript is not performant
+- No mature geoprocessing libraries available client-side -->
+
+
+2. CSG has little support
+
+<!-- - Little to no supporting software
+- no noteworthy examples -->
 
 3. CSG is overshadowed by other technologies
-<!-- No  -->
+<!-- - overshadowed by native & server side geoprocessing -->
 
-<!-- I am required to go in-depth -->
 
 
 -----------------------------------------------------------------------------------
@@ -274,9 +292,10 @@ This brings us to the central idea of this study:
 # **Connected** Obstacles 
 
 1. CSG is technically challenging
+
 <!-- Javascript  -->
 
-2. CSG is underdeveloped
+2. CSG has little support
 <!-- No  -->
 
 3. CSG is overshadowed by other technologies
@@ -301,17 +320,21 @@ h3 {color: #cccccc}
 - _Actualizing_ client-side geoprocessing
 <!-- CSG has a valid theoretical framework, and a lot of potential. 
 
-<!-- Shape the methodology to adress key issues
+practical problems remaining Inhibits this potential   -->
 
-remaining : practical, actualization  -->
-- Methodology:
-    - Practical
+<!-- consequences methodology  -->
+
+<!-- Shape the methodology to adress key issues -->
+
+## Methodology:
+  - Practical
      <!-- Focus: studying and solving practical inhibitions  -->
-    - Wholistic
-    <!-- Not one, but all three inhibitions will be adressed, -->
-    - Precise 
-    <!--  Solving key components which matter most-->
+  - Wholistic
+    <!-- Not one, but all three inhibitions will be adressed, since they are interlinked -->
+  - Precise 
+    <!--  Solving key components of the obstacles deemed most impactful-->
 
+<!-- WHAT DOES THIS MEAN SPECIFICALLY -->
 
 <!-- CONTINUE: Name exaclty how the obstacles shape the methodology -->
 
@@ -323,8 +346,6 @@ remaining : practical, actualization  -->
 
 <!-- Other reasons: Big Data -->
 
-- JavaScript is not performant
-- No mature geoprocessing libraries available client-side
 
 ### **Methodology : Research if WebAssembly can be used to compile existing geoprocessing libraries.**
 
@@ -336,21 +357,19 @@ remaining : practical, actualization  -->
 
 -----------------------------------------------------------------------------------
 
-### Second Obstacle : CSG is immature
+### Second Obstacle : CSG has little support
 
-- Little to no supporting software
-- no noteworthy examples
+<!-- Immature -->
+
 <!-- - The way geoprocessing is supposed to be a web application is unknown -->
 
-### **Methodology : Develop a use-case application to support the research and to serve as example for future research**.
+### **Methodology : Develop a use-case application to contextualize the research and to serve as example for future research**.
 
 <style scoped> strong { color: green; }</style>
 
 -----------------------------------------------------------------------------------
 
-### Third Obstacle : CSG is considered unnecessary
-
-- overshadowed by native & server side geoprocessing
+### Third Obstacle : CSG is overshadowed
 
 ### **Methodology : Develop a use-case application to demonstrate the situational advantages of client-side geoprocessing**
 
@@ -366,9 +385,9 @@ remaining : practical, actualization  -->
 <style scoped> h1 { color: white; } h3 {color: #cccccc}</style>
 ![bg](./images/hero-dark.png)
 
------------------------------------------------------------------------------------
+<!-- ----------------------------------------------------------------------------------- -->
 
-_"How to design and create a browser-based GIS environment which can **effectively utilize** existing geoprocessing libraries, using only the current state of **standard client-side technologies**"_
+<!-- _"How to design and create a browser-based GIS environment which can **effectively utilize** existing geoprocessing libraries, using only the current state of **standard client-side web technologies**"_
 
 <!-- - **Effectively utilize**  -->
 <!-- The study intends to not only find out how \ac{wagl}'s can be \textit{run} in a browser, but also how \ac{wagl}'s can be \textit{used}. 
@@ -376,23 +395,22 @@ _"How to design and create a browser-based GIS environment which can **effective
 
 
 <!-- - **Standard client-side web technologies** -->
-<!-- This phrase is meant to limit the scope to only the standard, core technologies of major browsers (Chrome, Edge, Safari, Firefox). This means the four languages \ac{wasm}, CSS, JavaScript and HTML. Additionally, HTML5 gives us WebGl, the 2d Canvas API, SVG's, and Web Components to work with. -->
+<!-- This phrase is meant to limit the scope to only the standard, core technologies of major browsers (Chrome, Edge, Safari, Firefox). This means the four languages \ac{wasm}, CSS, JavaScript and HTML. Additionally, HTML5 gives us WebGl, the 2d Canvas API, SVG's, and Web Components to work with. --> -->
 
------------------------------------------------------------------------------------
+<!-- ----------------------------------------------------------------------------------- -->
 
-![bg](./images/hero-white.png)
+<!-- ![bg](./images/hero-white.png) -->
 
-### Sub Questions
+<!-- ### Sub Questions -->
 
 <!-- To capture the key components from the three obstacles -->
 
-### _1. What is the most fitting methodology of compiling C++ geoprocessing   libraries to Web-Assembly?_
 <!--  First Obstacle -->
-### _2. How to design and create a client-side geoprocessing environment for data-users?_
+
 <!--  Second Obstacle -->
-### _3. How can wasm-compiled geoprocessing libraries be distributed and used in a client-side geoprocessing environment?_
+<!-- ### _3. How can wasm-compiled geoprocessing libraries be distributed and used in a client-side geoprocessing environment?_ -->
 <!-- First + Second -->
-### _4. What are the advantages and disadvantages of GIS applications created using a client-side geoprocessing environment powered by WebAssembly?_
+
 <!--  Third Obstacle -->
 -----------------------------------------------------------------------------------
 
@@ -432,54 +450,63 @@ h3 {color: #cccccc}
 
 -----------------------------------------------------------------------------------
 # Methodology
-- Incremental 
+<!-- - Incremental  -->
 <!-- Meaningful in between products -->
-- Iterative
+<!-- - Iterative -->
 <!-- Meaningful in between products -->
 
-### Per phase: 
+### Per phase 2 goals: 
 - Answer sub question
-- Develop use-case component
+- Develop component of use-case
 
-![bg right:50%](./images/3/method.png)
+![bg right:60% 91%](./images/3/method.png)
 
 -----------------------------------------------------------------------------------
 
 ![](./images/3/phase-1.png)
 
 # Phase 1
-- Study WebAssembly capabilities & features
+
+##### _What is the most fitting methodology of compiling C++ geoprocessing   libraries to WebAssembly?_
+
+<!-- - Study WebAssembly capabilities & features -->
 <!--  -->
-- Compile C++ libraries to Wasm (GCAL / GDAL)
+<!-- - Compile C++ libraries to Wasm (GCAL / GDAL) -->
 <!-- Different Methods -->
-- Analyse and compare performance.   
+<!-- - Analyse and compare performance.    -->
 <!-- Interested in what the performance drop will entail -->
 <!-- Compare to native  -->
+
 
 -----------------------------------------------------------------------------------
 
 ![](./images/3/phase-2.png)
 
-<!-- Will be characterized by development -->
-
 # Phase 2
-- Study existing visual geometry processing languages
+<!-- Will be characterized by development -->
+##### _How to design and create a client-side geoprocessing environment for data-users?_
+
+<!-- - Study existing visual geometry processing languages -->
 <!--  -->
-- Design & develop a visual language
+<!-- - Design & develop a visual language -->
 <!--  -->
-- Add necessary features step by step 
+<!-- - Add necessary features step by step  -->
 <!--  -->
+
 
 -----------------------------------------------------------------------------------
 
 ![](./images/3/phase-3.png)
 
 # Phase 3
-- Study code splitting & distribution methods
+
+#### _How can wasm-compiled geoprocessing libraries be distributed and used in a client-side geoprocessing environment?_
+
+<!-- - Study code splitting & distribution methods -->
 <!--  -->
-- Combine and align the results of phase 1 & 2
+<!-- - Combine and align the results of phase 1 & 2 -->
 <!--  -->
-- Reassess the wasm-compiled libraries
+<!-- - Reassess the wasm-compiled libraries -->
 <!-- This time judging their 'in the field' performance -->
 
 -----------------------------------------------------------------------------------
@@ -487,20 +514,26 @@ h3 {color: #cccccc}
 ![](./images/3/phase-4.png)
 
 # Phase 4
-- Study the environment itself
-<!--  -->
+### _What are the advantages and disadvantages of GIS applications created using a client-side geoprocessing environment powered by WebAssembly?_
+
+<!-- - Study the environment itself
+
 - Use it to develop geoprocessing applications
-<!--  -->
-- Assess its performance and usability
-<!--  -->
+
+- Assess its performance and usability -->
+
 
 -----------------------------------------------------------------------------------
 
 # <!-- fit --> 4. Preliminary Results 
 
-<!-- Part of the purpose of these P2 presentations is to give you an impression of the feasibility of this study. 
+<!-- Part of the purpose of these P2 presentations is to give you an 
+
+impression of the feasibility of this study. 
 
 Within this chapter, I will therefore name not only preliminary results, but all other aspects of how I have been preparing this study -->
+
+<!-- Not Directly related. Definitely count as preparation for this study -->
 
 <style scoped> 
 h1 { color: white; filter: drop-shadow(2px 2px 5px #111111);} 
@@ -543,7 +576,7 @@ Javascript interoperability ✔
 <!--  -->
 - Cityjson Validator
 <!--  -->
-- Rust & Wasm
+- Insight into WebAssembly
 
 -----------------------------------------------------------------------------------
 
@@ -553,9 +586,8 @@ Javascript interoperability ✔
 
 # 3. Internship
 
-- Web (Geo) Data processing
-- Image processing 
-- Commercial perspective
+- Insight into Web (Geo) Data processing
+<!-- - Image processing  -->
 
 
 -----------------------------------------------------------------------------------
@@ -566,8 +598,7 @@ Javascript interoperability ✔
 
 - Personal research project
 - Web-based 3D Engine build from first-principles
-- 2D and 3D data manipulation  
-<!-- 's suitability for linear algebra  -->
+<!-- - 2D and 3D data manipulation   -->
 
 -----------------------------------------------------------------------------------
 
@@ -577,10 +608,6 @@ Javascript interoperability ✔
 - Insight in geometry processing on the web
 - Insight in WebAssembly as a whole
 - A good start for the use case application
-<!-- 
-Insight in geometry processing on the web
-
- -->
 
 -----------------------------------------------------------------------------------
 
