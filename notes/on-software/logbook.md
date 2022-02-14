@@ -2,7 +2,7 @@
 
 ## FRI | 5 nov 2021 | Halting development
 
-![state of the art](./images/10-45_05-11-2021.PNG)
+![state of the art](../images/10-45_05-11-2021.PNG)
 
 Prototype status: all sorts of different things are possible at the moment. js - script conversion, saving to and loading from json. Objects, button gizmo's, log console, text input, etc. 
 
@@ -20,15 +20,26 @@ I am considering a do-over of the flow-chart rendering. We need svg based render
 
 - You are now finally allowed to continue development, but the writing introduced many considerations, resulting in choice paralysis. Find a component small enough to continue development, and make something
 
-## TUE | 8 feb 2021 | Picking up the pieces | FOCUS: UI
+## TODO:
+- [ ] Make configuring the graph feature complete, fun and intuitive
+- [ ] 
+
+## TUE | 08 feb 2021 | Picking up the pieces | FOCUS: UI
 
 Finally picking up where I left off. The Thesis proposal and presentation are finished, quite satisfied with both. The writing did generate a ton of new ideas which now make it hard to continue the work. 
+
+
+## THU | 10 feb 2022 | Starting up 
+quite pleased with the cyberpunky look
+
+
+
 
 # WEEK 02 / 15 -> UI
 
 # WEEK 03 / 15 -> UI
 
-# WEEK 04 / 15
+# WEEK 04 / 15 -> UI
 
 # WEEK 05 / 15
 
