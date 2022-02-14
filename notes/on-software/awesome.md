@@ -5,6 +5,12 @@
 - [GeoTIFF](https://geotiff.io/)
 - [Kadaster Labs](https://github.com/kadaster-labs/)
 
+## Awesome web-based VPL's
+- [WEG](https://docs.app.wnology.io/getting-started/what-is-wegnology/)
+- [nodeRED](https://nodered.org/)
+
+## Awesome
+
 ## Awesome web ingredients we will use: 
 - async / await 
 - [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
