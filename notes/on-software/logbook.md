@@ -37,6 +37,30 @@ quite pleased with the cyberpunky look
 
 # WEEK 02 / 15 -> UI
 
+# Tuesday
+Today the cables where reworked. Cable objects complicated too many things, and were hard to reason about. The new system just adds the connectivity state to the nodes themselves. 
+- Huge simplification of code. Easier to see where things go right and where things go wrong
+- BUT: this was a huge conversion. Still requires a ton of testing and debugging to get the cables to where they were before the changes 
+- Still a lot of legacy code here and there. Try to clean up after things are working nicely again. 
+- AFTER: add cables to history. Make cables selectable and deletable. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
