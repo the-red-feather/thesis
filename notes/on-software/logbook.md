@@ -41,7 +41,7 @@ quite pleased with the cyberpunky look
 Today the cables where reworked. Cable objects complicated too many things, and were hard to reason about. The new system just adds the connectivity state to the nodes themselves. As a consequence, the 'cable' class was deleted. Something called "CableVisual" was created, to in the future, house the visual aspects of the connection, such as the polyline generation, and selection
 - Huge simplification of code. Easier to see where things go right and where things go wrong
 - BUT: this was a huge conversion. Still requires a ton of testing and debugging to get the cables to where they were before the changes 
-- Still a lot of legacy code here and there. Try to clean up after things are working nicely again. 
+- Still a lot of legacy code here and there. Try to clean up after thi  ngs are working nicely again. 
 - AFTER: add cables to history. Make cables selectable and deletable. 
 
 
