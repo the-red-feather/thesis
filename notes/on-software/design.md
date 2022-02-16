@@ -1,9 +1,8 @@
 # Awesome: 
-- https://www.youtube.com/watch?v=DUS0xnvM-Z4
+- https://www.youtube.com/watch?v=DUS0xnvM-Z4 | https://www.youtube.com/watch?v=LSNF-HB6lk0
 
 
 # DESIGN 
-
 - Augmented coding!
 
 ## Fundamendal design idea of the flowchart: 

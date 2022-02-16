@@ -27,9 +27,5 @@
 - [overview of WASM Browser features](https://web.dev/webassembly-feature-detection/)
   - This mentions SIMD 
 
-
-
-
-
 ## Awesome other: 
 - [geodata search engine](https://www.azavea.com/blog/2021/04/05/getting-started-with-stac-apis/)
