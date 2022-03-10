@@ -28,7 +28,7 @@
 
 ### Questions / remarks regarding the recap? 
 
-- differences betweem react (functional programming) / vua (oop) 
+- differences betweem react (functional programming) / vue (oop) 
 
 [SV]:
 - you use webpack -> its bloated

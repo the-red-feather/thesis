@@ -208,6 +208,13 @@ __components__
   - `Edit`
     - [x] fix all undo / redo behavior
     - [x] fix copy-pasting behavior
+  - `Add`
+    - Make sure we have a nice add menu again
+  - side-menu
+    - [X] publish settings to a side menu 
+    - [X] show settings for input, output, process, and canvas
+    - this can be a stepping stone for the html nodes
+
   - ``
 
 - std
@@ -234,7 +241,6 @@ Get a head start on week 6
 There are a number of things to expand upon. What is wisdom?
 
 __TODO__
-
 - [ ] List support
 - [ ] Matrix support
 - [ ] Render mesh 
@@ -242,17 +248,12 @@ __TODO__
 
 
 __Features__
-
 - [ ] Render selection
 - [ ] HTML widgets 
 - [ ] better looking at data in side-menu
 
 
-
 - Matrix types
-
-
-
 
 ===============================================================================
 
