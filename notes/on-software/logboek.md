@@ -167,9 +167,9 @@ __at the end of this week, we will have:__
 # Friday
 - variables 
   - [ ] auto type convertion? 
-  - [ ] caching
-  - [ ] looking at cached data?
-  - [ ] selecting cables ?
+  - [x] caching
+  - [x] looking at cached data?
+  - [x] selecting cables ?
 
 
 
@@ -178,53 +178,90 @@ __at the end of this week, we will have:__
 
 # WEEK 05 / 15
 
+Theme of the Week: stabilize
+
 all sorts of things are broken or missing at this point. 
 Once the 'main geo-vpl loop' is done (create something visually, and render it)
 Its time to solve these stability concerns.
+
+
 Additionally, I wish to get some sort of usable STD in here, to expand visualization and basic usefulness.
 
-Theme of the Week: stabilze, and get 
+
 
 
 __at the end of this week, we will have:__
 - the full app, working and stable. 
-- Better STD libraries with actually useful functionality 
-Phase 3 is then 
 
 __components__
 
 - stability
   - menu 
-    - [ ] dropdown menu html component 
-    - [ ] `File` menu
-    - [ ] `Edit` menu
-    - [ ] `Add` menu
-    - [ ] `Settings` menu
-    - [ ] `View` menu
+    - [x] dropdown menu html component 
+    - [x] `File` menu
+    - [x] `Edit` menu
+    - [x] `Add` menu
+    - [x] `Settings` menu
+    - [x] `View` menu
   - `file`
-    - fix all saving & loading procedures
+    - [x] fix all saving & loading procedures
   - `Edit`
-    - fix all undo / redo behavior
-    - fix copy-pasting behavior
+    - [x] fix all undo / redo behavior
+    - [x] fix copy-pasting behavior
   - ``
 
 - std
   - include as much of the `geon-engine` as possible
   - figure out how to organize this
 
+# Monday
+# Tuesday
+# Wednesday
+# Thursday
+The stability issues raised many things, which are now all fixed. 
+
+# Friday
+Get a head start on week 6
+
+
+- [ ] Render selection
+
+
 ===============================================================================
 
 # WEEK 06 / 15
 
-Theme Of The Week: Cleanup of last week probably
+There are a number of things to expand upon. What is wisdom?
+
+__TODO__
+
+- [ ] List support
+- [ ] Matrix support
+- [ ] Render mesh 
+- [ ] Render pointcloud
+
+
+__Features__
+
+- [ ] Render selection
+- [ ] HTML widgets 
+- [ ] better looking at data in side-menu
+
+
 
 - Matrix types
+
+
+
 
 ===============================================================================
 
 # WEEK 07 / 15
 
-Theme Of The Week: Now that we have the desired application, its time to use it
+Theme Of The Week: WASM 
+
+Its time to truly start the WASM part of this thesis, now that the other ingredients are at the very least present.
+
 
 # WEEK 08 / 15
 
