@@ -240,18 +240,45 @@ Get a head start on week 6
 
 There are a number of things to expand upon. What is wisdom?
 
-__TODO__
-- [ ] List support
+Three main trajectories: 
+
+- I GEOFRONT Features: _We are *so* close to many features which I would love to add_
+  - basic Profiler
+  - List support
+  - Json / Dictionary support
+  - Array / Buffer support
+  - *STD type registry*
+
+
+- II GEOFRONT-STD _Use Rust to create an std library._ _Compare it to the same library, all written in plain js / ts_
+  - Matrix
+  - Pointcloud
+  - Mesh
+  - Delaunay
+  - Random 
+  - *STD type registry*
+
+
+- III CGAL / GDAL: _At some point, we would like to use existing third-party code. This needs to be easy to configure, and easy to integrate with the rest_
+  - See to the npm integration
+  - *See to the integration of types*
+  - Determine how to integrate the found GDAL wasm project 
+  - Use emscriptem to convert the OGR component of GDAL
+
+
+__TODO: STD__
 - [ ] Matrix support
 - [ ] Render mesh 
 - [ ] Render pointcloud
 
 
-__Features__
-- [ ] Render selection
-- [ ] HTML widgets 
-- [ ] better looking at data in side-menu
-
+__TODO: Features__
+- [X] Render selection
+- [X] HTML widgets 
+- [.] better looking at data in side-menu
+- [ ] Array support
+- [ ] List support
+- [ ] Object / Json support
 
 - Matrix types
 

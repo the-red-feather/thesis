@@ -12,7 +12,8 @@ https://www.reddit.com/r/WebAssembly/comments/qn9a5j/i_made_emception_emscripten
 # IDEA: swap 'storage' & 'processing' in the geoinformation chain.
 - Where can I find the geo-information chain? hmmm...
 
-
+# This is FANTASTIC communication. Using the power of client-side web calculations, we could make SO many things WAY more intuitive
+https://observablehq.com/@mourner/non-robust-arithmetic-as-art
 
 
 
