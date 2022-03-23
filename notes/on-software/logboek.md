@@ -49,7 +49,7 @@ Today the cables where reworked. Cable objects complicated too many things, and 
 - Cables are now sort of working again. Cable history working, just weird sometimes, cant be bothered to fix it right now 
 
 
-## Thursday 
+## Thursday -> Loading Plugins
 TODAY, let us truly begin...
 Flow editor is fine for now, we need to get started with the real deal.
 - But where do we start? 
@@ -289,6 +289,24 @@ __TODO: Features__
 Theme Of The Week: WASM 
 
 Its time to truly start the WASM part of this thesis, now that the other ingredients are at the very least present.
+
+
+geoprocessing
+- data modelling
+- complex data model
+
+- qgis 
+  - features 
+  - attributes 
+  - geometries
+
+- PDAL 
+
+- full pipeline geoprocessing 
+  - what library to integrate 
+  - how would it work
+
+
 
 
 # WEEK 08 / 15
