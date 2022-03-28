@@ -1,8 +1,4 @@
-Sorry! I miss-scheduled! 
-
-
-
-# meeting 3
+# meeting 19
 |          |                         |
 | -------- | ----------------------- |
 | date     | 2022-03-~28~29 Tuesday (Sorry!)
