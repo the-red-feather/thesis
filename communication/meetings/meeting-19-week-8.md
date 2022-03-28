@@ -25,6 +25,7 @@ A higher level-way of accessing a geojson will eventually be desired I think, bu
 
 ## - Geo-retrieval exploration
 ![](../../P4/material/demo.png)
+
   - OSM Features
   - WMS Basemap 
 ## - Coming up with a use-case application 
