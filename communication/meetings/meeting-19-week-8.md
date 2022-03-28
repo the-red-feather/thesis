@@ -24,7 +24,7 @@ Multiple things had to be created to make this succeed:
 A higher level-way of accessing a geojson will eventually be desired I think, but this works for now, and I think it is a nice feature that this tool is able to deal with raw data processing.
 
 ## - Geo-retrieval exploration
-![](../../P4/material/demo.png)
+![Demo](../../P4/material/demo.png)
 
   - OSM Features
   - WMS Basemap 
