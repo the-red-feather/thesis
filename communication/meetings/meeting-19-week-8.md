@@ -24,6 +24,8 @@ Multiple things had to be created to make this succeed:
 A higher level-way of accessing a geojson will eventually be desired I think, but this works for now, and I think it is a nice feature that this tool is able to deal with raw data processing.
 
 ## - Geo-retrieval exploration
+https://github.com/thegeofront/thesis/blob/main/P4/material/demo.PNG
+
 ![Demo](../../P4/material/demo.png)
 
   - OSM Features
