@@ -1,7 +1,7 @@
 # meeting 19
 |          |                         |
 | -------- | ----------------------- |
-| date     | 2022-03-~28~29 Tuesday (Sorry!)
+| date     | 2022-03-~28~29 Tuesday ?? (Sorry!)
 | present  | Ken, Stelios, Jos
 | Location | Faculty
 
