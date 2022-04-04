@@ -282,14 +282,97 @@ __TODO: Features__
 
 - Matrix types
 
+# Wednesday
+- [X] get the setup over at this side 
+- [X] figure out how to return a tuple from rust 
+  -> this is hard. 
+  -> option 1: make it all rust objects. They can be converted, and are fine to use when using 'inspectable'
+  -> option 2: foreign objects.
+  -> I Think [this][game-of-life] is our best chance forward. retrieving a pointer, and buffer size, creating the buffer on the javascript side
+
+- [X] make a very dumb, basic type encoding
+  - just based around string enums, and 'thrusting' that the any type contains what we need when it has 'typename'
+  - TODO typechecking! 
+  -> THIS IS HARD AND IMPORTANT 
+  -> we cant do this naively, we will require some sort of extra ensurance that we are dealing with the right types. 
+  -> Edit: came up with a 'trait' idea, where foreign types can 'earn' the right to be treated as if it were a `Point`, `Vector`, or `Mesh`, if it contains the right data.
+
+
+- [X] make some sort of data import widget, or a random list of points generator 
+
+[game-of-life]: https://rustwasm.github.io/book/game-of-life/implementing.html#rendering-to-canvas-directly-from-memory
+
+RNG 
+
+- [ ] return points as { buffer: Float64Array, typename: "multi-point-3"}
+- [ ] return triangles as { buffer: Uint32Array, typename: "int-matrix-3"}
+- [ ] return mesh as { typename: "Mesh", vertices: {... typename: MultiPoint}, triangles: {typename: IntMatrix-3}}
+- [ ] visualize the shit out of it! 
+
+
+# Thursday
+
+- [X] text file input 
+- [X] text file output
+- [X] get a nice xyz file, visualize it using something else to know what it is 
+- [X] xyz string to multiVector
+- [X] visualize multiVector 
+- [X] multiVector to xyz string
+- [X] test that these are the same strings
+- [X] multiVector to list<vector>
+- [X] list<vector> to multiVector 
+- [X] expand traits 
+- [X] do better trait checking 
+- [X] fix the trait bugs
+
+> The way the traits are actually being used right now are waaaayyy dumber than the whole trait system now implemented
+> This suggest that this might be over-engineered. Maybe we just need to do some minor, runtime type checking, if all 
+> field are present, of the correct type, instead of some weird connection-time type checking 
+> ohwell...
+
+# friday
+
+- [ ] move the list of vectors left
+- [X] add lists to the visualizer
+- [X] refactor graph a bit
+- [x] expand full graph recalculation starters to inputless nodes
+- [X] reintroduce cables 
+- [X] implement the cables a bit , remove the workaround code
+- [X] make widgets more 'normal' compared to operations: remove the excessive 'ifs'
+- [X] fix bugs
+- [X] detect list at connect-time
+  - [ ] make this better
+- []
+
+- implement the 'list comparrison' thing
+- [X] generate random vectors
+- [X] apply the DT to these poin ts 
+
+- apply more runtime / connection-time list
+
+
+- [X] callback & calculation overhaul
+   - [ ] list calculation overhaul 
+   - [ ] how to specify a list? 
+   - [ ] how to take items from a list? 
+   - [ ] Nodes do not like variation of their input & output sockets. This is also troublesome for graph's multilinkedlist reasons
+
+
+
+
+
+  TODO
+- [X] internal (widget) operations
+
+
+
 ===============================================================================
 
 # WEEK 07 / 15
 
-Theme Of The Week: WASM 
+...
 
-Its time to truly start the WASM part of this thesis, now that the other ingredients are at the very least present.
-
+That was the original idea
 
 geoprocessing
 - data modelling
@@ -307,9 +390,34 @@ geoprocessing
   - how would it work
 
 
+# Monday
+
+# Tuesday
+
+Challenge for the coming 3 days: figure out how to load and visualize a geojson
+- [X] find and integrate a triangulator 
+- [X] figure out how to organize STD and STD types
+- [X] load and decode a geojson
+- [X] make a 'get' component
+- [ ] make sure we can loop over the get component
+
+# Wednesday
+- [ ] make a 'get' component
+- [ ] 
+
+- SUCCES! already completed the challenge! 
+
+
+
+
 
 
 # WEEK 08 / 15
+
+Theme Of The Week: WASM 
+Its time to truly start the WASM part of this thesis, now that the other ingredients are at the very least present.
+- GDAL 
+
 
 # WEEK 09 / 15
 

@@ -39,9 +39,9 @@
 
 ## Naming 
 
-| Graph | Normal Programming   |
-|-------|----------------------|        
-| Cable | Variable             | 
-| Gizmo | Method on 1 variable | 
-| Node  | Pure Function        | 
+| Graph  | Normal Programming   |
+|--------|----------------------|        
+| Cable  | Variable             | 
+| Widget | Method on 1 variable | 
+| Node   | Pure Function        | 
 
