@@ -421,6 +421,8 @@ Its time to truly start the WASM part of this thesis, now that the other ingredi
 
 # WEEK 09 / 15
 
+Starting writing...
+
 # WEEK 10 / 15
 
 # WEEK 11 / 15
