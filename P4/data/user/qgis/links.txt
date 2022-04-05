@@ -1,0 +1,3 @@
+QGIS 2015 user survey : 
+https://blog.qgis.org/2016/08/23/results-of-the-qgis-user-survey-2015/
+https://docs.google.com/forms/d/1G6p3QFUJBfxv3ySnryDRGMmF-e7PHWUOwrGo9OH2Yog/viewanalytics

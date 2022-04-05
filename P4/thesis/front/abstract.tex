@@ -1,9 +1,22 @@
 
 \chapter*{Abstract}
 
+Most industry-standard geoprocessing libraries such as CGAL are difficult to use by anyone but experts in the field. A steep learning curve combined with relatively complex installation procedures hinders quick experimentation, demonstration, and widespread utilization of these powerful tools. It also limits the interdisciplinary exchange of knowledge, and compromises the return of investment the general public should expect of publicly funded research.
 
-\emph{[Should fit on one page.]}
+% In one sentence: It is my goal to make your grandma enjoy CGAL.
 
-Lemongrass frosted gingerbread bites banana bread orange crumbled lentils sweet potato black bean burrito green pepper springtime strawberry ginger lemongrass agave green tea smoky maple tempeh glaze enchiladas couscous. Cranberry spritzer Malaysian cinnamon pineapple salsa apples spring cherry bomb bananas blueberry pops scotch bonnet pepper spiced pumpkin chili lime eating together kale blood orange smash arugula salad. Bento box roasted peanuts pasta Sicilian pistachio pesto lavender lemonade elderberry Southern Italian citrusy mint lime taco salsa lentils walnut pesto tart quinoa flatbread sweet potato grenadillo. 
+% This requires making something extremely user-friendly compared to QGIS / python (the vpl)
+% As well as making it extremely accessible (wasm: no install, direct usage)
 
-Lemongrass frosted gingerbread bites banana bread orange crumbled lentils sweet potato black bean burrito green pepper springtime strawberry ginger lemongrass agave green tea smoky maple tempeh glaze enchiladas couscous. Cranberry spritzer Malaysian cinnamon pineapple salsa apples spring cherry bomb bananas blueberry pops scotch bonnet pepper spiced pumpkin chili lime eating together kale blood orange smash arugula salad. Bento box roasted peanuts pasta Sicilian pistachio pesto lavender lemonade elderberry Southern Italian citrusy mint lime taco salsa lentils walnut pesto tart quinoa flatbread sweet potato grenadillo. 
+The goal of this research to improve the accessibility of geodata processing and analysis libraries, without adding major changes to those tools, or adding many responsibilities to the maintainers of these libraries. 
+
+we offer the "Geofront" application, which achieves this accessibility in two ways: 
+Firstly, geoprocessing libraries are compiled to WebAssembly: binaries which can be run in any modern browser, client-side. This mitigates the need for any installation, and allows the software to be directly used as soon as a website is fully loaded. WebAssembly offers a performance comparable to native usage. Geofront accepts these binaries as plugins, and as part of its source code. 
+
+Secondly, Geofront itself is set up as a web-based visual programming environment, complete with a 3D viewer and WMS, WFS \& WMTS support. Using these tools, users can interactively run these geoprocessing libraries with different datasets and parameters. Using visual programming, the user can chain and alter geoprocessing steps, visualize in-between products, and save & load these workflows.
+
+While the research restrains itself from empirically measuring an aspect as nebulous as 'accessibility', it does demonstrate ...
+
+% This empowers users to create small geoprocessing demo's, and share these 
+
+% With geofront, geoprocessing libraries can be loaded and used interactively. Users are also able to create and share flowcharts.
