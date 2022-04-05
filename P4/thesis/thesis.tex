@@ -1,0 +1,117 @@
+
+\documentclass[10pt,a4paper,twoside,openright,fleqn,%
+               parskip=half,%
+               BCOR=5mm,DIV=10,footinclude=false%
+               numbers=noenddot,cleardoublepage=empty]{scrbook}
+
+\usepackage[utf8]{inputenc} 
+\usepackage{mathpazo} %-- use Palatino font
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[square]{natbib}
+\usepackage{subcaption} 
+\usepackage{xspace}
+\usepackage[breaklinks=true,
+            colorlinks=true,
+            linktocpage=true,
+            allcolors=colorforlinks]{hyperref} 
+\usepackage[ruled,vlined,algochapter,linesnumbered]{algorithm2e}
+\usepackage{calc}
+\usepackage{ccicons} 
+\usepackage{xspace} 
+\usepackage{booktabs} 
+\usepackage[english]{babel}  
+\usepackage{listings}
+\usepackage{scrhack} % ignore warnings about deprecated KOMA-Script
+\usepackage[printonlyused,smaller,withpage]{acronym}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{todonotes}
+
+
+
+
+\input{mysettings}
+
+\setcapindent{1em} %-- for captions of Figures
+% \setcounter{tocdepth}{\sectiontocdepth}
+
+\subject{MSc thesis in Geomatics}
+\title{\myTitle}
+\author{\myName}
+\date{\myGraduationMonth\xspace\myGraduationYear}
+\publishers{A thesis submitted to the Delft University of Technology in partial fulfillment of the requirements for the degree of Master of Science in Geomatics}
+
+\begin{document}
+
+
+%******************************************************************
+% Frontmatter
+%******************************************************************
+\frontmatter
+
+%******************************************************************
+% The cover page 
+% (it needs to be manually edited and exported as a PDF)
+% (see folder README.txt in folder 'cover')
+% (I would not include it for the version you put in the repository)
+%******************************************************************
+
+\includepdf{cover/cover_front.pdf}
+\cleardoublepage
+
+\maketitle[3]
+
+% \clearpage
+\input{front/titleback}
+\cleardoublepage
+\include{front/abstract}
+\include{front/acknow}
+\clearpage
+\include{front/contents}
+\clearpage
+\include{front/acronyms}
+\cleardoublepage
+
+%******************************************************************
+% Mainmatter
+%******************************************************************
+\mainmatter
+
+\include{chapters/introduction}
+\include{chapters/relatedwork}
+
+
+\appendix
+
+%%%
+\cleardoublepage
+%-- *mandatory* appendix about the reproducibility
+\include{appendices/reproducibility}
+%-- other examples of Appendix, not mandatory
+\include{appendices/someumldia}
+
+% *****************************************************************
+% Backmatter
+%******************************************************************
+\backmatter 
+
+%- bibliography
+\bibliographystyle{apalike}
+\bibliography{myreferences}
+
+
+
+\clearpage
+\include{back/colophon}
+\cleardoublepage
+
+
+\includepdf{cover/cover_back.pdf}
+
+\end{document}
+
+
+
+
+

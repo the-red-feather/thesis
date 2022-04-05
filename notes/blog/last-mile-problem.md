@@ -25,11 +25,10 @@ This idea of diminishing returns is echoed by the famous 80/20 rule, which state
 
 ## How does this relate to geomatics?
 
-But, what do I mean by saying that Geomatics as an industry & field of study is subject to this same issue? 
+I would argue that the field of geomatics also has a problem which looks like a "Last Mile Problem". 
+
 
 The field of geomatics also deals with problems of distribution. This is most often dubbed as "Operations" or joined with development as "DevOps". Like the aforementioned fields, these logistics also deal with multiple levels: Sharing software between developers is a different process entirely than sharing software from a developer to end-users, let alone sharing software _between_ end users.
-
-I would argue that the field of geomatics also has a "Last Mile Problem". A  
 
 
 
