@@ -8,7 +8,7 @@ I've noticed that a common problem occurs when people try to actually create som
 _a more thorough explanation_
 
 # The Last Mile problem
-Geofront is created to solve a problem dubbed as "the last mile problem." This article attempts to explain what is meant by that, and why this is relevant.
+Geofront is created to solve a problem within the field of geomatics I dubbed as "the last mile problem." This article attempts to explain what is meant by that, and why this is relevant.
 
 <br>
 
@@ -19,11 +19,14 @@ The "last mile problem" is a well-known phenomenon present in both the field of 
 
 Even though these distances might seem trivial compared to a substantial logistical chain or a long train journey, they nonetheless play a key role, maybe even *The* most important role. It does not matter if a parcel traveled half the globe, or if a traveler arrives in the city of destination. If the last mile is too cumbersome, or it takes too long, customers will choose other services. This is why these miles are marked as a "problem" by both industries / fields of study. Finding solutions for overcoming these miles are vital to the entire enterprise.   
 
-<!-- This idea of diminishing returns is echoed by the famous 80/20 rule, which states that the first 80 percent of work can be done in half the time needed for a particular project, but that the last 20 percent of work requires the other half.  -->
+This idea of diminishing returns is echoed by the famous 80/20 rule, which states that the first 80 percent of work can be done in half the time needed for a particular project, but that the last 20 percent of work requires the other half. 
 
 <br>
 
 ## How does this relate to geomatics?
+
+But, what do I mean by saying that Geomatics as an industry & field of study is subject to this same issue? 
+
 The field of geomatics also deals with problems of distribution. This is most often dubbed as "Operations" or joined with development as "DevOps". Like the aforementioned fields, these logistics also deal with multiple levels: Sharing software between developers is a different process entirely than sharing software from a developer to end-users, let alone sharing software _between_ end users.
 
 I would argue that the field of geomatics also has a "Last Mile Problem". A  
