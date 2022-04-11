@@ -1,21 +1,23 @@
 
 \chapter*{Abstract}
 
-Most industry-standard geoprocessing libraries such as CGAL are difficult to use by anyone but experts in the field. A steep learning curve combined with relatively complex installation procedures hinders quick experimentation, demonstration, and widespread utilization of these powerful tools. It also limits the interdisciplinary exchange of knowledge, and compromises the return of investment the general public should expect of publicly funded research.
+Most industry-standard geoprocessing libraries such as CGAL are difficult to use by anyone but experts in the field. A steep learning curve combined with relatively complex installation procedures hinders quick experimentation, demonstration, and widespread utilization of these powerful tools. It also limits the interdisciplinary exchange of knowledge, and compromises the return of investment the general public may expect of publicly funded research.
 
-% In one sentence: It is my goal to make your grandma enjoy CGAL.
+% In one sentence: It is my goal to make your grandma use CGAL.
 
 % This requires making something extremely user-friendly compared to QGIS / python (the vpl)
 % As well as making it extremely accessible (wasm: no install, direct usage)
 
-The goal of this research to improve the accessibility of geodata processing and analysis libraries, without adding major changes to those tools, or adding many responsibilities to the maintainers of these libraries. 
+The goal of this research to improve the accessibility of geodata processing and analysis libraries, without adding major changes to those tools, and by utilizing the capabilities of the modern web. This goal is captured by the research question: How well do modern web technologies improve the accessibility of existing geoprocessing libraries?
+
+The answer is in two fold. First
 
 we offer the "Geofront" application, which achieves this accessibility in two ways: 
 Firstly, geoprocessing libraries are compiled to WebAssembly: binaries which can be run in any modern browser, client-side. This mitigates the need for any installation, and allows the software to be directly used as soon as a website is fully loaded. WebAssembly offers a performance comparable to native usage. Geofront accepts these binaries as plugins, and as part of its source code. 
 
-Secondly, Geofront itself is set up as a web-based visual programming environment, complete with a 3D viewer and WMS, WFS \& WMTS support. Using these tools, users can interactively run these geoprocessing libraries with different datasets and parameters. Using visual programming, the user can chain and alter geoprocessing steps, visualize in-between products, and save & load these workflows.
+Secondly, Geofront itself is set up as a web-based visual programming environment, complete with a 3D viewer and WMS, WFS \& WMTS support. Using these tools, users can interactively run these geoprocessing libraries with different datasets and parameters. Using visual programming, the user can chain and alter geoprocessing steps, visualize in-between products, and save \& load these workflows.
 
-While the research restrains itself from empirically measuring an aspect as nebulous as 'accessibility', it does demonstrate ...
+% While the research restrains itself from empirically measuring an aspect as nebulous as 'accessibility', it does demonstrate ...
 
 % This empowers users to create small geoprocessing demo's, and share these 
 

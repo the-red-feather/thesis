@@ -423,6 +423,28 @@ Its time to truly start the WASM part of this thesis, now that the other ingredi
 
 Starting writing...
 
+
+## Wednesday 
+
+Found a bunch of very useful Cpp -> wasm video's 
+https://www.youtube.com/watch?v=skK8aId86E0
+https://www.youtube.com/watch?v=qZ_zyxxXaAM
+https://www.youtube.com/watch?v=WHwl8mqVRUg
+https://www.youtube.com/watch?v=9lxnm9a-Yi8
+
+
+
+
+## Thursday
+
+Initial demo's using cgal on the web are FINALLY working! 
+
+- [ ] cleanup
+- [ ] try to do something more complex with CGAL 
+- [ ] new wasm demo: GDAL
+- [ ]
+
+
 # WEEK 10 / 15
 
 # WEEK 11 / 15

@@ -1,0 +1,30 @@
+\chapter{Conclusion}
+
+In this article we described the design and functionality of Geofront, A web-based 
+
+We developed this software and made it available through the official QGIS plugins repository.
+Furthermore, we tested the plugin by loading multiple CityJSON files in QGIS and inspecting the data loaded.
+We focused on a way to solve the object-relational mapping between CityGML and QGIS’s relational model in such a way that QGIS 3D functionality would become more efficient for the user. This means that we had to compromise on a simpler “flattened” representation of city objects in order to bring together their essential semantic information (e.g., object type and attributes) in one layer along with their geometry. 
+We believe this is an unavoidable trade-off in the process of loading 3D city model data into a traditional GIS data model, such as QGIS, which stores data in a tabular format. 
+While there are certain nuances to our approach that could be further refined in the future, we believe that this approach provides the best possible way of representing 3D city model
+data in a GIS.
+
+QGIS has been proven to be a useful tool for the inspection and visualization of data. 
+The support for CRS in QGIS provides a powerful tool for the manipulation and visualization of data sets that utilize heterogeneous horizontal and vertical units (e.g., in EPSG 4979). 6
+Furthermore, QGIS provides a plethora of processing and saving tools, by incorporating most GRASS (https://grass.osgeo.org/) functions and the ability to transform data formats
+through GDAL (https://gdal.org/). 
+The lack of support for textures, though, still poses limitations to the extent to which QGIS can offer visualization for some data sets.
+
+By using CityJSON Loader against a number of open 3D city model data sets we identified a lack of metadata information in them. 
+For instance, the Helsinki data set was missing its coordinate system definition, which forced us to manually identify it from the vendor’s website and specify the CRS during loading. 
+We believe defining more information in the metadata of a CityJSON file would provide a better description to users regarding the nature and locality of the data. 
+Therefore, we strongly suggest that CityJSON and CityGML data producers further focus on the subject of metadata storage.
+
+While QGIS and similar software (such as ArcGIS) have been proven to be robust tools for proper spatial analysis over the last few decades, the rise in popularity of data sets with more complex data models is becoming a challenging task. 
+This applies not only to CityGML, but also to other formats of data such as INSPIRE data sets, which were originally designed in UML and are also subject to object-relational impedance mismatch. 
+Unless a proper solution for GIS software to support more complex data structures (e.g., trees of hierarchy) is found, the
+manipulation of such data will remain a cumbersome process for GIS users and researchers.
+
+In the future, we intend to enrich the functionality of the plugin by providing more tools for the manipulation of CityJSON files through QGIS. 
+Our initial intention is to focus on the incorporation of certain processes of cjio as QGIS processing algorithms. 
+Furthermore, we would like to investigate the possibility of exporting data in CityJSON from QGIS.
