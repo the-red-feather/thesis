@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="HTkb3zkv8DN6F-MRXYvz" name="Page-1">
-        <mxGraphModel dx="1893" dy="712" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#404040" math="0" shadow="0">
+        <mxGraphModel dx="1893" dy="568" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#404040" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -222,20 +222,23 @@
                 <mxCell id="8" value="use GDAL for a crs translation " style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="642" y="910" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="Research Questions ?!" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="9" value="Research Questions ?!" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-413" y="164.79" width="146" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="add partial recalculations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;strokeColor=#005700;fontColor=#ffffff;" vertex="1" parent="1">
+                <mxCell id="10" value="add partial recalculations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;strokeColor=#005700;fontColor=#ffffff;" parent="1" vertex="1">
                     <mxGeometry x="73" y="240" width="117" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="Make it functional in GEOFRONT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;fontColor=default;strokeColor=default;" vertex="1" parent="1">
+                <mxCell id="11" value="Make it functional in GEOFRONT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=default;fontColor=default;strokeColor=default;" parent="1" vertex="1">
                     <mxGeometry x="808" y="827" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="Build better geo-types" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="13" value="Build better geo-types" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="307" y="57" width="160" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="Add lots of basic geo types, and things to do with those types" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="14" value="Add lots of basic geo types, and things to do with those types" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="496" y="57" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Write down all Chapters, sections, and subsections" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-475" y="256" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
