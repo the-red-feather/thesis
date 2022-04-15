@@ -181,6 +181,121 @@ WebAssembly COULD solve both, so this study includes WebAssembly as
      - Then load these plugins lazily: only when needed.
 
 
+Q: 1 & 2 are explainable from the introduction story. But why 3?
+A: 
+
+
+
+## Justifications 
+
+### Why a Visual Programming interface?
+
+To enable the interplay of the following three features: 
+
+1. Alter the process without recompiling
+2. Use UI to quickly and easily alter input data.
+3. Visualize in-between products in 3D. 
+
+Each of these steps is individually possible with regular programming. Feature 1 can be achieved using hot-reloading. For feature 2, a regular GUI debug menu can be used. For feature 3, we can write and save in-between products, and open them up a 3D viewer of choice. 
+
+What makes a VPL special, is its ability to seamless integrate all three of these aspects, and allow interplay \emph{between} these aspects.
+
+
+
+
+### Why web-based?
+
+- accessible
+    - immediately usable -> no installation
+    - cross platform
+    - easy to integrate with end-user applications (often web applications).
+    - easy maintainability (just update website, no need to distribute installers)
+
+- one-of-software argument
+
+- makes conceptual sense for end-users with certain applications: 
+  - "You download something from the internet by using an internet browser".
+
+The "one of" software argument: QGIS is excellent for users who use it daily or at least weekly. 
+
+(use the QGIS user data you found)
+
+BUT, users who want to access and process geodata \emph{once in a while}, you ideally want something more temporary. Web Applications make more sense in this regard: No updates, no background processes, no 'presence' on the machine itself. Just go to the website, do what you need to do, and close the browser again. Similar to webshops.
+
+This is in addition to the obvious advantages, like no need to install, easy maintainability, and cross-platform distribution by default.
+
+Finally, using the web ensures that the code will run on all devices: native, mobile, desktop, IOT devices
+
+
+
+### Why WebAssembly?
+
+To allow for the previous two (VPL + WEB) without a compromise to speed
+
+On its own: WebAssembly is useful for being containerized binary code. 
+- Binary: WebAssembly is close to machine code, making it very performant.
+- Containerized: the main advantage of WebAssembly over normal binaries is security. wasm can be reasoned about in a virtual, containerized manner, since it uses virtual memory and a system of incremental privileges. WebAssembly binaries cannot access memory outside of its designated memory pool, making segmentation errors harmless. The incremental privileges also ensure that binaries cannot access anything the user did not explicitly allow for. 
+
+Taken together, this makes WebAssembly a more secure alternative to regular binaries. This is also why browsers added support for WebAssembly, but not for regular binaries: Adding support for regular binaries would be a substantial risk to the security of all internet users.
+
+
+
+### Why Architecture use-case
+
+- Perfect target audience of an 'edge case user group'. 
+  - Users are not considered 'geodata experts', but who could benefit from tools like GDAL / CGAL, if presented in the right manner.
+- Author experience with the target audience. 
+- Geomatics \emph{for the Build environment}. 
+
+
+### Geodata is big data. Will this web application be scalable to handle big datasets?
+
+One of the problems to address when considering the ergonomics of geodata processing, is the fact that geodata is almost always big data. A web application cannot be expected to process huge datasets. So how does geofront address this fundamental aspect of geoprocessing? 
+
+First, lets give the devil it's due. 
+- Even when processing "smaller" datasets of, lets say 4 GB, most of the 'flowchart niceties' of geofront will cease to be useful. Inspecting this data will take more time than its worth, and reconfiguring the flowchart will take a long time. This can be mitigated by using web workers, but it will still not be very ergonomic to work with. 
+- This is why performance is everything within geomatics.
+
+BUT: 
+
+- Even when we want to write a tool to deal with large datasets, we often test and develop this tool in a smaller context, with a smaller dataset first. The same thing is possible with geofront: 
+
+- Geofront is mostly meant as a sandboxing tool for experimentation: An environment try out different procedures, parameters, and different datasets. 
+
+- The flowcharts created with geofront are compilable to javascript. this allows any processing operation created with geofront to be executed from the command line using node.js. This is a way of how geofront can integrate with large-scale geodata pipelines. 
+
+The point is that even if we use server-side / supercomputer / big-data geoprocessing, we still want to be able to be able to ergonomically and correctly configure these geoprocesses. Geofront could still assist with that.
+
+BUT MOREOVER:
+
+The possibility of client-side geoprocessing also allows for an entirely new geoprocessing workflow, which could replace some use-cases that now require big-data processing and storage. Instead of storing big datasets of pre-processed results, by using client-based, on demand geoprocessing, an application could take a general big-data base layer, and process it on-demand, with a scope and settings determined by the end-users. 
+
+This type of \emph{Process Streaming} is certainly not a drop-in replacement for all big-data use cases. But, in cases which can guarantee a 'local correctness', this should be possible. Examples of this are a delaunay triangulation, TIN interpolation or image filter-based operations. This could be a more cost-effective outcome, as server farms \& Terabytes of storage are time consuming, expensive phenomenon.
+
+
+
+
+### Why not some other environment / Other Client-side geoprocessing innitiatives
+
+None suffices (But i also haven't searched a whole lot)
+
+### Why not build everything as a local application, and publish the entire thing as wasm?
+
+That would be:
+- more performant (probably)
+- Better native experience
+- Better compilation to standard executable
+
+BUT:
+- The current setup allows for javascript interoperability. 
+  - This is useful for the purposes of UI, GUI, Web requests \& Responses, jsons, WebGL.
+  - These are all aspects that would have needed to be part of the C++ application, that we now get 'for free', since the implementation of these features are present within the browsers of clients. 
+- javascript can now also serve as its scripting language, making custom, scriptable components a possibility.
+
+% - That would be very hard to script with.
+
+
+
 
 ## Assessment
 _How is this study assessed?_
