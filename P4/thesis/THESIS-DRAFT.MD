@@ -56,6 +56,14 @@ The processing stages in-between are almost always performed on the desktop usin
 This thesis explores if these in-between processing steps could also be performed within a web application.  
 This way, geodata processing applications could profit from the ease of accessibility and maintainability granted by the web as a platform.  
 
+<!-- More Why's: 
+- making the geoweb more feature-rich
+- allowing quick demonstration (wapm)
+- allowing easy access (overleaf)
+
+
+ -->
+
 (similar to how overleaf is more accessible than desktop latex installation & usage)
 
 We ask ourselves if the current state of client-side web technologies are capable of facilitating multiple steps of geodata conversion, and what such an application would look like. 
@@ -132,11 +140,19 @@ BUT: most of these studies were conducted before the increase in javascript perf
 
 ## Client-side Web Technologies 
 What do we mean with this term: 
+- HTML5 
 - WebGL
 - The Canvas API
 - WebWorkers 
 - WebAssembly 
 - WebComponents
+
+### HTML5
+- leaflet
+
+### WebGL
+- three.js
+- Celsium
 
 ### WebAssembly 
 [Might not be relevant]
