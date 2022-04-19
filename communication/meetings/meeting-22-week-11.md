@@ -66,11 +66,11 @@ writing !
 - At the meeting: Finish a draft P4, something with all chapters & sections present
 - continue writing & improving
 
-## week 15
+## Week 15
 - At tuesday: DEADLINE: FINAL HAND-IN DATE OF P4
 - Prepare presentation
 
-### monday 
+## Week 16
+- At tuesday: PRESENT 
 
-### tuesday : **HAND IN DATE OF P4 !!**
-
+---------------------------------------------------------------------------------------------------

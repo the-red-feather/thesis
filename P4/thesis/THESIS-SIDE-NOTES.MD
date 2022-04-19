@@ -1,5 +1,7 @@
 # I must figure out how to frame this thesis more compactly. I must focus on a smaller aspect of geofront than the totality of it.
 
+
+
 # Q: What are all the ways I can frame geofront? 
 
 # A: 1. Geofront as a geoprocessing / analysis demo tool.
@@ -9,7 +11,6 @@
 # A: 2. Geofront as an integrator
 - Use rust, web, and c++ tools side by side, hand in hand
 
-
 # A: 3. Geofront as a lightweight QGIS replacement
 - The web is already used for geodata retrieval and visualization. If geodata processing & analysis is also possible, 
 there is nothing preventing geofront for becoming a full GIS.
@@ -18,6 +19,7 @@ there is nothing preventing geofront for becoming a full GIS.
 Advantages over grasshopper: 
 - No install 
 - Could compile to client-side application.  
+
 
 
 # Q: What are geofront's Standout features / what is the result of this thesis 
