@@ -11,10 +11,12 @@
 - Something else? 
 
 # Recap week 10
-Main todo's 
+Main todo's:
+
 WRITING
 - [X] Figure out the narative of the written thesis 
-  - [/]write down chapters & subchapters 
+  - [/]write down chapters & subchapters \
+
 CODING
 - [/] Finish up geofront
   - [X] Sliders 
