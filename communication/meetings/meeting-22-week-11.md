@@ -53,13 +53,14 @@ CODING
 
 # TODO coming weeks 
 
-## week 12 
+## Week 12 
+- write methodology 
+- write conclusion
+
+## Week 13 
 writing !
 
-## week 13 
-writing !
-
-## week 14
+## Week 14
 - At the meeting: Finish a draft P4, something with all chapters & sections present
 - continue writing & improving
 

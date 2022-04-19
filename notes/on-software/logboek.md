@@ -450,9 +450,10 @@ Initial demo's using cgal on the web are FINALLY working!
 ## Monday : Toying around with C++ & wasm, still an unruly beast | Meeting
 More emscripten business, not really getting anywhere. Meeting was very nice, very productive
 
-## Tuesday : 
+## Tuesday : Writing
 
-## Wednesday : Started writing | Geofront : Sliders & Bug fixes 
+
+## Wednesday : more writing | Geofront : Sliders & Bug fixes 
 Based on what Ken said, I wanted to get started on making a structured story, 
 
 ## Thursday : 
