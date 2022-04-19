@@ -1,0 +1,13 @@
+CODING
+- [ ] Geofront: continue the cleanup & STD
+  - Add Json & XYZ again
+  - 
+- [ ] add Startin properly, figure out how to integrate types
+   - Can easely be done with [inspectable](https://rustwasm.github.io/docs/wasm-bindgen/reference/attributes/on-rust-exports/inspectable.html)
+
+- [ ] add the cgal demo-project properly
+   - Not sure, maybe [this](https://emscripten.org/docs/api_reference/preamble.js.html#preamble-js)
+
+- [ ] add OSM feature data loader 
+
+- [ ] add WMS experiment

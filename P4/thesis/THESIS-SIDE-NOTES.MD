@@ -1,12 +1,33 @@
 # I must figure out how to frame this thesis more compactly. I must focus on a smaller aspect of geofront than the totality of it.
 
-# wHAT ARE THE MOST AMAZING THINGS THIS GEOFRONT ENVIRONMENT CAN DO?
+# Q: What are all the ways I can frame geofront? 
 
-
-# 1. Geofront as a geoprocessing / analysis demo tool.
+# A: 1. Geofront as a geoprocessing / analysis demo tool.
 - Frame Geofront as an expanded version of https://validator.cityjson.org/ this. 
+  - [this](https://validator.cityjson.org/) (a wasm web demo) + jsfiddle 
 
-- THE result of this research? This workflow: 
+# A: 2. Geofront as an integrator
+- Use rust, web, and c++ tools side by side, hand in hand
+
+
+# A: 3. Geofront as a lightweight QGIS replacement
+- The web is already used for geodata retrieval and visualization. If geodata processing & analysis is also possible, 
+there is nothing preventing geofront for becoming a full GIS.
+
+# A: 4. Geofront as a client-side, web based grasshopper replacement
+Advantages over grasshopper: 
+- No install 
+- Could compile to client-side application.  
+
+
+# Q: What are geofront's Standout features / what is the result of this thesis 
+
+# A: A web based visual programming language for geoprocessing. 
+That in itself does not exist yet, and should be reason enough in and of itself
+
+# A: 
+
+# A: 1. This workflow: 
   Locally: 
   1. Write cli geoprocessing / analysis application using a system-level language (rust, C++).
   2. Compile to `.wasm` + `d.ts` + `.js`.
@@ -16,7 +37,9 @@
      - Congrats, this is now a geofront plugin!
      - The CLI tool is loaded, with inputs for input parameters, and outputs for all files / data it usually writes.
   5. Build a demo script around the cli tool.
-     - Publish 
+     - Publish this demo using a link with a url parameter containing the flowchart savefile
+
+
 
 ### Storyboard 
 
@@ -44,12 +67,14 @@
   we are not the first to recognize the suitability of the web for publishing demo's
   We see a lot of interactive web-demo's nowadays, and many of these demo's contain code:
 
-  - In Science communication:
+  - Demo's in (Science) Communication:
     - Jupyter Notebook 
     - Observable
     - JsFiddle
+    - Shadertoy
+    - Wapm
 
-  - In Courses: 
+  - Demo tools in Courses: 
     - TU Delft C++ course
     - Udemy
     
@@ -57,10 +82,14 @@
     - Rust
     - Lit
 
-  - As Demo: 
-    - WAPM
-    - (game-jam games)
-       - more save (no virus)
+    <!-- - (game-jam games)
+       - more save (no virus) -->
+
+  <!-- We also see 
+
+  - As accessible alternative to native
+    - Overleaf -> does not use webassembly, but a classic client-server architecture
+    - Google Earth -->
 
   All these applications lie on a crossroad between being an interactive demonstration of a certain result or phenomenon, 
   and an open invitation for the user to edit and use this result or phenomenon. 

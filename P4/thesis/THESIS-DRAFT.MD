@@ -44,12 +44,13 @@ Take example from 'game jam':
 - prototyping stage
 
 
-Take example from overleaf
  -->
 
 ## Motivation
 Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process: Retrieval and visualization. 
 The processing stages in-between are almost always performed on the desktop using environments like QGIS or ArcGIS, or by writing and using CLI tools. 
+
+<!-- At the same time, a need arrises -->
 
 ## This Study
 
@@ -450,5 +451,5 @@ _"In this article we described the design and functionality of Geofront, A web-b
 # scribbles 
 Web is seen as a compile target, not as an integral part of the workflow. 
  - "_if you judge a fish by its ability to climb a tree..._"
- - if you frame the web as a compilation end-target, then you start seeing the web as a very poor runtime environment. But the web has many interesting tools unavailable to 'normal' desktop apps. It comes pre-loaded with all sorts of tools, like the canvas api. These tools are fast, since they are implemented by the browser, and using these tools do not increase the size of your project.
+ - if you frame the web as a compilation end-target, then you start seeing the web as a very poor runtime environment. But the web has many interesting tools unavailable to 'normal' desktop apps. It comes pre-loaded with all sorts of tools, like the canvas api. These tools are usually fast, since they are implemented in C++, and using these tools do not increase the size of your project.
 - imgui -> html 

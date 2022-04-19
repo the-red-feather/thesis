@@ -11,7 +11,7 @@
 
 -> Now in te process of setting up the other chapters, and discovering the narative.
 
-2. cgal succesfully compiled! 
+2. cgal successfully compiled! 
   - several C++ -> wasm demo projects have been created, with increasing complexity. 
   - This will be use
 
