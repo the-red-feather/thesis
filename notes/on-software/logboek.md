@@ -447,7 +447,34 @@ Initial demo's using cgal on the web are FINALLY working!
 
 # WEEK 10 / 15
 
+## Monday : Toying around with C++ & wasm, still an unruly beast | Meeting
+More emscripten business, not really getting anywhere. Meeting was very nice, very productive
+
+## Tuesday : 
+
+## Wednesday : Started writing | Geofront : Sliders & Bug fixes 
+Based on what Ken said, I wanted to get started on making a structured story, 
+
+## Thursday : 
+
+## Friday & Weekend : Geofront STD 
+This friday and weekend, I've spend ALOT of time developing the geofront standard library, a library which will always be present within geofront. 
+
+
 # WEEK 11 / 15
+
+## Monday : 
+Finishing up the STD. created a delaunay + perlin noise script. 
+
+## Tuesday : 
+
+## Wednesday : 
+
+## Thursday : 
+
+## Friday : 
+
+## Weekend : 
 
 # WEEK 12 / 15
 
