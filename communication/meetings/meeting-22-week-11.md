@@ -33,6 +33,42 @@ CODING
 # Discussion during meeting 
 ...
 
+During speaking, we discovered 3 real use-cases (plus 1 I also need to mention):
+
+- Geofront as **Web Demo Application**
+
+  > This use-case is the easiest to realize with the current state of geofront
+
+  - "Geoprocessing for kids"
+  - "What is a delaunay triangulation?" 
+  - "Let people play / experience / traverse a nef polyhedron"
+  - CURRENTLY MISSING FEATURE: Load in your own npm package
+
+- Geofront as **End User Geoprocessing Environment** 
+  - FME, but open source & on the web.
+  - The tool in itself can be regarded as an end-user application:
+    - Load file, do something with the file, download resulting file
+  - CURRENTLY MISSING FEATURE: compile to web app (take the input & output, hide the flowchart)
+
+- Geofront as **Geoprocessing Prototyping Environment**.
+  - Ravi's GeoFlow, but on the web
+    - Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.  
+  - CURRENTLY MISSING FEATURE: compile to native cli tool (node.js script)
+
+- Geofront as **Parametric Modelling Application**
+  - OpenSCAD, but using visual programming instead of scripting.
+  - Grasshopper, but open source & on the web.
+  - CURRENTLY MISSING FEATURE: create new points / lines in the viewer
+
+The "MISSING FEATURES" indicate that all use cases are just one feature away from being TRULY useful.
+
+...
+
+- I am once again over-analyzing and overthinking the writing bit
+- Writing has to get priority for now
+
+...
+
 # TODO Week 11
 WRITING
 - [ ] cleanup the latex project (references / acronyms are giving errors, packages used are not the same as P2). 

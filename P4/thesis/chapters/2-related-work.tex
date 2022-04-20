@@ -68,19 +68,19 @@ In order to relieve javascript of the responsibility of being a 'low-level' comp
 
 \subsection*{Performance}
 
-The initial performance benchmarks look promising. The majority of performance comparisons show that WebAssembly only takes 10\% longer than the native binary it was compared to \cite{haas_bringing_2017}. A later study confirms this by reproducing these benchmarks \cite{jangda_not_2019}. It even notices that improvements have been made in the two years between the studies. However, Jangda et. al. criticize the methodology of these benchmarks, stating that only scientific operations where benchmarked, each containing only 100 lines of code. The paper then continues to show WebAssembly is much more inefficient and inconsistent when it comes to larger applications which use IO operations and contain less-optimized code. These applications turn out to be up to twice as slow compared to native, according to their own, custom benchmarks. Jangda et. al. reason that some of this performance difference will disappear the more mature WebAssembly becomes, but state that WebAssembly has some unavoidable performance penalties as well. One of these penalties is the extra translation step, shown in \reffig{fig:wasm-trajectory}, which is indeed unavoidable when utilizing an in-between compilation target. 
+The initial performance benchmarks look promising. The majority of performance comparisons show that WebAssembly only takes 10\% longer than the native binary it was compared to \cite{haas_bringing_2017}. A later study confirms this by reproducing these benchmarks \cite{jangda_not_2019}. It even notices that improvements have been made in the two years between the studies. However, Jangda et. al. criticize the methodology of these benchmarks, stating that only scientific operations where benchmarked, each containing only 100 lines of code. The paper then continues to show WebAssembly is much more inefficient and inconsistent when it comes to larger applications which use IO operations and contain less-optimized code. These applications turn out to be up to twice as slow compared to native, according to their own, custom benchmarks. Jangda et. al. reason that some of this performance difference will disappear the more mature WebAssembly becomes, but state that WebAssembly has some unavoidable performance penalties as well. One of these penalties is the extra translation step, shown in reffig fig:wasm-trajectory, which is indeed unavoidable when utilizing an in-between compilation target. 
 
 Even though this proposed study falls in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account during the proposed study.
 
-\begin{figure}[!tbp]
-  \centering
-  \begin{minipage}[b]{0.80\textwidth}
-    \includegraphics[width=\textwidth]{../schemas/wasm-performance/wasm-perf.png}
-    \caption{Comparison of compilation trajectories}
-    % based on the finding of \cite{jangda_not_2019}
-    \label{fig:wasm-trajectory}
-  \end{minipage}
-\end{figure}
+% \begin{figure}[!tbp]
+%   \centering
+%   \begin{minipage}[b]{0.80\textwidth}
+%     \includegraphics[width=\textwidth]{../schemas/wasm-performance/wasm-perf.png}
+%     \caption{Comparison of compilation trajectories}
+%     % based on the finding of \cite{jangda_not_2019}
+%     \label{fig:wasm-trajectory}
+%   \end{minipage}
+% \end{figure}
 
 % \subsubsection*{Adoption \& Implementation}
 

@@ -231,7 +231,7 @@ What makes a VPL special, is its ability to seamless integrate all three of thes
 ...
 VPL's pop up all the time in all fields of computer science, But they intent to stick within 3d applications. (blender, rhino, unity, unreal)
 
-Why? 3d visual debugging. ( I would say)
+Why? 3d visual debugging. ( I would say a)
 
 ...
 
