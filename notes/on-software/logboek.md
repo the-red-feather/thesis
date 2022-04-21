@@ -468,16 +468,22 @@ This friday and weekend, I've spend ALOT of time developing the geofront standar
 Finishing up the STD. created a delaunay + perlin noise script. 
 
 ## Tuesday : 
+Tried continuing writing
 
 ## Wednesday : 
 
+
 ## Thursday : 
+Fun Fact: i'm at 25.949 lines of code currently
 
 ## Friday : 
+
 
 ## Weekend : 
 
 # WEEK 12 / 15
+
+## Monday: P4 MEETING HUGO
 
 # WEEK 13 / 15
 
