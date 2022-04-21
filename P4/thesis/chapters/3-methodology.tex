@@ -1,12 +1,53 @@
 \chapter{Methodology}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+This chapter covers all "design-why's" of geofront 
+
+\section{Motivations}
+
+\subsection{Motivation 1: Client-side Geoprocessing}
+
+Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geoprocessing} abilities, like CRS translations, interpolation or boolean operators, are usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as not much more than viewers; visualizers of pre-processed data. 
+
+This limited range of capabilities inhibits the number of users and use cases geographical web applications can serve, and with it the usefulness of web \ac{gis} as a whole. 
+
+If web applications gain \ac{geoprocessing} capabilities, they could grow to be just as diverse and useful as desktop \ac{gis} applications, with the added benefits of being a web application. It would allow for a new range of highly accessible and sharable geoprocessing and analysis tools, which end-users could use to post-process and analyze geodata quickly, uniquely, and on demand.
+
+This is why \ac{geoprocessing} within a web application, whereby mentionned as \ac{bbg}, is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. Interactive geospatial data manipulation and online geospatial data processing techniques are described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. But this also raises the question: \textit{Why is geoprocessing within a web application as of today still nowhere to be found?} 
+
+se concerns represent the three main obstacles preventing a smooth, widespread adoption of \ac{bbg}. 
+
+The study proposed by this paper seeks the advancement of web \ac{gis} \& client-side geoprocessing by attempting to overcome these obstacles. It will do this by researching possible solutions to key components of all three of them. However, we must first regard each obstacle more closely, so that the significance of these key components can be made clear. 
+
+\subsection{Motivation 2: Accessible Geoprocessing Libraries}
+
+Most industry-standard geoprocessing libraries such as CGAL are difficult to use by anyone but experts in the field. A steep learning curve combined with relatively complex installation procedures hinders quick experimentation, demonstration, and widespread utilization of these powerful tools. It also limits the interdisciplinary exchange of knowledge, and compromises the return of investment the general public may expect of publicly funded research.
+
+Geofront could improve the accessibility of existing geodata processing and analysis libraries, without adding major changes to those tools, by loading webassembly-compiled versions of them, similar to [other web demo's](todo).
+
+\subsection{Motivation 3: Visual Programming}
+
+The choice for a Visual Programming Language(vpl) is made to further explore this idea of accessible geoprocessing. 
+
+demonstrate the advantage of making a geoprocessing tool web based, and thus potentially accessible to a larger audience. 
+Using visual programming, the geoprocessing sequence can be altered on the fly, and in-between products can be inspected quickly, as both data and in a 3D viewer. 
+This way, a user can easily experiment with different methodologies and parameters which, hypothetically, improves the quality of the processed geodata.
+Additionally, a vpl forms a balance between a programming language and a full gui, making the tool accessible to both programmers and non-programmers alike.
 
 
-\section{Design Choices}
+
+\section{Use Cases}
+
+\subsection{Geofront as Web Demo application}
+
+\subsection{Geofront as Web based FME}
+
+\subsection{Geofront as web prototyping tool}
 
 
 
-\subsection{Why a Visual Programming interface?}
+\section{Design Decisions}
+
+\subsection{Visual Programming interface}
 
 To enable the interplay of the following three features: 
 
@@ -18,10 +59,12 @@ Each of these steps is individually possible with regular programming. Feature 1
 
 What makes a VPL special, is its ability to seamless integrate all three of these aspects, and allow interplay \emph{between} these aspects.
 
+\subsubsection*{From Scratch}
 
+Why not some other environment / Other Client-side geoprocessing innitiatives?
+None suffices
 
-
-\subsection{Why web-based?}
+\subsection{Web Based}
 
 - accessible
     - immediately usable -> no installation
@@ -44,29 +87,9 @@ This is in addition to the obvious advantages, like no need to install, easy mai
 
 Finally, using the web ensures that the code will run on all devices: native, mobile, desktop, IOT devices
 
+\subsubsection{Scalability}
 
-
-\subsection{Why WebAssembly?}
-
-To allow for the previous two (VPL + WEB) without a compromise to speed
-
-On its own: WebAssembly is useful for being containerized binary code. 
-- Binary: WebAssembly is close to machine code, making it very performant.
-- Containerized: the main advantage of WebAssembly over normal binaries is security. wasm can be reasoned about in a virtual, containerized manner, since it uses virtual memory and a system of incremental privileges. WebAssembly binaries cannot access memory outside of its designated memory pool, making segmentation errors harmless. The incremental privileges also ensure that binaries cannot access anything the user did not explicitly allow for. 
-
-Taken together, this makes WebAssembly a more secure alternative to regular binaries. This is also why browsers added support for WebAssembly, but not for regular binaries: Adding support for regular binaries would be a substantial risk to the security of all internet users.
-
-
-
-\subsection{Why Architecture use-case}
-
-- Perfect target audience of an 'edge case user group'. 
-  - Users are not considered 'geodata experts', but who could benefit from tools like GDAL / CGAL, if presented in the right manner.
-- Author experience with the target audience. 
-- Geomatics \emph{for the Build environment}. 
-
-
-\subsection{Geodata is big data. Will this web application be scalable to handle big datasets?}
+Geodata is big data. Will this web application be scalable to handle big datasets?
 
 One of the problems to address when considering the ergonomics of geodata processing, is the fact that geodata is almost always big data. A web application cannot be expected to process huge datasets. So how does geofront address this fundamental aspect of geoprocessing? 
 
@@ -90,14 +113,21 @@ The possibility of client-side geoprocessing also allows for an entirely new geo
 
 This type of \emph{Process Streaming} is certainly not a drop-in replacement for all big-data use cases. But, in cases which can guarantee a 'local correctness', this should be possible. Examples of this are a delaunay triangulation, TIN interpolation or image filter-based operations. This could be a more cost-effective outcome, as server farms \& Terabytes of storage are time consuming, expensive phenomenon.
 
+\subsection{WebAssembly}
+
+To allow for the previous two (VPL + WEB) without a compromise to speed
+
+On its own: WebAssembly is useful for being containerized binary code. 
+- Binary: WebAssembly is close to machine code, making it very performant.
+- Containerized: the main advantage of WebAssembly over normal binaries is security. wasm can be reasoned about in a virtual, containerized manner, since it uses virtual memory and a system of incremental privileges. WebAssembly binaries cannot access memory outside of its designated memory pool, making segmentation errors harmless. The incremental privileges also ensure that binaries cannot access anything the user did not explicitly allow for. 
+
+Taken together, this makes WebAssembly a more secure alternative to regular binaries. This is also why browsers added support for WebAssembly, but not for regular binaries: Adding support for regular binaries would be a substantial risk to the security of all internet users.
 
 
 
-\subsection*{Why not some other environment / Other Client-side geoprocessing innitiatives}
+\subsubsection*{Only core components}
 
-None suffices (But i also haven't searched a whole lot)
-
-\subsection*{Why not build everything as a local application, and publish the entire thing as wasm?}
+Why not build everything as a local application, and publish the entire thing as wasm?
 
 That would be:
 - more performant (probably)
@@ -111,3 +141,5 @@ BUT:
 - javascript can now also serve as its scripting language, making custom, scriptable components a possibility.
 
 % - That would be very hard to script with.
+
+\chapter{Methodology}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
