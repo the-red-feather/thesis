@@ -1,9 +1,44 @@
-\chapter{Execution / Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER
+\chapter{Execution}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER
+
+\section{Environment}%%%%%%%%%%% SECTION
+- github organization 
+- repo for engine 
+- repo for app 
+- repo for each plugin
+- build procedure
 
 \section{Usage}%%%%%%%%%%% SECTION
 
+\emph{basically, write a tutorial}
+
 This is how one can use Geofront
+
+\section{Creating \& Using your own code}
+\emph{show the insane (rust + wasm + npm) workflow}
+
+Locally: 
+1. Write a geoprocessing / analysis library using a system-level language (rust, C++).
+2. Expose certain functions as public, using 'wasm-pack' or 'emscripten'.
+3. Compile to `.wasm` + `d.ts` + `.js`.
+4. publish to npm (very easy to do with wasm-pack, can also be done with emscripten)
+
+Alternatively: 
+1. Write a library using typescript, 
+3. Compile to `d.ts` + `.js`.
+4. publish to npm 
+
+In Geofront: 
+4. Reference the CDN (content delivery network) address of this node package. 
+
+Congrats, this is now a publicly accessible geofront plugin!
+The library is loaded, A component is created for each function, with inputs for input parameters, and a singular output. If a 'typescript tuple type' is exported, the plugin loader will create multiple outputs according to each component of the tuple.
+
+
 
 \section{Performance}%%%%%%%%%%% SECTION
 
+Benchmark time!
+
 \section{Limitations}%%%%%%%%%%% SECTION
+
+Limitations of usage right now

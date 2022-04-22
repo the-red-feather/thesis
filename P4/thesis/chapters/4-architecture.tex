@@ -1,65 +1,75 @@
-\chapter{Methodology / Software Architecture}
-
+\chapter{Software Architecture}
+\emph{Explain full scope}
 
 % # 4. SOFTWARE IMPLEMENTATION
 % <!-- Show how one might rewrite this -->
 
+\emph{Explain main code setup \& components}
+The Geofront codebase ...
 
-% ## Geofront
-% _The Geofront codebase ...._
+\section{Web Framework}
+\emph{explain how to create a web framework from scratch}
+- No Framework
+- Web Components
+- Typesave Events
+- Webpack + Typescript
 
-% ### Framework
-% _explain how to create a web framework from scratch_ (Because of 2. Minimize Dependencies)
-% - Web Components
-% - Webpack + Typescript
-
-% ### The Application 
+\section{Menu}
+with these html components, the basics of the webapp can be created: menu's side menu, and the two main canvases: the graph canvas, and the viewer canvas 
 % _explain the file / edit / view / side menu setup_  (Because of Design rule 1. Model after normal application )
 
-% ### Visual Scripting
-% _explain how to create a visual programming language_
-% - Graph representation
-%   - Map `Functions` to `Nodes` 
-%   - Map `Variables` to `Edges / Cables`
-% - Graph manipulation
-%   - Canvas 2d API
-% - Graph calculation
-%   - Dag
-%   - Dynamic recalculation 
+\section{The Graph}
+\emph{explain how to create a visual programming language}
+\subsection*{Graph representation}
+  - Map `Functions` to `Nodes` 
+  - Map `Variables` to `Edges / Cables`
+\subsection*{Graph manipulation}
+  - Canvas 2d API
+  - Event-driven
+\subsection*{Graph calculation}
+  - Dag
+  - Dynamic recalculation 
 
-% ### Type System 
-% _explain how data is exchanged, and objects are handled_ (lazy tools)
-% - Functional programming (exchange structs)
+\section{Viewer}
+\emph{explain how the viewer was created from scratch}
 
-% ### Viewer 
-% _explain how the viewer was created from scratch_
-% _explain what it supports_
+lightweight three.js clone
 
-% ### STD
+supports basic things
 
-% ### Plugins
-% _explain the system to dynamically load plugins at runtime_
+fast, due to direct buffer types
 
-% - typescript 
-% - wrapper functions
+\section{ Plugin Loader } 
 
+\emph{explain the system to dynamically load plugins at runtime}
 
+\subsection{ Type System }
 
-% #### Workflow
-% _show the insane (rust + wasm + npm) workflow_
+\emph{explain how data is exchanged, and objects are handled (lazy tools)}
+- Functional programming (exchange structs)
 
-%   Locally: 
-%   1. Write cli geoprocessing / analysis application using a system-level language (rust, C++).
-%   2. Compile to `.wasm` + `d.ts` + `.js`.
-%   3. publish to npm (very easy to do with wasm-pack, can also be done with emscripten)
-%   In Geofront: 
-%   4. Reference the unpgk adress of this node package. 
-%      - Congrats, this is now a geofront plugin!
-%      - The CLI tool is loaded, with inputs for input parameters, and outputs for all files / data it usually writes.
-%   5. Build a demo script around the cli tool.
-%      - Publish this demo using a link with a url parameter containing the flowchart savefile
+\section{ Standard Library }
 
+The standard library is a 'baked in plugin'.
+Points, lines, triangles, vectors, etc.
 
+\section{ Plugins }
+What does a plugin need in order to be acceptable
+one javascript file, one type definitions file, and one optional wasm file are accepted. 
+
+ts -> normal build works out of the box
+rust -> wasm pack compile target web -> works out of the box 
+c++ -> emscripten -> more manual work needed 
+
+\subsection{Features}
+- IO can use:
+  - basic types (boolean / number / string)
+  - jsons, objects, interfaces (typesystem will pick up on them)
+  - ArrayBuffers (vital for performant data transfer)
+
+\subsection{Limitation}
+- No checks against side effects 
+  - No checks if the functions provided are pure, or if they manipulate some state we do now know of
 
 % ## WebAssembly Plugins
 
@@ -70,14 +80,9 @@
 % - how to deal with objects? 
 
 
-% ### Startin 
+\subsection{ Startin }
 
+- web assembly based
 
-% ### CGAL
-
-
-% ### STD-wasm
-% _rust library for certain high-performance operations._
-
-% ## Non WebAssembly Plugins 
+\subsection{ CGAL }
 

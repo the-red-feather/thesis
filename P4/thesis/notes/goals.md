@@ -43,10 +43,6 @@ Accessibility
     - Load file, do something with the file, download resulting file
   - CURRENTLY MISSING FEATURE: compile to web app (take the input & output, hide the flowchart)
 
-- Geofront as **Rapid Prototyping Environment** 
-  - Ravi's GeoFlow, but on the web
-    - Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.
-  - CURRENTLY MISSING FEATURE: compile to native cli tool (node.js script)
 
 - Geofront as **Parametric Modelling Application**
   - OpenSCAD, but using visual programming instead of scripting.

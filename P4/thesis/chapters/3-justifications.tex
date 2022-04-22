@@ -2,6 +2,22 @@
 
 This chapter covers all "design-why's" of geofront 
 
+\section{Goal}
+
+KEY CONCEPTS :
+
+Interactivity
+- 'get a feel' for data
+- Before / After
+- Hands-on experience
+
+Accessibility
+- Findable == Accessible
+- Reproduce \& validate research results 
+- Interdisciplinary exchange of ideas 
+- Educational Web Demo's
+
+
 \section{Motivations}
 
 \subsection{Motivation 1: Client-side Geoprocessing}
@@ -126,9 +142,38 @@ Geofront could improve the accessibility of existing geodata processing and anal
 
 
 
-\subsection{Geofront as Educational application}
+\subsection{Geofront as Educational Sandbox}
+- This use-case can be fully realized within the current state of geofront
+- "Geoprocessing for kids"
+- "What is a delaunay triangulation?" 
+- "Let people play / experience / traverse a nef polyhedron"
+- Using something helps with understanding
 
-\subsection{Geofront as Web based FME}
+\subsection{Geofront as Web Demo Environment}
+- Reproducibility toolkit:
+- Workflow: 
+  - Load your own code from a CDN
+  - Build a demo setup around it
+  - load a custom graph from a public json file
+  - share a url pointing to this json (which contains the CDN address)
+- You can now share a rust / C++ program as a fully usable web demo,   
+  and analyze its performance using different datasets, test parameters, etc. 
+- interdisciplinary exchange of ideas
+- MISSING FEATURE: dependency list inside of the graph.json save file
+
+\subsection{Geofront as End User Geoprocessing Environment}
+- Lightweight QGIS.
+- FME, but open source \& on the web.
+- The tool in itself can be regarded as an end-user application:
+  - Load file, do something with the file, download resulting file
+  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
+
+\subsection{Geofront as **Parametric Modelling Application}
+  - OpenSCAD, but using visual programming instead of scripting.
+  - Grasshopper, but open source \& on the web.
+  - CURRENTLY MISSING FEATURE: create new points / lines in the viewer
+  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
+
 
 % Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process.  
 % (
@@ -172,9 +217,11 @@ Geofront could improve the accessibility of existing geodata processing and anal
 
 % By designing and creating this environment, the study seeks to gain valuable insights in the current state of client-side core web technologies / javascript std, and how well this facilitates various geoprocessing operations.
 
-\subsection{Geofront as web prototyping tool}
-
-% Rapid prototyping use-case
+\subsection{Geofront as **Rapid Prototyping Environment**} 
+  - Ravi's GeoFlow, but on the web
+    - Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.
+  - CURRENTLY MISSING FEATURE: compile to native cli tool (node.js script)
+  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
 
 \section{Design Choices}
 
