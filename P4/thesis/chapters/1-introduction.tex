@@ -3,50 +3,104 @@
 % context of geomatics is described, along with a clearly-defined problem statement.
 \chapter{Introduction}
 
-\section{Introduction}
+\section{Motivation}
+
+\todo{What is meant with accessibility?}
+\todo{What is meant with interactivity?}
+
+\subsubsection*{ Web Accessibility }
+% CONTEXT : WEB IS ACCESSIBLE
+Interactive, browser-based \ac{giss} form an indispensable component of the modern geospatial software landscape. 
+For the common person, a web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
+A web application is cross-platform by nature, and offers ease of access and  maintainability, since no installment or app-store interaction is required to run or update the app. 
+The ability to share a full application with a link, or to embed it within a larger context of a webpage is also not trivial. 
+Together, these aspects have made the browser a popular host for many geographical applications, especially when developing accessible applications targeting end-users. 
+
+\subsubsection*{Client-side Interactivity}
+% TREND : HEAVY CLIENT-SIDE FOR INTERACTIVITY 
+% client-side heavy web applications  
+In recent years, a trend towards increasingly complex and demanding client-side geo web applications is noticeable.  
+Whereas before the client was mainly use to visualize end results (leaflet, Celsium), now applications arise allowing users to edit (ninja) and validate (cjval) geodata, directly from within the browser. 
+This matches a similar trend within web applications in general, a push towards more complex clients and simpler servers \cite{panidi_hybrid_2015}.
+The biggest benefit of this is \emph{Interactivity}. If logic runs in the client, it can more quickly react to behavior of the user. A full client-server roundtrip will in many situations take longer.
+
+This trend can be attributed to new browser features such as WebAssembly, and performance upgrades of the javascript runtime (V8, JIT compiler, etc.).
+
+This trend also caused academic interest for the prospect of \emph{client-side geoprocessing}. \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
+Interactive geospatial data manipulation and online geospatial data processing techniques where described as "highly valuable trends in evolution of the Web mapping and Web GIS" (\cite{panidi_hybrid_2015}). 
+While these studies pose strong theoretical cases for client-side geoprocessing, their practical implementations were less convincing \todo{TODO: Figure out how to phrase this better}. 
+The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major javascript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
 
 
-% [JF]: I THINK THIS CAN BE MORE ELEGANT, MORE SPECIFIC, MORE QUICKLY, MORE TO THE POINT 
-% Dissolving the discrepancy between visualization \& processing in web-apps.
-Interactive, browser-based GISS form an indispensable component of the modern geospatial software landscape. For the common person, a web application is often their first and only exposure to a GIS, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. A web application is cross-platform by nature, and offers ease of maintainability and access, since no installment or app-store interaction is required to run or update the app. The ability to be shared with a link, or to be embedded within the larger context of a webpage is also not trivial. These aspects have made the browser a popular host for many geographical applications, especially when targeting end-users. 
+\section{ The Case }
 
-% A TREND 
+% NEW PRACTICAL ATTEMPT. WHY? 
+% - csg still has a lot of potential
+% - previous studies:
+%   - are dated
+%   - prioritized theory over practicalities
+%   - utilized the web's major feature of Accessibility and the clients feature of    
+%     Interactivity inadequately 
+%   - were not creative enough in terms of possible use-cases 
 
-....
+This study recognizes a need for a new, practical attempt at client-side geoprocessing. 
+Client-side geoprocessing is a promising prospect with potentially many use cases.
+Previous attempts are either dated due to the web's rapid advancements, or chose theory over practice.
 
+In addition, the implementations lacked creativity \todo{This needs a better phrase, but it really is the most direct way of putting it}. 
+
+The applications were either meant as small demo's, without a clear target audience or use-case in mind (just a way to demo performance), or as highly specified debugging tool for the authors.   
+But, as mentioned before, a major advantage of Web applications over native applications is \emph{Accessibility}, and a major advantage of client-focussed web apps over server-focussed web apps is \emph{Interactivity}. 
+By creating a client-side web application which is neither very accessible nor interactive, a big incentive of making something a client-side web app is lost.
+Additionally, by forgoing the question of accessibility, many auxiliary use-cases of client-side geoprocessing where overlooked.
 
 \section{This Study}
 
-'interactive geo-processing'
-- Insight 
-- Reproducibility
+% Explain geofront
+This study introduces "Geofront", a web based, open-source geoprocessing environment. 
+The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
+The main goal and feature of geofront is to take existing low level geoprocessing libraries, and to make them usable on the web in an accessible and interactive manner. 
+These libraries include a limited set of CGAL operations, complied from C++, and various geoprocessing algorithms such as Startin, written in Rust. 
+Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
+In between products can quickly be inspected using a 3D viewer.
+% For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load locally stored geodata. Parameters can be specified using various ui components, such as sliders. 
+% For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
 
-GOAL: - explore new use-cases of the web for interactive geo-processing.
-      - explore the 'fitness' of the web for many different geoprocessing use cases. 
+% Accessibility
+% - Shareability
+% - Reproducibility
 
-1. Build a general purpose web geoprocessing environment 
-
-2. Study to which end different needs can be fulfilled / different use-case requirements can be met 
-
-\section{Use Case}
-
-% what 
-The use case application for this study is the so called "GeoFront" environment.
-% , nicknamed as a concatenation of 'geoprocessing' and 'frontend'. 
-GeoFront will be developed as a web-based \ac{gis} environment, offering users the ability to load, process, and then visualize or save various types of geodata. 
-The entire application will run client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
-For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load local geodata.
-For processing, geofront offers geoprocessing functions provided by GDAL and CGAL. 
-Being a visual programming language, GeoFront can be used to chain multiple processing steps together, while still being able to retrieve in-between products. 
-For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
+% Interactivity 
+% - Visual programming 
+% - Visual feedback & insight
+% - Sliders
 
 
-%-------------------------------------------------------------------------------------------------%
+% The input and output of the functions exposed by these libraries 
 
-% TODO this is good, but de-emph 'existing libraries', and emph 'visual programming language'
+% the aspect of interactivity is 
+
+% - The web gives us great \emph{Accessibility}, and making it client-side promises us great \emph{Interactivity}
+
+% Browser based \ac{geoprocessing}, hereby known as \ac{bbg}, ... 
+
+
+% 'interactive geo-processing'
+% - Insight 
+% - Reproducibility
+
+% GOAL: - explore new use-cases of the web for interactive geo-processing.
+    %   - explore the 'fitness' of the web for many different geoprocessing use cases. 
+
+% 1. Build a general purpose web geoprocessing environment 
+
+% 2. Study to which end different needs can be fulfilled / different use-case requirements can be met 
+
 
 \newpage
 \section{Research Questions}
+
+% TODO this is good, but de-emph 'existing libraries', and emph 'visual programming language'
 
 This study intends to discover if contemporary web technologies can facilitate a full-scale client-side geoprocessing tool, by seeking an answer to the following question: 
 
@@ -83,6 +137,17 @@ The following sub-research questions are needed in order to answer the main ques
 \newpage
 \subsection*{Assessment}
 
+- Accessibility: 
+  - Use cases
+    - Feature Completeness 
+    - Performance
+- Interactivity 
+  - Feature Completeness 
+  - Performance
+
+% - Subsequent research: actual use-case analysis.
+
+% OLD
 At the final conclusion of the proposed thesis, The Thesis will answer if the designed and created GIS environment can indeed effectively utilize these geo-libraries.
 This will be answered by quantitative and qualitative means:
 

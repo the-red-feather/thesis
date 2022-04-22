@@ -8,7 +8,7 @@ Interactivity
 Accessibility
 - Findable == Accessible
 
-Sharability
+Sharability = Accessibility
 - Reproduce research results 
 - Interdiciplinary exchange of ideas 
 - Educational Web Demo's
