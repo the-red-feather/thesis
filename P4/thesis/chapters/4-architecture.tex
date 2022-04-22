@@ -1,0 +1,83 @@
+\chapter{Methodology / Software Architecture}
+
+
+% # 4. SOFTWARE IMPLEMENTATION
+% <!-- Show how one might rewrite this -->
+
+
+% ## Geofront
+% _The Geofront codebase ...._
+
+% ### Framework
+% _explain how to create a web framework from scratch_ (Because of 2. Minimize Dependencies)
+% - Web Components
+% - Webpack + Typescript
+
+% ### The Application 
+% _explain the file / edit / view / side menu setup_  (Because of Design rule 1. Model after normal application )
+
+% ### Visual Scripting
+% _explain how to create a visual programming language_
+% - Graph representation
+%   - Map `Functions` to `Nodes` 
+%   - Map `Variables` to `Edges / Cables`
+% - Graph manipulation
+%   - Canvas 2d API
+% - Graph calculation
+%   - Dag
+%   - Dynamic recalculation 
+
+% ### Type System 
+% _explain how data is exchanged, and objects are handled_ (lazy tools)
+% - Functional programming (exchange structs)
+
+% ### Viewer 
+% _explain how the viewer was created from scratch_
+% _explain what it supports_
+
+% ### STD
+
+% ### Plugins
+% _explain the system to dynamically load plugins at runtime_
+
+% - typescript 
+% - wrapper functions
+
+
+
+% #### Workflow
+% _show the insane (rust + wasm + npm) workflow_
+
+%   Locally: 
+%   1. Write cli geoprocessing / analysis application using a system-level language (rust, C++).
+%   2. Compile to `.wasm` + `d.ts` + `.js`.
+%   3. publish to npm (very easy to do with wasm-pack, can also be done with emscripten)
+%   In Geofront: 
+%   4. Reference the unpgk adress of this node package. 
+%      - Congrats, this is now a geofront plugin!
+%      - The CLI tool is loaded, with inputs for input parameters, and outputs for all files / data it usually writes.
+%   5. Build a demo script around the cli tool.
+%      - Publish this demo using a link with a url parameter containing the flowchart savefile
+
+
+
+% ## WebAssembly Plugins
+
+% _explain how to use webassembly_
+% - compiling
+% - getting data within webassembly
+% - extracting webassembly
+% - how to deal with objects? 
+
+
+% ### Startin 
+
+
+% ### CGAL
+
+
+% ### STD-wasm
+% _rust library for certain high-performance operations._
+
+% ## Non WebAssembly Plugins 
+

@@ -7,24 +7,14 @@ Interactivity
 
 Accessibility
 - Findable == Accessible
-
-Sharability = Accessibility
-- Reproduce research results 
-- Interdiciplinary exchange of ideas 
+- Reproduce & validate research results 
+- Interdisciplinary exchange of ideas 
 - Educational Web Demo's
 
 ---------------------------
 
 - Educational
-  
-  - Using something helps with understanding
 
-- Communication & Exchange of ideas
-
-
-- Reproducability
-
-  - Testing reproducability is way easier with web applications
 
 ------------
 
@@ -33,7 +23,9 @@ Sharability = Accessibility
   - "Geoprocessing for kids"
   - "What is a delaunay triangulation?" 
   - "Let people play / experience / traverse a nef polyhedron"
-  
+  - Using something helps with understanding
+
+
 - Geofront as **Web Demo Application**
   - Reproducibility toolkit:
     - Load your own code from a CDN
@@ -51,7 +43,7 @@ Sharability = Accessibility
     - Load file, do something with the file, download resulting file
   - CURRENTLY MISSING FEATURE: compile to web app (take the input & output, hide the flowchart)
 
-- Geofront as **Geoprocessing Prototyping Environment** 
+- Geofront as **Rapid Prototyping Environment** 
   - Ravi's GeoFlow, but on the web
     - Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.
   - CURRENTLY MISSING FEATURE: compile to native cli tool (node.js script)
@@ -60,3 +52,13 @@ Sharability = Accessibility
   - OpenSCAD, but using visual programming instead of scripting.
   - Grasshopper, but open source & on the web.
   - CURRENTLY MISSING FEATURE: create new points / lines in the viewer
+
+
+
+# other scribbles 
+Web is seen as a compile target, not as an integral part of the workflow. 
+ - "_if you judge a fish by its ability to climb a tree..._"
+ - if you frame the web as a compilation end-target, then you start seeing the web as a very poor runtime environment. But the web has many interesting tools unavailable to 'normal' desktop apps. It comes pre-loaded with all sorts of tools, like the canvas api. These tools are usually fast, since they are implemented in C++, and using these tools do not increase the size of your project.
+- imgui -> html 
+
+
