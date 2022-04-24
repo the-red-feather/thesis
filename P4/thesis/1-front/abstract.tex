@@ -1,35 +1,54 @@
 
-\chapter*{Abstract}
+\chapter*{ (Long) Abstract }
+
+This thesis introduces GeoFront, a web based, open source, geodata processing and visualization environment. 
+In this thesis, the motivation, requirements, technical aspects, and achieved functionality of geofront is covered. 
+
+% MOTIVATION & FUNCTIONALITY
+GeoFront has been created in an effort to make low-level geoprocessing libraries more accessible and interactible.
+\emph{Accessibility} is achieved by compiling the geoprocessing libraries to webassembly, after which the tools can be run in a browser, client-side. 
+This mitigates the need for installment; 
+% As soon as the tool is found on the web, it can be used. 
+
+\emph{Interactivity} is achieved by making geofront a visual programming environment. 
+Functions are represented by blocks, and these can be chained together to form an interactively configurable geoprocessing pipeline. 
+In between products can be inspected and debugged using a 3D viewer. 
+Special blocks such as sliders can be used to quickly try different values and parameters, and to 'sweetspot' certain settings.
+% INPUTS: OGC STANDARDS & FILE SYSTEM | OUTPUTS: DOWNLOAD
+
+% RESULT
+This study has successfully made a limited set of CGAL operations usable like this, as well as various rust-based geoprocessing algorithms such as Startin.
+The performance is ..., \todo{"Do performance comparrisons"}
+
+% USE CASE
+GeoFront has multiple actual and possible use cases. 
+1. Tryout (ACTUAL)
+   - A-la wapm WebAssembly Package Manager allows packages to be run from within the package-page itself. 
+  - Just meant to quickly try out some features.
+
+2. Educational (ACTUAL)
+   - interactive educational tool
+   - (What does a delaunay triangulation look like? how does it behave? What happens if you lower the radius of inverse distance weighting ? )
+
+3. Rapid-Prototyping (POSSIBLE)
+   - like geoflow
+   - Future work: export flowchart to a process which can be run natively or server side.
+
+4. Publishing (POSSIBLE)
+   - Publish full web apps in and off themselves, making use of zero, one or multiple wasm-compiled libraries.  
+   - Future work: export to web-app (without flowchart)
+
+% FEATURES
+
+% CONTENT 
+
+% CONCLUSION 
 
 
 
-Web applications have many benefits over native applications
-  - cross-platform
-  - easy to distribute
-  - findable, accessible
-  - ...
+% Safesoft's FME, but web based \& open source 
 
-For these reasons the web has become a popular target for many applications, including geoweb applications. 
-- Tools like Leaflet and Celcium are widely used.
-
-A clear trend within these geo-web applications, is a push for increasingly complex applications. 
-  - Such as the ninja cityjson web viewer
-    - Proofs that the web can not only be used as viewer or end-user application, 
-      but also for geodata analysis and editing.
-    - Both for end-user tools, and tools used by developers.
-  - Also, Modern web tools such as webassembly allow us to run native geo-analysis applications directly in a web browser
-    - Leading to tools such as cj-val, a 3D city validator.
-
-This thesis seeks to push this trend further, 
-and explores to what end the capabilities of the contemorary web can facilitate the needs of geo-informatics in general, 
-and geodata processing in particular. 
-
-We introduce GeoFront, a web based, open source, geodata processing and visualization tool. 
-It enables users to configure geodata pipelines using visual programming. 
-Users are able to make use of native geoprocessing tools such as CGAL, visualize and debug both end results and in-between results.
-
-Safesoft's FME, but web based \& open source 
-
+% CONCLUSION
 By creating geofront, this thesis was able to discover .............
 
 - The web is able to facilitate a visual programming language.
@@ -54,7 +73,9 @@ By creating geofront, this thesis was able to discover .............
   - 2D Canvas API
   - Web GL
 
-- ability to share is a true enhancement
+\todo{[JF]: I need to add more critical notes on promises of accessibility and interactivity. Is a webapp truly accessible? Is a flowchart interactive, or does it hinder interactiveness? }
+
+We believe that such a web application can make geoprocessing more accessible to practitioners.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -64,7 +85,7 @@ By creating geofront, this thesis was able to discover .............
 
 % Secondly, Geofront itself is set up as a web-based visual programming environment, complete with a 3D viewer and WMS, WFS \& WMTS support. Using these tools, users can interactively run these geoprocessing libraries with different datasets and parameters. Using visual programming, the user can chain and alter geoprocessing steps, visualize in-between products, and save \& load these workflows.
 
-In this paper, we describe the motivation, requirements, technical aspects and achieved functionality of geofront. We believe that such a web application can make geoprocessing more accessible to practitioners.
+
 
 % While the research restrains itself from empirically measuring an aspect as nebulous as 'accessibility', it does demonstrate ...
 
