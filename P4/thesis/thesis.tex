@@ -58,20 +58,20 @@
 % (I would not include it for the version you put in the repository)
 %******************************************************************
 
-\includepdf{cover/cover_front.pdf}
+\includepdf{0-cover/cover_front.pdf}
 \cleardoublepage
 
 \maketitle[3]
 
 % \clearpage
-\input{front/titleback}
+\input{1-front/titleback}
 \cleardoublepage
-\include{front/abstract}
-\include{front/acknow}
+\include{1-front/abstract}
+\include{1-front/acknow}
 \clearpage
-\include{front/contents}
+\include{1-front/contents}
 \clearpage
-\include{front/acronyms}
+\include{1-front/acronyms}
 \cleardoublepage
 
 %******************************************************************
@@ -79,23 +79,23 @@
 %******************************************************************
 \mainmatter
 
-\include{chapters/1-introduction}
-\include{chapters/2-related-work}
-\include{chapters/3-justifications}
-\include{chapters/4-architecture}
-\include{chapters/5-execution}
-\include{chapters/6-results}
-\include{chapters/7-conclusion}
-\include{chapters/8-post-conclusion}
+\include{2-chapters/1-introduction}
+\include{2-chapters/2-related-work}
+\include{2-chapters/3-justifications}
+\include{2-chapters/4-architecture}
+\include{2-chapters/5-execution}
+\include{2-chapters/6-results}
+\include{2-chapters/7-conclusion}
+\include{2-chapters/8-post-conclusion}
 
 \appendix
 
 %%%
 \cleardoublepage
 %-- *mandatory* appendix about the reproducibility
-\include{appendices/reproducibility}
+\include{3-appendices/reproducibility}
 %-- other examples of Appendix, not mandatory
-\include{appendices/someumldia}
+\include{3-appendices/someumldia}
 
 % *****************************************************************
 % Backmatter
@@ -109,11 +109,11 @@
 
 
 \clearpage
-\include{back/colophon}
+\include{4-back/colophon}
 \cleardoublepage
 
 
-\includepdf{cover/cover_back.pdf}
+\includepdf{0-cover/cover_back.pdf}
 
 \end{document}
 
