@@ -73,22 +73,56 @@ Additionally, by forgoing the question of accessibility, many auxiliary use-case
 
 \section{This Study}
 
+% CONTENT OF STUDY
 This study introduces GeoFront, a web based, open source, geodata processing and visualization tool. 
 It enables users to configure geodata processing pipelines using visual programming. 
 Users are able to make use of native geoprocessing tools such as CGAL, visualize and debug both end results and in-between results.
 
+% Assessment
+This study will be assessed based on: 
+- To what end geofront succeeds in implementing its desired features.
+- To what end geofront delivers on its promises of accessibility and interactivity.
+
+This second assessment will be a judgement based on four distinct use-cases for the environment:
+
+1. Tryout (ACTUAL)
+   - A-la wapm WebAssembly Package Manager allows packages to be run from within the package-page itself. 
+  - Just meant to quickly try out some features.
+
+2. Educational (ACTUAL)
+   - interactive educational tool
+   - (What does a delaunay triangulation look like? how does it behave? What happens if you lower the radius of inverse distance weighting ? )
+
+3. Rapid-Prototyping (POSSIBLE)
+   - Web geoflow
+   - Future work: export flowchart to a process which can be run natively or server side.
+
+4. Publishing (POSSIBLE)
+   - Geotiff.io
+   - Web FME 
+   - Publish full web apps in and off themselves, making use of zero, one or multiple wasm-compiled libraries.  
+   - Future work: export to web-app (without flowchart)
+
+
+% GOAL OF STUDY
+Finally, this study intends to use the design, creation, and evaluation of geofront to gain insight into the broader topic of client-side geoprocessing. 
+Geofront will be used as a proxy / experiment to assess: 
+- The fitness of the web in general for client-side geoprocessing
+- If client-side geoprocessing in its current state has any meaningful use-cases
+- If new features of modern browsers mean anything for the field of geo-informatics at large (webassembly in particular). 
+
+
+
+
 % Explain geofront
-This study introduces "Geofront", a web based, open-source geoprocessing environment. 
-The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
-The main goal and feature of geofront is to take existing low level geoprocessing libraries, and to make these interactively usable on the web. 
-These libraries include a limited set of CGAL operations, complied from C++, and various geoprocessing algorithms such as Startin, written in Rust. 
-Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
-In between products can quickly be inspected using a 3D viewer.
+% The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
+% The main goal and feature of geofront is to take existing low level geoprocessing libraries, and to make these interactively usable on the web. 
+% These libraries include a limited set of CGAL operations, complied from C++, and various geoprocessing algorithms such as Startin, written in Rust. 
+% Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
+% In between products can quickly be inspected using a 3D viewer.
 
-
+% PATH TOWARDS RESEARCH QUESTION
 \todo{MAAK EEN DUIDELIJK LINK NAAR RESEARCH QUESTIONS \& ASSESSMENT CRITERIA}
-
-
 
 
 % ## This thesis 
@@ -177,7 +211,7 @@ In between products can quickly be inspected using a 3D viewer.
 
 \newpage
 \section{Research Questions}
-
+\todo{TODO these are old. current ones are fine, but de-emph 'existing libraries', and emph 'visual programming language' }
 % TODO this is good, but de-emph 'existing libraries', and emph 'visual programming language'
 
 This study intends to discover if contemporary web technologies can facilitate a full-scale client-side geoprocessing tool, by seeking an answer to the following question: 

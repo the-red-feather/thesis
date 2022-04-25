@@ -476,8 +476,9 @@ Tried continuing writing
 ## Thursday : 
 Fun Fact: i'm at 25.949 lines of code currently
 
-## Friday : 
 
+## Friday : 
+Major writing 
 
 ## Weekend : 
 
