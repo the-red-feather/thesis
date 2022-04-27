@@ -101,6 +101,24 @@ Appendix
 
 
 
- 
+Fair Geodata -> Fair Geodata processing
 
+
+...
+
+This will mean that certain post-processing and rendering responsibilities 
+
+This will mean that certain post-processing and rendering duties will have to move from the back-end to front-end environments, 
+whenether these front-ends are native (like QGIS) or web-based. 
+...
+unsure if especially the browser-based tools are up to this challenge 
+
+Therefore, this thesis investigates ...
+
+
+Investigate the diverse possibilities of browser-based geoprocessing. 
+
+Accessibility, Accessibility, Accessibility
+
+Application which is able to consume low-level geoprocessing libraries written in C++ and Rust, 
 
