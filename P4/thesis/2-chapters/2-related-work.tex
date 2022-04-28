@@ -9,7 +9,7 @@ The introduction already touched upon a number of prior works on the topic of \a
 However, we are required to examine these studies more closely as well as introduce others, in order to further define our methodology. This study's methodology will draw from prior studies on three topics: The topic of the Geoweb, client-side geoprocessing, and WebAssembly.
 
 
-\section{Related works on the Geoweb}
+\section{The Geoweb}
 % Can't see nothing wrong with it, now that I have pruned it down significantly. Might even be too sharp now, well see. 
 \label{sec:geoweb}
 
@@ -25,7 +25,7 @@ We use both extrapolations to define the users and 'usability' for the context o
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Related works on client-side geoprocessing}
+\section{Browser-based geoprocessing}
 % Nothing wrong with this chapter I think. Everything is there for a reason
 
 % the latest in a series of geoprocessing attempts 
@@ -57,7 +57,7 @@ Additionally, to the best of the authors's knowledge, all papers concerned with 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Related works on WebAssembly}
+\section{WebAssembly}
 
 From all client-side web technologies, WebAssembly is one of the newest, and is most likely to be a deciding factor of this study. This requires us to be aware of the state of WebAssembly, its performance considerations, and how this relates to geoprocessing performance. But first, an introduction on the compilation target itself is in order.
 
@@ -110,13 +110,11 @@ Even though this proposed study falls in the category of scientific computation,
 % On the topic of WebAssembly, the most important conclusion to to take away from prior research is \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account during the proposed study.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\section{Conclusion}
 
-Based on the studies on WebAssembly, we can conclude that the compilation peculiarities of WebAssembly have to be taken into account, as it cannot be regarded as a 'drop in replacement'. There is also a significant difference between using WebAssembly theoretically, and using it realistically. The studies on Client-side geoprocessing tell us that these implementation details can have vast consequences on user experience, and studies on the Geoweb express that this user experience is vital to FAIR, cross-community geoprocessing.
+% Based on the studies on WebAssembly, we can conclude that the compilation peculiarities of WebAssembly have to be taken into account, as it cannot be regarded as a 'drop in replacement'. There is also a significant difference between using WebAssembly theoretically, and using it realistically. The studies on Client-side geoprocessing tell us that these implementation details can have vast consequences on user experience, and studies on the Geoweb express that this user experience is vital to FAIR, cross-community geoprocessing.
 
-What this means for the methodology, is that a significant portion of this study's attention will have to go to experimenting with different ways of compiling to WebAssembly, while making sure it can still be used in a realistic scenario.
-If it turns out that the use-case app can only be used by experienced end-users who take special \ac{wasm} considerations in mind, a big reason of using the web, namely its accessibility, would be lost.  
+% What this means for the methodology, is that a significant portion of this study's attention will have to go to experimenting with different ways of compiling to WebAssembly, while making sure it can still be used in a realistic scenario.
+% If it turns out that the use-case app can only be used by experienced end-users who take special \ac{wasm} considerations in mind, a big reason of using the web, namely its accessibility, would be lost.  
 
 
 
@@ -178,14 +176,14 @@ If it turns out that the use-case app can only be used by experienced end-users 
 % .....
 
 
-\section*{Related Software Projects}
+\section*{Browser based geoprocessing software}
 
 % https://www.azavea.com/blog/2016/09/26/raster-foundry-model-lab-phase-ii-sbir/
 % https://geotiff.io/
 - >
 % https://www.eclipse.org/community/eclipse_newsletter/2018/december/geotrellis.php 
--> ModelLab
--> " Online tool to build, store, and execute complex geospatial models "
+% -> ModelLab
+% -> " Online tool to build, store, and execute complex geospatial models "
 
 These are all similar efforts, also hooked up to the OGC cloud native developments
-Geofront will differ, for it focusses on 3D \& Point clouds instead of rasters & map algebra, and focusses on client-side geodata consumption \& processing instead of being a server-side pipeline configurer.
+Geofront will differ, for it focusses on 3D \& Point clouds instead of rasters \& map algebra, and focusses on client-side geodata consumption \& processing instead of being a server-side pipeline configurer.

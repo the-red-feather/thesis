@@ -46,16 +46,27 @@ In recent years, a trend towards increasingly complex and demanding client-side 
 Whereas before the client was mainly use to visualize end results (leaflet, Celsium), now applications arise allowing users to edit (ninja) and validate (cjval) geodata, directly from within the browser. 
 This matches a similar trend within web applications in general, a push towards more complex clients and simpler servers \cite{panidi_hybrid_2015}.
 
+OGC
 
-One of the biggest benefits of this setup is \emph{Interactivity}. 
-If logic runs in the client, it can more quickly react to behavior of the user. 
-A full client-server roundtrip will in many situations take longer.
+% One of the biggest benefits of this setup is \emph{Interactivity}. 
+% If logic runs in the client, it can more quickly react to behavior of the user. 
+% A full client-server roundtrip will in many situations take longer.
 This trend can be attributed to new browser features such as WebAssembly, and performance upgrades of the javascript runtime (V8, JIT compiler, etc.).
 
-Within the field of geoinformatics, the move towards client-side heavy applications also caused academic interest for the prospect of \emph{client-side geoprocessing}. \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
-Interactive geospatial data manipulation and online geospatial data processing techniques where described as "highly valuable trends in evolution of the Web mapping and Web GIS" (\cite{panidi_hybrid_2015}). 
+Within the field of geo-informatics, the move towards client-side heavy applications also caused academic and commercial interest for the prospect of \emph{client-side geoprocessing}. 
+
+Academic sources 
+
+\cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
+Interactive geospatial data manipulation and online geospatial data processing techniques where described as "highly valuable trends in evolution of the Web mapping and Web GIS" (\cite{panidi_hybrid_2015}).
+
+
+Commercial sources 
+
 While these studies pose a strong theoretical case for client-side geoprocessing, their practical implementations were less convincing \todo{TODO: Figure out how to phrase this better}. 
 The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major javascript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
+
+\section{ Problem }
 
 
 \section{ The Case }
@@ -328,3 +339,240 @@ Similarly, a survey analyzing how users experience client-side geoprocessing in 
 % It is my goal to introduce this as a new geoprocessing option, and to name the advantages and disadvantages we can be sure of. An actual comparison of client-side vs native geoprocessing is something different. 
 
 
+
+
+
+
+
+
+% \chapter{Justification}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This chapter covers all "design-why's" of geofront 
+
+\section{Goal}
+
+Accessibility
+- Findable == Accessible
+- Reproduce \& validate research results 
+- Interdisciplinary exchange of ideas 
+- Educational Web Demo's
+- "Getting a feel" for data 
+   - Before / After
+   - Hands-on experience
+
+
+\section{Motivations}
+
+\subsection{Motivation 1: Client-side Geoprocessing}
+
+Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geoprocessing} abilities, like CRS translations, interpolation or boolean operators, are usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as not much more than viewers; visualizers of pre-processed data. 
+
+This limited range of capabilities inhibits the number of users and use cases geographical web applications can serve, and with it the usefulness of web \ac{gis} as a whole. 
+
+If web applications gain \ac{geoprocessing} capabilities, they could grow to be just as diverse and useful as desktop \ac{gis} applications, with the added benefits of being a web application. It would allow for a new range of highly accessible and sharable geoprocessing and analysis tools, which end-users could use to post-process and analyze geodata quickly, uniquely, and on demand.
+
+This is why \ac{geoprocessing} within a web application, whereby mentionned as \ac{bbg}, is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. Interactive geospatial data manipulation and online geospatial data processing techniques are described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. But this also raises the question: \textit{Why is geoprocessing within a web application as of today still nowhere to be found?} 
+
+se concerns represent the three main obstacles preventing a smooth, widespread adoption of \ac{bbg}. 
+
+The study proposed by this paper seeks the advancement of web \ac{gis} \& client-side geoprocessing by attempting to overcome these obstacles. It will do this by researching possible solutions to key components of all three of them. However, we must first regard each obstacle more closely, so that the significance of these key components can be made clear. 
+
+\subsection{Motivation 2: Accessible Geoprocessing Libraries}
+
+Most industry-standard geoprocessing libraries such as CGAL are difficult to use by anyone but experts in the field. A steep learning curve combined with relatively complex installation procedures hinders quick experimentation, demonstration, and widespread utilization of these powerful tools. It also limits the interdisciplinary exchange of knowledge, and compromises the return of investment the general public may expect of publicly funded research.
+
+Geofront could improve the accessibility of existing geodata processing and analysis libraries, without adding major changes to those tools, by loading webassembly-compiled versions of them, similar to [other web demo's](todo).
+
+
+
+
+
+
+
+
+
+
+
+% IMMIGRANT FROM JUSTIFICATIONS CHAPTER. MUST BE MOVED 
+% OR MAKE THIS A FULL CHAPTER
+\section{Use Cases}
+
+% # A: 1. Geofront as a geoprocessing / analysis demo tool.
+% - Frame Geofront as an expanded version of https://validator.cityjson.org/ this. 
+%   - [this](https://validator.cityjson.org/) (a wasm web demo) + jsfiddle 
+%   - Use rust, web, and c++ tools side by side, hand in hand
+
+% # A: 2. Geofront as an integrator
+
+% # A: 3. Geofront as a lightweight QGIS replacement
+% - The web is already used for geodata retrieval and visualization. If geodata processing & analysis is also possible, 
+% there is nothing preventing geofront for becoming a full GIS.
+
+% # A: 4. Geofront as a client-side, web based grasshopper replacement
+% Advantages over grasshopper: 
+% - No install 
+% - Could compile to client-side application.  
+
+
+\subsection{Geofront as Web Demo application}
+
+
+
+
+% _name the cityjson web tool_
+
+% _name web based demo environments, such as jupyter notebook_
+
+% _web demo's like these promote accessibility & science communication._
+
+% _name the importance of interactivity, make a case for visual programming_
+
+% _make the case for a new web based demo environments, to house applications such as the cityjson web tool_
+
+% <br><br>
+
+% ## Problems with publication
+
+% Within the field of geo-informatics, we want to share our end-results. 
+% - Usually on git, but this has limitations:
+%     - Not everybody can immediately use it ( unfamiliar language / build system),
+%     - Even people who can understand, often wont go through the trouble.  
+%     - "Python bindings" -> half-solves the problem, but still hard to publish to a general audience. 
+
+% This was the exact reason for developing https://validator.cityjson.org/. This solved the issue of publication. Why? 
+% - Extremely findable, usable, accessible
+%   - Cross-platform
+%   - No install 
+%   - first point of contact is precisely where you can use it
+%   - You can send a link not to a download page, but to the application itself
+%   - Great for communication: blogs with embedded applications.
+%   - Code sharing: you exactly know what to expect.
+
+% <br><br>
+
+% ## Web Demo & Scripting environments
+
+% we are not the first to recognize the suitability of the web for publishing demo's
+
+% We see a lot of interactive web-demo's nowadays, and many of them are embedded within a type of "Demo Hosts":
+
+% - Scripting environments in (Science) Communication:
+%   - Jupyter Notebook 
+%   - Observable
+%   - JsFiddle
+%   - Shadertoy
+%   - Wapm
+
+% - Scripting environments in Education: 
+%   - TU Delft C++ course
+%   - Udemy
+
+% - Scripting environments in Tutorials: 
+%   - Rust
+%   - Lit
+
+%   <!-- - (game-jam games)
+%       - more save (no virus) -->
+
+% <!-- We also see 
+
+% - As accessible alternative to native
+%   - Overleaf -> does not use webassembly, but a classic client-server architecture
+%   - Google Earth -->
+
+% All these applications lie on a crossroad between being an interactive demonstration of a certain result or phenomenon, 
+% and an open invitation for the user to edit and use this result or phenomenon. 
+% (CITE A STUDY PROVING HOW INTERACTION BENEFITS LEARNING), 
+% so toying around is important.
+
+% <!-- So it is save to say the web is suitable for these types of things. 
+% But is the web also suitable for more? Can we use a web-based sandbox environment to -->
+
+
+% we want to examine and edit the geodata flow, see for example, where these errors occur, try to get to that data, see if we can make hotfixes, etc. etc. 
+
+
+
+
+
+
+\subsection{Geofront as Educational Sandbox}
+- This use-case can be fully realized within the current state of geofront
+- "Geoprocessing for kids"
+- "What is a delaunay triangulation?" 
+- "Let people play / experience / traverse a nef polyhedron"
+- Using something helps with understanding
+
+\subsection{Geofront as Web Demo Environment}
+- Reproducibility toolkit:
+- Workflow: 
+  - Load your own code from a CDN
+  - Build a demo setup around it
+  - load a custom graph from a public json file
+  - share a url pointing to this json (which contains the CDN address)
+- You can now share a rust / C++ program as a fully usable web demo,   
+  and analyze its performance using different datasets, test parameters, etc. 
+- interdisciplinary exchange of ideas
+- MISSING FEATURE: dependency list inside of the graph.json save file
+
+\subsection{Geofront as End User Geoprocessing Environment}
+- Lightweight QGIS.
+- FME, but open source \& on the web.
+- The tool in itself can be regarded as an end-user application:
+  - Load file, do something with the file, download resulting file
+  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
+
+\subsection{Geofront as **Parametric Modelling Application}
+  - OpenSCAD, but using visual programming instead of scripting.
+  - Grasshopper, but open source \& on the web.
+  - CURRENTLY MISSING FEATURE: create new points / lines in the viewer
+  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
+
+
+% Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process.  
+% (
+% If one wishes to retrieve geodata, web portals are used to discover the required datasets. After this, the OGC Web Services are often utilized to download and truly access this geodata. 
+
+% This geodata is then processed locally, using QGIS, ArcGIS, command line tools, or any other 
+
+% and at the end Tools like Leaflet and Celcium have been created to visualize the earth in both 2D and 3D , and tools like d3.js can produce interactive graphs to supplement these web pages. 
+
+% There is, however, more to the web than just visualization. Due to 
+% )
+% This thesis asks the question if the web could do more than just visualization. 
+
+% By creating the use-case application GeoFront, we ask the question if a modern web browser, and the current state of the client-side web technologies are capable of facilitating  
+
+
+% ## Motivation
+% Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process: Retrieval and visualization. 
+% The processing stages in-between are almost always performed on the desktop using environments like QGIS or ArcGIS, or by writing and using CLI tools. 
+
+% <!-- At the same time, a need arrises -->
+
+% ## This Study
+
+% This thesis explores if these in-between processing steps could also be performed within a web application.  
+% This way, geodata processing applications could profit from the ease of accessibility and maintainability granted by the web as a platform.  
+
+% <!-- More Why's: 
+% - making the geoweb more feature-rich
+% - allowing quick demonstration (wapm)
+% - allowing easy access (overleaf)
+
+
+%  -->
+
+% (similar to how overleaf is more accessible than desktop latex installation & usage)
+
+% We ask ourselves if the current state of client-side web technologies are capable of facilitating multiple steps of geodata conversion, and what such an application would look like. 
+
+% To concretize this question, this study covers the design and creation a use-case application titled "Geofront". 
+
+% By designing and creating this environment, the study seeks to gain valuable insights in the current state of client-side core web technologies / javascript std, and how well this facilitates various geoprocessing operations.
+
+\subsection{Geofront as **Rapid Prototyping Environment**} 
+  - Ravi's GeoFlow, but on the web
+    - Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.
+  - CURRENTLY MISSING FEATURE: compile to native cli tool (node.js script)
+  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS

@@ -1,0 +1,167 @@
+\chapter{Methodology}
+
+\section{Design Choices}
+
+\subsection{Visual Programming interface}
+
+% The choice for a Visual Programming Language(vpl) is made to further explore this idea of accessible geoprocessing. 
+
+% demonstrate the advantage of making a geoprocessing tool web based, and thus potentially accessible to a larger audience. 
+% Using visual programming, the geoprocessing sequence can be altered on the fly, and in-between products can be inspected quickly, as both data and in a 3D viewer. 
+% This way, a user can easily experiment with different methodologies and parameters which, hypothetically, improves the quality of the processed geodata.
+% Additionally, a vpl forms a balance between a programming language and a full gui, making the tool accessible to both programmers and non-programmers alike.
+
+To enable the interplay of the following three features: 
+
+1. Alter the process without recompiling
+2. Use UI to quickly and easily alter input data.
+3. Visualize in-between products in 3D. 
+
+Each of these steps is individually possible with regular programming. Feature 1 can be achieved using hot-reloading. For feature 2, a regular GUI debug menu can be used. For feature 3, we can write and save in-between products, and open them up a 3D viewer of choice. 
+
+What makes a VPL special, is its ability to seamless integrate all three of these aspects, and allow interplay \emph{between} these aspects.
+
+...
+VPL's pop up all the time in all fields of computer science, But they intent to stick within 3d applications. (blender, rhino, unity, unreal)
+
+Why? 
+- a need for 3D visual debugging. 
+- arbitrary parameters that require to be 'toyed' with, aka, to find a certain balance interactively and empirically.
+  - Inverse distance weighting
+  - Tolerances
+  - Size of smoothing kernel
+(can also be achieved with settings panels)
+
+...
+
+
+\subsubsection*{From Scratch}
+
+Why not some other environment / Other Client-side geoprocessing innitiatives?
+None suffices
+
+% <!-- [geodata processing] LEADS TO [automation] LEADS TO [scripting]. 
+% [scripting] + [accessible] = visual programming  -->
+
+% - Visual Scripting on the web 
+%   - "A geodata processing sequence is often conceptualized as a pipeline. Then lets make it an actual pipeline. "
+% - 
+
+\subsection{Web Based}
+
+- accessible
+    - immediately usable -> no installation
+    - cross platform
+    - easy to integrate with end-user applications (often web applications).
+    - easy maintainability (just update website, no need to distribute installers)
+
+- one-of-software argument
+
+- makes conceptual sense for end-users with certain applications: 
+  - "You download something from the internet by using an internet browser".
+
+The "one of" software argument: QGIS is excellent for users who use it daily or at least weekly. 
+
+(use the QGIS user data you found)
+
+BUT, users who want to access and process geodata \emph{once in a while}, you ideally want something more temporary. Web Applications make more sense in this regard: No updates, no background processes, no 'presence' on the machine itself. Just go to the website, do what you need to do, and close the browser again. Similar to webshops.
+
+This is in addition to the obvious advantages, like no need to install, easy maintainability, and cross-platform distribution by default.
+
+Finally, using the web ensures that the code will run on all devices: native, mobile, desktop, IOT devices
+
+\subsubsection{Scalability}
+
+Geodata is big data. Will this web application be scalable to handle big datasets?
+
+One of the problems to address when considering the ergonomics of geodata processing, is the fact that geodata is almost always big data. A web application cannot be expected to process huge datasets. So how does geofront address this fundamental aspect of geoprocessing? 
+
+First, lets give the devil it's due. 
+- Even when processing "smaller" datasets of, lets say 4 GB, most of the 'flowchart niceties' of geofront will cease to be useful. Inspecting this data will take more time than its worth, and reconfiguring the flowchart will take a long time. This can be mitigated by using web workers, but it will still not be very ergonomic to work with. 
+- This is why performance is everything within geomatics.
+
+BUT: 
+
+- Even when we want to write a tool to deal with large datasets, we often test and develop this tool in a smaller context, with a smaller dataset first. The same thing is possible with geofront: 
+
+- Geofront is mostly meant as a sandboxing tool for experimentation: An environment try out different procedures, parameters, and different datasets. 
+
+- The flowcharts created with geofront are compilable to javascript. this allows any processing operation created with geofront to be executed from the command line using node.js. This is a way of how geofront can integrate with large-scale geodata pipelines. 
+
+The point is that even if we use server-side / supercomputer / big-data geoprocessing, we still want to be able to be able to ergonomically and correctly configure these geoprocesses. Geofront could still assist with that.
+
+BUT MOREOVER:
+
+The possibility of client-side geoprocessing also allows for an entirely new geoprocessing workflow, which could replace some use-cases that now require big-data processing and storage. Instead of storing big datasets of pre-processed results, by using client-based, on demand geoprocessing, an application could take a general big-data base layer, and process it on-demand, with a scope and settings determined by the end-users. 
+
+This type of \emph{Process Streaming} is certainly not a drop-in replacement for all big-data use cases. But, in cases which can guarantee a 'local correctness', this should be possible. Examples of this are a delaunay triangulation, TIN interpolation or image filter-based operations. This could be a more cost-effective outcome, as server farms \& Terabytes of storage are time consuming, expensive phenomenon.
+
+\subsection{WebAssembly}
+
+Why WebAssembly? to complete the major thing geofront set out to do: making low-level scripts accessible on the web. 
+
+To allow for the previous two (VPL + WEB) without a compromise to speed
+
+On its own: WebAssembly is useful for being containerized binary code. 
+- Binary: WebAssembly is close to machine code, making it very performant.
+- Containerized: the main advantage of WebAssembly over normal binaries is security. wasm can be reasoned about in a virtual, containerized manner, since it uses virtual memory and a system of incremental privileges. WebAssembly binaries cannot access memory outside of its designated memory pool, making segmentation errors harmless. The incremental privileges also ensure that binaries cannot access anything the user did not explicitly allow for. 
+
+Taken together, this makes WebAssembly a more secure alternative to regular binaries. This is also why browsers added support for WebAssembly, but not for regular binaries: Adding support for regular binaries would be a substantial risk to the security of all internet users.
+
+
+
+\subsubsection*{Only core components}
+
+Why not build everything as a local application, and publish the entire thing as wasm?
+
+That would be:
+- more performant (probably)
+- Better native experience
+- Better compilation to standard executable
+
+BUT:
+- The current setup allows for javascript interoperability. 
+  - This is useful for the purposes of UI, GUI, Web requests \& Responses, jsons, WebGL.
+  - These are all aspects that would have needed to be part of the C++ application, that we now get 'for free', since the implementation of these features are present within the browsers of clients. 
+- javascript can now also serve as its scripting language, making custom, scriptable components a possibility.
+
+% - That would be very hard to script with.
+
+% <!-- ### Why Architecture use-case
+
+% - Perfect target audience of an 'edge case user group'. 
+%   - Users are not considered 'geodata experts', but who could benefit from tools like GDAL / CGAL, if presented in the right manner.
+% - Author experience with the target audience. 
+% - Geomatics \emph{for the Build environment}.  -->
+
+\subsection{Minimal Dependencies}
+
+Goal: assess raw web technologies, not the web ecosystem. 
+
+1. Minimize dependencies. 
+  - Maximize usage of standard HTML5 features.
+  - We want to access core web technologies, not the javascript ecosystem, thats a whole different question. 
+  - We are also under the presupposition that the less this project depends on existing project, the more portable this project, or portions of it, will become.
+
+2. Separate geoprocessing tools into plugins as much as possible: 
+  - ideally, if you are not using rasterization tools: do not load rasterization tools. 
+  - This means: Divide all needed functionalities up in plugins.
+     - Then load these plugins lazily: only when needed.
+
+  - This also aids the purpose of geofront: Making low level code accessible.
+
+\subsection{application design}
+
+Nielsen and Molichs 10 User Interface Design Guidelines
+% https://theomandel.com/resources/golden-rules-of-user-interface-design/
+% https://www.interaction-design.org/literature/article/user-interface-design-guidelines-10-rules-of-thumb
+% (old rules, but still relevant)_
+
+1. Model geofront after a 'normal' desktop application. 
+  - Make users forget that they are looking at a website
+  - Undo / Redo support
+  - Cut / Copy / Paste support
+
+% 2. Introduce Visual Scripting as the main UI
+%  - Programming & interface in one
+

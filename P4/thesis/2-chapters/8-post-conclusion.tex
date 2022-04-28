@@ -1,4 +1,7 @@
 \chapter{Discussion}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER
+
+\section{Notes on the future}
+
 Many considerations
 
 % _Answer research questions !!!!_
@@ -14,11 +17,9 @@ Many considerations
 % ## As Demo / Scripting Environment 
 % _"Is this environment a good demo host?"_
 
-
-\section{Self-assessment}
-
-
 \section{Reproducibility}
+% This chapter explains how this thesis might be reproduced, as well as 
+
 Reproducibility
 Results themselves are insanely reproducable.
 Software can be used, you can reproduce results easely by dumping versions of geofront in 
@@ -31,6 +32,47 @@ Software can also be build without too many difficulties, but the procedure has 
 \dots
 
 BUT, the code is not the cleanest, nor the most conventional. minus points on open-source accessibility.
+
+
+
+\subsection{Environment}%%%%%%%%%%% SECTION
+- github organization 
+- repo for engine 
+- repo for app 
+- repo for each plugin
+- build procedure
+
+\subsection{Usage}%%%%%%%%%%% SECTION
+
+\emph{basically, write a tutorial}
+
+This is how one can use Geofront
+
+\subsection{Creating \& Using your own code}
+\emph{show the insane (rust + wasm + npm) workflow}
+
+Locally: 
+1. Write a geoprocessing / analysis library using a system-level language (rust, C++).
+2. Expose certain functions as public, using 'wasm-pack' or 'emscripten'.
+3. Compile to `.wasm` + `d.ts` + `.js`.
+4. publish to npm (very easy to do with wasm-pack, can also be done with emscripten)
+
+Alternatively: 
+1. Write a library using typescript, 
+3. Compile to `d.ts` + `.js`.
+4. publish to npm 
+
+In Geofront: 
+4. Reference the CDN (content delivery network) address of this node package. 
+
+Congrats, this is now a publicly accessible geofront plugin!
+The library is loaded, A component is created for each function, with inputs for input parameters, and a singular output. If a 'typescript tuple type' is exported, the plugin loader will create multiple outputs according to each component of the tuple.
+
+\section{Limitations}%%%%%%%%%%% SECTION
+
+Limitations of usage right now
+
+
 
 \section{Future Work}
 Boulevard of broken dreams :) 
