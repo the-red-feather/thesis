@@ -13,7 +13,7 @@ cloud native OGC
 
 stack -> metadata -> not interesting
 zarr -> -> not interesting
-COPEC -> Cloud optimized point cloud
+COPC -> Cloud optimized point cloud
 Bert Tamme something
 
 copec: ahn3
@@ -43,9 +43,9 @@ greater story
 
 Hi Hugo, 
 
-Thanks again for all the suggestions yesterday.  
+Thanks again for all the suggestions.  
  
-From what I can tell from 1 day of reading, is that OCG wants to partially move away from the 'web services', and to solve the problem of cloud-based geodata consumption on the level of the data format itself. Using html range request, there is no need for a web service in many cases: just a singular, huge, static file is enough. This lowers the cost and complexity for data providers, which will lead to more data more readily available. 
+From what I can tell, is that OCG wants to partially move away from the 'web services', and to solve the problem of cloud-based geodata consumption on the level of the data format itself. Using html range request, there is no need for a web service in many cases: just a singular, huge, static file is enough. This lowers the cost and complexity for data providers, which will lead to more data more readily available. 
 
 All of this matches really well with a story I was cooking up. I already place geofront within the context of a paradigm shift in client-server architectures: From complex servers & static (no js) clients towards static servers & complex clients. My thesis could be framed as a complimentary web client in relation to these static file servers hosting cloud native formats. 
 It can show use cases, and paint a picture of what would be possible in the future with these OGC standards.  

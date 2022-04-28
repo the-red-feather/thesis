@@ -49,7 +49,7 @@ download install use
 
 install only once
 
-play card: someone can package it 
+play card: someone can package it : browser based not that relevant... 
 
 
 kill the interactivity argument

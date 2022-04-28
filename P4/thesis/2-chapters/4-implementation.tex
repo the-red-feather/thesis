@@ -10,7 +10,7 @@
 \emph{Explain main code setup \& components}
 The Geofront codebase ...
 
-\section{Web Framework}
+\subsection{Web Framework}
 \emph{explain how to create a web framework from scratch}
 - No Framework
 - Web Components
@@ -23,23 +23,23 @@ The Graph is intended as a sequence of containerized processes, which whould mat
 ..."
 
 
-\section{Menu}
+\subsection{Menu}
 with these html components, the basics of the webapp can be created: menu's side menu, and the two main canvases: the graph canvas, and the viewer canvas 
 % _explain the file / edit / view / side menu setup_  (Because of Design rule 1. Model after normal application )
 
 \section{The Graph}
 \emph{explain how to create a visual programming language}
-\subsection*{Graph representation}
+\subsubsection*{Graph representation}
   - Map `Functions` to `Nodes` 
   - Map `Variables` to `Edges / Cables`
-\subsection*{Graph manipulation}
+\subsubsection*{Graph manipulation}
   - Canvas 2d API
   - Event-driven
-\subsection*{Graph calculation}
+\subsubsection*{Graph calculation}
   - Dag
   - Dynamic recalculation 
 
-\section{Viewer}
+\subsection{Viewer}
 \emph{explain how the viewer was created from scratch}
 
 lightweight three.js clone
@@ -48,21 +48,21 @@ supports basic things
 
 fast, due to direct buffer types
 
-\section{ Plugin Loader } 
+\subsection{ Plugin Loader } 
 
 \emph{explain the system to dynamically load plugins at runtime}
 
-\subsection{ Type System }
+\subsubsection{ Type System }
 
 \emph{explain how data is exchanged, and objects are handled (lazy tools)}
 - Functional programming (exchange structs)
 
-\section{ Standard Library }
+\subsection{ Standard Library }
 
 The standard library is a 'baked in plugin'.
 Points, lines, triangles, vectors, etc.
 
-\section{ Plugins }
+\subsection{ Plugins }
 What does a plugin need in order to be acceptable
 one javascript file, one type definitions file, and one optional wasm file are accepted. 
 
@@ -70,7 +70,7 @@ ts -> normal build works out of the box
 rust -> wasm pack compile target web -> works out of the box 
 c++ -> emscripten -> more manual work needed 
 
-\subsection{Features}
+\subsubsection{Features}
 - IO can use:
   - basic types (boolean / number / string)
   - jsons, objects, interfaces (typesystem will pick up on them)
@@ -87,15 +87,17 @@ c++ -> emscripten -> more manual work needed
 % - how to deal with objects? 
 
 
-\subsection{ Startin }
+\subsubsection{ Startin }
 - web assembly based
 
-\subsection{ CGAL }
+\subsubsection{ CGAL }
 
 
 
 
 \section{Achieved Functionality}
+
+...
 
 
 

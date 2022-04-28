@@ -6,13 +6,12 @@
 \section{Motivation}
 
 \todo{What is meant with accessibility?}
-\todo{What is meant with interactivity?}
 
 \subsubsection*{ Web Accessibility }
 % CONTEXT : WEB IS ACCESSIBLE
 Interactive, browser-based \ac{giss} form an indispensable component of the modern geospatial software landscape. 
 For the common person, a web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
-A web application is cross-platform by nature, and offers ease of access and  maintainability, since no installment or app-store interaction is required to run or update the app: 
+A web application is cross-platform by nature, and offers ease of access and maintainability, since no installment or app-store interaction is required to run or update the app: 
 As soon as it can be found, it can be used.
 The ability to share a full application with a link, or to embed it within a larger context of a webpage is also not trivial. 
 Together, these aspects have made the browser a popular host for many geographical applications, especially when developing accessible applications targeting end-users. 
@@ -44,8 +43,9 @@ Together, these aspects have made the browser a popular host for many geographic
 % client-side heavy web applications  
 In recent years, a trend towards increasingly complex and demanding client-side geo web applications is noticeable.  
 Whereas before the client was mainly use to visualize end results (leaflet, Celsium), now applications arise allowing users to edit (ninja) and validate (cjval) geodata, directly from within the browser. 
-This matches a similar trend within web applications in general, a push towards more complex clients and simpler servers \cite{panidi_hybrid_2015}.
 
+
+This matches a similar trend within web applications in general, a push towards more complex clients and simpler servers \cite{panidi_hybrid_2015}.
 OGC
 
 % One of the biggest benefits of this setup is \emph{Interactivity}. 
@@ -236,21 +236,22 @@ Geofront will be used as a proxy / experiment to assess:
 
 This study intends to discover if contemporary web technologies can facilitate a full-scale client-side geoprocessing tool, by seeking an answer to the following question: 
 
-\textit{How to \textbf{design and create} a browser-based GIS environment which can \textbf{effectively utilize} \textbf{existing geoprocessing libraries}, using only \textbf{contemporary}, \textbf{standard client-side web features}?}
+\textit{How to \textbf{design and create} a browser-based geoprocessing environment?}
+% which can \textbf{effectively utilize} \textbf{existing geoprocessing libraries}, using only \textbf{contemporary}, \textbf{standard client-side web features}
 
-\subsection*{Explanation}
+% \subsection*{Explanation}
 
-% The research question is written purposefully written in the "how well does X support Y question" shape. To unpack its components: 
+% % The research question is written purposefully written in the "how well does X support Y question" shape. To unpack its components: 
 
-- \textbf{Design and create}: The wording 'design and create' is used to signal that this will consider the theoretical design , as well as the practicalities of creating this design. 
+% - \textbf{Design and create}: The wording 'design and create' is used to signal that this will consider the theoretical design , as well as the practicalities of creating this design. 
 
-- \textbf{Standard client-side web features}: This phrase is meant to limit the scope to only the standard, core technologies of major browsers (Chrome, Edge, Safari, Firefox). This means the four languages \ac{wasm}, CSS, JavaScript and HTML. Additionally, HTML5 gives us features such as WebGl, the 2d Canvas API, SVG's, and Web Components to work with.
+% - \textbf{Standard client-side web features}: This phrase is meant to limit the scope to only the standard, core technologies of major browsers (Chrome, Edge, Safari, Firefox). This means the four languages \ac{wasm}, CSS, JavaScript and HTML. Additionally, HTML5 gives us features such as WebGl, the 2d Canvas API, SVG's, and Web Components to work with.
 
-- \textbf{Contemporary}: The study will use contemporary, even bleeding edge features of the modern web, but its findings will nonetheless be bound to this time of writing, as web technologies in particular quickly change over time. 
+% - \textbf{Contemporary}: The study will use contemporary, even bleeding edge features of the modern web, but its findings will nonetheless be bound to this time of writing, as web technologies in particular quickly change over time. 
 
-- \textbf{Existing geoprocessing libraries}. This wording expresses this studies desire to explore the usage of existing geoprocessing libraries, rather than to recreate geoprocessing libraries from scratch.
+% - \textbf{Existing geoprocessing libraries}. This wording expresses this studies desire to explore the usage of existing geoprocessing libraries, rather than to recreate geoprocessing libraries from scratch.
 
-- \textbf{Effectively utilize}: The study intends to not only find out how wagl's can be \textit{run} in a browser, but also how wagl's can be \textit{used}. 'Effective' is used in the wholistic sense, since a balance will have to be found between several aspects such as load-time, run-time, and less concrete usability aspects. 
+% - \textbf{Effectively utilize}: The study intends to not only find out how wagl's can be \textit{run} in a browser, but also how wagl's can be \textit{used}. 'Effective' is used in the wholistic sense, since a balance will have to be found between several aspects such as load-time, run-time, and less concrete usability aspects. 
 
 
 \subsection*{Sub Questions}
@@ -258,7 +259,7 @@ This study intends to discover if contemporary web technologies can facilitate a
 The following sub-research questions are needed in order to answer the main question. The methodology chapter will explain the choices of these sub-questions. 
 
 
-\textit{1 : What is the most fitting methodology of compiling C++ geoprocessing   libraries to Web-Assembly?}
+\textit{1 : What is the most fitting methodology of compiling C++ geoprocessing libraries to Web-Assembly?}
 
 \textit{2 : How to design and create a client-side geoprocessing environment for data-users?}
 
