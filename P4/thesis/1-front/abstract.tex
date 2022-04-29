@@ -1,11 +1,9 @@
 
 \chapter*{ (Long) Abstract }
 
-This thesis introduces GeoFront, a web based, open source, geodata processing and visualization environment. 
-In this thesis, the motivation, requirements, technical aspects, and achieved functionality of geofront is covered. 
 
-% MOTIVATION & FUNCTIONALITY
-GeoFront has been created in an effort to make low-level geoprocessing libraries more accessible and interactible.
+% FUNCTIONALITY
+
 \emph{Accessibility} is achieved by compiling the geoprocessing libraries to webassembly, after which the tools can be run in a browser, client-side. 
 This mitigates the need for installment; 
 % As soon as the tool is found on the web, it can be used. 
@@ -31,11 +29,11 @@ GeoFront has multiple actual and possible use cases.
    - (What does a delaunay triangulation look like? how does it behave? What happens if you lower the radius of inverse distance weighting ? )
 
 3. Rapid-Prototyping (POSSIBLE)
-   - Web geoflow
+   - Setting up pipelines which can be consumed by cloud-based geoprocessing services. 
    - Future work: export flowchart to a process which can be run natively or server side.
 
 4. Publishing (POSSIBLE)
-   - Geotiff.io
+   - Geotiff.io / ModelLab
    - Web FME 
    - Publish full web apps in and off themselves, making use of zero, one or multiple wasm-compiled libraries.  
    - Future work: export to web-app (without flowchart)
@@ -75,7 +73,7 @@ By creating geofront, this thesis was able to discover .............
   - 2D Canvas API
   - Web GL
 
-\todo{[JF]: I need to add more critical notes on promises of accessibility and interactivity. Is a webapp truly accessible? Is a flowchart interactive, or does it hinder interactiveness? }
+\todo{[JF]: I need to add more critical notes on promises of accessibility. Is a webapp truly accessible? Is a flowchart interactive, or does it hinder interactiveness? }
 
 We believe that such a web application can make geoprocessing more accessible to practitioners.
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="dep/normalize.css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="dep/Font-Awesome/css/font-awesome.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet"> 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet"> 
+<style>
+
+@page{
+  size: A4 portrait;
+  margin: 0;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+:root {
+  --page-width: 8.3in;
+  --page-height: 11.7in;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'open sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+  color: white;
+  hyphens: none;
+  background-color: rgb(49, 176, 219)
+  /* use this to see the extent of the page. */
+  /* do not use this for production */
+  /* background-color: white */
+}
+
+.page {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: var(--page-width);
+  height: var(--page-height);
+  background-color: rgb(49, 176, 219)
+}
+
+.text {
+  margin: 50px 50px;
+  
+}
+
+.title {
+  line-height: 1.5;
+  font-size: 40pt;
+  font-weight: 100;
+}
+
+.bolder {
+  font-size: 25pt;
+  font-weight: 600;
+}
+
+</style>
+</head>
+  <body lang="en">
+    <div class="page">
+      <div class="text">
+        <h2>MSc thesis in Geomatics</h2>
+        <h1 class="title">GeoFront: A Browser-based geoprocessing platform for the era of cloud-native</h1>
+        <h1 class="bolder">Jos Feenstra</h1>
+        <h1 class="bolder">2022</h1>
+      </div>
+      <img src="./wordweb-thesis.PNG" style="width: var(--page-width);
+      height: 50%; position: absolute; bottom: 0px" alt="">
+      <img src="./tudelft-white-better.png" style="width: calc(var(--page-width) * 0.3); position: absolute; bottom: 50px; left: 50px" alt="">
+    </div>
+  </body>
+</html>
