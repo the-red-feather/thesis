@@ -190,3 +190,30 @@ Geofront will differ, for it focusses on 3D \& Point clouds instead of rasters \
 
 ModelLab says this : "Widespread access to frequent, high-resolution Earth observation imagery has created the need for innovative tools like ModelLab that will help individuals and organizations to effectively access, analyze, edit, and visualize remotely sensed data in transformative new ways without years of specialized training or ongoing investments in proprietary software and technology infrastructure. "
 
+
+
+\section{Client-side geoprocessing}
+
+% NEW PRACTICAL ATTEMPT. WHY? 
+% - csg still has a lot of potential
+% - previous studies:
+%   - are dated
+%   - prioritized theory over practicalities
+%   - utilized the web's major feature of Accessibility and the clients feature of    
+%     Interactivity inadequately 
+%   - were not creative enough in terms of possible use-cases 
+
+While these studies pose a strong theoretical case for client-side geoprocessing, their practical implementations were less convincing \todo{TODO: Figure out how to phrase this better}. 
+The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major javascript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
+
+
+This study recognizes a need for a new, practical attempt at client-side geoprocessing. 
+Client-side geoprocessing is a promising prospect with potentially many use cases.
+Previous attempts are either dated due to the web's rapid advancements, or chose theory over practice.
+
+In addition, the implementations lacked creativity \todo{This needs a better phrase, but it really is the most direct way of putting it}. 
+
+The applications were either meant as small demo's, without a clear target audience or use-case in mind (just a way to demo performance), or as highly specified debugging tool for the authors.   
+But, as mentioned before, a major advantage of Web applications over native applications is \emph{Accessibility}, and a major advantage of client-focussed web apps over server-focussed web apps is \emph{Interactivity}. 
+By creating a client-side web application which is neither accessible nor interactive, the main incentive for creating a client-side web app is lost.
+Additionally, by forgoing the question of accessibility, many auxiliary use-cases of client-side geoprocessing where overlooked.

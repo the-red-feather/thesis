@@ -1,81 +1,88 @@
 
-\chapter*{ (Long) Abstract }
+\chapter*{Abstract}
+
+% This thesis introduces GeoFront, a first step towards a web based, open source, geodata processing and visualization environment in an era of cloud-native geodata. 
+% In this thesis, the motivation, requirements, technical aspects, and achieved functionality of geofront are covered. 
+
+% GeoFront has been developed for two reasons. 
+
+% Firstly, OGC Cloud native geospatial types, and specifically the Cloud Optimized Point Cloud, will create a need for equally accessible means to access, analyze, edit, and visualize this data. 
+% Secondly, 
+
+% % FUNCTIONALITY
+
+% \emph{Accessibility} is achieved by compiling the geoprocessing libraries to webassembly, after which the tools can be run in a browser, client-side. 
+% This mitigates the need for installment; 
+% % As soon as the tool is found on the web, it can be used. 
+% \emph{Interactivity} is achieved by making geofront a visual programming environment. 
+% Functions are represented by blocks, and these can be chained together to form an interactively configurable geoprocessing pipeline. 
+% In between products can be inspected and debugged using a 3D viewer. 
+% % Special blocks such as sliders can be used to quickly try different values and parameters, and to 'sweetspot' certain settings.
+% % INPUTS: OGC STANDARDS & FILE SYSTEM | OUTPUTS: DOWNLOAD
+
+% % RESULT
+% This study has successfully made a limited set of CGAL operations usable like this, as well as various rust-based geoprocessing algorithms such as Startin.
+% % The performance is ..., \todo{"Do performance comparrisons"}
+
+% % USE CASE
+% GeoFront has multiple actual and possible use cases. 
+
+% 1. Tryout (ACTUAL)
+%    - A-la wapm WebAssembly Package Manager allows packages to be run from within the package-page itself. 
+%   - Just meant to quickly try out some features.
+
+% 2. Educational (ACTUAL)
+%    - interactive educational tool
+%    - (What does a delaunay triangulation look like? how does it behave? What happens if you lower the radius of inverse distance weighting ? )
+
+% 3. Rapid-Prototyping (POSSIBLE)
+%    - Setting up pipelines which can be consumed by cloud-based geoprocessing services. 
+%    - Future work: export flowchart to a process which can be run natively or server side.
+
+% 4. Publishing (POSSIBLE)
+%    - Geotiff.io / ModelLab
+%    - Web FME 
+%    - Publish full web apps in and off themselves, making use of zero, one or multiple wasm-compiled libraries.  
+%    - Future work: export to web-app (without flowchart)
+
+% % FEATURES
+
+% % CONTENT 
+
+% % CONCLUSION 
 
 
-% FUNCTIONALITY
 
-\emph{Accessibility} is achieved by compiling the geoprocessing libraries to webassembly, after which the tools can be run in a browser, client-side. 
-This mitigates the need for installment; 
-% As soon as the tool is found on the web, it can be used. 
-\emph{Interactivity} is achieved by making geofront a visual programming environment. 
-Functions are represented by blocks, and these can be chained together to form an interactively configurable geoprocessing pipeline. 
-In between products can be inspected and debugged using a 3D viewer. 
-% Special blocks such as sliders can be used to quickly try different values and parameters, and to 'sweetspot' certain settings.
-% INPUTS: OGC STANDARDS & FILE SYSTEM | OUTPUTS: DOWNLOAD
+% % Safesoft's FME, but web based \& open source 
 
-% RESULT
-This study has successfully made a limited set of CGAL operations usable like this, as well as various rust-based geoprocessing algorithms such as Startin.
-% The performance is ..., \todo{"Do performance comparrisons"}
+% % CONCLUSION
+% By creating geofront, this thesis was able to discover .............
 
-% USE CASE
-GeoFront has multiple actual and possible use cases. 
+% - The web is able to facilitate a visual programming language.
 
-1. Tryout (ACTUAL)
-   - A-la wapm WebAssembly Package Manager allows packages to be run from within the package-page itself. 
-  - Just meant to quickly try out some features.
+% - The web is able to be used for geoprocessing, albeit with some caveats
+%   - TypedArrays,
+%   - Geometric predicates 
+%   - Rounding
+%   - ETC.
 
-2. Educational (ACTUAL)
-   - interactive educational tool
-   - (What does a delaunay triangulation look like? how does it behave? What happens if you lower the radius of inverse distance weighting ? )
+% - Many of these things can be fixed with webassembly, but webassembly itself has other shortcomings
+%   - Differences between Rust \& C++
 
-3. Rapid-Prototyping (POSSIBLE)
-   - Setting up pipelines which can be consumed by cloud-based geoprocessing services. 
-   - Future work: export flowchart to a process which can be run natively or server side.
+% - reasonable performance 
+%   (- great considering the platform)
 
-4. Publishing (POSSIBLE)
-   - Geotiff.io / ModelLab
-   - Web FME 
-   - Publish full web apps in and off themselves, making use of zero, one or multiple wasm-compiled libraries.  
-   - Future work: export to web-app (without flowchart)
+% - would not be possible without these modern web features
+%   - Web Assembly 
+%   - Typed Array's 
+%   - Web Workers
+%   - Web Components,
+%   - 2D Canvas API
+%   - Web GL
 
-% FEATURES
+% \todo{[JF]: I need to add more critical notes on promises of accessibility. Is a webapp truly accessible? Is a flowchart interactive, or does it hinder interactiveness? }
 
-% CONTENT 
-
-% CONCLUSION 
-
-
-
-% Safesoft's FME, but web based \& open source 
-
-% CONCLUSION
-By creating geofront, this thesis was able to discover .............
-
-- The web is able to facilitate a visual programming language.
-
-- The web is able to be used for geoprocessing, albeit with some caveats
-  - TypedArrays,
-  - Geometric predicates 
-  - Rounding
-  - ETC.
-
-- Many of these things can be fixed with webassembly, but webassembly itself has other shortcomings
-  - Differences between Rust \& C++
-
-- reasonable performance 
-  (- great considering the platform)
-
-- would not be possible without these modern web features
-  - Web Assembly 
-  - Typed Array's 
-  - Web Workers
-  - Web Components,
-  - 2D Canvas API
-  - Web GL
-
-\todo{[JF]: I need to add more critical notes on promises of accessibility. Is a webapp truly accessible? Is a flowchart interactive, or does it hinder interactiveness? }
-
-We believe that such a web application can make geoprocessing more accessible to practitioners.
+% We believe that such a web application can make geoprocessing more accessible to practitioners.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

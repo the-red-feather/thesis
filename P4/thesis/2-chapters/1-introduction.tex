@@ -1,258 +1,16 @@
 %---------------------%
 % An introduction in which the relevance of the project and its place in the 
 % context of geomatics is described, along with a clearly-defined problem statement.
+%---------------------%
 \chapter{Introduction}
 
 \section{Motivation}
 
-\todo{What is meant with accessibility?}
-
-\subsubsection*{ Web Accessibility }
-% CONTEXT : WEB IS ACCESSIBLE
-Interactive, browser-based \ac{giss} form an indispensable component of the modern geospatial software landscape. 
-For the common person, a web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
-A web application is cross-platform by nature, and offers ease of access and maintainability, since no installment or app-store interaction is required to run or update the app: 
-As soon as it can be found, it can be used.
-The ability to share a full application with a link, or to embed it within a larger context of a webpage is also not trivial. 
-Together, these aspects have made the browser a popular host for many geographical applications, especially when developing accessible applications targeting end-users. 
-
-% Premature optimization is the root of all evil | Donald Knuth
-% Delay decisions to the latest moments, to gain maximum context,
-% Key insight into writing better compilers
-% 46K views 7 months ago
-
-% For these reasons the web has become a popular target for many applications, including geoweb applications. 
-% - Tools like Leaflet and Celcium are widely used.
-
-% This thesis seeks to push this trend further, 
-% and explores to what end the capabilities of the contemorary web can facilitate the needs of geo-informatics in general, 
-% and geodata processing in particular. 
-
-
-% A clear trend within these geo-web applications, is a push for increasingly complex applications. 
-%   - Such as the ninja cityjson web viewer
-%     - Proofs that the web can not only be used as viewer or end-user application, 
-%       but also for geodata analysis and editing.
-%     - Both for end-user tools, and tools used by developers.
-%   - Also, Modern web tools such as webassembly allow us to run native geo-analysis applications directly in a web browser
-%     - Leading to tools such as cj-val, a 3D city validator.
-
-
-\subsubsection*{Client-side Interactivity}
-% TREND : HEAVY CLIENT-SIDE FOR INTERACTIVITY 
-% client-side heavy web applications  
-In recent years, a trend towards increasingly complex and demanding client-side geo web applications is noticeable.  
-Whereas before the client was mainly use to visualize end results (leaflet, Celsium), now applications arise allowing users to edit (ninja) and validate (cjval) geodata, directly from within the browser. 
-
-
-This matches a similar trend within web applications in general, a push towards more complex clients and simpler servers \cite{panidi_hybrid_2015}.
-OGC
-
-% One of the biggest benefits of this setup is \emph{Interactivity}. 
-% If logic runs in the client, it can more quickly react to behavior of the user. 
-% A full client-server roundtrip will in many situations take longer.
-This trend can be attributed to new browser features such as WebAssembly, and performance upgrades of the javascript runtime (V8, JIT compiler, etc.).
-
-Within the field of geo-informatics, the move towards client-side heavy applications also caused academic and commercial interest for the prospect of \emph{client-side geoprocessing}. 
-
-Academic sources 
-
-\cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
-Interactive geospatial data manipulation and online geospatial data processing techniques where described as "highly valuable trends in evolution of the Web mapping and Web GIS" (\cite{panidi_hybrid_2015}).
-
-
-Commercial sources 
-
-While these studies pose a strong theoretical case for client-side geoprocessing, their practical implementations were less convincing \todo{TODO: Figure out how to phrase this better}. 
-The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major javascript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
-
-\section{ Problem }
-
-
-\section{ The Case }
-
-% NEW PRACTICAL ATTEMPT. WHY? 
-% - csg still has a lot of potential
-% - previous studies:
-%   - are dated
-%   - prioritized theory over practicalities
-%   - utilized the web's major feature of Accessibility and the clients feature of    
-%     Interactivity inadequately 
-%   - were not creative enough in terms of possible use-cases 
-
-This study recognizes a need for a new, practical attempt at client-side geoprocessing. 
-Client-side geoprocessing is a promising prospect with potentially many use cases.
-Previous attempts are either dated due to the web's rapid advancements, or chose theory over practice.
-
-In addition, the implementations lacked creativity \todo{This needs a better phrase, but it really is the most direct way of putting it}. 
-
-The applications were either meant as small demo's, without a clear target audience or use-case in mind (just a way to demo performance), or as highly specified debugging tool for the authors.   
-But, as mentioned before, a major advantage of Web applications over native applications is \emph{Accessibility}, and a major advantage of client-focussed web apps over server-focussed web apps is \emph{Interactivity}. 
-By creating a client-side web application which is neither accessible nor interactive, the main incentive for creating a client-side web app is lost.
-Additionally, by forgoing the question of accessibility, many auxiliary use-cases of client-side geoprocessing where overlooked.
-
-\section{This Study}
-
-% CONTENT OF STUDY
-This study introduces GeoFront, a web based, open source, geodata processing and visualization tool. 
-It enables users to configure geodata processing pipelines using visual programming. 
-Users are able to make use of native geoprocessing tools such as CGAL, visualize and debug both end results and in-between results.
-
-% Assessment
-This study will be assessed based on: 
-- To what end geofront succeeds in implementing its desired features.
-- To what end geofront delivers on its promises of accessibility and interactivity.
-
-This second assessment will be a judgement based on four distinct use-cases for the environment:
-
-1. Tryout (ACTUAL)
-   - A-la wapm WebAssembly Package Manager allows packages to be run from within the package-page itself. 
-  - Just meant to quickly try out some features.
-
-2. Educational (ACTUAL)
-   - interactive educational tool
-   - (What does a delaunay triangulation look like? how does it behave? What happens if you lower the radius of inverse distance weighting ? )
-
-3. Rapid-Prototyping (POSSIBLE)
-   - Web geoflow
-   - Future work: export flowchart to a process which can be run natively or server side.
-
-4. Publishing (POSSIBLE)
-   - Geotiff.io
-   - Web FME 
-   - Publish full web apps in and off themselves, making use of zero, one or multiple wasm-compiled libraries.  
-   - Future work: export to web-app (without flowchart)
-
-
-% GOAL OF STUDY
-Finally, this study intends to use the design, creation, and evaluation of geofront to gain insight into the broader topic of client-side geoprocessing. 
-Geofront will be used as a proxy / experiment to assess: 
-- The fitness of the web in general for client-side geoprocessing
-- If client-side geoprocessing in its current state has any meaningful use-cases
-- If new features of modern browsers mean anything for the field of geo-informatics at large (webassembly in particular). 
-
-
-
-
-% Explain geofront
-% The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
-% The main goal and feature of geofront is to take existing low level geoprocessing libraries, and to make these interactively usable on the web. 
-% These libraries include a limited set of CGAL operations, complied from C++, and various geoprocessing algorithms such as Startin, written in Rust. 
-% Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
-% In between products can quickly be inspected using a 3D viewer.
-
-% PATH TOWARDS RESEARCH QUESTION
-\todo{MAAK EEN DUIDELIJK LINK NAAR RESEARCH QUESTIONS \& ASSESSMENT CRITERIA}
-
-
-% ## This thesis 
-
-
-% The goal of this thesis is to improve the functionality and interactivity of geoprocessing & geo-analysis web demos. 
-
-% This will be done by providing a web-based Demo Hosts to embed these demo's within. 
-
-% ...
-
-% By means of visual scripting, a user will be able to reconfigure the dataflow interactively, and 'toy' with the tools & data provided. 
-
-% We will test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility & performance of said application. We will also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
-
-
-% <!-- 
-% These features could all be implemented by normal means ( buttons, panels, sliders ) -->
-
-% CHOICE: do something in-between python bindings, and a full fletched end-user application. 
-% Ergo: Visual programming
-
-
-
-
-% For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load locally stored geodata. Parameters can be specified using various ui components, such as sliders. 
-% For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
-
-% Accessibility
-% - Shareability
-% - Reproducibility
-
-% Interactivity 
-% - Visual programming 
-% - Visual feedback & insight
-% - Sliders
-
-% # Some Introduction
-
-% Web applications have many benefits over native applications
-%   - cross-platform
-%   - easy to distribute
-%   - findable, accessible
-%   - ...
-
-% For these reasons the web has become a popular target for many applications, including geoweb applications. 
-% - Tools like Leaflet and Celcium are widely used.
-
-% A clear trend within these geo-web applications, is a push for increasingly complex applications. 
-%   - Such as the ninja cityjson web viewer
-%     - Proofs that the web can not only be used as viewer or end-user application, 
-%       but also for geodata analysis and editing.
-%     - Both for end-user tools, and tools used by developers.
-%   - Also, Modern web tools such as webassembly allow us to run native geo-analysis applications directly in a web browser
-%     - Leading to tools such as cj-val, a 3D city validator.
-
-% This thesis seeks to push this trend further, 
-% and explores to what end the capabilities of the contemorary web can facilitate the needs of geo-informatics in general, 
-% and geodata processing in particular. 
-
-% We introduce GeoFront, a web based, open source, geodata processing and visualization tool. 
-% It enables users to configure geodata pipelines using visual programming. 
-% Users are able to make use of native geoprocessing tools such as CGAL, visualize and debug both end results and in-between results.
-
-% The input and output of the functions exposed by these libraries 
-
-% the aspect of interactivity is 
-
-% - The web gives us great \emph{Accessibility}, and making it client-side promises us great \emph{Interactivity}
-
-% Browser based \ac{geoprocessing}, hereby known as \ac{bbg}, ... 
-
-
-% 'interactive geo-processing'
-% - Insight 
-% - Reproducibility
-
-% GOAL: - explore new use-cases of the web for interactive geo-processing.
-    %   - explore the 'fitness' of the web for many different geoprocessing use cases. 
-
-% 1. Build a general purpose web geoprocessing environment 
-
-% 2. Study to which end different needs can be fulfilled / different use-case requirements can be met 
-
-% Safesoft's FME, but web based & open source 
 
 \newpage
 \section{Research Questions}
-\todo{TODO these are old. current ones are fine, but de-emph 'existing libraries', and emph 'visual programming language' }
-% TODO this is good, but de-emph 'existing libraries', and emph 'visual programming language'
-
-This study intends to discover if contemporary web technologies can facilitate a full-scale client-side geoprocessing tool, by seeking an answer to the following question: 
 
 \textit{How to \textbf{design and create} a browser-based geoprocessing environment?}
-% which can \textbf{effectively utilize} \textbf{existing geoprocessing libraries}, using only \textbf{contemporary}, \textbf{standard client-side web features}
-
-% \subsection*{Explanation}
-
-% % The research question is written purposefully written in the "how well does X support Y question" shape. To unpack its components: 
-
-% - \textbf{Design and create}: The wording 'design and create' is used to signal that this will consider the theoretical design , as well as the practicalities of creating this design. 
-
-% - \textbf{Standard client-side web features}: This phrase is meant to limit the scope to only the standard, core technologies of major browsers (Chrome, Edge, Safari, Firefox). This means the four languages \ac{wasm}, CSS, JavaScript and HTML. Additionally, HTML5 gives us features such as WebGl, the 2d Canvas API, SVG's, and Web Components to work with.
-
-% - \textbf{Contemporary}: The study will use contemporary, even bleeding edge features of the modern web, but its findings will nonetheless be bound to this time of writing, as web technologies in particular quickly change over time. 
-
-% - \textbf{Existing geoprocessing libraries}. This wording expresses this studies desire to explore the usage of existing geoprocessing libraries, rather than to recreate geoprocessing libraries from scratch.
-
-% - \textbf{Effectively utilize}: The study intends to not only find out how wagl's can be \textit{run} in a browser, but also how wagl's can be \textit{used}. 'Effective' is used in the wholistic sense, since a balance will have to be found between several aspects such as load-time, run-time, and less concrete usability aspects. 
-
 
 \subsection*{Sub Questions}
 
@@ -270,43 +28,13 @@ The following sub-research questions are needed in order to answer the main ques
 \newpage
 \subsection*{Assessment}
 
-- Accessibility: 
-  - Use cases
-    - Feature Completeness 
-    - Performance
-- Interactivity 
-  - Feature Completeness 
-  - Performance
-
-% - Subsequent research: actual use-case analysis.
-
-% OLD
-At the final conclusion of the proposed thesis, The Thesis will answer if the designed and created GIS environment can indeed effectively utilize these geo-libraries.
-This will be answered by quantitative and qualitative means:
-
-Quality
-\begin{itemize}
-    \item Have all design goals been met?
-    \item Can data users 'effectively' handle input, process and output?
-    \item Can the load \& run times be regarded as acceptable to use? 
-\end{itemize} 
-
-Quantity
-\begin{itemize}
-    \item Have all required features been implemented?
-    \item Which libraries can / could be used?
-    \item What are the load \& run times of these libraries, compared to native execution?
-\end{itemize} 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Scope}
-\subsection*{Will Include}
+\subsection*{Included}
+The scope of this thesis is represented by the Methodology chapter. 
 
-The 'will include' scope is represented by the Methodology chapter. 
-
-
-\subsection*{Will not include}
+\subsection*{Excluded}
 
 % TIM: maybe move this to obstacle 3 ? 
 \subsubsection*{ Server-side or Native WebAssembly } % **Client-side WebAssembly Only**
