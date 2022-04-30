@@ -4,24 +4,23 @@ Geofront: A Browser-based geoprocessing platform for the era of cloud-native geo
 
 # Introduction
 
-```markdown
+## Context
+```
 - Web GIS 
 
 - Cloud native movement
 
 - Thick client movement
 
-- The cloud-native movement will bring both opportunities and challenges to Web GIS. 
-  
-  - Accessible data like this leads to need for equally accessible means to access, analyze, edit, visualize.
-    - This is logical: The more accessible geodata becomes, the more accessible the tools to _use_ geodata will need to become.    
-    - This is evident: We already see this happening with certain applications like GeoTiff & ModelLab.
-    
-  - A re-examination of client-server models 
-    -   
-```
 
-## Context
+
+[JF]: Which term to use? 
+- Web GIS
+- Web application
+- browser-based application
+- web tool
+- GIS tool
+```
 Interactive web \ac{giss} form an indispensable component of the modern geospatial software landscape. 
 For the average person, a web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
 A web application is cross-platform by nature, and offers ease of accessibility, since no installment or app-store interaction is required to run or update the app: 
@@ -31,25 +30,44 @@ Together, these aspects have made the browser a popular host for many important 
 <!-- THIS ALSO MAKES IT EXTREMELY IMPORTANT TO DEVELOP WEB TOOLS -->
 <!-- %  Tools like Leaflet and Celcium are widely used. -->
 
-A significant development within the Open Geospatial Consortium (OGC) is the "Cloud Native" Movement. It envisions a future of statically hosted geospatial data accompanied with cloud-based geoprocessing tools similar to the Google Earth Engine. 
-This will be easier and cheaper for data providers, and allows for cloud-hosted geodata to be more easily be consumed by cloud-compute tools. 
- 
-At the same time, a trend within web applications in general shows an ever growing preference for so called 'fat clients' and 'thin servers', as opposed to 'thin clients' and 'fat servers' \cite{panidi_hybrid_2015}. This means that certain responsibilities, such as navigation, increasingly are being performed by the client rather than the server. As a consequence, applications are more quick to react on a user's input. 
+A significant development within the Open Geospatial Consortium (OGC) is the recent attention around "Cloud Native geospatial". This movement envisions a future of geodata as large, singular, statically hosted files, accompanied with cloud-based geoprocessing tools similar to the Google Earth Engine. This architecture would 
+- make use of near-infinite resources in the shape of supercomputers and cloud-storage.
+- finding large-scale patterns 
+- This will be easier and cheaper for data providers, 
+- and allows for cloud-hosted geodata to be more easily be consumed by cloud-compute tools. 
+- This really is a 'new era'
+The cloud-native initiative aims to radically simplify geodata storehouses to just static file servers. All processing and analysis of this geodata can then be performed by separate cloud-based web services.
+
+For web GIS, this would offer direct data streaming options.  
+```
+- Data streaming 
+- Other Trend: Gaming PC streaming: https://shadow.tech/en-gb/
+```
+
+At the same time, a trend within web applications in general shows an ever growing preference for so called 'fat clients' and 'thin servers', as opposed to 'thin clients' and 'fat servers' \cite{panidi_hybrid_2015}. This means that certain responsibilities, such as navigation, increasingly are being performed by the client rather than the server. As a consequence, applications are more quick to react on a user's input, and web-applications 
+
+Geo-computation as a phrase is used to group all the various ways geodata is transformed, such as reprojection, translating between datatypes, or boolean operations. 
 
 
 The trend can be attributed to new browser features such as WebAssembly, and performance upgrades of the javascript runtime (V8, JIT compiler, etc.).
+```
+... Blurring the lines between browser-based application, and desktop / native application.
+```
+
 <!-- This movement contains aspects of the ungoing trend of 'thin server' 'thick client'. -->
 
 This trend is visible within web GIS 
 towards more complex clients and simpler servers .
+Within the field of geo-informatics, the move towards client-side heavy applications also caused academic and commercial interest for the prospect of \emph{client-side geoprocessing}.  -->
 Whereas before the client was mainly use to visualize end results (leaflet, Celsium), now applications arise allowing users to edit (ninja) and validate (cjval) geodata, directly from within the browser. 
 EXTREME EXAMPLES: GEOTIFF.
 
-<!-- 
+```latex
 % A clear trend within these geo-web applications, is a push for increasingly complex applications. 
 %   - Such as the ninja cityjson web viewer
 %     - Proofs that the web can not only be used as viewer or end-user application, 
 %       but also for geodata analysis and editing.
+%     - Geocomputation
 %     - Both for end-user tools, and tools used by developers.
 %   - Also, Modern web tools such as webassembly allow us to run native geo-analysis applications directly in a web browser
 %     - Leading to tools such as cj-val, a 3D city validator.
@@ -61,31 +79,79 @@ EXTREME EXAMPLES: GEOTIFF.
 % If logic runs in the client, it can more quickly react to behavior of the user. 
 % A full client-server roundtrip containing lots of geodata will in many situations take longer.
 
-Within the field of geo-informatics, the move towards client-side heavy applications also caused academic and commercial interest for the prospect of \emph{client-side geoprocessing}.  -->
-
-
 
 ------------------------------------------------------------------------------- 
 
-<!-- The case for cloud-based geoprocessing is very easy: very fast, google earth engine  -->
-<!-- With a world moving towards the cloud, it becomes ever more important to look at alternatives.  -->
+
+```
+
 ## Problem: 
 
-When viewing these two trends together, a pattern emerges: New opportunities and challenges are approaching the field of Web GIS. 
+```
+RAISE QUESTIONS:
 
-If OGC standard geodata services like WMS or WFS are slowly replaced by statically hosted, singular geodata files, 
-many of the current post-processing functionalities of these web services, like reprojection or reformatting, will all have to be provided elsewhere.
-These post-processing & geoprocessing capabilities can either be facilitated by other, new web-services, or they can be added to the responsibilities of (web) clients.
+- Opportunities 
+  - Name the positive changes
+- Challenges: 
+  - What is the role of web GIS in this new era? 
+  - Where to facilitate geoprocessing functionalties? 
+  - Will be go back to server-heavy architectures? 
+  - Will be add responsibilities 
 
-The same dichotomy can be found in advanced web GIS applications allowing the usage of general geoprocessing capabilities. 
-Developers of these applications will have to choose for either cloud-based geoprocessing, or client-, browser-based geoprocessing.  
 
-With both the possibility of cloud-native geoprocessing servers, and highly advanced clients,  
 
+- 
+```
+
+When viewing the trend of Cloud Native Geospatial together with the advancements of web clients, a pattern emerges: 
+Major opportunities are coming to the field of Web GIS tooling. Increasingly powerful options for server-side and client-side computation are, or will be, available for developers. More data & more services are becoming more open, and the lines between cloud-based, desktop and browser-based applications are getting increasingly blurry.
+
+These developments lead to a critical re-examination of the **architecture** and **role** of web GIS applications, and this is particularly apparent for geo-computation. 
+
+Regarding **architecture**, when OGC web-services are substituted by statically hosted, singular geodata files, all of their current geo-computation functionalities will have to be provided elsewhere. 
+These can either be facilitated by other, new web-services, or can be added to the responsibilities of (web) clients.
+The same dichotomy can be found in web-GIS applications wishing to use general geoprocessing capabilities. Developers of these applications will have to choose between hosting / paying for cloud-based geoprocessing services, or adding these often heavy computations to client applications.
+This choice is also not a binary one. Hybrid approaches have proven to be beneficial \cite{csg_2016}, And as such, it is very likely that both architectures could operate in a complimentary manner. 
+
+```
+This is why we see that as soon as geodata is sufficiently findable, accessible, interoperable, and reusable, the accessibility concerns of geodata start to move more towards geodata _processing_ and _processing applications_.
+
+
+```
+
+Regarding **role**, the more accessible geodata becomes, the more accessible the _means to use_ geodata must become in order to keep up. After all, FAIR geodata means little if the means to access, compute, or visualize geodata are not accessible. 
+Chris Holmes already envisions how cloud native will lead to expand the geodata community, and expand geodata users. "(cloud-native geospatial) is what gets geospatial out of its niche" \cite{podcast}.
+We also see this happening with certain web applications like GeoTiff & ModelLab.
+Modellab in particular states that _"Widespread access to frequent, high-resolution Earth observation imagery has created the need for innovative tools [...] that will help individuals and organizations to effectively access, analyze, edit, and visualize remotely sensed data in transformative new ways without years of specialized training or ongoing investments in proprietary software and technology infrastructure."_. \cite{modellab}
+
+```
+...
+```
+The previously named accessibility advantages give web GIS a lead compared to desktop applications in this pursuit of "denichifying" geo-computation.
+
+
+```
+THE CHOICE 
+With both the possibility of cloud-native geoprocessing servers, and powerful clients,   
+1. In any case, complex decisions, we need more data. 
+It becomes clear that developers of web GIS applications will have to make important decisions.
+in any case, more info, more experimentation, and thorough investigation on both server-side and client-side geo-computation is required. 
+this study seeks to investigate the possibility, 
+implementation and ramifications of the second option.
 While both options are entirely possible, 
+```
+the choice, disregarding synergy.
 
+The case for cloud-based geo-computation: very fast, 'infinite resources', google earth engine.
 
-While both options are entirely possible, this study seeks to investigate the possibility, implementation and ramifications of the second option.
+The case for client-side geo-computation: less clear. sees less research, less interest.  
+
+with the general movement moving to the cloud, it becomes even more important to look at alternatives. 
+- If study fails: we know that the move to the cloud is a wise one
+- If study succeeds: we learn that in certain scenarios, client-based geo-computation is advantageous, and not ALL geo-computation should be done in the cloud.
+
+this is why we study the second option.
+
 This option matches the aforementioned trend of 'thin servers & fat clients', 
 and the purpose of the Cloud Native movement to relieve data providers from the burden of setting up and maintaining multiple web services. 
 It is also cheaper to perform client-side geoprocessing on the machines of end-users, 
@@ -95,28 +161,37 @@ Finally, the prospect of Cloud Native geodata, combined with powerful geoprocess
 opens up interesting new functionalities and use-cases for browser-based GIS. \STUDY FROM 2019
 
 The challenges of this second option are that browser-based geoprocessing (BBG) might not be as performant as server side geoprocessing, \STUDY FROM 2015, 2016
-and that the browser-based ecosystem lacks powerful geoprocessing tools like CGAL and GDAL. Additionally, how to present the complex endeavour of geoprocessing in the format of an accessible web application is unknown, and which use-cases might benefit from BBG also remains to be researched. 
+and that the browser-based ecosystem lacks powerful geoprocessing tools like CGAL and GDAL. Additionally, how to present the complex endeavour of geoprocessing in the format of an accessible web application is unknown, and which use-cases might benefit from BBG also remains to be seen. 
 
 
-### Secondly 
-Secondly, a move towards cloud-native geospatial data leads to a re-examination of the traditional client \& server model. The cloud-native initiative aims to radically simplify geodata storehouses to just static file servers. All processing and analysis of this geodata can then be performed by separate cloud-based web services.
+## This study
+
+```
+- Goal: 
+  - Re-examining the role of web GIS in an future era of cloud computation
+  - Helping the decision of choosing Cloud native geoprocessing and / or Client-side geoprocessing. 
+  - 
+  - Studying the technology landscape of the browser. 
+
+ - Seeking new roles for the client in an era of cloud computation
+
+```
 
 
-## The Case
 
-This thesis explores the opportunity of adding these geoprocessing capabilities to the client instead. By not relying on additional web services, operational costs could be lowered for certain applications, making geodata processing more accessible \cite. Additionally, if calculations can be done locally,  
+This thesis explores adding geo-computation capabilities to a web browser. By not relying on additional web services, operational costs could be lowered for certain applications, making geodata processing more accessible \cite{scg-2019}. Additionally, doing calculations locally may unlock certain use-cases.
 
 The challenges of this second option are that browser-based geoprocessing (BBG) might not be as performant as server side geoprocessing, STUDY FROM 2015, 2016
 and that the browser-based ecosystem lacks powerful geoprocessing tools like CGAL and GDAL.
 
-
+by conducting this study, this thesis hopes to gain insight in .... , and the role of the web client in the coming era of cloud-native geospatial data and computation.
 
 The wider goal of this study is to discover the possibilities and limitations of browser-based geoprocessing, in order to help developers make the decision between browser-based geoprocessing and cloud-based geoprocessing. 
 This is, however, too large of an undertaking for the scope of one thesis. Geoprocessing is a multifaceted phenomenon, containing for example map algebra, crs transformation, vector to raster translations, raster to vector translations, point cloud filtering and interpolation, just to name a few. 
 
-Therefore, this study will develop a use case application to contextualize the research, and to force the research to solve the practical challenges of how \ac{bbg} can actually be used. The type of application chosen is a web-based geoprocessing environment, similar to GEOTIFF, GeoTrellis + ModelLab. These types of applications seek to present geoprocessing capabilities in an accessible manner: 
+Therefore, this study will develop a use case application to contextualize the research, and to force the research to solve the practical challenges of how \ac{bbg} can actually be used. The type of application chosen is a web-based geoprocessing environment, similar to GEOTIFF, GeoTrellis + ModelLab. These types of applications seek to present geoprocessing capabilities in an accessible manner.
 
-It also opens up a new range of applications. We see that as soon as geodata is sufficiently findable, accessible, interoperable, and reusable, the accessibility concerns of geodata start to move more towards geodata _processing_ and _processing applications_. \Source{Modellab} Writes: _"Widespread access to frequent, high-resolution Earth observation imagery has created the need for innovative tools like ModelLab that will help individuals and organizations to effectively access, analyze, edit, and visualize remotely sensed data in transformative new ways without years of specialized training or ongoing investments in proprietary software and technology infrastructure."_. After all, FAIR geodata means little if the means to access, analyze, edit, and visualize geodata are not accessible. 
+
 
 <!-- donald knuth argument: by keeping geodata raw, and porsponing the consumtion of geospatial data to the last possible moment, we can  -->
 
@@ -128,14 +203,6 @@ This study introduces GeoFront, a web based, open source, geodata processing and
 
 
 
-
-```latex
-
-....
-
-
-
-It becomes clear that developers of web GISS will have to make important decisions. 
 
 
 
@@ -361,23 +428,77 @@ as well as how browser-based GISS might profit from from the new opportunities.
 
 ## 
 
+<!------------------------------------------------------------------------------->
 # Related work
+```
 ...
+```
 
+<!------------------------------------------------------------------------------->
 # Methodology:
 
 ... This study will conduct this investigation by developing a browser-based geoprocessing environment. 
 
+## Web App
+Geofront is designed as a client-side web application. On one level, the choice for native application or browser-based application is not very significant, as the line between these two types of applications continues to blur. Tools like Electron bring a 
+
+However, 
+ as opposed to a native application as an experiment on accessibility. 
 
 
 
 
+
+## Use Cases 
+Four use-cases are envisioned for browser-based geoprocessing in an era of cloud-native geospatial data and tools.
+
+### 1 Educational
+```
+- Web Demo
+```
+
+
+
+### 2 Academic
+```TODO
+- Open Science
+- Jupyter notebook
+- Reproducibility 
+```
+
+
+
+### 3 End user app
+```
+- Exposiign 
+- Retrieval, Processing, visualization in a browser app
+
+```
+
+
+### 4 Cloud Compute Prototyping
+```
+- Geoflow
+- Sampling
+- Trying different parameters
+```
+
+
+<!------------------------------------------------------------------------------->
 # Implementation 
 
-
+```
+...
+```
+<!------------------------------------------------------------------------------->
 # Discussion
-
+```
+...
+```
+<!------------------------------------------------------------------------------->
 # Conclusion
-
+```
+...
+```
 
 
