@@ -1,17 +1,30 @@
 \chapter{Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER
 
 \section{Software Architecture}
+% Explain main code setup \& components
+GeoFront exists as a series of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \verb|thegeofront| : https://github.com/thegeofront .
+The \verb|app| repository holds the main GeoFront application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. 
+The \verb|engine| repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
+The \verb|GeoFront| organization also contains several repositories which are loaded as plugins, such as the wasm-bindings for startin.
 
-\emph{Explain full scope}
+\section{Engine}
+The \verb|Engine| is a typescript library 
 
-% # 4. SOFTWARE IMPLEMENTATION
-% <!-- Show how one might rewrite this -->
+It can be used both as a header-only library, or it can be compiled to a normal javascript module. 
+Header only is an unusual 
 
-\emph{Explain main code setup \& components}
-The Geofront codebase ...
+- Various functionalities, not only created for GeoFront.
+- A custom engine was used, so it could be specialized to the needs of geoprocessing. 
+- Three.js inspired, but very strip-down
+
+\section{App}
+GeoFront is set up as a \verb|TypeScript| project. It uses \verb|webpack| to compile the typescript 
 
 \subsection{Web Framework}
-\emph{explain how to create a web framework from scratch}
+Every web application requires some amount of html and css to make up its content, and GeoFront is no exception. 
+
+
+
 - No Framework
 - Web Components
 - Typesave Events
@@ -19,13 +32,16 @@ The Geofront codebase ...
 
 "...
 WebComponents have not been used just as a curiosity. 
-The Graph is intended as a sequence of containerized processes, which whould match WebComponents containerized nature perfectly, just like it matches WebAssembly
+The Graph is intended as a sequence of containerized processes, 
+which whould match WebComponents containerized nature perfectly, just like it matches WebAssembly
 ..."
 
 
 \subsection{Menu}
 with these html components, the basics of the webapp can be created: menu's side menu, and the two main canvases: the graph canvas, and the viewer canvas 
 % _explain the file / edit / view / side menu setup_  (Because of Design rule 1. Model after normal application )
+GeoFront's use-case is, however, slightly different. We wish to use html as a type of IMGUI. 
+
 
 \section{The Graph}
 \emph{explain how to create a visual programming language}
@@ -96,6 +112,8 @@ c++ -> emscripten -> more manual work needed
 
 
 \section{Achieved Functionality}
+
+
 
 ...
 
