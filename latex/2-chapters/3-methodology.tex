@@ -1,8 +1,49 @@
-\chapter{Methodology}
+\chapter{ Methodology }
 % Define the scope, extend, and how of the study
+
+\section{ Overall }
+
+\subsection{ Practical Exploration }
+The overall goal of this study is to investigate and explore browser-based geo-computation, and there are many ways of conducting exploitive studies. 
+This study chose for a practical approach: investigation by means of creating an application.
+The advantage of this approach is that it leads to tangible results, which can then be reasoned about.   
+The disadvantage of this approach is that software development can lead a study astray, if the development needs of the application are put before the needs of the study itself.
+
+\subsection{ First Principles }
+Part of this study is gathering a clear picture of the capabilities present in the browser itself. 
+As such, it helps to make the results of this study detached from specific frameworks.
+This study has therefore developed geofront with minimal dependencies in mind, and does not make use of 
+
+% The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
+% The main goal and feature of geofront is to take existing low level geo-computation libraries, and to make these interactively usable on the web. 
+% These libraries include a limited set of CGAL operations, complied from C++, and various geo-computation algorithms such as Startin, written in Rust. 
+% Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
+% In between products can quickly be inspected using a 3D viewer.
+
+
+
+
+
+% We will test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility & performance of said application. We will also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
+
+% These features could all be implemented by normal means ( buttons, panels, sliders ) -->
+
+% CHOICE: do something in-between python bindings, and a full fletched end-user application. 
+% Ergo: Visual programming
+
+
+
+
+% For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load locally stored geodata. Parameters can be specified using various ui components, such as sliders. 
+% For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
 
 
 \section{Design Choices}
+
+Where ModelLab is build on top of recent improvements to the accessability of satellite imagery, GeoFront is build in anticipation to a similar development for point cloud datasets with the introduction of COPC. The focus of Geofront is therefore on point cloud processing, and point-cloud based modelling, such as Digital Terrain Models (DTM). 
+
+\subsection{}
+
 
 \subsection{Client-side / Browser-based}
 
