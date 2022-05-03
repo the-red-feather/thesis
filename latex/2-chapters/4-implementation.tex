@@ -7,71 +7,98 @@ The \verb|app| repository holds the main GeoFront application. It contains the s
 The \verb|engine| repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
 The \verb|GeoFront| organization also contains several repositories which are loaded as plugins, such as the wasm-bindings for startin.
 
-\section{Engine}
-The \verb|Engine| is a typescript library 
+\section{App Implementation}
+The Geofront Application (\verb|app|) is set up using a \verb|TypeScript| codebase. It uses \verb|webpack| to compile this to a singular javascript file. Together with a small html page, this can be used to publish the full application. 
+this repo houses around 9.000 lines of code, ordered by the following core categories and functionalities:
+\begin{enumerate}[I]
+  \item \verb|nodes-canvas|: Contains the model, renderer and controller of the visual programming graph itself.  
+  \item \verb|modules|: all classes dedicated to dynamically loading plugins, and models to reason about these plugins throughout GeoFront.
+  \item \verb|std|: The standard library or default plugin, baked into GeoFront.   
+  \item \verb|html|: a 'web framework' of reusable html components making up the UI visuals.
+  \item \verb|menu|: a menu system which takes care of the model \& logic of the UI.
+  \item \verb|viewer|: The 3D renderer accompanying GeoFront.
+  \item \verb|util|: Utility functions.   
+\end{enumerate}
 
-It can be used both as a header-only library, or it can be compiled to a normal javascript module. 
-Header only is an unusual 
+This code is mainly written in an Object Oriented style to encapsulate responsibilities, and to bind data to corresponding functions. However, namespaces containing (pure) functions are also often used. (Pure) functions offer a different type of encapsulation, one often useful for complex actions, such as the calculation of the graph.
+% put more generic features of the codebase here.
 
-- Various functionalities, not only created for GeoFront.
-- A custom engine was used, so it could be specialized to the needs of geoprocessing. 
-- Three.js inspired, but very strip-down
-
-\section{App}
-GeoFront is set up as a \verb|TypeScript| project. It uses \verb|webpack| to compile the typescript 
-
-\subsection{Web Framework}
-Every web application requires some amount of html and css to make up its content, and GeoFront is no exception. 
-
-
-
-- No Framework
-- Web Components
-- Typesave Events
-- Webpack + Typescript
-
-"...
-WebComponents have not been used just as a curiosity. 
-The Graph is intended as a sequence of containerized processes, 
-which whould match WebComponents containerized nature perfectly, just like it matches WebAssembly
-..."
+What follows is an explanation of the implementation of each core category.
 
 
-\subsection{Menu}
-with these html components, the basics of the webapp can be created: menu's side menu, and the two main canvases: the graph canvas, and the viewer canvas 
-% _explain the file / edit / view / side menu setup_  (Because of Design rule 1. Model after normal application )
-GeoFront's use-case is, however, slightly different. We wish to use html as a type of IMGUI. 
 
+\subsection{ I Plugin Loader } 
 
-\section{The Graph}
-\emph{explain how to create a visual programming language}
-\subsubsection*{Graph representation}
-  - Map `Functions` to `Nodes` 
-  - Map `Variables` to `Edges / Cables`
-\subsubsection*{Graph manipulation}
-  - Canvas 2d API
-  - Event-driven
-\subsubsection*{Graph calculation}
-  - Dag
-  - Dynamic recalculation 
+The explanation must start from the plugin loader 
 
-\subsection{Viewer}
-\emph{explain how the viewer was created from scratch}
+The name "Modules" is also used to refer to plugins within the context of geofront.
 
-lightweight three.js clone
-
-supports basic things
-
-fast, due to direct buffer types
-
-\subsection{ Plugin Loader } 
 
 \emph{explain the system to dynamically load plugins at runtime}
+
+The Dynamic nature of javascript makes it possible to load plugins at runtime. 
 
 \subsubsection{ Type System }
 
 \emph{explain how data is exchanged, and objects are handled (lazy tools)}
 - Functional programming (exchange structs)
+
+- Object Type OOP design pattern
+
+
+
+- 
+
+
+\subsection*{ II. The Nodes Canvas }
+% explain how to create a visual programming language}
+This category contains all logic \& visualization of the visual programming graph, and writing this category was equivalent to developing the visual programming language itself.
+
+\subsubsection*{Representation}
+% TODO uml diagram?
+% Picture of a single node
+% Picture of a single cable
+The data model of the visual programming language is best understood as an object-oriented representation of a regular programming language. It shares characteristics of the "Syntax Tree" of a regular language, though with some notable differences.
+
+The model of this category is represented by the \verb|NodesCanvas|, on which a \verb|Graph| containing \verb|Nodes| and \verb|Cables| exists. 
+Nodes are analogous to the "Functions" of normal programming languages.
+As such, a Node knows about the function they invoke and the number of inputs and outputs this function requires and offers. 
+The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a Cable.  
+The Cables are GeoFronts analogy to normal "Variables". Cables know about the state and type 
+ 
+
+
+  - Map `Functions` to `Nodes`
+  - Map `Variables` to `Edges / Cables`
+
+\subsubsection{Visualization}
+Visualization is achieved by using the \href{https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API}{HTML5 Canvas Api}. It is a raster-based drawing tool, offering an easy to use, high-level api to draw 2D shapes such as lines, squares, circles, and polygons. 
+
+The Nodes Canvas uses this within its renderer to dynamically draw all nodes and cables. 
+
+
+Like other HTML5 features, its main advantage is that the API is included and implemented within the browser itself. This gives us a fast, C++ based implementation without the need to include it within the source code.
+
+The disadvantage  of the Canvas API is that it is based mainly on the CPU, Making it much less efficient than WebGL for instance, which is based on the GPU. This is quickly noticeable within interactive applications which need to redraw often. 
+
+For the Nodes Canvas, this comes down to a linear 
+
+
+\subsubsection{Style}
+- Grid based for organization, as an analogy to monospaced code.
+- Metro \& computer chip inspired, because these types of spatial configurations are very 'connectivity' focussed.
+
+\subsubsection*{Manipulation}
+  - Event-driven
+  - Message pattern to allow undo/redo
+   
+\subsubsection*{Calculation}
+  - Dag
+  - Dynamic recalculation 
+
+
+
+
 
 \subsection{ Standard Library }
 
@@ -94,6 +121,45 @@ c++ -> emscripten -> more manual work needed
 
 
 
+
+
+
+
+\subsection{Web Framework}
+Every web application requires some amount of html and css to make up its content, and GeoFront is no exception. 
+
+\verb|html| 
+
+- No Framework
+- Web Components
+- Typesave Events
+- Webpack + Typescript
+
+"...
+WebComponents have not been used just as a curiosity. 
+The Graph is intended as a sequence of containerized processes, 
+which whould match WebComponents containerized nature perfectly, just like it matches WebAssembly
+..."
+
+\subsection{Menu}
+with these html components, the basics of the webapp can be created: menu's side menu, and the two main canvases: the graph canvas, and the viewer canvas 
+% _explain the file / edit / view / side menu setup_  (Because of Design rule 1. Model after normal application )
+GeoFront's use-case is, however, slightly different. We wish to use html as a type of IMGUI. 
+
+
+
+
+\subsection{Viewer}
+\emph{explain how the viewer was created from scratch}
+
+lightweight three.js clone
+
+supports basic things
+
+fast, due to direct buffer types
+
+
+
 % ## WebAssembly Plugins
 
 % _explain how to use webassembly_
@@ -103,20 +169,45 @@ c++ -> emscripten -> more manual work needed
 % - how to deal with objects? 
 
 
+
+
+\section{Engine Implementation}
+The \verb|Engine| is a typescript library of about 20.000 lines of code. 
+
+It can be used both as a header-only library, or it can be compiled to a normal javascript module. 
+Header only is an unusual 
+
+- Various functionalities, not only created for GeoFront.
+- A custom engine was used, so it could be specialized to the needs of geoprocessing. 
+- Three.js inspired, but very strip-down
+
+- show webmap demo (maybe)
+- show 
+
+
+\section{ Plugins }
+% 2 types supported 
+
+
 \subsubsection{ Startin }
 - web assembly based
 
 \subsubsection{ CGAL }
 
 
-
-
 \section{Achieved Functionality}
 
+[screenshots]
+
+[show functionalities]
 
 
-...
+\subsection{Limitations}
+- The current version of GeoFront does not have a way for users to configure their own
 
+- Should have used LIT
 
+- Some classes are either too responsible, they do too much, or they do to little
+  - NodesCanvas vs Graph vs Node, it gets weird often.
 
-
+- No usage of Web Workers

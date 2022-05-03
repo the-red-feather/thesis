@@ -97,3 +97,17 @@ This thesis has only scratched the surface of all that
 - Geofront as web-based version of grasshopper
 - Geofront as lightweight QGIS replacement 
 
+
+
+
+
+\subsection{App Features}
+
+\subsubsection{ Constrain plugin support}
+- Its becoming too hard to cater to both. The more constraint plugin support becomes, the more powerful and well-integrated we can make the plugins
+- It would be really nice to make rust the only way of creating plugins. 
+- Build a separate plugin loader for C / C++, or only support those through C++ bindings (dont know if wasm-pack can handle C bindings)
+
+
+\subsubsection{Adding first-class type support to plugin types, by creating a Rust crate }
+We couldn't do this, because we wanted to cater to .ts, .js and C++- based plugins.
