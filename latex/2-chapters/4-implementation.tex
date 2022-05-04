@@ -2,95 +2,110 @@
 
 \section{Software Architecture}
 % Explain main code setup \& components
-GeoFront exists as a series of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \verb|thegeofront| : https://github.com/thegeofront .
-The \verb|app| repository holds the main GeoFront application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. 
-The \verb|engine| repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
-The \verb|GeoFront| organization also contains several repositories which are loaded as plugins, such as the wasm-bindings for startin.
+GeoFront exists as a series of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
+The \m{app} repository holds the main GeoFront application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. 
+The \m{engine} repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
+The \m{GeoFront} organization also contains several repositories which are loaded as plugins, such as the wasm-bindings for startin.
 
 \section{App Implementation}
-The Geofront Application (\verb|app|) is set up using a \verb|TypeScript| codebase. It uses \verb|webpack| to compile this to a singular javascript file. Together with a small html page, this can be used to publish the full application. 
-this repo houses around 9.000 lines of code, ordered by the following core categories and functionalities:
+The Geofront Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file. Together with a small html page, this can be used to publish the full application. 
+this repo houses around 9.000 lines of code, divided into the following core categories and functionalities:
 \begin{enumerate}[I]
-  \item \verb|nodes-canvas|: Contains the model, renderer and controller of the visual programming graph itself.  
-  \item \verb|modules|: all classes dedicated to dynamically loading plugins, and models to reason about these plugins throughout GeoFront.
-  \item \verb|std|: The standard library or default plugin, baked into GeoFront.   
-  \item \verb|html|: a 'web framework' of reusable html components making up the UI visuals.
-  \item \verb|menu|: a menu system which takes care of the model \& logic of the UI.
-  \item \verb|viewer|: The 3D renderer accompanying GeoFront.
-  \item \verb|util|: Utility functions.   
+  \item \m{nodes-canvas}: Contains the model, renderer and controller of the visual programming graph itself.  
+  \item \m{modules}: holds all classes dedicated to dynamically loading plugins, and \m{shim} models to reason about these plugins throughout GeoFront.
+  \item \m{std}: The standard library or default plugin, baked into GeoFront.   
+  \item \m{html}: a 'web framework' of reusable html components making up the UI visuals.
+  \item \m{menu}: a menu system which takes care of the model \& logic of the UI.
+  \item \m{viewer}: The 3D renderer accompanying GeoFront.
+  \item \m{util}: Utility functions.   
 \end{enumerate}
 
-This code is mainly written in an Object Oriented style to encapsulate responsibilities, and to bind data to corresponding functions. However, namespaces containing (pure) functions are also often used. (Pure) functions offer a different type of encapsulation, one often useful for complex actions, such as the calculation of the graph.
+This code is mainly written in an Object Oriented style to encapsulate responsibilities, and to bind data to corresponding functions. However, namespaces containing (pure) functions are also often used. (Pure) functions offer a different type of encapsulation, one often useful for complex actions, such as the calculation of the graph. 
 % put more generic features of the codebase here.
 
 What follows is an explanation of the implementation of each core category.
 
+\subsection{ Shims }
+the so called shims are a set of classes vital to almost all other categories within GeoFront.
+
+Since GeoFront is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
+This is why the \m{FunctionShim}, \m{TypeShim}, \m{VariableShim} and \m{ModuleShim} classes exist. 
+
+For example, the \m{FunctionShim} offers the name, description, number of inputs, and number of outputs of a function, as well as ways to invoke the function it represents.
+These inputs and outputs have corresponding \m{TypeShims}, which are formal representations of TypeScript / JavaScript-based types. TypeShims can be structured recursively to define a \m{List of List of strings} for example. The \m{TypeShim} is also used to reason about type checking and type compatibility.
+
+The shim classes are designed using the Object Type design pattern. In short, this means that one function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared with any object wishing to use the function. 
+
+The name \m{shim} was taken from \m{wasm-bindgen}'s (SOURCE) naming convention for the auto-generated \m{JavaScript} and \m{TypeScript} files. These classes were first created as a representation of those shims.
 
 
-\subsection{ I Plugin Loader } 
+\subsection{ Nodes Canvas }
+From the Shims, the core of the visual programming language can be constructed. The \m{nodes-canvas} category contains all logic \& visualization of the visual programming graph, and writing this category was equivalent to developing the visual programming language itself. The other categories can be understood as auxiliary to this category.
 
-The explanation must start from the plugin loader 
-
-The name "Modules" is also used to refer to plugins within the context of geofront.
-
-
-\emph{explain the system to dynamically load plugins at runtime}
-
-The Dynamic nature of javascript makes it possible to load plugins at runtime. 
-
-\subsubsection{ Type System }
-
-\emph{explain how data is exchanged, and objects are handled (lazy tools)}
-- Functional programming (exchange structs)
-
-- Object Type OOP design pattern
-
-
-
-- 
-
-
-\subsection*{ II. The Nodes Canvas }
-% explain how to create a visual programming language}
-This category contains all logic \& visualization of the visual programming graph, and writing this category was equivalent to developing the visual programming language itself.
-
-\subsubsection*{Representation}
+\subsubsection*{ Representation }
 % TODO uml diagram?
 % Picture of a single node
 % Picture of a single cable
-The data model of the visual programming language is best understood as an object-oriented representation of a regular programming language. It shares characteristics of the "Syntax Tree" of a regular language, though with some notable differences.
+The data model of the visual programming language is best understood as an object-oriented, graph-based representation of a regular programming language. It shares characteristics of the Syntax Tree of a Functional Programming Language.
+% Talk about the graph
 
-The model of this category is represented by the \verb|NodesCanvas|, on which a \verb|Graph| containing \verb|Nodes| and \verb|Cables| exists. 
+The model of this category is represented by the \m{NodesCanvas}, on which a \m{Graph} containing \m{Nodes} and \m{Cables} exists. 
+
 Nodes are analogous to the "Functions" of normal programming languages.
-As such, a Node knows about the function they invoke and the number of inputs and outputs this function requires and offers. 
-The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a Cable.  
-The Cables are GeoFronts analogy to normal "Variables". Cables know about the state and type 
- 
+As such, a Node knows about the function they invoke through a \m{FunctionShim} reference. The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a \m{Cable} (SEE TODO PICTURE).  
+
+The Cables are GeoFronts analogy to normal "Variables". Cables know about the type they represent through a \m{TypeShim}. A Cable must have exactly one origin, which is an output socket of a Nodes, and must have one or more destinations, which are the input sockets of other Nodes (SEE TODO PICTURE).
+
+From these ingredients, a graph can be constructed. 
+To reason about this graph as a whole, the \m{Graph} class was introduced. 
+It contains methods such as creating or removing nodes, adding and removing cables between nodes, and parsing the graph from and to a json. 
+
+This study chose to centralize most logic to this Graph, instead of adding complex logic to individual Nodes. 
+This centralized approach was deemed more clear: Many of the required functionalities cover multiple nodes, and this is better presented from an "overview" perspective of the full Graph, than from the perspective of a single Node. 
+
+Similarly, references in between cables and nodes are substituted by id keys. The Graph holds the actual References to Cables and Nodes, making it the centralized owner of this data.
+Because of the way Cables and Nodes reference each other, the graph has characteristics of a doubly linked list data structure. Using normal references in these types of situations could easily lead to memory management issues such as Dangling Pointers. Even though the JavaScript runtime is garbage collected, it is still subject to memory leak issues or runtime errors. Substituting references with ids makes it easier to prevent these types of problems. 
+% does not solve all problems automatically
+
+Finally, this entire graph object is part of the larger \m{NodesCanvas}. 
+Its responsibilities can best be explained through the "Model-view-controller" paradigm: the Graph serves as the "Model" of the calculation graph, the \m{NodesCanvas} class serves as both "View" and "Controller". It links the 
 
 
-  - Map `Functions` to `Nodes`
-  - Map `Variables` to `Edges / Cables`
+\subsubsection*{Visualization}
+Visualization is achieved by using the \href{https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API}{HTML5 Canvas Api}. 
+It is a raster-based drawing tool, offering an easy to use, high-level api to draw 2D shapes such as lines, squares, circles, and polygons. 
+The Nodes Canvas uses this API within its renderer to draw all nodes and cables. 
+Polylines and polygons are dynamically generated at runtime to represent the cables and nodes respectively, and the.  
 
-\subsubsection{Visualization}
-Visualization is achieved by using the \href{https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API}{HTML5 Canvas Api}. It is a raster-based drawing tool, offering an easy to use, high-level api to draw 2D shapes such as lines, squares, circles, and polygons. 
+The canvas API stylization options are used to alter the visuals for selected objects, in order to show the user selection for example. 
 
-The Nodes Canvas uses this within its renderer to dynamically draw all nodes and cables. 
-
+Cables
 
 Like other HTML5 features, its main advantage is that the API is included and implemented within the browser itself. This gives us a fast, C++ based implementation without the need to include it within the source code.
 
-The disadvantage  of the Canvas API is that it is based mainly on the CPU, Making it much less efficient than WebGL for instance, which is based on the GPU. This is quickly noticeable within interactive applications which need to redraw often. 
+The disadvantage  of the Canvas API is that it is based mainly on the CPU, Making it much less efficient than WebGL for instance, which is based on the GPU. 
+This is quickly noticeable within interactive applications which need to redraw often, such as GeoFront. 
 
-For the Nodes Canvas, this comes down to a linear 
+The Canvas is refreshed and redrawn often, and does not distinguish between unchanged and changed features. 
+
+This comes down to a performance linear to the amount of nodes and cables drawn. For the current prototype, 
 
 
-\subsubsection{Style}
+\subsubsection*{Style}
 - Grid based for organization, as an analogy to monospaced code.
 - Metro \& computer chip inspired, because these types of spatial configurations are very 'connectivity' focussed.
 
-\subsubsection*{Manipulation}
-  - Event-driven
-  - Message pattern to allow undo/redo
+\subsubsection{Interaction}
+- All actions are provided by html events 
+
+\subsubsection*{Graph Manipulation}
+
+
+- Message pattern to allow undo/redo
+
+- Editing a graph data structure is never trivial. Special care must be taken to ensure the validity of the graph before and after changes. 
+  - Editing the GeoFronts Graph was no exception. Doubly linked
+  - Duplication: connected to same cables
    
 \subsubsection*{Calculation}
   - Dag
@@ -99,8 +114,19 @@ For the Nodes Canvas, this comes down to a linear
 
 
 
+\subsection{ II. Plugin Loader } 
+First, the plugin Loader category, living in the \m{modules} folder. This category 
 
-\subsection{ Standard Library }
+The name "Modules" is also used to refer to plugins within the context of geofront.
+
+
+\emph{explain the system to dynamically load plugins at runtime}
+
+The Dynamic nature of javascript makes it possible to load plugins at runtime. 
+
+
+
+\subsection{ III. Standard Library }
 
 The standard library is a 'baked in plugin'.
 Points, lines, triangles, vectors, etc.
@@ -128,11 +154,11 @@ c++ -> emscripten -> more manual work needed
 \subsection{Web Framework}
 Every web application requires some amount of html and css to make up its content, and GeoFront is no exception. 
 
-\verb|html| 
+\m{html} 
 
 - No Framework
 - Web Components
-- Typesave Events
+- Typesave Events -> needed, because of the Lapsed listener problem.
 - Webpack + Typescript
 
 "...
@@ -140,6 +166,8 @@ WebComponents have not been used just as a curiosity.
 The Graph is intended as a sequence of containerized processes, 
 which whould match WebComponents containerized nature perfectly, just like it matches WebAssembly
 ..."
+
+
 
 \subsection{Menu}
 with these html components, the basics of the webapp can be created: menu's side menu, and the two main canvases: the graph canvas, and the viewer canvas 
@@ -172,7 +200,7 @@ fast, due to direct buffer types
 
 
 \section{Engine Implementation}
-The \verb|Engine| is a typescript library of about 20.000 lines of code. 
+The \m{Engine} is a typescript library of about 20.000 lines of code. 
 
 It can be used both as a header-only library, or it can be compiled to a normal javascript module. 
 Header only is an unusual 
