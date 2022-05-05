@@ -8,11 +8,12 @@ The \m{engine} repository is the library used for the 3D visualizations, some of
 The \m{GeoFront} organization also contains several repositories which are loaded as plugins, such as the wasm-bindings for startin.
 
 \section{App Implementation}
-The Geofront Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file. Together with a small html page, this can be used to publish the full application. 
-this repo houses around 9.000 lines of code, divided into the following core categories and functionalities:
+The Geofront Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file, and this file practically represents the full application. 
+the repository used around 9.000 lines of code, divided into the following core categories and functionalities:
 \begin{enumerate}[I]
+  \item \m{shims}: Models to reason about code features throughout GeoFront
   \item \m{nodes-canvas}: Contains the model, renderer and controller of the visual programming graph itself.  
-  \item \m{modules}: holds all classes dedicated to dynamically loading plugins, and \m{shim} models to reason about these plugins throughout GeoFront.
+  \item \m{modules}: holds all classes dedicated to dynamically loading plugins.
   \item \m{std}: The standard library or default plugin, baked into GeoFront.   
   \item \m{html}: a 'web framework' of reusable html components making up the UI visuals.
   \item \m{menu}: a menu system which takes care of the model \& logic of the UI.
@@ -20,92 +21,97 @@ this repo houses around 9.000 lines of code, divided into the following core cat
   \item \m{util}: Utility functions.   
 \end{enumerate}
 
-This code is mainly written in an Object Oriented style to encapsulate responsibilities, and to bind data to corresponding functions. However, namespaces containing (pure) functions are also often used. (Pure) functions offer a different type of encapsulation, one often useful for complex actions, such as the calculation of the graph. 
+The app is mainly written in an Object Oriented style to encapsulate responsibilities, and to match data to corresponding functions. However, simple namespaces containing (pure) functions are used whenever possible. (Pure) functions offer a different type of encapsulation, in the sense that even non-pure functions discourage side effects. This ensures that complex actions can be reasoned about locally, such as the calculation of the graph. 
 % put more generic features of the codebase here.
 
 What follows is an explanation of the implementation of each core category.
 
-\subsection{ Shims }
-the so called shims are a set of classes vital to almost all other categories within GeoFront.
+\subsection*{ I. Shims }
+% TODO: UML / images of shims 
 
 Since GeoFront is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
-This is why the \m{FunctionShim}, \m{TypeShim}, \m{VariableShim} and \m{ModuleShim} classes exist. 
-
+This is why the \m{FunctionShim}, \m{TypeShim}, \m{VariableShim} and \m{ModuleShim} classes exist, respectively. 
 For example, the \m{FunctionShim} offers the name, description, number of inputs, and number of outputs of a function, as well as ways to invoke the function it represents.
 These inputs and outputs have corresponding \m{TypeShims}, which are formal representations of TypeScript / JavaScript-based types. TypeShims can be structured recursively to define a \m{List of List of strings} for example. The \m{TypeShim} is also used to reason about type checking and type compatibility.
 
-The shim classes are designed using the Object Type design pattern. In short, this means that one function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared with any object wishing to use the function. 
-
+the shims are a set of classes used in almost all other categories within GeoFront. They are located within the \m{modules} category, for this is where most shims are instantiated.
+The shim classes are designed using the Object Type design pattern (SOURCE: BIG FOUR). In short, this means that one function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared with any object wishing to use the function. 
 The name \m{shim} was taken from \m{wasm-bindgen}'s (SOURCE) naming convention for the auto-generated \m{JavaScript} and \m{TypeScript} files. These classes were first created as a representation of those shims.
 
 
-\subsection{ Nodes Canvas }
+\subsection*{ II. Nodes Canvas }
 From the Shims, the core of the visual programming language can be constructed. The \m{nodes-canvas} category contains all logic \& visualization of the visual programming graph, and writing this category was equivalent to developing the visual programming language itself. The other categories can be understood as auxiliary to this category.
 
 \subsubsection*{ Representation }
 % TODO uml diagram?
 % Picture of a single node
 % Picture of a single cable
-The data model of the visual programming language is best understood as an object-oriented, graph-based representation of a regular programming language. It shares characteristics of the Syntax Tree of a Functional Programming Language.
-% Talk about the graph
 
-The model of this category is represented by the \m{NodesCanvas}, on which a \m{Graph} containing \m{Nodes} and \m{Cables} exists. 
+The architecture of this GeoFront's visual programming language is first and foremost a Model View Controller setup. The Model 
+is at its core a Directed Acyclic Graph (DAG). 
+This DAG is an object-oriented, graph-like representation of the data flow of a regular programming language. 
 
-Nodes are analogous to the "Functions" of normal programming languages.
-As such, a Node knows about the function they invoke through a \m{FunctionShim} reference. The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a \m{Cable} (SEE TODO PICTURE).  
+This architecture is implemented using multiple classes. The Viewer and Controller are represented by the \m{NodesCanvas}, which has access to a \m{Graph} Model, containing \m{Nodes} and \m{Cables}. 
 
-The Cables are GeoFronts analogy to normal "Variables". Cables know about the type they represent through a \m{TypeShim}. A Cable must have exactly one origin, which is an output socket of a Nodes, and must have one or more destinations, which are the input sockets of other Nodes (SEE TODO PICTURE).
+Nodes are analogous to the "Functions" of normal programming languages. 
+As such, a Node knows about the function they invoke through a \m{FunctionShim} reference. 
+The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a \m{Cable} (SEE PICTURE).  
+As the name implies, these Nodes form the nodes of the DAG. However, they differ from a pure DAG implementation, in that they also provide pointers back in the reverse direction, forming essentially a normal graph, or a doubly linked list. 
+
+The Cables are GeoFronts analogy to normal "Variables". Cables know about the type they represent through a \m{TypeShim}. A Cable must have exactly one origin, which is an output socket of a Nodes, and must have one or more destinations, which are the input sockets of other Nodes (SEE PICTURE).
 
 From these ingredients, a graph can be constructed. 
 To reason about this graph as a whole, the \m{Graph} class was introduced. 
-It contains methods such as creating or removing nodes, adding and removing cables between nodes, and parsing the graph from and to a json. 
-
+It contains methods and functions to add or remove nodes, to add and remove cables between nodes, to parse the graph from and to a json, and to calculate the graph.  
 This study chose to centralize most logic to this Graph, instead of adding complex logic to individual Nodes. 
-This centralized approach was deemed more clear: Many of the required functionalities cover multiple nodes, and this is better presented from an "overview" perspective of the full Graph, than from the perspective of a single Node. 
-
-Similarly, references in between cables and nodes are substituted by id keys. The Graph holds the actual References to Cables and Nodes, making it the centralized owner of this data.
+This centralized approach was deemed more clear: Many of the required functionalities cover multiple nodes, and this is better presented from an "overview" perspective of theb 
 Because of the way Cables and Nodes reference each other, the graph has characteristics of a doubly linked list data structure. Using normal references in these types of situations could easily lead to memory management issues such as Dangling Pointers. Even though the JavaScript runtime is garbage collected, it is still subject to memory leak issues or runtime errors. Substituting references with ids makes it easier to prevent these types of problems. 
 % does not solve all problems automatically
 
-Finally, this entire graph object is part of the larger \m{NodesCanvas}. 
-Its responsibilities can best be explained through the "Model-view-controller" paradigm: the Graph serves as the "Model" of the calculation graph, the \m{NodesCanvas} class serves as both "View" and "Controller". It links the 
+Finally, this entire graph object is accessed by a larger \m{NodesCanvas} object, and this canvas has the responsibilities of "View" and "Controller". 
+\todo{More?}
 
+\subsubsection*{ Rendering }
+This model must be rendered to the screen so users can comprehend and edit the graph. 
+This visualization is achieved by using the \href{https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API}{HTML5 Canvas Api}. 
+The Canvas API is a raster-based drawing tool, offering an easy to use, high-level api to draw 2D shapes such as lines, squares, circles, and polygons. 
+The Nodes Canvas uses this API to draw polylines and polygons at runtime, to represent the cables and nodes respectively. 
+These basic shapes and their styles change dynamically, based on features like the length of a cable, how many input sockets a node requires, or whether or not a node is selected. 
 
-\subsubsection*{Visualization}
-Visualization is achieved by using the \href{https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API}{HTML5 Canvas Api}. 
-It is a raster-based drawing tool, offering an easy to use, high-level api to draw 2D shapes such as lines, squares, circles, and polygons. 
-The Nodes Canvas uses this API within its renderer to draw all nodes and cables. 
-Polylines and polygons are dynamically generated at runtime to represent the cables and nodes respectively, and the.  
+Like other HTML5 features, the main advantage is that this API is included and implemented within the browser itself. This gives us a fast, C++ based implementation without the need to include anything within the source code.
 
-The canvas API stylization options are used to alter the visuals for selected objects, in order to show the user selection for example. 
-
-Cables
-
-Like other HTML5 features, its main advantage is that the API is included and implemented within the browser itself. This gives us a fast, C++ based implementation without the need to include it within the source code.
-
-The disadvantage  of the Canvas API is that it is based mainly on the CPU, Making it much less efficient than WebGL for instance, which is based on the GPU. 
+The disadvantage of the Canvas API is that it is based mainly on the CPU, Making it much less efficient than WebGL for instance, which is based on the GPU. 
 This is quickly noticeable within interactive applications which need to redraw often, such as GeoFront. 
-
 The Canvas is refreshed and redrawn often, and does not distinguish between unchanged and changed features. 
+This comes down to a performance linear to the amount of nodes and cables drawn. For the current implementation and scale of geofront, this performance is acceptable. 
 
-This comes down to a performance linear to the amount of nodes and cables drawn. For the current prototype, 
+\subsubsection*{ Style }
+Special care has been put into the stylization of the graph.
+The visuals take inspiration from various programming languages, such as Blender's GeometryNodes, McNeel's Grasshopper, and Ravi Peter's GeoFlow (SOURCES). 
+A few notable exceptions, however. 
+Firstly, the entire graph is placed on a grid, and all nodes strictly adhere to this grid. 
+For example, a node with three inputs will always occupy three grid cells in height. 
+This grid is applied for much of the same reason as terminals \& source code are displayed using monospaced fonts. 
+Consistent sizing encourages organization and clarity, for this makes it easy for components to line up, and predict how much space something requires.  
+Cables also adhere to the grid. They alter their shape in such a way to remain as octagonal as possible, as an attempt to make connections between nodes more readable.
+This takes some additional inspiration from the cartography of metro networks, as well as the design of computer chips. This makes for a good fit, since both these spatial configurations and the Geofront Graph desire connectivity to be clear above all else.
 
+\subsubsection{ Interaction }
+User Interaction is made possible through the \href{https://developer.mozilla.org/en-US/docs/web/api/event}{HTML DOM Events}. 
+This api provides ways to listen to many events, including keyboard and mouse events. 
+When the mouse is moved, its screen-space position is transformed to a grid position, which allows the user to select one or multiple objects. 
+GeoFront's user interface strives to match features of regular desktop applications. As such, the Geofront Graph supports features like undoing, redoing, duplication, copying, and pasting. These functionalities can be used with the expected keyboard combinations (Ctrl + C / Ctrl + V).
 
-\subsubsection*{Style}
-- Grid based for organization, as an analogy to monospaced code.
-- Metro \& computer chip inspired, because these types of spatial configurations are very 'connectivity' focussed.
+\subsubsection*{ Graph Manipulation }
+In order to support these features, especially undo / redo support, we are required to explicitly track the history of the graph. 
+This is why a Command Pattern (Big Four) was implemented.
+Instead of directly editing the graph, all actions are represented by \m{Action} objects. 
+Each Action can 'do' and 'undo' a specific action, and the data needed to make this do and undo are stored within the action. 
+By then introducing a bridge class we decouple the graph and controller, only allowing interaction with the graph by giving this bridge Action objects. The Bridge maintains a stack of undo and redo actions, which represents this history.  
 
-\subsubsection{Interaction}
-- All actions are provided by html events 
-
-\subsubsection*{Graph Manipulation}
-
-
-- Message pattern to allow undo/redo
-
-- Editing a graph data structure is never trivial. Special care must be taken to ensure the validity of the graph before and after changes. 
-  - Editing the GeoFronts Graph was no exception. Doubly linked
-  - Duplication: connected to same cables
+Additionally, editing any graph data structure is never trivial. 
+Special care must be taken to ensure the validity of a graph before and after changes, and is especially the case with GeoFronts' Doubly linked graph. 
+To the best of the authors knowledge, these is no "trick" or "pattern" to ease this.
    
 \subsubsection*{Calculation}
   - Dag
@@ -113,23 +119,18 @@ This comes down to a performance linear to the amount of nodes and cables drawn.
 
 
 
-
-\subsection{ II. Plugin Loader } 
+\subsection*{ III. Plugin Loader } 
 First, the plugin Loader category, living in the \m{modules} folder. This category 
 
 The name "Modules" is also used to refer to plugins within the context of geofront.
 
+Shims are automatically created
 
 \emph{explain the system to dynamically load plugins at runtime}
 
 The Dynamic nature of javascript makes it possible to load plugins at runtime. 
 
 
-
-\subsection{ III. Standard Library }
-
-The standard library is a 'baked in plugin'.
-Points, lines, triangles, vectors, etc.
 
 \subsection{ Plugins }
 What does a plugin need in order to be acceptable
@@ -148,6 +149,15 @@ c++ -> emscripten -> more manual work needed
 
 
 
+  \subsection{ III. Standard Library }
+
+  The standard library is a 'baked in plugin'.
+  Points, lines, triangles, vectors, etc.
+  -> 
+
+  Shims are manually created
+  -> eventually, large parts of the STD can become a plugin
+  
 
 
 
