@@ -1,3 +1,26 @@
+# meeting 22
+|          |                         |
+| -------- | ----------------------- |
+| date     | 2022-04-26 Tuesday
+| present  | Ken, Stelios, Jos
+| Location | Cyberspace
+
+# What I did
+- (show thesis)
+- Methodology is well on its way
+
+# Friday meeting 
+
+- **major conclusion**: delay is both inevitable, and a huge opportunity to 'do the thesis justice'.
+  - inevitable: 
+    - my current phase just is not enough & it became more and more desperate.
+    - P4 would be either be a _very close call_ with lots of nightwork, or be a total flop.
+  - opportunity:
+    - I can now bring the written thesis to a higher level of quality. 
+    - I might be able to do lots of bug / quality of life fixes, to make the app actually showable. 
+    - I might be able to incorporate some of Hugo's suggestions in the code. 
+
+# New Planning
 |     |`Week`| `Mon` | `Tue` | `Wed` | `Thu` | `Fri` | | `Sat` | `Sun` | `Events`  
 |-----|------|---|---|---|---|---|--|---|---| ---------- | 
 | feb |  _6_ | x | x | x | x | x || x | x |
@@ -47,3 +70,11 @@
 ## new P5 Window: ~24 oct - 1 nov. (week 43 / 44)
    my pref: 26 oct (my birthday :)
 ```
+
+- letting hugo & delegate know about this
+- ... something i'm forgetting? 
+
+# planning for the coming weeks
+- chapter per week should be doable
+- this week: finish methodology
+

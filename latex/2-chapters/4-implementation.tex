@@ -94,7 +94,7 @@ For example, a node with three inputs will always occupy three grid cells in hei
 This grid is applied for much of the same reason as terminals \& source code are displayed using monospaced fonts. 
 Consistent sizing encourages organization and clarity, for this makes it easy for components to line up, and predict how much space something requires.  
 Cables also adhere to the grid. They alter their shape in such a way to remain as octagonal as possible, as an attempt to make connections between nodes more readable.
-This takes some additional inspiration from the cartography of metro networks, as well as the design of computer chips. This makes for a good fit, since both these spatial configurations and the Geofront Graph desire connectivity to be clear above all else.
+This takes some additional inspiration from subway maps, as well as the design of computer chips. This makes for a good fit, since both these spatial configurations and the Geofront Graph are focussed on clear connectivity.
 
 \subsubsection{ Interaction }
 User Interaction is made possible through the \href{https://developer.mozilla.org/en-US/docs/web/api/event}{HTML DOM Events}. 
@@ -114,12 +114,55 @@ Special care must be taken to ensure the validity of a graph before and after ch
 To the best of the authors knowledge, these is no "trick" or "pattern" to ease this.
    
 \subsubsection*{Calculation}
-  - Dag
-  - Dynamic recalculation 
+When regarding the geofront graph, or any other programming language, we see many functions requiring variables which are the result of other functions. 
+This is why a graph like this can also be called a dependency graph. 
+If we wish to calculate the result of the graph, these dependencies must be taken into account. We must sort the functions the graph in such a way that all dependencies are known before a function is calculated.
+This problem is known as a topological sorting problem, and can be solved using Kahn's algorithm: 
+
+\begin{lstlisting}
+
+Step -1: 
+  Make an `order` list
+
+Step 0: 
+  Make a `visisted` counter, initialized at 0
+
+Step 1: 
+  Make a `dependency` counter for each node, initialized at 0
+
+Step 2: 
+  Add 1 to this counter for each input edge of this node.
+
+Step 3: 
+  Fill a queue with all dependency 0 nodes. These are the starters.
+
+Step 4: 
+  Remove a node from the queue (Dequeue operation) and then:
+  add the nodes' id to the `order` list.
+  Increment `visisted` counter by 1.
+  Decrease `dependency` counter by 1 for all dependent nodes.
+  If one `dependency` counter reaches 0, 
+    add it to the queue.
+
+Step 5: 
+  Repeat Step 4 until the queue is empty.
+
+Step 6: 
+  If `visisted` counter is not equal to the number of nodes, 
+    then the graph was errorous, probably cyclical. 
+
+\end{lstlisting}
+
+
+GeoFront uses a slightly altered version
 
 
 
-\subsection*{ III. Plugin Loader } 
+If these intermediate results are stored, the DAG also supports partial recalculations. The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recaluclate. 
+
+ 
+
+\subsection*{III. Plugin Loader} 
 First, the plugin Loader category, living in the \m{modules} folder. This category 
 
 The name "Modules" is also used to refer to plugins within the context of geofront.
