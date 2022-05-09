@@ -1,4 +1,4 @@
-# meeting 25
+# Meeting 25
 |          |                         |
 | -------- | ----------------------- |
 | date     | 2022-06-09 Tuesday
@@ -74,7 +74,7 @@
 - letting hugo & delegate know about this
 - ... something i'm forgetting? 
 
-# planning for the coming weeks
+# Planning for the coming weeks
 - chapter per week should be doable
 - this week: finish methodology
 
