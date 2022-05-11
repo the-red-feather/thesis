@@ -111,71 +111,75 @@ By then introducing a bridge class we decouple the graph and controller, only al
 
 Additionally, editing any graph data structure is never trivial. 
 Special care must be taken to ensure the validity of a graph before and after changes, and is especially the case with GeoFronts' Doubly linked graph. 
-To the best of the authors knowledge, these is no "trick" or "pattern" to solve this. Instead, we have to do many checks
-   
+To the best of the authors knowledge, these is no "trick" or "pattern" to ease this. Instead, the Graph and Graph Decoupler classes both have to be designed in such a way 
+
 \subsubsection*{Calculation}
 When regarding the geofront graph, or any other programming language, we see many functions requiring variables which are the result of other functions. 
 This is why a graph like this can also be called a dependency graph. 
 If we wish to calculate the result of the graph, these dependencies must be taken into account. We must sort the functions the graph in such a way that all dependencies are known before a function is calculated.
 This problem is known as a topological sorting problem, and can be solved using Kahn's algorithm: 
 
+
+
 \begin{lstlisting}
 
-Step -1: 
-  Make an `order` list
-
-Step 0: 
-  Make a `visisted` counter, initialized at 0
-
-Step 1: 
-  Make a `dependency` counter for each node, initialized at 0
-
-Step 2: 
-  Add 1 to this counter for each input edge of this node.
-
-Step 3: 
-  Fill a queue with all dependency 0 nodes. These are the starters.
-
-Step 4: 
-  Remove a node from the queue (Dequeue operation) and then:
-  add the nodes' id to the `order` list.
-  Increment `visisted` counter by 1.
-  Decrease `dependency` counter by 1 for all dependent nodes.
-  If one `dependency` counter reaches 0, 
-    add it to the queue.
-
-Step 5: 
-  Repeat Step 4 until the queue is empty.
-
-Step 6: 
-  If `visisted` counter is not equal to the number of nodes, 
-    then the graph was errorous, probably cyclical. 
-
-\end{lstlisting}
-
-
-GeoFront uses a slightly altered version
-
-
-
-If these intermediate results are stored, the DAG also supports partial recalculations. The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recaluclate. 
-
- 
-
-\subsection*{III. Plugin Loader} 
-First, the plugin Loader category, living in the \m{modules} folder. This category 
-
-The name "Modules" is also used to refer to plugins within the context of geofront.
-
-Shims are automatically created
-
-\emph{explain the system to dynamically load plugins at runtime}
-
-The Dynamic nature of javascript makes it possible to load plugins at runtime. 
-
-
+  Step -1: 
+    Make an `order` list
+  
+  Step 0: 
+    Make a `visisted` counter, initialized at 0
+  
+  Step 1: 
+    Make a `dependency` counter for each node, initialized at 0
+  
+  Step 2: 
+    Add 1 to this counter for each input edge of this node.
+  
+  Step 3: 
+    Fill a queue with all dependency 0 nodes. These are the starters.
+  
+  Step 4: 
+    Remove a node from the queue (Dequeue operation) and then:
+    add the nodes' id to the `order` list.
+    Increment `visisted` counter by 1.
+    Decrease `dependency` counter by 1 for all dependent nodes.
+    If one `dependency` counter reaches 0, 
+      add it to the queue.
+  
+  Step 5: 
+    Repeat Step 4 until the queue is empty.
+  
+  Step 6: 
+    If `visisted` counter is not equal to the number of nodes, 
+      then the graph was errorous, probably cyclical. 
+  
+  \end{lstlisting}
+  
+  
+  GeoFront uses a slightly altered version
+  
+  
+  
+  If these intermediate results are stored, the DAG also supports partial recalculations. The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recaluclate. 
+  
+   
+  
+  \subsection*{III. Plugin Loader} 
+  First, the plugin Loader category, living in the \m{modules} folder. This category 
+  
+  The name "Modules" is also used to refer to plugins within the context of geofront.
+  
+  Shims are automatically created
+  
+  \emph{explain the system to dynamically load plugins at runtime}
+  
+  The Dynamic nature of javascript makes it possible to load plugins at runtime. 
+  
+  
 
 \subsection{ Plugins }
+
+
 What does a plugin need in order to be acceptable
 one javascript file, one type definitions file, and one optional wasm file are accepted. 
 
@@ -282,6 +286,8 @@ Header only is an unusual
 
 [show functionalities]
 
+% ## User Interaction
+% _(basically, write a tutorial)_
 
 \subsection{Limitations}
 - The current version of GeoFront does not have a way for users to configure their own
