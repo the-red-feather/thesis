@@ -1,5 +1,29 @@
 \chapter{Post-Conclusion}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER
 
+\section{Personal Motivation}
+During my internship I was tasked with creating a parametric 3D CAD model. 
+
+- local usage 
+  -> quick, direct feedback
+
+- We needed to make this a product for end users. 
+
+- Industry-standard choice: cloud 
+  -> smart-server dumb-client setup, cloud-native architecture 
+
+- Problems
+  -> continuously downloading new resulting CAD files after every change created a lot of web traffic. 
+  -> slow, not at all the same experience.
+  -> cloud host was even more slow in cold-start scenario's   
+  -> cloud host monetization scheme: pay for every time the script runs, 
+     -> meant that consumers had to be discouraged to 'play around' with the tool too much. 
+  
+This made me question the cloud-native paradigm, at least for the use case of calculating geometry by end users. 
+
+
+if the data is geodata or CAD data, does not matter besides the fact that geodata is often big data.
+
+
 \section{On the future}
 
 / experiment to assess: 
@@ -21,6 +45,61 @@ Most important effort I saw is the "denichification" of the geospatial world.
 - Hugo's keynote
 - Linda van den Brink's PHD
 - cloud-native geospatial 
+
+
+
+\section{FAIR}
+
+observation: 
+- a lot of attention for FAIR geodata, linking of geodata, using common standards, etc. 
+
+BUT: We don't seem to put as much emphasis on FAIR geodata \emph{Processing}. 
+- The means to filter a dataset, to process it or convert it to a required format or CRS, could become more FAIR
+
+We focus on Accessibility
+accessibility
+
+\m{->} the fact of being able to be reached or obtained easily:
+\textit{Two new roads are being built to increase accessibility to the town centre.}
+
+\m{->} the quality of being easy to understand: 
+\textit{The accessibility of her plays means that she is able to reach a wide audience.}
+
+...
+
+- The front-end browser technologies are a vital component of the modern geospatial software.
+- Like how the entire cloud-native moment is only possible because of the HTTP range request feature. 
+
+
+THE MAIN THING I WOULD LIKE YOU TO GET AWAY FROM ALL OF THIS:
+- a vital component of the cloud-native geospatial moment is the "HTTP range request" web feature, and chris said as much.
+  - this feature has been out for some time ( html1/1, )
+- What I'm saying, is that we have a whole range of similar, 'game changing technologies' recently added to web browsers, and I have a feeling these features could be the birthing grounds for new, ground breaking ideas and movements of ideas. 
+
+We have not fully envisioned these new trends, nor do we have a catchy, powerful name such as \emph{Cloud Native Geospatial}, But I have no doubt that something revolutionary will come of this. 
+
+Nevertheless, I will attempt to name and envision a trend from these technologies. \emph{"FAIR Geodata Processing"}.
+
+Vision: 
+- Portable, cross-platform, binary geoprocessing libraries, which can be used on the cloud / on servers, natively, and in the browser, without any changes. 
+\m{->} we can use that to build standards for geodata processing itself. Every \m{GP} library interoperable with every other library, at least on a language and package manager level.
+- This also eliminates the need of platform specific plugins (QGIS plugins, ARCGIS plugins, Blender Plugins, 'web plugins').
+- This could lead to a generalized geoprocessing library portal like NPM / cargo / WAPM with an attached content delivery network, Or these infrastructures can just be utilized, with just an UI sprayed on top.
+
+- I am aware that these types of efforts have been attempted many times before, but WebAssembly might be a missing link 
+
+\m{->} webassembly has a good balance between portability and performance.
+
+\m{->}
+
+If I were to attempt to name this trend, I would
+
+
+
+
+
+
+
 
 
 \subsection{Use Cases of Browser Based Geoprocessing}

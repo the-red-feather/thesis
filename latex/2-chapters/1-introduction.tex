@@ -1,36 +1,52 @@
-%---------------------%
-% An introduction in which the relevance of the project and its place in the 
-% context of geomatics is described, along with a clearly-defined problem statement.
-%---------------------%
 \chapter{Introduction}
+This thesis presents the design, creation and evaluation of GeoFront, a web-based, visual geo-computation tool. 
+With GeoFront, geoprocessing flowcharts can be viewed, run, and shared from within a web browser.  
+The full application runs front-end in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
 
+The tool offers functionalities such as point cloud loading, triangulation, and isocurve extraction.
+These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure.
+Together with WebAssembly, this enables the utilization of industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`.
 
-observation: 
-- a lot of attention for FAIR geodata, linking of geodata, using common standards, etc. 
-
-BUT: We don't seem to put as much emphasis on FAIR geodata \emph{Processing}. 
-- The means to filter a dataset, to process it or convert it to a required format or CRS, could become more FAIR
-
-We focus on Accessibility
-accessibility
-
-\m{->} the fact of being able to be reached or obtained easily:
-\textit{Two new roads are being built to increase accessibility to the town centre.}
-
-\m{->} the quality of being easy to understand: 
-\textit{The accessibility of her plays means that she is able to reach a wide audience.}
-
-
+By being free, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront aims to be a more accessible alternative to existing visual geo-programming environments.
 
 \section{Motivation}
+Geofront has been created as an experiment to capitalize on multiple developments within the field of web GIS. 
+...
+In the field of Web GIS, a pattern can be recognised between web & browser features,  
+- javascript runtime improvements -> shift from backend-heavy to frontend-heavy web applications
+- HTML5 with WebGL and Canvas Api -> Celsium, Leaflet, D3
+- http range request -> cloud native geospatial movement 
+- WebAssembly -> ...
+
+Now we see a new technology 
+
+This study has been conducted for two reasons.
+Firstly, this study wishes explore the possibilities \& limitations of front-end geoprocessing.
+  - Web technologies have become a vital, core component of the modern geospatial software landscape.
+  - However, the web is changing : cloud-native geospatial movement, move to front-end heavy applications, WebAssembly. 
+  - By creating an application using these trends and technologies, we can get a better understanding 
+
+Secondly, to experiment with making small-scale geoprocessing more accessible
+
+
+accessible alternative to existing visual geo-programming environments.
+
+\section{Research Objectives}
+
+% Due to the ... , the goal of this thesis is to develop an alternative method to ...
+
+The goal of this study is to design and create GeoFront, 
+
+explore the potential of 
+
+the possibilities \& limitations of front-end 
 
 
 
-This thesis explores client-side geo-computation. 
-- its relatively unknown 
-- its needed  
 
-The challenges of this second option are that browser-based geo-computation (BBG) might not be as performant as server side geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, and that WebAssembly will have to be used to make use of industry-standard geoprocessing libraries such as Proj, Geos, GDAL, or CGAL.
+
+g geoprocessing more accessible.
+
 
 with the general movement moving to the cloud, it becomes even more important to look at alternatives. 
 - If study fails: we know that the move to the cloud is a wise one
@@ -38,31 +54,65 @@ with the general movement moving to the cloud, it becomes even more important to
 
 this is why we study the second option. 
 
+
+Geofront has been created as an experiment to explore if visual, browser-based geo-computation can make geo-computation more accessible. 
+
+
+This study concludes that based on these measurements, browser-based geo-computation is not only possible, but fast, and an enabler of many promising use-cases, such as on-demand geodata processing apps, educational demo apps, and code sharing. However, extensive user-group testing is required before any definitive statements on accessibility and fitness for geo-computation can be made.  
+
+
+
+
+
+The challenges of this second option are that browser-based geo-computation (BBG) might not be as performant as server side geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, and that WebAssembly will have to be used to make use of industry-standard geoprocessing libraries such as Proj, Geos, GDAL, or CGAL.
+
+
+The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
+Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
+
 \newpage
 \section{Research Questions}
+Based on this objective, the research question is formulated as follows: 
 
-\textit{"How to design and implement a visual programming environment for geo-computation, by only using browser-based technologies?"}
+\textit{"How to design, implement and evaluate a front-end visual programming environment for geo-computation?"}
 
 \subsection*{Sub Questions}
+The following sub-research questions are needed in order to answer the main question. 
 
-The following sub-research questions are needed in order to answer the main question. The methodology chapter will explain the choices of these sub-questions. 
+\begin{enumerate}[a]
+  \item \m{a thing}: 
+  \item \m{drawing the canvas? drawing the }:   
+  \item \m{loading modules? Sharing types in between modules?}: 
+  \item \m{How to evaluate? How does it evalulate? }:  
+\end{enumerate}
 
 - how to create a visual programming language?
 
-\newpage
-\subsection*{Assessment}
+\begin{enumerate}
+  \item 
+\end{enumerate}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Scope}
-\subsection*{Included}
-The scope of this thesis is represented by the Methodology chapter. 
+The scope of this thesis is limited in the following matters: 
 
-\subsection*{Excluded}
+\subsection{ 3D Vector / Point Cloud geoprocessing}
+Due to time limitations, we are forced to provide one particular type of geoprocessing
+- raster
+- table / 2D features
+- 
 
-% TIM: maybe move this to obstacle 3 ? 
-\subsubsection*{ Server-side or Native WebAssembly } % **Client-side WebAssembly Only**
 
+\subsection{ Only core browser features }
+GeoFront will be designed and constructed using only core browser features. 
+- Only using basic HTML5 features.
+- The research objective is to explore core web features, not to examine the front-end web ecosystem. 
+- name all html things
+
+
+
+\subsection*{ No Server-side or Native WebAssembly } 
+\todo[]{Still relevant?}
 This study will limit itself to the \emph{client-side} usage of WebAssembly. 
 A powerful case can be made for \emph{server-side}, or native level usage of WebAssembly, especially in conjunction with a programming language such as Rust. 
 Rust compiled to WebAssembly could, compared to using python, java or C++, make geoprocessing more maintainable and reliable, while at the same time ensuring memory safety, security, and performance \cite{clack_standardizing_2019}. 
@@ -71,9 +121,7 @@ Server-side or native wasm is beyond the scope of this paper, but would be an ex
 
 
 
-\subsubsection*{ Web Processing Service } % Will not be dealing with WPS 
-
-% offered as server-side geoprocessing services.  
+\subsection*{ No Web Processing Services } 
 Similarly, this study will exclude the OGC standard of the \ac{wps} \cite{ogc_web_2015}, since these services do not offer \emph{client} side geoprocessing, but instead offer \emph{server} side geoprocessing. A client-side application \textit{could} create an interface to use such a service, to essentially offer geoprocessing to clients, but this study regards a solution like that as a workaround, not a true solution to the problem of client-side geoprocessing. 
 
 This is not to say that client-side geoprocessing replaces the need for \ac{wps}. 
@@ -81,13 +129,13 @@ future work could research the possibility of utilizing a hybrid strategy of bot
 
 
 
-\subsubsection*{ Usability Analysis } % 
-
-While usability is a motivation of this research, no claims will be made that the developed use-case is more usable to native GIS applications or geoprocessing methods. This research attempts to solve practical inhibitions in order to discover whether or not client-side is \emph{a} usable option. If it turns out that this method is viable technically, future research will be needed to definitively proof \emph{how} usable it is compared to all other existing methods.  
+\subsection*{ No Usability Analysis } % 
+\todo[]{Is this still true in this new thesis?}
+While accessibility / usability is a motivation of this research, no claims will be made that the developed use-case is more usable to native GIS applications or geoprocessing methods. This research attempts to solve practical inhibitions in order to discover whether or not client-side is \emph{a} usable option. If it turns out that this method is viable technically, future research will be needed to definitively proof \emph{how} usable it is compared to all other existing methods.  
 
 % This paper seeks to first close this gap, limiting itself to overcoming the technical and design boundaries in the pursuit of practical client-side geoprocessing.
 
-Similarly, a survey analyzing how users experience client-side geoprocessing in comparison to native geoprocessing must also be left to subsequent research. While this would gain us a tremendous amount of insight, client-side geoprocessing is too new to make a balanced comparison. Native environments like GRASSGIS, QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
+Similarly, a survey analyzing how users experience client-side geoprocessing in comparison to native geoprocessing must also be left to subsequent research. While this would gain us a tremendous amount of insight, client-side geoprocessing is too new to make a balanced comparison. Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
 
 % It is my goal to introduce this as a new geoprocessing option, and to name the advantages and disadvantages we can be sure of. An actual comparison of client-side vs native geoprocessing is something different. 
 
