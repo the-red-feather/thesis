@@ -78,3 +78,15 @@
 - chapter per week should be doable
 - this week: finish methodology
 
+
+
+# notes during the meeting
+1st september / 11 august -> stelios gone 
+need a replacement
+- Giorgio might be a good fit
+  - send email 
+    - delayed & ... 
+  - send board of examiners / schedulers email about posponing P4
+  - build mini presentation to introduce thesis to Giorgio 
+
+  
