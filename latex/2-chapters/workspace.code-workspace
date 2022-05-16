@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\notes"
+		},
+		{
+			"path": "..\\..\\communication\\meetings"
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"technologies"
+		]
+	}
+}
