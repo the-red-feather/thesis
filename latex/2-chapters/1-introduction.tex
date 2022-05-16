@@ -1,23 +1,31 @@
 \chapter{Introduction}
-This thesis presents the design, creation and evaluation of GeoFront, a web-based, visual geo-computation tool. 
-With GeoFront, geoprocessing flowcharts can be viewed, run, and shared from within a web browser.  
-The full application runs front-end in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
+Web \ac{gis} forms an indispensable component of the wider geospatial software landscape. 
+For the average person, an interactive \ac{gis} web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
+A web application is cross-platform by nature, and offers ease of accessibility, since no installment or app-store interaction is required to run or update the app: 
+As soon as it can be found, it can be used.
+The ability to share a full application with a link, or to embed it within the larger context of a webpage is also not trivial. 
+Together, these aspects have made the browser a popular host for many important geographical applications, especially when accessibility is vital.
 
-The tool offers functionalities such as point cloud loading, triangulation, and isocurve extraction.
-These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure.
-Together with WebAssembly, this enables the utilization of industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`.
+The field of web GIS is, just like the wider context of the web, subject to many changes \& developments. 
+These come in the shape of a new feature reaching a consensus in the major browser vendors, or a change in commonly used standards like the \ac{http}.
+These changes may lead to a 'trend': a new way of reasoning about or organizing a web service or a web application.
 
-By being free, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront aims to be a more accessible alternative to existing visual geo-programming environments.
+- Recent improvements in the javascript runtime are a vital component of the current shift from backend-heavy to frontend-heavy web applications. 
+- front-end Libraries like Celsium, Leaflet and D3 would be hard if not impossible to realize without HTML5 features like WebGL and the Canvas API.
+- The cloud native geospatial movement requires the http range request feature to truly be effective.
 
-\section{Motivation}
-Geofront has been created to study if recent web features and trends can have a positive effect on the accessibility of geo-computation. 
+- interplay between features and trends 
+- trends lead to interesting new applications which may serve new use-cases
+-> the influence and importance of the above web features and trends are why new developments within web GIS are very important to examine.
+
+
+
+Geofront has been created to study how recent web features and trends can have a positive effect on the accessibility of geo-computation. 
 The hypothesis is that the combination of cloud-native geodata together with front-end heavy applications with industry standard geoprocessing libraries using webassembly, may lead to new, powerful types of GIS applications and use-cases. 
 
+an experiment to capitalize on these developments within the field of web GIS. 
 
 
-
-
-an experiment to capitalize on multiple developments within the field of web GIS. 
 ...
 In the field of Web GIS, a pattern can be recognised between web \& browser features,  
 - javascript runtime improvements -> shift from backend-heavy to frontend-heavy web applications
@@ -31,54 +39,40 @@ This study has been conducted for two reasons.
 Firstly, this study wishes explore the possibilities \& limitations of front-end geoprocessing.
   - Web technologies have become a vital, core component of the modern geospatial software landscape.
   - However, the web is changing : cloud-native geospatial movement, move to front-end heavy applications, WebAssembly. 
-  - By creating an application using these trends and technologies, we can get a better understanding 
+  - By creating an application using these trends and technologies, we can get a better understanding.
 
 Secondly, to experiment with making small-scale geoprocessing more accessible
-
-
 accessible alternative to existing visual geo-programming environments.
 
 \section{Research Objectives}
+Due to this need for a reorientation and re-examination of web features in relation to geo-computation, 
+the goal of this thesis is to develop an alternative method for geo-computation on the web.
 
-% Due to the ... , the goal of this thesis is to develop an alternative method to ...
+This thesis presents the design, creation and evaluation of GeoFront, a web-based, visual geo-computation tool. 
+With GeoFront, geoprocessing flowcharts can be viewed, run, and shared from within a web browser.  
+The full application runs front-end in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
 
-The goal of this study is to design and create GeoFront, 
+The tool offers functionalities such as point cloud loading, triangulation, and isocurve extraction.
+These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure.
+Together with WebAssembly, this enables the utilization of industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`.
 
-explore the potential of 
-
-the possibilities \& limitations of front-end 
-
-
-
-
-
-g geoprocessing more accessible.
-
-
-with the general movement moving to the cloud, it becomes even more important to look at alternatives. 
-- If study fails: we know that the move to the cloud is a wise one
-- If study succeeds: we learn that in certain scenarios, client-based geo-computation is advantageous, and not ALL geo-computation should be done in the cloud.
-
-this is why we study the second option. 
-
+By being free, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront aims to be a more accessible alternative to existing visual geo-computation environments.
 
 Geofront has been created as an experiment to explore if visual, browser-based geo-computation can make geo-computation more accessible. 
 
+% As such, the study first describes the design and implementation of GeoFront, and then evaluates the tool to various geo-computation use cases.
+% The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
+% Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
 
-This study concludes that based on these measurements, browser-based geo-computation is not only possible, but fast, and an enabler of many promising use-cases, such as on-demand geodata processing apps, educational demo apps, and code sharing. However, extensive user-group testing is required before any definitive statements on accessibility and fitness for geo-computation can be made.  
+% The design of geofront contains several challenges. 
+% As such ...
+% The challenges of this second option are that browser-based geo-computation (BBG) might not be as performant as server side geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, and that WebAssembly will have to be used to make use of industry-standard geoprocessing libraries such as Proj, Geos, GDAL, or CGAL.
 
 
 
-
-
-The challenges of this second option are that browser-based geo-computation (BBG) might not be as performant as server side geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, and that WebAssembly will have to be used to make use of industry-standard geoprocessing libraries such as Proj, Geos, GDAL, or CGAL.
-
-
-The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
-Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
 
 \newpage
-\section{Research Questions}
+\subsection{Research Question}
 Based on this objective, the research question is formulated as follows: 
 
 \textit{"How to design, implement and evaluate a front-end visual programming environment for geo-computation?"}
@@ -92,6 +86,13 @@ The following sub-research questions are needed in order to answer the main ques
   \item \m{loading modules? Sharing types in between modules?}: 
   \item \m{How to evaluate? How does it evalulate? }:  
 \end{enumerate}
+
+% - How to build a web app which fully runs in the browser
+% - How to perform geo-computation with existing libraries in the browser?
+% - How to make geo-computation accessible?
+% - How could this use cloud-native geo types (COPC).
+% - Who benefits from THIS web app?
+
 
 - how to create a visual programming language?
 
