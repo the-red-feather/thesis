@@ -1,53 +1,54 @@
 \chapter{Introduction}
-Web \ac{gis} forms an indispensable component of the wider geospatial software landscape. 
-For the average person, an interactive \ac{gis} web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
-A web application is cross-platform by nature, and offers ease of accessibility, since no installment or app-store interaction is required to run or update the app: 
-As soon as it can be found, it can be used.
-The ability to share a full application with a link, or to embed it within the larger context of a webpage is also not trivial. 
-Together, these aspects have made the browser a popular host for many important geographical applications, especially when accessibility is vital.
 
-The field of web GIS is, just like the wider context of the web, subject to many changes \& developments. 
-These come in the shape of a new feature reaching a consensus in the major browser vendors, or a change in commonly used standards like the \ac{http}.
-These changes may lead to a 'trend': a new way of reasoning about or organizing a web service or a web application.
+\m{->} Establish Cloud Native movement.
 
-- Recent improvements in the javascript runtime are a vital component of the current shift from backend-heavy to frontend-heavy web applications. 
-- front-end Libraries like Celsium, Leaflet and D3 would be hard if not impossible to realize without HTML5 features like WebGL and the Canvas API.
-- The cloud native geospatial movement requires the http range request feature to truly be effective.
-
-- interplay between features and trends 
-- trends lead to interesting new applications which may serve new use-cases
--> the influence and importance of the above web features and trends are why new developments within web GIS are very important to examine. 
+\begin{itemize}
+  \item Chris Holmes, forerunner of the cloud native movement \& vision
+  \item Portable Geo-computation. sending not the data to a process, but the process to the data. This is a complete reversal of the current paradigm
+\end{itemize}
 
 
+\begin{enumerate}
+  \item     All data of interest to a user is in the cloud; and these datasets will be far bigger than one could possibly fit on a desktop computer — worldwide imagery archives, historical gps data for fleets of assets, multi-dimensional weather data, global basemap data, etc.
+  \item     Infinite computation capabilities are available to process massive amounts of data, \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}.
+  \item     Queuing and notification systems are in place, so newly acquired data (from satellites, from ground surveying, etc) can automatically kick off additional data processing, run updates, or send messages out to users.
+  \item     Web tiled online maps are available to visualize any data (both source data and derived data in interim or final processing steps).
+\end{enumerate}
 
-Geofront has been created to study how recent web features and trends can have a positive effect on the accessibility of geo-computation. 
-The hypothesis is that the combination of cloud-native geodata together with front-end heavy applications with industry standard geoprocessing libraries using webassembly, may lead to new, powerful types of GIS applications and use-cases. 
 
-an experiment to capitalize on these developments within the field of web GIS. 
+\m{->} Establish the 'wider audience' narrative \& vision / denichifying argument
 
+\emph{
+  With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. ~ Chris Holmes
+}
 
-...
-In the field of Web GIS, a pattern can be recognised between web \& browser features,  
-- javascript runtime improvements -> shift from backend-heavy to frontend-heavy web applications
-- HTML5 with WebGL and Canvas Api -> Celsium, Leaflet, D3
-- http range request -> cloud native geospatial movement 
-- WebAssembly -> ...
+\m{->} However, in order to make this vision a reality, there is much work to be done. Data formats, data conversion, tools, etc. 
 
-Now we see a new technology 
+\begin{itemize}
+  \item This study focusses on the aspects of geo-computation \& tooling.
+  \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
+  \item Not just open source: process sharing using fully containerized instances. Think Docker. Or WebAssembly.
+\end{itemize}
 
-This study has been conducted for two reasons.
-Firstly, this study wishes explore the possibilities \& limitations of front-end geoprocessing.
-  - Web technologies have become a vital, core component of the modern geospatial software landscape.
-  - However, the web is changing : cloud-native geospatial movement, move to front-end heavy applications, WebAssembly. 
-  - By creating an application using these trends and technologies, we can get a better understanding.
+\m{->} This study focus: cloud-native ready geo-computation tools. 
 
-Secondly, to experiment with making small-scale geoprocessing more accessible
-accessible alternative to existing visual geo-programming environments.
+\m{->} current direction: containerized, sharable processes, together with web-based, front end visual programming environments ( RasterFoundry). Docker is usually named as a vision for these sharable processes.
+
+\m{->} We do have examples of cloud-native geodata formats, and some examples of cloud-based geo-computation (RasterFoundry , Google Earth Engine, more). However, these approaches have not yet tried to use truly sharable, containerized geoprocesses using Docker or WebAssembly. 
+
+\m{->} WebAssembly as a whole is underresearched. WebAssembly is not a fully virtualized container image, but just a binary set of instructions, meant to be executed on a virtual machine. Think of safe, cross-platform dll's. 
+WebAssembly is in this regard more simple than docker, but this gives it more opportunities. 
+WebAssembly runs in the browser for instance. 
+
+\m{->} This opportunity to run in the browser would enable these cloud-native frontend environments to execute these processes from within the browser, completely detached from the server, as a means to experiment with processes on a small scale before applying them to a cloud native environment. 
+
+\m{->} However, no implementations exist yet which combines containerized processes with these frontend computation environments. 
+
 
 \section{Research Objectives}
-Due to this need for a re-examination of web features in relation to geo-computation, 
-the goal of this thesis is to develop an alternative method for geo-computation on the web.
-
+% X: a re-examination of web features in relation to geo-computation
+% X: FAIR geo-computation
+Due to this need for cloud-native ready geo-computation, the goal of this thesis is to develop a method for geo-computation in a browser-based front-end. 
 This thesis presents the design, creation and evaluation of GeoFront, a web-based, visual geo-computation tool. 
 With GeoFront, geoprocessing flowcharts can be viewed, run, and shared from within a web browser.  
 The full application runs front-end in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
@@ -119,18 +120,22 @@ GeoFront will be designed and constructed using only core browser features.
 
 
 
-\subsection*{ No Server-side or Native WebAssembly } 
+\subsection*{ No front-end WebAssembly } 
 \todo[]{Still relevant?}
-This study will limit itself to the \emph{client-side} usage of WebAssembly. 
-A powerful case can be made for \emph{server-side}, or native level usage of WebAssembly, especially in conjunction with a programming language such as Rust. 
-Rust compiled to WebAssembly could, compared to using python, java or C++, make geoprocessing more maintainable and reliable, while at the same time ensuring memory safety, security, and performance \cite{clack_standardizing_2019}. 
+This study will limit itself to the \emph{front-end} usage of WebAssembly. 
 
-Server-side or native wasm is beyond the scope of this paper, but would be an excellent starting point for future work. Note that this also means that research into WebAssembly is important for more than just client-side geoprocessing. All geoprocessing could benefit from it.
+-> goal cloud native: backend wasm
+
+-> study: not possible due to time constraints.
+
+Server-side or native wasm is beyond the scope of this paper
+
+, but would be an excellent starting point for future work. Note that this also means that research into WebAssembly is important for more than just client-side geoprocessing. All geoprocessing could benefit from it.
 
 
 
 \subsection*{ No Web Processing Services } 
-Similarly, this study will exclude the OGC standard of the \ac{wps} \cite{ogc_web_2015}, since these services do not offer \emph{client} side geoprocessing, but instead offer \emph{server} side geoprocessing. A client-side application \textit{could} create an interface to use such a service, to essentially offer geoprocessing to clients, but this study regards a solution like that as a workaround, not a true solution to the problem of client-side geoprocessing. 
+Similarly, this study will exclude the OGC standard of the \ac{wps} \cite{ogc_web_2015}, since these services do not offer \emph{front-end} geoprocessing, but instead offer \emph{back-end} side geoprocessing. A client-side application \textit{could} create an interface to use such a service, to essentially offer geoprocessing to clients, but this study regards a solution like that as a workaround, not a true solution to the problem of client-side geoprocessing. 
 
 This is not to say that client-side geoprocessing replaces the need for \ac{wps}. 
 future work could research the possibility of utilizing a hybrid strategy of both client-side and server-side geoprocessing, following in the footsteps of \cite{panidi_hybrid_2015}. 
@@ -150,8 +155,22 @@ Similarly, a survey analyzing how users experience client-side geoprocessing in 
 
 
 
+\section{Auxiliary Objectives}
+
+\subsection*{Fair Geodata \emph{Processing}}
+-> OGC: Fair Geodata
+\m{->} FME : data integration tool
+\m{->} Grasshopper: 3D CAD: visually creating and debugging geometries
+       L \m{->} Used within the field of AEC for solar analysis, routing, permit checks.
+These visual programming environments 
+Due to this need for [X], the goal of this thesis is to develop a method for geo-computation in a browser-based front-end. 
 
 
+\subsection*{Explore Web Capabilities }
 
+- HTML5 with WebGL and Canvas Api -> Celsium, Leaflet, D3
+- javascript runtime improvements -> shift from backend-heavy to frontend-heavy web applications
+- http range request -> cloud native geospatial movement 
+- WebAssembly -> ...
 
-% \chapter{Justification}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+WebAssembly is a potentially revolutionary technology. We don't know yet what it fully means or what it can do, so we should explore.
