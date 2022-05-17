@@ -4,6 +4,8 @@
 
 \begin{itemize}
   \item Chris Holmes, forerunner of the cloud native movement \& vision
+  \item Radical simplification
+  \item Massive online datasets, easely digestible by cloud-based computations
   \item Portable Geo-computation. sending not the data to a process, but the process to the data. This is a complete reversal of the current paradigm
 \end{itemize}
 
@@ -16,13 +18,15 @@
 \end{enumerate}
 
 
-\m{->} Establish the 'wider audience' narrative \& vision / denichifying argument
+\m{->} quickly mention the 'wider audience' narrative \& vision / denichifying argument
 
 \emph{
   With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. ~ Chris Holmes
 }
 
 \m{->} However, in order to make this vision a reality, there is much work to be done. Data formats, data conversion, tools, etc. 
+
+One important open question regarding the vision is how to provide containerized geo-computation processes. Furthermore, it remains a mystery how these containerized containerized processes will be configured and accessed by frontend computation environments. 
 
 \begin{itemize}
   \item This study focusses on the aspects of geo-computation \& tooling.
@@ -44,32 +48,26 @@ WebAssembly runs in the browser for instance.
 
 \m{->} However, no implementations exist yet which combines containerized processes with these frontend computation environments. 
 
+X : wasm-based geo-computation applications
 
 \section{Research Objectives}
-% X: a re-examination of web features in relation to geo-computation
-% X: FAIR geo-computation
-Due to this need for cloud-native ready geo-computation, the goal of this thesis is to develop a method for geo-computation in a browser-based front-end. 
+% we research front-end, as a proxy for containerization. if a process can be run in a front-end web envirionment, it can be run on the cloud. 
+
+Due to the need for a first step towards wasm-based geo-computation applications, the goal of this thesis is to develop a method for geo-computation in a browser-based front-end. 
+
 This thesis presents the design, creation and evaluation of GeoFront, a web-based, visual geo-computation tool. 
-With GeoFront, geoprocessing flowcharts can be viewed, run, and shared from within a web browser.  
+With GeoFront, geoprocessing flowcharts can be created, run, and shared from within a web browser.  
 The full application runs front-end in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
 
 The tool offers functionalities such as point cloud loading, triangulation, and isocurve extraction.
-These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure.
-Together with WebAssembly, this enables the utilization of industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`.
+These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure and WebAssembly.
+By using both, industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`, can be utilized.
 
-By being free, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront aims to be a more accessible alternative to existing visual geo-computation environments.
+In addition to the goal of examining wasm-based geo-computation, the auxiliary goal of this thesis is to make geoprocessing more accessible. 
+By being free and open source, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront attempts to be a more accessible alternative to existing visual geo-computation environments, like FME or Grasshopper. 
+This is done to be in line with the aforementioned cloud native vision of eventually allowing non-expert usage of GIS.
 
-Geofront has been created as an experiment to explore if visual, browser-based geo-computation can make geo-computation more accessible. 
-
-% As such, the study first describes the design and implementation of GeoFront, and then evaluates the tool to various geo-computation use cases.
-% The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
-% Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
-
-% The design of geofront contains several challenges. 
-% As such ...
-% The challenges of this second option are that browser-based geo-computation (BBG) might not be as performant as server side geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, and that WebAssembly will have to be used to make use of industry-standard geoprocessing libraries such as Proj, Geos, GDAL, or CGAL.
-
-
+This design of geofront contains several challenges. Browser-based geo-computation (BBG) might not be as performant as back-end geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, and WebAssembly 
 
 
 \newpage
@@ -153,24 +151,8 @@ Similarly, a survey analyzing how users experience client-side geoprocessing in 
 % It is my goal to introduce this as a new geoprocessing option, and to name the advantages and disadvantages we can be sure of. An actual comparison of client-side vs native geoprocessing is something different. 
 
 
+\section{Guide}
 
-
-\section{Auxiliary Objectives}
-
-\subsection*{Fair Geodata \emph{Processing}}
--> OGC: Fair Geodata
-\m{->} FME : data integration tool
-\m{->} Grasshopper: 3D CAD: visually creating and debugging geometries
-       L \m{->} Used within the field of AEC for solar analysis, routing, permit checks.
-These visual programming environments 
-Due to this need for [X], the goal of this thesis is to develop a method for geo-computation in a browser-based front-end. 
-
-
-\subsection*{Explore Web Capabilities }
-
-- HTML5 with WebGL and Canvas Api -> Celsium, Leaflet, D3
-- javascript runtime improvements -> shift from backend-heavy to frontend-heavy web applications
-- http range request -> cloud native geospatial movement 
-- WebAssembly -> ...
-
-WebAssembly is a potentially revolutionary technology. We don't know yet what it fully means or what it can do, so we should explore.
+As such, the study first describes the design and implementation of GeoFront, and then evaluates the tool to various geo-computation use cases.
+The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
+Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
