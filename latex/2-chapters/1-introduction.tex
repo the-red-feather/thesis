@@ -37,12 +37,11 @@ This introduces a sizable challenge: \textbf{Portable, Containerized Geo-computa
 %   \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
 % \end{itemize}
 
-The challenge of sharing and chaining together containerized fragments of geoprocesses to a variety of environments will require more than open source collaboration. 
+The challenge of sharing and chaining together containerized fragments of geoprocesses to a variety of environments will require more than just open source collaboration. 
 This study interprets the challenge of portable geo-computation by means of the FAIR paradigm. 
-If geodata processes need to be just as portable as the geodata forming the input and output, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing.
+If geodata processes need to be just as portable as the geodata forming the input and output, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata \emph{processing} as well.
 The challenge facing the cloud-native vision then becomes: \textbf{How to make geo-computation Findable, Accessible, Interoperable, and Reusable?} 
-
-% auxiliary advantage : geoprocessing more accessible. 
+This links back to containerization, for containerization is a very powerful method of making geo-computation more Interoperable and Reusable.
 
 % state of the art regarding this issue, make a path towards the particular thesis, and why it is an application
 The current state of the art is far removed from either portable or FAIR geo-computation. 
@@ -67,7 +66,8 @@ FAIR geoprocessing may have many auxiliary advantages.
 \section{Research Objectives}
 
 % This must be better 
-Due to the need for containerized geo-computation, The goal of this thesis is to develop both a new method and application for geo-computation in a browser-based front-end using WebAssembly.
+
+Due to this need for containerized, FAIR geo-computation, The goal of this thesis is to develop both a new method and application for geo-computation in a browser-based front-end using WebAssembly.
 
 This thesis presents the design, creation and evaluation of GeoFront, a web-based, visual geo-computation tool. 
 With GeoFront, geoprocessing flowcharts can be created, shared and run from within a web browser.  
@@ -99,7 +99,7 @@ The following sub-research questions are needed in order to answer the main ques
   \item \m{How to perform geo-computation with these containers in the browser?}: 
   \item \m{How to share types between libraries?}: 
   \item \m{How could these flowcharts be run in a cloud-native context?}:   
-  \item \m{How well does THIS application serve certain use-cases?}:  
+  \item \m{How well does this application serve certain use-cases?}:  
 \end{enumerate}
 
 \newpage
@@ -110,28 +110,21 @@ The scope of this thesis is defined in the following ways:
 \subsection*{ No back-end WebAssembly } 
 This study will limit itself to the \emph{front-end} usage of WebAssembly. This looks contradictory to the goal of cloud-native geo-computation, and thus requires explanation.
 
-This study investigates containerized, FAIR geoprocessing. While this is a prerequisite for cloud-native geospatial processing, is not necessarily needed to run code in the cloud to ideas and methods of containerization. 
-
-This study uses the browser front-end as a proxy for containerization.
-By making a traditionally native process run in a front-end web environment, it is safe to assume can also be run on a server. Additionally, by developing not just a method but also a full application, the method can be tested not only based on theoretical properties, but on actual applicability to use-cases as well. \todo{Improve this intro} 
-
--> goal cloud native: backend wasm
-
--> study: not possible due to time constraints.
-
-Server-side or native wasm is beyond the scope of this paper
-
-, but would be an excellent starting point for future work. Note that this also means that research into WebAssembly is important for more than just client-side geoprocessing. All geoprocessing could benefit from it.
+While this is a prerequisite for cloud-native geospatial processing, is not necessarily needed to run code in the cloud in order to test ideas and methods of containerization. 
+Instead, this study investigates containerized, FAIR geoprocessing as an exercise alone.  
 
 
+This study choice the browser front-end, because it serves as a good proxy for containerization:
+By making a traditionally native process run in a front-end web environment, it is safe to assume can also be run on a server. 
+Additionally, by developing not just a method but also a full application, the method can be tested not only based on theoretical properties, but on actual applicability to use-cases as well. 
+
+Still, back-end containerized geoprocessing would be an excellent follow-up investigation to this study. 
 
 \subsection*{ No Web Processing Services } 
 Similarly, this study will exclude the OGC standard of the \ac{wps} \cite{ogc_web_2015}, since these services do not offer \emph{front-end} geoprocessing, but instead offer \emph{back-end} side geoprocessing. A client-side application \textit{could} create an interface to use such a service, to essentially offer geoprocessing to clients, but this study regards a solution like that as a workaround, not a true solution to the problem of client-side geoprocessing. 
 
 This is not to say that client-side geoprocessing replaces the need for \ac{wps}. 
 future work could research the possibility of utilizing a hybrid strategy of both client-side and server-side geoprocessing, following in the footsteps of \cite{panidi_hybrid_2015}. 
-
-
 
 \subsection*{ No Usability Analysis } % 
 \todo[]{Is this still true in this new thesis?}
@@ -148,7 +141,7 @@ Similarly, a survey analyzing how users experience client-side geoprocessing in 
 Two technologies may pose a solution to FAIR geo-computation: Docker and WebAssembly.
 This thesis examines a WebAssembly based approach to containerization. Approaches using Docker are not covered, and are left to subsequent research.
 
-\subsection*{ 3D Vector / Point Cloud geoprocessing}
+\subsection*{ Only 3D Vector / Point Cloud geoprocessing}
 Geoprocessing, or geo-computation, is a sizable phenomenon. 
 It covers all operations on geodata, from 2D rasters, 2D \& 3D vector data, tabular datasets, and point clouds. 
 Due to time limitations, we are forced to provide one focus on particular type of geoprocessing
@@ -161,6 +154,8 @@ GeoFront will be designed and constructed using only core browser features.
 - The research objective is to explore core web features, not to examine the front-end web ecosystem. 
 - name all html things
 
+\subsection*{ Visual Programming }
+The format chosen for the demo application GeoFront is a visual programming language. Visual programming has the advantage 
 
 \section{Guide}
 
