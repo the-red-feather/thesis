@@ -59,6 +59,36 @@ From these papers we can conclude a true academic and even commercial interest i
 
 Additionally, to the best of the authors's knowledge, all papers concerned with browser-based geoprocessing either tried to use existing JavaScript libraries, or tried to write their own WebAssembly / JavaScript libraries. No studies have been performed on the topic of compiling existing C++ geoprocessing libraries to the web. 
 
+
+\section{Containerization Technologies}
+...
+Two technologies may pose a solution to FAIR georpocessing: Docker and WebAssembly.
+We will research WebAssembly, and ignore docker.
+...
+
+
+
+
+
+
+
+Not just open source: process sharing using fully containerized instances. Think .
+
+current vision / direction: containerized, sharable processes, together with web-based, front end visual programming environments ( RasterFoundry). Docker is usually named as a vision for these sharable processes.
+
+\m{->} We do have examples of cloud-native geodata formats, and some examples of cloud-based geo-computation (RasterFoundry , Google Earth Engine, more). However, these approaches have not yet tried to use truly sharable, containerized geoprocesses using Docker or WebAssembly. 
+
+\m{->} WebAssembly as a whole is underresearched. WebAssembly is not a fully virtualized container image, but just a binary set of instructions, meant to be executed on a virtual machine. Think of safe, cross-platform dll's. 
+WebAssembly is in this regard more simple than docker, but this gives it more opportunities. 
+WebAssembly runs in the browser for instance. 
+
+\m{->} This opportunity to run in the browser would enable these cloud-native frontend environments to "dry-run" these processes from within the browser, completely detached from the server, as a means to experiment with processes on a small scale before applying them to a cloud native environment. 
+
+\m{->} However, no implementations exist yet which combines containerized processes with these frontend computation environments. 
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{WebAssembly}

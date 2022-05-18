@@ -1,62 +1,73 @@
 \chapter{Introduction}
 
-\m{->} Establish Cloud Native movement.
+% Establish OGC in two sentences, mentioning their name and Vision
+The Open Geospatial Consortium (OGC)...
+Mission: FAIR Geodata 
 
+% Establish Cloud Native movement.
+A prominent development within the OGC is the recent effort towards a \textbf{"Cloud Native Geospatial"} future. 
+This initiative aims to radically simplify geodata storehouses to static servers serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services. 
+This architecture has many advantages over current geodata storage and analysis methods:
 \begin{itemize}
-  \item Chris Holmes, forerunner of the cloud native movement \& vision
-  \item Radical simplification
-  \item Massive online datasets, easely digestible by cloud-based computations
-  \item Portable Geo-computation. sending not the data to a process, but the process to the data. This is a complete reversal of the current paradigm
+  \item These new Cloud Native geodata formats are much cheap to access by front-end and back-end services, compared to active services.
+  \item Substituting active SQL or noSQL databases by static binary files is easier and cheaper for data providers, leading to more and more readily available geodata.
+  \item By using supercomputers (Microsoft Planetary Computer) and cloud-storage (AWS), Geodata processes could make use of near-infinite computational and storage resources. 
+  \item By having all data centralized in one location or type of location, new, large scale patterns within our geodata could be discovered.  
+  \item For web GIS, this would offer direct data streaming options, similar to services like "Netflix" or "Spotify".  
 \end{itemize}
 
-
-\begin{enumerate}
-  \item     All data of interest to a user is in the cloud; and these datasets will be far bigger than one could possibly fit on a desktop computer — worldwide imagery archives, historical gps data for fleets of assets, multi-dimensional weather data, global basemap data, etc.
-  \item     Infinite computation capabilities are available to process massive amounts of data, \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}.
-  \item     Queuing and notification systems are in place, so newly acquired data (from satellites, from ground surveying, etc) can automatically kick off additional data processing, run updates, or send messages out to users.
-  \item     Web tiled online maps are available to visualize any data (both source data and derived data in interim or final processing steps).
-\end{enumerate}
-
-
-\m{->} quickly mention the 'wider audience' narrative \& vision / denichifying argument
-
+These features may have a far reaching impact on society. Chris Holmes, forerunner of the cloud-native geospatial movement, envisions what the movement could mean for even non-GIS users: 
 \emph{
-  With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. ~ Chris Holmes
+  With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. \~ Chris Holmes
 }
+% This is also reflected by cloud-native based tools like (Google Earth Engine or RasterFoundry) may achieve such a feed, by being web based and stuff...
+All these reasons explain why the OGC and many other parties are now actively pursuing this vision.
 
-\m{->} However, in order to make this vision a reality, there is much work to be done. Data formats, data conversion, tools, etc. 
+But while this vision is in active development, many large-scale challenges are still in its way. 
+One of the most important challenges is the required paradigm shift within geo-computation / geoprocessing workflows. 
+The current, common geo-computation workflow of retrieving online data, only to run it through a local process and send the resulting data back into servers, will have to be reversed: In a cloud-native future, we will not retrieve data for our local process, but we will upload our process to the data.  
+This introduces a sizable challenge: \textbf{Portable, Containerized Geo-computation}.
 
-One important open question regarding the vision is how to provide containerized geo-computation processes. Furthermore, it remains a mystery how these containerized containerized processes will be configured and accessed by frontend computation environments. 
+% \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}. -> Chris again
+
+% \begin{itemize}
+%   \item Up to this point, the world of GIS has done a considerable effort to make geodata more Findable, Accessible, Interoperable, and Reusable. The challenge of Portable geo-computation now forces us to extend the effort of FAIR geodata to FAIR geodata computation as well.  
+%   \item If we want our geodata processes to be just as portable as the geodata it takes as input, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing . FAIR geo-computation.
+%   \item Furthermore, it remains a mystery how these containerized containerized processes will be configured and accessed by frontend computation environments. 
+%   \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
+% \end{itemize}
+
+The challenge of sharing and chaining together containerized fragments of geoprocesses to a variety of environments will require more than open source collaboration. 
+This study interprets the challenge of portable geo-computation by means of the FAIR paradigm. 
+If geodata processes need to be just as portable as the geodata forming the input and output, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing.
+The challenge facing the cloud-native vision then becomes: \textbf{How to make geo-computation Findable, Accessible, Interoperable, and Reusable?} 
+
+% state of the art regarding this issue
+The current state of the art is far removed from either portable or FAIR geo-computation.  
+
+
 
 \begin{itemize}
-  \item This study focusses on the aspects of geo-computation \& tooling.
-  \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
-  \item Not just open source: process sharing using fully containerized instances. Think Docker. Or WebAssembly.
+  \item current methods: Docker, and some geo-computation platforms.
+  \item Not many implementations using WebAssembly. 
+  \item Not many accessible, open tools
 \end{itemize}
 
-\m{->} This study focus: cloud-native ready geo-computation tools. 
+% \begin{itemize}
+%   \item Findable? -> web browser / Package Managers
+%   \item Accessible? -> web tools
+%   \item Interoperable -> WebAssembly / containerized runtimes and processes, using common types
+%   \item Reusable -> compile to regular web service / function
+% \end{itemize}
 
-\m{->} current direction: containerized, sharable processes, together with web-based, front end visual programming environments ( RasterFoundry). Docker is usually named as a vision for these sharable processes.
-
-\m{->} We do have examples of cloud-native geodata formats, and some examples of cloud-based geo-computation (RasterFoundry , Google Earth Engine, more). However, these approaches have not yet tried to use truly sharable, containerized geoprocesses using Docker or WebAssembly. 
-
-\m{->} WebAssembly as a whole is underresearched. WebAssembly is not a fully virtualized container image, but just a binary set of instructions, meant to be executed on a virtual machine. Think of safe, cross-platform dll's. 
-WebAssembly is in this regard more simple than docker, but this gives it more opportunities. 
-WebAssembly runs in the browser for instance. 
-
-\m{->} This opportunity to run in the browser would enable these cloud-native frontend environments to execute these processes from within the browser, completely detached from the server, as a means to experiment with processes on a small scale before applying them to a cloud native environment. 
-
-\m{->} However, no implementations exist yet which combines containerized processes with these frontend computation environments. 
-
-X : wasm-based geo-computation applications
+% X : wasm-based geo-computation applications
 
 \section{Research Objectives}
-% we research front-end, as a proxy for containerization. if a process can be run in a front-end web envirionment, it can be run on the cloud. 
-
-Due to the need for a first step towards wasm-based geo-computation applications, the goal of this thesis is to develop a method for geo-computation in a browser-based front-end. 
+Due to the need for a first step towards wasm-based geo-computation, the goal of this thesis is to develop a method for geo-computation in a browser-based front-end. 
+the browser front-end is used as a proxy for containerization. By making a process run in a front-end web environment, it is safe to assume can be run on the cloud. Additionally, by 
 
 This thesis presents the design, creation and evaluation of GeoFront, a web-based, visual geo-computation tool. 
-With GeoFront, geoprocessing flowcharts can be created, run, and shared from within a web browser.  
+With GeoFront, geoprocessing flowcharts can be created, shared and run from within a web browser.  
 The full application runs front-end in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
 
 The tool offers functionalities such as point cloud loading, triangulation, and isocurve extraction.
@@ -67,8 +78,8 @@ In addition to the goal of examining wasm-based geo-computation, the auxiliary g
 By being free and open source, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront attempts to be a more accessible alternative to existing visual geo-computation environments, like FME or Grasshopper. 
 This is done to be in line with the aforementioned cloud native vision of eventually allowing non-expert usage of GIS.
 
-This design of geofront contains several challenges. Browser-based geo-computation (BBG) might not be as performant as back-end geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, and WebAssembly 
-
+This design of geofront contains several challenges. Browser-based geo-computation (BBGC) might not be as performant as back-end / native geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, even with the usage of WebAssembly \cite{jangda_not_2019}. 
+Additionally, since current visual programming environments all fall short on at least one of the above features, the visual programming environment will have to be created from scratch.
 
 \newpage
 \subsection{Research Question}
