@@ -1,6 +1,4 @@
 # 0. Title: 
-Geofront: A Browser-based geo-computation platform in the era of cloud-native geodata & accessible geo-computation
-
 
 # Introduction
 
@@ -366,24 +364,6 @@ Four use-cases are envisioned for browser-based geo-computation in an era of clo
 - Geoflow
 - Sampling
 - Trying different parameters
-```
-
-
-<!------------------------------------------------------------------------------->
-# Implementation 
-
-```
-...
-```
-<!------------------------------------------------------------------------------->
-# Discussion
-```
-...
-```
-<!------------------------------------------------------------------------------->
-# Conclusion
-```
-...
 ```
 
 
