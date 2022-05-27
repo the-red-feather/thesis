@@ -1,42 +1,57 @@
 # TITLE
-geofront: A web based visual programming environment for the era of cloud-native geo-computation
+GEOFRONT: A web based visual programming environment for the era of cloud-native geo-computation
 
 # INTRODUCTION
 <!-- pov: VPL + Cloud native -> VPL's not cloud ready -->
 
-<!-- I LIKE THIS: THIS IS MOST IN-LINE with the truth -->
 
-<!-- \m{->} Establish the VPL  -->
-Visual Programming environments (VPL) are a popular interface for ETL applications, and for performing spatial analysis and geodata transformations.
-SaveSoft's FME (SOURCE) is a popular tool for automating data integration, while mcneels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
+## Context
+
+<!-- Establish the VPL within geomatics -->
+Within the field of geo informatics, Visual Programming environments (VPL)'s are popular interfaces for performing spatial analyses and geodata transformations. 
+SaveSoft's FME (SOURCE) is a popular Extract Load Transform (ETL) tool for automating data integration, while mcneels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
 VPL's like these offers users a chance to interactively automate workflows, while requiring little to no programming knowledge. 
 In between results can be inspected quickly, and workflows can be changed on the fly, often with immediate feedback.
 This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all other use-cases in need of both low-code automation and visual debugging (Shader Programming, Procedural Geometry, CAD, BIM).
 
+<!-- For geoprocessing and analysis, henceforth dubbed 'geo-computation',  -->
+
 <!-- A VPL done right can make very powerful features available for a very large audience. -->
 
-<!-- \m{->} Establish the Cloud Native movement, and what this means for VPL's -->
-An important development within the Open Geospatial Consortium (OGC) brings challenges and opportunities to these vpl environments. 
-The OGC envisions a "Cloud Native Geospatial" future, which aims to radically simplify geodata storehouses to static servers serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services.
+<!-- Establish the Cloud Native movement -->
+<!-- To explain where the contribution of this internship takes
+place, we must first paint a general picture of this entire sequence.  -->
 
-The Cloud-Native Geospatial movement represents a strong new use-case for interactive, low-code automation. 
-A cloud native processing provider desires to create a platform which allows as many (different) users as possible to create geospatial analysis and transformation workflows.
-This will mean supporting users of different backgrounds, both programmers and non-programmers, both GIS experts as well as non-GIS experts. 
+An important development within the Open Geospatial Consortium (OGC) brings challenges and opportunities to these geospatial visual programming environments. 
+The OGC envisions a "Cloud Native Geospatial" future, in which geodata formats and geoprocessing methods are primarily designed with the cloud in mind. 
+This would radically simplify geodata storehouses to static servers, serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services, which could then run on an unprecedented scale, with unprecedented speed. 
 
-<!-- TODO improve this lead-up -->
+<!-- Why is it different, why does it ask for change? what type of change? -->
+In order to make this vision a reality, both geodata formats and geoprocessing and -analysis methods will need to be re-examined. 
+Cloud computation and cloud-based data access ask for different priorities and features over native, desktop based alternatives. Examples of these features are partial streaming capabilities, and containerization. 
+These features will either have to be added to existing formats and methods, or new substitutes formats and methods will need to be developed and tested.
 
-This is why cloud-native applications choose for either a very high-level scripting language, like javascript for the Google Earth Engine, or a VPL, like ModelLab in Raster Foundry. Additionally, this is why existing VPL's like FME and Grasshopper have added cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
+<!-- TODO: START HERE  -->
+This brings us back to the opportunity and challenges of the visual programming language. 
 
-<br>
+The **opportunity** lies in the fact that a VPL interface is very suitable as a configurator of cloud-computation workflows. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts. 
+
+This is why ModelLab in Raster Foundry. 
+this is why existing VPL's like FME and Grasshopper have added cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
 
 <!-- HOWEVERRRRRRRRR -->
-**However**, in order to properly use a VPL for cloud computation, many challenges need to be overcome.
+However, the **challenge** is that most GIS VPL's are not aligned with 
+the priorities and features characterizing the cloud-native movement. 
 Especially proprietary VPLs fall short on a number of technical aspects, hindering their suitability for the configuration of cloud-computation workflows. 
-Additionally, it is important to emphasize that "cloud-native geospatial" as a vision is more than just cloud-computation. 
+
+<!-- Additionally, it is important to emphasize that 
+"Cloud-native geospatial" as a vision is more than just supporting cloud-computation.  -->
 
 This thesis identifies X major catagories in which popular GIS visual programming environments are misaligned with CNGS's vision and technical requirements.
-
+ 
 <!-- TODO: these are the things I set out to do. Do they align with research? -->
+
+<br>
 
 ## A: Not Open
 popular vpl's are not open.  
@@ -51,6 +66,8 @@ popular vpl's are not open.
 
 only open source community collaboration on the level of plugins. These plugins are highly specified to the specific VPL. 
 
+<br>
+
 ## B: Not Flexible / Portable / Interoperable
 
 - Often not cross-platform (Grasshopper has only recently added mac support, and has no linux support)
@@ -59,6 +76,8 @@ only open source community collaboration on the level of plugins. These plugins 
 - Not 'really' containerized
 - Not 'really' save
 - If designed with cloud in mind, can the script still be used and run offline? 
+
+<br>
 
 ## C: Not Aligned with regular programming languages
 
@@ -74,21 +93,24 @@ only open source community collaboration on the level of plugins. These plugins 
 
 ## 1.2 THIS STUDY
 
-due to ... , this study will ... 
+Due to the need for a vpl aligned with the cloud-native geospatial movement, the goal of this thesis is to develop both a new containerized method for geo-computation in a browser-based front-end using WebAssembly.
 
-Will differ from existing studies and applications by attempting to: 
 
-  -> vpl is created from scratch
-  -> vpl runs in a web browser
-  -> vpl accepts WebAssembly libraries
-  -> vpl compiles to javascript subset
+Will differ from existing studies and applications by:
+
+- vpl is created from scratch
+- vpl runs in a web browser
+- vpl accepts WebAssembly libraries
+- vpl compiles to javascript subset
 
 Leading to: 
+
 -> Free and open source
 -> Just javascript: 
-  -> The javascript-subset can be used to integrate with existing javascript infrastructure: node.js for cloud-computation, git for version control, and automated testing.  
+  - The javascript-subset can be used to integrate with existing javascript infrastructure: node.js for cloud-computation, git for version control, and automated testing.  
 
--> Fully Hybrid: the same functionality locally and in the cloud, on any platform
+-> Fully Hybrid: 
+  - the same functionality locally and in the cloud, on any platform
 -> fully containerized: by using webassembly, no environmental setup is required, while at the same time being able to make use of libraries written in any language.
 
 -> Powerful plugins: easy to make use of 'normal' software ecosystems.
@@ -96,7 +118,7 @@ Leading to:
 
 QUESTIONS
 
-- how to design and create a geo-computation VPL in line with the cloud-native geospatial vision?
+- how to design and create a geo-computation VPL in line with the cloud-native geospatial vision & technical requirements?
 
 SUB QUESTIONS 
 
