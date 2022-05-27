@@ -12,11 +12,10 @@ Within the field of geo informatics, Visual Programming environments (VPL)'s are
 SaveSoft's FME (SOURCE) is a popular Extract Load Transform (ETL) tool for automating data integration, while mcneels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
 VPL's like these offers users a chance to interactively automate workflows, while requiring little to no programming knowledge. 
 In between results can be inspected quickly, and workflows can be changed on the fly, often with immediate feedback.
-This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all other use-cases in need of both low-code automation and visual debugging (Shader Programming, Procedural Geometry, CAD, BIM).
+This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all other use-cases in need of both low-code automation and visual debugging (Shader Programming, Procedural Geometry, CAD, BIM). 
+A VPL done right can make automation available for a very large audience.
 
-<!-- For geoprocessing and analysis, henceforth dubbed 'geo-computation',  -->
-
-<!-- A VPL done right can make very powerful features available for a very large audience. -->
+<!--. -->
 
 <!-- Establish the Cloud Native movement -->
 <!-- To explain where the contribution of this internship takes
@@ -34,7 +33,7 @@ These features will either have to be added to existing formats and methods, or 
 <!-- TODO: START HERE  -->
 This brings us back to the opportunity and challenges of the visual programming language. 
 
-The **opportunity** lies in the fact that a VPL interface is very suitable as a configurator of cloud-computation workflows. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts. 
+The **opportunity** lies in the fact that a VPL interface is highly suitable as a configurator of cloud-computation workflows. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts. 
 
 This is why ModelLab in Raster Foundry. 
 this is why existing VPL's like FME and Grasshopper have added cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
@@ -75,17 +74,15 @@ only open source community collaboration on the level of plugins. These plugins 
 - Needs specific runtime environment
 - Not 'really' containerized
 - Not 'really' save
-- If designed with cloud in mind, can the script still be used and run offline? 
 
 <br>
 
 ## C: Not Aligned with regular programming languages
 
+- The environments do not allow for regular software development features, like Git version control, unit tests, or CI / CD
 - "don't play well with others": difficult to integrate 'third party scripts'.
 - Plugins have to deal with the data structures of the host application
-- The environments do not allow for regular programming features, like the encapsulation of repeatable actions into re-usable functions. 
-
-- The environments do not allow for regular software development features, like Git Version Control, unit tests, CI / CD
+<!-- - The environments do not allow for regular programming features, like the encapsulation of repeatable actions into re-usable functions.  -->
 
 <br>
 
@@ -93,7 +90,7 @@ only open source community collaboration on the level of plugins. These plugins 
 
 ## 1.2 THIS STUDY
 
-Due to the need for a vpl aligned with the cloud-native geospatial movement, the goal of this thesis is to develop both a new containerized method for geo-computation in a browser-based front-end using WebAssembly.
+Due to the need for a VPL aligned with the cloud-native geospatial movement, the goal of this thesis is to develop both a new vpl for geo-computation in a browser-based front-end.  
 
 
 Will differ from existing studies and applications by:
@@ -101,7 +98,7 @@ Will differ from existing studies and applications by:
 - vpl is created from scratch
 - vpl runs in a web browser
 - vpl accepts WebAssembly libraries
-- vpl compiles to javascript subset
+- vpl flowchart itself compiles to a javascript subset
 
 Leading to: 
 
