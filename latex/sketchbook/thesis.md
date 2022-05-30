@@ -4,14 +4,11 @@ GEOFRONT: A web based visual programming environment for the era of cloud-native
 # INTRODUCTION
 <!-- pov: VPL + Cloud native -> VPL's not cloud ready -->
 
-
-## Context
-
 <!-- Establish the VPL within geomatics -->
 Within the field of geo informatics, Visual Programming environments (VPL)'s are popular interfaces for performing spatial analyses and geodata transformations. 
 SaveSoft's FME (SOURCE) is a popular Extract Load Transform (ETL) tool for automating data integration, while mcneels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
-VPL's like these offers users a chance to interactively automate workflows, while requiring little to no programming knowledge. 
-In between results can be inspected quickly, and workflows can be changed on the fly, often with immediate feedback.
+VPL's like these offers users a chance to interactively automate workflows & processing pipelines, while requiring little to no programming knowledge. 
+In between results can be inspected quickly, and the processes can be changed on the fly, often with immediate feedback.
 This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all other use-cases in need of both low-code automation and visual debugging (Shader Programming, Procedural Geometry, CAD, BIM). 
 A VPL done right can make automation available for a very large audience.
 
@@ -19,7 +16,7 @@ A VPL done right can make automation available for a very large audience.
 
 <!-- Establish the Cloud Native movement -->
 <!-- To explain where the contribution of this internship takes
-place, we must first paint a general picture of this entire sequence.  -->
+place, we must first paint a general picture of...  -->
 
 An important development within the Open Geospatial Consortium (OGC) brings challenges and opportunities to these geospatial visual programming environments. 
 The OGC envisions a "Cloud Native Geospatial" future, in which geodata formats and geoprocessing methods are primarily designed with the cloud in mind. 
@@ -27,28 +24,30 @@ This would radically simplify geodata storehouses to static servers, serving lar
 
 <!-- Why is it different, why does it ask for change? what type of change? -->
 In order to make this vision a reality, both geodata formats and geoprocessing and -analysis methods will need to be re-examined. 
-Cloud computation and cloud-based data access ask for different priorities and features over native, desktop based alternatives. Examples of these features are partial streaming capabilities, and containerization. 
+Cloud computation and cloud-based data access ask for different priorities and features over native, desktop based alternatives. Examples of these features are partial streaming capabilities (SOURCE), and containerization (SOURCE). 
 These features will either have to be added to existing formats and methods, or new substitutes formats and methods will need to be developed and tested.
 
-<!-- TODO: START HERE  -->
 This brings us back to the opportunity and challenges of the visual programming language. 
 
-The **opportunity** lies in the fact that a VPL interface is highly suitable as a configurator of cloud-computation workflows. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts. 
-
-This is why ModelLab in Raster Foundry. 
-this is why existing VPL's like FME and Grasshopper have added cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
+The **opportunity** lies in the fact that a VPL interface is highly suitable as a configurator of cloud-computation workflows. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts (Source). A good example of this is ModelLab in Raster Foundry (Source). This is also evident in the fact that existing VPL's like FME and Grasshopper have added proprietary cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
 
 <!-- HOWEVERRRRRRRRR -->
-However, the **challenge** is that most GIS VPL's are not aligned with 
-the priorities and features characterizing the cloud-native movement. 
-Especially proprietary VPLs fall short on a number of technical aspects, hindering their suitability for the configuration of cloud-computation workflows. 
+However, the **challenge** is that as of right now and despite these features, most proprietary VPL's fall short on a number of priorities and features required for the cloud-native movement. 
+These shortcomings include their closed and proprietary nature, their distance from regular programming features and conventions (git version control, continuous integration), and the non-containerized, one to one relationship between the IDE application \& the cloud hosting platform. 
+
+All of this hinders their suitability as cloud-computation configurers. 
+<!-- making them obsolete, or dragging us down, etc. etc. -->
 
 <!-- Additionally, it is important to emphasize that 
 "Cloud-native geospatial" as a vision is more than just supporting cloud-computation.  -->
 
+
+<!-- 
+# Challenges (Dont know where this belongs, or if it belongs here.): 
+
 This thesis identifies X major catagories in which popular GIS visual programming environments are misaligned with CNGS's vision and technical requirements.
  
-<!-- TODO: these are the things I set out to do. Do they align with research? -->
+<!-- TODO: these are the things I set out to do. Do they align with research?
 
 <br>
 
@@ -59,10 +58,8 @@ popular vpl's are not open.
 - Closed source nature. 
 - Some components are open source, but the core software of VPL's is often proprietary.
 - Difficult to expand upon by the community.
-- Cloud Computing does exist, but only hostable by specific parties (Shapediver, FME's cloud computing environment)
 - often expensive, not feasible for small-scale or 'one of' usage.
 ```
-
 only open source community collaboration on the level of plugins. These plugins are highly specified to the specific VPL. 
 
 <br>
@@ -72,6 +69,7 @@ only open source community collaboration on the level of plugins. These plugins 
 - Often not cross-platform (Grasshopper has only recently added mac support, and has no linux support)
 - Close ties to host environments
 - Needs specific runtime environment
+- Cloud Computing does exist, but only hostable by specific parties (Shapediver, FME's cloud computing environment)
 - Not 'really' containerized
 - Not 'really' save
 
@@ -82,7 +80,7 @@ only open source community collaboration on the level of plugins. These plugins 
 - The environments do not allow for regular software development features, like Git version control, unit tests, or CI / CD
 - "don't play well with others": difficult to integrate 'third party scripts'.
 - Plugins have to deal with the data structures of the host application
-<!-- - The environments do not allow for regular programming features, like the encapsulation of repeatable actions into re-usable functions.  -->
+- The environments do not allow for regular programming features, like the encapsulation of repeatable actions into re-usable functions.  -->
 
 <br>
 
@@ -90,7 +88,14 @@ only open source community collaboration on the level of plugins. These plugins 
 
 ## 1.2 THIS STUDY
 
-Due to the need for a VPL aligned with the cloud-native geospatial movement, the goal of this thesis is to develop both a new vpl for geo-computation in a browser-based front-end.  
+Due to the need for a VPL aligned with the cloud-native geospatial movement, the goal of this thesis is to develop both a new vpl for the purpose of cloud-native geo-computation.
+
+-> prio 1: align with regular programming. Why? How? 
+   - make everything compilable to javascript. 
+   - accept normal javascript libraries as plugins
+-> prio 2: containerized, no env. setup, all batteries included. why? how? 
+   - run in web browser
+   - webassembly
 
 
 Will differ from existing studies and applications by:
