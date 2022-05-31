@@ -23,8 +23,16 @@ The OGC envisions a "Cloud Native Geospatial" future, in which geodata formats a
 This would radically simplify geodata storehouses to static servers, serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services, which could then run on an unprecedented scale, with unprecedented speed. 
 
 <!-- Why is it different, why does it ask for change? what type of change? -->
-In order to make this vision a reality, both geodata formats and geoprocessing and -analysis methods will need to be re-examined. 
-Cloud computation and cloud-based data access ask for different priorities and features over native, desktop based alternatives. Examples of these features are partial streaming capabilities (SOURCE), and containerization (SOURCE). 
+In order to make this vision a reality, both geodata file formats and geoprocessing and -analysis methods will need to be re-examined. 
+Cloud computation and cloud-based data access ask for different priorities and features over native, desktop based alternatives. 
+
+<!-- the NEED for -->
+Containerization is one of these features vital for successful cloud computation. 
+- Cross-platform on steroids
+- Required when distributing some processing functionality on hundreds of edge computing devices: then the setup MUST be the same
+- Docker often used
+- WebAssembly not so much, much newer technology
+
 These features will either have to be added to existing formats and methods, or new substitutes formats and methods will need to be developed and tested.
 
 This brings us back to the opportunity and challenges of the visual programming language. 
@@ -86,16 +94,32 @@ only open source community collaboration on the level of plugins. These plugins 
 
 <br>
 
+again: what are the issues????
+1. NOT INTEGRATED
+
+- one to one relationship between application and cloud platform
+- not well-connected to existing, 'normal' software infrastructures. 
+  - reflected in the difficulty of plugins, interoperability issues, etc. 
+- closed nature (not open source)
+
+2. NOT CONTAINERIZED
+
+
 ## 1.2 THIS STUDY
 
-Due to the need for a VPL aligned with the cloud-native geospatial movement, the goal of this thesis is to develop both a new vpl for the purpose of cloud-native geo-computation.
+Due to the need for a VPL aligned with the cloud-native geospatial movement, the goal of this thesis is to develop both a new vpl for the purpose of containerized geo-computation.
 
--> prio 1: align with regular programming. Why? How? 
+-> prio 1: INTEGRATED with regular programming. Why? How? 
    - make everything compilable to javascript. 
    - accept normal javascript libraries as plugins
--> prio 2: containerized, no env. setup, all batteries included. why? how? 
+   - accept wasm libraries as plugins
+-> prio 2: CONTAINERIZED, no env. setup, all batteries included. why? how? 
    - run in web browser
    - webassembly
+
+
+
+by attempting to develop a new method fixing both integration and containerization
 
 
 Will differ from existing studies and applications by:
@@ -218,6 +242,12 @@ A cloud-native-ready VPL:
     - 'just javascript & wasm'.
     - This shows that we are doing 'nothing special' in some sense. We are just using the existing infrastructure in a new way. 
 
+
+# 2.3 Browser-based geo-computation
+- This is what we are essentially also researching
+- research topic in of itself. 
+- (Source) sees this as a promising, cost-saving alternative to expensive cloud-computation alternatives 
+- good Monetization setup: free to use, pay to make your code run quicker on our cloud services. (similar to notorious web games)
 
 # METHODOLOGY 
 
