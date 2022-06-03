@@ -1,5 +1,6 @@
 \chapter{ Methodology }
 % Define the scope, extend, and how of the study
+\todo[]{Please skip this chapter, it is still a mess}
 
 \section{ Approach }
 % The Approach chapter shows the overall setup of this study. 
@@ -109,33 +110,36 @@ Accessibility
 <!-- donald knuth argument: by keeping geodata raw, and posponing the consumtion of geospatial data to the last possible moment, we can  -->
 Reduce web trafic
 
-\subsection{Meant for CAD, BIM and GIS}
+\subsection{Meant for generic 3D usage}
 
 \todo{Sorry for this rant, this will be more nuanced}
-AT THE END OF THE DAY, THERE IS NO REAL DIFFERENCE BETWEEN CAD, BIM and GIS.
-of course, there are many differences, like required precision and tolerances, which types of interfaces and operations are common, and the subject matter it represents. 
-But on a deeper, fundamental level, they are all the same: its just a bunch of 2D / 3D data, representing some real world thing. 
+% AT THE END OF THE DAY, THERE IS NO REAL DIFFERENCE BETWEEN CAD, BIM and GIS.
+% of course, there are many differences, like required precision and tolerances, which types of interfaces and operations are common, and the subject matter it represents. 
+% But on a deeper, fundamental level, they are all the same: its just a bunch of 2D / 3D data, representing some real world thing. 
 
 Today, we see the need for collaboration between CAD, BIM and GIS. Entire industries (Speckle, FME) have been introduced to bridge the gaps. 
 
-Additionally, all three of CAD, BIM and GIS want the ability to join solids together, desire to give certain spatial objects metadata, and want to run automated workflows in the cloud. These Individual fields are constantly reinventing features the other fields have already figured out. BIM is starting to open up to the idea of streaming only a part of the building instead of the whole thing, something which the GIS world has been doing for years. On the other hand, GIS is only now starting to make the transition to 3D, a transition not unsimilar to how BIM is replacing CAD in the AEC industry. 
+All three of CAD, BIM and GIS want the ability to join solids together, desire to give certain spatial objects metadata, and want to run automated workflows in the cloud. These Individual fields are constantly reinventing features the other fields have already figured out. BIM is starting to open up to the idea of streaming only a part of the building instead of the whole thing, something which the GIS world has been doing for years. On the other hand, GIS is only now starting to make the transition to 3D, a transition not unlike to how BIM is replacing 2D CAD in the AEC industry. 
 
-It does not make sense to specify geofront to just one of these three fields, Just like it does not make sense to design a programming language for only one of these fields. 
+We will allow geofront to be fully customized by different plugins. By unloading all GIS plugins, and adding all BIM plugins, we turn GeoFront from a GIS to a BIM tool.
 
-We will not split a species with internal conflicts and move them to three different islands, only to wait for Darwinism to kick in and make these species completely incompatible. Instead, we will keep the species on the mainland, where the species will have to content with their differences in a mature way.
+% It does not make sense to specify geofront to just one of these three fields, Just like it does not make sense to design a programming language for only one of these fields. 
 
-This mature way will be by allowing geofront to be customized by different plugins. By unloading all GIS plugins, and adding all BIM plugins, we turn GeoFront from a GIS to a BIM tool.
+% We will not split a species with internal conflicts and move them to three different islands, only to wait for Darwin to kick in and make these species completely incompatible. Instead, we will keep the species on the mainland, where the species will have to content with their differences in a mature way.
 
-\subsection{Rust} 
+% This mature way will be by allowing geofront to be customized by different plugins. By unloading all GIS plugins, and adding all BIM plugins, we turn GeoFront from a GIS to a BIM tool.
 
-Cloud native represents something like a 'fresh do over'. Or, 'what would things look like if there had been built with the knowledge we now have, disregarding legacy'
+% \subsection{Rust} 
 
-And connected to this is the shift from C++ to Rust for system level programming. 
 
-\m{->}Node -> Deno
+% Cloud native represents something like a 'fresh do over'. Or, 'what would things look like if there had been built with the knowledge we now have, disregarding legacy'
 
-, especially in conjunction with a programming language such as Rust. 
-Rust compiled to WebAssembly could, compared to using python, java or C++, make geoprocessing more maintainable and reliable, while at the same time ensuring memory safety, security, and performance \cite{clack_standardizing_2019}. 
+% And connected to this is the shift from C++ to Rust for system level programming. 
+
+% \m{->}Node -> Deno
+
+% , especially in conjunction with a programming language such as Rust. 
+% Rust compiled to WebAssembly could, compared to using python, java or C++, make geoprocessing more maintainable and reliable, while at the same time ensuring memory safety, security, and performance \cite{clack_standardizing_2019}. 
 
 
 \subsection{Visual Programming interface}

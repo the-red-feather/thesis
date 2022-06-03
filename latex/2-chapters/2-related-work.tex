@@ -4,7 +4,7 @@
 % It should show that you clearly know the problem you plan to solve, 
 % and that you master the related work. 
 \chapter{Related work}
-
+\todo[]{Right now, this is a dumping ground for texts ive cut in other places. thread carefully}
 The introduction already touched upon a number of prior works on the topic of \ac{bbg} as well as \ac{wasm}.
 However, we are required to examine these studies more closely as well as introduce others, in order to further define our methodology. This study's methodology will draw from prior studies on three topics: The topic of the Geoweb, client-side geoprocessing, and WebAssembly.
 
@@ -256,6 +256,76 @@ Additionally, by forgoing the question of accessibility, many auxiliary use-case
 Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
 Visual programming environment for geo-computation \emph{in a browser} has not been tried before. 
 
+
+\section{The Cloud Native Geospatial movement}
+
+
+% Establish OGC in two sentences, mentioning their name and Vision
+The Open Geospatial Consortium (OGC)...
+Mission: FAIR Geodata 
+
+% Establish Cloud Native movement.
+% GIS as one big LAN party
+A prominent development within the OGC is the recent effort towards a \textbf{"Cloud Native Geospatial"} future. 
+This initiative aims to radically simplify geodata storehouses to static servers serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services. 
+This architecture has many advantages over current geodata storage and analysis methods:
+\begin{itemize}
+  \item These new Cloud Native geodata formats are much cheaper to access by front-end and back-end services, compared to active services.
+  \item Substituting active SQL or noSQL databases by static binary files is easier and cheaper for data providers, leading to more and more readily available geodata.
+  \item By using supercomputers (Microsoft Planetary Computer) and cloud-storage (AWS), Geodata processes could make use of near-infinite computational and storage resources. 
+  \item By having all data centralized in one location or type of location, new, large scale patterns within our geodata could be discovered.  
+  \item For web GIS, this would offer direct data streaming options, similar to services like "Netflix" or "Spotify".  
+\end{itemize}
+
+These features may have a far reaching impact on society. Chris Holmes, forerunner of the cloud-native geospatial movement, envisions what the movement could mean for even non-GIS users: 
+\emph{
+  With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. \~ Chris Holmes
+}
+% This is also reflected by cloud-native based tools like (Google Earth Engine or RasterFoundry) may achieve such a feed, by being web based and stuff...
+All these reasons explain why the OGC and many other parties are now actively pursuing this vision.
+
+But while this vision is in active development, many large-scale challenges are still in its way. 
+One of the most important challenges is the required paradigm shift within geo-computation / geoprocessing workflows. 
+The current, common geo-computation workflow of retrieving online data, only to run it through a local process and send the resulting data back into servers, will have to be reversed: In a cloud-native future, we will not retrieve data for our local process, but we will upload our process to the data.  
+This introduces a sizable challenge: \textbf{Portable, Containerized Geo-computation}.
+
+% \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}. -> Chris again
+
+
+% \begin{itemize}
+%   \item Up to this point, the world of GIS has done a considerable effort to make geodata more Findable, Accessible, Interoperable, and Reusable. The challenge of Portable geo-computation now forces us to extend the effort of FAIR geodata to FAIR geodata computation as well.  
+%   \item If we want our geodata processes to be just as portable as the geodata it takes as input, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing . FAIR geo-computation.
+%   \item Furthermore, it remains a mystery how these containerized containerized processes will be configured and accessed by frontend computation environments. 
+%   \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
+% \end{itemize}
+
+The challenge of sharing and chaining together containerized fragments of geoprocesses to a variety of environments will require more than just open source collaboration. 
+This study interprets the challenge of portable geo-computation by means of the FAIR paradigm. 
+If geodata processes need to be just as portable as the geodata forming the input and output, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata \emph{processing} as well.
+The challenge facing the cloud-native vision then becomes: \textbf{How to make geo-computation Findable, Accessible, Interoperable, and Reusable?} 
+This links back to containerization, for containerization is a very powerful method of making geo-computation more Interoperable and Reusable.
+
+
+
+% state of the art regarding this issue, make a path towards the particular thesis, and why it is an application
+The current state of the art is far removed from either portable or FAIR geo-computation. 
+\todo{Improve this intro}
+\begin{itemize}
+  \item current methods: Docker, and some geo-computation platforms.
+  \item Not many implementations using WebAssembly, while this is a prime candidate: Even the guy who made Docker said so. 
+  \item ignore the cloud: focus on the act of containerizing geoprocesses using webassembly an sich
+\end{itemize}
+
+FAIR geoprocessing may have many auxiliary advantages. 
+
+% \begin{itemize}
+%   \item Findable? -> web browser / Package Managers
+%   \item Accessible? -> web tools
+%   \item Interoperable -> WebAssembly / containerized runtimes and processes, using common types
+%   \item Reusable -> compile to regular web service / function
+% \end{itemize}
+
+% X : wasm-based geo-computation applications
 
 
 

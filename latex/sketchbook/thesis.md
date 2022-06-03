@@ -1,16 +1,8 @@
 # TITLE
-GEOFRONT: A web based visual programming environment for the era of cloud-native geo-computation
+GEOFRONT: A web based point cloud processing environment for the era of cloud-native geo-computation.
 
 # INTRODUCTION
 <!-- pov: VPL + Cloud native -> VPL's not cloud ready -->
-
-<!-- Establish the VPL within geomatics -->
-Within the field of geo informatics, Visual Programming environments (VPL)'s are popular interfaces for performing spatial analyses and geodata transformations. 
-SaveSoft's FME (SOURCE) is a popular Extract Load Transform (ETL) tool for automating data integration, while mcneels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
-VPL's like these offers users a chance to interactively automate workflows & processing pipelines, while requiring little to no programming knowledge. 
-In between results can be inspected quickly, and the processes can be changed on the fly, often with immediate feedback.
-This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all other use-cases in need of both low-code automation and visual debugging (Shader Programming, Procedural Geometry, CAD, BIM). 
-A VPL done right can make automation available for a very large audience.
 
 <!--. -->
 
@@ -18,32 +10,15 @@ A VPL done right can make automation available for a very large audience.
 <!-- To explain where the contribution of this internship takes
 place, we must first paint a general picture of...  -->
 
-An important development within the Open Geospatial Consortium (OGC) brings challenges and opportunities to these geospatial visual programming environments. 
-The OGC envisions a "Cloud Native Geospatial" future, in which geodata formats and geoprocessing methods are primarily designed with the cloud in mind. 
-This would radically simplify geodata storehouses to static servers, serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services, which could then run on an unprecedented scale, with unprecedented speed. 
-
-<!-- Why is it different, why does it ask for change? what type of change? -->
-In order to make this vision a reality, both geodata file formats and geoprocessing and -analysis methods will need to be re-examined. 
-Cloud computation and cloud-based data access ask for different priorities and features over native, desktop based alternatives. 
-
 <!-- the NEED for -->
-Containerization is one of these features vital for successful cloud computation. 
-- Cross-platform on steroids
+<!-- Containerization is one of these features, and is vital for successful cloud computation. 
 - Required when distributing some processing functionality on hundreds of edge computing devices: then the setup MUST be the same
+- Cross-platform
 - Docker often used
 - WebAssembly not so much, much newer technology
+- Webassembly could fix the 'speed of light' issue hybridize the processing methods. 
+ -->
 
-These features will either have to be added to existing formats and methods, or new substitutes formats and methods will need to be developed and tested.
-
-This brings us back to the opportunity and challenges of the visual programming language. 
-
-The **opportunity** lies in the fact that a VPL interface is highly suitable as a configurator of cloud-computation workflows. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts (Source). A good example of this is ModelLab in Raster Foundry (Source). This is also evident in the fact that existing VPL's like FME and Grasshopper have added proprietary cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
-
-<!-- HOWEVERRRRRRRRR -->
-However, the **challenge** is that as of right now and despite these features, most proprietary VPL's fall short on a number of priorities and features required for the cloud-native movement. 
-These shortcomings include their closed and proprietary nature, their distance from regular programming features and conventions (git version control, continuous integration), and the non-containerized, one to one relationship between the IDE application \& the cloud hosting platform. 
-
-All of this hinders their suitability as cloud-computation configurers. 
 <!-- making them obsolete, or dragging us down, etc. etc. -->
 
 <!-- Additionally, it is important to emphasize that 
@@ -89,7 +64,7 @@ only open source community collaboration on the level of plugins. These plugins 
 - "don't play well with others": difficult to integrate 'third party scripts'.
 - Plugins have to deal with the data structures of the host application
 - The environments do not allow for regular programming features, like the encapsulation of repeatable actions into re-usable functions.  -->
-
+<!-- 
 <br>
 
 <br>
@@ -104,10 +79,18 @@ again: what are the issues????
 
 2. NOT CONTAINERIZED
 
+to make VPLs work for cloud native geospatial, they need to be more integrated with regular programming languages, and more **containerized** in order to make processes run on the cloud. -->
 
 ## 1.2 THIS STUDY
 
-Due to the need for a VPL aligned with the cloud-native geospatial movement, the goal of this thesis is to develop both a new vpl for the purpose of containerized geo-computation.
+Due to the need for a VPL aligned with the cloud-native geospatial movement, the goal of this thesis is to develop a new VPL featuring containerized, context-agnostic geo-computation. 
+
+
+
+MAIN ATTEMPT: use browser-based web features (WebAssembly, CDN's, javascript features, html5 features)
+
+
+<!-- It will do this by developing a web-based vpl  -->
 
 -> prio 1: INTEGRATED with regular programming. Why? How? 
    - make everything compilable to javascript. 
@@ -116,8 +99,6 @@ Due to the need for a VPL aligned with the cloud-native geospatial movement, the
 -> prio 2: CONTAINERIZED, no env. setup, all batteries included. why? how? 
    - run in web browser
    - webassembly
-
-
 
 by attempting to develop a new method fixing both integration and containerization
 
@@ -141,6 +122,7 @@ Leading to:
 
 -> Powerful plugins: easy to make use of 'normal' software ecosystems.
 
+<!-- Can WebAssembly enable containerized, hybridized geoprocessing? -->
 
 QUESTIONS
 

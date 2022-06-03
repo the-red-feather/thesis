@@ -1,83 +1,45 @@
 \chapter{Introduction}
+The way maps are made is ever changing. Perhaps one of the most impactful ways this will change in the near future, is in the way described by the "Cloud Native Geospatial" vision. Proposed by the OGC, this movement envisions a future in which geodata storage and computation methods are re-imagined from the point of view of the cloud. 
+It aims to radically simplify geodata storehouses to static servers, serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services, which could then run containerized processes on an unprecedented scale, with unprecedented speed. 
 
-% Establish OGC in two sentences, mentioning their name and Vision
-The Open Geospatial Consortium (OGC)...
-Mission: FAIR Geodata 
+% <!-- Why is it different, why does it ask for change? what type of change? -->
+In order to make use of these advantages, both geodata storage and computation methods will need to be re-examined. 
+Cloud computation and cloud-based data access ask for different priorities and features over native, desktop based alternatives. 
+These features will either have to be added to existing formats and methods, or new substitutes formats and methods will need to be developed and tested.
 
-% Establish Cloud Native movement.
-A prominent development within the OGC is the recent effort towards a \textbf{"Cloud Native Geospatial"} future. 
-This initiative aims to radically simplify geodata storehouses to static servers serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services. 
-This architecture has many advantages over current geodata storage and analysis methods:
-\begin{itemize}
-  \item These new Cloud Native geodata formats are much cheap to access by front-end and back-end services, compared to active services.
-  \item Substituting active SQL or noSQL databases by static binary files is easier and cheaper for data providers, leading to more and more readily available geodata.
-  \item By using supercomputers (Microsoft Planetary Computer) and cloud-storage (AWS), Geodata processes could make use of near-infinite computational and storage resources. 
-  \item By having all data centralized in one location or type of location, new, large scale patterns within our geodata could be discovered.  
-  \item For web GIS, this would offer direct data streaming options, similar to services like "Netflix" or "Spotify".  
-\end{itemize}
+% <!-- from cloud-native to vpl -->
+This study regards the requirements for cloud-native \textbf{computation} in , and specifically from the point of view of geospatial visual programming environments. 
 
-These features may have a far reaching impact on society. Chris Holmes, forerunner of the cloud-native geospatial movement, envisions what the movement could mean for even non-GIS users: 
-\emph{
-  With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. \~ Chris Holmes
-}
-% This is also reflected by cloud-native based tools like (Google Earth Engine or RasterFoundry) may achieve such a feed, by being web based and stuff...
-All these reasons explain why the OGC and many other parties are now actively pursuing this vision.
+% <!-- Establish the VPL within geomatics -->
+Within the field of geo informatics, Visual Programming environments (VPL)'s are popular interfaces for performing spatial analyses and geodata transformations. 
+SaveSoft's FME (SOURCE) is a popular Extract Load Transform (ETL) tool for automating data integration, while McNeels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
+VPL's like these offers users a chance to interactively automate workflows \& processing pipelines, while requiring little to no programming knowledge. 
+In between results can be inspected quickly, and the processes can be changed on the fly, often with immediate feedback.
+This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all other use-cases in need of both low-code automation and visual debugging (Shader Programming, Procedural Geometry, CAD, BIM). 
+A VPL done right can make automation available for a very large audience.
 
-But while this vision is in active development, many large-scale challenges are still in its way. 
-One of the most important challenges is the required paradigm shift within geo-computation / geoprocessing workflows. 
-The current, common geo-computation workflow of retrieving online data, only to run it through a local process and send the resulting data back into servers, will have to be reversed: In a cloud-native future, we will not retrieve data for our local process, but we will upload our process to the data.  
-This introduces a sizable challenge: \textbf{Portable, Containerized Geo-computation}.
+The cloud-native geospatial movement represents a significant opportunity and challenge to these VPL interfaces. The \textbf{opportunity} lies in the fact that a VPL interface is highly suitable as a 'configurator' or 'IDE' for cloud-computation. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts (SOURCE: Modellab, SOURCE: Chris Holmes). A good example of this is the ModelLab VPL, found in Raster Foundry (SOURCE). This is also evident in the fact that existing VPL's like FME and Grasshopper have added proprietary cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
 
-% \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}. -> Chris again
+% <!-- HOWEVERRRRRRRRR -->
+However, the \textbf{challenge} is that as of right now and despite these developments, popular VPL's fall short on a number of priorities and features required for cloud-native geospatial computation. 
+These shortcomings include their closed and proprietary nature, their distance from regular programming features and conventions (git version control, continuous integration), and the non-containerized, one to one relationship between the IDE application \& the cloud hosting platform. All of this hinders their suitability as general, cloud-computation configurers. 
 
+% For a geoprocessing method to match the 'cloud native geospatial movement'
 
-% \begin{itemize}
-%   \item Up to this point, the world of GIS has done a considerable effort to make geodata more Findable, Accessible, Interoperable, and Reusable. The challenge of Portable geo-computation now forces us to extend the effort of FAIR geodata to FAIR geodata computation as well.  
-%   \item If we want our geodata processes to be just as portable as the geodata it takes as input, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing . FAIR geo-computation.
-%   \item Furthermore, it remains a mystery how these containerized containerized processes will be configured and accessed by frontend computation environments. 
-%   \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
-% \end{itemize}
+% Currently, WebAssembly is the only way one can take a geoprocessing function from an arbitrary source, and use it in both the browser and on a server. 
+% We wish to discover if this has any practical use cases. 
 
-The challenge of sharing and chaining together containerized fragments of geoprocesses to a variety of environments will require more than just open source collaboration. 
-This study interprets the challenge of portable geo-computation by means of the FAIR paradigm. 
-If geodata processes need to be just as portable as the geodata forming the input and output, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata \emph{processing} as well.
-The challenge facing the cloud-native vision then becomes: \textbf{How to make geo-computation Findable, Accessible, Interoperable, and Reusable?} 
-This links back to containerization, for containerization is a very powerful method of making geo-computation more Interoperable and Reusable.
-
-
-
-% state of the art regarding this issue, make a path towards the particular thesis, and why it is an application
-The current state of the art is far removed from either portable or FAIR geo-computation. 
-\todo{Improve this intro}
-\begin{itemize}
-  \item current methods: Docker, and some geo-computation platforms.
-  \item Not many implementations using WebAssembly, while this is a prime candidate: Even the guy who made Docker said so. 
-  \item ignore the cloud: focus on the act of containerizing geoprocesses using webassembly an sich
-\end{itemize}
-
-FAIR geoprocessing may have many auxiliary advantages. 
-
-% \begin{itemize}
-%   \item Findable? -> web browser / Package Managers
-%   \item Accessible? -> web tools
-%   \item Interoperable -> WebAssembly / containerized runtimes and processes, using common types
-%   \item Reusable -> compile to regular web service / function
-% \end{itemize}
-
-% X : wasm-based geo-computation applications
 
 \section{Research Objectives}
 % Due to (this need for a re-examination of web features in relation to geo-computation), 
 % the goal of this thesis is to develop an application for geo-computation in a browser-based front-end.
 
 % This must be better 
+\todo[]{Refine this part}
 
-Due to this need for containerized, FAIR geo-computation, The goal of this thesis is to develop both a new method and application for geo-computation in a browser-based front-end using WebAssembly.
-=======
+Due to this need for a vpl for cloud-native geo-computation, The goal of this thesis is to develop a new method for geo-computation in a browser-based front-end using WebAssembly.
 
-
-
-This thesis presents the design, creation and evaluation of GeoFront, a web-based, visual geo-computation tool. 
+This thesis presents the design, creation and evaluation of GeoFront, a web-based point-cloud processing tool. 
 With GeoFront, geoprocessing flowcharts can be created, shared and run from within a web browser.  
 The full application runs front-end in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
 
@@ -86,8 +48,10 @@ These functionalities can be expanded upon though a plugin system which utilizes
 By using both, industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`, can be utilized.
 
 In addition to the goal of examining wasm-based geo-computation, the auxiliary goal of this thesis is to make geoprocessing more accessible. 
-By being free and open source, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront attempts to be a more accessible alternative to existing visual geo-computation environments, like FME or Grasshopper. 
+By being free and open source, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront attempts to be more in line with the wider vision of cloud-native Geospatial than visual geo-computation environments, like FME or Grasshopper. 
 This is done to be in line with the aforementioned cloud native vision of eventually allowing non-expert usage of GIS.
+
+
 
 This design of geofront contains several challenges. Browser-based geo-computation (BBGC) might not be as performant as back-end / native geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, even with the usage of WebAssembly \cite{jangda_not_2019}. 
 Additionally, since current visual programming environments all fall short on at least one of the above features, the visual programming environment will have to be created from scratch.
@@ -96,10 +60,12 @@ Additionally, since current visual programming environments all fall short on at
 \section{Research Questions}
 Based on these objectives, the research question is formulated as follows: 
 
-\textit{"How to design and implement a front-end visual programming environment for containerized geo-computation?"}
+\textit{"How to design and implement a browser-based visual programming environment for containerized geo-computation?"}
 
 \subsection*{Sub Questions}
 The following sub-research questions are needed in order to answer the main question. 
+
+\todo[]{refine, choose some}
 
 \begin{enumerate}[a]
   \item \m{how to create a visual programming language?}: 
@@ -107,7 +73,7 @@ The following sub-research questions are needed in order to answer the main ques
   \item \m{How to perform geo-computation with these containers in the browser?}: 
   \item \m{How to share types between libraries?}: 
   \item \m{How could these flowcharts be run in a cloud-native context?}:   
-  \item \m{How well does this application serve certain use-cases?}:  
+  \item \m{How well does this application serve \emph{certain use-cases}?}:  
 \end{enumerate}
 
 \newpage
@@ -146,7 +112,6 @@ Similarly, a survey analyzing how users experience client-side geoprocessing in 
 
 
 \subsection {Only WebAssembly, no Docker}
-Two technologies may pose a solution to FAIR geo-computation: Docker and WebAssembly.
 This thesis examines a WebAssembly based approach to containerization. Approaches using Docker are not covered, and are left to subsequent research.
 
 \subsection*{ Only 3D Vector / Point Cloud geoprocessing}
