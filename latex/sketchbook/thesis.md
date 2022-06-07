@@ -4,7 +4,6 @@ GEOFRONT: A web based point cloud processing environment for the era of cloud-na
 # INTRODUCTION
 <!-- pov: VPL + Cloud native -> VPL's not cloud ready -->
 
-<!--. -->
 
 <!-- Establish the Cloud Native movement -->
 <!-- To explain where the contribution of this internship takes
@@ -20,6 +19,10 @@ place, we must first paint a general picture of...  -->
  -->
 
 <!-- making them obsolete, or dragging us down, etc. etc. -->
+
+A first step towards overcoming this challenge will be the challenge of containerized usage of geoprocessing functionalities. 
+- geoprocessing tools -> wide landscape of different toolkits and environments
+- 
 
 <!-- Additionally, it is important to emphasize that 
 "Cloud-native geospatial" as a vision is more than just supporting cloud-computation.  -->
@@ -225,11 +228,16 @@ A cloud-native-ready VPL:
     - This shows that we are doing 'nothing special' in some sense. We are just using the existing infrastructure in a new way. 
 
 
+<<<<<<< HEAD
 # 2.3 Browser-based geo-computation
 - This is what we are essentially also researching
 - research topic in of itself. 
 - (Source) sees this as a promising, cost-saving alternative to expensive cloud-computation alternatives 
 - good Monetization setup: free to use, pay to make your code run quicker on our cloud services. (similar to notorious web games)
+=======
+
+
+>>>>>>> bc17b9c (more and more markdown notes...)
 
 # METHODOLOGY 
 
