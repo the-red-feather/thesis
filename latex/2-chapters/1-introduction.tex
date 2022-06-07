@@ -24,11 +24,13 @@ The cloud-native geospatial movement represents a significant opportunity and ch
 However, the major \textbf{challenge} is that as of right now and despite these developments, popular VPL's fall short on a number of priorities and features required for cloud-native geospatial computation. 
 These shortcomings include their closed and proprietary nature, their distance from regular programming features and conventions (git version control, continuous integration), and the non-containerized, one to one relationship between the IDE application \& the cloud hosting platform. All of this hinders their suitability as general, cloud-computation configurers. 
 
-Sub component: FAIR: 
-- FINDABLE:      Hard to find the right tools for the job
-- ACCESSIBLE:    Hard to access these tools (install, setup environment, look at what you are doing)
-- INTEROPERABLE: Hard to use two tools from different ecosystems (bindings, plugins, etc). 
-- REUSABLE:      Hard to re-use a specific scripts written for one use case in another use case
+% FOCUS: CONTAINERIZATION & INTEROPERABILITY
+
+% Sub component: FAIR: 
+% - FINDABLE:      Hard to find the right tools for the job
+% - ACCESSIBLE:    Hard to access these tools (install, setup environment, look at what you are doing)
+% - INTEROPERABLE: Hard to use two tools from different ecosystems (bindings, plugins, etc). 
+% - REUSABLE:      Hard to re-use a specific scripts written for one use case in another use case
 
 % For a geoprocessing method to match the 'cloud native geospatial movement'
 
@@ -69,17 +71,48 @@ Based on these objectives, the research question is formulated as follows:
 
 \textit{"Can a web-vpl make point-cloud computations more FAIR?"}
 
+
+% How to design and implement a browser-based visual programming environment for containerized geo-computation?”
+
 \subsection*{Sub Questions}
 The following sub-research questions are needed in order to answer the main question. 
 
 \todo[]{Maybe translate this to 'how' questions: "How can X make Y more Findable?"}
 
+% Leave this empty -> 
+
+% SQ: one on ~libraries
+
+% Q Can you use .... in webassembly?
+% Q: how can we re-use code 
+% A: yes, but with 
+
+% SQ: one on VPL
+
+% SQ: HOW DOES THIS SOLUTION FIT THE FAIR PRINCIPLES
+
+% people need to follow from introduction
+% ideally they should split from the main question
+% all the main work
+
+
+% FAIR RESEARCH QUESTIONS -> conclusion
 \begin{enumerate}[a]
   \item Does the format of web application make point-cloud computations more \emph{Findable}?  
   \item Does the format of a visual programming language make point-cloud computations more \emph{Accessible}?  
   \item Do point-cloud geoprocessing libraries become more \emph{Interoperable} when compiled to WebAssembly?  
   \item Does the ability to compile a VPL script to javascript make those VPL scripts more \emph{Reusable}?  
 \end{enumerate}
+
+
+% PRACTICAL RESEARCH QUESTIONS
+% Stelios: waaay too specific
+% a how to create a visual programming language?:
+% b How to distribute existing geoprocessing libraries in a containerized manner?:
+% c How to perform geo-computation with these containers in the browser?:
+% d How to share types between libraries?:
+% e How could these flowcharts be run in a cloud-native context?:
+% f How well does this application serve certain use-cases ?:
 
 \newpage
 \section{Scope}

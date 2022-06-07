@@ -1,7 +1,7 @@
 # Meeting 25
 |          |                         |
 | -------- | ----------------------- |
-| date     | 2022-06-09 Tuesday
+| date     | 2022-05-09 Tuesday
 | present  | Ken, Stelios, Jos
 | Location | Cyberspace
 
