@@ -21,8 +21,14 @@ A VPL done right can make automation available for a very large audience.
 The cloud-native geospatial movement represents a significant opportunity and challenge to these VPL interfaces. The \textbf{opportunity} lies in the fact that a VPL interface is highly suitable as a 'configurator' or 'IDE' for cloud-computation. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts (SOURCE: Modellab, SOURCE: Chris Holmes). A good example of this is the ModelLab VPL, found in Raster Foundry (SOURCE). This is also evident in the fact that existing VPL's like FME and Grasshopper have added proprietary cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
 
 % <!-- HOWEVERRRRRRRRR -->
-However, the \textbf{challenge} is that as of right now and despite these developments, popular VPL's fall short on a number of priorities and features required for cloud-native geospatial computation. 
+However, the major \textbf{challenge} is that as of right now and despite these developments, popular VPL's fall short on a number of priorities and features required for cloud-native geospatial computation. 
 These shortcomings include their closed and proprietary nature, their distance from regular programming features and conventions (git version control, continuous integration), and the non-containerized, one to one relationship between the IDE application \& the cloud hosting platform. All of this hinders their suitability as general, cloud-computation configurers. 
+
+Sub component: FAIR: 
+- FINDABLE:      Hard to find the right tools for the job
+- ACCESSIBLE:    Hard to access these tools (install, setup environment, look at what you are doing)
+- INTEROPERABLE: Hard to use two tools from different ecosystems (bindings, plugins, etc). 
+- REUSABLE:      Hard to re-use a specific scripts written for one use case in another use case
 
 % For a geoprocessing method to match the 'cloud native geospatial movement'
 
@@ -43,37 +49,36 @@ This thesis presents the design, creation and evaluation of GeoFront, a web-base
 With GeoFront, geoprocessing flowcharts can be created, shared and run from within a web browser.  
 The full application runs front-end in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
 
-The tool offers functionalities such as point cloud loading, triangulation, and isocurve extraction.
-These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure and WebAssembly.
-By using both, industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`, can be utilized.
-
-In addition to the goal of examining wasm-based geo-computation, the auxiliary goal of this thesis is to make geoprocessing more accessible. 
-By being free and open source, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront attempts to be more in line with the wider vision of cloud-native Geospatial than visual geo-computation environments, like FME or Grasshopper. 
-This is done to be in line with the aforementioned cloud native vision of eventually allowing non-expert usage of GIS.
 
 
+% The tool offers functionalities such as point cloud loading, triangulation, and isocurve extraction.
+% These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure and WebAssembly.
+% By using both, industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`, can be utilized.
 
-This design of geofront contains several challenges. Browser-based geo-computation (BBGC) might not be as performant as back-end / native geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, even with the usage of WebAssembly \cite{jangda_not_2019}. 
-Additionally, since current visual programming environments all fall short on at least one of the above features, the visual programming environment will have to be created from scratch.
+% In addition to the goal of examining wasm-based geo-computation, the auxiliary goal of this thesis is to make geoprocessing more accessible. 
+% By being free and open source, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront attempts to be more in line with the wider vision of cloud-native Geospatial than visual geo-computation environments, like FME or Grasshopper. 
+% This is done to be in line with the aforementioned cloud native vision of eventually allowing non-expert usage of GIS.
+
+
+% This design of geofront contains several challenges. Browser-based geo-computation (BBGC) might not be as performant as back-end / native geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, even with the usage of WebAssembly \cite{jangda_not_2019}. 
+% Additionally, since current visual programming environments all fall short on at least one of the above features, the visual programming environment will have to be created from scratch.
 
 \newpage
 \section{Research Questions}
 Based on these objectives, the research question is formulated as follows: 
 
-\textit{"How to design and implement a browser-based visual programming environment for containerized geo-computation?"}
+\textit{"Can a web-vpl make point-cloud computations more FAIR?"}
 
 \subsection*{Sub Questions}
 The following sub-research questions are needed in order to answer the main question. 
 
-\todo[]{refine, choose some}
+\todo[]{Maybe translate this to 'how' questions: "How can X make Y more Findable?"}
 
 \begin{enumerate}[a]
-  \item \m{how to create a visual programming language?}: 
-  \item \m{How to distribute existing geoprocessing libraries in a containerized manner?}: 
-  \item \m{How to perform geo-computation with these containers in the browser?}: 
-  \item \m{How to share types between libraries?}: 
-  \item \m{How could these flowcharts be run in a cloud-native context?}:   
-  \item \m{How well does this application serve \emph{certain use-cases}?}:  
+  \item Does the format of web application make point-cloud computations more \emph{Findable}?  
+  \item Does the format of a visual programming language make point-cloud computations more \emph{Accessible}?  
+  \item Do point-cloud geoprocessing libraries become more \emph{Interoperable} when compiled to WebAssembly?  
+  \item Does the ability to compile a VPL script to javascript make those VPL scripts more \emph{Reusable}?  
 \end{enumerate}
 
 \newpage

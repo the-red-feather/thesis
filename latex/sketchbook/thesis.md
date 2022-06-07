@@ -20,9 +20,6 @@ place, we must first paint a general picture of...  -->
 
 <!-- making them obsolete, or dragging us down, etc. etc. -->
 
-A first step towards overcoming this challenge will be the challenge of containerized usage of geoprocessing functionalities. 
-- geoprocessing tools -> wide landscape of different toolkits and environments
-- 
 
 <!-- Additionally, it is important to emphasize that 
 "Cloud-native geospatial" as a vision is more than just supporting cloud-computation.  -->
