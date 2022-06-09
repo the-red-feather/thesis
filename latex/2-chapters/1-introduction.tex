@@ -1,28 +1,50 @@
 \chapter{Introduction}
-The way maps are made is ever changing. Perhaps one of the most impactful ways this will change in the near future, is in the way described by the "Cloud Native Geospatial" vision. Proposed by the OGC, this movement envisions a future in which geodata storage and computation methods are re-imagined from the point of view of the cloud. 
-It aims to radically simplify geodata storehouses to static servers, serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services, which could then run containerized processes on an unprecedented scale, with unprecedented speed. 
+
+% 1) General story on geo-information. Go from data to application
+- geo-information is extremely valuable.
+- Name something about the importance of availability of geodata.
+- bring the side of the application to the reader's attention. 
+
+% The way maps are made is ever changing. Perhaps one of the most impactful ways this will change in the near future, is in the way described by the "Cloud Native Geospatial" vision. Proposed by the OGC, this movement envisions a future in which geodata storage and computation methods are re-imagined from the point of view of the cloud. 
+% It aims to radically simplify geodata storehouses to static servers, serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services, which could then run containerized processes on an unprecedented scale, with unprecedented speed. 
 
 % <!-- Why is it different, why does it ask for change? what type of change? -->
-In order to make use of these advantages, both geodata storage and computation methods will need to be re-examined. 
-Cloud computation and cloud-based data access ask for different priorities and features over native, desktop based alternatives. 
-These features will either have to be added to existing formats and methods, or new substitutes formats and methods will need to be developed and tested.
+% In order to make use of these advantages, both geodata storage and computation methods will need to be re-examined. 
+% Cloud computation and cloud-based data access ask for different priorities and features over native, desktop based alternatives. 
+% These features will either have to be added to existing formats and methods, or new substitutes formats and methods will need to be developed and tested.
 
 % <!-- from cloud-native to vpl -->
-This study regards the requirements for cloud-native \textbf{computation} in , and specifically from the point of view of geospatial visual programming environments. 
+% This study regards the requirements for cloud-native \textbf{computation} in , and specifically from the point of view of geospatial visual programming environments. 
 
-% <!-- Establish the VPL within geomatics -->
-Within the field of geo informatics, Visual Programming environments (VPL)'s are popular interfaces for performing spatial analyses and geodata transformations. 
+% 2) Name relevant developments within the field of geo-informatics: more cloud-based, more massive datasets, a focus on open datasets, etc. 
+
+
+% 2) Establish the VPL, and how it is used within geomatics 
+One possible interface of such an application is a Visual Programming Language (vpl), or visual programming environment. 
+- Explain what it is. 
+Within the field of geo informatics, VPL's are popular interfaces for performing spatial analyses and geodata transformations. 
 SaveSoft's FME (SOURCE) is a popular Extract Load Transform (ETL) tool for automating data integration, while McNeels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
+% Name Rasterfoundry ModelLab
 VPL's like these offers users a chance to interactively automate workflows \& processing pipelines, while requiring little to no programming knowledge. 
 In between results can be inspected quickly, and the processes can be changed on the fly, often with immediate feedback.
 This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all other use-cases in need of both low-code automation and visual debugging (Shader Programming, Procedural Geometry, CAD, BIM). 
-A VPL done right can make automation available for a very large audience.
+A VPL done right can make automation available to a very large audience.
 
-The cloud-native geospatial movement represents a significant opportunity and challenge to these VPL interfaces. The \textbf{opportunity} lies in the fact that a VPL interface is highly suitable as a 'configurator' or 'IDE' for cloud-computation. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts (SOURCE: Modellab, SOURCE: Chris Holmes). A good example of this is the ModelLab VPL, found in Raster Foundry (SOURCE). This is also evident in the fact that existing VPL's like FME and Grasshopper have added proprietary cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
+- "As massive datasets become more and move available, the availability of the \emph{means} to process and analyse these data becomes more and more relevant". 
+
+Despite these advantages, open, accessible vpl's are often unavailable. 
+- Expensive, proprietary environments 
+- Require specific plugins in order to utilize open, industry standard geo-computation libraries
+- Not FAIR geoprocessing
+
+
+% "making functionalities available not only to developers, but to the masses."
+
+% The cloud-native geospatial movement represents a significant opportunity and challenge to these VPL interfaces. The \textbf{opportunity} lies in the fact that a VPL interface is highly suitable as a 'configurator' or 'IDE' for cloud-computation. The promise of interactive, low-code automation matches the desire of most cloud native geoprocessing providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts (SOURCE: Modellab, SOURCE: Chris Holmes). A good example of this is the ModelLab VPL, found in Raster Foundry (SOURCE). This is also evident in the fact that existing VPL's like FME and Grasshopper have added proprietary cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
 
 % <!-- HOWEVERRRRRRRRR -->
-However, the major \textbf{challenge} is that as of right now and despite these developments, popular VPL's fall short on a number of priorities and features required for cloud-native geospatial computation. 
-These shortcomings include their closed and proprietary nature, their distance from regular programming features and conventions (git version control, continuous integration), and the non-containerized, one to one relationship between the IDE application \& the cloud hosting platform. All of this hinders their suitability as general, cloud-computation configurers. 
+% However, the major \textbf{challenge} is that as of right now and despite these developments, popular VPL's fall short on a number of priorities and features required for cloud-native geospatial computation. 
+% These shortcomings include their closed and proprietary nature, their distance from regular programming features and conventions (git version control, continuous integration), and the non-containerized, one to one relationship between the IDE application \& the cloud hosting platform. All of this hinders their suitability as general, cloud-computation configurers. 
 
 % FOCUS: CONTAINERIZATION & INTEROPERABILITY
 
@@ -39,27 +61,16 @@ These shortcomings include their closed and proprietary nature, their distance f
 
 
 \section{Research Objectives}
-% Due to (this need for a re-examination of web features in relation to geo-computation), 
-% the goal of this thesis is to develop an application for geo-computation in a browser-based front-end.
+Due to the limitations of geo-computation using proprietary vpl's, the goal of this thesis is to develop an alternative, open vpl for geo-computation. This approach is specifically aimed to improve the accessibility and reproducibility of existing geo-computation libraries. It builds on the preliminary developments by (Ravi Peters), who suggested the usage of vpl's to aid the development process of geo-computation. 
 
-% This must be better 
-\todo[]{Refine this part}
-
-Due to this need for a vpl for cloud-native geo-computation, The goal of this thesis is to develop a new method for geo-computation in a browser-based front-end using WebAssembly.
-
-This thesis presents the design, creation and evaluation of GeoFront, a web-based point-cloud processing tool. 
-With GeoFront, geoprocessing flowcharts can be created, shared and run from within a web browser.  
-The full application runs front-end in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
+% -> testing & reproducability.
+% RANSAC
+% Jonathan blow -> didactic games  
+% Game Of Life -> impossibility of 'proving' behaviour systems. 
 
 
+% in a browser-based front-end using WebAssembly.
 
-% The tool offers functionalities such as point cloud loading, triangulation, and isocurve extraction.
-% These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure and WebAssembly.
-% By using both, industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`, can be utilized.
-
-% In addition to the goal of examining wasm-based geo-computation, the auxiliary goal of this thesis is to make geoprocessing more accessible. 
-% By being free and open source, usable in a browser, and by focussing on the integration of existing geoprocessing libraries, GeoFront attempts to be more in line with the wider vision of cloud-native Geospatial than visual geo-computation environments, like FME or Grasshopper. 
-% This is done to be in line with the aforementioned cloud native vision of eventually allowing non-expert usage of GIS.
 
 
 % This design of geofront contains several challenges. Browser-based geo-computation (BBGC) might not be as performant as back-end / native geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, even with the usage of WebAssembly \cite{jangda_not_2019}. 
@@ -69,15 +80,74 @@ The full application runs front-end in a browser, and both end results and inter
 \section{Research Questions}
 Based on these objectives, the research question is formulated as follows: 
 
-\textit{"Can a web-vpl make point-cloud computations more FAIR?"}
-
-
-% How to design and implement a browser-based visual programming environment for containerized geo-computation?”
+\textit{"
+To what extent can 'a web-based vpl' make 'point-cloud computations' more avaiable and Interoperable than proprietary vpl's?"}
 
 \subsection*{Sub Questions}
 The following sub-research questions are needed in order to answer the main question. 
 
-\todo[]{Maybe translate this to 'how' questions: "How can X make Y more Findable?"}
+\begin{enumerate}[a]
+  \item To what extend does the format of web application contribute to making point-cloud computations more \emph{Findable}?  
+  \item To what extend does the format of a visual programming language make point-cloud computations more \emph{Accessible}?  
+  \item Do point-cloud geoprocessing libraries become more \emph{Interoperable} when compiled to WebAssembly?  
+  \item Do point-cloud geoprocessing libraries become more \emph{Reusable and Reproducable} when compiled to WebAssembly?  
+\end{enumerate}
+
+In order to obtain answers to all these questions 
+1) an literature review is done, 
+2) a prototype software application is developed as a proof of concept and 
+3) this application is tested and compared to existing methods using a number of real-world datasets
+
+% FROM MEETING 27:
+% \item To what extend does this solution contribute to making geoprocessing more Findable, Accessible, Interoperable, and Reusable?
+
+% If I have to boil everything down to one thing and one thing only, I would choose: Connection to regular software development. 
+% -> machine readability
+% -> 
+
+% ELLIE 
+% - To what extent can machine learning provide a better estimate of the number of floors than a purely geometric approach?
+
+% a. Which features are related to the number of floors? Is there any overlap between these features
+% and which subset yields the best results?
+% b. Which machine learning algorithm provides the best results? How are the results affected by
+% feature subsets that reflect different levels of data availability?
+% c. What level of performance can be achieved compared to a purely geometric approach? What types
+% of gross errors are present?
+% d. Since floor count is generally an integer value, is this a regression or classification problem? If
+% considered regression, how does rounding the predictions affect the results?
+
+% RAVI
+
+% The main research question of this thesis is defined as follows:
+% • Is the Voronoi- and surface-based approach a viable option for
+% the automatic generation of depth-contours for hydrographic
+% charts?
+% Additionally the following set of sub-research questions are defined:
+% 1. What characterizes surfaces that lead to good depth contours
+% for hydrographic charts and what is needed in terms of interpo-
+% lation and generalization to achieve such a surface?
+% 2. Are those characterizations respected in the Voronoi- and surface-
+% based approach?
+% 3. Does the Voronoi- and surface-based approach perform well for
+% heterogeneously distributed input data?
+% 8 introduction
+% 4. To what extent can the Voronoi- and surface-based approach be
+% automated?
+% 5. Is the Voronoi- and surface-based approach well scalable to big
+% datasets?
+% In order to obtain answers to all these questions 1) an extensive liter-
+% ature review is done, 2) a prototype software application is developed
+% as a proof of concept and 3) this application is tested and compared
+% to existing methods using a number of real-world datasets
+
+
+
+% How to design and implement a browser-based visual programming environment for containerized geo-computation?”
+
+% \todo[]{Maybe translate this to 'how' questions: "How can X make Y more Findable?"}
+
+
 
 % Leave this empty -> 
 
@@ -97,12 +167,12 @@ The following sub-research questions are needed in order to answer the main ques
 
 
 % FAIR RESEARCH QUESTIONS -> conclusion
-\begin{enumerate}[a]
-  \item Does the format of web application make point-cloud computations more \emph{Findable}?  
-  \item Does the format of a visual programming language make point-cloud computations more \emph{Accessible}?  
-  \item Do point-cloud geoprocessing libraries become more \emph{Interoperable} when compiled to WebAssembly?  
-  \item Does the ability to compile a VPL script to javascript make those VPL scripts more \emph{Reusable}?  
-\end{enumerate}
+% \begin{enumerate}[a]
+%   \item Does the format of web application make point-cloud computations more \emph{Findable}?  
+%   \item Does the format of a visual programming language make point-cloud computations more \emph{Accessible}?  
+%   \item Do point-cloud geoprocessing libraries become more \emph{Interoperable} when compiled to WebAssembly?  
+%   \item Does the ability to compile a VPL script to javascript make those VPL scripts more \emph{Reusable}?  
+% \end{enumerate}
 
 
 % PRACTICAL RESEARCH QUESTIONS

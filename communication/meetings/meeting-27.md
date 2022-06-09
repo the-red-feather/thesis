@@ -86,3 +86,8 @@ CONCLUSION: list
 # Next Meeting
 
 
+# FOCUS:
+-> implementation
+-> conclusion
+-> write presentation for giorgio
+
