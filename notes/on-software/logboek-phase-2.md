@@ -23,12 +23,25 @@
 [x] define problems from vpl papers
 [x] clean up related work somewhat
 
+"geo-vpls have advantages and a reason of existence. web apps have advantages and a reason of existence
+by creating a web-geo-vpl, we wish to
+- combine these advantages, and to create certain synergies.
+- fill-in uncharted territory
+
+synergies: 
+- challenge within vpls: distribution and life-cycle of apps created with the vpl. 
+  - solution: web-based distribution
+- challenge within vpls: plugin creation & distribution
+  - solution: utilize javascript CDN's, and typescript header files. 
+
+
 [ ] clean up methodology
 [ ] clearly state the requirements within methodology
 [ ] clearly state the use-case applications and experiments 
   [ ] which experiments
 [ ] take inspiration from ravi & ellie
 [ ] think about how this flows towards implementation & experiments
+
 
 # fri
 [ ] make presentation
