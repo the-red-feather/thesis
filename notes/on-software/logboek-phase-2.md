@@ -21,12 +21,20 @@
 [x] build a framework for chapter 2
 [x] analyse the vpl papers, write about it
 [x] define problems from vpl papers
+[x] clean up related work somewhat
 
-[ ]
-[ ] 
+[ ] clean up methodology
+[ ] clearly state the requirements within methodology
+[ ] clearly state the use-case applications and experiments 
+  [ ] which experiments
+[ ] take inspiration from ravi & ellie
+[ ] think about how this flows towards implementation & experiments
 
 # fri
+[ ] make presentation
+[ ] 
 
+[ ] 
 
 # late middag 
 -> Stuur thesis op naar martin 
