@@ -4,27 +4,70 @@
 % It should show that you clearly know the problem you plan to solve, 
 % and that you master the related work. 
 
-The environment proposed by this thesis builds from Ravi Peter's work. GeoFront can be seen as GeoFlow, but in a web browser. However, the introduction of this web component significantly changes the nature, use-case and reach of GeoFront compared to GeoFlow. 
+% The environment proposed by this thesis builds from Ravi Peter's work. GeoFront can be seen as GeoFlow, but in a web browser. However, the introduction of this web component significantly changes the purpose and use-case of GeoFront compared to GeoFlow. 
 
-GeoFlow's mission: Create a geoprocessing pipeline in a visual environment, in order to speed up and improve the quality of the development process of this pipeline "FOR YOURSELF", compared to script-based methods. This speed and quality comes from the fact that the visual environment makes rapid experimentation and evaluation possible.   
+% GeoFlow's mission: Create a geoprocessing pipeline in a visual environment, in order to speed up and improve the quality of the development process of this pipeline "FOR YOURSELF", compared to text-based methods. This speed and quality comes from the fact that the visual environment makes rapid experimentation and evaluation possible. This is especially helpful for non-determinant processes, or processes containing 'magic' number parameters. Examples of these are RANSAC algorithms. 
 
-GeoFront's purpose: Use the vpl to make rapid experimentation and evaluation of your geoprocessing functions possible "FOR OTHERS": rapid utilization of some geoprocessing method.
-
+% GeoFront's mission: Use the vpl to make rapid experimentation and evaluation of your geoprocessing functions possible FOR OTHERS. This enables others to rapidly utilize your geoprocessing method. The primary use case of this is collaboration: Rapidly publish ones results, demonstrate reproducibility, retrieve feedback, etc.   
 
 \chapter{Related work}
-\todo[]{Right now, this is a dumping ground for texts ive cut in other places. thread carefully}
-The introduction already touched upon a number of prior works on the topic of \ac{bbg} as well as \ac{wasm}.
-However, we are required to examine these studies more closely as well as introduce others, in order to further define our methodology. This study's methodology will draw from prior studies on three topics: The topic of the Geoweb, client-side geoprocessing, and WebAssembly.
+
+% build a reading guide
+This thesis takes place at the intersection of two fields of study: the VPL, and Web GIS. The two topics have already been mentioned briefly during the introduction. 
+Specific challenges 
+
+These fields 
+
+- diverse challenges exist within both fields
 
 
 
+- this chapter -> show how these challenges relate to features
 
-\section{The Geoweb}
+\todo{refine}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Visual Programming Language}
+
+\todo{Write about generic truths \& research regarding VPLS}
+
+\begin{lstlisting} 
+write something about : 
+- cognitive_1996 
+- advances_2004
+- characterizing_2021
+
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{ The VPL within the field of geo-informatics }
+
+\begin{lstlisting} 
+-  
+-  
+- 
+\end{lstlisting}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{ Geometry + Visual Programming }
+
+% Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
+% Visual programming environment for geo-computation \emph{in a browser} has not been tried before. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Web GIS}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Geoweb}
 \label{sec:geoweb}
 
-% TODO : expand this to incorporate large sections of older introductions
-The main research question speaks of 'utilization'. Utilization or 'Usability' can mean different things depending on the context used, and which user this applies to. We will define both the type of \emph{usability} and \emph{user} this study speaks of by studying the larger context this study is part of: the Geoweb.
-
+\todo{This is dated. expand this to incorporate large sections of older introductions}
 The Geoweb, or Geospatial Web, covers a broad collection of topics located at intersection of the field of geo-information and the web. A noteworthy study on the Geoweb is Van den Brink's phd titled "Geospatial Data on the Web". \cite{brink_geospatial_2018}. She claims that even though geodata is vital to a diverse range of applications and people, the ability to properly retrieve geodata remains almost exclusive to experts in the field. This is to the determent of all these applications and people, jeopardizing value, opportunity, and decision making. She makes this argument by using the concept of FAIR geodata. Coined by \cite{mark_d_wilkinson_fair_2016}, The FAIR principles are a collection of four assessment criteria used to judge the usability of (scientific) data: Findable, Accessible, Interoperable, and Reusable. 
 
 We argue that if these concerns count for geodata \textit{retrieval}, they should just as well count for geodata \textit{processing}. After all, if a user is unable to convert the retrieved geodata to their particular use case, then the information they seek remains inaccessible. Therefore, this study introduces the concept of \emph{FAIR geoprocessing}. 
@@ -34,78 +77,65 @@ Based on the arguments presented by \cite{brink_geospatial_2018}, we can also ex
 We use both extrapolations to define the users and 'usability' for the context of this study. We will judge the proposed use case application as 'usable', if it is deemed Findable, Accessible, Interoperable, and Reusable. The user group intended to use this environment is defined as both experts in the field of geo-information and this more general group of data users.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Browser-based geoprocessing}
+\subsection{Browser-based geoprocessing}
 % Nothing wrong with this chapter I think. Everything is there for a reason
 
 % the latest in a series of geoprocessing attempts 
 % we want to know what happened the previous times, so we will not try things that have already been tried before.
 
-This study will be the latest in a series of studies concerned with client-side geoprocessing. As such, it is important to relate to previous attempts and efforts, to learn from their findings, and to make sure the exact same research will not be performed twice. 
+This study is related to a series of studies concerned with browser-based geoprocessing, also refered to as client-side geoprocessing. As such, it is important to relate to previous attempts and efforts, to learn from their findings, and to make sure the exact same research will not be performed twice. 
 
-As a side note, client-side geoprocessing is not to be confused with native geoprocessing clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}. 
+As a side note, client-side geoprocessing is not to be confused with native geoprocessing clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}.
+To fix this ambiguity, this study refers to client-side geoprocessing as 'browser-based geoprocessing'.
 
-Client-side, JavaScript based geoprocessing has seen some level academic interest throughout the last decade. The papers \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019} all speak of an emergent trend of thick-client websites. Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. And by still being a webpage rather than a native application, users can access these applications without installment. The trend is made possible because of hardware improvements of client devices, as well as software improvements, such as HTML5. 
+Browser-based geoprocessing has seen some level academic interest throughout the last decade. The papers \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019} all speak of an emergent trend of thick-client websites. 
+Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. 
+And, by still being a webpage rather than a native application, users can access these applications without installment. 
+The trend is made possible because of hardware improvements of client devices, as well as software improvements, like HTML5.
 
-The aforementioned papers each try to apply this trend to the field of geo-informatics. Hamilton et. al. created a such a 'thick-client', capable of replacing certain elements of server-side geoprocessing \cite{hamilton_client-side_2014}. However, the results are unfavorable towards JavaScript. The paper states how "the current implementation of web browsers are limited in their ability to execute JavaScript geoprocessing and not yet prepared to process data sizes larger than about 7,000 to 10,000 vertices before either prompting an unresponsive script warning in the browser or potentially losing the interest of the user.". While these findings are insightful, they are not directly applicable to the efforts of this study proposal. Three reasons for this:
+The aforementioned papers each try to apply this trend to the field of geo-informatics. 
+Hamilton et. al. created a such a 'thick-client', capable of replacing certain elements of server-side geoprocessing \cite{hamilton_client-side_2014}. 
+However, the results are unfavorable towards JavaScript. 
+The paper states how "the current implementation of web browsers are limited in their ability to execute JavaScript geoprocessing and not yet prepared to process data sizes larger than about 7,000 to 10,000 vertices before either prompting an unresponsive script warning in the browser or potentially losing the interest of the user.". While these findings are insightful, they are not directly applicable to the efforts of this study proposal. Three reasons for this:
 
 \begin{itemize}
   \item The paper stems from 2014. Since then, web browsers have seen a significant increase in performance thanks to advancements in JavaScript JIT compilers \cite{haas_bringing_2017, kulawiak_analysis_2019}. 
-  \item The paper does not use compile-time optimizations. WebAssembly wasn't invented yet, but the authors could have utilized 'asm.js' \cite{mozilla_asmjs_2013} which did exist at the time. 
+  \item The paper does not use compile-time optimizations. The authors could have utilized 'asm.js' \cite{mozilla_asmjs_2013} which did exist at the time. 
   \item The paper uses a javascript library which was never designed to handle large datasets.
 \end{itemize}
 
-The same statements can be made about similar efforts of Panidi et. al. \cite{panidi_hybrid_2015}. However, Panidi et. al. never proposed client-side geoprocessing as a replacement of server-side geoprocessing, and spend no time on comparing the performance of the two. Instead, the authors propose a hybrid approach, combining the advantages of server-side and client-side geoprocessing. They also present the interesting observation that client-side versus server-side geoprocessing shouldn't necessarily be a compassion of performance. "User convenience" as they put it, might dictate the usage of client-side geoprocessing in certain situations, despite speed considerations \cite{panidi_hybrid_2015}. 
+The same statements can be made about similar efforts of Panidi et. al. \cite{panidi_hybrid_2015}. 
+However, Panidi et. al. never proposed client-side geoprocessing as a replacement of server-side geoprocessing. Instead, the authors propose a hybrid approach, combining the advantages of server-side and client-side geoprocessing. 
+They also present the observation that client-side versus server-side geoprocessing shouldn't necessarily be a compassion of performance. 
+"User convenience" as they put it, might dictate the usage of client-side geoprocessing in certain situations, despite speed considerations \cite{panidi_hybrid_2015}. 
 
-This concern the general web community would label as \ac{ux}, is shared by a more recent paper \cite{kulawiak_analysis_2019}. Their article examines the current state of web-technologies from the point of view of developing cost-effective Web-GIS applications for companies and institutions. Their research reaches a conclusion favorable towards client-side data processing: "[Client-side data processing], in particular, shows new opportunities for cost optimization of Web-GIS development and deployment. The introduction of HTML5 technologies has permitted for construction of platform-independent thick clients which offer data processing performance which under the right circumstances may be close to that of server-side solutions. In this context, institutions [...] should consider implementing Web-GIS with client-side data processing, which could result in cost savings without negative impacts on the user experience.".
+This concern the general web community would label as \ac{ux}, is shared by a more recent paper \cite{kulawiak_analysis_2019}. 
+Their article examines the current state of the web from the point of view of developing cost-effective Web-GIS applications for companies and institutions. 
+Their research reaches a conclusion favorable towards client-side data processing: "[Client-side data processing], in particular, shows new opportunities for cost optimization of Web-GIS development and deployment. 
+The introduction of HTML5 has permitted for construction of platform-independent thick clients which offer data processing performance which under the right circumstances may be close to that of server-side solutions. 
+In this context, institutions [...] should consider implementing Web-GIS with client-side data processing, which could result in cost savings without negative impacts on the user experience.".
 
 % Based on the topic of client-side geospatial processing, we can state that web technologies contain a very dynamic temporal component. All research can become outdated, but performance analysis of web technologies are especially quick to change.  
 
-From these papers we can conclude a true academic and even commercial interest in client-side geoprocessing in the last decade. However, researchers quickly encounter problems during practical implementations in the past. This might not hold up thanks to the recent developments in browser technology, but these papers still show how small, practical implementation details can relate to considerable changes in \ac{ux}. 
+From these papers we can conclude a true academic and even commercial interest in client-side geoprocessing in the last decade. However, researchers quickly encounter problems during practical implementations in the past. This might not hold up thanks to recent browser features, but these papers still show how small, practical implementation details can relate to considerable changes in \ac{ux}. 
 
-Additionally, to the best of the authors's knowledge, all papers concerned with browser-based geoprocessing either tried to use existing JavaScript libraries, or tried to write their own WebAssembly / JavaScript libraries. No studies have been performed on the topic of compiling existing C++ geoprocessing libraries to the web. 
-
-
-\section{More ramblings on webassembly}
-...
-
-...
-
-
-
-
-
-
-
-Not just open source: process sharing using fully containerized instances. Think .
-
-current vision / direction: containerized, sharable processes, together with web-based, front end visual programming environments ( RasterFoundry). Docker is usually named as a vision for these sharable processes.
-
-\m{->} We do have examples of cloud-native geodata formats, and some examples of cloud-based geo-computation (RasterFoundry , Google Earth Engine, more). However, these approaches have not yet tried to use truly sharable, containerized geoprocesses using Docker or WebAssembly. 
-
-\m{->} WebAssembly as a whole is underresearched. WebAssembly is not a fully virtualized container image, but just a binary set of instructions, meant to be executed on a virtual machine. Think of safe, cross-platform dll's. 
-WebAssembly is in this regard more simple than docker, but this gives it more opportunities. 
-WebAssembly runs in the browser for instance. 
-
-\m{->} This opportunity to run in the browser would enable these cloud-native frontend environments to "dry-run" these processes from within the browser, completely detached from the server, as a means to experiment with processes on a small scale before applying them to a cloud native environment. 
-
-\m{->} However, no implementations exist yet which combines containerized processes with these frontend computation environments. 
+Additionally, to the best of the authors's knowledge, all papers concerned with browser-based geoprocessing either tried to use existing JavaScript libraries, or tried to write their own WebAssembly / JavaScript libraries. No studies have been performed on the topic of compiling existing C++/Rust geoprocessing libraries to the web. 
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{WebAssembly}
+\subsection{WebAssembly}
 
-From all client-side web technologies, WebAssembly is one of the newest, and is most likely to be a deciding factor of this study. This requires us to be aware of the state of WebAssembly, its performance considerations, and how this relates to geoprocessing performance. But first, an introduction on the compilation target itself is in order.
+From all browser-based features, WebAssembly is one of the newest, and turned out to be a deciding factor of this study. This requires us to be aware of the state of WebAssembly, its performance considerations, and how this relates to geo-computation performance. But first, an introduction on the compilation target itself is in order.
 
 The original paper on WebAssembly was published on June 14, 2017 \cite{haas_bringing_2017}. The authors write that the reason behind the creation of WebAssembly is the observation that certain web applications started using JavaScript as a compile target, using a high-performance subset of JavaScript called 'asm.js' \cite{mozilla_asmjs_2013}. However, JavaScript remains a high-level, highly abstract programming language, which never intended to be used as a compile target. The discrepancy between intended use and actual use led to many complications for developers using JavaScript this way, but also for the developers of JavaScript itself \cite{haas_bringing_2017}. 
 In order to relieve javascript of the responsibility of being a 'low-level' compilation target, developers of the four major browser vendors Mozilla, Google, Apple and Microsoft eventually joined up, and created WebAssembly and its corresponding paper.
 
 % This paper starts by promising WebAssembly as a save, fast, portable and compact compilation target. It continues by showing how previous attempts at low-level code on the web fail in at least one of these criteria, and that WebAssembly is the first to deliver on all of them. The follow up chapters cover a proof of memory safety, a proof of soundness of the language design, and the design decisions which had to be made to live up to those four criteria. These details will become relevant to the proposed thesis when reasoning about why WebAssembly might be faster in one case versus another.
 
-\subsection*{Performance}
+\subsubsection*{Performance}
 
 The initial performance benchmarks look promising. The majority of performance comparisons show that WebAssembly only takes 10\% longer than the native binary it was compared to \cite{haas_bringing_2017}. A later study confirms this by reproducing these benchmarks \cite{jangda_not_2019}. It even notices that improvements have been made in the two years between the studies. However, Jangda et. al. criticize the methodology of these benchmarks, stating that only scientific operations where benchmarked, each containing only 100 lines of code. The paper then continues to show WebAssembly is much more inefficient and inconsistent when it comes to larger applications which use IO operations and contain less-optimized code. These applications turn out to be up to twice as slow compared to native, according to their own, custom benchmarks. Jangda et. al. reason that some of this performance difference will disappear the more mature WebAssembly becomes, but state that WebAssembly has some unavoidable performance penalties as well. One of these penalties is the extra translation step, shown in reffig fig:wasm-trajectory, which is indeed unavoidable when utilizing an in-between compilation target. 
 
@@ -154,6 +184,24 @@ Even though this proposed study falls in the category of scientific computation,
 
 % What this means for the methodology, is that a significant portion of this study's attention will have to go to experimenting with different ways of compiling to WebAssembly, while making sure it can still be used in a realistic scenario.
 % If it turns out that the use-case app can only be used by experienced end-users who take special \ac{wasm} considerations in mind, a big reason of using the web, namely its accessibility, would be lost.  
+
+
+
+\section{More ramblings on webassembly}
+
+Not just open source: process sharing using fully containerized instances. Think .
+
+current vision / direction: containerized, sharable processes, together with web-based, front end visual programming environments ( RasterFoundry). Docker is usually named as a vision for these sharable processes.
+
+\m{->} We do have examples of cloud-native geodata formats, and some examples of cloud-based geo-computation (RasterFoundry , Google Earth Engine, more). However, these approaches have not yet tried to use truly sharable, containerized geoprocesses using Docker or WebAssembly. 
+
+\m{->} WebAssembly as a whole is underresearched. WebAssembly is not a fully virtualized container image, but just a binary set of instructions, meant to be executed on a virtual machine. Think of safe, cross-platform dll's. 
+WebAssembly is in this regard more simple than docker, but this gives it more opportunities. 
+WebAssembly runs in the browser for instance. 
+
+\m{->} This opportunity to run in the browser would enable these cloud-native frontend environments to "dry-run" these processes from within the browser, completely detached from the server, as a means to experiment with processes on a small scale before applying them to a cloud native environment. 
+
+\m{->} However, no implementations exist yet which combines containerized processes with these frontend computation environments. 
 
 
 
@@ -259,13 +307,7 @@ By creating a client-side web application which is neither accessible nor intera
 Additionally, by forgoing the question of accessibility, many auxiliary use-cases of client-side geoprocessing where overlooked.
 
 
-\section{ Geometry + Visual Programming }
-
-Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
-Visual programming environment for geo-computation \emph{in a browser} has not been tried before. 
-
-
-\section{The Cloud Native Geospatial movement}
+\subsection{The Cloud Native Geospatial movement}
 
 
 % Establish OGC in two sentences, mentioning their name and Vision

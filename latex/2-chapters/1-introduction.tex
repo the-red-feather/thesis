@@ -1,9 +1,12 @@
 \chapter{Introduction}
 
+... (general introduction) ...
 % 1) General story on geo-information. Go from data to application
-- geo-information is extremely valuable.
-- Name something about the importance of availability of geodata.
-- bring the side of the application to the reader's attention. 
+% - geo-information applications are extremely valuable
+% - bring the side of the gis application & geoprocessing to the reader's attention. 
+
+In order to specify the contribution of this thesis, I wish to bring two phenomena to the reader's attention: The GIS visual programming language, and Web GIS applications. 
+After this, the subject and goal this thesis can be made clear.
 
 % The way maps are made is ever changing. Perhaps one of the most impactful ways this will change in the near future, is in the way described by the "Cloud Native Geospatial" vision. Proposed by the OGC, this movement envisions a future in which geodata storage and computation methods are re-imagined from the point of view of the cloud. 
 % It aims to radically simplify geodata storehouses to static servers, serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services, which could then run containerized processes on an unprecedented scale, with unprecedented speed. 
@@ -18,25 +21,52 @@
 
 % 2) Name relevant developments within the field of geo-informatics: more cloud-based, more massive datasets, a focus on open datasets, etc. 
 
+\subsection*{Visual programming language}
+
+\emph{What is a VPL and how is it used within the field of geo-information?}
 
 % 2) Establish the VPL, and how it is used within geomatics 
-One possible interface of such an application is a Visual Programming Language (vpl), or visual programming environment. 
-- Explain what it is. 
-Within the field of geo informatics, VPL's are popular interfaces for performing spatial analyses and geodata transformations. 
-SaveSoft's FME (SOURCE) is a popular Extract Load Transform (ETL) tool for automating data integration, while McNeels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
+A \ac{vpl}, or visual programming environment, is a type of programming language represented in a graphical, non-textual manner.
+A VPL often refers to both the language and the Integrated Development Environment (IDE) which presents this language.
+% Famous examples of VPLs are:
+% \begin{itemize}
+%   \item Ladder Diagram (src), the industry-standard method of programming Programmable Logic Controllers (PLCs)
+%   \item Scratch (src), a educational programming language
+%   \item 
+% \end{itemize}
+
+% ... (name something about Dataflow programming, a programming paradigm often used in conjunction with a vpl. ) ... 
+
+Within the field of geo informatics, VPL's are most often used for specifying geodata transformations and performing spatial analyses.  
+SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (ETL) automates data integration, and is widely used by GIS experts. 
+
+% while McNeels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
+
 % Name Rasterfoundry ModelLab
+
+% Name GeoFlow maybe
+
 VPL's like these offers users a chance to interactively automate workflows \& processing pipelines, while requiring little to no programming knowledge. 
 In between results can be inspected quickly, and the processes can be changed on the fly, often with immediate feedback.
-This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all other use-cases in need of both low-code automation and visual debugging (Shader Programming, Procedural Geometry, CAD, BIM). 
-A VPL done right can make automation available to a very large audience.
+This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all many other use-cases in need of both low-code automation and visual debugging, like BIM, CAD, Shader Programming and Procedural Geometry. 
+A VPL done right can make automation available to a very large audience. 
 
-- "As massive datasets become more and move available, the availability of the \emph{means} to process and analyse these data becomes more and more relevant". 
+% - "As massive datasets become more and move available, the availability of the \emph{means} to process and analyse these data becomes more and more relevant". 
 
-Despite these advantages, open, accessible vpl's are often unavailable. 
-- Expensive, proprietary environments 
-- Require specific plugins in order to utilize open, industry standard geo-computation libraries
-- Not FAIR geoprocessing
+% Despite these advantages, open, accessible vpl's are often unavailable. 
+% - Expensive, proprietary environments 
+% - Require specific plugins in order to utilize open, industry standard geo-computation libraries
+% - Not FAIR geoprocessing
 
+
+
+\subsection*{Web GIS}
+Web \ac{gis} forms an indispensable component of the wider geospatial software landscape. 
+For the average person, an interactive \ac{gis} web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
+A web application is cross-platform by nature, and offers ease of accessibility, since no installment or app-store interaction is required to run or update the app. (src: vpl 2019, src: hybrid)
+As soon as it can be found, it can be used.
+The ability to share a full application with a link, or to embed it within the larger context of a webpage is also not trivial. 
+Together, these aspects have made the browser a popular host for many important geographical applications, especially when accessibility is vital.
 
 % "making functionalities available not only to developers, but to the masses."
 
@@ -61,45 +91,46 @@ Despite these advantages, open, accessible vpl's are often unavailable.
 
 
 \section{Research Objectives}
-Due to the limitations of geo-computation using proprietary vpl's, the goal of this thesis is to develop an alternative, open vpl for geo-computation. This approach is specifically aimed to improve the accessibility and reproducibility of existing geo-computation libraries. It builds on the preliminary developments by (Ravi Peters), who suggested the usage of vpl's to aid the development process of geo-computation. 
+the goal of this thesis is to develop a novel method to perform geo-computation in a web browser using a \ac{vpl}. 
+By doing so, this thesis seeks to connect the advantages of VPL-based geoprocessing (interactivity) to the advantages of web-based applications (distribution and accessibility). 
+The method differentiates itself by allowing client-side, browser-based calculations. 
+To the best of the authors knowledge, no prior research on the topic of web-based geo-VPLs exists.
+
+
+% Due to the limitations of geo-computation using proprietary vpl's, the goal of this thesis is to develop an alternative, open vpl for geo-computation. This approach is specifically aimed to improve the accessibility, interactivity and reproducibility of existing geo-computation libraries. It builds on the preliminary developments by (Ravi Peters), who suggested the usage of vpl's to aid the development process of geo-computation pipelines.  
 
 % -> testing & reproducability.
-% RANSAC
-% Jonathan blow -> didactic games  
+% RANSAC -> many 'magic' parameter. They need to be discovered by 'play'
+% Jonathan blow -> using interactive applications, an intrinsic understanding can be gained without explicit communication.
 % Game Of Life -> impossibility of 'proving' behaviour systems. 
-
-
-% in a browser-based front-end using WebAssembly.
-
-
 
 % This design of geofront contains several challenges. Browser-based geo-computation (BBGC) might not be as performant as back-end / native geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, even with the usage of WebAssembly \cite{jangda_not_2019}. 
 % Additionally, since current visual programming environments all fall short on at least one of the above features, the visual programming environment will have to be created from scratch.
 
-\newpage
 \section{Research Questions}
-Based on these objectives, the research question is formulated as follows: 
+Based on this objective, the research question is formulated as follows: 
 
-\textit{"
-To what extent can 'a web-based vpl' make 'point-cloud computations' more avaiable and Interoperable than proprietary vpl's?"}
+\textit{" How to design and implement a web-based geo-vpl? "} % (according to x)
+
+% To what extent can 'a web-based vpl' make '3d geo-computations' more [ Accessible / Available / Interactive / ~~FAIR~~ / ... ] than proprietary vpl's?
 
 \subsection*{Sub Questions}
 The following sub-research questions are needed in order to answer the main question. 
 
 \begin{enumerate}[a]
-  \item To what extend does the format of web application contribute to making point-cloud computations more \emph{Findable}?  
-  \item To what extend does the format of a visual programming language make point-cloud computations more \emph{Accessible}?  
-  \item Do point-cloud geoprocessing libraries become more \emph{Interoperable} when compiled to WebAssembly?  
-  \item Do point-cloud geoprocessing libraries become more \emph{Reusable and Reproducable} when compiled to WebAssembly?  
+  \item Design: Which features are required for a 'usable' VPL intended for geo-computation? 
+  \todo{I have some literature lined up to specify the usability of a vpl into contrete features } 
+  \item Implement: How well does this method facilitate these features within a web browser?
+  \item Evaluate: To what extend does this solution contribute to making geoprocessing more Findable, Accessible, Interoperable, and Reusable, compared to ... ?  
 \end{enumerate}
 
-In order to obtain answers to all these questions 
+In order to obtain answers to these questions 
 1) an literature review is done, 
 2) a prototype software application is developed as a proof of concept and 
-3) this application is tested and compared to existing methods using a number of real-world datasets
+3) this application is tested and compared to existing methods using real-world datasets.
 
 % FROM MEETING 27:
-% \item To what extend does this solution contribute to making geoprocessing more Findable, Accessible, Interoperable, and Reusable?
+% \item 
 
 % If I have to boil everything down to one thing and one thing only, I would choose: Connection to regular software development. 
 % -> machine readability
@@ -141,7 +172,14 @@ In order to obtain answers to all these questions
 % as a proof of concept and 3) this application is tested and compared
 % to existing methods using a number of real-world datasets
 
+% FAIR APPROACH:
 
+% \begin{enumerate}[a]
+%   \item To what extend does the format of web application contribute to making point-cloud computations more \emph{Findable}?  
+%   \item To what extend does the format of a visual programming language make point-cloud computations more \emph{Accessible}?  
+%   \item Do point-cloud geoprocessing libraries become more \emph{Interoperable} when compiled to WebAssembly?  
+%   \item Do point-cloud geoprocessing libraries become more \emph{Reusable and Reproducable} when compiled to WebAssembly?  
+% \end{enumerate}
 
 % How to design and implement a browser-based visual programming environment for containerized geo-computation?”
 
@@ -214,7 +252,7 @@ While accessibility / usability is a motivation of this research, no claims will
 
 % This paper seeks to first close this gap, limiting itself to overcoming the technical and design boundaries in the pursuit of practical client-side geoprocessing.
 
-Similarly, a survey analyzing how users experience client-side geoprocessing in comparison to native geoprocessing must also be left to subsequent research. While this would gain us a tremendous amount of insight, client-side geoprocessing is too new to make a balanced comparison. Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
+Similarly, a survey analyzing how users experience client-side geoprocessing in comparison to native geoprocessing must also be left to subsequent research. While this would gain us tremendous insight, client-side geoprocessing is too new to make a balanced comparison. Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
 
 % It is my goal to introduce this as a new geoprocessing option, and to name the advantages and disadvantages we can be sure of. An actual comparison of client-side vs native geoprocessing is something different. 
 
@@ -240,6 +278,21 @@ The format chosen for the demo application GeoFront is a visual programming lang
 
 \section{Guide}
 
-As such, the study first describes the design and implementation of GeoFront, and then evaluates the tool to various geo-computation use cases.
-The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
-Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
+...
+\begin{itemize}[\m{->}]
+  \item chapter 2: More background \& reasoning behind web VPL and web GIS. 
+  \subitem Developments and challenges within these fields.
+  \item chapter 3: Specify 'the solution', Convert the literature of chapter 2 directly into requirements for the solution. 
+  \subitem Thesis is successful in how far the solution can meet these requirements. 
+  \item chapter 4: Describe implementation details, and especially in relationship to these requirements
+  \item chapter 5: Show the results of usage of GeoFront \& the results of experiments.
+  \subitem These are used to evaluate the solution.
+  \item chapter 6: discuss to which extend the solution was able to satisfy the requirements.
+  \item chapter 7: conclude to which extend the solution was able to satisfy the requirements.
+\end{itemize}
+
+...
+
+% As such, the study first describes the design and implementation of GeoFront, and then evaluates the tool to various geo-computation use cases.
+% The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
+% Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.

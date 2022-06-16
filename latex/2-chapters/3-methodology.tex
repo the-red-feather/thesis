@@ -1,22 +1,49 @@
 % Define the scope, extend, and how of the study
-\chapter{ Methodology }
-\todo[]{Please skip this chapter, it is still a mess}
+\chapter{Methodology}
+This chapter outlines the methodology of this study. 
+The method can be subdivided into four chapters:
 
-\begin{lstlisting}
+\begin{enumerate}[(1)]
+  \item Define the requirements a web-based geo-vpl needs to meet up to.
+  \item Develop the vpl according to these requirements.
+  \item Create multiple demo GIS applications using this vpl.
+  \item Based on these demo's, access to which extend the requirements are met.  
+\end{enumerate}
 
-Methodology: define the scope, extend, and how of the study 
-
-why these sub questions? How will the sub-questions be answered?
-- Findable: THE WEB-APP INTRODUCTION / CLIENT-SIDE GEOPROCESSING
-- Accessible: THE FIRST PART OF THE VPL INTRODUCTION -> VPL advantages
-- Interoperable: THE WEBASSEMBLY INTRODUCTION / CONTAINERIZATION 
-- Re-usable: THE SECOND PART OF THE VPL INTRODUCTION -> VPL's have shortcomings
-
-
-\end{lstlisting}
+This process is cyclical.
+If the vpl scores significantly low on some criteria, the requirements or Functionality of the vpl might need to be altered, after which the applications require reassessment. 
 
 
+\section{Requirements}
+The success of this study is measured by accessing to what extend GeoFront adheres to its requirements. 
+These requirements are in turn based upon related works within VPL research, as well as web GIS studies. 
+This section outlines these requirements, and why they are used. 
+Additionally, certain use-cases are envisioned as proxies of these environments, to test certain requirements in a realistic scenario. 
 
+
+
+
+
+- To what end geofront delivers on its promises of accessibility and interactivity.
+
+
+
+% \begin{lstlisting}
+
+% Methodology: define the scope, extend, and how of the study 
+
+% why these sub questions? How will the sub-questions be answered?
+% - Findable: THE WEB-APP INTRODUCTION / CLIENT-SIDE GEOPROCESSING
+% - Accessible: THE FIRST PART OF THE VPL INTRODUCTION -> VPL advantages
+% - Interoperable: THE WEBASSEMBLY INTRODUCTION / CONTAINERIZATION 
+% - Re-usable: THE SECOND PART OF THE VPL INTRODUCTION -> VPL's have shortcomings
+
+
+% \end{lstlisting}
+
+
+
+This second assessment will be a judgement based on four distinct use-cases for the environment:
 
 
 
@@ -32,13 +59,6 @@ why these sub questions? How will the sub-questions be answered?
 This thesis performed a practical exploration of browser-based geoprocessing. It has done this by designing, creating, and evaluating the use-case application GeoFront. 
 
 \subsection{ Evaluation }
-The success of this study is measured by accessing to what extend GeoFront adheres to its requirements, design principles, and envisioned use-cases. The remainder of this chapter will cover these.
-
-This study will be assessed based on: 
-- To what end geofront succeeds in implementing its desired features.
-- To what end geofront delivers on its promises of accessibility and interactivity.
-
-This second assessment will be a judgement based on four distinct use-cases for the environment:
 
 
 \subsection{ Practical Exploration }
@@ -51,29 +71,30 @@ The advantage of this approach is that it leads to tangible results.
 The disadvantage of this approach is that software development can lead a study astray, if the development needs of the application are put before the needs of the study itself.
 }
 
+
+
 \section { The Application }
 % Why this application? 
 
 \section{ Requirements }
 
+% The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
+% The main goal and feature of geofront is to take existing low level geo-computation libraries, and to make these interactively usable on the web. 
+% These libraries include a limited set of CGAL operations, complied from C++, and various geo-computation algorithms such as Startin, written in Rust. 
+% Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
+% In between products can quickly be inspected using a 3D viewer.
 
-The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
-The main goal and feature of geofront is to take existing low level geo-computation libraries, and to make these interactively usable on the web. 
-These libraries include a limited set of CGAL operations, complied from C++, and various geo-computation algorithms such as Startin, written in Rust. 
-Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
-In between products can quickly be inspected using a 3D viewer.
+% We test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility \& performance of said application. We also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
 
-We test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility \& performance of said application. We also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
+% These features could all be implemented by normal means ( buttons, panels, sliders ) -->
 
-These features could all be implemented by normal means ( buttons, panels, sliders ) -->
+% CHOICE: do something in-between python bindings, and a full fletched end-user application. 
+% Ergo: Visual programming
 
-CHOICE: do something in-between python bindings, and a full fletched end-user application. 
-Ergo: Visual programming
+% For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load locally stored geodata. Parameters can be specified using various ui components, such as sliders. 
+% For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
 
-For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load locally stored geodata. Parameters can be specified using various ui components, such as sliders. 
-For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
-
-Where ModelLab is build on top of recent improvements to the accessability of satellite imagery, GeoFront is build in anticipation to a similar development for point cloud datasets with the introduction of COPC. The focus of Geofront is therefore on point cloud processing, and point-cloud based modelling, such as Digital Terrain Models (DTM). 
+% Where ModelLab is build on top of recent improvements to the accessability of satellite imagery, GeoFront is build in anticipation to a similar development for point cloud datasets with the introduction of COPC. The focus of Geofront is therefore on point cloud processing, and point-cloud based modelling, such as Digital Terrain Models (DTM). 
 
 
 \section{ Design Choices }
@@ -200,14 +221,15 @@ Why?
 - Visual Scripting on the web - "A geodata processing sequence is often conceptualized as a pipeline. Then lets make it an actual pipeline. "
 - 
 
-\subsubsection*{From first principles}
+% \subsubsection*{From first principles}
 
-The study will be conducted from first principles to gain a clearer picture of the browser itself, 
-and not the layers on top of it.
+% The study will be conducted from first principles to gain a clearer picture of the browser itself, 
+% and not the layers on top of it.
 
 
 
 \subsubsection{Scalability}
+\todo{this is still informal}
 
 Geodata is big data. Will this web application be scalable to handle big datasets?
 
@@ -219,7 +241,9 @@ First, lets give the devil it's due.
 
 BUT: 
 
-- Cloud native -> streaming -> streaming just what you need, processing just what you need, what you are looking at
+- A case can be made for on-demand, browser-based geoprocessing. 
+% - Cloud native -> streaming -> 
+% streaming just what you need, processing just what you need, what you are looking at
 
 - Even when we want to write a tool to deal with large datasets, we often test and develop this tool in a smaller context, with a smaller dataset first. The same thing is possible with geofront: 
 
@@ -227,7 +251,7 @@ BUT:
 
 - The flowcharts created with geofront are compilable to javascript. this allows any processing operation created with geofront to be executed from the command line using node.js. This is a way of how geofront can integrate with large-scale geodata pipelines. 
 
-The point is that even if we use server-side / supercomputer / big-data geoprocessing, we still want to be able to be able to ergonomically and correctly configure these geoprocesses. Geofront could still assist with that.
+The point is that even if we use cloud-based computation, we still want to be able to be able to ergonomically and correctly configure these geoprocesses. Geofront could still assist with that.
 
 BUT MOREOVER:
 
@@ -327,7 +351,7 @@ We envision four distinct use-cases which might benefit from browser-based geopr
 
 1. Tryout (ACTUAL)
    - A-la wapm WebAssembly Package Manager allows packages to be run from within the package-page itself. 
-  - Just meant to quickly try out some features.
+  - Just meant to quickly try out some features. To access, and reproduce
 
 2. Educational (ACTUAL)
    - interactive educational tool

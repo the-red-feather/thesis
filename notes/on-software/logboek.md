@@ -484,10 +484,9 @@ Major writing
 
 # WEEK 12 / 15
 
-## Monday: P4 MEETING HUGO
-
 # WEEK 13 / 15
 
 # WEEK 14 / 15
 
 # WEEK 15 / 15
+

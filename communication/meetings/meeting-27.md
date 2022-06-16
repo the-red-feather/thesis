@@ -76,9 +76,7 @@ Some questions
 
 maybe leave some things out
 1 or 2 major contributions
-
 DONT try to make something->introduction which covers ALL the work!
-
 
 INTRO: story
 CONCLUSION: list 
