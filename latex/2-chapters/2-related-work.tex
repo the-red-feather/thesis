@@ -29,32 +29,165 @@ These fields
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The Visual Programming Language}
-
-\todo{Write about generic truths \& research regarding VPLS}
-
+\section{Visual Programming}
 \begin{lstlisting} 
 write something about : 
 - cognitive_1996 
 - advances_2004
 - characterizing_2021
 
+An increasing number of software applications are being written by end users 
+without formal software development training. 
+This inspired large technology companies such as Microsoft [91] and Amazon [90] 
+to invest in low-code development environments empowering end users to 
+create web and mobile applications. 
+According to the 2019 Q1 Forrester report, the low-code market will witness an 
+annual growth rate of 40\%, 
+with spending forecast to reach \$21.2 billion by 2022 [102]. 
+End-User Development (EUD) has emerged as a field that is concerned with 
+tools and activities allowing end users 
+who are not professional software developers to write software applications [11]. 
+This is promising as end users know their own domain and needs more than anyone else, 
+and are often aware of specificities in their respective contexts. 
+Further, as end users outnumber developers with professional software development 
+training by a factor of 30-to-1, 
+EUD enables a much larger pool of people to participate in software development [12]. 
+A visual programming language (VPL), among other EUD techniques, 
+allows end users to create a program by piecing together graphical elements
+ rather than textually specifying them [9]. 
+Traditionally, visual programming has been successfully used to help novices
+ learn basics of programming by visualizing elements of a program. 
+However, visual programming is increasingly being used by end 
+users in various domains to create and tailor applications that are useful 
+beyond the realm of education. 
+For instance, VPLs are now being used in fields such as 
+the Internet of Things (IoT) [3], [10], mobile 
+application development [51], robotics [8], and Virtual/Augmented Reality [4].
+}
+
+From characterizing_2021
+
+other major use cases: 
+- PLC: Ladder
+
 \end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{ The VPL within the field of geo-informatics }
+\subsection{Dataflow modelling}
 
+\begin{lstlisting}
+- Dataflow modelling is a field closely related to visual programming.
+- However, where visual programming is concerned with many aspects, 
+interface and usability being one of them, dataflow modelling is 
+primairly concerned with the correct representation of data transformation.   
+- within the field of dataflow modelling, it turned out that certain 
+visual programming paradigms are advantageous, since they make parallel 
+programming explicit. Thus, these fields are often named in conjunction. 
+- The important take-away is that visual programming is not 
+just a matter of UI or a stylistic choice.
+
+- By more correctly representing dataflow and communicating 
+opportunities for parallel computation, it can lead to faster applications.
+\end{lstlisting}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{ In Geometry Computation \& Visualization }
 \begin{lstlisting} 
--  
--  
-- 
-\end{lstlisting}
+   - Besides the use cases already mentioned, a significant number of 
+   visual programming applications are emerging in fields concerned 
+   with 2D and 3D geometry creation \& visualization. 
+
+  PROCEDURAL GEOMETRY 
+    - Rhino: Grasshopper
+    - Revit: Dynamo  
+    - Blender: Geometry Nodes
+    - Houdini: Houdini
   
+  TEXTURES AND SHADERS
+    - Blender: Shader Nodes
+    - Adobe: Substance Designer
+    - Unreal Engine: Material Nodes
+    - Unity: Shader Graph
+
+  These are all popular applications, many users, multiple courses and tutorials, 
+
+  The persistence of visual programming within the field of shaders and
+  geometry, suggests that visual programming languages are advantageous in
+  situations where a 'visual' product requires debugging during development. 
+\end{lstlisting}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{ Geometry + Visual Programming }
+\subsection{ In field of geo-informatics }
+
+\begin{lstlisting}
+  (explain the use-case of vpl's within the field of geo-informatics, 
+  why they are significant to us) 
+  within geomatics
+
+  - data translation: FME 
+  - cloud-native computation: modellab in rasterfoundry
+    - link to dataflow modelling
+  - debugging & experimentation: GeoFlow 
+  
+\end{lstlisting}
 
 % Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
-% Visual programming environment for geo-computation \emph{in a browser} has not been tried before. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Challenges}
+\begin{lstlisting}
+  - several challenges exist within the research field of visual programming. 
+  - literature study (knowling what is and isnt being researched)
+  - based upon : prior meta-analysis of 'characterizing_2021'
+\end{lstlisting}
+
+\subsubsection*{Difficulty in assessment of 'usability'}
+\begin{lstlisting}
+  - usability is a nebulous phenomenon, hard to measure empirically.
+  - no consensus on evaluation frameworks among VPL researchers. 
+
+  BUT (leave this part, mention it later)
+  - we will make no such attempt. usability serves as background motivation. 
+  - this study assumes vpl's are 'in general' more usable to end-users 
+  than text-based alternatives, based on the positive results of most of the 
+  studies analysed by communicating_2021.   
+\end{lstlisting}
+
+
+\subsubsection*{web based visual programming is underresearched}
+\begin{lstlisting}
+
+  "Finally, 53.3% (16) of the tools were available publicly with some documentation. 
+  We strongly recommend that future tools are made available for end users as well as comprehensive documentation to ensure tool adoption and sustainability." communicating_2021 
+  
+
+  large challenge
+  - not many examples
+    of these examples: 
+    - no suitable starter projects
+    - none are concerned with geometry
+
+    - Visual programming environment for geo-computation 
+    \emph{in a browser} has not been tried before. 
+
+\end{lstlisting}
+
+
+\subsubsection{VPL availabilty and life cycle}
+\begin{lstlisting}
+Finally, (communicating_2021) names the 'life cycle' of apps created 
+with the VPL as one of the most overlooked aspects within VPL research. 
+- extend 
+- debug
+- publish
+- run
+\end{lstlisting}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,12 +195,13 @@ write something about :
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Web GIS}
 
+\todo{This is dated. this section includes many old introductions, and requires refinement.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Geoweb}
 \label{sec:geoweb}
 
-\todo{This is dated. expand this to incorporate large sections of older introductions}
+
 The Geoweb, or Geospatial Web, covers a broad collection of topics located at intersection of the field of geo-information and the web. A noteworthy study on the Geoweb is Van den Brink's phd titled "Geospatial Data on the Web". \cite{brink_geospatial_2018}. She claims that even though geodata is vital to a diverse range of applications and people, the ability to properly retrieve geodata remains almost exclusive to experts in the field. This is to the determent of all these applications and people, jeopardizing value, opportunity, and decision making. She makes this argument by using the concept of FAIR geodata. Coined by \cite{mark_d_wilkinson_fair_2016}, The FAIR principles are a collection of four assessment criteria used to judge the usability of (scientific) data: Findable, Accessible, Interoperable, and Reusable. 
 
 We argue that if these concerns count for geodata \textit{retrieval}, they should just as well count for geodata \textit{processing}. After all, if a user is unable to convert the retrieved geodata to their particular use case, then the information they seek remains inaccessible. Therefore, this study introduces the concept of \emph{FAIR geoprocessing}. 
@@ -186,8 +320,8 @@ Even though this proposed study falls in the category of scientific computation,
 % If it turns out that the use-case app can only be used by experienced end-users who take special \ac{wasm} considerations in mind, a big reason of using the web, namely its accessibility, would be lost.  
 
 
-
-\section{More ramblings on webassembly}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{More ramblings on webassembly}
 
 Not just open source: process sharing using fully containerized instances. Think .
 
@@ -262,8 +396,8 @@ WebAssembly runs in the browser for instance.
 
 % .....
 
-
-\section*{Browser based geoprocessing software}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Browser based geoprocessing software}
 
 % https://www.azavea.com/blog/2016/09/26/raster-foundry-model-lab-phase-ii-sbir/
 % https://geotiff.io/
@@ -279,8 +413,8 @@ Geofront will differ, for it focusses on 3D \& Point clouds instead of rasters \
 ModelLab says this : "Widespread access to frequent, high-resolution Earth observation imagery has created the need for innovative tools like ModelLab that will help individuals and organizations to effectively access, analyze, edit, and visualize remotely sensed data in transformative new ways without years of specialized training or ongoing investments in proprietary software and technology infrastructure. "
 
 
-
-\section{Client-side geoprocessing}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Client-side geoprocessing}
 
 % NEW PRACTICAL ATTEMPT. WHY? 
 % - csg still has a lot of potential
@@ -306,7 +440,7 @@ But, as mentioned before, a major advantage of Web applications over native appl
 By creating a client-side web application which is neither accessible nor interactive, the main incentive for creating a client-side web app is lost.
 Additionally, by forgoing the question of accessibility, many auxiliary use-cases of client-side geoprocessing where overlooked.
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Cloud Native Geospatial movement}
 
 
@@ -377,5 +511,12 @@ FAIR geoprocessing may have many auxiliary advantages.
 
 % X : wasm-based geo-computation applications
 
+\subsection{Challenges}
+\begin{lstlisting}
+Relevant Challenges & developments within web GIS:
+- cloud-native movement
+- 
+
+\end{lstlisting}
 
 
