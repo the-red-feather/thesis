@@ -34,8 +34,7 @@ synergies:
 - challenge within vpls: plugin creation & distribution
   - solution: utilize javascript CDN's, and typescript header files. 
 
-
-[ ] clean up methodology
+[ ] clear up methodology
 [ ] clearly state the requirements within methodology
 [ ] clearly state the use-case applications and experiments 
   [ ] which experiments
@@ -45,9 +44,7 @@ synergies:
 
 # fri
 [ ] make presentation
-[ ] 
-
-[ ] 
+[ ] write conclusion
 
 # late middag 
 -> Stuur thesis op naar martin 
