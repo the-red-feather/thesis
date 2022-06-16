@@ -1,4 +1,7 @@
-\chapter{Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER
+\chapter{Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+This chapter explains the significant implementation details of the
+web-geo-vpl solution, developed as part of this study. 
+This solution is titled "GEOFRONT", as a concatenation of "geometry" and "front-end".
 
 \section{Software Architecture}
 % Explain main code setup \& components
@@ -72,15 +75,15 @@ Finally, this entire graph object is accessed by a larger \m{NodesCanvas} object
 \todo{More?}
 
 \subsubsection*{ Rendering }
-This model must be rendered to the screen so users can comprehend and edit the graph. 
+This nodes data model must be rendered to the screen so users can comprehend and edit the graph. 
 This visualization is achieved by using the \href{https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API}{HTML5 Canvas Api}. 
 The Canvas API is a raster-based drawing tool, offering an easy to use, high-level api to draw 2D shapes such as lines, squares, circles, and polygons. 
 The Nodes Canvas uses this API to draw polylines and polygons at runtime, to represent the cables and nodes respectively. 
 These basic shapes and their styles change dynamically, based on features like the length of a cable, how many input sockets a node requires, or whether or not a node is selected. 
 
-Like other HTML5 features, the main advantage is that this API is included and implemented within the browser itself. This gives us a fast, C++ based implementation without the need to include anything within the source code.
+Like other HTML5 features, the main advantage is that this API is included and implemented within the browser itself. This method is fast thanks to its C++ based implementation, and can be used without the need to include anything within the source code of the application.
 
-The disadvantage of the Canvas API is that it is based mainly on the CPU, Making it much less efficient than WebGL for instance, which is based on the GPU. 
+The disadvantage of the Canvas API is that it uses many CPU-based draw calls. it is primarily CPU based, Making it much less fast and efficient than WebGL for instance, which is based on the GPU. 
 This is quickly noticeable within interactive applications which need to redraw often, such as GeoFront. 
 The Canvas is refreshed and redrawn often, and does not distinguish between unchanged and changed features. 
 This comes down to a performance linear to the amount of nodes and cables drawn. For the current implementation and scale of geofront, this performance is acceptable. 

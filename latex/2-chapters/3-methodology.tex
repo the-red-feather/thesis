@@ -1,7 +1,7 @@
 % Define the scope, extend, and how of the study
 \chapter{Methodology}
 This chapter outlines the methodology of this study. 
-The method can be subdivided into four chapters:
+The method can be subdivided into four steps:
 
 \begin{enumerate}[(1)]
   \item Define the requirements a web-based geo-vpl needs to meet up to.
@@ -11,68 +11,30 @@ The method can be subdivided into four chapters:
 \end{enumerate}
 
 This process is cyclical.
-If the vpl scores significantly low on some criteria, the requirements or Functionality of the vpl might need to be altered, after which the applications require reassessment. 
+If the vpl scores significantly low on some criteria, the requirements or Functionality of the vpl might need to be altered, after which the application is reassessed. 
 
 
 \section{Requirements}
 
-\emph{Answer this sub research question: Which features are required for a 'usable' VPL intended for geo-computation?}
+\emph{Q: Which features are required for a 'usable' VPL intended for geo-computation?}
 
 
-The success of this study is measured by accessing to what extend GeoFront adheres to its requirements. 
+The success of this study is measured by assessing to what extend GeoFront adheres to its requirements. 
 These requirements are in turn based upon related works within VPL research, as well as web GIS studies. 
-This section outlines these requirements, and why they are used. 
+This section outlines these requirements, and explains why they are used. 
 Additionally, certain use-cases are envisioned as proxies of these environments, to test certain requirements in a realistic scenario. 
 
-
+...
 
 \subsection*{A: Base features}
 \begin{lstlisting}
 a list of standard VPL features & application features required as a base-line
-- inspect data
-- read / write data
+- read data from user-submitted files
+- write data to files, downloadable by the user  
+- debug / inspect data
+- 3d viewer 
 - ....
-- ....
 \end{lstlisting}
-
-% NOTE: these are the '1 or 2 major contributions, besides making a web-geo-vpl'
-\subsection*{B: Extendability}
-\begin{lstlisting}
-- ease of creating and using plugins 
-- ease of using existing geo-libraries 
-  - written in non-js languages
-\end{lstlisting}
-
-\subsection*{C: Application Publication}
-\begin{lstlisting}
-- ease of sharing apps as a visual program
-- ease of compiling and running the app headless
-\end{lstlisting}
-
-
-% \begin{lstlisting}
-
-% Methodology: define the scope, extend, and how of the study 
-
-% why these sub questions? How will the sub-questions be answered?
-% - Findable: THE WEB-APP INTRODUCTION / CLIENT-SIDE GEOPROCESSING
-% - Accessible: THE FIRST PART OF THE VPL INTRODUCTION -> VPL advantages
-% - Interoperable: THE WEBASSEMBLY INTRODUCTION / CONTAINERIZATION 
-% - Re-usable: THE SECOND PART OF THE VPL INTRODUCTION -> VPL's have shortcomings
-
-
-% \end{lstlisting}
-
-
-% As such, the study first describes the design and implementation of GeoFront, and then evaluates the tool to various geo-computation use cases.
-% The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
-% Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
-
-
-This second assessment will be a judgement based on four distinct use-cases for the environment:
-
-
-\section{ Evaluation }
 
 
 % The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
@@ -95,76 +57,95 @@ This second assessment will be a judgement based on four distinct use-cases for 
 
 
 
+% NOTE: these are the '1 or 2 major contributions, besides making a web-geo-vpl'
+\subsection*{B: Extendability}
+\begin{lstlisting}
+REASON: 
+  - VPL: Important take away from meta-analysis: extendability
+  - WEB: Geoweb: FAIR principles -> fair geoprocessing
 
-\section{use cases}
-We envision four distinct use-cases which might benefit from browser-based geoprocessing. 
-
-% Assessment
-
-1. Tryout (ACTUAL)
-   - A-la wapm WebAssembly Package Manager allows packages to be run from within the package-page itself. 
-  - Just meant to quickly try out some features. To access, and reproduce
-
-2. Educational (ACTUAL)
-   - interactive educational tool
-   - (What does a delaunay triangulation look like? how does it behave? What happens if you lower the radius of inverse distance weighting ? )
-
-3. Rapid-Prototyping (POSSIBLE)
-   - Web geoflow
-   - Future work: export flowchart to a process which can be run natively or server side.
-
-4. Publishing (POSSIBLE)
-   - Geotiff.io
-   - Web FME 
-   - Publish full web apps in and off themselves, making use of zero, one or multiple wasm-compiled libraries.  
-   - Future work: export to web-app (without flowchart)
+CRITERIA
+  - ease of creating and using plugins 
+  - ease of using existing geo-libraries 
+  - written in non-js languages
+\end{lstlisting}
 
 
 
+\subsection*{C: Application Publication} 
+\begin{lstlisting}
+
+REASON: 
+ - VPL: application life-cycle is important: how to publish & use applications created using vpl's
+ - WEB: cloud-native geoprocessing: requires server-side / cloud based geo-computation.  
+
+CRITERIA:
+ - ease of sharing apps as a visual program
+ - ease of compiling and running the app headless
+\end{lstlisting}
+
+
+% \begin{lstlisting}
+
+% Methodology: define the scope, extend, and how of the study 
+
+% why these sub questions? How will the sub-questions be answered?
+% - Findable: THE WEB-APP INTRODUCTION / CLIENT-SIDE GEOPROCESSING
+% - Accessible: THE FIRST PART OF THE VPL INTRODUCTION -> VPL advantages
+% - Interoperable: THE WEBASSEMBLY INTRODUCTION / CONTAINERIZATION 
+% - Re-usable: THE SECOND PART OF THE VPL INTRODUCTION -> VPL's have shortcomings
+
+
+% \end{lstlisting}
+
+
+% As such, the study first describes the design and implementation of GeoFront, and then evaluates the tool to various geo-computation use cases.
+% The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
+% Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
+
+\section{Evaluation}
+ 
 
 
 
-
-
-% IMMIGRANT FROM JUSTIFICATIONS CHAPTER. MUST BE MOVED 
-% OR MAKE THIS A FULL CHAPTER
 \section{Use Cases}
 
+\emph{Q: Usage: Who benefits from a web-geo-vpl? }
+
+A web-based visual programming language for geo-computation as described by this study does not exist yet. 
+This requires us to be clear about its intended use-case. 
+However, because of this same novelty, a singular, definitive use-case can not be given.
+To solve this problem, this study names four possible use-cases. 
+These cases are not mutually exclusive, but will be judged separately, based on specific criteria 
+During assessment, we will use these four profiles and accompanying criteria to judge how well the geo-web-vpl meets up this use-case.
+
+\subsection*{Case 1: Educational Sandbox}
+
+- This use-case can be fully realized within the current state of geofront
+- "Geoprocessing for kids"
+- "What is a delaunay triangulation?" 
+- "Let people play / experience / traverse a nef polyhedron"
+- Using something helps with understanding
+
+\subsubsection*{Criteria}
+...
+
+\subsection*{Case 2: Web Demo Environment}
 % # A: 1. Geofront as a geoprocessing / analysis demo tool.
 % - Frame Geofront as an expanded version of https://validator.cityjson.org/ this. 
 %   - [this](https://validator.cityjson.org/) (a wasm web demo) + jsfiddle 
 %   - Use rust, web, and c++ tools side by side, hand in hand
 
-% # A: 2. Geofront as an integrator
-
-% # A: 3. Geofront as a lightweight QGIS replacement
-% - The web is already used for geodata retrieval and visualization. If geodata processing & analysis is also possible, 
-% there is nothing preventing geofront for becoming a full GIS.
-
-% # A: 4. Geofront as a client-side, web based grasshopper replacement
-% Advantages over grasshopper: 
-% - No install 
-% - Could compile to client-side application.  
-
-
-\subsubsection{Geofront as Web Demo application}
-
-
-
-
-% _name the cityjson web tool_
-
-% _name web based demo environments, such as jupyter notebook_
-
-% _web demo's like these promote accessibility & science communication._
-
-% _name the importance of interactivity, make a case for visual programming_
-
-% _make the case for a new web based demo environments, to house applications such as the cityjson web tool_
-
-% <br><br>
-
-% ## Problems with publication
+- Reproducibility toolkit:
+- Workflow: 
+  - Load your own code from a CDN
+  - Build a demo setup around it
+  - load a custom graph from a public json file
+  - share a url pointing to this json (which contains the CDN address)
+- You can now share a rust / C++ program as a fully usable web demo,   
+  and analyze its performance using different datasets, test parameters, etc. 
+- interdisciplinary exchange of ideas
+- MISSING FEATURE: dependency list inside of the graph.json save file
 
 % Within the field of geo-informatics, we want to share our end-results. 
 % - Usually on git, but this has limitations:
@@ -181,6 +162,32 @@ We envision four distinct use-cases which might benefit from browser-based geopr
 %   - Great for communication: blogs with embedded applications.
 %   - Code sharing: you exactly know what to expect.
 
+\subsubsection*{Criteria}
+...
+
+\subsection*{Case 3: End User Geoprocessing Environment}
+- Lightweight FME, but open source \& on the web.
+- The tool in itself can be regarded as an end-user application:
+  - Load file, do something with the file, download resulting file
+  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
+- Flowcharts can be exchanged by means of url's.
+
+\subsubsection*{Criteria}
+...
+
+\subsection*{Case 4: Rapid-Prototyping Environment}
+- Web geoflow
+- To be used within a regular software development process.
+- Ravi's GeoFlow, but on the web
+- Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.
+- Future work: export flowchart to a process which can be run natively or server side.
+
+% - CURRENTLY MISSING FEATURE: compile to native cli tool (node.js script)
+% - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
+
+
+\subsubsection*{Criteria}
+...
 % <br><br>
 
 % ## Web Demo & Scripting environments
@@ -229,32 +236,6 @@ We envision four distinct use-cases which might benefit from browser-based geopr
 
 
 
-\subsubsection{Geofront as Educational Sandbox}
-- This use-case can be fully realized within the current state of geofront
-- "Geoprocessing for kids"
-- "What is a delaunay triangulation?" 
-- "Let people play / experience / traverse a nef polyhedron"
-- Using something helps with understanding
-
-\subsubsection{Geofront as Web Demo Environment}
-- Reproducibility toolkit:
-- Workflow: 
-  - Load your own code from a CDN
-  - Build a demo setup around it
-  - load a custom graph from a public json file
-  - share a url pointing to this json (which contains the CDN address)
-- You can now share a rust / C++ program as a fully usable web demo,   
-  and analyze its performance using different datasets, test parameters, etc. 
-- interdisciplinary exchange of ideas
-- MISSING FEATURE: dependency list inside of the graph.json save file
-
-\subsubsection{Geofront as End User Geoprocessing Environment}
-- Lightweight QGIS.
-- FME, but open source \& on the web.
-- The tool in itself can be regarded as an end-user application:
-  - Load file, do something with the file, download resulting file
-  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
-
 
 % Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process.  
 % (
@@ -297,9 +278,3 @@ We envision four distinct use-cases which might benefit from browser-based geopr
 % To concretize this question, this study covers the design and creation a use-case application titled "Geofront". 
 
 % By designing and creating this environment, the study seeks to gain valuable insights in the current state of client-side core web technologies / javascript std, and how well this facilitates various geoprocessing operations.
-
-\subsubsection{Geofront as **Rapid Prototyping Environment**} 
-  - Ravi's GeoFlow, but on the web
-    - Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.
-  - CURRENTLY MISSING FEATURE: compile to native cli tool (node.js script)
-  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
