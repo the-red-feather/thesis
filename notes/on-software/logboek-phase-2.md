@@ -28,13 +28,26 @@ by creating a web-geo-vpl, we wish to
 - combine these advantages, and to create certain synergies.
 - fill-in uncharted territory
 
+  -> is it at least a plausible option?
+  -> The numerous technical & architectural considerations of this method take precidence within this thesis. 
+-> A subsequenct study must be conducted to properly compare this new method against existing, comparable methods
+  -> 
+
+web -> meant for end-user GIS 
+vpl -> meant for end-user applications
+geo-vpl -> meant for insight into complex spatial operations / debugging
+------------------------------
+WEB + GEO + VPL -> meant for end-user GIS app creation, and gaining an educational / debug / understanding of GIS spatial operations.  
+
+
 synergies: 
 - challenge within vpls: distribution and life-cycle of apps created with the vpl. 
   - solution: web-based distribution
 - challenge within vpls: plugin creation & distribution
   - solution: utilize javascript CDN's, and typescript header files. 
 
-[ ] clear up methodology
+
+[ ] clean up methodology
 [ ] clearly state the requirements within methodology
 [ ] clearly state the use-case applications and experiments 
   [ ] which experiments
@@ -45,9 +58,11 @@ synergies:
 # fri
 [ ] make presentation
 [ ] write conclusion
+[ ] 
+[ ] 
 
 # late middag 
--> Stuur thesis op naar martin 
+-> Stuur thesis op naar martin!!! 
 -> Teams
 
 
