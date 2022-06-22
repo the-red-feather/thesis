@@ -4,36 +4,40 @@ This chapter outlines the methodology of this study.
 The method can be subdivided into four steps:
 
 \begin{enumerate}[(1)]
-  \item Define the requirements a web-based geo-vpl needs to meet up to.
-  \item Develop the vpl according to these requirements.
-  \item Create multiple demo GIS applications using this vpl.
-  \item Based on these demo's, access to which extend the requirements are met.  
+  \item Define the criteria a web-based geo-vpl needs to meet up to.
+  \item Develop the vpl according to these criteria.
+  \item Create multiple demo GIS applications using this vpl, each to test a criterium.
+  \item Based on these demo's, access to which extend the criteria are met.  
 \end{enumerate}
 
 This process is cyclical.
-If the vpl scores significantly low on some criteria, the requirements or Functionality of the vpl might need to be altered, after which the application is reassessed. 
+If the vpl scores significantly low on some criterium, the functionality of the vpl might need to be altered, after which the demo use-case applications must be  reassessed. 
 
 
-\section{Requirements}
+\section{Criteria / Features}
 
 \emph{Q: Which features are required for a 'usable' VPL intended for geo-computation?}
 
-
-The success of this study is measured by assessing to what extend GeoFront adheres to its requirements. 
+The success of this study is measured by assessing to what extend the geo-web-vpl adheres to its requirements. 
 These requirements are in turn based upon related works within VPL research, as well as web GIS studies. 
 This section outlines these requirements, and explains why they are used. 
-Additionally, certain use-cases are envisioned as proxies of these environments, to test certain requirements in a realistic scenario. 
+Additionally, certain use-cases are envisioned as proxies of these requirements, to test certain requirements in a realistic scenario. 
 
 ...
 
-\subsection*{A: Base features}
+\subsection*{Criterium A: Interactivity}
 \begin{lstlisting}
 a list of standard VPL features & application features required as a base-line
+- Users must be able to construct a script by visual means.
+- Dataflow Modelling
+- Dragging and dropping is a ui which
+
+(geo-vpl features:)
 - read data from user-submitted files
 - write data to files, downloadable by the user  
-- debug / inspect data
-- 3d viewer 
-- ....
+- debug / inspect data in a 3D viewer
+- draw geometry in a 3D viewer
+
 \end{lstlisting}
 
 
@@ -58,7 +62,7 @@ a list of standard VPL features & application features required as a base-line
 
 
 % NOTE: these are the '1 or 2 major contributions, besides making a web-geo-vpl'
-\subsection*{B: Extendability}
+\subsection*{Criterium B: Extendability}
 \begin{lstlisting}
 REASON: 
   - VPL: Important take away from meta-analysis: extendability
@@ -76,12 +80,15 @@ The extend in which existing, non-js, industry-standard libraries can be used
 
 
 
-\subsection*{C: Application Publication} 
+\subsection*{Criterium C: Publicability (the ability to publish / operationalize) } 
 \begin{lstlisting}
 
 REASON: 
  - VPL: application life-cycle is important: how to publish & use applications created using vpl's
- - WEB: cloud-native geoprocessing: requires server-side / cloud based geo-computation.  
+ - WEB: cloud-native geoprocessing: requires server-side / cloud based
+   geo-computation interoperability: 
+   meaning the scripts must be able to be used without any of the 
+   interactivity features.
 
 CRITERIA:
  - ease of sharing apps as a visual program
@@ -119,11 +126,18 @@ CRITERIA:
 A web-based visual programming language for geo-computation as described by this study does not exist yet. 
 This requires us to be clear about its intended use-case. 
 However, because of this same novelty, a singular, definitive use-case can not be given.
-To solve this problem, this study names four possible use-cases. 
+To solve this problem, this study names four possible use-cases.  
 These cases are not mutually exclusive, but will be judged separately, based on specific criteria 
 During assessment, we will use these four profiles and accompanying criteria to judge how well the geo-web-vpl meets up this use-case.
 
 \subsection*{Case 1: Educational Sandbox}
+
+"
+insight within these processes are vital for communication, voor 'overdracht' 
+the 'jonathan blow educational argument' 
+"
+
+
 
 - This use-case can be fully realized within the current state of geofront
 - "Geoprocessing for kids"
@@ -132,7 +146,8 @@ During assessment, we will use these four profiles and accompanying criteria to 
 - Using something helps with understanding
 
 \subsubsection*{Criteria}
-...
+Used primairly as a test for \textbf{Criterium A}.
+
 
 \subsection*{Case 2: Web Demo Environment}
 % # A: 1. Geofront as a geoprocessing / analysis demo tool.
@@ -167,7 +182,8 @@ During assessment, we will use these four profiles and accompanying criteria to 
 %   - Code sharing: you exactly know what to expect.
 
 \subsubsection*{Criteria}
-...
+Used primairly as a test for \textbf{Criterium B}.
+show that criteria B can be used to strip down the environment to purely that which needs to be demonstrated.
 
 \subsection*{Case 3: End User Geoprocessing Environment}
 - Lightweight FME, but open source \& on the web.
@@ -175,23 +191,41 @@ During assessment, we will use these four profiles and accompanying criteria to 
   - Load file, do something with the file, download resulting file
   - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
 - Flowcharts can be exchanged by means of url's.
+- Future work: export flowchart to a process which can be run natively or server side.
+  
 
 \subsubsection*{Criteria}
-...
+Used primairly as a test for \textbf{Criterium C}.
+
 
 \subsection*{Case 4: Rapid-Prototyping Environment}
+\begin{lstlisting}
 - Web geoflow
 - To be used within a regular software development process.
 - Ravi's GeoFlow, but on the web
 - Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.
-- Future work: export flowchart to a process which can be run natively or server side.
+
+
+  WHY: 
+  - all three the previous use-cases combined: demo, test, educate yourself
+    on your own algorithms, then operationalize the code to use it in a 
+    serious environment.  
+
+  
+\end{lstlisting}
+
+
+
+
 
 % - CURRENTLY MISSING FEATURE: compile to native cli tool (node.js script)
 % - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
 
 
 \subsubsection*{Criteria}
-...
+A total test of \textbf{Criteria A, B and C}.
+
+
 % <br><br>
 
 % ## Web Demo & Scripting environments

@@ -56,13 +56,25 @@ synergies:
 
 
 # fri
-[ ] make presentation
-[ ] write conclusion
-[ ] 
-[ ] 
+[x] make presentation
+[-] write conclusion 
 
 # late middag 
 -> Stuur thesis op naar martin!!! 
 -> Teams
 
 
+
+
+# WEEK 26
+
+# WED
+[x] Build a narrative for all 4 use-cases
+   [x] Sketch a full application for 3 of them
+[x] Email sybren
+
+[ ] Start building on the first application
+
+# THU
+
+# FRI
