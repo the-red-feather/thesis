@@ -43,7 +43,7 @@ WEB + GEO + VPL -> meant for end-user GIS app creation, and gaining an education
 synergies: 
 - challenge within vpls: distribution and life-cycle of apps created with the vpl. 
   - solution: web-based distribution
-- challenge within vpls: plugin creation & distribution
+- challenge within vpls: expansion through plugins 
   - solution: utilize javascript CDN's, and typescript header files. 
 
 
