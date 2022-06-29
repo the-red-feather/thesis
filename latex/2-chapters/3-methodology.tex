@@ -4,30 +4,35 @@ This chapter outlines the methodology of this study.
 The method can be subdivided into four steps:
 
 \begin{enumerate}[(1)]
-  \item Define the criteria a web-based geo-vpl needs to meet up to.
+  \item Define the major features a web-based geo-vpl needs to meet up to.
   \item Develop the vpl according to these criteria.
-  \item Create multiple demo GIS applications using this vpl, each to test a criterium.
+  \item Create multiple experiment-applications using this vpl, each to test a feature.
   \item Based on these demo's, access to which extend the criteria are met.  
 \end{enumerate}
 
 This process is cyclical.
 If the vpl scores significantly low on some criterium, the functionality of the vpl might need to be altered, after which the demo use-case applications must be  reassessed. 
 
-
-\section{Criteria / Features}
+\section{Features}
 
 \emph{Q: Which features are required for a 'usable' VPL intended for geo-computation?}
 
-The success of this study is measured by assessing to what extend the geo-web-vpl adheres to its requirements. 
-These requirements are in turn based upon related works within VPL research, as well as web GIS studies. 
+We define three major features.  
+
+These features are in turn based upon related works within VPL research, as well as web GIS studies. 
 This section outlines these requirements, and explains why they are used. 
 Additionally, certain use-cases are envisioned as proxies of these requirements, to test certain requirements in a realistic scenario. 
 
 ...
 
-<<<<<<< Updated upstream
-\subsection*{Criterium A: Interactivity}
+\subsection*{Feature A: Interactive}
+
+A VPL should be Interactive.
+
 \begin{lstlisting}
+
+
+
   Interactivity is the defining factor of the vpl. 
   a list of standard VPL features & application features required as a base-line:  
 - Users must be able to construct a script by visual means.
@@ -64,7 +69,10 @@ Additionally, certain use-cases are envisioned as proxies of these requirements,
 
 
 % NOTE: these are the '1 or 2 major contributions, besides making a web-geo-vpl'
-\subsection*{Criterium B: Extendability}
+\subsection*{Feature B: Extendable}
+
+A VPL should be Extendable. 
+
 \begin{lstlisting}
 REASON: 
   - VPL: Important take away from meta-analysis: extendability
@@ -82,7 +90,10 @@ The extend in which existing, non-js, industry-standard libraries can be used
 
 
 
-\subsection*{Criterium C: Publicability (the ability to publish / operationalize) } 
+\subsection*{Feature C: Publicability (the ability to publish / operationalize) } 
+
+A VPL should be Publicable. What is meant by that, is that scripts designed by using the VPL should be 
+
 \begin{lstlisting}
 
 REASON: 
@@ -117,13 +128,8 @@ CRITERIA:
 % Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
 
 \section{Evaluation}
- 
 
-
-
-\section{Use Cases}
-
-\emph{Q: Usage: Who benefits from a web-geo-vpl? }
+\emph{Q: Usage: Who benefits from a web-geo-vpl, and how?  }
 
 A web-based visual programming language for geo-computation as described by this study does not exist yet. 
 This requires us to be clear about its intended use-case. 
@@ -138,8 +144,6 @@ During assessment, we will use these four profiles and accompanying criteria to 
 insight within these processes are vital for communication, voor 'overdracht' 
 the 'jonathan blow educational argument' 
 "
-
-
 
 - This use-case can be fully realized within the current state of geofront
 - "Geoprocessing for kids"
