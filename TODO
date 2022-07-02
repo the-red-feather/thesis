@@ -1,12 +1,14 @@
 WRITING
 - [X] cleanup the latex project (references / acronyms are giving errors, packages used are not the same as P2). 
-- [] 
 
-
-- [X] refine the narrative,
+- [x] refine the narrative,
 - [ ] narrow the narrative,  
 - [ ] write / edit introduction
 - [ ] write / edit preliminary work
-- [ ] fun task: make a nice cover & backside
-  - install indesign again OR use a pure html approach
-- [ ] 
+- [x] fun task: make a nice cover & backside
+  - [x] ~~install indesign again~~ OR use a pure html approach
+- [ ] write methodology 
+- [ ] write implementation
+   - [x] first part
+   - [ ] second part
+
