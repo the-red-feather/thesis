@@ -46,7 +46,6 @@ Feature: bugfixes
 - Make it so huge jsons can not be inspected, for performance reasons.
 
 ## Use-cases
-
 So far, I have not been able to start on the actual use-cases, since these aspects of the environment prevented me from starting working on them.
 
 However, by developing this, I Think I can more clearly flush out the story.
@@ -54,8 +53,8 @@ The focus must be on the 'take your code and put it online for people to try out
 
 
 ## Writing:
-
 I have written sketches of three different use-case applications.  
+
 ```
 Notes during meeting...
 ```
@@ -177,5 +176,6 @@ WHY DOES SOMEONE WANT TO TAKE EXISTING LIBRARIES AND TURN THEM INTO A SHARABLE V
 
 HOW DOES THIS TRANSLATE INTO AN INTRODUCTION?
 -> ...
+-> "... Most software developed during and for research does not leave the machines of the researches involved ..."
 
 ```
