@@ -161,21 +161,21 @@ No:
 
 The problem is, is that 
 "Why I made geofront" and "What I can proof about geofront" are two different phenomena.
-I can proof that it can in fact be used to take existing libraries, and turn these libraries into an interactive, sharable vpl in a web browser with a 3d visualizer attached. 
+I can proof that it can in fact be used to take existing libraries, and turn these libraries into an interactive, sharable vpl in a web browser with a 3d visualizer attached. I can proof things about the performance hit this takes. 
 - The thesis shows the possibilities and limitations of the current methodology.
 
 
 WHY DOES SOMEONE WANT TO TAKE EXISTING LIBRARIES AND TURN THEM INTO A SHARABLE VPL FORMAT? 
-Academic: 
 - interactive, visual debugging 
   - explaining the behaviour of algorithms to yourself and others
   - why web: collaborative debugging
 - reproducability of results
   - lowering the delta between "it works for me" and "it works for someone else"
 - improving the 'online presence' of research.
-  - making research results sharable via a link
+  - making research results 'usable' via a link
   - interdisciplinary exchange of ideas
 
-
+HOW DOES THIS TRANSLATE INTO AN INTRODUCTION?
+-> ...
 
 ```
