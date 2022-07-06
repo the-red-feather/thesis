@@ -1,6 +1,6 @@
 \chapter{Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-This chapter explains the significant implementation details of the
-web-geo-vpl solution, developed as part of this study. 
+
+This chapter explains the significant implementation details of the web-geo-vpl solution.
 This solution is titled "GEOFRONT", as a concatenation of "geometry" and "front-end".
 
 \section{Software Architecture}
@@ -8,25 +8,22 @@ This solution is titled "GEOFRONT", as a concatenation of "geometry" and "front-
 GeoFront exists as a series of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
 The \m{app} repository holds the main GeoFront application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. 
 The \m{engine} repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
+The repositories prefixed with a \m{gfp} are Geofront Plugins. These plugins can be consumed by this 
 The \m{GeoFront} organization also contains several repositories which are loaded as plugins, such as the wasm-bindings for startin.
 
-\section{App Implementation}
+\section{App}
 The Geofront Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file, and this file practically represents the full application. 
 the repository used around 9.000 lines of code, divided into the following core categories and functionalities:
 \begin{enumerate}[I]
-  \item \m{shims}: Models to reason about code features throughout GeoFront
+  \item \m{shims}: Models to reason about 'programming language features', such as functions and variables.
   \item \m{nodes-canvas}: Contains the model, renderer and controller of the visual programming graph itself.  
   \item \m{modules}: holds all classes dedicated to dynamically loading plugins.
-  \item \m{std}: The standard library or default plugin, baked into GeoFront.   
+  \item \m{std}: The default plugin, baked into GeoFront.   
   \item \m{html}: a 'web framework' of reusable html components making up the UI visuals.
   \item \m{menu}: a menu system which takes care of the model \& logic of the UI.
   \item \m{viewer}: The 3D renderer accompanying GeoFront.
   \item \m{util}: Utility functions.   
 \end{enumerate}
-
-The app is mainly written in an Object Oriented style to encapsulate responsibilities, and to match data to corresponding functions. However, simple namespaces containing (pure) functions are used whenever possible. (Pure) functions offer a different type of encapsulation, in the sense that even non-pure functions discourage side effects. This ensures that complex actions can be reasoned about locally, such as the calculation of the graph. 
-% put more generic features of the codebase here.
-
 What follows is an explanation of the implementation of each core category.
 
 \subsection*{ I. Shims }
@@ -122,67 +119,61 @@ This is why a graph like this can also be called a dependency graph.
 If we wish to calculate the result of the graph, these dependencies must be taken into account. We must sort the functions the graph in such a way that all dependencies are known before a function is calculated.
 This problem is known as a topological sorting problem, and can be solved using Kahn's algorithm: 
 
-
-
 \begin{lstlisting}
 
-  Step -1: 
-    Make an `order` list
-  
-  Step 0: 
-    Make a `visisted` counter, initialized at 0
-  
-  Step 1: 
-    Make a `dependency` counter for each node, initialized at 0
-  
-  Step 2: 
-    Add 1 to this counter for each input edge of this node.
-  
-  Step 3: 
-    Fill a queue with all dependency 0 nodes. These are the starters.
-  
-  Step 4: 
-    Remove a node from the queue (Dequeue operation) and then:
-    add the nodes' id to the `order` list.
-    Increment `visisted` counter by 1.
-    Decrease `dependency` counter by 1 for all dependent nodes.
-    If one `dependency` counter reaches 0, 
-      add it to the queue.
-  
-  Step 5: 
-    Repeat Step 4 until the queue is empty.
-  
-  Step 6: 
-    If `visisted` counter is not equal to the number of nodes, 
-      then the graph was errorous, probably cyclical. 
-  
-  \end{lstlisting}
-  
-  
-  GeoFront uses a slightly altered version
-  
-  
-  
-  If these intermediate results are stored, the DAG also supports partial recalculations. The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recaluclate. 
-  
-   
-  
-  \subsection*{III. Plugin Loader} 
-  First, the plugin Loader category, living in the \m{modules} folder. This category 
-  
-  The name "Modules" is also used to refer to plugins within the context of geofront.
-  
-  Shims are automatically created
-  
-  \emph{explain the system to dynamically load plugins at runtime}
-  
-  The Dynamic nature of javascript makes it possible to load plugins at runtime. 
-  
+Step -1: 
+  Make an `order` list
+
+Step 0: 
+  Make a `visisted` counter, initialized at 0
+
+Step 1: 
+  Make a `dependency` counter for each node, initialized at 0
+
+Step 2: 
+  Add 1 to this counter for each input edge of this node.
+
+Step 3: 
+  Fill a queue with all dependency 0 nodes. These are the starters.
+
+Step 4: 
+  Remove a node from the queue (Dequeue operation) and then:
+  add the nodes' id to the `order` list.
+  Increment `visisted` counter by 1.
+  Decrease `dependency` counter by 1 for all dependent nodes.
+  If one `dependency` counter reaches 0, 
+    add it to the queue.
+
+Step 5: 
+  Repeat Step 4 until the queue is empty.
+
+Step 6: 
+  If `visisted` counter is not equal to the number of nodes, 
+    then the graph was errorous, probably cyclical. 
+
+\end{lstlisting}
+
+This algorithm has several important qualities. 
+
+...
+
+If all intermediate steps are cached, this same algorithm can also be used for performing partial recalculations of the graph. 
+The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recalculate. 
+
+
+
+\subsection*{Plugin Loader} 
+The name "Modules" is also used to refer to plugins within the context of geofront.
+
+Shims are automatically created
+
+\emph{explain the system to dynamically load plugins at runtime}
+
+The Dynamic nature of javascript makes it possible to load plugins at runtime. 
+
   
 
 \subsection{ Plugins }
-
-
 What does a plugin need in order to be acceptable
 one javascript file, one type definitions file, and one optional wasm file are accepted. 
 
@@ -199,15 +190,15 @@ c++ -> emscripten -> more manual work needed
 
 
 
-  \subsection{ III. Standard Library }
+\subsection{Standard Library }
 
-  The standard library is a 'baked in plugin'.
-  Points, lines, triangles, vectors, etc.
-  -> 
+The standard library is a 'baked in plugin'.
+Points, lines, triangles, vectors, etc.
+-> 
 
-  Shims are manually created
-  -> eventually, large parts of the STD can become a plugin
-  
+Shims are manually created
+-> eventually, large parts of the STD can become a plugin
+
 
 
 
@@ -259,7 +250,7 @@ fast, due to direct buffer types
 
 
 
-\section{Engine Implementation}
+\section{Engine}
 The \m{Engine} is a typescript library of about 20.000 lines of code. 
 
 It can be used both as a header-only library, or it can be compiled to a normal javascript module. 
@@ -283,21 +274,11 @@ Header only is an unusual
 \subsubsection{ CGAL }
 
 
-\section{Achieved Functionality}
+% \section{Achieved Functionality}
 
-[screenshots]
+% [screenshots]
 
-[show functionalities]
+% [show functionalities]
 
-% ## User Interaction
-% _(basically, write a tutorial)_
-
-\subsection{Limitations}
-- The current version of GeoFront does not have a way for users to configure their own
-
-- Should have used LIT
-
-- Some classes are either too responsible, they do too much, or they do to little
-  - NodesCanvas vs Graph vs Node, it gets weird often.
-
-- No usage of Web Workers
+% % ## User Interaction
+% % _(basically, write a tutorial)_

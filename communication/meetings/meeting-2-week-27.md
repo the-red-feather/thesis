@@ -4,20 +4,28 @@
 | present  | Giorgio, Ken, Stelios, Jos
 | Location | Cyberspace
 
-# Introduction
+# 0. Introduction
 
-
+<br><br>
 
 # 1. What has been done?
-
 *"I've been asked to focus on the 'use case' and experiments section, and to see how far I can come with the ideas that I had.
 I've interpreted this as writing out the applications intended for these particular use-cases, 
 writing down key criteria on which these applications should be judged, 
 and then attempting to make these applications a reality
 "*
 
-## Coding: 
 
+## Writing:
+I have written sketches of three different use-case applications. I have made some first attempt at what these applications should be judged upon. This is followed up by a hypothesized assessment.
+
+
+## Use-case applications
+So far, I have not been able to start on the actual use-case applications, since lots of aspects of the environment prevented me from starting working on them. I have managed to fix some of these aspects, more on this in de 'coding section'. I think I need another week to actually build one of the use-case applications. 
+
+However, by developing this, I Think I can more clearly flush out the story.
+
+## Coding: 
 Feature: Plugins can now 'actually' be shared:
 - The plugins used can now be edited using the plugin menu.
 - This configuration is saved within the savefile the graphs (json).
@@ -45,71 +53,129 @@ Feature: bugfixes
 - Make Sliders Save & Load correctly.
 - Make it so huge jsons can not be inspected, for performance reasons.
 
-## Use-cases
-So far, I have not been able to start on the actual use-cases, since these aspects of the environment prevented me from starting working on them.
-
-However, by developing this, I Think I can more clearly flush out the story.
-The focus must be on the 'take your code and put it online for people to try out' aspect, the delta between "I can run it on my machine" and "other people can utilize my software" 
-
-
-## Writing:
-I have written sketches of three different use-case applications.  
 
 ```
 Notes during meeting...
+
+
+You got sidetracked from that original mission 
+-> you have not put that much work
+-> 
+-> I would like to sick with the original reader
+-> The way you put the clear messages on the beginning is good
+
+
+you can say that there are technical limitation 
+-> but you cannot proof that those limitations are preventing geo-web-vpls;
+
+The way you are phrasing
+
+
+Core should be on your own work 
+
+
+SV: good start, 
+then you start digging your own hole: you are explaining the why, not needed.
+
+its not there. thats it
+
+
+not proof its the best: just advantages & disadvantages
+
+
+how can be build a web-based geo-vpl 
+propose one way of doing that
+explain pro's and con's
+
+GA: discussion, challenges, 
+
+
+Reserach: you can fail with benefits 
+- minimum story for social impact
+- tool on itself
+
+- don't promise too many things
+
+
+GA: 
+- Idea of structuring the thesis 
+  - its time to put meat into it
+
+
 ```
+
+<br><br>
 
 # 2. Where are we currently?
+- I like the current state of the plugins. I can now practically take any rust library, and quite easily convert it into a geofront-integrated plugin. 
 
 - The LAS support is nice. This is a good feature to build the 'experiments section around' to test and build demo's around.
-  - a while back we were discussing 'PGAL'. This is not pgal, but I can build a similar story around it 
-- What are some gaping issues? / things that are missing?
-- Whats my analysis
+
 
 ```
 Notes during meeting...
 ```
+
+<br><br>
 
 # 3. What needs to be done for next meeting? 
 
+- I think I want to finish *'A'* chapter of the thesis. As it stands, no chapter is truly done. 
+  - Implementation is the easiest chapter to finish for me. 
+
+- I would love nothing more than to continue development on interesting plugins now that the plugin integration is more or less done. I could try and incorporate: 
+  - cjval 
+  - DXF export
+  - LAS export
+  - The old CGAL demo
+  - Delaunay triangulation with isocurves
+  We are *JUST* at the point where we can try and truly use this environment. 
+  However, this takes time away from writing the thesis. What is wisdom? 
 
 ```
 Notes during meeting...
 ```
 
-
-
-
-
+<br><br>
 
 # Planning for coming weeks 
 - Do we have an actual P4 date pinned yet? should we request one in advance?? 
 - (for yourself) How much time do I still need to get P4 / P5 ready?  
 
-
+<br><br>
 
 # WVTTK
 
+- Martin's notes 
+  - "The thesis reads as a large Github readme"
+  - Focus on a better, more technical research question
+  - "Why has a script-kiddie not already made this?" 
+
+  - "How to design a web VPL for geodata given the massive nature of geodata?"
+  
+  - I interprete this as: go back to the 'Inhibitions of client-side geoprocessing'
+
+
+<br><br>
+
 # Next Meeting
+- summer holiday, gonna take a bit of a brake
 
+<div class="page"></div>
 
-
-
-
-
-# Other Notes 
+# Appendix: Notes 
 
 *"These are notes written during this period. It explains my thought process, but are not very coherent or well-edited."*
 
-```
+
 on the one hand: I dislike 'easy programming languages' to an extend
   - I'm a huge fan of the 'rust' idea: certain things must become more complicated again, to do them right and securely 
-  - The availability of programming has, as a negative side effect, given us a lot of 'bad code'. 
 
-- BUT: my thesis is about creating a visual programming language. How do I square these two things? 
+- BUT: my thesis is about creating an 'accessible' visual programming language. How do I square these two things? 
 
 - SO: This must not be about 'making programming / geoprocessing as a whole easier'
   - This must be about: ravi peter's argument: visual geo-programming just to test, visualize, and play with parameters.
+  - A vpl is just a useful interface in its own right
   - Geofront's addition: the ability to share this online.
   - MAYBE this makes programming easier for some people, but this will be a 'side product' of the other pursuits.
 
@@ -131,12 +197,12 @@ Yes:
    The environment can then be used to:
    - Visually debug, 
    - Play around with parameters, 
-   - Compare it,
-   - Run it using some personal data,
-   This combination of aspects makes this environment unique. 
+   - Compare it to similar libraries,
+   - And, unique to this environment, do this all online, in a 'published' format: the full configuration can be shared using a URL. 
+
+   The combination of these aspects makes this environment unique. 
 
 - These libraries can be used with a minimum of configurations. Any Rust library with `wasm-bindgen` annotations, in other words, any rust library intended for javascript consumption, automatically works in 'geofront', albeit with some edge-case exceptions. 
-
 
 
 No: 
@@ -166,7 +232,7 @@ I can proof that it can in fact be used to take existing libraries, and turn the
 
 WHY DOES SOMEONE WANT TO TAKE EXISTING LIBRARIES AND TURN THEM INTO A SHARABLE VPL FORMAT? 
 - interactive, visual debugging 
-  - explaining the behaviour of algorithms to yourself and others
+  - explaining the behavior of algorithms to yourself and others
   - why web: collaborative debugging
 - reproducability of results
   - lowering the delta between "it works for me" and "it works for someone else"
