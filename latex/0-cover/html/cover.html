@@ -31,6 +31,8 @@
 :root {
   --page-width: 8.3in;
   --page-height: 11.7in;
+  --tublue: #31b0db;
+  --primary: var(--tublue);
 }
 
 body {
@@ -41,7 +43,7 @@ body {
   line-height: 1.2;
   color: white;
   hyphens: none;
-  background-color: rgb(49, 176, 219)
+  background-color: var(--primary);
   /* use this to see the extent of the page. */
   /* do not use this for production */
   /* background-color: white */
@@ -53,7 +55,7 @@ body {
   padding: 0;
   width: var(--page-width);
   height: var(--page-height);
-  background-color: rgb(49, 176, 219)
+  background-color: var(--primary);
 }
 
 .text {
@@ -82,7 +84,7 @@ body {
         <h1 class="bolder">Jos Feenstra</h1>
         <h1 class="bolder">2022</h1>
       </div>
-      <img src="../../../assets/images/geofront-demo-cropped.png" style="width: var(--page-width);
+      <img src="../../../assets/images/geofront/geofront-demo-cropped.png" style="width: var(--page-width);
       height: 50%; position: absolute; bottom: 0px" alt="">
       <img src="./tudelft-white-better.png" style="width: calc(var(--page-width) * 0.3); position: absolute; bottom: 50px; left: 50px" alt="">
     </div>
