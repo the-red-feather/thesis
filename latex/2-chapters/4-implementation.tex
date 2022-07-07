@@ -1,11 +1,10 @@
 \chapter{Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-This chapter explains the significant implementation details of the web-geo-vpl solution.
+This chapter explains the significant implementation details of the geo-web-vpl solution.
 This solution is titled "GEOFRONT", as a concatenation of "geometry" and "front-end".
 
-\section{Software Architecture}
 % Explain main code setup \& components
-GeoFront exists as a series of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
+GeoFront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
 The \m{app} repository holds the main GeoFront application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. 
 The \m{engine} repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
 The repositories prefixed with a \m{gfp} are Geofront Plugins. These plugins can be consumed by this 
@@ -24,9 +23,9 @@ the repository used around 9.000 lines of code, divided into the following core 
   \item \m{viewer}: The 3D renderer accompanying GeoFront.
   \item \m{util}: Utility functions.   
 \end{enumerate}
-What follows is an explanation of the implementation of each core category.
+What follows is a clarification of some of these categories.
 
-\subsection*{ I. Shims }
+\subsection*{I. Shims}
 % TODO: UML / images of shims 
 
 Since GeoFront is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
@@ -39,7 +38,7 @@ The shim classes are designed using the Object Type design pattern (SOURCE: BIG 
 The name \m{shim} was taken from \m{wasm-bindgen}'s (SOURCE) naming convention for the auto-generated \m{JavaScript} and \m{TypeScript} files. These classes were first created as a representation of those shims.
 
 
-\subsection*{ II. Nodes Canvas }
+\subsection*{II. Nodes Canvas}
 From the Shims, the core of the visual programming language can be constructed. The \m{nodes-canvas} category contains all logic \& visualization of the visual programming graph, and writing this category was equivalent to developing the visual programming language itself. The other categories can be understood as auxiliary to this category.
 
 \subsubsection*{ Representation }
@@ -161,8 +160,9 @@ If all intermediate steps are cached, this same algorithm can also be used for p
 The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recalculate. 
 
 
+\subsection*{III. Modules} 
 
-\subsection*{Plugin Loader} 
+
 The name "Modules" is also used to refer to plugins within the context of geofront.
 
 Shims are automatically created
@@ -173,7 +173,7 @@ The Dynamic nature of javascript makes it possible to load plugins at runtime.
 
   
 
-\subsection{ Plugins }
+\subsection{Plugins}
 What does a plugin need in order to be acceptable
 one javascript file, one type definitions file, and one optional wasm file are accepted. 
 
@@ -190,7 +190,7 @@ c++ -> emscripten -> more manual work needed
 
 
 
-\subsection{Standard Library }
+\subsection{IV. STD / The Standard Library}
 
 The standard library is a 'baked in plugin'.
 Points, lines, triangles, vectors, etc.
@@ -202,7 +202,9 @@ Shims are manually created
 
 
 
-\subsection{Web Framework}
+\subsection{V. Menu}
+Web Framework
+
 Every web application requires some amount of html and css to make up its content, and GeoFront is no exception. 
 
 \m{html} 
@@ -218,17 +220,15 @@ The Graph is intended as a sequence of containerized processes,
 which whould match WebComponents containerized nature perfectly, just like it matches WebAssembly
 ..."
 
-
-
-\subsection{Menu}
 with these html components, the basics of the webapp can be created: menu's side menu, and the two main canvases: the graph canvas, and the viewer canvas 
-% _explain the file / edit / view / side menu setup_  (Because of Design rule 1. Model after normal application )
-GeoFront's use-case is, however, slightly different. We wish to use html as a type of IMGUI. 
+GeoFront's use-case is, however, slightly different. We wish to use html as a type of IMGUI. Several cur
 
 
 
 
-\subsection{Viewer}
+\subsection{VI. Viewer}
+Finally, the VPL requires some way of visualizing 3D geometry. 
+ 
 \emph{explain how the viewer was created from scratch}
 
 lightweight three.js clone
@@ -247,10 +247,10 @@ fast, due to direct buffer types
 % - extracting webassembly
 % - how to deal with objects? 
 
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Engine}
+[be brief about this]
+
 The \m{Engine} is a typescript library of about 20.000 lines of code. 
 
 It can be used both as a header-only library, or it can be compiled to a normal javascript module. 
@@ -263,9 +263,33 @@ Header only is an unusual
 - show webmap demo (maybe)
 - show 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Plugins}
+The last implementation feature which requires elaboration is the plugin system. 
+A full overview of this system can be given 
 
-\section{ Plugins }
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../} }
+%   \includegraphics[width=14cm]{method.png}
+%   \caption{Methodology schema}
+%   \label{fig:method}
+% \end{figure}
+
+
 % 2 types supported 
+
+
+% explain advantages & disadvantages of this system. 
+Using this system. 
+
+
+
+A system for 
+
+...
+
+Using this 
 
 
 \subsubsection{ Startin }
