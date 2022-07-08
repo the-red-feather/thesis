@@ -138,6 +138,24 @@ opportunities for parallel computation, it can lead to faster applications.
 % Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
 
 
+% The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
+% The main goal and feature of geofront is to take existing low level geo-computation libraries, and to make these interactively usable on the web. 
+% These libraries include a limited set of CGAL operations, complied from C++, and various geo-computation algorithms such as Startin, written in Rust. 
+% Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
+% In between products can quickly be inspected using a 3D viewer.
+
+% We test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility \& performance of said application. We also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
+
+% These features could all be implemented by normal means ( buttons, panels, sliders ) -->
+
+% CHOICE: do something in-between python bindings, and a full fletched end-user application. 
+% Ergo: Visual programming
+
+% For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load locally stored geodata. Parameters can be specified using various ui components, such as sliders. 
+% For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
+
+% Where ModelLab is build on top of recent improvements to the accessability of satellite imagery, GeoFront is build in anticipation to a similar development for point cloud datasets with the introduction of COPC.  The focus of Geofront is therefore on point cloud processing, and point-cloud based modelling, such as Digital Terrain Models (DTM). 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \subsection*{Challenges}

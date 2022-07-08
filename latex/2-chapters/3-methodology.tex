@@ -1,6 +1,6 @@
 % Define the scope, extend, and how of the study
 \chapter{Methodology}
-\label{sec:methodology}
+\label{chap:methodology}
 % \begin{figure}
 %   \centering
 %   \graphicspath{ {../schemas/methodology/} }
@@ -13,14 +13,74 @@
 
 % The study's iterative nature means that analysis and benchmarks will not be postponed until the end of the study, and will instead be an intricate part of each step. This makes sure obstacles are discovered early, and the trajectory of the study can be adjusted dynamically.  
 
-% Every phase contains a number of development \& analysis steps. The reasoning behind these steps are covered by the following sub-chapters.  
+% Every phase contains a number of development \& analysis steps. The reasoning behind these steps are covered by the following sub-chapters.
 
+\subsubsection*{Overall Methodology}
 
+\begin{note}
+Choices: 
+- practical > theoretical : Literature study indicates enough theoretical soundness, but lots of practical questions remaining. We wish to  immediate pick up where these studies have left, and therefore we choose the direct, practical study of designing and implementing a prototype application. 
+- wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete in a sense. What we do now is cover the full pipeline of using a geo-computation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
+- iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
 
+Structure: 
+- three sub-studies : sq1 tm 3
+- the assessment : sq4
+
+NOTE: I got the advice to explain less, to 'dig my own grave' less. I won't argue about these things, and just state them. But I do have my reasons
+
+...
+% Theorie: is er maar je geloofde het niet
+% praktische implementatie om de Throerie weerleggen
+The prior works on browser-based geoprocessing indicate that a theoretical framework for browser-based geoprocessing vpl is in place. 
+But, and this is especially evident in the studies regarding client-side geoprocessing, the practical implementation of these theories
+
+This necessitates a practical approach in response. 
+
+, the advantages of a vpl, 
+...
+\end{note}
+
+The methodology of this study can be characterized as practical as opposed to theoretical, wholistic instead of specific, and iterative compared to linear.
+ 
+The methodology is subdivided into three sub-studies, based on the first three sub-research questions: \refsec{sec:method-one}, \refsec{sec:method-two}, and \refsec{sec:method-three}.  
+These three studies are conducted to find answers to the major 'hows' of the geo-web-vpl. 
+The literature was unable to provide answers with sufficient coverage, but did provide a strong starting point. 
+
+While this may give the impression that these are separate, isolated issues, the design of one of these  questions was often presented by results from the two other components. 
+The separation is made for narrative clarity, at the cost of accuracy. 
+
+To properly examine the effectiveness of these 'hows' combined, experiments are conducted using the full extend of the solution. This is covered by the \refsec{sec:method-four} and final sub-research question.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Phase 1: Compile}
+\section{Problem Definition?}
+% Inhibitors: 
+
+Should I re-iterate the exact problem we are trying to solve? 
+
+VPL
+- Closed-source nature 
+- Difficulty to integrate with 'regular' software
+
+Browser-based geoprocessing
+- Nature of geodata processing: 
+  - Big data 
+  - lots of IO operations (writing files away)
+
+- Javascript:
+  - different library ecosystem 
+  - hard to utilize for geodata which requires a strongly typed environment 
+
+
+
+\section{Sub Study 1: Web geo-computation libraries}
+\label{sec:method-one}
+
+\begin{note}
+  Note that this is different from sub study 3.
+\end{note}
+\mySubRQOne
 
 % not as easy 
 % The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. These aspects might be solved by using or writing wrapper libraries and using file system workarounds, as proposed by \cite{jangda_not_2019}. 
@@ -52,8 +112,17 @@ CGAL \& GDAL will be used as examples of "C++ geoprocessing libraries" for this 
 While CGAL \& GDAL will be this phase's primary subject, the answer of this sub-question aims to be applicable to all geoprocessing libraries. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\subsection{Phase 2: Interface}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Sub Study 2: Application \& Interface}
+\label{sec:method-two}
+
+\mySubRQTwo
+
+% We ask ourselves if the current state of client-side web technologies are capable of facilitating multiple steps of geodata conversion, and what such an application would look like. 
 
 Phase 2 is dedicated to overcoming Obstacle 2, assisted by the related works on the geoweb. Phase 2 seeks to not only make geoprocessing runnable, but actually usable, and usable to a wide audience of "data-users". This quest is posed using the research question: \textbf{How to design and create a client-side geoprocessing environment for data-users?}. 
 
@@ -73,8 +142,28 @@ Just like the entire study, the development trajectory during phase 2 will be do
 The first step of the phase will consist of creating the basics of the \ac{gui} itself. a basic \ac{vpl} will be created which can only process boolean statements. The second step adds types, geometry, and the visualization of this geometry in 3D, as well as textures / images in 2d. The third step will add geospatial data support, like Web Feature Services, Web Map Services, and coordinate reference systems.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Phase 3: Distribute}
+\section{Sub Study 3: Direct Utilization}
+\label{sec:method-three}
+\mySubRQThree
+
+
+% \section{Proposed Model}
+
+% (a diagram showing relationships between vpl, libraries, javascript, webassembly)
+
+% - javascript-subset library wrappers 
+%   - 
+%   -
+%   - magic methods
+
+% - different javascript-subset for vpl runtimes 
+
+
 
 % performant and sharable geoprocessing
 % portability
@@ -89,12 +178,19 @@ This will result in new benchmarks, and new analyses, now including factors like
 
 % One of the hypothetical obstacles during this phase is that an entire geoprocessing library will have to be downloaded, even if the user desires only a single function. A solution to this problem is to increase granularity, and split up the C++ libraries to several smaller ones, maybe even one wasm binary per function or class. This would be accompanied by WebAssemblies ability to accept \ac{wasm} dependencies at the time it is loaded into memory. 
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\subsection{Phase 4: Utilize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Assessment}
+\label{sec:method-four}
+\mySubRQFour
+
+\begin{note}
+  - todo: turn features around into assessment criteria
+\end{note}
 
 Finally, When the VPL contains all tools necessary to be used to properly process geodata, a final assessment can be made by using the environment to serve as an application. this assessment will try to overcome Obstacle 3 by posing the question: \textbf{What are the advantages and disadvantages of GIS applications created using a client-side geoprocessing environment powered by WebAssembly?}. This question requires a native but comparable GIS application to test this against.  
 
@@ -102,56 +198,9 @@ We hypothesize that applications equipped with client-side geoprocessing open up
 These aspects of the study can be discussed during this phase. 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Nature}
-% Theorie: is er maar je geloofde het niet
-% praktische implementatie om de Throerie weerleggen
-The prior works on browser-based geoprocessing indicate that a theoretical framework for browser-based geoprocessing vpl is in place. 
-But, and this is especially evident in the studies regarding client-side geoprocessing, the practical implementation of these theories
-
-This necessitates a practical approach in response. 
-
-, the advantages of a vpl, 
-
-\section{Inhibitors of a geo-web-vpl}
-% Inhibitors: 
-
-VPL
-- Closed-source nature 
-- Difficulty to integrate with 'regular' software
-
-Browser-based geoprocessing
-- Nature of geodata processing: 
-  - Big data 
-  - lots of IO operations (writing files away)
-
-- Javascript:
-  - different library ecosystem 
-  - hard to utilize for geodata which requires a strongly typed environment 
-
-\section{Proposed Model}
-
-(a diagram showing relationships between vpl, libraries, javascript, webassembly)
-
-- javascript-subset library wrappers 
-  - 
-  -
-  - magic methods
-
-- different javascript-subset for vpl runtimes 
-
-
-
-
-
-\section{Features}
+\section*{Features}
 
 \emph{Q: Which features are required for a 'usable' VPL intended for geo-computation?}
 
@@ -186,23 +235,6 @@ A VPL should be Interactive.
 \end{lstlisting}
 
 
-% The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
-% The main goal and feature of geofront is to take existing low level geo-computation libraries, and to make these interactively usable on the web. 
-% These libraries include a limited set of CGAL operations, complied from C++, and various geo-computation algorithms such as Startin, written in Rust. 
-% Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
-% In between products can quickly be inspected using a 3D viewer.
-
-% We test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility \& performance of said application. We also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
-
-% These features could all be implemented by normal means ( buttons, panels, sliders ) -->
-
-% CHOICE: do something in-between python bindings, and a full fletched end-user application. 
-% Ergo: Visual programming
-
-% For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load locally stored geodata. Parameters can be specified using various ui components, such as sliders. 
-% For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
-
-% Where ModelLab is build on top of recent improvements to the accessability of satellite imagery, GeoFront is build in anticipation to a similar development for point cloud datasets with the introduction of COPC.  The focus of Geofront is therefore on point cloud processing, and point-cloud based modelling, such as Digital Terrain Models (DTM). 
 
 
 
@@ -247,23 +279,6 @@ CRITERIA:
 \end{lstlisting}
 
 
-% \begin{lstlisting}
-
-% Methodology: define the scope, extend, and how of the study 
-
-% why these sub questions? How will the sub-questions be answered?
-% - Findable: THE WEB-APP INTRODUCTION / CLIENT-SIDE GEOPROCESSING
-% - Accessible: THE FIRST PART OF THE VPL INTRODUCTION -> VPL advantages
-% - Interoperable: THE WEBASSEMBLY INTRODUCTION / CONTAINERIZATION 
-% - Re-usable: THE SECOND PART OF THE VPL INTRODUCTION -> VPL's have shortcomings
-
-
-% \end{lstlisting}
-
-
-% As such, the study first describes the design and implementation of GeoFront, and then evaluates the tool to various geo-computation use cases.
-% The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
-% Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
 
 \section{Evaluation}
 
@@ -412,51 +427,3 @@ A total test of \textbf{Criteria A, B and C}.
 
 
 % we want to examine and edit the geodata flow, see for example, where these errors occur, try to get to that data, see if we can make hotfixes, etc. etc. 
-
-
-
-
-
-
-
-% Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process.  
-% (
-% If one wishes to retrieve geodata, web portals are used to discover the required datasets. After this, the OGC Web Services are often utilized to download and truly access this geodata. 
-
-% This geodata is then processed locally, using QGIS, ArcGIS, command line tools, or any other 
-
-% and at the end Tools like Leaflet and Celcium have been created to visualize the earth in both 2D and 3D , and tools like d3.js can produce interactive graphs to supplement these web pages. 
-
-% There is, however, more to the web than just visualization. Due to 
-% )
-% This thesis asks the question if the web could do more than just visualization. 
-
-% By creating the use-case application GeoFront, we ask the question if a modern web browser, and the current state of the client-side web technologies are capable of facilitating  
-
-
-% ## Motivation
-% Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process: Retrieval and visualization. 
-% The processing stages in-between are almost always performed on the desktop using environments like QGIS or ArcGIS, or by writing and using CLI tools. 
-
-% <!-- At the same time, a need arrises -->
-
-% ## This Study
-
-% This thesis explores if these in-between processing steps could also be performed within a web application.  
-% This way, geodata processing applications could profit from the ease of accessibility and maintainability granted by the web as a platform.  
-
-% <!-- More Why's: 
-% - making the geoweb more feature-rich
-% - allowing quick demonstration (wapm)
-% - allowing easy access (overleaf)
-
-
-%  -->
-
-% (similar to how overleaf is more accessible than desktop latex installation & usage)
-
-% We ask ourselves if the current state of client-side web technologies are capable of facilitating multiple steps of geodata conversion, and what such an application would look like. 
-
-% To concretize this question, this study covers the design and creation a use-case application titled "Geofront". 
-
-% By designing and creating this environment, the study seeks to gain valuable insights in the current state of client-side core web technologies / javascript std, and how well this facilitates various geoprocessing operations.

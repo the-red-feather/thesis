@@ -1,11 +1,10 @@
 \chapter{Introduction}
 
-\begin{lstlisting}
+\begin{note}
 Notes: 
-- I still use browser-based geoprocessing and the geo-web-vpl 
-quite interchangably in the introduction. Both need to be linked up better.
+- I still use browser-based geoprocessing and the geo-web-vpl quite interchangeably in the introduction. Both need to be linked up better.
 
-\end{lstlisting}
+\end{note}
 
 % 1) General story on geo-information. Go from data to application
 % - geo-information applications are extremely valuable
@@ -78,17 +77,26 @@ This is why \ac{geo-computation} within a web application, also known as \ac{bbg
 Interactive geospatial data manipulation and online geospatial data processing techniques have been described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. 
 But this also raises the question: \textit{Why is geo-computation within a web application as of today still almost nowhere to be found?} 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Note: this are all fragments and motivations. I'm leaving them here, don't
+% be bothered by them, keep things concise, but if we need extra baggage, we 
+% can get it from here. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % This design of geofront contains several challenges. Browser-based geo-computation (BBGC) might not be as performant as back-end / native geo-computation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, even with the usage of WebAssembly \cite{jangda_not_2019}. 
 % Additionally, since current visual programming environments all fall short on at least one of the above features, the visual programming environment will have to be created from scratch.
-
 
 % The cloud-native geospatial movement represents a significant opportunity and challenge to these VPL interfaces. The \textbf{opportunity} lies in the fact that a VPL interface is highly suitable as a 'configurator' or 'IDE' for cloud-computation. The promise of interactive, low-code automation matches the desire of most cloud native geo-computation providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts (SOURCE: Modellab, SOURCE: Chris Holmes). A good example of this is the ModelLab VPL, found in Raster Foundry (SOURCE). This is also evident in the fact that existing VPL's like FME and Grasshopper have added proprietary cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
 
 % <!-- HOWEVERRRRRRRRR -->
 % However, the major \textbf{challenge} is that as of right now and despite these developments, popular VPL's fall short on a number of priorities and features required for cloud-native geospatial computation. 
 % These shortcomings include their closed and proprietary nature, their distance from regular programming features and conventions (git version control, continuous integration), and the non-containerized, one to one relationship between the IDE application \& the cloud hosting platform. All of this hinders their suitability as general, cloud-computation configurers. 
-
-% FOCUS: CONTAINERIZATION & INTEROPERABILITY
 
 % Sub component: FAIR: 
 % - FINDABLE:      Hard to find the right tools for the job
@@ -107,6 +115,41 @@ But this also raises the question: \textit{Why is geo-computation within a web a
 % - Expensive, proprietary environments 
 % - Require specific plugins in order to utilize open, industry standard geo-computation libraries
 % - Not FAIR geo-computation
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% This thesis explores if these in-between processing steps could also be performed within a web application.  
+
+% This way, geodata processing applications could profit from the ease of accessibility and maintainability granted by the web as a platform.  
+
+% <!-- More Why of web GIS and web-geo-computation: 
+% - making the geoweb more feature-rich
+% - allowing quick demonstration (wapm)
+% - allowing easy access (overleaf)
+
+% ## Motivation
+% Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process: Retrieval and visualization. 
+% The processing stages in-between are almost always performed on the desktop using environments like QGIS or ArcGIS, or by writing and using CLI tools. 
+
+% <!-- At the same time, a need arrises -->
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process.  
+% (
+% If one wishes to retrieve geodata, web portals are used to discover the required datasets. After this, the OGC Web Services are often utilized to download and truly access this geodata. 
+
+% This geodata is then processed locally, using QGIS, ArcGIS, command line tools, or any other 
+
+% and at the end Tools like Leaflet and Celcium have been created to visualize the earth in both 2D and 3D , and tools like d3.js can produce interactive graphs to supplement these web pages. 
+
+% There is, however, more to the web than just visualization. Due to 
+% )
+% This thesis asks the question if the web could do more than just visualization. 
+
+% By creating the use-case application GeoFront, we ask the question if a modern web browser, and the current state of the client-side web technologies are capable of facilitating  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \section{Problem Statement}
@@ -210,9 +253,9 @@ This includes modern HTML features such as WebGL, the Canvas API, Web Workers, W
 
 \section{Reading Guide}
 
-\begin{lstlisting}
+\begin{note}
   This is still a sketch, this must be tweaked as the the thesis evolves.
-\end{lstlisting}
+\end{note}
 
 \begin{itemize}[\m{->}]
 

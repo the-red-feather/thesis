@@ -1,26 +1,30 @@
 \chapter{Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\label{chap:implementation}
 
 This chapter explains the significant implementation details of the geo-web-vpl solution.
-This solution is titled "GEOFRONT", as a concatenation of "geometry" and "front-end".
+This solution is titled \geofront{}, as a concatenation of "geometry" and "frontend".
 
 % Explain main code setup \& components
-GeoFront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
-The \m{app} repository holds the main GeoFront application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. 
+\geofront{} exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
+The \m{app} repository holds the main \geofront{} application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. The application is hosted at (SOURCE).
 The \m{engine} repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
-The repositories prefixed with a \m{gfp} are Geofront Plugins. These plugins can be consumed by this 
-The \m{GeoFront} organization also contains several repositories which are loaded as plugins, such as the wasm-bindings for startin.
+The repositories prefixed with a \m{gfp} are \geofront{} Plugins. These plugins are consumed by the main \m{app}.
 
-\section{App}
-The Geofront Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file, and this file practically represents the full application. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The App}
+The \geofront{} Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file, and this file practically represents the full application. 
 the repository used around 9.000 lines of code, divided into the following core categories and functionalities:
 \begin{enumerate}[I]
   \item \m{shims}: Models to reason about 'programming language features', such as functions and variables.
   \item \m{nodes-canvas}: Contains the model, renderer and controller of the visual programming graph itself.  
   \item \m{modules}: holds all classes dedicated to dynamically loading plugins.
-  \item \m{std}: The default plugin, baked into GeoFront.   
+  \item \m{std}: The default plugin, baked into \geofront{}.   
   \item \m{html}: a 'web framework' of reusable html components making up the UI visuals.
   \item \m{menu}: a menu system which takes care of the model \& logic of the UI.
-  \item \m{viewer}: The 3D renderer accompanying GeoFront.
+  \item \m{viewer}: The 3D renderer accompanying \geofront{}.
   \item \m{util}: Utility functions.   
 \end{enumerate}
 What follows is a clarification of some of these categories.
@@ -28,12 +32,12 @@ What follows is a clarification of some of these categories.
 \subsection*{I. Shims}
 % TODO: UML / images of shims 
 
-Since GeoFront is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
+Since \geofront{} is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
 This is why the \m{FunctionShim}, \m{TypeShim}, \m{VariableShim} and \m{ModuleShim} classes exist, respectively. 
 For example, the \m{FunctionShim} offers the name, description, number of inputs, and number of outputs of a function, as well as ways to invoke the function it represents.
 These inputs and outputs have corresponding \m{TypeShims}, which are formal representations of TypeScript / JavaScript-based types. TypeShims can be structured recursively to define a \m{List of List of strings} for example. The \m{TypeShim} is also used to reason about type checking and type compatibility.
 
-the shims are a set of classes used in almost all other categories within GeoFront. They are located within the \m{modules} category, for this is where most shims are instantiated.
+the shims are a set of classes used in almost all other categories within \geofront{}. They are located within the \m{modules} category, for this is where most shims are instantiated.
 The shim classes are designed using the Object Type design pattern (SOURCE: BIG FOUR). In short, this means that one function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared with any object wishing to use the function. 
 The name \m{shim} was taken from \m{wasm-bindgen}'s (SOURCE) naming convention for the auto-generated \m{JavaScript} and \m{TypeScript} files. These classes were first created as a representation of those shims.
 
@@ -46,7 +50,7 @@ From the Shims, the core of the visual programming language can be constructed. 
 % Picture of a single node
 % Picture of a single cable
 
-The architecture of this GeoFront's visual programming language is first and foremost a Model View Controller setup. The Model 
+The architecture of this \geofront{}s visual programming language is first and foremost a Model View Controller setup. The Model 
 is at its core a Directed Acyclic Graph (DAG). 
 This DAG is an object-oriented, graph-like representation of the data flow of a regular programming language. 
 
@@ -57,7 +61,7 @@ As such, a Node knows about the function they invoke through a \m{FunctionShim} 
 The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a \m{Cable} (SEE PICTURE).  
 As the name implies, these Nodes form the nodes of the DAG. However, they differ from a pure DAG implementation, in that they also provide pointers back in the reverse direction, forming essentially a normal graph, or a doubly linked list. 
 
-The Cables are GeoFronts analogy to normal "Variables". Cables know about the type they represent through a \m{TypeShim}. A Cable must have exactly one origin, which is an output socket of a Nodes, and must have one or more destinations, which are the input sockets of other Nodes (SEE PICTURE).
+The Cables are \geofront{}s analogy to normal "Variables". Cables know about the type they represent through a \m{TypeShim}. A Cable must have exactly one origin, which is an output socket of a Nodes, and must have one or more destinations, which are the input sockets of other Nodes (SEE PICTURE).
 
 From these ingredients, a graph can be constructed. 
 To reason about this graph as a whole, the \m{Graph} class was introduced. 
@@ -80,9 +84,9 @@ These basic shapes and their styles change dynamically, based on features like t
 Like other HTML5 features, the main advantage is that this API is included and implemented within the browser itself. This method is fast thanks to its C++ based implementation, and can be used without the need to include anything within the source code of the application.
 
 The disadvantage of the Canvas API is that it uses many CPU-based draw calls. it is primarily CPU based, Making it much less fast and efficient than WebGL for instance, which is based on the GPU. 
-This is quickly noticeable within interactive applications which need to redraw often, such as GeoFront. 
+This is quickly noticeable within interactive applications which need to redraw often, such as \geofront. 
 The Canvas is refreshed and redrawn often, and does not distinguish between unchanged and changed features. 
-This comes down to a performance linear to the amount of nodes and cables drawn. For the current implementation and scale of geofront, this performance is acceptable. 
+This comes down to a performance linear to the amount of nodes and cables drawn. For the current implementation and scale of \geofront, this performance is acceptable. 
 
 \subsubsection*{ Style }
 Special care has been put into the stylization of the graph.
@@ -93,13 +97,13 @@ For example, a node with three inputs will always occupy three grid cells in hei
 This grid is applied for much of the same reason as terminals \& source code are displayed using monospaced fonts. 
 Consistent sizing encourages organization and clarity, for this makes it easy for components to line up, and predict how much space something requires.  
 Cables also adhere to the grid. They alter their shape in such a way to remain as octagonal as possible, as an attempt to make connections between nodes more readable.
-This takes some additional inspiration from subway maps, as well as the design of computer chips. This makes for a good fit, since both these spatial configurations and the Geofront Graph are focussed on clear connectivity.
+This takes some additional inspiration from subway maps, as well as the design of computer chips. This makes for a good fit, since both these spatial configurations and the \geofront Graph are focussed on clear connectivity.
 
 \subsubsection{ Interaction }
 User Interaction is made possible through the \href{https://developer.mozilla.org/en-US/docs/web/api/event}{HTML DOM Events}. 
 This api provides ways to listen to many events, including keyboard and mouse events. 
 When the mouse is moved, its screen-space position is transformed to a grid position, which allows the user to select one or multiple objects. 
-GeoFront's user interface strives to match features of regular desktop applications. As such, the Geofront Graph supports features like undoing, redoing, duplication, copying, and pasting. These functionalities can be used with the expected keyboard combinations (Ctrl + C / Ctrl + V).
+\geofront{}'s user interface strives to match features of regular desktop applications. As such, the \geofront{} Graph supports features like undoing, redoing, duplication, copying, and pasting. These functionalities can be used with the expected keyboard combinations (Ctrl + C / Ctrl + V).
 
 \subsubsection*{ Graph Manipulation }
 In order to support these features, especially undo / redo support, we are required to explicitly track the history of the graph. 
@@ -109,11 +113,11 @@ Each Action can 'do' and 'undo' a specific action, and the data needed to make t
 By then introducing a bridge class we decouple the graph and controller, only allowing interaction with the graph by giving this bridge Action objects. The Bridge maintains a stack of undo and redo actions, which represents this history.  
 
 Additionally, editing any graph data structure is never trivial. 
-Special care must be taken to ensure the validity of a graph before and after changes, and is especially the case with GeoFronts' Doubly linked graph. 
+Special care must be taken to ensure the validity of a graph before and after changes, and is especially the case with \geofront{}s Doubly linked graph. 
 To the best of the authors knowledge, these is no "trick" or "pattern" to ease this. Instead, the Graph and Graph Decoupler classes both have to be designed in such a way 
 
 \subsubsection*{Calculation}
-When regarding the geofront graph, or any other programming language, we see many functions requiring variables which are the result of other functions. 
+When regarding the \geofront{}s graph, or any other programming language, we see many functions requiring variables which are the result of other functions. 
 This is why a graph like this can also be called a dependency graph. 
 If we wish to calculate the result of the graph, these dependencies must be taken into account. We must sort the functions the graph in such a way that all dependencies are known before a function is calculated.
 This problem is known as a topological sorting problem, and can be solved using Kahn's algorithm: 
@@ -163,7 +167,7 @@ The starting positions of the algorithm then simply become the altered parameter
 \subsection*{III. Modules} 
 
 
-The name "Modules" is also used to refer to plugins within the context of geofront.
+The name "Modules" is also used to refer to plugins within the context of \geofront{}.
 
 Shims are automatically created
 
@@ -205,7 +209,7 @@ Shims are manually created
 \subsection{V. Menu}
 Web Framework
 
-Every web application requires some amount of html and css to make up its content, and GeoFront is no exception. 
+Every web application requires some amount of html and css to make up its content, and \geofront{} is no exception. 
 
 \m{html} 
 
@@ -221,7 +225,7 @@ which whould match WebComponents containerized nature perfectly, just like it ma
 ..."
 
 with these html components, the basics of the webapp can be created: menu's side menu, and the two main canvases: the graph canvas, and the viewer canvas 
-GeoFront's use-case is, however, slightly different. We wish to use html as a type of IMGUI. Several cur
+\geofront{}s use-case is, however, slightly different. We wish to use html as a type of IMGUI. Several cur
 
 
 
@@ -237,8 +241,6 @@ supports basic things
 
 fast, due to direct buffer types
 
-
-
 % ## WebAssembly Plugins
 
 % _explain how to use webassembly_
@@ -248,7 +250,7 @@ fast, due to direct buffer types
 % - how to deal with objects? 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Engine}
+\subsection{Engine}
 [be brief about this]
 
 The \m{Engine} is a typescript library of about 20.000 lines of code. 
@@ -256,7 +258,7 @@ The \m{Engine} is a typescript library of about 20.000 lines of code.
 It can be used both as a header-only library, or it can be compiled to a normal javascript module. 
 Header only is an unusual 
 
-- Various functionalities, not only created for GeoFront.
+- Various functionalities, not only created for \geofront{}.
 - A custom engine was used, so it could be specialized to the needs of geoprocessing. 
 - Three.js inspired, but very strip-down
 
@@ -264,8 +266,47 @@ Header only is an unusual
 - show 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Plugins}
-The last implementation feature which requires elaboration is the plugin system. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Exporting a geoprocessing library to the web}
+
+\begin{note}
+Explain the process of taking a C++ / Rust library and putting it onto a web-browser.
+Explain differences between C++ and Rust 
+Explain problems encountered with C++ & emscripten
+Explain niceties encountered with Rust & wasm-bindgen
+\end{note}
+
+
+\subsection{C++ \& CGAL}
+
+\subsubsection{Limitations}
+
+\begin{note}
+- sub-dependencies: boost, ..., ...
+\end{note}
+  
+\subsection{Rust \& startin}
+
+\begin{note}
+Startin is by no means a replacement of CGAL, 
+but it does use robust geometric predicates, and a high precision kernel (f64).
+\end{note}
+
+\subsection{Performance}
+- figure out the difference in load time and performance between startin's tin, cgal's tin, and my dumb triangulator.
+
+\subsection{Conclusion}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{The Plugin Model}
+The last implementation feature which requires elaboration is the plugin model. 
 A full overview of this system can be given 
 
 \begin{figure}

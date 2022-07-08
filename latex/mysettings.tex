@@ -37,6 +37,7 @@
 \newcommand{\eg}{e.g.}
 \newcommand{\reffig}[1]{Figure~\ref{#1}}
 \newcommand{\refsec}[1]{Section~\ref{#1}}
+\newcommand{\refchap}[1]{Chapter~\ref{#1}}
 
 % [JF]: added a command to prettify this dodgy syntax. m stands for monospace
 \newcommand{\m}[1]{\texttt{#1}}
@@ -44,14 +45,32 @@
 %-- colours for the hyperlinks
 \definecolor{colorforlinks}{RGB}{27, 60, 131}
 
+\lstdefinestyle{note}
+{
+    breaklines=true, 
+    basicstyle=\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color[rgb]{0.13,0.54,0.13},
+    backgroundcolor=\color{cyan!10},
+}
+
+\lstnewenvironment{note}
+{\lstset{style=note}}
+{}
+
+% I keep changing the styling of geofront, so lets put them here
+\newcommand{\geofront}{Geofront}
+
 % I keep changing research questions, so lets put them here
-\newcommand{\myMainRQ}{\textit{How to design and create a web-based vpl which can utilize existing geoprocessing libraries?}}
+\newcommand{\myMainRQ}{\textit{How to design and implement a web-based vpl for geo-computation which can directly utilize existing geoprocessing libraries?}}
 
 \newcommand{\mySubRQOneTitle}{Libraries}
-\newcommand{\mySubRQOne}{\textit{\mySubRQOneTitle: To what extend can existing geoprocessing libraries be made available for web consumption?}}
+\newcommand{\mySubRQOne}{\textit{\mySubRQOneTitle: To what extend can existing geoprocessing libraries be made available for direct web consumption?}}
 \newcommand{\mySubRQTwoTitle}{Interface}
-\newcommand{\mySubRQTwo}{\textit{\mySubRQTwoTitle: How to implement a visual programming environment on the web which supports geometry?}}
+\newcommand{\mySubRQTwo}{\textit{\mySubRQTwoTitle: How to implement a visual programming environment on the web focussed on geometry processing?}}
 \newcommand{\mySubRQThreeTitle}{Distribution}
-\newcommand{\mySubRQThree}{\textit{\mySubRQThreeTitle: How can web-consumable libraries be loaded and used within a web-vpl?}}
+\newcommand{\mySubRQThree}{\textit{\mySubRQThreeTitle: How can web-consumable libraries be dynamically loaded and used within a web-vpl?}}
 \newcommand{\mySubRQFourTitle}{Utilization}
 \newcommand{\mySubRQFour}{\textit{\mySubRQFourTitle: What are the advantages and disadvantages of using existing geoprocessing libraries through a geo-web-vpl?}}
+
+
