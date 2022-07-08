@@ -79,13 +79,26 @@ Browser-based geoprocessing
 
 \begin{note}
   Note that this is different from sub study 3.
+
+  - Just try and get to the point of fully interoperable, web-accessible DLL's
+    -> limitations: no annotations 
+
 \end{note}
 \mySubRQOne
+
+How to take libraries intended for native usage, and make them usable on the web, is a big question. 
+
+This is NOT trivial, and highly valuable.  In fact, it is the reason mozilla, google, apple, (\& microsoft) have joined forces and developed webassembly. However, the technology is highly experimental, and so are the tools build surrounding it. To which extend will it work?
 
 % not as easy 
 % The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. These aspects might be solved by using or writing wrapper libraries and using file system workarounds, as proposed by \cite{jangda_not_2019}. 
 
 % question & steps to answer
+
+\begin{note}
+  The old stuff
+\end{note}
+
 The first sub-question is dedicated to overcoming Obstacle 1, and uses the related works on \ac{wasm}. It goes: \textbf{"What is the most fitting methodology of compiling C++ geoprocessing libraries to WebAssembly?"}.
 We specify ourselves to C++, since this seems to be the language of choice for almost all well established geoprocessing libraries. 
 'Fitting' in this context refers to the specific requirements posed by geoprocessing libraries. 
@@ -151,7 +164,13 @@ The first step of the phase will consist of creating the basics of the \ac{gui} 
 \label{sec:method-three}
 \mySubRQThree
 
+\begin{note}
+  - Life cycle issues must be addressed here. at least plugin life cycle
+  - link to 'normal' software development must be addressed here 
 
+  - portability? now that libraries can be used in javascript, whats next? what to do with it? its the second question of wasm.
+
+\end{note}
 % \section{Proposed Model}
 
 % (a diagram showing relationships between vpl, libraries, javascript, webassembly)
@@ -190,6 +209,11 @@ This will result in new benchmarks, and new analyses, now including factors like
 
 \begin{note}
   - todo: turn features around into assessment criteria
+  - performance: load times, run times
+  - current state of webassembly & js. how much faster is it? is it even faster? 
+     - data translation steps, do they mitigate performance gains? 
+     - also given the fact that we are doing 'functions on sets'/ declarative instead of imperative styles, forced by the format of dataflow programming. 
+
 \end{note}
 
 Finally, When the VPL contains all tools necessary to be used to properly process geodata, a final assessment can be made by using the environment to serve as an application. this assessment will try to overcome Obstacle 3 by posing the question: \textbf{What are the advantages and disadvantages of GIS applications created using a client-side geoprocessing environment powered by WebAssembly?}. This question requires a native but comparable GIS application to test this against.  
