@@ -11,25 +11,25 @@
 % GeoFront's mission: Use the vpl to make rapid experimentation and evaluation of your geoprocessing functions possible FOR OTHERS. This enables others to rapidly utilize your geoprocessing method. The primary use case of this is collaboration: Rapidly publish ones results, demonstrate reproducibility, retrieve feedback, etc.   
 
 \chapter{Related work}
+\label{chap:related}
 
-% build a reading guide
-This thesis takes place at the intersection of two fields of study: the VPL, and Web GIS. The two topics have already been mentioned briefly during the introduction. 
-Specific challenges 
+This chapter offers an overview of the theoretical background that this study builds upon, alongside a review of related studies. 
+The study takes place at the intersection of the two fields of Visual programming and web GIS applications. 
+This is why this chapter is divided into three sections. \refsec{sec:vp} and \refsec{sec:webgis} each cover one of these fields individually, and \refsec{sec:both} covers comparable studies at this intersection.
 
-These fields 
-
-- diverse challenges exist within both fields
-
-
-
-- this chapter -> show how these challenges relate to features
-
-\todo{refine}
+Every section is structured in the same manner. Each starts out with a general background on the field in question, after which an overview of comparable studies is given. It ends with a review, which compares these studies with the main research question. This is done to specify exactly how these prior studies relate to the research question, vital in explaining the decisions of sub-questions and the methodology.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Visual Programming}
+\label{sec:vp}
+
+\subsection*{BACKGROUND}
+
+offers a rich background of prior research, and as such this literature review cannot be exhaustive. We instead focus on works which are particularly relevant to this studies' problem statement.
+
+
 \begin{lstlisting} 
 write something about : 
 - cognitive_1996 
@@ -158,7 +158,8 @@ opportunities for parallel computation, it can lead to faster applications.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\subsection*{Challenges}
+\subsection*{REVIEW}
+Challenges
 \begin{lstlisting}
   - several challenges exist within the research field of visual programming. 
   - literature study (knowling what is and isnt being researched)
@@ -214,11 +215,15 @@ with the VPL as one of the most overlooked aspects within VPL research.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Web GIS}
+\label{sec:webgis}
 
 \todo{This is dated. this section includes many old introductions, and requires refinement.}
 
+\subsection{BACKGROUND}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{The Geoweb}
+\subsubsection*{The Geoweb}
 \label{sec:geoweb}
 
 
@@ -231,7 +236,7 @@ Based on the arguments presented by \cite{brink_geospatial_2018}, we can also ex
 We use both extrapolations to define the users and 'usability' for the context of this study. We will judge the proposed use case application as 'usable', if it is deemed Findable, Accessible, Interoperable, and Reusable. The user group intended to use this environment is defined as both experts in the field of geo-information and this more general group of data users.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Browser-based geoprocessing}
+\subsubsection*{Browser-based geoprocessing}
 % Nothing wrong with this chapter I think. Everything is there for a reason
 
 % the latest in a series of geoprocessing attempts 
@@ -280,7 +285,7 @@ Additionally, to the best of the authors's knowledge, all papers concerned with 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\subsection*{WebAssembly}
+\subsubsection*{WebAssembly}
 
 From all browser-based features, WebAssembly is one of the newest, and turned out to be a deciding factor of this study. This requires us to be aware of the state of WebAssembly, its performance considerations, and how this relates to geo-computation performance. But first, an introduction on the compilation target itself is in order.
 
@@ -341,7 +346,7 @@ Even though this proposed study falls in the category of scientific computation,
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{(More on webassembly)}
+\subsubsection{(More on webassembly)}
 
 Not just open source: process sharing using fully containerized instances. Think .
 
@@ -417,7 +422,7 @@ WebAssembly runs in the browser for instance.
 % .....
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Browser based geoprocessing software}
+\subsubsection*{Browser based geoprocessing software}
 
 % https://www.azavea.com/blog/2016/09/26/raster-foundry-model-lab-phase-ii-sbir/
 % https://geotiff.io/
@@ -434,7 +439,7 @@ ModelLab says this : "Widespread access to frequent, high-resolution Earth obser
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Client-side geoprocessing}
+\subsubsection*{Client-side geoprocessing}
 
 % NEW PRACTICAL ATTEMPT. WHY? 
 % - csg still has a lot of potential
@@ -461,7 +466,7 @@ By creating a client-side web application which is neither accessible nor intera
 Additionally, by forgoing the question of accessibility, many auxiliary use-cases of client-side geoprocessing where overlooked.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{The Cloud Native Geospatial movement}
+\subsubsection*{The Cloud Native Geospatial movement}
 
 
 % Establish OGC in two sentences, mentioning their name and Vision
@@ -536,7 +541,9 @@ z
 
 
 
-\subsection{Challenges}
+\subsection*{REVIEW}
+
+challenges
 \begin{lstlisting}
 Relevant Challenges & developments within web GIS:
 - cloud-native movement
@@ -546,9 +553,21 @@ Relevant Challenges & developments within web GIS:
 
 
 
-
-\section{Aknoledgements}
+acknoledgements
 - Name similar studies or things 
   - Ravi Peter: awesome c++ based application 
     - not web
     - not formal reseach
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The overlap of Visual Programming \& Web GIS}
+\label{sec:both}
+
+\subsection{Background}
+
+\subsection{Review}

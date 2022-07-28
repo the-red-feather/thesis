@@ -55,6 +55,9 @@ A VPL done right can make automation available to a very large audience.
 
 \subsection*{Web GIS}
 
+\begin{note}
+  This question questions too much at once, maybe I should split it up  
+\end{note}
 \emph{What is web GIS and why is browser-based geo-computation relevant?}
 
 Web \ac{gis} forms an indispensable component of the wider geospatial software landscape. 
@@ -64,16 +67,14 @@ As soon as it can be found, it can be used.
 The ability to share a full application with a link, or to embed it within the larger context of a webpage is also not trivial. 
 Together, these aspects have made the browser a popular host for many important geographical applications, especially when accessibility is vital.
 
-Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geo-computation} abilities, like CRS translations, bundle adjustment, interpolation or boolean operators, are usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as not much more than viewers; visualizers of pre-processed data. 
+Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geo-computation} abilities, like CRS translations, bundle adjustment, interpolation or boolean operators, are usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as viewers; visualizers of pre-processed data. 
 
-This limited range of capabilities inhibits the number of users and use cases geographical web applications can serve, and with it the usefulness of web \ac{gis} as a whole.
-
-% It even begs the question if these applications can be called \ac{gis}, for a \ac{gis} is much more than just visualization.
+However, this limited range of capabilities inhibits the number of use cases geographical web applications can serve, and with that the usefulness of web \ac{gis} as a whole.
 If web applications gain \ac{geo-computation} capabilities, they could grow to be just as diverse and useful as desktop \ac{gis} applications, with the added benefits of being a web application. It would allow for a new range of highly accessible and sharable geo-computation and analysis tools, which end-users could use to post-process and analyze geodata quickly, uniquely, and on demand.
 
 % all of this is to say: web-based geo-computation is a valuable topic 
 % orms an important step in the advancement of web \ac{gis}. This is why this topic
-This is why \ac{geo-computation} within a web application, also known as \ac{bbg}, is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
+This is why \ac{geo-computation} within a web browser, henceforth dubbed as \ac{bbg}, is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
 Interactive geospatial data manipulation and online geospatial data processing techniques have been described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. 
 But this also raises the question: \textit{Why is geo-computation within a web application as of today still almost nowhere to be found?} 
 
@@ -153,7 +154,7 @@ But this also raises the question: \textit{Why is geo-computation within a web a
 
 
 \section{Problem Statement}
-Taken together, the proven usefulness of a vpl for geodata computation, together with the theorized potential of browser-based geo-computation, raise the question why a true browser-based visual programming environment for geo-computation (geo-web-vpl) does not exist yet.
+Taken together, the proven usefulness of a vpl for geodata computation, together with the theorized potential of browser-based geo-computation, raise the question why a browser-based visual programming environment for geo-computation (geo-web-vpl) does not exist yet.
 
 Prior studies give an indication to where the disconnect between the field of geo-VPLs and web-GIS may be.  
 We encounter either geo-VPLs which were not able to be properly used in a browser, or web-based VPLs unable to support geo-computation functionalities.
@@ -181,17 +182,16 @@ Based on this objective, the research question is formulated as follows:
 
 \subsection*{Sub Questions}
 The following sub-research questions are needed in order to answer the main question.
-These are directly based upon the components of the problem statements. 
+These are based upon various components of the main problem statements. 
 \begin{itemize}[-]
   \item \mySubRQOne
   \item \mySubRQTwo
   \item \mySubRQThree
   \item \mySubRQFour
 \end{itemize}
-In order to obtain answers to these questions 
-1) an literature review is done, 
-2) a prototype software application is developed as a proof of concept and 
-3) this application is tested and compared to existing methods using real-world datasets.
+In order to obtain answers to these questions, a literature review is performed,
+an experimental software application is developed, 
+and this application is tested and compared to existing methods using real-world datasets.
 
 % If I have to boil everything down to one thing and one thing only, I would choose: Connection to regular software development. 
 
@@ -251,43 +251,27 @@ If the study would use very specific frameworks and technologies to solve key is
 This study defines "Core browser features" as the set of features present in most major, contemporary browser vendors by default, by which we mean Firefox, Safari, and chromium-based web browsers (src). 
 This includes modern HTML features such as WebGL, the Canvas API, Web Workers, Web Components, and WebAssembly. 
 
+\newpage
 \section{Reading Guide}
 
-\begin{note}
-  This is still a sketch, this must be tweaked as the the thesis evolves.
-\end{note}
+The remainder of this study is structured as follows:
+\begin{itemize}[ ]
+  \item \refchap{chap:related}, Related Work, provides an overview of the theoretical background that is used in the rest of this study. (Covers related studies in the field of geo-VPL and web GIS. VPL: To what extend does this study overlap with other geo-vpl's? GEOWEB: Which technologies are available for browser-based geoprocesing? )
 
-\begin{itemize}[\m{->}]
+  \item \refchap{chap:methodology}, Methodology, explains precisely in what way the research-questions will be answered. In addition, the main design decisions are described and justified in this part of the study.
 
-  \item chapter 2: Related Work
-  \subitem Covers related studies in the field of geo-VPL and web GIS. 
-  \subitem VPL: To what extend does this study overlap with other geo-vpl's? 
-  % \subitem GEOWEB: How did previous attempts at browser-based geoprocesing fail? 
-  \subitem GEOWEB: Which technologies are available for browser-based geoprocesing?  
-
-  \item chapter 3: Methodology
-  \subitem Explain precisely in what way the sub-questions will be answered.
-
-  \item chapter 4: Implementation
-  \subitem Provide an answer for the \textit{\mySubRQOneTitle, \mySubRQTwoTitle , and \mySubRQThreeTitle} sub-questions. 
+  \item \refchap{chap:implementation}, Implementation, presents the implementation of the methodology. Additionally, it Provides an answer for the \textit{\mySubRQOneTitle, \mySubRQTwoTitle , and \mySubRQThreeTitle} sub research questions. 
   \subitem Answer of "\mySubRQOneTitle": Show all wasm-considerations: C++ vs Rust vs rewriting in Js. Emscripten vs wasm-bindgen. Conclude with the preference for rust, and explain why.
   \subitem Answer of "\mySubRQTwoTitle": Show the full application implementation. Conclude with what about this implementation is relevant for geo-computation. 
   \subitem Answer of "\mySubRQThreeTitle": the plugin system schema. 
   
-  \item chapter 5: Experiments 
-  \subitem Provide an answer for the question of \mySubRQFourTitle.
-  \subitem Show the results of usage of GeoFront \& the results of experiments.
+  \item \refchap{chap:experiments}: Experiments, describes the results obtained after the implementation of the methodology. With these results, an answer to the fourth research question of \mySubRQFourTitle can be given. 
 
-  \item chapter 6: Discussion
+  \item \refchap{chap:conclusion}: Conclusion, 
+  \subitem conclude to which extend the solution was able to satisfy the main research question. 
   \subitem discuss to which extend the solution was able to satisfy main research question.
   \subitem discuss unaddressed aspects of the thesis, such as the massive nature of geodata, and the utility of a vpl for geo-computation.
 
-  \item chapter 7: Conclusion
-  \subitem conclude to which extend the solution was able to satisfy the main research question. 
-  
-  \item chapter 8: Future work
-  \subitem Show the potential reach of this research, and how it might be expanded
+  \item \refchap{chap:postscript}: Post Scriptum, argues the wider implications of this study. 
 
 \end{itemize}
-
-...
