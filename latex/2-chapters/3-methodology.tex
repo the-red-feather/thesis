@@ -1,31 +1,56 @@
 % Define the scope, extend, and how of the study
 \chapter{Methodology}
 \label{chap:methodology}
-% \begin{figure}
-%   \centering
-%   \graphicspath{ {../schemas/methodology/} }
-%   \includegraphics[width=14cm]{method.png}
-%   \caption{Methodology schema}
-%   \label{fig:method}
-% \end{figure}
 
-% The methodology used can be characterized as both incremental and iterative. Its incremental nature means that every phase, and every step within a phase, will produce meaningful in-between products \& results. This ensures the study will be insightful, even in the case the full scope of this study might become unfeasible. It is also vital for making the methodology iterative. 
+\begin{note}
+TODO: Make a Triangle diagram!
+\end{note}
 
-% The study's iterative nature means that analysis and benchmarks will not be postponed until the end of the study, and will instead be an intricate part of each step. This makes sure obstacles are discovered early, and the trajectory of the study can be adjusted dynamically.  
+\section*{Overview}
+\label{sec:method-overview}
 
-% Every phase contains a number of development \& analysis steps. The reasoning behind these steps are covered by the following sub-chapters.
+The methodology of this study is fully based upon the main and supporting research questions. 
+As such, it bears fruit to explain why these specific sub-questions were chosen. 
 
-% \begin{note}
-% Choices: 
-% - practical > theoretical : Literature study indicates enough theoretical soundness, but lots of practical questions remaining. We wish to  immediate pick up where these studies have left, and therefore we choose the direct, practical study of designing and implementing a prototype application. 
-% - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geo-computation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
-% - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
+The related studies in \refchap{chap:related} show that a \ac{geo-web-vpl} as described by this study does not exist yet. However, geo-VPLs and web-VPLs do exist. 
+Based on this, it can be assumed that creating a visual programming environment in a web-browser must be possible. 
+Using a \ac*{vpl} for geo-computation must also be possible. 
 
-% Structure: 
-% - three sub-studies : sq1 tm 3
-% - the assessment : sq4
+However, the absence of a geo-web-vpl indicates some sort of hinder, preventing this type of application to be realized. Either geo-VPLs were not able to be properly used in a browser, or web-based VPLs unable to support geo-computation functionalities. 
+Assuming, of course, that the researchers of these environments would have wanted to develop a \ac{geo-web-vpl}.
 
-% NOTE: I got the advice to explain less, to 'dig my own grave' less. I won't argue about these things, and just state them. But I do have my reasons
+This study starts from the second assumption: 
+Apparently, web-based VPLs are unable to support existing geo-computation functionalities. 
+This could be because of several reasons. 
+This study identifies four.
+
+geo-computation functionalities are not able to be properly:
+\begin{itemize}[-]
+  \item \textbf{compiled} into a format functional on the web
+  \item \textbf{loaded} within a web-based VPL
+  \item \textbf{facilitated} by the interface of a web-based VPL
+  \item \textbf{executed} within a web-based VPL
+\end{itemize}
+Moreover, the real reason might not lie in one of these areas, but in the interplay between all of these factors. 
+
+It is this study's objective to pose a solution to this barrier, and to assess if this solution fully covers the full extend of the problem. This is stated by the main research question, and forms the basis of this studies methodology. 
+
+\begin{note}
+  diagram: 4 research questions -> four possible barriers of geo-computation
+\end{note}
+
+\begin{note}
+  diagram: show the 'locations' of the four research questions
+\end{note}
+
+
+This methodology is subdivided into four components, each represented by a supporting research question. 
+These sub-questions are each based upon the four possible reasons preventing the creation of a geo-web-vpl, mentioned above. 
+
+\emph{HOW?}
+The overall methodology can be characterized as practical as opposed to theoretical, wholistic instead of specific, and iterative compared to linear.
+
+% This necessitates a practical approach in response. 
 
 % ...
 % % Theorie: is er maar je geloofde het niet
@@ -33,48 +58,15 @@
 % The prior works on browser-based geoprocessing indicate that a theoretical framework for browser-based geoprocessing vpl is in place. 
 % But, and this is especially evident in the studies regarding client-side geoprocessing, the practical implementation of these theories
 
-% This necessitates a practical approach in response. 
+% Choices: 
+% - practical > theoretical : Literature study indicates enough theoretical soundness, but lots of practical questions remaining. We wish to  immediate pick up where these studies have left, and therefore we choose the direct, practical study of designing and implementing a prototype application. 
+% - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geo-computation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
+% - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
 
-% , the advantages of a vpl, 
-% ...
-% \end{note}
-
-
-
-The methodology can be characterized as practical as opposed to theoretical, wholistic instead of specific, and iterative compared to linear.
- 
-The methodology of this study is subdivided into three sub-studies, based on the first three sub-research questions: \refsec{sec:method-one}, \refsec{sec:method-two}, and \refsec{sec:method-three}.  
-These three studies are conducted to find answers to the major 'hows' of the geo-web-vpl. 
-Prior studies were unable to provide answers with sufficient coverage, but did provide a strong starting point. 
-
-While this may give the impression that these are separate, isolated issues, the design of one of these studies was often presented by side-products from the two other components. 
-The separation is made for narrative clarity, at the cost of accuracy. 
-
-To properly examine the effectiveness of these 'hows' combined, experiments are conducted using the full extend of the solution. This is covered by the \refsec{sec:method-four} and final sub-research question.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Problem Definition?}
-% Inhibitors: 
-
-Should I re-iterate the exact problem we are trying to solve? 
-
-VPL
-- Closed-source nature 
-- Difficulty to integrate with 'regular' software
-
-Browser-based geoprocessing
-- Nature of geodata processing: 
-  - Big data 
-  - lots of IO operations (writing files away)
-
-- Javascript:
-  - different library ecosystem 
-  - hard to utilize for geodata which requires a strongly typed environment 
-
-
-
-\section{Sub Study 1: Web geo-computation libraries}
+\section{Geo-computation libraries for the web}
 \label{sec:method-one}
 
 \begin{note}
@@ -130,7 +122,7 @@ While CGAL \& GDAL will be this phase's primary subject, the answer of this sub-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Sub Study 2: Application \& Interface}
+\section{Application \& Interface}
 \label{sec:method-two}
 
 \mySubRQTwo
@@ -160,7 +152,7 @@ The first step of the phase will consist of creating the basics of the \ac{gui} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Sub Study 3: Direct Utilization}
+\section{Direct Utilization}
 \label{sec:method-three}
 \mySubRQThree
 

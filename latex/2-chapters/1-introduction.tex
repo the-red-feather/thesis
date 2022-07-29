@@ -1,33 +1,48 @@
 \chapter{Introduction}
 
-\begin{note}
-Notes: 
-- I still use browser-based geoprocessing and the geo-web-vpl quite interchangeably in the introduction. Both need to be linked up better.
+\subsection*{Geodata \& Geodata computation}
 
-\end{note}
+The field of geo-informatics concerns itself with the collection, processing, storage, and visualization of geodata. 
+By doing do, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
+This process is foundational for many applications, including environmental modelling, infrastructure, navigation, the military, and agriculture.   
 
-% 1) General story on geo-information. Go from data to application
-% - geo-information applications are extremely valuable
-% - bring the side of the gis application & geo-computation to the reader's attention. 
+Central to this effort is the process of converting raw geodata into meaningful geo-information, as well as harmonizing heterogenous datasets. 
+The term 'geo-computation', or geodata processing, is used to represent all these types of computations performed on geographical datasets. Anything from the calculation of an area of a polygon, to CRS transformations, or converting a raster dataset into a vectorized dataset, can be regarded as geo-computation.
+Almost all applications of geo-informatics require geo-computation to an extend, as the raw data gathered from surveyance seldom corresponds to the precise information we wish to discover about the earth.       
+This makes geo-computation a cornerstone of the entire field of geo-informatics, and vital to all applications of geo-information.
 
-% Component of geo-computation.
-% Overlap with other fields (CAD, medical, sfx) 
-% Computational Geometry
-% Examples: 
-% Fit plane through 3d-points
-% Triangulation
-% Convex hull
+However, geo-computation is not a trivial exercise. The sizable nature of geodata, together with a great variety of formats and quality make geo-computation both computationally intensive and difficult to operate. 
+In an ideal world, the activity of geo-computation should be fast, clear and reliable.
+While researchers and developers have made considerable improvement over the last decades, the improvement of geo-computation remains as relevant as ever before. 
 
-In order to specify the contribution of this thesis, I wish to bring two fields of study to the reader's attention: Visual programming, and Web GIS. 
+In recent years, two promising developments regarding geo-computation are emerging:
+Visual programming, and browser-based geo-computation. 
+these two developments require further explanation. 
 After this, the subject and goal this thesis can be made clear.
 
 \subsection*{Visual programming}
 
-\emph{What is a VPL and how is it used within the field of geo-information?}
+\begin{note}
+TODO: Link this up to the introduction
+\end{note}
+
+\emph{What is a VPL and how does it benefit geo-computation?}
 
 % 2) Establish the VPL, and how it is used within geomatics 
 A \ac{vpl}, or visual programming environment, is a type of programming language represented in a graphical, non-textual manner.
 A VPL often refers to both the language and the Integrated Development Environment (IDE) which presents this language.
+
+A VPL done right can make automation available to a very large audience. )
+
+Within the field of geo informatics, \ac{VPL}s are not a new phenomenon. VPLs are often used for specifying geodata transformations and performing spatial analyses.  
+SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (ETL) platform automates data integration, and is widely used by GIS experts. 
+% while McNeels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
+% Name Rasterfoundry ModelLab
+% Name GeoFlow maybe
+VPLs like these offers users a chance to interactively automate workflows \& processing pipelines, while requiring little to no programming knowledge. 
+In between results can be inspected intuitively, and the processes can be changed on the fly, often with immediate feedback.
+This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all many other use-cases in need of both low-code automation and visual debugging, like BIM, CAD, Shader Programming and Procedural Geometry. 
+
 % Famous examples of VPLs are:
 % \begin{itemize}
 %   \item Ladder Diagram (src), the industry-standard method of programming Programmable Logic Controllers (PLCs)
@@ -37,27 +52,29 @@ A VPL often refers to both the language and the Integrated Development Environme
 
 % ... (name something about Dataflow programming, a programming paradigm often used in conjunction with a vpl. ) ... 
 
-Within the field of geo informatics, VPL's are most often used for specifying geodata transformations and performing spatial analyses.  
-SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (ETL) platform automates data integration, and is widely used by GIS experts. 
-% while McNeels's Grasshopper (SOURCE) is often used spatial analysis of buildings and cities, like solar irradiation. 
-% Name Rasterfoundry ModelLab
-% Name GeoFlow maybe
-VPLs like these offers users a chance to interactively automate workflows \& processing pipelines, while requiring little to no programming knowledge. 
-In between results can be inspected intuitively, and the processes can be changed on the fly, often with immediate feedback.
-This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as all many other use-cases in need of both low-code automation and visual debugging, like BIM, CAD, Shader Programming and Procedural Geometry. 
-A VPL done right can make automation available to a very large audience. 
-
 % -> testing & reproducability.
 % RANSAC -> many 'magic' parameter. They need to be discovered by 'play'
 % Jonathan blow -> using interactive applications, an intrinsic understanding can be gained without explicit communication.
 % Game Of Life -> impossibility of 'proving' behaviour systems. 
 
+\begin{note}
+  (SO WHAT IS NEW?: MORE GRANULAR USAGE OF VPLS: POINTS LINES TRIANGLES)
+  L geoflow, grasshopper
+  
+  neighboring fields
+\end{note}
+
+*why are vpls used for geo-computation?* 
+- Experimentation: 
+- Debugability: 
+
 
 \subsection*{Web GIS}
 
 \begin{note}
-  This question questions too much at once, maybe I should split it up  
+TODO: Link this up to the introduction
 \end{note}
+
 \emph{What is web GIS and why is browser-based geo-computation relevant?}
 
 Web \ac{gis} forms an indispensable component of the wider geospatial software landscape. 
@@ -150,28 +167,27 @@ But this also raises the question: \textit{Why is geo-computation within a web a
 
 % By creating the use-case application GeoFront, we ask the question if a modern web browser, and the current state of the client-side web technologies are capable of facilitating  
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*why is the web used for geo-computation?*
+- Accessibility: no installment or configuration burden
+- Distribution: web applications can quickly be distributed
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Problem Statement}
-Taken together, the proven usefulness of a vpl for geodata computation, together with the theorized potential of browser-based geo-computation, raise the question why a browser-based visual programming environment for geo-computation (geo-web-vpl) does not exist yet.
+Taken together, the proven usefulness of a vpl for geodata computation, together with the theorized potential of browser-based geo-computation, raise the question why a \ac{geo-web-vpl} does not exist yet.
 
-Prior studies give an indication to where the disconnect between the field of geo-VPLs and web-GIS may be.  
-We encounter either geo-VPLs which were not able to be properly used in a browser, or web-based VPLs unable to support geo-computation functionalities.
-This suggest that geo-computation functionalities:
-\begin{itemize}[-]
-  \item Were not able to be properly compiled into a format functional on the web
-  \item Were not able to be properly consumed and used by a web-based VPL
-  \item Were not able to be properly facilitated by the interface of a non-geo web-VPL
-\end{itemize}
+A \ac{geo-web-vpl} could be the next step in the pursuit of making the activity of geo-computation more fast, clear and reliable.
+The activity of geo-computation could benefit from the experimentation and debugability advantages of a \ac{vpl}, combined with the accessibility and distribution advantages of a web application. This combination of features might even yield completely unique benefits, by means of a "1 + 1 = 3" line of reasoning.
+However, since no geo-web-vpl exist, there is no way of definitively knowing or testing these aspects. 
 
-Moreover, the real reason of this disconnect may not lie in one of these areas, but in the interplay between all three of these factors. 
+Prior studies give an indication to where the disconnect between the field of geo-VPLs and web-GIS may be. This will be expanded upon in \refchap{chap:related}.
+We encounter either geo-VPLs which were not able to be properly used in a browser, or web-based VPLs unable to support geo-computation functionalities. From this, it can be concluded that the support of existing geo-computation functionalities is a central aspect of making a geo-web-vpl succeed. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
+
 \section{Research Objective}
-This study seeks to close the gap between geo-VPLs and web-GIS by designing and implementing a geo-web-vpl.
-The study starts from the presupposition that proper utilization of existing geo-computation functionalities and libraries within a VP environment is key to making a geo-web-vpl succeed. 
+This study seeks to close the gap between geo-VPLs and web-GIS by designing, implementing, and accessing a geo-web-vpl.
+The study starts from the presupposition that proper utilization of existing, native geo-computation libraries within a VP environment is key to making a geo-web-vpl succeed. 
 As such, overcoming this technical challenge is the focal point of this study. 
 
 \section{Research Questions}
@@ -181,8 +197,9 @@ Based on this objective, the research question is formulated as follows:
 \end{itemize}
 
 \subsection*{Sub Questions}
-The following sub-research questions are needed in order to answer the main question.
+The following sub-research questions are defined to aid in answering the main question.
 These are based upon various components of the main problem statements. 
+The specific \refchap{chap:methodology}
 \begin{itemize}[-]
   \item \mySubRQOne
   \item \mySubRQTwo
@@ -256,7 +273,12 @@ This includes modern HTML features such as WebGL, the Canvas API, Web Workers, W
 
 The remainder of this study is structured as follows:
 \begin{itemize}[ ]
-  \item \refchap{chap:related}, Related Work, provides an overview of the theoretical background that is used in the rest of this study. (Covers related studies in the field of geo-VPL and web GIS. VPL: To what extend does this study overlap with other geo-vpl's? GEOWEB: Which technologies are available for browser-based geoprocesing? )
+  \item \refchap{chap:related}, Related Work, provides an overview of the theoretical background that is used in the rest of this study.
+  
+  \begin{note}
+    EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geo-computation libraries within a VP environment is key to making a geo-web-vpl succeed. 
+  \end{note}
+
 
   \item \refchap{chap:methodology}, Methodology, explains precisely in what way the research-questions will be answered. In addition, the main design decisions are described and justified in this part of the study.
 
