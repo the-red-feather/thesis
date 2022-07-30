@@ -2,51 +2,16 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
-\begin{note}
-TODO: Make a Triangle diagram!
-\end{note}
+This chapter elaborates upon the methodology used in this study. 
+The overall structure of what elements this methodology precisely consists of is presented, and how these elements came to be. 
+The chapter continues with four sections, each explaining one of these components.
+But first, I wish to clarify the nature in which this study is conducted. 
 
-\section*{Overview}
-\label{sec:method-overview}
-
-The methodology of this study is fully based upon the main and supporting research questions. 
-As such, it bears fruit to explain why these specific sub-questions were chosen. 
-
-The related studies in \refchap{chap:related} show that a \ac{geo-web-vpl} as described by this study does not exist yet. However, geo-VPLs and web-VPLs do exist. 
-Based on this, it can be assumed that creating a visual programming environment in a web-browser must be possible. 
-Using a \ac*{vpl} for geo-computation must also be possible. 
-
-However, the absence of a geo-web-vpl indicates some sort of hinder, preventing this type of application to be realized. Either geo-VPLs were not able to be properly used in a browser, or web-based VPLs unable to support geo-computation functionalities. 
-Assuming, of course, that the researchers of these environments would have wanted to develop a \ac{geo-web-vpl}.
-
-This study starts from the second assumption: 
-Apparently, web-based VPLs are unable to support existing geo-computation functionalities. 
-This could be because of several reasons. 
-This study identifies four.
-
-geo-computation functionalities are not able to be properly:
-\begin{itemize}[-]
-  \item \textbf{compiled} into a format functional on the web
-  \item \textbf{loaded} within a web-based VPL
-  \item \textbf{facilitated} by the interface of a web-based VPL
-  \item \textbf{executed} within a web-based VPL
-\end{itemize}
-Moreover, the real reason might not lie in one of these areas, but in the interplay between all of these factors. 
-
-It is this study's objective to pose a solution to this barrier, and to assess if this solution fully covers the full extend of the problem. This is stated by the main research question, and forms the basis of this studies methodology. 
-
-\begin{note}
-  diagram: 4 research questions -> four possible barriers of geo-computation
-\end{note}
-
-
-This methodology is subdivided into four components, each represented by a supporting research question. 
-These sub-questions are each based upon the four possible reasons preventing the creation of a geo-web-vpl, mentioned above. 
-
-\emph{HOW?}
-The overall methodology can be characterized as practical as opposed to theoretical, wholistic instead of specific, and iterative compared to linear.
-
-% This necessitates a practical approach in response. 
+\subsubsection*{Nature}
+The methodology of this study can be characterized as practical as opposed to theoretical, wholistic instead of specific, and iterative compared to linear. The prior works on browser-based geo-computation and geo-vpls indicate that a strong theoretical framework for a \ac{geo-web-vpl} is in place. 
+But, and this is especially evident in the prior studies regarding \ac{bbg} (SOURCE), the practical implementation of these theories were only partially successful, and limited in scope. 
+This necessitates a practical, wholistic approach in response. 
+And due to the investigative nature of this study, the methodology requires to iterate upon itself, instead of following a linear path. 
 
 % ...
 % % Theorie: is er maar je geloofde het niet
@@ -59,12 +24,58 @@ The overall methodology can be characterized as practical as opposed to theoreti
 % - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geo-computation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
 % - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Structure}
 
 \begin{note}
-  diagram: show the 'locations' of the four research questions
+TODO: Make a Triangle diagram!
 \end{note}
+  
+
+The content of this methodology is based upon the main and supporting research questions. 
+As such, it bears fruit to explain how these specific questions were chosen. 
+
+The related studies in \refchap{chap:related} show that a \ac{geo-web-vpl} as described by this study does not exist yet. However, geo-vpls and web-vpls do exist. 
+Based on this, it can be assumed that creating a visual programming environment in a web-browser must be possible. 
+Using a \ac*{vpl} for geo-computation must also be possible. 
+
+However, the absence of a geo-web-vpl indicates some sort of hinder, preventing this type of application to be realized. Either geo-VPLs were not able to be properly used in a browser, or web-based VPLs unable to support geo-computation functionalities. 
+Assuming, of course, that the researchers of these environments would have wanted to work towards a \ac{geo-web-vpl}.
+
+This study starts from the second assumption: 
+Apparently, web-based VPLs are unable to support existing geo-computation functionalities. 
+This could be because of several reasons. 
+This study identifies four.
+
+geo-computation functionalities might not be able to be properly:
+\begin{itemize}[-]
+  \item \textbf{compiled} into a format functional on the web
+  \item \textbf{loaded} within a web-based VPL
+  \item \textbf{facilitated} by the interface of a web-based VPL
+  \item \textbf{executed} within a web-based VPL
+\end{itemize}
+Moreover, the real reason might not lie in one of these areas, but in the interplay between all of these factors. 
+
+It is this study's objective to pose a solution to this barrier. This is stated by the main research question. 
+
+Regarding the four possible reasons preventing the creation of a geo-web-vpl 
+mentioned above. 
+As it is unknown which one of these reasons ( or which combination of reasons ) is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
+This is why the methodology is subdivided into four components.
+Each represents a sub-research question, which is in turn based upon one of these possible hindrances. The questions are posed in such a way that answering them will require us to explore the extend of the hindrance, and find possible solutions.
+
+The best way to discover the extend of these hindrances, and to discover possible solutions to these hindrances, turned out to be the creation and assessment of a prototype \ac{geo-web-vpl}. Each component of the methodology explores a different facet of the process of actualizing this prototype.
+
+The remained of this chapter covers the four components of this methodology, and how this relates to this prototype. 
+
+\begin{note}
+TODO: diagram: 4 research questions -> four possible barriers of geo-computation
+\end{note}
+
+\begin{note}
+TODO: diagram: show the 'locations' of the four research questions ( client / server / native, etc.)
+\end{note}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Geo-computation libraries for the web}
 \label{sec:method-one}
