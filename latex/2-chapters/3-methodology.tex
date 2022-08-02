@@ -8,10 +8,10 @@ The chapter continues with four sections, each explaining one of these component
 But first, I wish to clarify the nature in which this study is conducted. 
 
 \subsubsection*{Nature}
-The methodology of this study can be characterized as practical as opposed to theoretical, wholistic instead of specific, and iterative compared to linear. The prior works on browser-based geo-computation and geo-vpls indicate that a strong theoretical framework for a \ac{geo-web-vpl} is in place. 
+The methodology of this study can be characterized as practical as opposed to theoretical, wholistic instead of specific, and iterative compared to linear. The prior works on browser-based geocomputation and geo-vpls indicate that a strong theoretical framework for a \ac{geo-web-vpl} is in place. 
 But, and this is especially evident in the prior studies regarding \ac{bbg} (SOURCE), the practical implementation of these theories were only partially successful, and limited in scope. 
 This necessitates a practical, wholistic approach in response. 
-And due to the investigative nature of this study, the methodology requires to iterate upon itself, instead of following a linear path. 
+And, due to the investigative nature of this study, the methodology requires to iterate upon itself, instead of following a singular, linear path. 
 
 % ...
 % % Theorie: is er maar je geloofde het niet
@@ -21,7 +21,7 @@ And due to the investigative nature of this study, the methodology requires to i
 
 % Choices: 
 % - practical > theoretical : Literature study indicates enough theoretical soundness, but lots of practical questions remaining. We wish to  immediate pick up where these studies have left, and therefore we choose the direct, practical study of designing and implementing a prototype application. 
-% - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geo-computation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
+% - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geocomputation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
 % - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
 
 \subsubsection*{Structure}
@@ -31,70 +31,158 @@ TODO: Make a Triangle diagram!
 \end{note}
   
 
-The content of this methodology is based upon the main and supporting research questions. 
-As such, it bears fruit to explain how these specific questions were chosen. 
+\emph{The content of this methodology is based upon the main and supporting research questions. 
+As such, it bears fruit to explain how these specific questions were chosen.}
 
 The related studies in \refchap{chap:related} show that a \ac{geo-web-vpl} as described by this study does not exist yet. However, geo-vpls and web-vpls do exist. 
 Based on this, it can be assumed that creating a visual programming environment in a web-browser must be possible. 
-Using a \ac*{vpl} for geo-computation must also be possible. 
+Using a \ac*{vpl} for geocomputation must also be possible. 
 
-However, the absence of a geo-web-vpl indicates some sort of hinder, preventing this type of application to be realized. Either geo-VPLs were not able to be properly used in a browser, or web-based VPLs unable to support geo-computation functionalities. 
-Assuming, of course, that the researchers of these environments would have wanted to work towards a \ac{geo-web-vpl}.
+However, the absence of a geo-web-vpl indicates some sort of hinder, preventing this type of application to be realized. Either geo-VPLs were not able to be properly used in a browser, or web-based VPLs unable to support geocomputation functionalities. 
+Assuming, of course, that researchers and developers of these environments would have wanted to work towards a \ac{geo-web-vpl}.
 
 This study starts from the second assumption: 
-Apparently, web-based VPLs are unable to support existing geo-computation functionalities. 
-This could be because of several reasons. 
-This study identifies four.
+Apparently, web-based VPLs are unable to support existing geocomputation functionalities. 
+This could be because of several reasons, of which this study identifies four major ones.
 
-geo-computation functionalities might not be able to be properly:
+geocomputation functionalities might not be able to be properly:
 \begin{itemize}[-]
   \item \textbf{compiled} into a format functional on the web
   \item \textbf{loaded} within a web-based VPL
   \item \textbf{facilitated} by the interface of a web-based VPL
   \item \textbf{executed} within a web-based VPL
 \end{itemize}
+As it is unknown which one of these reasons ( or which combination of reasons ) is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
 Moreover, the real reason might not lie in one of these areas, but in the interplay between all of these factors. 
 
 It is this study's objective to pose a solution to this barrier. This is stated by the main research question. 
 
-Regarding the four possible reasons preventing the creation of a geo-web-vpl 
-mentioned above. 
-As it is unknown which one of these reasons ( or which combination of reasons ) is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
-This is why the methodology is subdivided into four components.
-Each represents a sub-research question, which is in turn based upon one of these possible hindrances. The questions are posed in such a way that answering them will require us to explore the extend of the hindrance, and find possible solutions.
+The study goes about doing so, by developing a prototype \ac{geo-web-vpl}. 
+Each one of these four factors is visited, this prototype is used as an experiment to discover the extend of the possible hindrances. 
+Per factor, we explore different options, document considerations, and test to what extend the \ac{geo-web-vpl} fails or succeeds to provide for this aspect. 
+After this is done, we can compile a final conclusion to the main research question. 
 
-The best way to discover the extend of these hindrances, and to discover possible solutions to these hindrances, turned out to be the creation and assessment of a prototype \ac{geo-web-vpl}. Each component of the methodology explores a different facet of the process of actualizing this prototype.
+The methodology of this study is structured to facilitate this process. 
+It is subdivided into four components, each representing a sub-research question, which is in turn based upon one of these possible hindrances. The questions are posed in such a way that answering them will require us to explore the extend of the hindrance, and find possible solutions.
 
 The remained of this chapter covers the four components of this methodology, and how this relates to this prototype. 
 
 \begin{note}
-TODO: diagram: 4 research questions -> four possible barriers of geo-computation
+TODO: diagram: 4 research questions -> four possible barriers of geocomputation
 \end{note}
 
 \begin{note}
 TODO: diagram: show the 'locations' of the four research questions ( client / server / native, etc.)
 \end{note}
 
+\section{\mySubRQOneTitle} 
+The first component of the methodology involved the creation of the core of the prototype application. 
+Before exploring how lifting \emph{existing} geo-computation to the web might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a 3D vpl in general, encompassed by the supporting research question : \mySubRQOne
+A 3D VPL is defined as a vpl meant for 3D data processing. 
+
+The method to answer this question is defined as follows. 
+The above question of \mySubRQOneTitle is subdivided into the following follow-up questions:
+\begin{enumerate}
+  \item \emph{What are the requirements of a 3D VPL interface?}.
+  \item \emph{What can be defined as core browser features?}.
+  \item \emph{Per requirement, to what extend these core browser features be used to implement this requirement?}.
+  \item \emph{Per implemented requirement, to what extend does a web implementation differ from existing, popular 3D VPLs?}.
+\end{enumerate}
+
+The first and second question will be answered subsequently. The third question is answered by \refsec{sec:app}, and the answer to the fourth question can be found in the Conclusion, as it doubles as the answer to the entire question of \mySubRQOneTitle.
+
+\subsection{3D VPL requirements}
+
+Based on the vpl research (SOURCE), any visual programming language must at the very least contain the following aspects: 
+\begin{enumerate}[-]
+  \item a visual language, represented as a flowchart
+  \item an interface to edit this visual language 
+  \item a way to load input data 
+  \item a way to save output data
+\end{enumerate}
+
+Based on popular, existing 3D vpl's (Blender, Unreal, Grasshopper) A visual programming language handling 3D data should have:
+\begin{enumerate}[-]
+  \item A method to preview 3D data used throughout the flowchart
+  \item multiple ways to determine input data (text fields, sliders) 
+  \item multiple ways to view output data (text displays)
+\end{enumerate}
+
+\subsection{core browser features}
+This study defines "Core browser features" as the set of default features implemented by the three largest browser vendors. 
+These browser vendors are chosen on market share:
+\begin{note}
+  (show pie chart of usage statistics)
+\end{note}
+This indicates the following browsers as 'major':
+\begin{enumerate}[-]
+  \item Chrome \& Chromium based browsers
+  \item Firefox.
+  \item Safari
+\end{enumerate}
+
+The set of features common in all three browser engines are documented on (SOURCE: Mozilla). 
+This includes the following set of features relevant for the 3D VPL:
+\begin{enumerate}
+  \item WebGL (WebGL2, WebGPU)
+  \item 2D Canvas API
+  \item Web Workers
+  \item Web Components
+  \item WebAssembly
+\end{enumerate}
+
+\section{\mySubRQTwoTitle} 
+The second component of the methodology involved ...
+In this section, we wish to discover ... encompassed by the research question : \mySubRQTwo
+For this, the following plan was used: 
+
+how to take existing libraries, and lift them up to the web?
+
+(Me in the future: read the 'old' stuff, might have some fun stuff, but first define what you want.)
+
+\section{\mySubRQThreeTitle} 
+The third component of the methodology involved ...
+In this section, we wish to discover ... encompassed by the research question : \mySubRQThree
+For this, the following plan was used: 
+
+- How to take advantage of the medium? 
+
+how to take the uplifted libraries, and load them into the 3D VPL? 
+
+\section{\mySubRQFourTitle} 
+The final component of the methodology involved... 
+In this section, we wish to discover ... encompassed by the research question : \mySubRQFour
+For this, the following plan was used: 
+
+Many assumptions are used throughout the study 
+time to test them 
+
+- "Is a 3D vpl" + some geolibraries magically a geo-web-vpl? 
+- "How does it compare to fme? "
+- "Does small-scale geoprocessing make sense?"
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Geo-computation libraries for the web}
+\section{OLD 1}
 \label{sec:method-one}
 
-
 \begin{note}
-  continue writing here!! 
-  file:///C:/Users/Feenster/Downloads/P5_Thesis_Tufan_5263719(2).pdf
-\end{note}
-
-
-\begin{note}
-  Note that this is different from sub study 3.
- 
   - Just try and get to the point of fully interoperable, web-accessible DLL's
     -> limitations: no annotations 
-
 \end{note}
 \mySubRQOne
+
+
 
 How to take libraries intended for native usage, and make them usable on the web, is a big question. 
 
@@ -140,16 +228,20 @@ While CGAL \& GDAL will be this phase's primary subject, the answer of this sub-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Application \& Interface}
+\section{OLD 2}
 \label{sec:method-two}
 
 \mySubRQTwo
 
 % We ask ourselves if the current state of client-side web technologies are capable of facilitating multiple steps of geodata conversion, and what such an application would look like. 
 
-Phase 2 is dedicated to overcoming Obstacle 2, assisted by the related works on the geoweb. Phase 2 seeks to not only make geoprocessing runnable, but actually usable, and usable to a wide audience of "data-users". This quest is posed using the research question: \textbf{How to design and create a client-side geoprocessing environment for data-users?}. 
+We wish to discover
 
-Phase 2 will primarily be about implementing the foundations of the use-case application 'GeoFront'. None of the existing web-based \ac{vpl}'s were deemed acceptable for the scope of this study, so the application will have to be created from scratch. 
+This section of the methodology will be about
+
+implementing the foundations of the prototype. 
+
+None of the existing web-based \ac{vpl}'s were deemed acceptable for the scope of this study, so the application will have to be created from scratch. 
 The application will be created using JavaScript, or its type-save equivalent TypeScript. 
 A choice can be made to write the whole environment as a native application which then, as a whole, can be published to the web using WebAssembly. 
 This would probably be the most performant. 
@@ -170,7 +262,7 @@ The first step of the phase will consist of creating the basics of the \ac{gui} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Direct Utilization}
+\section{OLD 3}
 \label{sec:method-three}
 \mySubRQThree
 
@@ -213,7 +305,7 @@ This will result in new benchmarks, and new analyses, now including factors like
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Assessment}
+\section{OLD 4}
 \label{sec:method-four}
 \mySubRQFour
 
@@ -231,12 +323,9 @@ Finally, When the VPL contains all tools necessary to be used to properly proces
 We hypothesize that applications equipped with client-side geoprocessing open up a whole range of new possibilities posing both academic \& commercial benefits. 
 These aspects of the study can be discussed during this phase. 
 
-
-
-
 \section*{Features}
 
-\emph{Q: Which features are required for a 'usable' VPL intended for geo-computation?}
+\emph{Q: Which features are required for a 'usable' VPL intended for geocomputation?}
 
 We define three major features.  
 
@@ -303,7 +392,7 @@ A VPL should be Publicable. What is meant by that, is that scripts designed by u
 REASON: 
  - VPL: application life-cycle is important: how to publish & use applications created using vpl's
  - WEB: cloud-native geoprocessing: requires server-side / cloud based
-   geo-computation interoperability: 
+   geocomputation interoperability: 
    meaning the scripts must be able to be used without any of the 
    interactivity features.
 
@@ -318,7 +407,7 @@ CRITERIA:
 
 \emph{Q: Usage: Who benefits from a web-geo-vpl, and how?  }
 
-A web-based visual programming language for geo-computation as described by this study does not exist yet. 
+A web-based visual programming language for geocomputation as described by this study does not exist yet. 
 This requires us to be clear about its intended use-case. 
 However, because of this same novelty, a singular, definitive use-case can not be given.
 To solve this problem, this study names four possible use-cases.  
@@ -461,3 +550,4 @@ A total test of \textbf{Criteria A, B and C}.
 
 
 % we want to examine and edit the geodata flow, see for example, where these errors occur, try to get to that data, see if we can make hotfixes, etc. etc. 
+
