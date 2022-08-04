@@ -26,9 +26,13 @@ And, due to the investigative nature of this study, the methodology requires to 
 
 \subsubsection*{Structure}
 
-\begin{note}
-TODO: Make a Triangle diagram!
-\end{note}
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/diagrams/} }
+  \includegraphics[width=250px]{geo-web-vpl.png}
+  \caption{Triangle Model}
+  \label{fig:method}
+\end{figure}
   
 \emph{The content of this methodology is based upon the main and supporting research questions. 
 As such, it bears fruit to explain how these specific questions were chosen.}
@@ -118,6 +122,25 @@ Based on popular, existing 3D vpl's (Blender, Unreal, Grasshopper) A visual prog
   \item multiple ways to determine input data (text fields, sliders) 
   \item multiple ways to view output data (text displays, 3D viewers, etc.)
 \end{enumerate}
+
+\begin{note}
+  Figure out what to do with this: 
+ 
+  A VPL should be Interactive.
+
+    Interactivity is the defining factor of the vpl. 
+    a list of standard VPL features & application features required as a base-line:  
+  - Users must be able to construct a script by visual means.
+  - Dataflow Modelling
+  - Dragging and dropping is a ui which
+
+  (geo-vpl features:)
+  - read data from user-submitted files
+  - write data to files, downloadable by the user  
+  - debug / inspect data in a 3D viewer
+  - draw geometry in a 3D viewer
+
+\end{note}
 
 \subsection*{B: Core browser features}
 This study defines "Core browser features" as the set of default features implemented by the three largest browser engines. 
@@ -221,6 +244,14 @@ The three methods will be compared in terms of:
   \item memory usage
 \end{enumerate}
 
+\begin{note}
+  - todo: turn features around into assessment criteria
+  - performance: load times, run times
+  - current state of webassembly & js. how much faster is it? is it even faster? 
+     - data translation steps, do they mitigate performance gains? 
+     - also given the fact that we are doing 'functions on sets'/ declarative instead of imperative styles, forced by the format of dataflow programming. 
+\end{note}
+
 The studies on browser-based geocomputation (\refsec{sec:bbg}) appear to have conducted a similar experiment, by comparing the same procedure written in C++ and javascript. 
 However, these studies compared javascript against a native, non-web compilation of C++. 
 This experiment also differs in distinguishing between \ac{wasm} itself, and a language's \ac{wasm} support.
@@ -280,27 +311,29 @@ This is why this third component of the methodology is focused on mitigating the
 
 \subsection{How}
 For this component of the methodology, the following plan was used: 
-- design a library load model for the prototype \ac*{geo-web-vpl}
-- build this library load model 
-- assess to what extend it mitigates the need for explicit configuration
+\begin{enumerate}[-]
+  \item design a library load model for the prototype \ac*{geo-web-vpl}
+  \item build this library load model 
+  \item assess to what extend it mitigates the need for explicit configuration
+\end{enumerate}
 
 The design is given subsequently, the build implementation and assessment can be found in \refsec{sec:impl-plugin}.
 
-\subsection{Model}
+\subsection{Design \& Method}
 
 \begin{figure}
   \centering
   \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=\maxwidth]{Model Proposal.png}
+  \includegraphics[width=340px]{Model Proposal.png}
   \caption{Plugin Model}
   \label{fig:method}
 \end{figure}
 
-The library model consists of two components: the design for a \ac{geo-web-vpl} library, and the design for a 
+The library model consists of two components: the design for a geo-web-vpl library, and the design for a 
 loader on the side of the VPL. 
 The central idea for this model is to take the wasm-wrappers created in \refsec{sec:method-two}, and to either interpret the required information from the wasm binary and related files, or, if that is impossible, add the required information in the wasm wrapper library itself.
 By doing so, we make sure that at the very least, only one wrapper library is required for exposing any non-js library to the \ac{geo-web-vpl}.
-The following information is required for the VPL to load a library, and convert it into visual components:
+The following information is required for the VPL to load a geocomputation library, and convert it into visual components:
 
 Mandatory: 
 \begin{enumerate}[-]
@@ -309,6 +342,7 @@ Mandatory:
   \item Per function:  
   \subitem A list of all input parameters, name and type.
   \subitem An output type.
+\end{enumerate}
 
 Optional: 
 \begin{enumerate}[-]
@@ -324,280 +358,82 @@ Optional:
   \subitem A definition of how to convert this type to basic types present within the geo-web-vpl.  
 \end{enumerate}
 
-It is our desire to automate 
+The necessity to automate loading geocomputation libraries means that the \ac{geo-web-vpl} needs to be able to extract this information automatically. 
+For scope reasons, the study limits itself to only interpret the \textbf{mandatory} information fully automatically. 
+This can be achieved by using the Rust-wasm toolset "\m{wasm-bindgen}". 
+\m{wasm-bindgen} is able to generate javascript wrapper bindings for a \ac{wasm} library, accompanied by TypeScript type definitions (Source). 
+These are given in a 'd.ts' file, which can be understood as a header file, exposing the types required by all functions found in its corresponding javascript file. 
+By including the typescript compiler in the \ac{geo-web-vpl} prototype, this header file can be loaded and interpreted to find all mandatory data, including the names and path of functions and types. 
+These can then be accessed by reflecting these names and paths with the javascript files, which in turn calls the underlying \ac{wasm} binary.
 
-This setup is made possible by the Rust-wasm toolset "\m{wasm-bindgen}". It exposes 
-This toolset can be used to generate javascript and typescript 
+The \textbf{optional} data is exposed by using 'magic methods', a strategy influenced by the python programming language (source). 
+The library loader of the VPL will load certain functions, types, and methods in a special way, indicated by a naming convention. 
+These functions are loaded by the vpl, but will not be converted into visual components. 
+Instead, these functions are programmatically called when the VPL engine or the user requires this optional aspect. 
 
-
-- Use Typescript, vpl needs to use the typescript compiler to read the so-called 'd.ts' files of accompanying
-
-
-
-Mitigating the need for configuration means the 
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{\mySubRQFourTitle} 
 \label{sec:method-four}
-The final component of the methodology involves the utilization of all aforementioned components.
 
-In this section, we wish to discover ... encompassed by the research question : \mySubRQFour
-For this, the following plan was used: 
+The final component of the methodology is dedicated to overcoming the fourth and final challenge to realizing a \ac{geo-web-vpl}, and involves the utilization of all aforementioned components. 
+In this section, we wish to discover the practical usefulness of a \ac{geo-web-vpl}, encompassed by the research question : \mySubRQFour
 
-Many assumptions are used throughout the study 
-time to test them 
+% What are the advantages and disadvantages of using an existing geoprocessing library through a geo-web-vpl, as opposed to native utilization of said library?
 
-- "How does it compare to fme? "
-- "Does small-scale geoprocessing make sense?"
+\subsection{Why}
+This component of the methodology is included in the study because of the following: 
+It might be the case that a geo-web-vpl \emph{is} able to be interfaced using a web-browser, and \emph{is} able to load and run functions from native, non-js geo-computation libraries. 
+And still, it might not be able to successfully \emph{use} these libraries. 
+The entire idea of a vpl might not be sensible for the operation at hand, or some other, unforeseen aspects mitigates the practical usefulness of the environment. 
+It is therefore vital to access the actual usage of the application for accessing a geocomputation library.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{How}
+To answer the question of \mySubRQFourTitle, the following plan was used: 
+\begin{enumerate}[-]
+  \item Develop a representative use-case application within the prototype \ac{geo-web-vpl}.
+  \item Develop a command line application capable of the very same process.
+  \item Assess both applications according to a series of assessment questions.
+\end{enumerate}
 
-\section{OLD 4}
-\label{sec:method-four}
-\mySubRQFour
+The execution of this component of the methodology is found in \refchap{chap:experiments}.
+
+\subsection{use-case application}
+The application used in both test cases is an "isocurves from DTM" process. 
+But also: we want the iso-curves of a specific location. How to get this data is part of the exercise
 
 \begin{note}
-  - todo: turn features around into assessment criteria
-  - performance: load times, run times
-  - current state of webassembly & js. how much faster is it? is it even faster? 
-     - data translation steps, do they mitigate performance gains? 
-     - also given the fact that we are doing 'functions on sets'/ declarative instead of imperative styles, forced by the format of dataflow programming. 
+- This is subject to change, according to how much I can accomplish 
+
+- find the required height data as WFS / WMS
+- determine a boundary
+- load a dtm as a regular png / tiff image
+- specify the parameters, like height delta, smoothness.
+- marching squares
+- post-process curves
+- save as wkt, geojson, or some other well-known vector format
+
 
 \end{note}
 
-Finally, When the VPL contains all tools necessary to be used to properly process geodata, a final assessment can be made by using the environment to serve as an application. this assessment will try to overcome Obstacle 3 by posing the question: \textbf{What are the advantages and disadvantages of GIS applications created using a client-side geoprocessing environment powered by WebAssembly?}. This question requires a native but comparable GIS application to test this against.  
+\subsection{Assessment Criteria}
 
-\section*{Features}
+\begin{note}
+Just ideas:
 
-\emph{Q: Which features are required for a 'usable' VPL intended for geocomputation?}
-
-We define three major features.  
-
-These features are in turn based upon related works within VPL research, as well as web GIS studies. 
-This section outlines these requirements, and explains why they are used. 
-Additionally, certain use-cases are envisioned as proxies of these requirements, to test certain requirements in a realistic scenario. 
-
-...
-
-\subsection*{Feature A: Interactive}
-
-A VPL should be Interactive.
-
-\begin{lstlisting}
-
-
-
-  Interactivity is the defining factor of the vpl. 
-  a list of standard VPL features & application features required as a base-line:  
-- Users must be able to construct a script by visual means.
-- Dataflow Modelling
-- Dragging and dropping is a ui which
-
-(geo-vpl features:)
-- read data from user-submitted files
-- write data to files, downloadable by the user  
-- debug / inspect data in a 3D viewer
-- draw geometry in a 3D viewer
-
-\end{lstlisting}
-
-
-
-
-
-% NOTE: these are the '1 or 2 major contributions, besides making a web-geo-vpl'
-\subsection*{Feature B: Extendable}
-
-A VPL should be Extendable. 
-
-\begin{lstlisting}
-REASON: 
-  - VPL: Important take away from meta-analysis: extendability
-  - WEB: Geoweb: FAIR principles -> fair geoprocessing
-
-CRITERIA
-  - ease of creating and using plugins 
-  - ease of using existing geo-libraries 
-  - written in non-js languages
-
-  The quality of plugin creation and utilization
-The extend in which existing, non-js, industry-standard libraries can be used
-
-\end{lstlisting}
-
-
-
-\subsection*{Feature C: Publicability (the ability to publish / operationalize) } 
-
-A VPL should be Publicable. What is meant by that, is that scripts designed by using the VPL should be 
-
-\begin{lstlisting}
-
-REASON: 
- - VPL: application life-cycle is important: how to publish & use applications created using vpl's
- - WEB: cloud-native geoprocessing: requires server-side / cloud based
-   geocomputation interoperability: 
-   meaning the scripts must be able to be used without any of the 
-   interactivity features.
-
-CRITERIA:
- - ease of sharing apps as a visual program
- - ease of compiling and running the app headless
-\end{lstlisting}
-
-
-
-\section{Evaluation}
-
-\emph{Q: Usage: Who benefits from a web-geo-vpl, and how?  }
-
-A web-based visual programming language for geocomputation as described by this study does not exist yet. 
-This requires us to be clear about its intended use-case. 
-However, because of this same novelty, a singular, definitive use-case can not be given.
-To solve this problem, this study names four possible use-cases.  
-These cases are not mutually exclusive, but will be judged separately, based on specific criteria 
-During assessment, we will use these four profiles and accompanying criteria to judge how well the geo-web-vpl meets up this use-case.
-
-\subsection*{Case 1: Educational Sandbox}
-
-"
-insight within these processes are vital for communication, voor 'overdracht' 
-the 'jonathan blow educational argument' 
-"
-
-- This use-case can be fully realized within the current state of geofront
-- "Geoprocessing for kids"
-- "What is a delaunay triangulation?" 
-- "Let people play / experience / traverse a nef polyhedron"
-- Using something helps with understanding
-
-\subsubsection*{Criteria}
-Used primairly as a test for \textbf{Criterium A}.
-
-
-\subsection*{Case 2: Web Demo Environment}
-% # A: 1. Geofront as a geoprocessing / analysis demo tool.
-% - Frame Geofront as an expanded version of https://validator.cityjson.org/ this. 
-%   - [this](https://validator.cityjson.org/) (a wasm web demo) + jsfiddle 
-%   - Use rust, web, and c++ tools side by side, hand in hand
-
-- Reproducibility toolkit:
-- Workflow: 
-  - Load your own code from a CDN
-  - Build a demo setup around it
-  - load a custom graph from a public json file
-  - share a url pointing to this json (which contains the CDN address)
-- You can now share a rust / C++ program as a fully usable web demo,   
-  and analyze its performance using different datasets, test parameters, etc. 
-- interdisciplinary exchange of ideas
-- MISSING FEATURE: dependency list inside of the graph.json save file
-
-% Within the field of geo-informatics, we want to share our end-results. 
-% - Usually on git, but this has limitations:
-%     - Not everybody can immediately use it ( unfamiliar language / build system),
-%     - Even people who can understand, often wont go through the trouble.  
-%     - "Python bindings" -> half-solves the problem, but still hard to publish to a general audience. 
-
-% This was the exact reason for developing https://validator.cityjson.org/. This solved the issue of publication. Why? 
-% - Extremely findable, usable, accessible
-%   - Cross-platform
-%   - No install 
-%   - first point of contact is precisely where you can use it
-%   - You can send a link not to a download page, but to the application itself
-%   - Great for communication: blogs with embedded applications.
-%   - Code sharing: you exactly know what to expect.
-
-\subsubsection*{Criteria}
-Used primairly as a test for \textbf{Criterium B}.
-show that criteria B can be used to strip down the environment to purely that which needs to be demonstrated.
-
-\subsection*{Case 3: End User Geoprocessing Environment}
-- Lightweight FME, but open source \& on the web.
-- The tool in itself can be regarded as an end-user application:
-  - Load file, do something with the file, download resulting file
-  - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
-- Flowcharts can be exchanged by means of url's.
-- Future work: export flowchart to a process which can be run natively or server side.
+  - how to get the data you need? 
+  - how to extract the part that you need?
+  - how to specify the input data to the application? 
+  - how to get the height parameter 'just right'? 
   
+It is not about the application, is it about DOING the desired geocomputation.  
 
-\subsubsection*{Criteria}
-Used primairly as a test for \textbf{Criterium C}.
+NOTE: you might want to connect this to the 3.2.1 experiment.
 
-
-\subsection*{Case 4: Rapid-Prototyping Environment}
-\begin{lstlisting}
-- Web geoflow
-- To be used within a regular software development process.
-- Ravi's GeoFlow, but on the web
-- Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.
-
-
-  WHY: 
-  - all three the previous use-cases combined: demo, test, educate yourself
-    on your own algorithms, then operationalize the code to use it in a 
-    serious environment.  
-
+\end{note}
   
-\end{lstlisting}
-
-
-
-
-
-% - CURRENTLY MISSING FEATURE: compile to native cli tool (node.js script)
-% - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
-
-
-\subsubsection*{Criteria}
-A total test of \textbf{Criteria A, B and C}.
-
-
-% <br><br>
-
-% ## Web Demo & Scripting environments
-
-% we are not the first to recognize the suitability of the web for publishing demo's
-
-% We see a lot of interactive web-demo's nowadays, and many of them are embedded within a type of "Demo Hosts":
-
-% - Scripting environments in (Science) Communication:
-%   - Jupyter Notebook 
-%   - Observable
-%   - JsFiddle
-%   - Shadertoy
-%   - Wapm
-
-% - Scripting environments in Education: 
-%   - TU Delft C++ course
-%   - Udemy
-
-% - Scripting environments in Tutorials: 
-%   - Rust
-%   - Lit
-
-%   <!-- - (game-jam games)
-%       - more save (no virus) -->
-
-% <!-- We also see 
-
-% - As accessible alternative to native
-%   - Overleaf -> does not use webassembly, but a classic client-server architecture
-%   - Google Earth -->
-
-% All these applications lie on a crossroad between being an interactive demonstration of a certain result or phenomenon, 
-% and an open invitation for the user to edit and use this result or phenomenon. 
-% (CITE A STUDY PROVING HOW INTERACTION BENEFITS LEARNING), 
-% so toying around is important.
-
-% <!-- So it is save to say the web is suitable for these types of things. 
-% But is the web also suitable for more? Can we use a web-based sandbox environment to -->
-
-
-% we want to examine and edit the geodata flow, see for example, where these errors occur, try to get to that data, see if we can make hotfixes, etc. etc. 
 

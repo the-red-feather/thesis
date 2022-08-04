@@ -205,3 +205,131 @@ The qualitative and quantitative measurements have a degree of subjectivity
 A: No, but it is a good start. a geo-web-vpl is 'at the very least' a 3D vpl with geoprocessing functionalities. 
 But, an actual geocomputation vpl might require more features, such as a global CRS, support of base-maps, more control on precision, etc. 
 These nuances must be left for subsequent studies. 
+
+\subsection{Q: Usage: Who benefits from a web-geo-vpl, and how? }
+A web-based visual programming language for geocomputation as described by this study does not exist yet. 
+This requires us to be clear about its intended use-case. 
+However, because of this same novelty, a singular, definitive use-case can not be given.
+This study proposes 4 use-cases:
+\begin{enumerate}[-]
+  \item Educational Sandbox
+  \item Web Demo Environment
+  \item End-user geoprocessing environment 
+  \item Rapid prototyping environment
+\end{enumerate}
+
+...
+
+% To solve this problem, this study names four possible use-cases.  
+% These cases are not mutually exclusive, but will be judged separately, based on specific criteria 
+% During assessment, we will use these four profiles and accompanying criteria to judge how well the geo-web-vpl meets up this use-case.
+
+
+% \subsection*{Case 1: Educational Sandbox}
+
+% "
+% insight within these processes are vital for communication, voor 'overdracht' 
+% the 'jonathan blow educational argument' 
+% "
+
+% - This use-case can be fully realized within the current state of geofront
+% - "Geoprocessing for kids"
+% - "What is a delaunay triangulation?" 
+% - "Let people play / experience / traverse a nef polyhedron"
+% - Using something helps with understanding
+
+% \subsection*{Case 2: Web Demo Environment}
+% % # A: 1. Geofront as a geoprocessing / analysis demo tool.
+% % - Frame Geofront as an expanded version of https://validator.cityjson.org/ this. 
+% %   - [this](https://validator.cityjson.org/) (a wasm web demo) + jsfiddle 
+% %   - Use rust, web, and c++ tools side by side, hand in hand
+
+% - Reproducibility toolkit:
+% - Workflow: 
+%   - Load your own code from a CDN
+%   - Build a demo setup around it
+%   - load a custom graph from a public json file
+%   - share a url pointing to this json (which contains the CDN address)
+% - You can now share a rust / C++ program as a fully usable web demo,   
+%   and analyze its performance using different datasets, test parameters, etc. 
+% - interdisciplinary exchange of ideas
+% - MISSING FEATURE: dependency list inside of the graph.json save file
+
+% Within the field of geo-informatics, we want to share our end-results. 
+% - Usually on git, but this has limitations:
+%     - Not everybody can immediately use it ( unfamiliar language / build system),
+%     - Even people who can understand, often wont go through the trouble.  
+%     - "Python bindings" -> half-solves the problem, but still hard to publish to a general audience. 
+
+% This was the exact reason for developing https://validator.cityjson.org/. This solved the issue of publication. Why? 
+% - Extremely findable, usable, accessible
+%   - Cross-platform
+%   - No install 
+%   - first point of contact is precisely where you can use it
+%   - You can send a link not to a download page, but to the application itself
+%   - Great for communication: blogs with embedded applications.
+%   - Code sharing: you exactly know what to expect.
+
+% \subsection*{Case 3: End User Geoprocessing Environment}
+% - Lightweight FME, but open source \& on the web.
+% - The tool in itself can be regarded as an end-user application:
+%   - Load file, do something with the file, download resulting file
+%   - REQUIRES WAY MORE SUPPORTING LIBRARIES AND TOOLS
+% - Flowcharts can be exchanged by means of url's.
+% - Future work: export flowchart to a process which can be run natively or server side.
+  
+
+% \subsection*{Case 4: Rapid-Prototyping Environment}
+% \begin{lstlisting}
+% - Web geoflow
+% - To be used within a regular software development process.
+% - Ravi's GeoFlow, but on the web
+% - Meant to visually debug a certain process, after which this process can be 'compiled' to a normal cli tool.
+
+
+%   WHY: 
+%   - all three the previous use-cases combined: demo, test, educate yourself
+%     on your own algorithms, then operationalize the code to use it in a 
+%     serious environment.  
+% \end{lstlisting}
+
+
+% we are not the first to recognize the suitability of the web for publishing demo's
+
+% We see a lot of interactive web-demo's nowadays, and many of them are embedded within a type of "Demo Hosts":
+
+% - Scripting environments in (Science) Communication:
+%   - Jupyter Notebook 
+%   - Observable
+%   - JsFiddle
+%   - Shadertoy
+%   - Wapm
+
+% - Scripting environments in Education: 
+%   - TU Delft C++ course
+%   - Udemy
+
+% - Scripting environments in Tutorials: 
+%   - Rust
+%   - Lit
+
+%   <!-- - (game-jam games)
+%       - more save (no virus) -->
+
+% <!-- We also see 
+
+% - As accessible alternative to native
+%   - Overleaf -> does not use webassembly, but a classic client-server architecture
+%   - Google Earth -->
+
+% All these applications lie on a crossroad between being an interactive demonstration of a certain result or phenomenon, 
+% and an open invitation for the user to edit and use this result or phenomenon. 
+% (CITE A STUDY PROVING HOW INTERACTION BENEFITS LEARNING), 
+% so toying around is important.
+
+% <!-- So it is save to say the web is suitable for these types of things. 
+% But is the web also suitable for more? Can we use a web-based sandbox environment to -->
+
+
+% we want to examine and edit the geodata flow, see for example, where these errors occur, try to get to that data, see if we can make hotfixes, etc. etc. 
+
