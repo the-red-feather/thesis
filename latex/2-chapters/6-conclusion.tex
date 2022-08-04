@@ -6,26 +6,6 @@ In this study we described the ...
 In this study, the main research question was determined as: \myMainRQ
 sub-questions were defined, which will be answered in the following paragraphs.
 
-\subsection*{\mySubRQOne}
-
-A
-
-\subsection*{\mySubRQTwo}
-
-B
-
-\subsection*{\mySubRQThree}
-
-C
-
-\subsection*{\mySubRQFour}
-
-D
-
-\subsection*{Main}
-
-Finally, to answer the main research question:
-
 % In this article we described the design, creation and evaluation of GeoFront, a web-based point-cloud processing tool.
 
 % Overall, the study has succeeded in what it set out to do: designing and implementing a geo-web-vpl. 
@@ -99,32 +79,29 @@ Finally, to answer the main research question:
 
 % - ability to share is a true enhancement
 
-
-
 \section{Answers}
 
 \subsection*{Sub Questions}
 
 \begin{itemize}[ ]
-  \item "\mySubRQOne"
+  \item \emph{\mySubRQOneTitle:} "\mySubRQOne"
 \end{itemize}
 
 la la la
 
 \begin{itemize}[ ]
-  \item "\mySubRQTwo"
+  \item \emph{\mySubRQTwoTitle:} "\mySubRQTwo"
+\end{itemize}
+
+
+\begin{itemize}[ ]
+  \item \emph{\mySubRQThreeTitle:}  "\mySubRQThree"
 \end{itemize}
 
 la la la
 
 \begin{itemize}[ ]
-  \item "\mySubRQThree"
-\end{itemize}
-
-la la la
-
-\begin{itemize}[ ]
-  \item "\mySubRQFour"
+  \item \emph{\mySubRQFourTitle:} "\mySubRQFour"
 \end{itemize}
 
 la la la
@@ -137,14 +114,73 @@ la la la
     \item "\myMainRQ"
 \end{itemize}
 
-The full design is represented by \refchap{chap:methodology}, the full implementation is represented by \refchap{chap:implementation}. 
+The full design and implementation are represented by \refchap{chap:methodology} and \refchap{chap:implementation}. 
 But to summarize:
 
 [make a final conclusion based upon the 4 sub-answers above]
 
+we split up this study into four sub-studies, each defining, analysing and overcoming a specific challenge of the implementation of a \ac{geo-web-vpl}.
+
+In first sub-study, 
+
+the study explained the challenges and solutions concerned with developing the prototype Web 3D VPL Geofront.
+- the challenge of simulating a native interface and experience in a web browser. 
+- Especially file system challenges 
+
+In the second sub-study,
+
+challenge: 
+compilation to wasm
+
+Observation: 
+C++ is difficult to compile to wasm.
+This is not due to wasm itself, but rather the focus of emscriptem in compilation of full C++ applications, and the emulation of a POSIX environment in a web browser. 
+The library support lacks ergonomics.
+The library support of rust is more advanced.
+
+Conclusion: 
+Rust is for the forseeable future a better choice for writing platform-independent libraries. 
+Suggestion: Emscripten's 'embind' tool to expand to the level of 'wasm-bindgen'.
+
+Third sub-study: 
+
+Challenge:
+Two layers of wrapper libraries are needed to take an existing rust / C++ library, and run it in a web-based visual programming language.
+
+This is why this third component of the methodology is focused on mitigating the need for the second wrapper library. 
+
+solutions: 
+- automatically base visual components on typescript header-files
+- add any 'config' information to the first type of wrapper library. 
+
+\section{Conclusion}
+
+- Where was this 'barrier'?
+combination: 
+1. hard to expose existing libraries in a way that is actually nice to use
+- "just compiling to wasm" was not enough.
+- Webassembly is a double edged sword. Interfacing with wasm binaries from javascript is slow: lots of duplication of data. 
+-> this study leaned heavely on Rust to solve this problem
+
+2. disconnect with regular programming libraries
+- to turn a function into a component usable in a visual programming graph, lots of meta-data is needed. 
+  -> leading to config files 
+  -> leading to a barrier between regular programming libraries, and vpl libraries. 
+  -> this study opted for automated configs based on 'typescipt' headers to attempt to solve this problem. This worked, but had some new Limitations
+     -> it did allow for rapid experimentation, and seemless interoperability
+     -> however, other aspects like descriptions, library meta info, etc. 
+     -> for this a 'config' of some sorts was still needed. 
+
+3. web interface
+- Having no file system really hurts the usefulness of the vpl as a data processing application.
+
+-> This study recommends cloud-native as a solution to this problem, and has added 
 
 
-\section*{Limitations}
+this study 
+
+
+\section{Limitations}
 
 The qualitative and quantitative measurements have a degree of subjectivity
 - research topic is sizable
@@ -160,3 +196,12 @@ The qualitative and quantitative measurements have a degree of subjectivity
 % ## As Demo / Scripting Environment 
 % _"Is this environment a good demo host?"_
 
+\section{Discussion}
+\label{sec:discussion}
+
+
+\subsection{Q: Is a ac{geo-web-vpl} the same as a 3D vpl with existing geoprocessing functionalities attached? In other words, is geoprocessing nothing else than procedural modelling?}
+
+A: No, but it is a good start. a geo-web-vpl is 'at the very least' a 3D vpl with geoprocessing functionalities. 
+But, an actual geocomputation vpl might require more features, such as a global CRS, support of base-maps, more control on precision, etc. 
+These nuances must be left for subsequent studies. 

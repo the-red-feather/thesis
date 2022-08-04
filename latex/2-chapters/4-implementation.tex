@@ -14,7 +14,7 @@ The repositories prefixed with a \m{gfp} are \geofront{} Plugins. These plugins 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{The App}
+\section{\mySubRQOneTitle: The App}
 \label{sec:app}
 
 The \geofront{} Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file, and this file practically represents the full application. 
@@ -270,8 +270,10 @@ Header only is an unusual
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newpage
-\section{Exporting a geoprocessing library to the web}
+
+\section{\mySubRQTwoTitle: Web-ready geoprocessing libraries}
 
 \begin{note}
 Explain the process of taking a C++ / Rust library and putting it onto a web-browser.
@@ -301,24 +303,17 @@ but it does use robust geometric predicates, and a high precision kernel (f64).
 
 \subsection{Conclusion}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{The Plugin Model}
-The last implementation feature which requires elaboration is the plugin model. 
+
+\section{\mySubRQThreeTitle: The Plugin Model}
+\label{sec:impl-plugin}
+
+The last implementation which requires elaboration is the plugin model. 
 A full overview of this system can be given 
-
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=\maxwidth]{Model Proposal.png}
-  \caption{Plugin Model}
-  \label{fig:method}
-\end{figure}
-
 
 % 2 types supported 
 
@@ -335,11 +330,12 @@ A system for
 Using this 
 
 
-\subsubsection{ Startin }
-- web assembly based
+\subsection{ Startin }
 
-\subsubsection{ CGAL }
+\subsection{ CGAL }
 
+
+\subsection{Assessment}
 
 % \section{Achieved Functionality}
 

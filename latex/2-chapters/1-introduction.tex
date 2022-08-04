@@ -259,10 +259,16 @@ Due to time limitations, we are forced to focus on particular type of geocomputa
 3D-based geocomputation is chosen, with a particular focus on pointclouds and and DTMs. 
 The hypothesis is that these types of data may benefit the most from 'geo-web-vpl' based geocomputation.
 
+\subsection*{Assumption: a '\ac{geo-web-vpl}' is a normal 3D VPL capable of common geo-computation processes}
+For the scope of this thesis, we assume a \ac{geo-web-vpl} is very similar to any 3D VPl, like Blender Geometry Nodes, Houdini, GeoFlow, and Grasshopper. 
+It differs only in the fact that it supports geodata types, and offers common geocomputation functionalities. 
+In reality, a lot of differences and nuances exist between the field of geocomputation and the field of procedural modelling. 
+However, due to the limited scope of this study, these concerns will only be picked up at the final discussion, found at \refsec{sec:discussion}.
+ 
 \subsection*{Only core browser features}
 Lastly, the implementation of the geo-web-vpl will limit itself to core browser features, keeping dependencies at a minimum, in an attempt to generalize the results of the study.
 If the study would use very specific frameworks and technologies to solve key issues, questions might arise if the results of the study counts in general for browser-based geocomputation or geo-VPLs, or if they only count in this very specific scenario. 
-This study defines "Core browser features" in \refsec{sec:method-one}
+This study defines "Core browser features" in \refsec{sec:methodone}
 
 \newpage
 \section{Reading Guide}
@@ -274,7 +280,6 @@ The remainder of this study is structured as follows:
   \begin{note}
     EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
   \end{note}
-
 
   \item \refchap{chap:methodology}, Methodology, explains precisely in what way the research-questions will be answered. In addition, the main design decisions are described and justified in this part of the study.
 
