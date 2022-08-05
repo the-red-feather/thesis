@@ -10,60 +10,95 @@
 
 % GeoFront's mission: Use the vpl to make rapid experimentation and evaluation of your geoprocessing functions possible FOR OTHERS. This enables others to rapidly utilize your geoprocessing method. The primary use case of this is collaboration: Rapidly publish ones results, demonstrate reproducibility, retrieve feedback, etc.   
 
-\chapter{Related work}
+\chapter{Background \& Related work}
 \label{chap:related}
-
-\begin{note}
-  CENTRAL GOAL: 
-  EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
-\end{note}
 
 \begin{figure}
   \centering
   \graphicspath{ {../../assets/diagrams/} }
   \includegraphics[width=250px]{geo-web-vpl.png}
   \caption{Triangle Model}
-  \label{fig:method}
+  \label{fig:triangle-model}
 \end{figure}
 
 This chapter offers an overview of the theoretical background that this study builds upon, alongside a review of comparable studies.
-The study takes place at the intersection of three fields
+The study takes place at the intersection of three fields, represented by the corners of \reffig{fig:triangle-model}:
+\begin{enumerate}[-]
+  \item \refsec{sec:background-geo}
+  \item \refsec{sec:background-web}
+  \item \refsec{sec:background-vpl}
+\end{enumerate}
+These will be covered in \refsec{sec:background}.
+Additionally, while no project or study exist at the intersection of all three of these fields, we do find related studies which intersect two of these fields, represented by the edges of \reffig{fig:triangle-model}:
+\begin{enumerate}[-]
+  \item \refsec{sec:related-geoweb}
+  \item \refsec{sec:related-geovpl}
+  \item \refsec{sec:related-webvpl}
+\end{enumerate}
+These studies will be reviewed in \refsec{sec:related}.
 
-of the two fields of Visual programming and web GIS applications. 
-This chapter is divided into three sections. \refsec{sec:vp} and \refsec{sec:webgis} each cover one of these fields individually, and \refsec{sec:both} covers comparable studies at this intersection.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \begin{note}
-%   EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
-% \end{note}
+\section{Background}
+\label{sec:background}
 
-Every section is structured in the same manner. Each starts out with a general background on the field in question, after which an overview of comparable studies is given. It ends with a review, which compares these studies with the main research question. This is done to specify exactly how these prior studies relate to the research question, vital in explaining the decisions of sub-questions and the methodology.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The study is conducted by implementing a prototype \ac{geo-web-vpl}. This can in turn be used to visit each one of these sub-question, 
+\subsection{Geocomputation}
+\label{sec:background-geo}
 
-\section{GEO: Geocomputation}
+\subsubsection{Geocomputation libraries}
+\label{sec:background-geolib}
 
-\subsection{Geocomputation libraries}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{WEB: Client-side web applications}
+\subsection{Web applications}
+\label{sec:background-web}
 
-\subsection{WebAssembly}
+\subsubsection{Web GIS}
+\label{sec:background-webgis}
 
-\subsection{Web GIS}
+\subsubsection{WebAssembly}
+\label{sec:background-wasm}
 
-\section{VPL: Visual Programmming}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{GEO-WEB: }
-\section{GEO-VPL: }
-\section{WEB-VPL: }
+\subsection{Visual Programmming}
+\label{sec:background-vpl}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Related work}
+\label{sec:related}
+
+\begin{note}
+  CENTRAL GOAL: 
+  EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
+\end{note}
+ 
+To the best of the author's knowledge, a publicly available visual programming language which is both able to run and execute in a browser, and is able to be used for geodata computation, does not exist. 
+
+\subsection{Browser-based geoprocessing}
+\label{sec:related-geoweb}
+
+\subsection{Visual programming and geocomputation}
+\label{sec:related-geovpl}
+
+\subsection{Browser-based visual programming}
+\label{sec:related-webvpl}
+
+(rasterfoundry, but doesnt really count)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Visual Programming: VPL}
+\section{OLD: Visual Programming: VPL}
 \label{sec:vp}
 
 \subsection*{BACKGROUND}
@@ -257,12 +292,11 @@ with the VPL as one of the most overlooked aspects within VPL research.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Web GIS}
-\label{sec:webgis}
 
 \todo{This is dated. this section includes many old introductions, and requires refinement.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Browser-based geoprocessing}
+\subsubsection*{OLD Browser-based geoprocessing}
 \label{sec:bbg}
 % Nothing wrong with this chapter I think. Everything is there for a reason
 
@@ -560,11 +594,6 @@ FAIR geoprocessing may have many auxiliary advantages.
 %   \item Interoperable -> WebAssembly / containerized runtimes and processes, using common types
 %   \item Reusable -> compile to regular web service / function
 % \end{itemize}
-
-% X : wasm-based geo-computation applications
-
-CITYJSON VALIDATOR ARGUMENT: THE WEB CAN BE USED TO IMMEDIATELY MAKE SOME TOOL / SOME RESEARCH PROJECT OPERATIONAL 'IN THE REAL WORLD'. THIS WAY, DATA CAN BE GATHERED, USER FEEDBACK CAN BE GATHERED, AND THE TOOL CAN BE EVALUATED IN TERMS OF REPRODUCABILITY. FINALLY, IT OFFERS THE POSSIBILITY OF THE TOOL BEING ACTUALLY USED, IN PRACTICE. 
-z
 
 
 
