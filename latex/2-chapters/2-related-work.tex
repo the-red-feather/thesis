@@ -13,23 +13,63 @@
 \chapter{Related work}
 \label{chap:related}
 
-This chapter offers an overview of the theoretical background that this study builds upon, alongside a review of related studies. 
-The study takes place at the intersection of the two fields of Visual programming and web GIS applications. 
+\begin{note}
+  CENTRAL GOAL: 
+  EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
+\end{note}
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/diagrams/} }
+  \includegraphics[width=250px]{geo-web-vpl.png}
+  \caption{Triangle Model}
+  \label{fig:method}
+\end{figure}
+
+This chapter offers an overview of the theoretical background that this study builds upon, alongside a review of comparable studies.
+The study takes place at the intersection of three fields
+
+of the two fields of Visual programming and web GIS applications. 
 This chapter is divided into three sections. \refsec{sec:vp} and \refsec{sec:webgis} each cover one of these fields individually, and \refsec{sec:both} covers comparable studies at this intersection.
+
+% \begin{note}
+%   EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
+% \end{note}
 
 Every section is structured in the same manner. Each starts out with a general background on the field in question, after which an overview of comparable studies is given. It ends with a review, which compares these studies with the main research question. This is done to specify exactly how these prior studies relate to the research question, vital in explaining the decisions of sub-questions and the methodology.
 
 The study is conducted by implementing a prototype \ac{geo-web-vpl}. This can in turn be used to visit each one of these sub-question, 
 
+\section{GEO: Geocomputation}
+
+\subsection{Geocomputation libraries}
+
+\section{WEB: Client-side web applications}
+
+\subsection{WebAssembly}
+
+\subsection{Web GIS}
+
+\section{VPL: Visual Programmming}
+
+\section{GEO-WEB: }
+\section{GEO-VPL: }
+\section{WEB-VPL: }
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Visual Programming}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Visual Programming: VPL}
 \label{sec:vp}
 
 \subsection*{BACKGROUND}
 
-offers a rich background of prior research, and as such this literature review cannot be exhaustive. We instead focus on works which are particularly relevant to this studies' problem statement.
+offers a rich background of prior research, and as such this literature review cannot be exhaustive. 
+We instead focus on works which are particularly relevant to this studies' problem statement.
 
 
 \begin{lstlisting} 
@@ -94,7 +134,7 @@ opportunities for parallel computation, it can lead to faster applications.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{ In Geometry Computation \& Visualization }
+\subsection*{ In Geometry Computation \& Visualization: GEO-VPL }
 \begin{lstlisting} 
    - Besides the use cases already mentioned, a significant number of 
    visual programming applications are emerging in fields concerned 
@@ -220,22 +260,6 @@ with the VPL as one of the most overlooked aspects within VPL research.
 \label{sec:webgis}
 
 \todo{This is dated. this section includes many old introductions, and requires refinement.}
-
-\subsection{BACKGROUND}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{The Geoweb}
-\label{sec:geoweb}
-
-
-The Geoweb, or Geospatial Web, covers a broad collection of topics located at intersection of the field of geo-information and the web. A noteworthy study on the Geoweb is Van den Brink's phd titled "Geospatial Data on the Web". \cite{brink_geospatial_2018}. She claims that even though geodata is vital to a diverse range of applications and people, the ability to properly retrieve geodata remains almost exclusive to experts in the field. This is to the determent of all these applications and people, jeopardizing value, opportunity, and decision making. She makes this argument by using the concept of FAIR geodata. Coined by \cite{mark_d_wilkinson_fair_2016}, The FAIR principles are a collection of four assessment criteria used to judge the usability of (scientific) data: Findable, Accessible, Interoperable, and Reusable. 
-
-We argue that if these concerns count for geodata \textit{retrieval}, they should just as well count for geodata \textit{processing}. After all, if a user is unable to convert the retrieved geodata to their particular use case, then the information they seek remains inaccessible. Therefore, this study introduces the concept of \emph{FAIR geoprocessing}. 
-
-Based on the arguments presented by \cite{brink_geospatial_2018}, we can also extrapolate that a \ac{gis} environment shouldn't exclusively be used by only experts. Van den Brink mentions a group called 'data users', presented as "web developers, data journalists etc. who use different kinds of data, including geospatial data, directly to create applications or visualizations that supply information to end users (citizens)". 
-
-We use both extrapolations to define the users and 'usability' for the context of this study. We will judge the proposed use case application as 'usable', if it is deemed Findable, Accessible, Interoperable, and Reusable. The user group intended to use this environment is defined as both experts in the field of geo-information and this more general group of data users.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Browser-based geoprocessing}

@@ -40,18 +40,18 @@ All these fields benefit from the combination of both low-code automation and vi
 Within the field of geo informatics, \ac{vpl}s are not a new phenomenon. VPLs have been used for decades to specify geodata transformations and performing spatial analyses.  
 SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (ETL) platform automates data integration, and is widely used by GIS experts.
 
-(dataflow modelling)
+(add a sentence about dataflow modelling)
 
 \emph{what makes a vpl a 'new' development?}
 
-Despite this history, the \ac{vpl} is still considered an ongoing development within the field of geocomputation. Many new \ac{geo-vpl}s are continuously being developed, as the existing ones were deemed inadequate. Especially in recent years, a push towards a more 'granular' \ac{vpl}s can be recognized: Small-scale geocomputation for more detailed geodata. 
-McNeels's Grasshopper (SOURCE) is increasingly being used spatial analysis of buildings and cities, like solar irradiation or heating demands (source). 
-The \ac{vpl} GeoFlow was used to model the 3D envelope of a building based on a pointcloud, which was subsequently scaled up in the creation of the 3D BAG dataset (source).
+Despite this history, the \ac{vpl} is still considered an ongoing development within the field of geocomputation. 
+Many new \ac{geo-vpl}s are continuously being developed, as the existing ones were deemed inadequate. 
+Especially in recent years, a push towards a more 'granular' \ac{vpl}s can be recognized: 
+\ac{vpl}s offering geocomputation on a smaller, more detailed level. 
+As an example, McNeels's Grasshopper (SOURCE) is increasingly being used for spatial analyses of buildings and neighborhoods, like solar irradiation or heating demands (source). 
+Meanwhile, The GeoFlow \ac{vpl} (source) was used to model the 3D envelope of a building based on a pointcloud, which was subsequently scaled up in the creation of the 3D BAG dataset (source).
 
-These ways of using a \ac{geo-vpl} are still relatively novel, and contain many open ended questions. That geocomputation in certain scenarios benefits from the interface offered by a \ac{vpl} is probably true, indicated by the number of prior studies on the topic (source, source, source), and the high number of \ac{vpl}s used for geodata and geometry computation. The \emph{extend} to which \ac{vpl}s benefit geocomputation, is still relatively unknown. 
-
-
-% is the fact in recent years, a push towards a more 'granular' \ac{vpl}s can be recognized. While a \ac{vpl} like FME can 
+These ways of using a \ac{geo-vpl} are still relatively novel, and contain many open ended questions. That geocomputation in certain scenarios benefits from the interface offered by a \ac{vpl} is probably true, indicated by the number of prior studies on the topic (source, source, source), and the popularity of \ac{vpl}s used for geodata and geometry computation. The \emph{extend} to which \ac{vpl}s benefit geocomputation, is still relatively unknown. 
 
 % Famous examples of VPLs are:
 % \begin{itemize}
@@ -66,9 +66,6 @@ These ways of using a \ac{geo-vpl} are still relatively novel, and contain many 
 % RANSAC -> many 'magic' parameter. They need to be discovered by 'play'
 % Jonathan blow -> using interactive applications, an intrinsic understanding can be gained without explicit communication.
 % Game Of Life -> impossibility of 'proving' behaviour systems. 
-
-
-
 
 \subsection*{Browser-based geocomputation}
 
@@ -169,8 +166,10 @@ But this also raises the question: \textit{Why is geocomputation within a web ap
 % By creating the use-case application GeoFront, we ask the question if a modern web browser, and the current state of the client-side web technologies are capable of facilitating  
 
 *why is the web used for geocomputation?*
-- Accessibility: no installment or configuration burden
-- Distribution: web applications can quickly be distributed
+\begin{enumerate}[-]
+  \item Accessibility: no installment or configuration needed, cross-platform by default
+  \item Distribution: web applications can quickly be updated, shared, licensed. 
+\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -184,10 +183,14 @@ However, since no geo-web-vpl exist, there is no way of definitively knowing or 
 Prior studies give an indication to where the disconnect between the field of geo-VPLs and web-GIS may be. This is further explained in \refchap{chap:methodology}.
 We encounter either existing geo-VPLs which were not able to be properly used in a browser, or web-based VPLs unable to support existing geocomputation functionalities. From this, it can be concluded that the support of existing geocomputation functionalities is a central aspect of making a geo-web-vpl succeed. 
 
+\begin{note}
+presupposition: combining a geo-vpl and bbg is useful.
+\end{note}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Research Objective}
-This study seeks to close the gap between geo-VPLs and browser-based geocomputation by designing, implementing, and accessing a \ac{geo-web-vpl}.
+This study seeks to close the gap between geo-VPLs and browser-based geocomputation by designing, implementing, and evaluating a \ac{geo-web-vpl}.
 The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
 As such, overcoming this technical challenge is the focal point of this study. 
 
@@ -226,7 +229,7 @@ and this application is tested and compared to existing methods using real-world
 
 \newpage
 \section{Scope}
-The scope of this thesis is cornered in the following ways: 
+The scope of this thesis is cornered in the following six ways: 
 
 \subsection*{Only frontend geocomputation}
 This study excludes any \emph {backend} based geocomputation.
@@ -284,9 +287,9 @@ The remainder of this study is structured as follows:
   \item \refchap{chap:methodology}, Methodology, explains precisely in what way the research-questions will be answered. In addition, the main design decisions are described and justified in this part of the study.
 
   \item \refchap{chap:implementation}, Implementation, presents the implementation of the methodology. Additionally, it Provides an answer for the \textit{\mySubRQOneTitle, \mySubRQTwoTitle , and \mySubRQThreeTitle} sub research questions. 
-  \subitem Answer of "\mySubRQOneTitle": Show all wasm-considerations: C++ vs Rust vs rewriting in Js. Emscripten vs wasm-bindgen. Conclude with the preference for rust, and explain why.
-  \subitem Answer of "\mySubRQTwoTitle": Show the full application implementation. Conclude with what about this implementation is relevant for geocomputation. 
-  \subitem Answer of "\mySubRQThreeTitle": the plugin system schema. 
+  \subitem Answer of "\mySubRQOneTitle": Show the full application implementation. Conclude with what about this implementation is relevant for geocomputation, and in what ways the browser is limiting, or beneficial. 
+  \subitem Answer of "\mySubRQTwoTitle": Show all wasm-considerations: C++ vs Rust vs rewriting in Js. Emscripten vs wasm-bindgen. Conclude with the preference for rust, and explain why.
+  \subitem Answer of "\mySubRQThreeTitle": The implementation details of the plugin system schema. 
   
   \item \refchap{chap:experiments}: Experiments, describes the results obtained after the implementation of the methodology. With these results, an answer to the fourth research question of \mySubRQFourTitle can be given. 
 
@@ -294,6 +297,7 @@ The remainder of this study is structured as follows:
   \subitem conclude to which extend the solution was able to satisfy the main research question. 
   \subitem discuss to which extend the solution was able to satisfy main research question.
   \subitem discuss unaddressed aspects of the thesis, such as the massive nature of geodata, and the utility of a vpl for geocomputation.
+  \subitem future work
 
   \item \refchap{chap:postscript}: Post Scriptum, argues the wider implications of this study. 
 
