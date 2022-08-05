@@ -24,38 +24,53 @@
 This chapter offers an overview of the theoretical background that this study builds upon, alongside a review of comparable studies.
 The study takes place at the intersection of three fields, represented by the corners of \reffig{fig:triangle-model}:
 \begin{enumerate}[-]
-  \item \refsec{sec:background-geo}
-  \item \refsec{sec:background-web}
-  \item \refsec{sec:background-vpl}
+  \item \refsec{sec:background-geo} GEO: Geocomputation (TODO write this, small part)
+  \item \refsec{sec:background-web} WEB: (Progressive) Web applications (TODO edit and write this)
+  \item \refsec{sec:background-vpl} VPL: Visual Programming Languages (TODO write this)
 \end{enumerate}
 These will be covered in \refsec{sec:background}.
 Additionally, while no project or study exist at the intersection of all three of these fields, we do find related studies which intersect two of these fields, represented by the edges of \reffig{fig:triangle-model}:
 \begin{enumerate}[-]
-  \item \refsec{sec:related-geoweb}
-  \item \refsec{sec:related-geovpl}
-  \item \refsec{sec:related-webvpl}
+  \item \refsec{sec:related-geoweb} (practically finished)
+  \item \refsec{sec:related-geovpl} (needs work)
+  \item \refsec{sec:related-webvpl} (can be very brief)
 \end{enumerate}
 These studies will be reviewed in \refsec{sec:related}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Background}
 \label{sec:background}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  ____    _                                                                  %
+% |___ \  / |                                                                 %
+%   __) | | |                                                                 %
+%  / __/ _| |                                                                 %
+% |_____(_|_| Background                                                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Geocomputation}
 \label{sec:background-geo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  ____    _   _                                                              %
+% |___ \  / | / |                                                             %
+%   __) | | | | |                                                             %
+%  / __/ _| |_| |                                                             %
+% |_____(_|_(_|_| Background: GEO                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \subsubsection{Geocomputation libraries}
 \label{sec:background-geolib}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Web applications}
+\subsection{(Progressive) Web applications}
 \label{sec:background-web}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ____    _   ____                                                            %
+% |___ \  / | |___ \                                                          %
+%   __) | | |   __) |                                                         %
+%  / __/ _| |_ / __/                                                          %
+% |_____(_|_(_|_____| Background: WEB                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Web GIS}
 \label{sec:background-webgis}
@@ -63,288 +78,6 @@ These studies will be reviewed in \refsec{sec:related}.
 \subsubsection{WebAssembly}
 \label{sec:background-wasm}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Visual Programmming}
-\label{sec:background-vpl}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Related work}
-\label{sec:related}
-
-\begin{note}
-  CENTRAL GOAL: 
-  EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
-\end{note}
- 
-To the best of the author's knowledge, a publicly available visual programming language which is both able to run and execute in a browser, and is able to be used for geodata computation, does not exist. 
-
-\subsection{Browser-based geoprocessing}
-\label{sec:related-geoweb}
-
-\subsection{Visual programming and geocomputation}
-\label{sec:related-geovpl}
-
-\subsection{Browser-based visual programming}
-\label{sec:related-webvpl}
-
-(rasterfoundry, but doesnt really count)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{OLD: Visual Programming: VPL}
-\label{sec:vp}
-
-\subsection*{BACKGROUND}
-
-offers a rich background of prior research, and as such this literature review cannot be exhaustive. 
-We instead focus on works which are particularly relevant to this studies' problem statement.
-
-
-\begin{lstlisting} 
-write something about : 
-- cognitive_1996 
-- advances_2004
-- characterizing_2021
-
-An increasing number of software applications are being written by end users 
-without formal software development training. 
-This inspired large technology companies such as Microsoft [91] and Amazon [90] 
-to invest in low-code development environments empowering end users to 
-create web and mobile applications. 
-According to the 2019 Q1 Forrester report, the low-code market will witness an 
-annual growth rate of 40\%, 
-with spending forecast to reach \$21.2 billion by 2022 [102]. 
-End-User Development (EUD) has emerged as a field that is concerned with 
-tools and activities allowing end users 
-who are not professional software developers to write software applications [11]. 
-This is promising as end users know their own domain and needs more than anyone else, 
-and are often aware of specificities in their respective contexts. 
-Further, as end users outnumber developers with professional software development 
-training by a factor of 30-to-1, 
-EUD enables a much larger pool of people to participate in software development [12]. 
-A visual programming language (VPL), among other EUD techniques, 
-allows end users to create a program by piecing together graphical elements
- rather than textually specifying them [9]. 
-Traditionally, visual programming has been successfully used to help novices
- learn basics of programming by visualizing elements of a program. 
-However, visual programming is increasingly being used by end 
-users in various domains to create and tailor applications that are useful 
-beyond the realm of education. 
-For instance, VPLs are now being used in fields such as 
-the Internet of Things (IoT) [3], [10], mobile 
-application development [51], robotics [8], and Virtual/Augmented Reality [4].
-}
-
-From characterizing_2021
-
-other major use cases: 
-- PLC: Ladder
-
-\end{lstlisting}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Dataflow modelling}
-
-\begin{lstlisting}
-- Dataflow modelling is a field closely related to visual programming.
-- However, where visual programming is concerned with many aspects, 
-interface and usability being one of them, dataflow modelling is 
-primairly concerned with the correct representation of data transformation.   
-- within the field of dataflow modelling, it turned out that certain 
-visual programming paradigms are advantageous, since they make parallel 
-programming explicit. Thus, these fields are often named in conjunction. 
-- The important take-away is that visual programming is not 
-just a matter of UI or a stylistic choice.
-
-- By more correctly representing dataflow and communicating 
-opportunities for parallel computation, it can lead to faster applications.
-\end{lstlisting}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{ In Geometry Computation \& Visualization: GEO-VPL }
-\begin{lstlisting} 
-   - Besides the use cases already mentioned, a significant number of 
-   visual programming applications are emerging in fields concerned 
-   with 2D and 3D geometry creation \& visualization. 
-
-  PROCEDURAL GEOMETRY 
-    - Rhino: Grasshopper
-    - Revit: Dynamo  
-    - Blender: Geometry Nodes
-    - Houdini: Procedural Modelling
-  
-  TEXTURES AND SHADERS
-    - Blender: Shader Nodes
-    - Adobe: Substance Designer
-    - Unreal Engine: Material Nodes
-    - Unity: Shader Graph
-    - Houdini: FX
-
-  These are all popular applications, many users, multiple courses and tutorials, 
-
-  The persistence of visual programming within the field of shaders and
-  geometry, suggests that visual programming languages are advantageous in
-  situations where a 'visual' product requires debugging during development. 
-\end{lstlisting}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{ In field of geo-informatics }
-
-\begin{lstlisting}
-  (explain the use-case of vpl's within the field of geo-informatics, 
-  why they are significant to us) 
-  within geomatics
-
-  - data translation: FME 
-  - cloud-native computation: modellab in rasterfoundry
-    - link to dataflow modelling
-  - debugging & experimentation: GeoFlow 
-  
-\end{lstlisting}
-
-% Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
-
-
-% The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
-% The main goal and feature of geofront is to take existing low level geo-computation libraries, and to make these interactively usable on the web. 
-% These libraries include a limited set of CGAL operations, complied from C++, and various geo-computation algorithms such as Startin, written in Rust. 
-% Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
-% In between products can quickly be inspected using a 3D viewer.
-
-% We test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility \& performance of said application. We also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
-
-% These features could all be implemented by normal means ( buttons, panels, sliders ) -->
-
-% CHOICE: do something in-between python bindings, and a full fletched end-user application. 
-% Ergo: Visual programming
-
-% For input, the environment offers \ac{wms} and \ac{wfs} support, as well as ways for users to load locally stored geodata. Parameters can be specified using various ui components, such as sliders. 
-% For output, the environment can be used to either save data to the user's local machine, or to visualize the results within the geofront application using a WebGL based viewport.
-
-% Where ModelLab is build on top of recent improvements to the accessability of satellite imagery, GeoFront is build in anticipation to a similar development for point cloud datasets with the introduction of COPC.  The focus of Geofront is therefore on point cloud processing, and point-cloud based modelling, such as Digital Terrain Models (DTM). 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\subsection*{REVIEW}
-Challenges
-\begin{lstlisting}
-  - several challenges exist within the research field of visual programming. 
-  - literature study (knowling what is and isnt being researched)
-  - based upon : prior meta-analysis of 'characterizing_2021'
-\end{lstlisting}
-
-\subsubsection*{Difficulty in assessment of 'usability'}
-\begin{lstlisting}
-  - usability is a nebulous phenomenon, hard to measure empirically.
-  - no consensus on evaluation frameworks among VPL researchers. 
-
-  BUT (leave this part, mention it later)
-  - we will make no such attempt. usability serves as background motivation. 
-  - this study assumes vpl's are 'in general' more usable to end-users 
-  than text-based alternatives, based on the positive results of most of the 
-  studies analysed by communicating_2021.   
-\end{lstlisting}
-
-
-\subsubsection*{web based visual programming is underresearched}
-\begin{lstlisting}
-  
-  large challenge
-  - not many examples
-    of these examples: 
-    - no suitable starter projects
-    - none are concerned with geometry
-
-    - Visual programming environment for geo-computation 
-    \emph{in a browser} has not been tried before. 
-
-
-    "Finally, 53.3% (16) of the tools were available publicly with some documentation. 
-    We strongly recommend that future tools are made available for end users as well as comprehensive documentation to ensure tool adoption and sustainability." communicating_2021 
-   -> not fully related, but making this vpl web-based could seriously help this aspect of vpl assessment.   
-
-\end{lstlisting}
-
-
-\subsubsection*{VPL availabilty and life cycle}
-\begin{lstlisting}
-Finally, (communicating_2021) names the 'life cycle' of apps created 
-with the VPL as one of the most overlooked aspects within VPL research. 
-- extend 
-- debug
-- publish
-- run
-\end{lstlisting}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Web GIS}
-
-\todo{This is dated. this section includes many old introductions, and requires refinement.}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{OLD Browser-based geoprocessing}
-\label{sec:bbg}
-% Nothing wrong with this chapter I think. Everything is there for a reason
-
-% the latest in a series of geoprocessing attempts 
-% we want to know what happened the previous times, so we will not try things that have already been tried before.
-
-This study is related to a series of studies concerned with browser-based geoprocessing, also refered to as client-side geoprocessing. As such, it is important to relate to previous attempts and efforts, to learn from their findings, and to make sure the exact same research will not be performed twice. 
-
-As a side note, client-side geoprocessing is not to be confused with native geoprocessing clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}.
-To fix this ambiguity, this study refers to client-side geoprocessing as 'browser-based geoprocessing'.
-
-Browser-based geoprocessing has seen some level academic interest throughout the last decade. The papers \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019} all speak of an emergent trend of thick-client websites. 
-Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. 
-And, by still being a webpage rather than a native application, users can access these applications without installment. 
-The trend is made possible because of hardware improvements of client devices, as well as software improvements, like HTML5.
-
-The aforementioned papers each try to apply this trend to the field of geo-informatics. 
-Hamilton et. al. created a such a 'thick-client', capable of replacing certain elements of server-side geoprocessing \cite{hamilton_client-side_2014}. 
-However, the results are unfavorable towards JavaScript. 
-The paper states how "the current implementation of web browsers are limited in their ability to execute JavaScript geoprocessing and not yet prepared to process data sizes larger than about 7,000 to 10,000 vertices before either prompting an unresponsive script warning in the browser or potentially losing the interest of the user.". While these findings are insightful, they are not directly applicable to the efforts of this study proposal. Three reasons for this:
-
-\begin{itemize}
-  \item The paper stems from 2014. Since then, web browsers have seen a significant increase in performance thanks to advancements in JavaScript JIT compilers \cite{haas_bringing_2017, kulawiak_analysis_2019}. 
-  \item The paper does not use compile-time optimizations. The authors could have utilized 'asm.js' \cite{mozilla_asmjs_2013} which did exist at the time. 
-  \item The paper uses a javascript library which was never designed to handle large datasets.
-\end{itemize}
-
-The same statements can be made about similar efforts of Panidi et. al. \cite{panidi_hybrid_2015}. 
-However, Panidi et. al. never proposed client-side geoprocessing as a replacement of server-side geoprocessing. Instead, the authors propose a hybrid approach, combining the advantages of server-side and client-side geoprocessing. 
-They also present the observation that client-side versus server-side geoprocessing shouldn't necessarily be a compassion of performance. 
-"User convenience" as they put it, might dictate the usage of client-side geoprocessing in certain situations, despite speed considerations \cite{panidi_hybrid_2015}. 
-
-This concern the general web community would label as \ac{ux}, is shared by a more recent paper \cite{kulawiak_analysis_2019}. 
-Their article examines the current state of the web from the point of view of developing cost-effective Web-GIS applications for companies and institutions. 
-Their research reaches a conclusion favorable towards client-side data processing: "[Client-side data processing], in particular, shows new opportunities for cost optimization of Web-GIS development and deployment. 
-The introduction of HTML5 has permitted for construction of platform-independent thick clients which offer data processing performance which under the right circumstances may be close to that of server-side solutions. 
-In this context, institutions [...] should consider implementing Web-GIS with client-side data processing, which could result in cost savings without negative impacts on the user experience.".
-
-% Based on the topic of client-side geospatial processing, we can state that web technologies contain a very dynamic temporal component. All research can become outdated, but performance analysis of web technologies are especially quick to change.  
-
-From these papers we can conclude a true academic and even commercial interest in client-side geoprocessing in the last decade. However, researchers quickly encounter problems during practical implementations in the past. This might not hold up thanks to recent browser features, but these papers still show how small, practical implementation details can relate to considerable changes in \ac{ux}. 
-
-Additionally, to the best of the authors's knowledge, all papers concerned with browser-based geoprocessing either tried to use existing JavaScript libraries, or tried to write their own WebAssembly / JavaScript libraries. No studies have been performed on the topic of compiling existing C++/Rust geoprocessing libraries to the web. 
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \subsubsection*{WebAssembly}
 
@@ -423,8 +156,6 @@ WebAssembly runs in the browser for instance.
 
 \m{->} However, no implementations exist yet which combines containerized processes with these frontend computation environments. 
 
-
-
 % # 2. BACKGROUND
 
 % ## 2.1 The Web Browser & JavaScript
@@ -434,42 +165,6 @@ WebAssembly runs in the browser for instance.
 
 % ## 2.2 The Geospatial Web. 
 % [Still relevant]
-
-% ## 2.3 Related works on visual scripting
-% - FME
-% - GEOFLOW
-% - OPENSCAD
-% - Grasshopper
-
-% ## 2.4 Related works on Demo Hosts
-
-
-% ## 2.5 Client-side geoprocessing 
-% [Still relevant]
-% ...
-% BUT: most of these studies were conducted before the increase in javascript performance described in 2.1. It is therefore a valid endeavor to retry the effort of client-side geoprocessing. 
-
-% ## 2.6 Client-side Web Technologies 
-% What do we mean with this term: 
-% - HTML5 
-% - WebGL
-% - The Canvas API
-% - WebWorkers 
-% - WebAssembly 
-% - WebComponents
-
-% ### HTML5
-% - leaflet
-
-% ### WebGL
-% - three.js
-% - Celsium
-
-% ### WebAssembly 
-% [Might not be relevant]
-% WebAssembly is since 2020 part of core web technologies
-
-% ...
 
 % 2 biggest reasons against client-side geoprocessing: 
 % - not performant enough
@@ -482,51 +177,6 @@ WebAssembly runs in the browser for instance.
 
 % .....
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Browser based geoprocessing software}
-
-% https://www.azavea.com/blog/2016/09/26/raster-foundry-model-lab-phase-ii-sbir/
-% https://geotiff.io/
-- >
-% https://www.eclipse.org/community/eclipse_newsletter/2018/december/geotrellis.php 
-% -> ModelLab
-% -> " Online tool to build, store, and execute complex geospatial models "
-% - Mobius Modeller : https://mobius.design-automation.net/pages/mobius_modeller.html
-% - GeoTIFF : https://app.geotiff.io/
-These are all similar efforts, also hooked up to the OGC cloud native developments
-Geofront will differ, for it focusses on 3D \& Point clouds instead of rasters \& map algebra, and focusses on client-side geodata consumption \& processing instead of being a server-side pipeline configurer.
-
-ModelLab says this : "Widespread access to frequent, high-resolution Earth observation imagery has created the need for innovative tools like ModelLab that will help individuals and organizations to effectively access, analyze, edit, and visualize remotely sensed data in transformative new ways without years of specialized training or ongoing investments in proprietary software and technology infrastructure. "
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Client-side geoprocessing}
-
-% NEW PRACTICAL ATTEMPT. WHY? 
-% - csg still has a lot of potential
-% - previous studies:
-%   - are dated
-%   - prioritized theory over practicalities
-%   - utilized the web's major feature of Accessibility and the clients feature of    
-%     Interactivity inadequately 
-%   - were not creative enough in terms of possible use-cases 
-
-While these studies pose a strong theoretical case for client-side geoprocessing, their practical implementations were less convincing \todo{TODO: Figure out how to phrase this better}. 
-The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major javascript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
-
-
-This study recognizes a need for a new, practical attempt at client-side geoprocessing. 
-Client-side geoprocessing is a promising prospect with potentially many use cases.
-Previous attempts are either dated due to the web's rapid advancements, or chose theory over practice.
-
-In addition, the implementations lacked creativity \todo{This needs a better phrase, but it really is the most direct way of putting it}. 
-
-The applications were either meant as small demo's, without a clear target audience or use-case in mind (just a way to demo performance), or as highly specified debugging tool for the authors.   
-But, as mentioned before, a major advantage of Web applications over native applications is \emph{Accessibility}, and a major advantage of client-focussed web apps over server-focussed web apps is \emph{Interactivity}. 
-By creating a client-side web application which is neither accessible nor interactive, the main incentive for creating a client-side web app is lost.
-Additionally, by forgoing the question of accessibility, many auxiliary use-cases of client-side geoprocessing where overlooked.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{The Cloud Native Geospatial movement}
 
 
@@ -561,7 +211,6 @@ This introduces a sizable challenge: \textbf{Portable, Containerized Geo-computa
 
 % \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}. -> Chris again
 
-
 % \begin{itemize}
 %   \item Up to this point, the world of GIS has done a considerable effort to make geodata more Findable, Accessible, Interoperable, and Reusable. The challenge of Portable geo-computation now forces us to extend the effort of FAIR geodata to FAIR geodata computation as well.  
 %   \item If we want our geodata processes to be just as portable as the geodata it takes as input, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing . FAIR geo-computation.
@@ -575,8 +224,6 @@ If geodata processes need to be just as portable as the geodata forming the inpu
 The challenge facing the cloud-native vision then becomes: \textbf{How to make geo-computation Findable, Accessible, Interoperable, and Reusable?} 
 This links back to containerization, for containerization is a very powerful method of making geo-computation more Interoperable and Reusable.
 
-
-
 % state of the art regarding this issue, make a path towards the particular thesis, and why it is an application
 The current state of the art is far removed from either portable or FAIR geo-computation. 
 \todo{Improve this intro}
@@ -586,8 +233,6 @@ The current state of the art is far removed from either portable or FAIR geo-com
   \item ignore the cloud: focus on the act of containerizing geoprocesses using webassembly an sich
 \end{itemize}
 
-FAIR geoprocessing may have many auxiliary advantages. 
-
 % \begin{itemize}
 %   \item Findable? -> web browser / Package Managers
 %   \item Accessible? -> web tools
@@ -595,38 +240,346 @@ FAIR geoprocessing may have many auxiliary advantages.
 %   \item Reusable -> compile to regular web service / function
 % \end{itemize}
 
+\subsection{Visual Programmming}
+\label{sec:background-vpl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ____    _   _____                                                           %
+% |___ \  / | |___ /                                                          %
+%   __) | | |   |_ \                                                          %
+%  / __/ _| |_ ___) |                                                         %
+% |_____(_|_(_|____/ Background: VPL                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+offers a rich background of prior research, and as such this literature review cannot be exhaustive. 
+We instead focus on works which are particularly relevant to this studies' problem statement.
 
-\subsection*{REVIEW}
+\begin{lstlisting} 
+write something about : 
+- cognitive_1996 
+- advances_2004
+- characterizing_2021
 
-challenges
-\begin{lstlisting}
-Relevant Challenges & developments within web GIS:
-- cloud-native movement
-- 
+An increasing number of software applications are being written by end users 
+without formal software development training. 
+This inspired large technology companies such as Microsoft [91] and Amazon [90] 
+to invest in low-code development environments empowering end users to 
+create web and mobile applications. 
+According to the 2019 Q1 Forrester report, the low-code market will witness an 
+annual growth rate of 40\%, 
+with spending forecast to reach \$21.2 billion by 2022 [102]. 
+End-User Development (EUD) has emerged as a field that is concerned with 
+tools and activities allowing end users 
+who are not professional software developers to write software applications [11]. 
+This is promising as end users know their own domain and needs more than anyone else, 
+and are often aware of specificities in their respective contexts. 
+Further, as end users outnumber developers with professional software development 
+training by a factor of 30-to-1, 
+EUD enables a much larger pool of people to participate in software development [12]. 
+A visual programming language (VPL), among other EUD techniques, 
+allows end users to create a program by piecing together graphical elements
+ rather than textually specifying them [9]. 
+Traditionally, visual programming has been successfully used to help novices
+ learn basics of programming by visualizing elements of a program. 
+However, visual programming is increasingly being used by end 
+users in various domains to create and tailor applications that are useful 
+beyond the realm of education. 
+For instance, VPLs are now being used in fields such as 
+the Internet of Things (IoT) [3], [10], mobile 
+application development [51], robotics [8], and Virtual/Augmented Reality [4].
+}
+
+From characterizing_2021
+
+other major use cases: 
+- PLC: Ladder
 
 \end{lstlisting}
 
+\subsubsection*{Dataflow modelling}
+
+\begin{lstlisting}
+- Dataflow modelling is a field closely related to visual programming.
+- However, where visual programming is concerned with many aspects, 
+interface and usability being one of them, dataflow modelling is 
+primairly concerned with the correct representation of data transformation.   
+- within the field of dataflow modelling, it turned out that certain 
+visual programming paradigms are advantageous, since they make parallel 
+programming explicit. Thus, these fields are often named in conjunction. 
+- The important take-away is that visual programming is not 
+just a matter of UI or a stylistic choice.
+
+- By more correctly representing dataflow and communicating 
+opportunities for parallel computation, it can lead to faster applications.
+\end{lstlisting}
+
+\subsubsection*{REVIEW}
+Challenges
+\begin{lstlisting}
+  - several challenges exist within the research field of visual programming. 
+  - literature study (knowling what is and isnt being researched)
+  - based upon : prior meta-analysis of 'characterizing_2021'
+\end{lstlisting}
+
+Difficulty in assessment of 'usability'
+\begin{lstlisting}
+  - usability is a nebulous phenomenon, hard to measure empirically.
+  - no consensus on evaluation frameworks among VPL researchers. 
+
+  BUT (leave this part, mention it later)
+  - we will make no such attempt. usability serves as background motivation. 
+  - this study assumes vpl's are 'in general' more usable to end-users 
+  than text-based alternatives, based on the positive results of most of the 
+  studies analysed by communicating_2021.   
+\end{lstlisting}
+
+web based visual programming is underresearched
+\begin{lstlisting}
+  
+  large challenge
+  - not many examples
+    of these examples: 
+    - no suitable starter projects
+    - none are concerned with geometry
+
+    - Visual programming environment for geo-computation 
+    \emph{in a browser} has not been tried before. 
 
 
+    "Finally, 53.3% (16) of the tools were available publicly with some documentation. 
+    We strongly recommend that future tools are made available for end users as well as comprehensive documentation to ensure tool adoption and sustainability." communicating_2021 
+   -> not fully related, but making this vpl web-based could seriously help this aspect of vpl assessment.   
+
+\end{lstlisting}
+
+VPL availabilty and life cycle
+\begin{lstlisting}
+Finally, (communicating_2021) names the 'life cycle' of apps created 
+with the VPL as one of the most overlooked aspects within VPL research. 
+- extend 
+- debug
+- publish
+- run
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Related work}
+\label{sec:related}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ____    ____                                                                %
+% |___ \  |___ \                                                              %
+%   __) |   __) |                                                             %
+%  / __/ _ / __/__                                                            %
+% |_____(_|_____(_) Related Works                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{note}
+  CENTRAL GOAL: 
+  EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
+\end{note}
+ 
+To the best of the author's knowledge, a publicly available visual programming language which is both able to run and execute in a browser, and is able to be used for geodata computation, does not exist. 
+
+\subsection{Browser-based geoprocessing}
+\label{sec:related-geoweb}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ____    ____    _                                                           %
+% |___ \  |___ \  / |                                                         %
+%   __) |   __) | | |                                                         %
+%  / __/ _ / __/ _| |                                                         %
+% |_____(_|_____(_|_| Related Works: GEOWEB                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Nothing wrong with this chapter I think. Everything is there for a reason
+
+% the latest in a series of geoprocessing attempts 
+% we want to know what happened the previous times, so we will not try things that have already been tried before.
+
+This study is related to a series of studies concerned with browser-based geoprocessing, also refered to as client-side geoprocessing. As such, it is important to relate to previous attempts and efforts, to learn from their findings, and to make sure the exact same research will not be performed twice. 
+
+As a side note, client-side geoprocessing is not to be confused with native geoprocessing clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}.
+To fix this ambiguity, this study refers to client-side geoprocessing as 'browser-based geoprocessing'.
+
+Browser-based geoprocessing has seen some level academic interest throughout the last decade. The papers \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019} all speak of an emergent trend of thick-client websites. 
+Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. 
+And, by still being a webpage rather than a native application, users can access these applications without installment. 
+The trend is made possible because of hardware improvements of client devices, as well as software improvements, like HTML5.
+
+The aforementioned papers each try to apply this trend to the field of geo-informatics. 
+Hamilton et. al. created a such a 'thick-client', capable of replacing certain elements of server-side geoprocessing \cite{hamilton_client-side_2014}. 
+However, the results are unfavorable towards JavaScript. 
+The paper states how "the current implementation of web browsers are limited in their ability to execute JavaScript geoprocessing and not yet prepared to process data sizes larger than about 7,000 to 10,000 vertices before either prompting an unresponsive script warning in the browser or potentially losing the interest of the user.". While these findings are insightful, they are not directly applicable to the efforts of this study proposal. Three reasons for this:
+
+\begin{itemize}
+  \item The paper stems from 2014. Since then, web browsers have seen a significant increase in performance thanks to advancements in JavaScript JIT compilers \cite{haas_bringing_2017, kulawiak_analysis_2019}. 
+  \item The paper does not use compile-time optimizations. The authors could have utilized 'asm.js' \cite{mozilla_asmjs_2013} which did exist at the time. 
+  \item The paper uses a javascript library which was never designed to handle large datasets.
+\end{itemize}
+
+The same statements can be made about similar efforts of Panidi et. al. \cite{panidi_hybrid_2015}. 
+However, Panidi et. al. never proposed client-side geoprocessing as a replacement of server-side geoprocessing. Instead, the authors propose a hybrid approach, combining the advantages of server-side and client-side geoprocessing. 
+They also present the observation that client-side versus server-side geoprocessing shouldn't necessarily be a compassion of performance. 
+"User convenience" as they put it, might dictate the usage of client-side geoprocessing in certain situations, despite speed considerations \cite{panidi_hybrid_2015}. 
+
+This concern the general web community would label as \ac{ux}, is shared by a more recent paper \cite{kulawiak_analysis_2019}. 
+Their article examines the current state of the web from the point of view of developing cost-effective Web-GIS applications for companies and institutions. 
+Their research reaches a conclusion favorable towards client-side data processing: "[Client-side data processing], in particular, shows new opportunities for cost optimization of Web-GIS development and deployment. 
+The introduction of HTML5 has permitted for construction of platform-independent thick clients which offer data processing performance which under the right circumstances may be close to that of server-side solutions. 
+In this context, institutions [...] should consider implementing Web-GIS with client-side data processing, which could result in cost savings without negative impacts on the user experience.".
+
+% Based on the topic of client-side geospatial processing, we can state that web technologies contain a very dynamic temporal component. All research can become outdated, but performance analysis of web technologies are especially quick to change.  
+
+From these papers we can conclude a true academic and even commercial interest in client-side geoprocessing in the last decade. However, researchers quickly encounter problems during practical implementations in the past. This might not hold up thanks to recent browser features, but these papers still show how small, practical implementation details can relate to considerable changes in \ac{ux}. 
+
+Additionally, to the best of the authors's knowledge, all papers concerned with browser-based geoprocessing either tried to use existing JavaScript libraries, or tried to write their own WebAssembly / JavaScript libraries. No studies have been performed on the topic of compiling existing C++/Rust geoprocessing libraries to the web. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Browser based geoprocessing software}
+
+% https://www.azavea.com/blog/2016/09/26/raster-foundry-model-lab-phase-ii-sbir/
+% https://geotiff.io/
+- >
+% https://www.eclipse.org/community/eclipse_newsletter/2018/december/geotrellis.php 
+% -> ModelLab
+% -> " Online tool to build, store, and execute complex geospatial models "
+% - Mobius Modeller : https://mobius.design-automation.net/pages/mobius_modeller.html
+% - GeoTIFF : https://app.geotiff.io/
+These are all similar efforts, also hooked up to the OGC cloud native developments
+Geofront will differ, for it focusses on 3D \& Point clouds instead of rasters \& map algebra, and focusses on client-side geodata consumption \& processing instead of being a server-side pipeline configurer.
+
+ModelLab says this : "Widespread access to frequent, high-resolution Earth observation imagery has created the need for innovative tools like ModelLab that will help individuals and organizations to effectively access, analyze, edit, and visualize remotely sensed data in transformative new ways without years of specialized training or ongoing investments in proprietary software and technology infrastructure. "
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - https://openscad.org/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Client-side geoprocessing}
+
+% NEW PRACTICAL ATTEMPT. WHY? 
+% - csg still has a lot of potential
+% - previous studies:
+%   - are dated
+%   - prioritized theory over practicalities
+%   - utilized the web's major feature of Accessibility and the clients feature of    
+%     Interactivity inadequately 
+%   - were not creative enough in terms of possible use-cases 
+
+While these studies pose a strong theoretical case for client-side geoprocessing, their practical implementations were less convincing \todo{TODO: Figure out how to phrase this better}. 
+The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major javascript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
+
+
+This study recognizes a need for a new, practical attempt at client-side geoprocessing. 
+Client-side geoprocessing is a promising prospect with potentially many use cases.
+Previous attempts are either dated due to the web's rapid advancements, or chose theory over practice.
+
+In addition, the implementations lacked creativity \todo{This needs a better phrase, but it really is the most direct way of putting it}. 
+
+The applications were either meant as small demo's, without a clear target audience or use-case in mind (just a way to demo performance), or as highly specified debugging tool for the authors.   
+But, as mentioned before, a major advantage of Web applications over native applications is \emph{Accessibility}, and a major advantage of client-focussed web apps over server-focussed web apps is \emph{Interactivity}. 
+By creating a client-side web application which is neither accessible nor interactive, the main incentive for creating a client-side web app is lost.
+Additionally, by forgoing the question of accessibility, many auxiliary use-cases of client-side geoprocessing where overlooked.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Visual programming and geocomputation}
+\label{sec:related-geovpl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  ____    ____    ____                                                       %
+% |___ \  |___ \  |___ \                                                      %
+%  __) |   __) |   __) |                                                      %
+% / __/ _ / __/ _ / __/                                                       %
+% |_____(_|_____(_|_____| Related Works: GEOVPL                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 acknoledgements
 - Name similar studies or things 
   - Ravi Peter: awesome c++ based application 
     - not web
     - not formal reseach
+
+\begin{lstlisting}
+  (explain the use-case of vpl's within the field of geo-informatics, 
+  why they are significant to us) 
+  within geomatics
+
+  - data translation: FME 
+  - cloud-native computation: modellab in rasterfoundry
+    - link to dataflow modelling
+  - debugging & experimentation: GeoFlow 
   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{lstlisting}
 
+% Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
+
+
+% The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
+% The main goal and feature of geofront is to take existing low level geo-computation libraries, and to make these interactively usable on the web. 
+% These libraries include a limited set of CGAL operations, complied from C++, and various geo-computation algorithms such as Startin, written in Rust. 
+% Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
+% In between products can quickly be inspected using a 3D viewer.
+
+% We test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility \& performance of said application. We also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
+
+% These features could all be implemented by normal means ( buttons, panels, sliders ) -->
+
+% Where ModelLab is build on top of recent improvements to the accessability of satellite imagery, GeoFront is build in anticipation to a similar development for point cloud datasets with the introduction of COPC.  The focus of Geofront is therefore on point cloud processing, and point-cloud based modelling, such as Digital Terrain Models (DTM). 
+
+
+\subsubsection*{ In Neighboring fields }
+In Geometry Computation \& Visualization:
+
+\begin{lstlisting} 
+   - Besides the use cases already mentioned, a significant number of 
+   visual programming applications are emerging in fields concerned 
+   with 2D and 3D geometry creation \& visualization. 
+
+  PROCEDURAL GEOMETRY 
+    - Rhino: Grasshopper
+    - Revit: Dynamo  
+    - Blender: Geometry Nodes
+    - Houdini: Procedural Modelling
+  
+  TEXTURES AND SHADERS
+    - Blender: Shader Nodes
+    - Adobe: Substance Designer
+    - Unreal Engine: Material Nodes
+    - Unity: Shader Graph
+    - Houdini: FX
+
+  These are all popular applications, many users, multiple courses and tutorials, 
+
+  The persistence of visual programming within the field of shaders and
+  geometry, suggests that visual programming languages are advantageous in
+  situations where a 'visual' product requires debugging during development. 
+\end{lstlisting}
+
+\subsection{Browser-based visual programming}
+\label{sec:related-webvpl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ____    ____    _____                                                       %
+% |___ \  |___ \  |___ /                                                      %
+%   __) |   __) |   |_ \                                                      %
+%  / __/ _ / __/ _ ___) |                                                     %
+% |_____(_|_____(_|____/ Related Works: WEBVPL                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Does exist, but very niche. 
+best example is Scratch, an educational tool.
+
+(rasterfoundry, but doesnt really count)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The overlap of Visual Programming \& Web GIS}
-\label{sec:both}
-
-\subsection{Background}
-
-\subsection{Review}
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
