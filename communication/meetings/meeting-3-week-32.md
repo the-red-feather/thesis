@@ -7,8 +7,14 @@ The introduction, related works, and methodology chapters are all finished. Well
   - I could even boil it down further, but I think this is a good start
 
 
+## QUESTIONS:
+
+
+
 
 ## finished for next meeting :
+
+- finish the related works 
 
 - continue with the Implementation chapter.
   - parts of which the implementation is done can be filled in, like 4.1, 4.2.1, 4.3

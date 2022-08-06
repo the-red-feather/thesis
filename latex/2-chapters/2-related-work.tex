@@ -4,12 +4,6 @@
 % It should show that you clearly know the problem you plan to solve, 
 % and that you master the related work. 
 
-% The environment proposed by this thesis builds from Ravi Peter's work. GeoFront can be seen as GeoFlow, but in a web browser. However, the introduction of this web component significantly changes the purpose and use-case of GeoFront compared to GeoFlow. 
-
-% GeoFlow's mission: Create a geoprocessing pipeline in a visual environment, in order to speed up and improve the quality of the development process of this pipeline "FOR YOURSELF", compared to text-based methods. This speed and quality comes from the fact that the visual environment makes rapid experimentation and evaluation possible. This is especially helpful for non-determinant processes, or processes containing 'magic' number parameters. Examples of these are RANSAC algorithms. 
-
-% GeoFront's mission: Use the vpl to make rapid experimentation and evaluation of your geoprocessing functions possible FOR OTHERS. This enables others to rapidly utilize your geoprocessing method. The primary use case of this is collaboration: Rapidly publish ones results, demonstrate reproducibility, retrieve feedback, etc.   
-
 \chapter{Background \& Related work}
 \label{chap:related}
 
@@ -24,53 +18,86 @@
 This chapter offers an overview of the theoretical background that this study builds upon, alongside a review of comparable studies.
 The study takes place at the intersection of three fields, represented by the corners of \reffig{fig:triangle-model}:
 \begin{enumerate}[-]
-  \item \refsec{sec:background-geo} GEO: Geocomputation (TODO write this, small part)
-  \item \refsec{sec:background-web} WEB: (Progressive) Web applications (TODO edit and write this)
-  \item \refsec{sec:background-vpl} VPL: Visual Programming Languages (TODO write this)
+  \item \refsec{sec:background-geo} covers the background on geocomputation (GEO) 
+  \item \refsec{sec:background-web} covers the background on (Progressive) Web applications (WEB)
+  \item \refsec{sec:background-vpl} covers the background on Visual Programming Languages (VPL) 
 \end{enumerate}
-These will be covered in \refsec{sec:background}.
+
 Additionally, while no project or study exist at the intersection of all three of these fields, we do find related studies which intersect two of these fields, represented by the edges of \reffig{fig:triangle-model}:
 \begin{enumerate}[-]
-  \item \refsec{sec:related-geoweb} (practically finished)
-  \item \refsec{sec:related-geovpl} (needs work)
-  \item \refsec{sec:related-webvpl} (can be very brief)
+  \item \refsec{sec:related-geoweb} reviews related works on browser-based geoprocessing (GEO + WEB)
+  \item \refsec{sec:related-geovpl} reviews related works on VPLs used for geo-computation (GEO + VPL)
+  \item \refsec{sec:related-webvpl} reviews related works on VPL web applications (WEB + VPL)
 \end{enumerate}
-These studies will be reviewed in \refsec{sec:related}.
 
-
-\section{Background}
-\label{sec:background}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  ____    _                                                                  %
-% |___ \  / |                                                                 %
-%   __) | | |                                                                 %
-%  / __/ _| |                                                                 %
-% |_____(_|_| Background                                                      %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Geocomputation}
+\section{Geocomputation (GEO)}
 \label{sec:background-geo}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  ____    _   _                                                              %
-% |___ \  / | / |                                                             %
-%   __) | | | | |                                                             %
-%  / __/ _| |_| |                                                             %
-% |_____(_|_(_|_| Background: GEO                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\emph{What is geocomputation?}
+
+The term geocomputation, or geodata processing, is used to represent all types of computations performed on geographical data. 
+Anything from the calculation of an area of a polygon, to \ac{crs} transformations, feature overlay, or converting a raster dataset into a vectorized dataset, can be regarded as geocomputation.
+
+Geocomputation can be seen as an applied field of the fields of computational geometry, computer graphics, and image processing. 
+Its shares these with other applied fields, such as computer aided design (CAD), Building Information Modelling (BIM), molecular biology, medical imaging, robotics, but also special effects, video games, and graphic design.
+For this reason, these applied fields can be regarded as neighbors to geocomputation \& GIS. 
+
+It is important to recognize that certain geocomputational procedures are very specific to the field of GIS and geo-informatics, while others fully overlap with computer graphics in general, and these neighboring applied fields.
+As an example, matrix transformations and reprojections are commonplace in the wider field of computer graphics, but transformations formalized and structured in the form of \ac*{crs} is very specific to the field of GIS.  
+Geodata differentiates itself from any form of data by its sizable nature, and spatial nature. 
+GIS dataset sizes easily scale into TeraBytes of data, and each datum specifically represent a real, measured, earthly phenomenon.
+this makes geocomputation different from just any type of image processing, or geometry computation. 
+
+\emph{What are the most common types geocomputation?}
+
+Processes are determined by data type:
+
+Rasters
+ L (Piramids of) Images
+Vector 
+ L 'Object Oriented' data
+Tabular
+ L Table of features, databases, etc. 
+Point Cloud
+ L (Piramides of) Points
+
+Geocomputational libraries typically specialize in one of these types of data, unless it needs to perform transformations from one type to another. 
 
 
-\subsubsection{Geocomputation libraries}
-\label{sec:background-geolib}
 
-\subsection{(Progressive) Web applications}
+\emph{What can be regarded as significant geocomputational libraries?}
+
+D. SIGNIFICANT LIBRARIES
+
+- CGAL, GDAL, despite name similarities, very different libraries. 
+
+GDAL is really meant for geographical data: Geospatial Data Abstraction Library
+
+CGAL also 
+
+
+
+
+
+\section{(Progressive) Web applications (WEB)}
 \label{sec:background-web}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ____    _   ____                                                            %
-% |___ \  / | |___ \                                                          %
-%   __) | | |   __) |                                                         %
-%  / __/ _| |_ / __/                                                          %
-% |_____(_|_(_|_____| Background: WEB                                         %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+- thick client / thin server trend 
+
+
+
+
+\cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}
+The papers  all speak of an emergent trend of thick-client web applications. 
+Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. 
+And, by still being a webpage rather than a native application, users can access these applications without installment. 
+The trend is made possible because of hardware improvements of client devices, as well as software improvements, like HTML5.
+
+
+
+\subsection*{Noteworthy examples of }
+
+(Overleaf)
 
 \subsubsection{Web GIS}
 \label{sec:background-webgis}
@@ -240,7 +267,7 @@ The current state of the art is far removed from either portable or FAIR geo-com
 %   \item Reusable -> compile to regular web service / function
 % \end{itemize}
 
-\subsection{Visual Programmming}
+\section{Visual Programmming (VPL)}
 \label{sec:background-vpl}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ____    _   _____                                                           %
@@ -365,47 +392,21 @@ with the VPL as one of the most overlooked aspects within VPL research.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Related work}
-\label{sec:related}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ____    ____                                                                %
-% |___ \  |___ \                                                              %
-%   __) |   __) |                                                             %
-%  / __/ _ / __/__                                                            %
-% |_____(_|_____(_) Related Works                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{note}
-  CENTRAL GOAL: 
-  EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
-\end{note}
- 
-To the best of the author's knowledge, a publicly available visual programming language which is both able to run and execute in a browser, and is able to be used for geodata computation, does not exist. 
-
-\subsection{Browser-based geoprocessing}
+\section{Browser-based geoprocessing (GEO + WEB)}
 \label{sec:related-geoweb}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ____    ____    _                                                           %
-% |___ \  |___ \  / |                                                         %
-%   __) |   __) | | |                                                         %
-%  / __/ _ / __/ _| |                                                         %
-% |_____(_|_____(_|_| Related Works: GEOWEB                                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Nothing wrong with this chapter I think. Everything is there for a reason
 
 % the latest in a series of geoprocessing attempts 
 % we want to know what happened the previous times, so we will not try things that have already been tried before.
 
-This study is related to a series of studies concerned with browser-based geoprocessing, also refered to as client-side geoprocessing. As such, it is important to relate to previous attempts and efforts, to learn from their findings, and to make sure the exact same research will not be performed twice. 
+This study is related to a series of studies concerned with browser-based geocomputation, also referred to as client-side geocomputation. 
+As such, it is important to relate to previous attempts and efforts, to learn from their findings, and to make sure the exact same research will not be performed twice. 
 
-As a side note, client-side geoprocessing is not to be confused with native geoprocessing clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}.
-To fix this ambiguity, this study refers to client-side geoprocessing as 'browser-based geoprocessing'.
+As a side note, client-side geocomputation is not to be confused with native geocomputation clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}.
+To circumvent this ambiguity, this study refers to client-side geocomputation as 'browser-based geocomputation'.
 
-Browser-based geoprocessing has seen some level academic interest throughout the last decade. The papers \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019} all speak of an emergent trend of thick-client websites. 
-Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. 
-And, by still being a webpage rather than a native application, users can access these applications without installment. 
-The trend is made possible because of hardware improvements of client devices, as well as software improvements, like HTML5.
+Browser-based geocomputation has seen some academic interest throughout the last decade \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
 
 The aforementioned papers each try to apply this trend to the field of geo-informatics. 
 Hamilton et. al. created a such a 'thick-client', capable of replacing certain elements of server-side geoprocessing \cite{hamilton_client-side_2014}. 
@@ -489,7 +490,7 @@ Additionally, by forgoing the question of accessibility, many auxiliary use-case
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Visual programming and geocomputation}
+\section{Visual programming and geocomputation (GEO + VPL)}
 \label{sec:related-geovpl}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  ____    ____    ____                                                       %
@@ -515,6 +516,14 @@ acknoledgements
   - debugging & experimentation: GeoFlow 
   
 \end{lstlisting}
+
+
+% The environment proposed by this thesis builds from Ravi Peter's work. GeoFront can be seen as GeoFlow, but in a web browser. However, the introduction of this web component significantly changes the purpose and use-case of GeoFront compared to GeoFlow. 
+
+% GeoFlow's mission: Create a geoprocessing pipeline in a visual environment, in order to speed up and improve the quality of the development process of this pipeline "FOR YOURSELF", compared to text-based methods. This speed and quality comes from the fact that the visual environment makes rapid experimentation and evaluation possible. This is especially helpful for non-determinant processes, or processes containing 'magic' number parameters. Examples of these are RANSAC algorithms. 
+
+% GeoFront's mission: Use the vpl to make rapid experimentation and evaluation of your geoprocessing functions possible FOR OTHERS. This enables others to rapidly utilize your geoprocessing method. The primary use case of this is collaboration: Rapidly publish ones results, demonstrate reproducibility, retrieve feedback, etc.   
+
 
 % Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
 
@@ -560,26 +569,23 @@ In Geometry Computation \& Visualization:
   situations where a 'visual' product requires debugging during development. 
 \end{lstlisting}
 
-\subsection{Browser-based visual programming}
+\section{Browser-based visual programming (WEB + VPL)}
 \label{sec:related-webvpl}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ____    ____    _____                                                       %
-% |___ \  |___ \  |___ /                                                      %
-%   __) |   __) |   |_ \                                                      %
-%  / __/ _ / __/ _ ___) |                                                     %
-% |_____(_|_____(_|____/ Related Works: WEBVPL                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The number of visual programming languages written as web applications is surprisingly low. 
+
+(https://www.ucode.com/coding-classes-for-kids/is-scratch-the-same-as-blockly)
+
+(https://developers.google.com/blockly/)
+
+% (SOURCE: https://dl.acm.org/doi/fullHtml/10.1145/1592761.1592779?casa_token=cJ1iX1YYimkAAAAA:YVyp3KFiKwD2GMuBUUIgvibbNsEgndqNQzehRnCosCpyEx51C_uNpi2D4-lsE-x88hQFSWcbTfrP_w)
 
 Does exist, but very niche. 
 best example is Scratch, an educational tool.
 
 (rasterfoundry, but doesnt really count)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Geocomputation Web Vpls (GEO + WEB + VPL)} 
+To the best of the author's knowledge, a publicly available visual programming language which is both able to run and execute in a browser, and is able to be used for geodata computation, does not exist. 
+
+
