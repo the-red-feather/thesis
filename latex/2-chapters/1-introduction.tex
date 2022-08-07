@@ -4,15 +4,15 @@
 
 The field of geo-informatics concerns itself with the collection, processing, storage, and visualization of geodata. 
 By doing do, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
-This process is foundational for many applications, including environmental modelling, infrastructure, urban planning, navigation, the military, and agriculture.   
+This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, navigation, the military, and agriculture.   
 
 Central to this effort is the process of converting raw geodata into meaningful geo-information. 
-Additionally, the effort often involves executing transformations or calculations on existing datasets, for example to make two datasets comparable, or to gain a new level of understanding.  
-The term 'geocomputation', or geodata processing, is used to represent all types of computations performed on geographical datasets. Anything from the calculation of an area of a polygon, to \ac{crs} transformations, or converting a raster dataset into a vectorized dataset, can be regarded as geocomputation.
+Additionally, the effort often involves executing transformations or calculations on existing datasets. 
+The term \ac{geocomputation}, or geodata processing, is used to represent all types of computations performed on geographical datasets. Anything from the calculation of the area of a region, to a \ac{crs} transformations, or converting a raster dataset into a vectorized dataset, can be regarded as geocomputation.
 All applications of geo-informatics require some level of geocomputation, as the raw data gathered from surveyance seldom corresponds to the precise information we wish to discover about the earth.       
 This makes geocomputation a cornerstone of the entire field of geo-informatics, and vital to all applications of geo-information.
 
-However, geocomputation is not a trivial exercise. The sizable nature of geodata, together with a great variety in geodata formats and quality make geocomputation both computationally intensive and difficult to operate. 
+However, geocomputation is no trivial exercise. The sizable nature of geodata, together with a great variety in geodata formats and quality make geocomputation both computationally intensive and difficult to operate. 
 In an ideal world, the activity of geocomputation should be ergonomic: Operations must perform as fast as possible, and the effects of those operations must be both clear to the user, and reliable.
 While researchers and developers have made considerable improvement over the last decades, the improvement of both geocomputation, and the activity of geocomputation, remains as relevant as ever before. 
 
@@ -22,7 +22,7 @@ these two developments require further explanation, after which the subject and 
 
 \subsection*{Visual programming}
 
-\emph{What is a VPL and how does it benefit geocomputation?}
+% \emph{What is a VPL and how does it benefit geocomputation?}
 
 % 2) Establish the VPL, and how it is used within geomatics 
 A \ac{vpl}, or visual programming environment, is a type of programming language represented in a graphical, non-textual manner.
@@ -36,16 +36,14 @@ A VPL done right can make automation available to a very large audience.
 
 This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as in neighboring fields like BIM, CAD, Shader Programming and Procedural Geometry. 
 All these fields benefit from the combination of both low-code automation and visual debugging.
+% The field of geo-informatics also appreciates the 'dataflow modelling' aspects (TODO FIX THIS SENTENCE)
 
 Within the field of geo informatics, \ac{vpl}s are not a new phenomenon. VPLs have been used for decades to specify geodata transformations and performing spatial analyses.  
 SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (ETL) platform automates data integration, and is widely used by GIS experts.
 
-(add a sentence about dataflow modelling)
-
-\emph{what makes a vpl a 'new' development?}
+% \emph{what makes a vpl a 'new' development?}
 
 Despite this history, the \ac{vpl} is still considered an ongoing development within the field of geocomputation. 
-Many new \ac{geo-vpl}s are continuously being developed, as the existing ones were deemed inadequate. 
 Especially in recent years, a push towards a more 'granular' \ac{vpl}s can be recognized: 
 \ac{vpl}s offering geocomputation on a smaller, more detailed level. 
 As an example, McNeels's Grasshopper (SOURCE) is increasingly being used for spatial analyses of buildings and neighborhoods, like solar irradiation or heating demands (source). 
@@ -55,7 +53,7 @@ These ways of using a \ac{geo-vpl} are still relatively novel, and contain many 
 
 % Famous examples of VPLs are:
 % \begin{itemize}
-%   \item Ladder Diagram (src), the industry-standard method of programming Programmable Logic Controllers (PLCs)
+
 %   \item Scratch (src), a educational programming language
 %   \item 
 % \end{itemize}
@@ -69,29 +67,20 @@ These ways of using a \ac{geo-vpl} are still relatively novel, and contain many 
 
 \subsection*{Browser-based geocomputation}
 
-\begin{note}
-TODO: Link this up to the introduction
-\end{note}
-
-\emph{What is web GIS and why is browser-based geocomputation relevant?}
-
-Web based \ac{gis} forms an indispensable component of the wider geospatial software landscape. 
-For the average person, an interactive \ac{gis} web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
-A web application is cross-platform by nature, and offers ease of accessibility, since no installment or app-store interaction is required to run or update the app. (src: vpl 2019, src: hybrid)
-As soon as it can be found, it can be used.
-The ability to share a full application with a link, or to embed it within the larger context of a webpage is also not trivial. 
-Together, these aspects have made the browser a popular host for many important geographical applications, especially when accessibility is vital.
-
-Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geocomputation} abilities, like CRS translations, bundle adjustment, interpolation or boolean operators, are usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as viewers; visualizers of pre-processed data. 
-
-However, this limited range of capabilities inhibits the number of use cases geographical web applications can serve, and with that the usefulness of web \ac{gis} as a whole.
-If web applications gain \ac{geocomputation} capabilities, they could grow to be just as diverse and useful as desktop \ac{gis} applications, with the added benefits of being a web application. It would allow for a new range of highly accessible and sharable geocomputation and analysis tools, which end-users could use to post-process and analyze geodata quickly, uniquely, and on demand.
-
-% all of this is to say: web-based geocomputation is a valuable topic 
-% orms an important step in the advancement of web \ac{gis}. This is why this topic
-This is why \ac{geocomputation} within a web browser, henceforth dubbed as \ac{bbg}, is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
+\ac{geocomputation} within a web browser, henceforth dubbed as \ac{bbg}, is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
 Interactive geospatial data manipulation and online geospatial data processing techniques have been described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. 
-But this also raises the question: \textit{Why is geocomputation within a web application as of today still almost nowhere to be found?} 
+The central idea is to add browser-based geocomputation to web-mapping applications, allowing users not only to view data, but to edit and analyze the geodata to their own custom needs.
+
+Additionally, browser-based geocomputation, compared to native GUI or CLI geocomputation, allows geocomputation to be more \textbf{accessible} and \textbf{distributable}. 
+Accessible, since geocomputation on the web requires no installment or configuration, 
+and distributable, since the web is cross-platform by default, and poses many advantages for updating, sharing, and licensing applications. 
+By performing these calculations in the browser rather than on a server, server resources can be spared, and customly computed geodata does not have to be resend to the user upon every computation request.
+
+However, \ac{bbg} also has many open-ended questions and challenges. 
+The big catch is that browsers \& javascript are not ideal hosts for geocomputation. 
+Javascript is a slow and imprecise language compared to C++, has limited support regarding reading and writing files, and does not possess of a rich ecosystem of geocomputation libraries.  
+A new browser feature called WebAssembly might fix some of these issues, but this has not seen substantial research due to it novelty. 
+More on this in \refsec{sec:background-wasm}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -165,31 +154,30 @@ But this also raises the question: \textit{Why is geocomputation within a web ap
 
 % By creating the use-case application GeoFront, we ask the question if a modern web browser, and the current state of the client-side web technologies are capable of facilitating  
 
-*why is the web used for geocomputation?*
-\begin{enumerate}[-]
-  \item Accessibility: no installment or configuration needed, cross-platform by default
-  \item Distribution: web applications can quickly be updated, shared, licensed. 
-\end{enumerate}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Problem Statement}
 Taken together, the proven usefulness of a vpl for geodata computation, together with the theorized potential of browser-based geocomputation, raise the question why a \ac{geo-web-vpl} does not exist yet.
 
 A \ac{geo-web-vpl} could be the next step in the pursuit of making the activity of geocomputation more fast, clear and reliable.
-The activity of geocomputation could benefit from the experimentation and debugability advantages of a \ac{vpl}, combined with the accessibility and distribution advantages of a web application. This combination of features might even yield completely unique benefits, by means of a "1 + 1 = 3" line of reasoning.
+The activity of geocomputation could benefit from the experimentation and debugability advantages of a \ac{vpl}, combined with the accessibility and distribution advantages of a web application. 
+This format might even yield completely unique benefits.
+% , by means of a "1 + 1 = 3" line of reasoning.
 However, since no geo-web-vpl exist, there is no way of definitively knowing or testing these aspects. 
 
 Prior studies give an indication to where the disconnect between the field of geo-VPLs and web-GIS may be. This is further explained in \refchap{chap:methodology}.
 We encounter either existing geo-VPLs which were not able to be properly used in a browser, or web-based VPLs unable to support existing geocomputation functionalities. From this, it can be concluded that the support of existing geocomputation functionalities is a central aspect of making a geo-web-vpl succeed. 
 
-\begin{note}
-presupposition: combining a geo-vpl and bbg is useful.
-\end{note}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Research Objective}
+
+\begin{note}
+TODO: make both of these presuppositions clear
+1. Combining a geo-vpl and bbg is useful. It is valuable to figure out if it can be done
+2. Proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
+\end{note}
+
 This study seeks to close the gap between geo-VPLs and browser-based geocomputation by designing, implementing, and evaluating a \ac{geo-web-vpl}.
 The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
 As such, overcoming this technical challenge is the focal point of this study. 
@@ -210,22 +198,38 @@ These are based upon various components of the main problem statements, further 
   \item \mySubRQFour
 \end{itemize}
 In order to obtain answers to these questions, a literature review is performed,
-an experimental software application is developed, 
+a prototypical software application is developed, 
 and this application is tested and compared to existing methods using real-world datasets.
 
-% If I have to boil everything down to one thing and one thing only, I would choose: Connection to regular software development. 
 
-% ELLIE 
-% - To what extent can machine learning provide a better estimate of the number of floors than a purely geometric approach?
+% \subsection*{Use Case: Geofront}
+% Geofront is the name of a prototype web application, developed as part of this study.
+% Geofront is created to both contextualize this study, and to answer the question.
 
-% a. Which features are related to the number of floors? Is there any overlap between these features
-% and which subset yields the best results?
-% b. Which machine learning algorithm provides the best results? How are the results affected by
-% feature subsets that reflect different levels of data availability?
-% c. What level of performance can be achieved compared to a purely geometric approach? What types
-% of gross errors are present?
-% d. Since floor count is generally an integer value, is this a regression or classification problem? If
-% considered regression, how does rounding the predictions affect the results?
+% lowering the delta between "it works for me" and "it works for someone else"
+
+
+% WHY DOES SOMEONE WANT TO TAKE EXISTING LIBRARIES AND TURN THEM INTO A WEB-BASED VPL FORMAT? 
+% - interactive, visual debugging 
+%   - explaining the behavior of algorithms to yourself and others
+%   - why web: collaborative debugging
+% - reproducability of results
+%   - lowering the delta between "it works for me" and "it works for someone else"
+% - improving the 'online presence' of research.
+%   - making research results 'usable' via a link
+%   - interdisciplinary exchange of ideas
+
+
+% SO: Geofront is intended as a Computational Geometry Sandbox environment.
+% Meant for: 
+%  - publication
+%  - sharing ideas 
+%  - trying things out
+%  - debugging code
+%  - learning
+
+% NOT for making programming as a whole 'easier'
+
 
 \newpage
 \section{Scope}
@@ -277,6 +281,9 @@ This study defines "Core browser features" in \refsec{sec:methodone}
 \section{Reading Guide}
 
 The remainder of this study is structured as follows:
+
+(work in progress)
+
 \begin{itemize}[ ]
   \item \refchap{chap:related}, Related Work, provides an overview of the theoretical background that is used in the rest of this study.
   

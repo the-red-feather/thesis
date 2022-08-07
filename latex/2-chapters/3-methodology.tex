@@ -7,7 +7,7 @@ The overall structure of what elements this methodology precisely consists of is
 The chapter continues with four sections, each explaining one of these components.
 But first, I wish to clarify the nature in which this study is conducted. 
 
-\subsubsection*{Nature}
+\subsection*{Nature}
 The methodology of this study can be characterized as practical as opposed to theoretical, wholistic instead of specific, and iterative compared to linear. The prior works on browser-based geocomputation and geo-vpls indicate that a strong theoretical framework for a \ac{geo-web-vpl} is in place (Source). 
 But, and this is especially evident in the prior studies regarding \ac{bbg} (Source), the practical implementation of these theories were only partially successful, and limited in scope. 
 This necessitates a practical, wholistic approach in response. 
@@ -24,7 +24,7 @@ And, due to the investigative nature of this study, the methodology requires to 
 % - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geocomputation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
 % - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
 
-\subsubsection*{Structure}
+\subsection*{Structure}
   
 \emph{The content of this methodology is based upon the main and supporting research questions. 
 As such, it bears fruit to explain how these specific questions were chosen.}
@@ -80,17 +80,22 @@ TODO: diagram: show the 'locations' of the four research questions ( client / se
 \section{\mySubRQOneTitle} 
 \label{sec:method-one}
 
-The first component of the methodology involved the creation of the core of the prototype application. 
-Before exploring how lifting \emph{existing} geo-computation to the web might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a 3D vpl in general, encompassed by the supporting research question : \mySubRQOne
+The first component of the methodology involved the creation of the core of the prototype application, encompassed by the supporting research question : \mySubRQOne
+
+\subsection*{Why}
+
+Before exploring how lifting \emph{existing} geo-computation to the web might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a 3D vpl in general.
 A 3D VPL is defined as a vpl meant for generic 3D geometry processing.
+
+\subsection*{How}
 
 The method to answer this question is defined as follows. 
 The above question of \mySubRQOneTitle is further subdivided into 4 follow-up questions:
 \begin{enumerate}[A]
-  \item \emph{What are the requirements of a 3D VPL?}.
-  \item \emph{What can be defined as 'core browser features'?}.
-  \item \emph{Per requirement, to what extend can these core browser features be used to implement this requirement?}.
-  \item \emph{Per implemented requirement, to what extend does this web implementation differ from existing, popular 3D VPLs?}.
+  \item \emph{What are the requirements of a 3D VPL?}
+  \item \emph{What can be defined as 'core browser features'?}
+  \item \emph{Per requirement, to what extend can these core browser features be used to implement this requirement?}
+  \item \emph{Per implemented requirement, to what extend does this web implementation differ from existing, popular 3D VPLs?}
 \end{enumerate}
 
 Question A and B will be answered subsequently. 
@@ -98,7 +103,7 @@ The question C is answered by \refsec{sec:app}, and the answer to the fourth que
 
 \subsection*{A: 3D VPL requirements}
 
-Based on the vpl research (SOURCE), any visual programming language must at the very least contain the following aspects: 
+Based on the vpl research of \refsec{sec:background-vpl}, any visual programming language must at the very least contain the following aspects: 
 \begin{enumerate}[-]
   \item a visual language
   \item an interface to configure this visual language 
@@ -115,29 +120,30 @@ Based on popular, existing 3D vpl's (Blender, Unreal, Grasshopper) A visual prog
   \item multiple ways to view output data (text displays, 3D viewers, etc.)
 \end{enumerate}
 
-\begin{note}
-  Figure out what to do with this: 
+A VPL also has many requirements which cannot be listed, but instead refer to the shaping of the entire application. 
+For example, interactivity a defining factor of a vpl. GUI elements should be as interactive as possible.
+However, aspects like this are hard to define or measure, and will not be included as part of this component of the methodology. 
+
+% \begin{note}
+%   Figure out what to do with this: 
  
-  A VPL should be Interactive.
+%     Interactivity is the defining factor of the vpl. 
+%     a list of standard VPL features & application features required as a base-line:  
+%   - Users must be able to construct a script by visual means.
+%   - Dataflow Modelling
+%   - Dragging and dropping is a ui which
 
-    Interactivity is the defining factor of the vpl. 
-    a list of standard VPL features & application features required as a base-line:  
-  - Users must be able to construct a script by visual means.
-  - Dataflow Modelling
-  - Dragging and dropping is a ui which
-
-  (geo-vpl features:)
-  - read data from user-submitted files
-  - write data to files, downloadable by the user  
-  - debug / inspect data in a 3D viewer
-  - draw geometry in a 3D viewer
-
-\end{note}
+%   (geo-vpl features:)
+%   - read data from user-submitted files
+%   - write data to files, downloadable by the user  
+%   - debug / inspect data in a 3D viewer
+%   - draw geometry in a 3D viewer
+% \end{note}
 
 \subsection*{B: Core browser features}
 This study defines "Core browser features" as the set of default features implemented by the three largest browser engines. 
 \begin{note}
-  (show pie chart of usage statistics)
+TODO: a pie chart of usage statistics
 \end{note}
 Based on these (FIGURE) market share statistics, the following three browsers engines appear to be the largest:
 \begin{enumerate}[-]
@@ -159,7 +165,7 @@ This includes the following set of features relevant for the 3D VPL:
 \subsection*{C: Implementation Steps}
 
 \begin{note}
-TODO: Show the phases
+TODO: An image showing the phases of development
 \end{note}
 
 To find the answer to question C, this study implemented the core of the prototype \ac{geo-web-vpl}.
@@ -185,14 +191,14 @@ The second component of the methodology seeks an answer to the question of \mySu
 
 Making sure a \ac{geo-web-vpl} is able to make use of native, non-js libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
 The most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \cite{haas_bringing_2017}.
-Other options exist, like simply compiling non-js languages to JavaScript, but these methods have significant drawbacks \cite{haas_bringing_2017,jangda_not_2019}.
-However, as described in \refsec{sec:bbg} compiling libraries to \ac{wasm} also may pose challenges:
+Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \cite{haas_bringing_2017,jangda_not_2019}.
+However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{wasm} also may pose challenges:
 
 % The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. 
 
 \begin{enumerate}[-]
   \item \ac{wasm} promises a 'near native performance' (Source: Wasm). However, this can be quite situational, as multiple studies have shown \cite{jangda_not_2019} (Source: the bachelor thesis). 
-  \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not work without workarounds. 
+  \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not function without workarounds. 
   \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
   \item Compiling an \emph{library} to \ac{wasm} is seriously different from compiling a full \emph{application} to wasm. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
 \end{enumerate}
@@ -283,15 +289,15 @@ and captured by the research question: \mySubRQThree
 
 % to what extend can a web-consumable library be loaded into a web-vpl without explicit configuration?
 
-\subsection{Why}
+\subsection*{Why}
 
 \begin{note}
 Figure X: [geolib] --C++/Rust-> [wrapped geolib exposed to web] --wasm-> [web library wrapped for vpl] --js-> [vpl]
 \end{note}
 
-Most of the 3D vpls mentioned in the related works which offer a plugin system, or a way to load external libraries.
+Most of the 3D vpls mentioned in \refsec{sec:background-vpl} offer a plugin system, or some other way to load external libraries.
 This way, the functionalities of the environments can be expanded upon.
-However, all of these plugin / library systems require explicit 'wrapper' libraries, to explain how the functionalities a \emph{text-based} programming library map to components used in a \emph{visual} manner.
+However, all of these plugin / library systems require explicit 'wrapper' libraries, to explain how the functionalities a text-based programming library map to components used in a visual manner.
 This forms a problem for the case of a \ac{geo-web-vpl} using non-js libraries. 
 It would mean any non-js library would have to be wrapped twice: 
 Once to expose the native library to the web (see \refsec{sec:method-two}),
@@ -301,11 +307,11 @@ This would be cumbersome, prone to errors, and hurting version control by having
 
 This is why this third component of the methodology is focused on mitigating the need for the second wrapper library. 
 
-\subsection{How}
+\subsection*{How}
 For this component of the methodology, the following plan was used: 
 \begin{enumerate}[-]
-  \item design a library load model for the prototype \ac*{geo-web-vpl}
-  \item build this library load model 
+  \item design a library model for the prototype \ac*{geo-web-vpl}
+  \item build this library model 
   \item assess to what extend it mitigates the need for explicit configuration
 \end{enumerate}
 
@@ -377,14 +383,14 @@ In this section, we wish to discover the practical usefulness of a \ac{geo-web-v
 
 % What are the advantages and disadvantages of using an existing geoprocessing library through a geo-web-vpl, as opposed to native utilization of said library?
 
-\subsection{Why}
+\subsection*{Why}
 This component of the methodology is included in the study because of the following: 
 It might be the case that a geo-web-vpl \emph{is} able to be interfaced using a web-browser, and \emph{is} able to load and run functions from native, non-js geo-computation libraries. 
 And still, it might not be able to successfully \emph{use} these libraries. 
 The entire idea of a vpl might not be sensible for the operation at hand, or some other, unforeseen aspects mitigates the practical usefulness of the environment. 
 It is therefore vital to access the actual usage of the application for accessing a geocomputation library.
 
-\subsection{How}
+\subsection*{How}
 To answer the question of \mySubRQFourTitle, the following plan was used: 
 \begin{enumerate}[-]
   \item Develop a representative use-case application within the prototype \ac{geo-web-vpl}.

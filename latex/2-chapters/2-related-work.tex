@@ -15,11 +15,11 @@
   \label{fig:triangle-model}
 \end{figure}
 
-This chapter offers an overview of the theoretical background that this study builds upon, alongside a review of comparable studies.
+This chapter offers an overview of the theoretical background that this study builds upon, alongside a review of related studies.
 The study takes place at the intersection of three fields, represented by the corners of \reffig{fig:triangle-model}:
 \begin{enumerate}[-]
   \item \refsec{sec:background-geo} covers the background on geocomputation (GEO) 
-  \item \refsec{sec:background-web} covers the background on (Progressive) Web applications (WEB)
+  \item \refsec{sec:background-web} covers the background on Web applications (WEB)
   \item \refsec{sec:background-vpl} covers the background on Visual Programming Languages (VPL) 
 \end{enumerate}
 
@@ -48,43 +48,71 @@ Geodata differentiates itself from any form of data by its sizable nature, and s
 GIS dataset sizes easily scale into TeraBytes of data, and each datum specifically represent a real, measured, earthly phenomenon.
 this makes geocomputation different from just any type of image processing, or geometry computation. 
 
-\emph{What are the most common types geocomputation?}
+\emph{What are the most common types of geocomputation?}
 
 Processes are determined by data type:
 
-Rasters
- L (Piramids of) Images
+\begin{lstlisting}
+
+( tessellations: regular, irregular, and hierarchical)
+
+Rasters / Discretized datasets
+L (Piramids of) Images
+L (Hexagons?)
 Vector 
- L 'Object Oriented' data
+L 'Object Oriented' data
+  L GML 
+  L JSON 
 Tabular
- L Table of features, databases, etc. 
+L Table of features, databases, etc. 
+L Linked data
 Point Cloud
- L (Piramides of) Points
+L (Piramides of) Points
+ 
+\end{lstlisting}
+
+These four types correspond to roughly four types of 
 
 Geocomputational libraries typically specialize in one of these types of data, unless it needs to perform transformations from one type to another. 
 
-
-
 \emph{What can be regarded as significant geocomputational libraries?}
-
-D. SIGNIFICANT LIBRARIES
 
 - CGAL, GDAL, despite name similarities, very different libraries. 
 
-GDAL is really meant for geographical data: Geospatial Data Abstraction Library
+- GDAL is meant for geographical data: Geospatial Data Abstraction Library
 
-CGAL also 
+- CGAL is more general geometry: Computational Geometry Algorithms Library
 
-
-
-
-
-\section{(Progressive) Web applications (WEB)}
+\section{Web applications (WEB)}
 \label{sec:background-web}
+
+
+\subsection{In General}
+
+Web based \ac{gis} forms an indispensable component of the wider geospatial software landscape. 
+For the average person, an interactive \ac{gis} web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
+A web application is cross-platform by nature, and offers ease of accessibility, since no installment or app-store interaction is required to run or update the app. (src: vpl 2019, src: hybrid)
+As soon as it can be found, it can be used.
+The ability to share a full application with a link, or to embed it within the larger context of a webpage is also not trivial. 
+Together, these aspects have made the browser a popular host for many important geographical applications, especially when accessibility is vital.
+
+A web application always consists of a frontend, and backend.
+
+A Typical model looks liks this...
+
+A frontend 
+- html -> content 
+- css -> styling 
+- js -> simple functionalities (pop-up, shopping cart)
+(just very quickly: you can split a web application up into CSS, HTML, JS)
+
+\subsection{Paradigm Shift}
 
 - thick client / thin server trend 
 
+- recently dubbed 'progressive web application'
 
+- all means the same: JavaScript- heavy applications
 
 
 \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}
@@ -93,20 +121,22 @@ Proponents of this trend argue that for certain applications, end users can bene
 And, by still being a webpage rather than a native application, users can access these applications without installment. 
 The trend is made possible because of hardware improvements of client devices, as well as software improvements, like HTML5.
 
+- quickly mention progessive web applications
 
+\subsection*{Noteworthy examples of thick client web apps}
 
-\subsection*{Noteworthy examples of }
+- (Overleaf)
 
-(Overleaf)
-
-\subsubsection{Web GIS}
+\subsection{In Web GIS}
 \label{sec:background-webgis}
 
-\subsubsection{WebAssembly}
+...
+
+\subsection{WebAssembly}
 \label{sec:background-wasm}
 
-\newpage
-\subsubsection*{WebAssembly}
+Web Assembly is a new, major enabler of these types of thick client applications.
+It is officially dubbed the fourth type of programming language supported by all major web browsers, next to html, css, and js.
 
 From all browser-based features, WebAssembly is one of the newest, and turned out to be a deciding factor of this study. This requires us to be aware of the state of WebAssembly, its performance considerations, and how this relates to geo-computation performance. But first, an introduction on the compilation target itself is in order.
 
@@ -204,8 +234,9 @@ WebAssembly runs in the browser for instance.
 
 % .....
 
-\subsubsection*{The Cloud Native Geospatial movement}
+\subsection*{The Cloud Native Geospatial movement}
 
+( Not sure if I wanna go there... )
 
 % Establish OGC in two sentences, mentioning their name and Vision
 The Open Geospatial Consortium (OGC)...
@@ -269,13 +300,8 @@ The current state of the art is far removed from either portable or FAIR geo-com
 
 \section{Visual Programmming (VPL)}
 \label{sec:background-vpl}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ____    _   _____                                                           %
-% |___ \  / | |___ /                                                          %
-%   __) | | |   |_ \                                                          %
-%  / __/ _| |_ ___) |                                                         %
-% |_____(_|_(_|____/ Background: VPL                                          %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%   \item Ladder Diagram (src), the industry-standard method of programming Programmable Logic Controllers (PLCs)
 
 offers a rich background of prior research, and as such this literature review cannot be exhaustive. 
 We instead focus on works which are particularly relevant to this studies' problem statement.
@@ -400,11 +426,16 @@ with the VPL as one of the most overlooked aspects within VPL research.
 % the latest in a series of geoprocessing attempts 
 % we want to know what happened the previous times, so we will not try things that have already been tried before.
 
-This study is related to a series of studies concerned with browser-based geocomputation, also referred to as client-side geocomputation. 
-As such, it is important to relate to previous attempts and efforts, to learn from their findings, and to make sure the exact same research will not be performed twice. 
-
 As a side note, client-side geocomputation is not to be confused with native geocomputation clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}.
 To circumvent this ambiguity, this study refers to client-side geocomputation as 'browser-based geocomputation'.
+
+
+Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geocomputation} abilities, like CRS translations, bundle adjustment, interpolation or boolean operators, are usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as viewers; visualizers of pre-processed data. 
+
+However, this limited range of capabilities inhibits the number of use cases geographical web applications can serve, and with that the usefulness of web \ac{gis} as a whole.
+If web applications gain \ac{geocomputation} capabilities, they could grow to be just as diverse and useful as desktop \ac{gis} applications, with the added benefits of being a web application. It would allow for a new range of highly accessible and sharable geocomputation and analysis tools, which end-users could use to post-process and analyze geodata quickly, uniquely, and on demand.
+
+... This is why browser-based geoprocessing is being researched ...
 
 Browser-based geocomputation has seen some academic interest throughout the last decade \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
 
@@ -573,19 +604,25 @@ In Geometry Computation \& Visualization:
 \label{sec:related-webvpl}
 
 The number of visual programming languages written as web applications is surprisingly low. 
+Most applications are educational
+
 
 (https://www.ucode.com/coding-classes-for-kids/is-scratch-the-same-as-blockly)
 
 (https://developers.google.com/blockly/)
 
+(https://developers.googleblog.com/2019/01/scratch-30s-new-programming-blocks.html)
+
 % (SOURCE: https://dl.acm.org/doi/fullHtml/10.1145/1592761.1592779?casa_token=cJ1iX1YYimkAAAAA:YVyp3KFiKwD2GMuBUUIgvibbNsEgndqNQzehRnCosCpyEx51C_uNpi2D4-lsE-x88hQFSWcbTfrP_w)
 
 Does exist, but very niche. 
 best example is Scratch, an educational tool.
+digging in github reaps some results, mostly experimental, in development applications
 
-(rasterfoundry, but doesnt really count)
-
-\subsection{Geocomputation Web Vpls (GEO + WEB + VPL)} 
+\section{Geocomputation Web Vpls (GEO + WEB + VPL)} 
 To the best of the author's knowledge, a publicly available visual programming language which is both able to run and execute in a browser, and is able to be used for geodata computation, does not exist. 
+
+Best example: rasterfoundry, modellab but doesnt really count, since cacluations are performed in the backend (as far as we know). 
+Also, implementation details are not public. 
 
 

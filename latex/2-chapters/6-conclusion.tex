@@ -158,6 +158,8 @@ solutions:
 
 \section{Conclusion}
 
+\begin{note}
+  
 - Where was this 'barrier'?
 combination: 
 1. hard to expose existing libraries in a way that is actually nice to use
@@ -182,6 +184,36 @@ combination:
 
 this study 
 
+
+
+Does Geofront succeed in "converting existing geocomputation libraries to a sharable VPL format?" 
+
+Yes: 
+ - Using the environment, you can take a rust-based geo-computation function or library, 
+   and without very many steps, use it within a visual programming environment. 
+   The environment can then be used to:
+   - Visually debug, 
+   - Play around with parameters, 
+   - Compare performance to similar libraries,
+   - And, unique to this environment, do this all online, in a 'published' format: the full configuration can be shared using a URL. 
+
+   The combination of these aspects makes this environment unique. 
+
+- These libraries can be used with a minimum of configurations. Any Rust library with `wasm-bindgen` annotations, in other words, any rust library intended for javascript consumption, automatically works in 'geofront', albeit with some edge-case exceptions. 
+
+
+No: 
+ - While it is indeed possible to use and run any rust library with `wasm-bindgen` annotations, in order to properly communicate, visualize, and make data interoperable, special 'config' functions and methods are needed. 
+
+ - For now, only 'Rust' and 'JavaScript / TypeScript' can be properly used as libraries. However, most libraries relevant to geo-computation are C++ based. While C++ has excellent support for compiling full, self contained applications to WebAssembly using the 'emscripten' toolset, it lacks rust's level of support in compiling existing libraries. `embind` can be used for this, but compilation using embind is a more tedious, error-prone process.   
+   - Additionally, many scientificly oriented C++ libraries like CGAL make extensive use of meta programming and template programming. These ideas do not translate well to an environment outside of C++. 
+
+ - the environment uses browser-based calculations, so it cannot be used properly for big data, or other expensive processes.
+   Future work: compile the flowchart, run it headless on a server for large datasets.
+ 
+ - the flowchart can only represent linear processes. Many geoprocessing algorithms are iterative and make use of conditionals. These cannot easily be expressed on the canvas. As such, these processes must happen within the context of a function, within a 'computational node'
+
+\end{note}
 
 \section{Limitations}
 

@@ -167,7 +167,6 @@ Notes during meeting...
 
 *"These are notes written during this period. It explains my thought process, but are not very coherent or well-edited."*
 
-
 on the one hand: I dislike 'easy programming languages' to an extend
   - I'm a huge fan of the 'rust' idea: certain things must become more complicated again, to do them right and securely 
 
@@ -178,6 +177,17 @@ on the one hand: I dislike 'easy programming languages' to an extend
   - A vpl is just a useful interface in its own right
   - Geofront's addition: the ability to share this online.
   - MAYBE this makes programming easier for some people, but this will be a 'side product' of the other pursuits.
+
+WHY DOES SOMEONE WANT TO TAKE EXISTING LIBRARIES AND TURN THEM INTO A WEB-BASE VPL FORMAT? 
+- interactive, visual debugging 
+  - explaining the behavior of algorithms to yourself and others
+  - why web: collaborative debugging
+- reproducability of results
+  - lowering the delta between "it works for me" and "it works for someone else"
+- improving the 'online presence' of research.
+  - making research results 'usable' via a link
+  - interdisciplinary exchange of ideas
+
 
 SO: Geofront is intended as a Computational Geometry Sandbox environment.
 Meant for: 
@@ -228,17 +238,6 @@ The problem is, is that
 "Why I made geofront" and "What I can proof about geofront" are two different phenomena.
 I can proof that it can in fact be used to take existing libraries, and turn these libraries into an interactive, sharable vpl in a web browser with a 3d visualizer attached. I can proof things about the performance hit this takes. 
 - The thesis shows the possibilities and limitations of the current methodology.
-
-
-WHY DOES SOMEONE WANT TO TAKE EXISTING LIBRARIES AND TURN THEM INTO A SHARABLE VPL FORMAT? 
-- interactive, visual debugging 
-  - explaining the behavior of algorithms to yourself and others
-  - why web: collaborative debugging
-- reproducability of results
-  - lowering the delta between "it works for me" and "it works for someone else"
-- improving the 'online presence' of research.
-  - making research results 'usable' via a link
-  - interdisciplinary exchange of ideas
 
 HOW DOES THIS TRANSLATE INTO AN INTRODUCTION?
 -> ...

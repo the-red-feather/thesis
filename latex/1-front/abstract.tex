@@ -1,45 +1,57 @@
 
 \chapter*{Abstract}
-\todo[]{NOTE: this is a salespitch, not an abstract :)}
 
-This thesis presents GeoFront, a web-based visual programming language, similar to Grasshopper \& FME. 
-With GeoFront, geoprocessing \& computational design flowcharts can be viewed, run, and shared using the web.  
-The full flowchart runs client-side in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
+Geodata computation is important.
 
-GeoFront offers several functionalities such as the parametric creation of 2D and 3D primitives, triangulation, isocurve extraction, and more. 
-These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure.
-Together with WebAssembly, this enables the utilization of industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`.
+Geodata computation is difficult.
+\begin{note}
+ - Performance intensive: (Big data, O(n^2) problems) 
+ - Heterogenous data (type, quality, scale, criteria, crs) 
+ - Complex (geometric) operations (linalg, bundle adjustment, procedural modelling) 
+\end{note}
 
-Geofront has been created as an experiment to explore if visual, 
-browser-based geo-computation can make geo-computation in general more accessible. 
-The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
-Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
-This study concludes that based on these measurements, browser-based geo-computation is not only possible, but fast, and an enabler of many promising use-cases, such as on-demand geodata processing apps, educational demo apps, and code sharing. However, extensive user-group testing is required before any definitive statements on accessibility and fitness for geo-computation can be made.  
+All of this makes the process of geocomputation difficult. 
 
+two ways of improving the process are actively being researched: Geocomputation by visual programming, and Geocomputation in web browsers.
+This study seeks to combine the advantages of both these approaches by 
 
 
+
+% This thesis presents GeoFront, a web-based visual programming language, similar to Grasshopper \& FME. 
+% With GeoFront, geoprocessing \& computational design flowcharts can be viewed, run, and shared using the web.  
+% The full flowchart runs client-side in a browser, and both end results and intermediate products can be inspected in a 3D viewer.
+
+% GeoFront offers several functionalities such as the parametric creation of 2D and 3D primitives, triangulation, isocurve extraction, and more. 
+% These functionalities can be expanded upon though a plugin system which utilizes the existing "Node Package Manager" infrastructure.
+% Together with WebAssembly, this enables the utilization of industry standard geoprocessing libraries such as `CGAL`, `GDAL` and `PROJ`, and data parsing libraries such as `IFC.js` and `laz-rs`.
+
+% Geofront has been created as an experiment to explore if visual, 
+% browser-based geo-computation can make geo-computation in general more accessible. 
+% The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
+% Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
+% This study concludes that based on these measurements, browser-based geo-computation is not only possible, but fast, and an enabler of many promising use-cases, such as on-demand geodata processing apps, educational demo apps, and code sharing. However, extensive user-group testing is required before any definitive statements on accessibility and fitness for geo-computation can be made.  
 
 % Konstantinos' abstract
-x are continuously becoming more popular among practitioners due to [...]
-However, there is no [...] to allow [...]
+% x are continuously becoming more popular among practitioners due to [...]
+% However, there is no [...] to allow [...]
 
 % Problem: Web GIS and GEO-VPL have not found each other yet. 
 % A general geo-web-vpl does not exist yet.  
 
-This thesis attempts to address this gap by proposing and implementing a general Web-based visual programming language for geo-computation. 
-This 'geo-web-vpl' is designed to fulfill what [...]
-Those requirements were identified after [...]
+% This thesis attempts to address this gap by proposing and implementing a general Web-based visual programming language for geo-computation. 
+% This 'geo-web-vpl' is designed to fulfill what [...]
+% Those requirements were identified after [...]
 
-[what]
+% [what]
 
-Following the implementation, the project was tested by simulating use-case scenarios. 
-The tests demonstrate the feasibility of [...]
-At the same time some key parameters of [...] identified which if tuned properly they can optimize the performance, behavior and robustness of the geo-web-vpl.
-With the project being a prototype solution, the vpl is far from operational and there is certainly a lot of space for improvement regarding both components. 
+% Following the implementation, the project was tested by simulating use-case scenarios. 
+% The tests demonstrate the feasibility of [...]
+% At the same time some key parameters of [...] identified which if tuned properly they can optimize the performance, behavior and robustness of the geo-web-vpl.
+% With the project being a prototype solution, the vpl is far from operational and there is certainly a lot of space for improvement regarding both components. 
 
-Utilizing the workflow in practice would be the ideal way for collecting
-useful feedback. 
-Besides that, This is already a useful environment for demo's, education, and small-scale geometry processing. 
+% Utilizing the workflow in practice would be the ideal way for collecting
+% useful feedback. 
+% Besides that, This is already a useful environment for demo's, education, and small-scale geometry processing. 
 
 
 
