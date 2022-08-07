@@ -1,6 +1,6 @@
 |          |                         |
 | -------- | ----------------------- |
-| date     | 2022-08-08 - Wednesday
+| date     | 2022-08-08 - Monday
 | present  | Giorgio, Ken, Stelios, Jos
 | Location | Cyberspace
 
