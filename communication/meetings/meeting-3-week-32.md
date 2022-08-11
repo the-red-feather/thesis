@@ -75,5 +75,17 @@ https://calendar.google.com/calendar
 
 NOTES
 
+[Giorgio]: 
+Conclusions:
+L Show Maturity
+L Show what you have learned 
+
+[Stelios]: 
+QGIS / WEB -> types compatibility was a major component of my personal research
+L rename your first sub-reserach questions to something concerned with visualization
+
+[Ken]
+L Intro is nice, but too long, make the chapters shorter 
+
 ```
 
