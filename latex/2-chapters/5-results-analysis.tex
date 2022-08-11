@@ -1,0 +1,150 @@
+\chapter{Results \& Analysis}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER
+\label{chap:experiments}
+- rapid collaborative programming
+
+\section{\mySubRQFourTitle}
+
+% ## Case Studies
+
+% ### Vector
+% _Vector data retrieval, transformation, visualization_
+
+% ### Raster 
+% _Raster data retrieval, transformation, visualization_
+
+% ### 6. Experiments 
+% _Performance benchmark between rust-wasm / cpp-wasm / cgal-cpp-wasm / js / cli usage_
+
+% ## Final 
+% _Answer research questions ????_
+
+
+% \section{Experiments}
+
+% \subsection{ Web Mapping Service }
+% -> could work, must be captured in component
+% -> streaming question
+
+% \subsection{ Open Street Map }
+% -> could be hooked up to the geojson viewer
+
+
+
+% \section{ Performance }
+% \subsection{Vector 3D}
+
+% ....
+
+% \subsection{Raster}
+
+% ....
+
+% \subsection{Geo features}
+
+% ....
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Use Case: Educational Sandbox}
+% \begin{lstlisting}
+% WHAT: 
+%  - show the behaviour of a simple ransac algorithm, fitting a plane through 
+%    a point cloud
+%  - show it beharivourly: show in-between steps
+%  - make parameters ajustable (number of high scores, minimum high score, 
+%    number of tries, etc.)
+%  - add least squares adjustment, and compare.
+
+% SIMILAR EXAMPLES: 
+%  - the geometric predicates explanation 
+%  (https://observablehq.com/@mourner/non-robust-arithmetic-as-art)
+%  - 
+
+% ASSESS ON: 
+%  - educational value
+%  - ease of usage (the promise of **Criterium A**)
+ 
+% ASSESSMENT (hypothesis): 
+%  + indeed very insightful for analying the behaviour 
+%    and operation of certain 
+%    algorithms & parameters. Not many applications can show 
+%    this level of insight. 
+%  + feature B can be used to strip the tool down 
+%    to the bare minimum,   helping 
+%    with not overwhelming the user with features
+
+%  - This VPL is not easy to operate. 
+%    It remains difficult to communicate what needs to 
+%    be done, how things work. This is not an expert tool, 
+%    but also not a beginners' tool.
+%  - No built-in tutorialization
+%  - hard to discover the code underneath, 
+%    obfuscating the link between process and code.
+
+% \end{lstlisting}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Use Case: Web Demo Environment}
+% \begin{lstlisting}
+%     WHAT:
+%      - Show the startin delaunay triangulator
+%      - Accept user-submitted Laz files as input
+%        - filter the ground
+%      - Accept a randomly generated point cloud based on perlin noise.
+%      - Visualize the generated mesh, and make it available for download
+
+%     EXAMPLES: 
+%      - hugo's demo
+    
+%      ASSESS ON:
+%      - **Criterium B**: extendability: 
+%        - how does foreign and native codebases interact? 
+%      - clarity
+%      - reproducibility
+%      - performance
+%      - scope (raster / vector / 2D / 3D)
+
+%     JUDGEMENTS (hypothesis): 
+%      + Clarity is fine
+%      + Reproducability is 
+%      + Performance is decent
+
+%      ~ clarity is fine, vpl allows users to 'play around' and try
+%        different configurations, even run their own data through the
+%        demonstrated functions
+
+%      - Application is less suited for 2D 
+    
+% \end{lstlisting}
+
+
+% \section{Use Case: Geoprocessing Environment}%%%%%%%%%%% SECTION
+% \begin{lstlisting}
+
+%     WHAT:
+%       - Query an area of a point cloud with a polygon
+%       - turn that area of points into a triangulation
+%       - turn triangulation into isocurves
+%       - save this as a geojson
+%       - turn this whole thing into a function, which takes a PC, 
+%         polygon and isocurve range, and spits out the geojson
+%       - share this using a link
+%       - turn this into an app?
+%       - turn this into a script?
+
+%     EXAMPLES: 
+%      - 
+
+%      ASSESS ON:
+%      - **Criterium C**: Publicability:
+%        - the ability to operationalize the application 
+%        - can it be used by end-users? clarity? too much clutter
+
+%     JUDGEMENTS (hypothesis): 
+%       ~ sharing by link is possible, but for end-user usage, 
+%         its very cluttered 
+%       ~ compiling to js only partially works
+%       ~ compiling into an app is not possible, but 
+%         since everything runs client-side, it could be implemented. 
+
+% \end{lstlisting}

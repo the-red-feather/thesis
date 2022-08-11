@@ -2,22 +2,22 @@
 \label{chap:implementation}
 
 This chapter explains the significant implementation details of the geo-web-vpl solution.
-This solution is titled \geofront{}, as a concatenation of "geometry" and "frontend".
+This solution is titled Geofront, as a concatenation of "geometry" and "frontend".
 
 % Explain main code setup \& components
-\geofront{} exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
-The \m{app} repository holds the main \geofront{} application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. The application is hosted at (SOURCE).
+Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
+The \m{app} repository holds the main Geofront application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. The application is hosted at (SOURCE).
 The \m{engine} repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
-The repositories prefixed with a \m{gfp} are \geofront{} Plugins. These plugins are consumed by the main \m{app}.
+The repositories prefixed with a \m{gfp} are Geofront Plugins. These plugins are consumed by the main \m{app}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{\mySubRQOneTitle: The App}
+\section{\mySubRQOneTitle: The Geofront Application}
 \label{sec:app}
 
-The \geofront{} Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file, and this file practically represents the full application. 
+The Geofront Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file, and this file practically represents the full application. 
 the repository used around 9.000 lines of code, divided into the following core categories and functionalities:
 \begin{enumerate}[I]
   \item \m{shims}: Models to reason about 'programming language features', such as functions and variables.
