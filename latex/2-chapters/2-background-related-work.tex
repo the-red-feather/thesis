@@ -62,10 +62,16 @@ For this reason, these applied fields can be regarded as neighbors to geocomputa
 
 It is important to recognize that certain geocomputational procedures fully overlap with computer graphics and these neighboring fields, while others are very specific to the field of GIS and geo-informatics.
 As an example, matrix transformations and reprojections are commonplace in the wider field of computer graphics, but transformations formalized and structured in the form of \ac*{crs} is very specific to the field of GIS (See \reffig{fig:geocomputation}).
+As such, geocomputational procedures can roughly be categorized in two fields: 
+\begin{itemize}[-]
+  \item geocomputations \emph{specific} to \ac{gis},
+  \item \emph{common} computational geometry procedures
+\end{itemize}
+This categorization can be identified by noting if an operation appears in a neighboring field, or just in the field of \ac{gis}.
 
-Geocomputation is distinct from these neighboring fields in its foundation in the field of Geodesy, and the nature of geographical data. 
-Geodata differentiates itself from any form of data by its sizable nature, and spatial nature. 
-GIS dataset sizes easily scale into TeraBytes of data, and each datum specifically represent a real, measured, earthly phenomenon.
+This \emph{specific} category exists because of \ac{gis}s foundation in the field of Geodesy, and the nature of geographical data. 
+Geodata differentiates itself from any form of data by its sizable nature, and geospatial nature. 
+GIS dataset sizes easily scale into terabytes of data, and each datum specifically represent a real, measured, earthly phenomenon.
 This makes storage and accuracy much more relevant than other computer graphics applications. 
 
 % NOTE TO SELF: GIVE CATEGORIES OF GEOCOMPUTATION IF IT IS ASKED FOR, OTHERWISE, LEAVE IT
@@ -111,14 +117,6 @@ This makes storage and accuracy much more relevant than other computer graphics 
 % \subsubsection{Pointcloud Geocomputation}
 
 \subsection{Geocomputation libraries}
-Numerous geocomputational software libraries exist, written in a plethora of programming languages. 
-Out of all open-source geocomputational libraries, the ones developed and maintained by the \ac{osgeo} (Source) can be regarded as the most significant to the field of \ac{gis}. 
-These libraries include The \ac*{gdal} (Source), The Cartographic Projections and Coordinate Transformations Library (Source),  
-
-
-\begin{note}
-  (TODO: make a prettier, clearer version of the dependency graph, and fact-check this diagram. It seems dated.)
-\end{note}
 
 \begin{figure}
   \centering
@@ -128,19 +126,33 @@ These libraries include The \ac*{gdal} (Source), The Cartographic Projections an
   \label{fig:geolib-dependencies}
 \end{figure}
 
+Numerous geocomputational software libraries exist, written in a plethora of programming languages. 
+Still, a certain 'Canon' can be defined based on popularity in terms of numbers of downloads, numbers of contributors, and number of dependent projects.  
 
+Out of all open-source geocomputational libraries, the ones developed and maintained by the \ac{osgeo} (Source) can be regarded as the most significant to the field of \ac{gis}. 
+These libraries include:
+\begin{itemize}[]
+  \item The \ac{gdal} (Source) 
+  \item The Cartographic Projections and Coordinate Transformations Library titled PROJ (Source)
+  \item The Geometry Engine Open Source (GEOS) (Source)
+\end{itemize}
+The geocomputations found in these libraries operate primarily on 2D / 2.5D raster and Simple Feature datasets (Source).
+How these projects related together is presented by \reffig{fig:geolib-dependencies}.
+Together, these libraries represent the core computational needs specific to the field of \ac{gis}. 
 
-- CGAL, GDAL, despite name similarities, very different libraries. 
-
-- GDAL is meant for geographical data: Geospatial Data Abstraction Library
-
-- CGAL is more general geometry: Computational Geometry Algorithms Library
+For the more 'common' computational geometry needs, the \ac{cgal} library is also widely used.
 
 \section{Web applications}
 \label{sec:background-web}
 
+WHAT AM I GOING TO WRITE HERE: 
+- Build a base for all the times I will be speaking about web applications
+- Explain the typical structure, typical ingredients (HTML, CSS, JS) and the typical client-server architecture.
+Websites.
+- Then explain the client-heavy web-applications 
+- Then explain 
 
-\subsection{In General}
+\subsection{Common structure}
 
 Web based \ac{gis} forms an indispensable component of the wider geospatial software landscape. 
 For the average person, an interactive \ac{gis} web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
@@ -159,7 +171,7 @@ A frontend
 - js -> simple functionalities (pop-up, shopping cart)
 (just very quickly: you can split a web application up into CSS, HTML, JS)
 
-\subsection{Paradigm Shift}
+\subsection{Paradigm shift}
 
 - thick client / thin server trend 
 
@@ -176,7 +188,8 @@ The trend is made possible because of hardware improvements of client devices, a
 
 - quickly mention progessive web applications
 
-\subsection*{Noteworthy examples of thick client web apps}
+\subsection*{Examples}
+Examples of client-heavy web applications: 
 
 - (Overleaf)
 
