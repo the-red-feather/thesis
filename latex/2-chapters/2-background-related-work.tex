@@ -144,29 +144,22 @@ Together, these libraries represent the core computational needs specific to the
 
 For the more 'common' computational geometry needs, the \ac{cgal} library is also widely used.
 
-\section{Frontend web applications}
+\section{Frontend web applications (WEB) }
 \label{sec:background-web}
 
-This section offers a background on frontend web applications, their usage within the field of GIS, and developments in frontend web software development and frontend web technologies.
+This section offers a background on frontend web applications and developments in frontend web software development and frontend web technologies.
 
-\begin{note}
-  WHAT AM I GOING TO WRITE HERE: 
-  - Build a base for all the times I will be speaking about web applications
-  - Explain the typical structure, typical ingredients (HTML, CSS, JS) and the typical client-server architecture.
-  Websites.
-  - Then explain the client-heavy web-applications 
-  - Then explain 
-\end{note}
+\subsection{Distributed systems}
 
-\subsection{Terminology}
-In software development, the following dichotomies exist: 
+In software development of distributed systems, the following dichotomies exist: 
 \begin{enumerate}[-]
   \item Client and Server 
   \item Frontend and backend
-  \item Native application, web application, and website
+  \item Native application and web application
+  \item web application and website
 \end{enumerate}
 While these dichotomies do overlap to an extend, years of interchangeable usage have lead to their differences often being overlooked. 
-This study wishes to shed light on the relationships between these phenomena, as it will be essential in understanding its contribution.
+This study wishes to shed light on the relationships between these phenomena, as the nuances between them are vital to this studies contribution.
 
 \subsubsection*{Client and server}
 
@@ -185,10 +178,7 @@ In this model, a client sends a request to a server, and the server provides the
 While this model immediately invokes images of web clients and web servers, it is important to recognize that the client-server model is far older than either web applications, or the World Wide Web in general. 
 It is an abstract computational model, of which the World Wide Web is just one example.
 A corresponding client and server may even exist on the same machine. 
-
 A program running on a machine can act as a client, a server, or both, based on the role this program sets out to fulfill in relationship to other programs. 
-In this context, we make a distinction between \emph{Programs}, which refer to individual processes on either the side of the client or the server, and an \emph{application}, which represents the whole of corresponding client and server programs. 
-If a client program runs without an active corresponding server it relies upon, we can say that the client \emph{program} functions, but the entire \emph{application} does not function. 
 
 The client-server model is beneficial for sharing resources, both in terms of storage and processing. 
 A distinction is made between centralized models, in which the bulk of these resources are centralized on one or more servers, and decentralized models, which distribute and offload some or all of the computational resources to the clients. 
@@ -206,56 +196,55 @@ It just so happens that the presentation functions often corresponds with a requ
 and that data access functions often corresponds with the responder role.
 However, this is never a given. 
 A server can be responsible for providing both the frontend and backend functionality, in the case the presentation of an application is rendered on this server. 
-This last sentence also sheds light on how server and client often correspond to the physical location of a program, whereas frontend and backend often refer to the functionality of a program.    
 
-\subsubsection*{Native application, web application, and website}
-Lastly, the differences between a web application, a website, and a native application. 
+\subsubsection*{web application and website}
+A soft distinction is also made between websites, and web applications. 
+Roughly speaking, a web application is a website which requires javascript in order to be functional.
+This makes websites more static, and web applications more dynamic, being able to change based on user input.  
+Wikipedia (Source) can be considered a website, whereas overleaf (Source) is definitively a web application. 
+Many border cases also exist, like Twitter (Source).
+Following the above definition, twitter is a web application, despite the fact that its core functionalities could be implemented without any client-side javascript.
 
-A native application is considered
+\subsubsection*{Native application and web application}
+Lastly, the nuances between a web application and a native application must be specified. 
+In this context, we make a distinction between \emph{Programs}, which refer to individual processes on either the side of the client or the server, and an \emph{application}, which either represents a non-distributed, self contained program, or represents the whole of corresponding client and server programs together.
+Client programs or server programs are also often abbreviated as clients and servers.  
+If a client runs without the active corresponding server it relies upon, we can say that the client functions, but the entire \emph{application} does not function. 
+In practice, however, the term 'web app' often specifically refers to the client, confusingly enough.
 
-
-% Nothing wrong with this chapter I think. Everything is there for a reason
-
-% the latest in a series of geoprocessing attempts 
-% we want to know what happened the previous times, so we will not try things that have already been tried before.
-
-As a side note, client-side geocomputation is not to be confused with native geocomputation clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}.
-To circumvent this ambiguity, this study refers to client-side geocomputation as 'browser-based geocomputation'.
-
-
+In any case, a program is considered native if it directly runs on the operating system of a device.
+An program is considered web-based or browser-based if a browser is required to run it. 
+A web application always has a client, as it will always need to be initially served by a corresponding server.
+However, the extend to which the functionality of a web app is self contained or continuously reliant on this server may vary.
+A native program can also be a client, as there is nothing preventing a native program of making the exact same web request as a web application. 
 
 Web applications have specific advantages and disadvantages compared to native applications. 
-The big advantages are that web applications are cross-platform by nature, and offers ease of accessibility, since no installment or app-store interaction is required to run or update the app. (src: vpl 2019, src: hybrid)
-As soon as it can be found, it can be used.
-The ability to share a full application with a link, or to embed it within the larger context of a webpage is also not trivial.
-This changed with the introduction of the World Wide Web, and the web browser. 
+The big advantages are that web applications are cross-platform by nature, and offer ease of accessibility, since no installment or app-store interaction is required to run or update the app (src: vpl 2019, src: hybrid).
+As soon as a web app is be found, it can theoretically be used.
+The containerized nature of the web also makes web applications in general more safe. 
+For unknown native applications there is always a danger of installing malicious software, whereas an unknown web application without any privileges is practically harmless. 
+The ability to share the a functional application with a link, or to embed it within the larger context of a webpage, is also not a trivial advantage.
 
+The disadvantage is that normally, web applications can only be written in one programming language: JavaScript. 
+Additionally, the safety and containerization demands of the web make web applications more removed from the operating system and hardware.
+As a consequence, any type of \ac{os} interaction such as opening a window, interacting with the file system, or drawing directly to the screen buffer, is off-limits.  
+This layer of indirection makes web applications in general unfavorable for high performance computation. 
 
+\subsection{Trends}
 
-Frontend, backend, client, server. 
-None of these 
+With all these dichotomies in mind, 
 
-Now the most confusing part. 
+The web started out with centralized client-server models. 
+a client request a web page, a server composes and serves this html, and the browser takes care of formatting and rendering this response to the screen of the user.  
+As this model was highly restrictive to more interactive or demanding applications, 
 
-The difference between a native application and a web application is, you guessed it, the web. A web application needs to be embedded within a browser in order to function. 
+However, javascript
 
-The term 'Web application' 
-A web application, or "web app", is a type of distributed application software which runs exclusively in a web browser. 
-In order to use a web application, it needs to be \emph{served} to the user by means of a web server. 
-
-can refer to the client part, the server part, or the whole. 
-
-This is in contrast to \emph{native} applications, which are 
-
-
-
-Client-side
-Server-side
 
 
 % As the web and web technologies matures, new ways of using these technologies are discovered.
 
-Since 2012, a trend of rich web-clients can be recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
+This trend has not stopped. Since 2012, a trend of rich web-clients can be recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
 Browser clients had become powerful enough to allow for decentralized client-server models
 This has led to single page application and client-side rendering, facilitated by 
 However, the real facilitator of these developments are the browsers.
@@ -308,10 +297,9 @@ While in theory any application can be compiled to WebAssembly, in practice, not
 These limitations can be split up into two groups: 
 Limitations due to the web platform, and limitations due to the current state of the language and its host.
 
-First of all, WebAssembly is required to adhere to the same containerization principles as javascript and the web at large. 
+First of all, WebAssembly is required to adhere to the same containerization restrictions as javascript and the web at large. 
 It cannot ask for resources which could be a potential security risk. 
 As a consequence, any type of \ac{os} interaction such as opening a window, interacting with the file system, or drawing directly to the screen buffer, is off-limits.  
-
 Secondly, WebAssembly is in its early phases as a language, and is intended as a simple, barebones, low-level compile target. 
 
 currently does not support multithreading 
@@ -334,14 +322,19 @@ In order to relieve javascript of the responsibility of being a 'low-level' comp
 
 The initial performance benchmarks look promising. The majority of performance comparisons show that WebAssembly only takes 10\% longer than the native binary it was compared to \cite{haas_bringing_2017}. A later study confirms this by reproducing these benchmarks \cite{jangda_not_2019}. It even notices that improvements have been made in the two years between the studies. However, Jangda et. al. criticize the methodology of these benchmarks, stating that only small scale, scientific operations where benchmarked, each containing only 100 lines of code. The paper then continues to show WebAssembly is much more inefficient and inconsistent when it comes to larger applications which use IO operations and contain less-optimized code. These applications turn out to be up to twice as slow compared to native, according to their own, custom benchmarks. 
 Jangda et. al. reason that some of this performance difference will disappear the more mature and adopted WebAssembly becomes, but state that WebAssembly has some unavoidable performance penalties as well. 
-One of these penalties is the extra translation step, shown in reffig fig:wasm-trajectory, which is indeed unavoidable when utilizing an in-between compilation target. 
+One of these penalties is the extra translation step, shown in \reffig{fig:wasm-trajectory}, which is indeed unavoidable when utilizing an in-between compilation target. 
 
-% Some studies have taken place evaluating \ac{wasm}'s performance for geospatial operations specifically. Melch performed extensive benchmarks on polygon simplification algorithms written in both javascript and WebAssembly \cite{melch_performance_2019}. It concludes by showing WebAssembly was not always faster, but considerably more consistent. Melch had this to say: "To call the WebAssembly code the coordinates will first have to be stored in a linear memory object. With short run times this overhead can exceed the performance gain through WebAssembly. The pure algorithm run time was always shorter with WebAssembly.". These findings match \cite{jangda_not_2019}, showing that sometimes the javascript JIT compilers of especially the chromium implementation outperform WebAssembly.
+Some studies have taken place evaluating \ac{wasm}'s performance for geospatial operations specifically. 
+Melch performed extensive benchmarks on polygon simplification algorithms written in both javascript and WebAssembly \cite{melch_performance_2019}. 
+It concludes by showing WebAssembly was not always faster, but considerably more consistent. 
+Melch had this to say: "To call the WebAssembly code the coordinates will first have to be stored in a linear memory object. 
+With short run times this overhead can exceed the performance gain through WebAssembly. 
+The pure algorithm run time was always shorter with WebAssembly.". 
+These findings match \cite{jangda_not_2019}, showing that the duplication of data into the webassembly buffer is a considerable bottleneck.
 
-% Lastly, the sparse matrix research of Sandhu et al. will be mentioned. \cite{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. it states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision.
+A recent study concerned with watershed delineation \cite{sit_optimized_2019} also concluded client-side WebAssembly to be more performant than server-side C, which, as a side effect, enabled their application to be published on the web without an active server. 
 
-% A recent study concerned with watershed delineation \cite{sit_optimized_2019} also concluded client-side WebAssembly to be more performant than server-side C, which, as a side effect, enabled their application to be published on the web. 
-
+Lastly, the sparse matrix research of Sandhu et al. will be mentioned. \cite{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. it states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision.
 
 Even though this proposed study falls in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account when using the compile target.
 
@@ -387,21 +380,21 @@ Even though this proposed study falls in the category of scientific computation,
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{(More on webassembly)}
+% \subsubsection{(More on webassembly)}
 
-Not just open source: process sharing using fully containerized instances. Think .
+% Not just open source: process sharing using fully containerized instances. Think .
 
-current vision / direction: containerized, sharable processes, together with web-based, front end visual programming environments ( RasterFoundry). Docker is usually named as a vision for these sharable processes.
+% current vision / direction: containerized, sharable processes, together with web-based, front end visual programming environments ( RasterFoundry). Docker is usually named as a vision for these sharable processes.
 
-\m{->} We do have examples of cloud-native geodata formats, and some examples of cloud-based geo-computation (RasterFoundry , Google Earth Engine, more). However, these approaches have not yet tried to use truly sharable, containerized geoprocesses using Docker or WebAssembly. 
+% \m{->} We do have examples of cloud-native geodata formats, and some examples of cloud-based geo-computation (RasterFoundry , Google Earth Engine, more). However, these approaches have not yet tried to use truly sharable, containerized geoprocesses using Docker or WebAssembly. 
 
-\m{->} WebAssembly as a whole is underresearched. WebAssembly is not a fully virtualized container image, but just a binary set of instructions, meant to be executed on a virtual machine. Think of safe, cross-platform dll's. 
-WebAssembly is in this regard more simple than docker, but this gives it more opportunities. 
-WebAssembly runs in the browser for instance. 
+% \m{->} WebAssembly as a whole is underresearched. WebAssembly is not a fully virtualized container image, but just a binary set of instructions, meant to be executed on a virtual machine. Think of safe, cross-platform dll's. 
+% WebAssembly is in this regard more simple than docker, but this gives it more opportunities. 
+% WebAssembly runs in the browser for instance. 
 
-\m{->} This opportunity to run in the browser would enable these cloud-native frontend environments to "dry-run" these processes from within the browser, completely detached from the server, as a means to experiment with processes on a small scale before applying them to a cloud native environment. 
+% \m{->} This opportunity to run in the browser would enable these cloud-native frontend environments to "dry-run" these processes from within the browser, completely detached from the server, as a means to experiment with processes on a small scale before applying them to a cloud native environment. 
 
-\m{->} However, no implementations exist yet which combines containerized processes with these frontend computation environments. 
+% \m{->} However, no implementations exist yet which combines containerized processes with these frontend computation environments. 
 
 % # 2. BACKGROUND
 
@@ -548,6 +541,8 @@ with the VPL as one of the most overlooked aspects within VPL research.
 \label{sec:related-geoweb}
 
 before we dive in, 
+
+this study refers to client-side geocomputation as 'browser-based geocomputation', in order to circumvent the ambiguity between native clients like QGIS, and web clients. 
 
 \subsection{The geospatial web}
 
