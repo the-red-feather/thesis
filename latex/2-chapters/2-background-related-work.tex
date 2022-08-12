@@ -33,6 +33,8 @@ Additionally, while no project or study exist at the intersection of all three o
 \section{Geocomputation}
 \label{sec:background-geo}
 
+This section offers a brief background on the wide topic of geocomputation. 
+
 % PURPOSE: Show that you understand geo-computation | Show why the rest of the study will focus on the computer graphics side of things
 
 Geocomputation is a central component of the wider field of geo-informatics. 
@@ -142,90 +144,217 @@ Together, these libraries represent the core computational needs specific to the
 
 For the more 'common' computational geometry needs, the \ac{cgal} library is also widely used.
 
-\section{Web applications}
+\section{Frontend web applications}
 \label{sec:background-web}
 
-WHAT AM I GOING TO WRITE HERE: 
-- Build a base for all the times I will be speaking about web applications
-- Explain the typical structure, typical ingredients (HTML, CSS, JS) and the typical client-server architecture.
-Websites.
-- Then explain the client-heavy web-applications 
-- Then explain 
+This section offers a background on frontend web applications, their usage within the field of GIS, and developments in frontend web software development and frontend web technologies.
 
-\subsection{Common structure}
+\begin{note}
+  WHAT AM I GOING TO WRITE HERE: 
+  - Build a base for all the times I will be speaking about web applications
+  - Explain the typical structure, typical ingredients (HTML, CSS, JS) and the typical client-server architecture.
+  Websites.
+  - Then explain the client-heavy web-applications 
+  - Then explain 
+\end{note}
 
-Web based \ac{gis} forms an indispensable component of the wider geospatial software landscape. 
-For the average person, an interactive \ac{gis} web application is often their first and only exposure to a \acs{gis}, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
-A web application is cross-platform by nature, and offers ease of accessibility, since no installment or app-store interaction is required to run or update the app. (src: vpl 2019, src: hybrid)
+\subsection{Terminology}
+In software development, the following dichotomies exist: 
+\begin{enumerate}[-]
+  \item Client and Server 
+  \item Frontend and backend
+  \item Native application, web application, and website
+\end{enumerate}
+While these dichotomies do overlap to an extend, years of interchangeable usage have lead to their differences often being overlooked. 
+This study wishes to shed light on the relationships between these phenomena, as it will be essential in understanding its contribution.
+
+\subsubsection*{Client and server}
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/misc/} }
+  \includegraphics[width=380px]{todo.jpg}
+  \caption{A typical client-server interaction) }
+  \label{fig:client-server}
+\end{figure}
+
+First, the client-server model. 
+The client-server model refers to a distributed application architecture which balances storage and processing responsibilities between two cooperating types of programs: 
+Clients and servers.
+In this model, a client sends a request to a server, and the server provides the response asked for (see \reffig{fig:client-server}).
+While this model immediately invokes images of web clients and web servers, it is important to recognize that the client-server model is far older than either web applications, or the World Wide Web in general. 
+It is an abstract computational model, of which the World Wide Web is just one example.
+A corresponding client and server may even exist on the same machine. 
+
+A program running on a machine can act as a client, a server, or both, based on the role this program sets out to fulfill in relationship to other programs. 
+In this context, we make a distinction between \emph{Programs}, which refer to individual processes on either the side of the client or the server, and an \emph{application}, which represents the whole of corresponding client and server programs. 
+If a client program runs without an active corresponding server it relies upon, we can say that the client \emph{program} functions, but the entire \emph{application} does not function. 
+
+The client-server model is beneficial for sharing resources, both in terms of storage and processing. 
+A distinction is made between centralized models, in which the bulk of these resources are centralized on one or more servers, and decentralized models, which distribute and offload some or all of the computational resources to the clients. 
+A centralized model has the advantage of making clients simple and interchangeable, at the cost of making them highly reliant on the uptake of and connection to the server. This also generates more client-server traffic. 
+A decentralized model makes clients independent and decreases traffic, at the cost of the complications caused by decentralized architectures. 
+The choice between a centralized or decentralized client-server model is therefore highly reliant on the resources of client and server hardware, as well as the quality of the connection between the server and client.  
+
+\subsubsection*{Frontend and backend}
+The terms frontend and backend, though closely related to clients and servers, refer to different phenomenon. 
+Both are separations of concerns, a design principle prevalent in computer science to specialize a program into separate responsibilities. 
+However, client and server programs are defined by their separation into "requester" and "responder" roles, whereas the frontend and backend are defined by their separation into "presentation" and "data access" functions. 
+Presentation functions are responsible for interacting with the end-user of the application, and is concerned with aspects such as user interface, user interaction, and rendering.
+"data access" interacts with the physical hardware of the machine, and is concerned with aspects such as storage methods, database management, and scalability.  
+It just so happens that the presentation functions often corresponds with a requester role,
+and that data access functions often corresponds with the responder role.
+However, this is never a given. 
+A server can be responsible for providing both the frontend and backend functionality, in the case the presentation of an application is rendered on this server. 
+This last sentence also sheds light on how server and client often correspond to the physical location of a program, whereas frontend and backend often refer to the functionality of a program.    
+
+\subsubsection*{Native application, web application, and website}
+Lastly, the differences between a web application, a website, and a native application. 
+
+A native application is considered
+
+
+% Nothing wrong with this chapter I think. Everything is there for a reason
+
+% the latest in a series of geoprocessing attempts 
+% we want to know what happened the previous times, so we will not try things that have already been tried before.
+
+As a side note, client-side geocomputation is not to be confused with native geocomputation clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}.
+To circumvent this ambiguity, this study refers to client-side geocomputation as 'browser-based geocomputation'.
+
+
+
+Web applications have specific advantages and disadvantages compared to native applications. 
+The big advantages are that web applications are cross-platform by nature, and offers ease of accessibility, since no installment or app-store interaction is required to run or update the app. (src: vpl 2019, src: hybrid)
 As soon as it can be found, it can be used.
-The ability to share a full application with a link, or to embed it within the larger context of a webpage is also not trivial. 
-Together, these aspects have made the browser a popular host for many important geographical applications, especially when accessibility is vital.
-
-A web application always consists of a frontend, and backend.
-
-A Typical model looks liks this...
-
-A frontend 
-- html -> content 
-- css -> styling 
-- js -> simple functionalities (pop-up, shopping cart)
-(just very quickly: you can split a web application up into CSS, HTML, JS)
-
-\subsection{Paradigm shift}
-
-- thick client / thin server trend 
-
-- recently dubbed 'progressive web application'
-
-- all means the same: JavaScript- heavy applications
+The ability to share a full application with a link, or to embed it within the larger context of a webpage is also not trivial.
+This changed with the introduction of the World Wide Web, and the web browser. 
 
 
-\cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}
-The papers  all speak of an emergent trend of thick-client web applications. 
+
+Frontend, backend, client, server. 
+None of these 
+
+Now the most confusing part. 
+
+The difference between a native application and a web application is, you guessed it, the web. A web application needs to be embedded within a browser in order to function. 
+
+The term 'Web application' 
+A web application, or "web app", is a type of distributed application software which runs exclusively in a web browser. 
+In order to use a web application, it needs to be \emph{served} to the user by means of a web server. 
+
+can refer to the client part, the server part, or the whole. 
+
+This is in contrast to \emph{native} applications, which are 
+
+
+
+Client-side
+Server-side
+
+
+% As the web and web technologies matures, new ways of using these technologies are discovered.
+
+Since 2012, a trend of rich web-clients can be recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
+Browser clients had become powerful enough to allow for decentralized client-server models
+This has led to single page application and client-side rendering, facilitated by 
+However, the real facilitator of these developments are the browsers.
+Improvements of the javascript runtime
+
+
+
+
+The papers all speak of an emergent trend of thick-client web applications. 
 Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. 
 And, by still being a webpage rather than a native application, users can access these applications without installment. 
 The trend is made possible because of hardware improvements of client devices, as well as software improvements, like HTML5.
 
 - quickly mention progessive web applications
 
-\subsection*{Examples}
-Examples of client-heavy web applications: 
 
-- (Overleaf)
+To circumvent the 
 
-\subsection{In Web GIS}
-\label{sec:background-webgis}
+browser-based applications
 
-...
+instead of other things like single page application, serverless appliations, or anything else. 
+
+
+\begin{note}
+
+  Sources: 
+
+  (https://en.wikipedia.org/wiki/Web_application, i know i know, bad source, but this is more 'conventional wisdom' than true 'knowledge', couldnt find a more credible source, of what would make a person credible on this content)
+  
+  (https://en.wikipedia.org/wiki/Frontend_and_backend)
+\end{note}
 
 \subsection{WebAssembly}
 \label{sec:background-wasm}
 
-Web Assembly is a new, major enabler of these types of thick client applications.
-It is officially dubbed the fourth type of programming language supported by all major web browsers, next to html, css, and js.
+From all browser-based features, WebAssembly turned out to be a deciding factor of this study. This requires us to be aware of the state of WebAssembly and its performance considerations.
 
-From all browser-based features, WebAssembly is one of the newest, and turned out to be a deciding factor of this study. This requires us to be aware of the state of WebAssembly, its performance considerations, and how this relates to geo-computation performance. But first, an introduction on the compilation target itself is in order.
+\ac{wasm} is officially dubbed the fourth type of programming language supported by all major web browsers, next to HTML, CSS, and JavaScript.
+Strictly speaking however, WebAssembly not a language, but a binary instruction format for a stack-based virtual machine.
+(SOURCE: https://webassembly.org/)
+it can be used to, theoretically, run any application or library in a web browser, regardless of the language used to create it, be it C/C++, Python, C\#, Java, or Rust. 
+This means that in order to create a web application, developers can now develop a normal, native application instead, which can then be compiled to WebAssembly, and served on the web just like any other web application. 
+In this sense it offers a complete reverse workflow compared to the Electron based applications described above.  
+If the line between web application and native application was already starting to get blurry, WebAssembly makes this line almost invisible. 
+
+\subsubsection*{Limitations}
+
+\emph{Almost} invisible, since there are quite a few caveats to the format. 
+While in theory any application can be compiled to WebAssembly, in practice, not all applications turn into functional webassembly applications, due to certain factors.
+These limitations can be split up into two groups: 
+Limitations due to the web platform, and limitations due to the current state of the language and its host.
+
+First of all, WebAssembly is required to adhere to the same containerization principles as javascript and the web at large. 
+It cannot ask for resources which could be a potential security risk. 
+As a consequence, any type of \ac{os} interaction such as opening a window, interacting with the file system, or drawing directly to the screen buffer, is off-limits.  
+
+Secondly, WebAssembly is in its early phases as a language, and is intended as a simple, barebones, low-level compile target. 
+
+currently does not support multithreading 
+The abilities 
+
+THIS ALL LEADS TO BOILERPLATE
+
+There is also the concern that as of right now, a layer of javascript 'boilerplate' or 'glue code' is needed for many interactions between the user, the browser, and webassembly. 
+For example, \ac{wasm} code is not able to directly manipulate DOM elements without calling javascript. 
+
+
+\subsubsection{Background}
 
 The original paper on WebAssembly was published on June 14, 2017 \cite{haas_bringing_2017}. The authors write that the reason behind the creation of WebAssembly is the observation that certain web applications started using JavaScript as a compile target, using a high-performance subset of JavaScript called 'asm.js' \cite{mozilla_asmjs_2013}. However, JavaScript remains a high-level, highly abstract programming language, which never intended to be used as a compile target. The discrepancy between intended use and actual use led to many complications for developers using JavaScript this way, but also for the developers of JavaScript itself \cite{haas_bringing_2017}. 
-In order to relieve javascript of the responsibility of being a 'low-level' compilation target, developers of the four major browser vendors Mozilla, Google, Apple and Microsoft eventually joined up, and created WebAssembly and its corresponding paper.
+In order to relieve javascript of the responsibility of being a 'low-level' compilation target, developers of the four major browser vendors Mozilla, Google, Apple and Microsoft created WebAssembly and its corresponding paper, in a joined effort.
 
 % This paper starts by promising WebAssembly as a save, fast, portable and compact compilation target. It continues by showing how previous attempts at low-level code on the web fail in at least one of these criteria, and that WebAssembly is the first to deliver on all of them. The follow up chapters cover a proof of memory safety, a proof of soundness of the language design, and the design decisions which had to be made to live up to those four criteria. These details will become relevant to the proposed thesis when reasoning about why WebAssembly might be faster in one case versus another.
 
 \subsubsection*{Performance}
 
-The initial performance benchmarks look promising. The majority of performance comparisons show that WebAssembly only takes 10\% longer than the native binary it was compared to \cite{haas_bringing_2017}. A later study confirms this by reproducing these benchmarks \cite{jangda_not_2019}. It even notices that improvements have been made in the two years between the studies. However, Jangda et. al. criticize the methodology of these benchmarks, stating that only scientific operations where benchmarked, each containing only 100 lines of code. The paper then continues to show WebAssembly is much more inefficient and inconsistent when it comes to larger applications which use IO operations and contain less-optimized code. These applications turn out to be up to twice as slow compared to native, according to their own, custom benchmarks. Jangda et. al. reason that some of this performance difference will disappear the more mature WebAssembly becomes, but state that WebAssembly has some unavoidable performance penalties as well. One of these penalties is the extra translation step, shown in reffig fig:wasm-trajectory, which is indeed unavoidable when utilizing an in-between compilation target. 
+The initial performance benchmarks look promising. The majority of performance comparisons show that WebAssembly only takes 10\% longer than the native binary it was compared to \cite{haas_bringing_2017}. A later study confirms this by reproducing these benchmarks \cite{jangda_not_2019}. It even notices that improvements have been made in the two years between the studies. However, Jangda et. al. criticize the methodology of these benchmarks, stating that only small scale, scientific operations where benchmarked, each containing only 100 lines of code. The paper then continues to show WebAssembly is much more inefficient and inconsistent when it comes to larger applications which use IO operations and contain less-optimized code. These applications turn out to be up to twice as slow compared to native, according to their own, custom benchmarks. 
+Jangda et. al. reason that some of this performance difference will disappear the more mature and adopted WebAssembly becomes, but state that WebAssembly has some unavoidable performance penalties as well. 
+One of these penalties is the extra translation step, shown in reffig fig:wasm-trajectory, which is indeed unavoidable when utilizing an in-between compilation target. 
 
-Even though this proposed study falls in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account during the proposed study.
+% Some studies have taken place evaluating \ac{wasm}'s performance for geospatial operations specifically. Melch performed extensive benchmarks on polygon simplification algorithms written in both javascript and WebAssembly \cite{melch_performance_2019}. It concludes by showing WebAssembly was not always faster, but considerably more consistent. Melch had this to say: "To call the WebAssembly code the coordinates will first have to be stored in a linear memory object. With short run times this overhead can exceed the performance gain through WebAssembly. The pure algorithm run time was always shorter with WebAssembly.". These findings match \cite{jangda_not_2019}, showing that sometimes the javascript JIT compilers of especially the chromium implementation outperform WebAssembly.
 
-% \begin{figure}[!tbp]
-%   \centering
-%   \begin{minipage}[b]{0.80\textwidth}
-%     \includegraphics[width=\textwidth]{../schemas/wasm-performance/wasm-perf.png}
-%     \caption{Comparison of compilation trajectories}
-%     % based on the finding of \cite{jangda_not_2019}
-%     \label{fig:wasm-trajectory}
-%   \end{minipage}
-% \end{figure}
+% Lastly, the sparse matrix research of Sandhu et al. will be mentioned. \cite{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. it states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision.
+
+% A recent study concerned with watershed delineation \cite{sit_optimized_2019} also concluded client-side WebAssembly to be more performant than server-side C, which, as a side effect, enabled their application to be published on the web. 
+
+
+Even though this proposed study falls in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account when using the compile target.
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.80\textwidth}
+    \graphicspath{ {../../assets/images/misc/} }
+    \includegraphics[width=300px]{todo.jpg}
+    \caption{Comparison of compilation trajectories}
+    % based on the finding of \cite{jangda_not_2019}
+    \label{fig:wasm-trajectory}
+  \end{minipage}
+\end{figure}
 
 % \subsubsection*{Adoption \& Implementation}
 
@@ -246,11 +375,6 @@ Even though this proposed study falls in the category of scientific computation,
 %   \end{minipage}
 % \end{figure}
 
-% Some studies have taken place evaluating \ac{wasm}'s performance for geospatial operations specifically. Melch performed extensive benchmarks on polygon simplification algorithms written in both javascript and WebAssembly \cite{melch_performance_2019}. It concludes by showing WebAssembly was not always faster, but considerably more consistent. Melch had this to say: "To call the WebAssembly code the coordinates will first have to be stored in a linear memory object. With short run times this overhead can exceed the performance gain through WebAssembly. The pure algorithm run time was always shorter with WebAssembly.". These findings match \cite{jangda_not_2019}, showing that sometimes the javascript JIT compilers of especially the chromium implementation outperform WebAssembly, mainly because of these types of linear memory overhead.
-
-% Lastly, the sparse matrix research of Sandhu et al. will be mentioned. \cite{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. it states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision.
-
-% A recent study concerned with watershed delineation \cite{sit_optimized_2019} also concluded client-side WebAssembly to be more performant than server-side C, which, as a side effect, enabled their application to be published on the web. 
 
 % On the topic of WebAssembly, the most important conclusion to to take away from prior research is \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account during the proposed study.
 
@@ -299,70 +423,6 @@ WebAssembly runs in the browser for instance.
 % <br><br>
 
 % .....
-
-\subsection*{The Cloud Native Geospatial movement}
-
-( Not sure if I wanna go there... )
-
-% Establish OGC in two sentences, mentioning their name and Vision
-The Open Geospatial Consortium (OGC)...
-Mission: FAIR Geodata 
-
-% Establish Cloud Native movement.
-% GIS as one big LAN party
-A prominent development within the OGC is the recent effort towards a \textbf{"Cloud Native Geospatial"} future. 
-This initiative aims to radically simplify geodata storehouses to static servers serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services. 
-This architecture has many advantages over current geodata storage and analysis methods:
-\begin{itemize}
-  \item These new Cloud Native geodata formats are much cheaper to access by front-end and back-end services, compared to active services.
-  \item Substituting active SQL or noSQL databases by static binary files is easier and cheaper for data providers, leading to more and more readily available geodata.
-  \item By using supercomputers (Microsoft Planetary Computer) and cloud-storage (AWS), Geodata processes could make use of near-infinite computational and storage resources. 
-  \item By having all data centralized in one location or type of location, new, large scale patterns within our geodata could be discovered.  
-  \item For web GIS, this would offer direct data streaming options, similar to services like "Netflix" or "Spotify".  
-\end{itemize}
-
-These features may have a far reaching impact on society. Chris Holmes, forerunner of the cloud-native geospatial movement, envisions what the movement could mean for even non-GIS users: 
-\emph{
-  With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. \~ Chris Holmes
-}
-% This is also reflected by cloud-native based tools like (Google Earth Engine or RasterFoundry) may achieve such a feed, by being web based and stuff...
-All these reasons explain why the OGC and many other parties are now actively pursuing this vision.
-
-But while this vision is in active development, many large-scale challenges are still in its way. 
-One of the most important challenges is the required paradigm shift within geo-computation / geoprocessing workflows. 
-The current, common geo-computation workflow of retrieving online data, only to run it through a local process and send the resulting data back into servers, will have to be reversed: In a cloud-native future, we will not retrieve data for our local process, but we will upload our process to the data.  
-This introduces a sizable challenge: \textbf{Portable, Containerized Geo-computation}.
-
-% \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}. -> Chris again
-
-% \begin{itemize}
-%   \item Up to this point, the world of GIS has done a considerable effort to make geodata more Findable, Accessible, Interoperable, and Reusable. The challenge of Portable geo-computation now forces us to extend the effort of FAIR geodata to FAIR geodata computation as well.  
-%   \item If we want our geodata processes to be just as portable as the geodata it takes as input, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing . FAIR geo-computation.
-%   \item Furthermore, it remains a mystery how these containerized containerized processes will be configured and accessed by frontend computation environments. 
-%   \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
-% \end{itemize}
-
-The challenge of sharing and chaining together containerized fragments of geoprocesses to a variety of environments will require more than just open source collaboration. 
-This study interprets the challenge of portable geo-computation by means of the FAIR paradigm. 
-If geodata processes need to be just as portable as the geodata forming the input and output, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata \emph{processing} as well.
-The challenge facing the cloud-native vision then becomes: \textbf{How to make geo-computation Findable, Accessible, Interoperable, and Reusable?} 
-This links back to containerization, for containerization is a very powerful method of making geo-computation more Interoperable and Reusable.
-
-% state of the art regarding this issue, make a path towards the particular thesis, and why it is an application
-The current state of the art is far removed from either portable or FAIR geo-computation. 
-\todo{Improve this intro}
-\begin{itemize}
-  \item current methods: Docker, and some geo-computation platforms.
-  \item Not many implementations using WebAssembly, while this is a prime candidate: Even the guy who made Docker said so. 
-  \item ignore the cloud: focus on the act of containerizing geoprocesses using webassembly an sich
-\end{itemize}
-
-% \begin{itemize}
-%   \item Findable? -> web browser / Package Managers
-%   \item Accessible? -> web tools
-%   \item Interoperable -> WebAssembly / containerized runtimes and processes, using common types
-%   \item Reusable -> compile to regular web service / function
-% \end{itemize}
 
 \section{Visual Programmming}
 \label{sec:background-vpl}
@@ -487,14 +547,16 @@ with the VPL as one of the most overlooked aspects within VPL research.
 \section{Browser-based geocomputation}
 \label{sec:related-geoweb}
 
-% Nothing wrong with this chapter I think. Everything is there for a reason
+before we dive in, 
 
-% the latest in a series of geoprocessing attempts 
-% we want to know what happened the previous times, so we will not try things that have already been tried before.
+\subsection{The geospatial web}
 
-As a side note, client-side geocomputation is not to be confused with native geocomputation clients, which would include applications like QGIS \cite{qgis_community_qgis_2022}or ArcGIS \cite{esri_arcgis_2022}.
-To circumvent this ambiguity, this study refers to client-side geocomputation as 'browser-based geocomputation'.
+Browser based geo-information systems have become an indispensable component of the wider geospatial software landscape. 
+For the average person, an interactive \ac{gis} web application is often their first and only exposure to such a system, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
 
+As stated in \refsec{sec:background-web}, web applications offer safety, distribution and accessibility advantages over native applications.
+
+\subsection{Browser based geocomputation}
 
 Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geocomputation} abilities, like CRS translations, bundle adjustment, interpolation or boolean operators, are usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as viewers; visualizers of pre-processed data. 
 
@@ -587,15 +649,66 @@ Additionally, by forgoing the question of accessibility, many auxiliary use-case
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection*{The Cloud Native Geospatial movement}
+
+( Not sure if I wanna go there... )
+
+% Establish OGC in two sentences, mentioning their name and Vision
+The Open Geospatial Consortium (OGC)...
+Mission: FAIR Geodata 
+
+% Establish Cloud Native movement.
+% GIS as one big LAN party
+A prominent development within the OGC is the recent effort towards a \textbf{"Cloud Native Geospatial"} future. 
+This initiative aims to radically simplify geodata storehouses to static servers serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services. 
+This architecture has many advantages over current geodata storage and analysis methods:
+\begin{itemize}
+  \item These new Cloud Native geodata formats are much cheaper to access by front-end and back-end services, compared to active services.
+  \item Substituting active SQL or noSQL databases by static binary files is easier and cheaper for data providers, leading to more and more readily available geodata.
+  \item By using supercomputers (Microsoft Planetary Computer) and cloud-storage (AWS), Geodata processes could make use of near-infinite computational and storage resources. 
+  \item By having all data centralized in one location or type of location, new, large scale patterns within our geodata could be discovered.  
+  \item For web GIS, this would offer direct data streaming options, similar to services like "Netflix" or "Spotify".  
+\end{itemize}
+
+These features may have a far reaching impact on society. Chris Holmes, forerunner of the cloud-native geospatial movement, envisions what the movement could mean for even non-GIS users: 
+\emph{
+  With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. \~ Chris Holmes
+}
+% This is also reflected by cloud-native based tools like (Google Earth Engine or RasterFoundry) may achieve such a feed, by being web based and stuff...
+All these reasons explain why the OGC and many other parties are now actively pursuing this vision.
+
+But while this vision is in active development, many large-scale challenges are still in its way. 
+One of the most important challenges is the required paradigm shift within geo-computation / geoprocessing workflows. 
+The current, common geo-computation workflow of retrieving online data, only to run it through a local process and send the resulting data back into servers, will have to be reversed: In a cloud-native future, we will not retrieve data for our local process, but we will upload our process to the data.  
+This introduces a sizable challenge: \textbf{Portable, Containerized Geo-computation}.
+
+% \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}. -> Chris again
+
+% \begin{itemize}
+%   \item Up to this point, the world of GIS has done a considerable effort to make geodata more Findable, Accessible, Interoperable, and Reusable. The challenge of Portable geo-computation now forces us to extend the effort of FAIR geodata to FAIR geodata computation as well.  
+%   \item If we want our geodata processes to be just as portable as the geodata it takes as input, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing . FAIR geo-computation.
+%   \item Furthermore, it remains a mystery how these containerized containerized processes will be configured and accessed by frontend computation environments. 
+%   \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
+% \end{itemize}
+
+The challenge of sharing and chaining together containerized fragments of geoprocesses to a variety of environments will require more than just open source collaboration. 
+This study interprets the challenge of portable geo-computation by means of the FAIR paradigm. 
+If geodata processes need to be just as portable as the geodata forming the input and output, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata \emph{processing} as well.
+The challenge facing the cloud-native vision then becomes: \textbf{How to make geo-computation Findable, Accessible, Interoperable, and Reusable?} 
+This links back to containerization, for containerization is a very powerful method of making geo-computation more Interoperable and Reusable.
+
+% state of the art regarding this issue, make a path towards the particular thesis, and why it is an application
+The current state of the art is far removed from either portable or FAIR geo-computation. 
+\todo{Improve this intro}
+\begin{itemize}
+  \item current methods: Docker, and some geo-computation platforms.
+  \item Not many implementations using WebAssembly, while this is a prime candidate: Even the guy who made Docker said so. 
+  \item ignore the cloud: focus on the act of containerizing geoprocesses using webassembly an sich
+\end{itemize}
+
 \section{Visual programming and geocomputation}
 \label{sec:related-geovpl}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  ____    ____    ____                                                       %
-% |___ \  |___ \  |___ \                                                      %
-%  __) |   __) |   __) |                                                      %
-% / __/ _ / __/ _ / __/                                                       %
-% |_____(_|_____(_|_____| Related Works: GEOVPL                               %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 acknoledgements
 - Name similar studies or things 
   - Ravi Peter: awesome c++ based application 
@@ -613,6 +726,15 @@ acknoledgements
   - debugging & experimentation: GeoFlow 
   
 \end{lstlisting}
+
+
+This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as in neighboring fields like BIM, CAD, Shader Programming and Procedural Geometry. 
+All these fields benefit from the combination of both low-code automation and visual debugging.
+% The field of geo-informatics also appreciates the 'dataflow modelling' aspects (TODO FIX THIS SENTENCE)
+
+Within the field of geo informatics, \ac{vpl}s are not a new phenomenon. VPLs have been used for decades to specify geodata transformations and performing spatial analyses.  
+SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (ETL) platform automates data integration, and is widely used by GIS experts.
+
 
 
 % The environment proposed by this thesis builds from Ravi Peter's work. GeoFront can be seen as GeoFlow, but in a web browser. However, the introduction of this web component significantly changes the purpose and use-case of GeoFront compared to GeoFlow. 
@@ -666,6 +788,13 @@ In Geometry Computation \& Visualization:
   situations where a 'visual' product requires debugging during development. 
 \end{lstlisting}
 
+
+% -> testing & reproducability.
+% RANSAC -> many 'magic' parameter. They need to be discovered by 'play'
+% Jonathan blow -> using interactive applications, an intrinsic understanding can be gained without explicit communication.
+% Game Of Life -> impossibility of 'proving' behaviour systems. 
+
+
 \section{Browser-based visual programming}
 \label{sec:related-webvpl}
 
@@ -688,6 +817,7 @@ digging in github reaps some results, mostly experimental, in development applic
 \section{Browser-based Visual programming and geocomputation} 
 To the best of the author's knowledge, a publicly available visual programming language which is both able to run and execute in a browser, and is able to be used for geodata computation, does not exist. 
 However, certain applications and studies come close. 
+The best example of a similar application this study was able to find, is RasterFoundry's modellab application
 Best example: rasterfoundry, modellab but doesnt really count, since cacluations are performed in the backend (as far as we know). 
 Also, implementation details are not public. 
 

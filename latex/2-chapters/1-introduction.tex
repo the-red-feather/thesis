@@ -29,41 +29,19 @@ A \ac{vpl}, or visual programming environment, is a type of programming language
 A VPL often refers to both the language and the Integrated Development Environment (IDE) which presents this language.
 
 The two big advantages visual programming has over regular programming, are \textbf{experimentation}, and \textbf{debugability}.
-A Visual programming language allows calculations to be changed on the fly, often with immediate feedback. By also allowing calculation results to be transformed, inspected and visualized intuitively, the process of programming is often experienced as more user-friendly than regular programming (SOURCE).
-[quote a source to exemplify this].
-VPLs like these offers users a chance to interactively automate workflows \& processing pipelines, while requiring little to no programming knowledge. 
-A VPL done right can make automation available to a very large audience.
-
-This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as in neighboring fields like BIM, CAD, Shader Programming and Procedural Geometry. 
-All these fields benefit from the combination of both low-code automation and visual debugging.
-% The field of geo-informatics also appreciates the 'dataflow modelling' aspects (TODO FIX THIS SENTENCE)
-
-Within the field of geo informatics, \ac{vpl}s are not a new phenomenon. VPLs have been used for decades to specify geodata transformations and performing spatial analyses.  
-SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (ETL) platform automates data integration, and is widely used by GIS experts.
+A Visual programming language allows calculations to be changed on the fly, often with immediate feedback. By also allowing calculation results to be transformed, inspected and visualized quickly, the process of visual programming is often experienced as more intuitive than regular programming (SOURCE).
+VPLs offer users a chance to interactively automate workflows \& processing pipelines, while requiring little to no programming knowledge. 
+Because of this, a VPL done right can make automation available to a very large audience.
 
 % \emph{what makes a vpl a 'new' development?}
 
-Despite this history, the \ac{vpl} is still considered an ongoing development within the field of geocomputation. 
+Despite the existence of applications like FME, the \ac{vpl} is still considered an ongoing development within the field of geocomputation. 
 Especially in recent years, a push towards a more 'granular' \ac{vpl}s can be recognized: 
 \ac{vpl}s offering geocomputation on a smaller, more detailed level. 
 As an example, McNeels's Grasshopper (SOURCE) is increasingly being used for spatial analyses of buildings and neighborhoods, like solar irradiation or heating demands (source). 
 Meanwhile, The GeoFlow \ac{vpl} (source) was used to model the 3D envelope of a building based on a pointcloud, which was subsequently scaled up in the creation of the 3D BAG dataset (source).
 
 These ways of using a \ac{geo-vpl} are still relatively novel, and contain many open ended questions. That geocomputation in certain scenarios benefits from the interface offered by a \ac{vpl} is probably true, indicated by the number of prior studies on the topic (source, source, source), and the popularity of \ac{vpl}s used for geodata and geometry computation. The \emph{extend} to which \ac{vpl}s benefit geocomputation, is still relatively unknown. 
-
-% Famous examples of VPLs are:
-% \begin{itemize}
-
-%   \item Scratch (src), a educational programming language
-%   \item 
-% \end{itemize}
-
-% ... (name something about Dataflow programming, a programming paradigm often used in conjunction with a vpl. ) ... 
-
-% -> testing & reproducability.
-% RANSAC -> many 'magic' parameter. They need to be discovered by 'play'
-% Jonathan blow -> using interactive applications, an intrinsic understanding can be gained without explicit communication.
-% Game Of Life -> impossibility of 'proving' behaviour systems. 
 
 \subsection*{Browser-based geocomputation}
 
@@ -80,7 +58,6 @@ However, \ac{bbg} also has many open-ended questions and challenges.
 The big catch is that browsers \& javascript are not ideal hosts for geocomputation. 
 Javascript is a slow and imprecise language compared to C++, has limited support regarding reading and writing files, and does not possess of a rich ecosystem of geocomputation libraries.  
 A new browser feature called WebAssembly might fix some of these issues, but this has not seen substantial research due to it novelty. 
-More on this in \refsec{sec:background-wasm}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
