@@ -144,24 +144,29 @@ Together, these libraries represent the core computational needs specific to the
 
 For the more 'common' computational geometry needs, the \ac{cgal} library is also widely used.
 
+Almost all popular GIS end-user applications have these libraries at their core, such as 
+
 \section{Frontend web applications (WEB) }
 \label{sec:background-web}
 
-This section offers a background on frontend web applications and developments in frontend web software development and frontend web technologies.
+This section offers a background on frontend web applications.
+Since this topic is too large in scope to fully cover, three elements are chosen which are highly relevant to this study.
+Finally, these three topics are linked to each other in \refsec{sec:background-web-conclusion}.
 
 \subsection{Distributed systems}
+\label{sec:background-web-terminology}
 
-In software development of distributed systems, the following dichotomies exist: 
+In software development of distributed systems, the following phrases exist: 
 \begin{enumerate}[-]
   \item Client and Server 
   \item Frontend and backend
   \item Native application and web application
   \item web application and website
 \end{enumerate}
-While these dichotomies do overlap to an extend, years of interchangeable usage have lead to their differences often being overlooked. 
+While these phrases do overlap to an extend, years of interchangeable usage have lead to their differences often being overlooked. 
 This study wishes to shed light on the relationships between these phenomena, as the nuances between them are vital to this studies contribution.
 
-\subsubsection*{Client and server}
+\subsubsection*{The client-server model}
 
 \begin{figure}
   \centering
@@ -187,6 +192,7 @@ A decentralized model makes clients independent and decreases traffic, at the co
 The choice between a centralized or decentralized client-server model is therefore highly reliant on the resources of client and server hardware, as well as the quality of the connection between the server and client.  
 
 \subsubsection*{Frontend and backend}
+
 The terms frontend and backend, though closely related to clients and servers, refer to different phenomenon. 
 Both are separations of concerns, a design principle prevalent in computer science to specialize a program into separate responsibilities. 
 However, client and server programs are defined by their separation into "requester" and "responder" roles, whereas the frontend and backend are defined by their separation into "presentation" and "data access" functions. 
@@ -197,79 +203,46 @@ and that data access functions often corresponds with the responder role.
 However, this is never a given. 
 A server can be responsible for providing both the frontend and backend functionality, in the case the presentation of an application is rendered on this server. 
 
+\subsubsection*{Native application and web application}
+
+The nuances between a web application and a native application must also be specified, alongside their relationship to clients and servers. 
+In this context, we make a distinction between \emph{Programs}, which refer to individual processes on either the side of the client or the server, and an \emph{application}, which either represents a non-distributed, self contained program, or represents the whole of corresponding client and server programs together.
+Client programs or server programs are also often abbreviated as clients and servers.  
+If a client runs without the corresponding server it relies upon, we can say that the client functions, but the entire \emph{application} does not function. 
+In practice, however, the term 'web app' often specifically refers to the client, confusingly enough.
+
+In any case, a program is considered native if it directly runs on the operating system of a device.
+A program is considered web-based or browser-based if a browser is required to run it. 
+A web application always has a client, as it will always need to be initially served by a corresponding server.
+However, the extend to which the functionality of a web app is self contained or continuously reliant on this server may vary.
+A native program may also be a client, as there is nothing preventing a native program of making the exact same web request as a web application. 
+
+Due to this ambiguity of 'client-side' being able to refer to both native and web clients, this study makes use of the terminology 'browser-based programs' or 'browser-based applications', to point to web clients in particular. 
+
+Web applications have specific advantages and disadvantages compared to native applications. 
+The big advantages are that web applications are cross-platform by nature, and offer ease of accessibility, since no installment or app-store interaction is required to run or update the app (src: vpl 2019, src: hybrid).
+As soon as a web app is found, it can theoretically be used.
+The containerized nature of the web also makes web applications in general more safe. 
+For unknown native applications there is always a danger of installing malicious software, whereas an unknown web application without any privileges is practically harmless. 
+The ability to share the a functional application with a link, or to embed it within the larger context of a webpage, is also not a trivial advantage.
+
+The disadvantage is that normally, web applications can only be written in one, very-high level programming language: JavaScript. 
+Its high-level nature leads to imprecision in using computational resources. 
+For example, it makes no distinction between integer and floating point arithmetic.  
+Additionally, the safety and containerization demands of the web make web applications more removed from the operating system and hardware.
+Any type of \ac{os} interaction such as opening a window, interacting with the file system, or drawing directly to the screen buffer, is off-limits.  
+Both these layers of indirection makes web applications traditionally unfavorable for demanding, highly specialized programs. 
+
 \subsubsection*{web application and website}
-A soft distinction is also made between websites, and web applications. 
+
+Lastly, a soft distinction is also made between websites, and web applications. 
 Roughly speaking, a web application is a website which requires javascript in order to be functional.
 This makes websites more static, and web applications more dynamic, being able to change based on user input.  
 Wikipedia (Source) can be considered a website, whereas overleaf (Source) is definitively a web application. 
 Many border cases also exist, like Twitter (Source).
 Following the above definition, twitter is a web application, despite the fact that its core functionalities could be implemented without any client-side javascript.
 
-\subsubsection*{Native application and web application}
-Lastly, the nuances between a web application and a native application must be specified. 
-In this context, we make a distinction between \emph{Programs}, which refer to individual processes on either the side of the client or the server, and an \emph{application}, which either represents a non-distributed, self contained program, or represents the whole of corresponding client and server programs together.
-Client programs or server programs are also often abbreviated as clients and servers.  
-If a client runs without the active corresponding server it relies upon, we can say that the client functions, but the entire \emph{application} does not function. 
-In practice, however, the term 'web app' often specifically refers to the client, confusingly enough.
-
-In any case, a program is considered native if it directly runs on the operating system of a device.
-An program is considered web-based or browser-based if a browser is required to run it. 
-A web application always has a client, as it will always need to be initially served by a corresponding server.
-However, the extend to which the functionality of a web app is self contained or continuously reliant on this server may vary.
-A native program can also be a client, as there is nothing preventing a native program of making the exact same web request as a web application. 
-
-Web applications have specific advantages and disadvantages compared to native applications. 
-The big advantages are that web applications are cross-platform by nature, and offer ease of accessibility, since no installment or app-store interaction is required to run or update the app (src: vpl 2019, src: hybrid).
-As soon as a web app is be found, it can theoretically be used.
-The containerized nature of the web also makes web applications in general more safe. 
-For unknown native applications there is always a danger of installing malicious software, whereas an unknown web application without any privileges is practically harmless. 
-The ability to share the a functional application with a link, or to embed it within the larger context of a webpage, is also not a trivial advantage.
-
-The disadvantage is that normally, web applications can only be written in one programming language: JavaScript. 
-Additionally, the safety and containerization demands of the web make web applications more removed from the operating system and hardware.
-As a consequence, any type of \ac{os} interaction such as opening a window, interacting with the file system, or drawing directly to the screen buffer, is off-limits.  
-This layer of indirection makes web applications in general unfavorable for high performance computation. 
-
-\subsection{Trends}
-
-With all these dichotomies in mind, 
-
-The web started out with centralized client-server models. 
-a client request a web page, a server composes and serves this html, and the browser takes care of formatting and rendering this response to the screen of the user.  
-As this model was highly restrictive to more interactive or demanding applications, 
-
-However, javascript
-
-
-
-% As the web and web technologies matures, new ways of using these technologies are discovered.
-
-This trend has not stopped. Since 2012, a trend of rich web-clients can be recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
-Browser clients had become powerful enough to allow for decentralized client-server models
-This has led to single page application and client-side rendering, facilitated by 
-However, the real facilitator of these developments are the browsers.
-Improvements of the javascript runtime
-
-
-
-
-The papers all speak of an emergent trend of thick-client web applications. 
-Proponents of this trend argue that for certain applications, end users can benefit from dynamic, interactive websites which can immediately respond to a users input, rather than waiting on server round-trips necessary on static web-pages. 
-And, by still being a webpage rather than a native application, users can access these applications without installment. 
-The trend is made possible because of hardware improvements of client devices, as well as software improvements, like HTML5.
-
-- quickly mention progessive web applications
-
-
-To circumvent the 
-
-browser-based applications
-
-instead of other things like single page application, serverless appliations, or anything else. 
-
-
 \begin{note}
-
   Sources: 
 
   (https://en.wikipedia.org/wiki/Web_application, i know i know, bad source, but this is more 'conventional wisdom' than true 'knowledge', couldnt find a more credible source, of what would make a person credible on this content)
@@ -277,50 +250,62 @@ instead of other things like single page application, serverless appliations, or
   (https://en.wikipedia.org/wiki/Frontend_and_backend)
 \end{note}
 
+
+\subsection{Rich Clients}
+\label{sec:background-web-rich}
+
+In the early days of the World Wide Web, web applications were practically impossible, and the web consisted of websites exclusively. 
+Then, with the introduction of the javascript scripting language in 199x (Source), and browser plugins like Adobe Flash (Source), the first couple of web application slowly started to be developed. 
+Still, these early web applications exclusively used a centralized client-server model.
+The clients were simple, and completely reliant on the server. 
+
+In the decades that followed, the javascript runtime of web browsers saw continuous improvements, alongside additions like HTML5, facilitating more interactive usage of webpages.
+As the web and web technologies matures, new ways of using these technologies are discovered.
+Web applications became more interactive, and frontend functionalities were slowly moved from the server to the client. 
+
+These developments have not stopped. Since 2012, a trend of \textbf{rich web-clients} can be wide recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
+At that point, the browser had become powerful enough to allow for decentralized client-server models.
+By making servers nothing more than static file servers, and adding all routing and rendering responsibilities to the client, the interactivity of a web application could be maximized. 
+This model was dubbed "single page application", and was and still is facilitated by javascript frameworks like Angular, React and Vue.
+However, the real facilitator of these developments are the browsers themselves.
+As the overhead created by these features would not be possible if javascript ran the way it did in 200x. 
+
+This growth of the web application also lead to web applications being used 'natively'. 
+Tools like Electron (Source) allow web applications to be installed and 'run' on native machines by rendering them inside of a stripped down browser. 
+Many contemporary 'native' applications work like this, such as VS Code, Slack, and Discord.
+Additionally, tools like React Native (Source) are able to compile a web application into a native application without a browser runtime.  
+
+If the applications resulting from both types of tools are to be regarded as 'web apps' or 'native apps', is left as an exercise to the reader. 
+In any case, it becomes clear that rich web clients and their build tooling are starting to blur the line between native and web software.
+
 \subsection{WebAssembly}
 \label{sec:background-wasm}
 
+If the line between web application and native application was already starting to get blurry, WebAssembly makes this line almost invisible. 
 From all browser-based features, WebAssembly turned out to be a deciding factor of this study. This requires us to be aware of the state of WebAssembly and its performance considerations.
 
 \ac{wasm} is officially dubbed the fourth type of programming language supported by all major web browsers, next to HTML, CSS, and JavaScript.
 Strictly speaking however, WebAssembly not a language, but a binary instruction format for a stack-based virtual machine.
 (SOURCE: https://webassembly.org/)
 it can be used to, theoretically, run any application or library in a web browser, regardless of the language used to create it, be it C/C++, Python, C\#, Java, or Rust. 
-This means that in order to create a web application, developers can now develop a normal, native application instead, which can then be compiled to WebAssembly, and served on the web just like any other web application. 
-In this sense it offers a complete reverse workflow compared to the Electron based applications described above.  
-If the line between web application and native application was already starting to get blurry, WebAssembly makes this line almost invisible. 
+This means that in order to create a web application, developers can now in principle develop a normal, native application instead, which can then be compiled to WebAssembly, and served on the web just like any other web application. 
 
 \subsubsection*{Limitations}
 
-\emph{Almost} invisible, since there are quite a few caveats to the format. 
+The sentence above uses the phrase \emph{in principle}, since there are quite a few caveats to the format. 
 While in theory any application can be compiled to WebAssembly, in practice, not all applications turn into functional webassembly applications, due to certain factors.
 These limitations can be split up into two groups: 
 Limitations due to the web platform, and limitations due to the current state of the language and its host.
 
 First of all, WebAssembly is required to adhere to the same containerization restrictions as javascript and the web at large. 
-It cannot ask for resources which could be a potential security risk. 
-As a consequence, any type of \ac{os} interaction such as opening a window, interacting with the file system, or drawing directly to the screen buffer, is off-limits.  
-Secondly, WebAssembly is in its early phases as a language, and is intended as a simple, barebones, low-level compile target. 
+There is no '\m{os}' or '\m{sys}' it can call out to, as it cannot ask for resources which could be a potential security risk, like the file system.
+Secondly, WebAssembly is in its early phases as a language, and is intended as a simple, bare-bones, low-level compile target. 
+For example, the current version does not support concurrency features like multithreading.
 
-currently does not support multithreading 
-The abilities 
-
-THIS ALL LEADS TO BOILERPLATE
-
-There is also the concern that as of right now, a layer of javascript 'boilerplate' or 'glue code' is needed for many interactions between the user, the browser, and webassembly. 
-For example, \ac{wasm} code is not able to directly manipulate DOM elements without calling javascript. 
-
-\subsection{Conclusion}
-
-WebAssembly leads to a complete re-examination of established client vs server, and web vs native dichotomies.
-
-
-\subsubsection{Background}
-
-The original paper on WebAssembly was published on June 14, 2017 \cite{haas_bringing_2017}. The authors write that the reason behind the creation of WebAssembly is the observation that certain web applications started using JavaScript as a compile target, using a high-performance subset of JavaScript called 'asm.js' \cite{mozilla_asmjs_2013}. However, JavaScript remains a high-level, highly abstract programming language, which never intended to be used as a compile target. The discrepancy between intended use and actual use led to many complications for developers using JavaScript this way, but also for the developers of JavaScript itself \cite{haas_bringing_2017}. 
-In order to relieve javascript of the responsibility of being a 'low-level' compilation target, developers of the four major browser vendors Mozilla, Google, Apple and Microsoft created WebAssembly and its corresponding paper, in a joined effort.
-
-% This paper starts by promising WebAssembly as a save, fast, portable and compact compilation target. It continues by showing how previous attempts at low-level code on the web fail in at least one of these criteria, and that WebAssembly is the first to deliver on all of them. The follow up chapters cover a proof of memory safety, a proof of soundness of the language design, and the design decisions which had to be made to live up to those four criteria. These details will become relevant to the proposed thesis when reasoning about why WebAssembly might be faster in one case versus another.
+Many of these shortcomings can be mitigated by calling JavaScript and HTML5 features from WebAssembly. 
+This is what the majority of current WebAssembly projects look like. 
+However, this layer of javascript 'boilerplate' or 'glue code' is inefficient, as it leads to duplication and redirection.
+Additionally, platforms wishing to support WebAssembly must now also support javascript. 
 
 \subsubsection*{Performance}
 
@@ -352,6 +337,13 @@ Even though this proposed study falls in the category of scientific computation,
     \label{fig:wasm-trajectory}
   \end{minipage}
 \end{figure}
+
+% \subsubsection{Background}
+
+% The original paper on WebAssembly was published on June 14, 2017 \cite{haas_bringing_2017}. The authors write that the reason behind the creation of WebAssembly is the observation that certain web applications started using JavaScript as a compile target, using a high-performance subset of JavaScript called 'asm.js' \cite{mozilla_asmjs_2013}. However, JavaScript remains a high-level, highly abstract programming language, which never intended to be used as a compile target. The discrepancy between intended use and actual use led to many complications for developers using JavaScript this way, but also for the developers of JavaScript itself \cite{haas_bringing_2017}. 
+% In order to relieve javascript of the responsibility of being a 'low-level' compilation target, developers of the four major browser vendors Mozilla, Google, Apple and Microsoft created WebAssembly and its corresponding paper, in a joined effort.
+
+% This paper starts by promising WebAssembly as a save, fast, portable and compact compilation target. It continues by showing how previous attempts at low-level code on the web fail in at least one of these criteria, and that WebAssembly is the first to deliver on all of them. The follow up chapters cover a proof of memory safety, a proof of soundness of the language design, and the design decisions which had to be made to live up to those four criteria. These details will become relevant to the proposed thesis when reasoning about why WebAssembly might be faster in one case versus another.
 
 % \subsubsection*{Adoption \& Implementation}
 
@@ -421,13 +413,28 @@ Even though this proposed study falls in the category of scientific computation,
 
 % .....
 
+\subsection{Conclusion}
+\label{sec:background-web-conclusion}
+
+When reading \refsec{sec:background-web-terminology}, \refsec{sec:background-web-rich}, and \refsec{sec:background-wasm} together, a pattern emerges. 
+WebAssembly blurs the line between the web-based and native development even further than the rich clients, and invites a further re-examination of our established models of distributed systems.
+The compile target allows web-apps to make use of native libraries, and allows native software to be run on the web.
+This second aspect offers a complete reverse workflow compared to the now popular Electron based applications described in \refsec{sec:background-web-rich}.
+ 
+There was a significant delay between the improvements of the browser, and the widespread popularity of rich web clients. 
+This study argues that as of right now, we are in the middle of a similar situation. 
+A new technologies exist, it is implemented by all major browsers, and offers completely new ways of working with the web platform as a whole. 
+The question remains what this will mean for the established models of clients and servers, the frontend and backend, and the web and native contexts. 
+
 \section{Visual Programmming}
 \label{sec:background-vpl}
 
+The third body of work this study draws from is the field of visual programming. 
+Like the previous two, this field offers a rich background of prior research, and as such this background will not be exhaustive. 
+We instead focus on works which are particularly relevant to this studies' problem statement.
+
 %   \item Ladder Diagram (src), the industry-standard method of programming Programmable Logic Controllers (PLCs)
 
-offers a rich background of prior research, and as such this literature review cannot be exhaustive. 
-We instead focus on works which are particularly relevant to this studies' problem statement.
 
 \begin{lstlisting} 
 write something about : 
@@ -543,8 +550,6 @@ with the VPL as one of the most overlooked aspects within VPL research.
 
 \section{Browser-based geocomputation}
 \label{sec:related-geoweb}
-
-before we dive in, 
 
 this study refers to client-side geocomputation as 'browser-based geocomputation', in order to circumvent the ambiguity between native clients like QGIS, and web clients. 
 
@@ -797,6 +802,10 @@ In Geometry Computation \& Visualization:
 \section{Browser-based visual programming}
 \label{sec:related-webvpl}
 
+Almost all visual programming languages appear to be written as native applications. 
+This could be because of \refsec{sec:background-web-terminology}
+
+
 The number of visual programming languages written as web applications is surprisingly low. 
 Most applications are educational
 
@@ -814,6 +823,7 @@ best example is Scratch, an educational tool.
 digging in github reaps some results, mostly experimental, in development applications
 
 \section{Browser-based Visual programming and geocomputation} 
+
 To the best of the author's knowledge, a publicly available visual programming language which is both able to run and execute in a browser, and is able to be used for geodata computation, does not exist. 
 However, certain applications and studies come close. 
 The best example of a similar application this study was able to find, is RasterFoundry's modellab application
