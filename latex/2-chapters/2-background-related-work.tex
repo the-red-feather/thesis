@@ -146,6 +146,14 @@ For the more 'common' computational geometry needs, the \ac{cgal} library is als
 
 Almost all popular GIS end-user applications have these libraries at their core, such as 
 
+\subsection{Conclusion}
+The Take-away: 
+
+Combination of general computational geometry, and computations very specific to GIS.
+
+Geocomputation is mostly facilitated by a very select number of C++ libraries. 
+
+
 \section{Frontend web applications (WEB) }
 \label{sec:background-web}
 
@@ -430,53 +438,84 @@ The question remains what this will mean for the established models of clients a
 \label{sec:background-vpl}
 
 The third body of work this study draws from is the field of visual programming. 
-Like the previous two, this field offers a rich background of prior research, and as such this background will not be exhaustive. 
-We instead focus on works which are particularly relevant to this studies' problem statement.
 
 %   \item Ladder Diagram (src), the industry-standard method of programming Programmable Logic Controllers (PLCs)
 
+\subsection{General}
+
+% \emph{What is a VPL and how does it benefit geocomputation?}
+
+% 2) Establish the VPL, and how it is used within geomatics 
+A \ac{vpl}, or visual programming environment, is a type of programming language represented in a graphical, non-textual manner.
+A VPL often refers to both the language and the Integrated Development Environment (IDE) which presents this language.
+
+The two big advantages visual programming has over regular programming, are \textbf{experimentation}, and \textbf{debugability}.
+A Visual programming language allows calculations to be changed on the fly, often with immediate feedback. By also allowing calculation results to be transformed, inspected and visualized quickly, the process of visual programming is often experienced as more intuitive than regular programming (SOURCE).
+VPLs offer users a chance to interactively automate workflows \& processing pipelines, while requiring little to no programming knowledge. 
+Because of this, a VPL done right can make automation available to a very large audience.
 
 \begin{lstlisting} 
-write something about : 
-- cognitive_1996 
-- advances_2004
-- characterizing_2021
-
-An increasing number of software applications are being written by end users 
-without formal software development training. 
-This inspired large technology companies such as Microsoft [91] and Amazon [90] 
-to invest in low-code development environments empowering end users to 
-create web and mobile applications. 
-According to the 2019 Q1 Forrester report, the low-code market will witness an 
-annual growth rate of 40\%, 
-with spending forecast to reach \$21.2 billion by 2022 [102]. 
-End-User Development (EUD) has emerged as a field that is concerned with 
-tools and activities allowing end users 
-who are not professional software developers to write software applications [11]. 
-This is promising as end users know their own domain and needs more than anyone else, 
-and are often aware of specificities in their respective contexts. 
-Further, as end users outnumber developers with professional software development 
-training by a factor of 30-to-1, 
-EUD enables a much larger pool of people to participate in software development [12]. 
-A visual programming language (VPL), among other EUD techniques, 
-allows end users to create a program by piecing together graphical elements
- rather than textually specifying them [9]. 
-Traditionally, visual programming has been successfully used to help novices
- learn basics of programming by visualizing elements of a program. 
-However, visual programming is increasingly being used by end 
-users in various domains to create and tailor applications that are useful 
-beyond the realm of education. 
-For instance, VPLs are now being used in fields such as 
-the Internet of Things (IoT) [3], [10], mobile 
-application development [51], robotics [8], and Virtual/Augmented Reality [4].
-}
-
-From characterizing_2021
-
-other major use cases: 
-- PLC: Ladder
+  write something about : 
+  - cognitive_1996 
+  - advances_2004
+  - characterizing_2021
+  
+  An increasing number of software applications are being written by end users 
+  without formal software development training. 
+  This inspired large technology companies such as Microsoft [91] and Amazon [90] 
+  to invest in low-code development environments empowering end users to 
+  create web and mobile applications. 
+  According to the 2019 Q1 Forrester report, the low-code market will witness an 
+  annual growth rate of 40\%, 
+  with spending forecast to reach \$21.2 billion by 2022 [102]. 
+  End-User Development (EUD) has emerged as a field that is concerned with 
+  tools and activities allowing end users 
+  who are not professional software developers to write software applications [11]. 
+  This is promising as end users know their own domain and needs more than anyone else, 
+  and are often aware of specificities in their respective contexts. 
+  Further, as end users outnumber developers with professional software development 
+  training by a factor of 30-to-1, 
+  EUD enables a much larger pool of people to participate in software development [12]. 
+  A visual programming language (VPL), among other EUD techniques, 
+  allows end users to create a program by piecing together graphical elements
+   rather than textually specifying them [9]. 
 
 \end{lstlisting}
+
+\subsection{Notable examples and implementations}
+
+\begin{note}
+  Traditionally, visual programming has been successfully used to help novices
+  learn basics of programming by visualizing elements of a program. 
+ However, visual programming is increasingly being used by end 
+ users in various domains to create and tailor applications that are useful 
+ beyond the realm of education. 
+ For instance, VPLs are now being used in fields such as 
+ the Internet of Things (IoT) [3], [10], mobile 
+ application development [51], robotics [8], and Virtual/Augmented Reality [4].
+ }
+ 
+ From characterizing_2021
+ 
+ other major use cases: 
+ - PLC: Ladder
+\end{note}
+
+\subsubsection{Dataflow modelling}
+Lastly, vpls are also very beneficial in dataflow modelling, and otherwise situations dealing with concurrency. 
+
+(Github Actions)
+
+
+
+
+
+\subsection{Visual vs Textual programming}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \subsubsection*{Dataflow modelling}
 
@@ -544,6 +583,18 @@ with the VPL as one of the most overlooked aspects within VPL research.
 - run
 \end{lstlisting}
 
+\subsection{Conclusion}
+
+(Just brainstorming)
+- very different than textual 
+- advantages and disadvantages regarding textual and visual programming
+
+- Only successful in very select areas
+
+
+- But in these areas, they are widely popular.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -562,7 +613,7 @@ As stated in \refsec{sec:background-web}, web applications offer safety, distrib
 
 \subsection{Browser based geocomputation}
 
-Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geocomputation} abilities, like CRS translations, bundle adjustment, interpolation or boolean operators, are usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as viewers; visualizers of pre-processed data. 
+Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geocomputation} is usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as viewers; visualizers of pre-processed data. 
 
 However, this limited range of capabilities inhibits the number of use cases geographical web applications can serve, and with that the usefulness of web \ac{gis} as a whole.
 If web applications gain \ac{geocomputation} capabilities, they could grow to be just as diverse and useful as desktop \ac{gis} applications, with the added benefits of being a web application. It would allow for a new range of highly accessible and sharable geocomputation and analysis tools, which end-users could use to post-process and analyze geodata quickly, uniquely, and on demand.
@@ -797,7 +848,6 @@ In Geometry Computation \& Visualization:
 % RANSAC -> many 'magic' parameter. They need to be discovered by 'play'
 % Jonathan blow -> using interactive applications, an intrinsic understanding can be gained without explicit communication.
 % Game Of Life -> impossibility of 'proving' behaviour systems. 
-
 
 \section{Browser-based visual programming}
 \label{sec:related-webvpl}

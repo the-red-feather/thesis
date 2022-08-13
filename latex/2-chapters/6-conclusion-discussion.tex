@@ -1,10 +1,151 @@
 % repeat results and answers in shortened form
 \chapter{Conclusion \& Discussion}
 \label{chap:conclusion}
+
+This chapter consists of the answers to the research
+questions that were given in the first chapter (\refsec{sec:answers}), 
+a summary of the most significant contributions (\refsec{sec:contribution}), 
+a discussion of the value and quality of this study (\refsec{sec:discussion}),
+a number of theorized implications of this study (\refsec{sec:future-work}),
+and lastly, a self reflection on \refsec{sec:reflection}.
+
+
+overall value of this research (§ 6.1.3).
+
+
 In this study we described the ...
 
 In this study, the main research question was determined as: \myMainRQ
 sub-questions were defined, which will be answered in the following paragraphs.
+
+
+\section{Research Overview}
+\label{sec:answers}
+
+This paragraph answers the research questions. 
+It starts with answer-
+ing the sub research questions and concludes with the answer to the
+main research question
+
+\subsection*{Sub Questions}
+
+\begin{itemize}[ ]
+  \item \emph{\mySubRQOneTitle:} "\mySubRQOne"
+\end{itemize}
+
+la la la
+
+\begin{itemize}[ ]
+  \item \emph{\mySubRQTwoTitle:} "\mySubRQTwo"
+\end{itemize}
+
+
+\begin{itemize}[ ]
+  \item \emph{\mySubRQThreeTitle:}  "\mySubRQThree"
+\end{itemize}
+
+la la la
+
+\begin{itemize}[ ]
+  \item \emph{\mySubRQFourTitle:} "\mySubRQFour"
+\end{itemize}
+
+la la la
+
+\subitem Answer of "\mySubRQOneTitle": Show the full application implementation. Conclude with what about this implementation is relevant for geocomputation, and in what ways the browser is limiting, or beneficial. 
+\subitem Answer of "\mySubRQTwoTitle": Show all wasm-considerations: C++ vs Rust vs rewriting in Js. Emscripten vs wasm-bindgen. Conclude with the preference for rust, and explain why.
+\subitem Answer of "\mySubRQThreeTitle": The implementation details of the plugin system schema. 
+
+% X : wasm-based geo-computation applications
+
+CITYJSON VALIDATOR ARGUMENT: THE WEB CAN BE USED TO IMMEDIATELY MAKE SOME TOOL / SOME RESEARCH PROJECT OPERATIONAL 'IN THE REAL WORLD'. THIS WAY, DATA CAN BE GATHERED, USER FEEDBACK CAN BE GATHERED, AND THE TOOL CAN BE EVALUATED IN TERMS OF REPRODUCABILITY. FINALLY, IT OFFERS THE POSSIBILITY OF THE TOOL BEING ACTUALLY USED, IN PRACTICE. 
+z
+
+\subsection*{Main Question}
+
+\begin{itemize}[ ]
+    \item "\myMainRQ"
+\end{itemize}
+
+The full design and implementation are represented by \refchap{chap:methodology} and \refchap{chap:implementation}. 
+But to summarize:
+
+[make a final conclusion based upon the 4 sub-answers above]
+
+we split up this study into four sub-studies, each defining, analysing and overcoming a specific challenge of the implementation of a \ac{geo-web-vpl}.
+
+In first sub-study, 
+
+the study explained the challenges and solutions concerned with developing the prototype Web 3D VPL Geofront.
+- the challenge of simulating a native interface and experience in a web browser. 
+- Especially file system challenges 
+
+In the second sub-study,
+
+challenge: 
+compilation to wasm
+
+Observation: 
+C++ is difficult to compile to wasm.
+This is not due to wasm itself, but rather the focus of emscriptem in compilation of full C++ applications, and the emulation of a POSIX environment in a web browser. 
+The library support lacks ergonomics.
+The library support of rust is more advanced.
+
+Conclusion: 
+Rust is for the forseeable future a better choice for writing platform-independent libraries. 
+Suggestion: Emscripten's 'embind' tool to expand to the level of 'wasm-bindgen'.
+
+Third sub-study: 
+
+Challenge:
+Two layers of wrapper libraries are needed to take an existing rust / C++ library, and run it in a web-based visual programming language.
+
+This is why this third component of the methodology is focused on mitigating the need for the second wrapper library. 
+
+solutions: 
+- automatically base visual components on typescript header-files
+- add any 'config' information to the first type of wrapper library. 
+
+
+\section{Discussion}
+\label{sec:discussion}
+
+discussion of the value and quality of this research
+
+\subsection{Contributions}
+\label{sec:contribution}
+
+a summary of the most significant contributions
+
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\section{Future work}
+\label{sec:future-work}
+
+Here I list a number of interesting topics for follow-up research. 
+I find the first two topics most interesting as these are both currently very active and interesting research areas.
+
+\section{Reflection}
+\label{sec:reflection}
+
+This section provides a discussion on the reproducibility of the developed methods and obtained results in this thesis, and includes an evaluation of the thesis process from a personal point of view.
+
+Self reflection 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%X
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%X
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%X
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%X
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%X
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%X
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%X
+
+\chapter{OLD CONSLUSION}
+
+
 
 % In this article we described the design, creation and evaluation of GeoFront, a web-based point-cloud processing tool.
 
@@ -78,83 +219,6 @@ sub-questions were defined, which will be answered in the following paragraphs.
 %     - Web GL
 
 % - ability to share is a true enhancement
-
-\section{Answers}
-
-\subsection*{Sub Questions}
-
-\begin{itemize}[ ]
-  \item \emph{\mySubRQOneTitle:} "\mySubRQOne"
-\end{itemize}
-
-la la la
-
-\begin{itemize}[ ]
-  \item \emph{\mySubRQTwoTitle:} "\mySubRQTwo"
-\end{itemize}
-
-
-\begin{itemize}[ ]
-  \item \emph{\mySubRQThreeTitle:}  "\mySubRQThree"
-\end{itemize}
-
-la la la
-
-\begin{itemize}[ ]
-  \item \emph{\mySubRQFourTitle:} "\mySubRQFour"
-\end{itemize}
-
-la la la
-
-% X : wasm-based geo-computation applications
-
-CITYJSON VALIDATOR ARGUMENT: THE WEB CAN BE USED TO IMMEDIATELY MAKE SOME TOOL / SOME RESEARCH PROJECT OPERATIONAL 'IN THE REAL WORLD'. THIS WAY, DATA CAN BE GATHERED, USER FEEDBACK CAN BE GATHERED, AND THE TOOL CAN BE EVALUATED IN TERMS OF REPRODUCABILITY. FINALLY, IT OFFERS THE POSSIBILITY OF THE TOOL BEING ACTUALLY USED, IN PRACTICE. 
-z
-
-\subsection*{Main Question}
-
-\begin{itemize}[ ]
-    \item "\myMainRQ"
-\end{itemize}
-
-The full design and implementation are represented by \refchap{chap:methodology} and \refchap{chap:implementation}. 
-But to summarize:
-
-[make a final conclusion based upon the 4 sub-answers above]
-
-we split up this study into four sub-studies, each defining, analysing and overcoming a specific challenge of the implementation of a \ac{geo-web-vpl}.
-
-In first sub-study, 
-
-the study explained the challenges and solutions concerned with developing the prototype Web 3D VPL Geofront.
-- the challenge of simulating a native interface and experience in a web browser. 
-- Especially file system challenges 
-
-In the second sub-study,
-
-challenge: 
-compilation to wasm
-
-Observation: 
-C++ is difficult to compile to wasm.
-This is not due to wasm itself, but rather the focus of emscriptem in compilation of full C++ applications, and the emulation of a POSIX environment in a web browser. 
-The library support lacks ergonomics.
-The library support of rust is more advanced.
-
-Conclusion: 
-Rust is for the forseeable future a better choice for writing platform-independent libraries. 
-Suggestion: Emscripten's 'embind' tool to expand to the level of 'wasm-bindgen'.
-
-Third sub-study: 
-
-Challenge:
-Two layers of wrapper libraries are needed to take an existing rust / C++ library, and run it in a web-based visual programming language.
-
-This is why this third component of the methodology is focused on mitigating the need for the second wrapper library. 
-
-solutions: 
-- automatically base visual components on typescript header-files
-- add any 'config' information to the first type of wrapper library. 
 
 \section{Conclusion}
 
