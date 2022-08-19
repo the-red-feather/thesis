@@ -449,7 +449,7 @@ Multiple types of \ac{vpl}s exist, but also multiple taxonomies of these types.
 This study bases itself on the classifications presented in \cite{kuhail_characterizing_2021}, stating four different types of visual programming languages: 
 \begin{enumerate}
   \item \textbf{Block-based languages}, in which all normal programming language features, like brackets, are represented by specific blocks which can be 'snapped' together (\label{fig:sidebyside:1}).
-  \item \textbf{Diagram-based languages}, in which programming functions or operations are represented by components, and variables are represented by links or 'cables' between these components.  
+  \item \textbf{Diagram-based languages}, in which programming functions or operations are represented by components, and variables are represented by links or 'cables' between these components. This makes the entire program a \ac{DAG}.
   \item \textbf{Form-based languages}, in which the functioning of a program can be configured by means of normal graphical forms. 
   This approach enhances the stability and predictiveness compared to other types, at the cost of expressiveness.
   \item \textbf{Icon-based languages}, in which users are asked to define their programs by chaining highly abstract, iconified procedures. 
@@ -491,6 +491,25 @@ Only 4 out of 30 of the analyzed articles chose a form-based vpl, and only 2 cho
 \label{fig:vpl-types}
 \end{figure}
 
+Visual programming languages are used in numerous domains. 
+The vpls of the 30 studies examined by (SOURCE) were aimed at domains such as the Internet of Things, robotics, mobile application development, and augmented reality. 
+Within the domain of systems control and engineering, The Ladder Diagram vpl (SOURCE) is the industry-standard for programming Programmable Logic Controllers (PLCs).
+\ac{vpl}s are also widely used within computer graphics related applications, including the field of \ac{gis}, 
+These will be covered in \refsec{sec:related-geovpl}.
+Lastly, \ac{vpl}s also have great educational applications. 
+Harvard's introduction to computer science course, CS50, famously starts out with Scratch, a block-based visual programming language, mostly targeted at children to teach the basics of computational thinking. 
+
+% \begin{note}
+%   Traditionally, visual programming has been successfully used to help novices
+%   learn basics of programming by visualizing elements of a program. 
+%  However, visual programming is increasingly being used by end 
+%  users in various domains to create and tailor applications that are useful 
+%  beyond the realm of education. 
+%  For instance, VPLs are now being used in fields such as 
+%  the 
+%  From characterizing_2021
+ 
+
 \subsection{Advantages}
 
 Studies on \ac{vpl}s indicate that generally speaking, VPLs make it easy for end users to visualize the logic of a program, and that vpls eliminate the burden of handling syntactical errors \cite{kuhail_characterizing_2021}.
@@ -501,7 +520,11 @@ higher-level operators reduce the need for awkward combinations of primitives;
 and the order of activity is freer, so that programmers can proceed as seems best in putting the pieces of a program together."}. 
 Indeed, a vpl UI can be used to eliminate whole classes of errors on a UI level by, for example, not allowing the connection of two incompatible data types. 
 
+% //The meta analysis of \cite{kuhail_characterizing_2021} also 
+
 These properties together make visual programming also highly suitable for activities of \textbf{experimentation} and \textbf{debugability}, and not only for end users. 
+
+
 
 \subsection*{End User Development \& Low Coding}
 a \ac{vpl} done right can make automation available to a very large audience, and this is exactly the point. 
@@ -512,158 +535,142 @@ Lowering the cognitive load of certain types of software development could save 
 
 \cite{kuhail_characterizing_2021} point out two serious advantages of EUD. 
 First, end users know their own domain and needs better than anyone else, and are often aware of specificities in their respective contexts (\cite{kuhail_characterizing_2021}). 
-Furthermore, 
+And two, end users outnumber developers with formal training at least by a factor of 30-to-1 according to Kuhail et. al., and my suspicion is that this might be much higher.
 
-Further, as end users outnumber developers with  by a factor of 30-to-1, 
-
-EUD  [12].
-source: characterizing
-
-VPLs offer users a chance to interactively automate workflows \& processing pipelines, while requiring little to no programming knowledge. 
+% rewrite this more professionally...
+I would like to add that offering the general public a chance to automate repetitious workflows might not only increase productivity, but can also greatly improve the quality of life in general, by focussing on the profound instead of the mundane. 
 
 In the private sector, \ac{eud} is represented by the "low code" industry. 
+Technology firms such as Google and Amazon are investing at scale in low-coding platforms (\cite{kuhail_characterizing_2021}),
+The market value was estimated at 12.500 Million USD (Source: ), and with a growth rate between 20 and 40 percent, the value may reach as high as 19 Billion by 2030 (SOURCE: FORRESTER) 
 
-This inspired large technology companies such as Microsoft [91] and Amazon [90] 
-to invest in low-code development environments empowering end users to 
-create web and mobile applications. 
-According to the 2019 Q1 Forrester report, the low-code market will witness an 
-annual growth rate of 40\%, 
-with spending forecast to reach \$21.2 billion by 2022 [102]. 
+\subsection{Dataflow programming}
+\label{sec:background:dataflow}
+An important aspect of especially diagram-based visual programming is its closeness to the field of dataflow programming. 
 
-\begin{lstlisting} 
-  write something about : 
-  - advances_2004
-  - characterizing_2021
+Dataflow programming is a programming paradigm which internally, represents a program as a \ac{dag} (SOURCE Dataflow 2012). 
+A graphical, editable representation of a dataflow program would result into a diagram-based \ac{vpl}.
+
+The big computational advantage of this model, is that it allows for implicit concurrently (SOURCE dataflow 2012). 
+In other words, every node of a program written using dataflow programming can be executed in isolation of any other nodes, as long as the direct dependencies (the inputs) are met. 
+No global state or hidden side effects means no data-race issues, which allows parallel execution of the program by default.
+When using other paradigms, programmers need to manually spawn and manage threads to achieve the same effect. 
+
+This leads into an interesting side-effect of using dataflow programming / a diagram-based \ac{vpl}: 
+By only permitting pure, stateless functions with no side-effect, and only immutable variables, end users automatically adopt a functional programming style.
+Functional programming has many benefits of its own besides concurrency, such as clear unit testing, hot code deployment, debugging advantages, and lending itself well for compile time optimizations (SOURCE: functional programming).
+
+
+% functional programming
+
+% Spreadsheets are probably the most common example of DFP
+% and widely adopted by every type of computer users.
+% On a spreadsheet, each cell represents a node that can either be an expression
+% or a single value. Dependencies can exist to other cells. Following the dataflow
+% model, whenever a cell gets updated, it sends its new value to those who depend
+% on it, that update themselves before also propagating their new values. This
+% specific type of application is commonly denominated as Cell-Oriented DPF or
+% Reactive programming.
+
+The important take-away is this: 
+A \ac{vpl} is not just a matter of a user-friendly UI or a stylistic choice.
+By closely resembling dataflow itself, and because of its functional programming nature, it can actually lead to faster and more reliable software.
   
-  An increasing number of software applications are being written by end users 
-  without formal software development training. 
- 
-\end{lstlisting}
+\subsection{Disadvantages and open problems}
+\label{sec:background:vpl:disadvantages}
+
+As stated by (SOURCE: functional programming), there is no such thing as a free lunch. 
+\ac{vpl}s and dataflow programming en large have got certain disadvantages and open problems.
+
+(Dataflow programming is an area still open to further research, with some open
+issues to answer. In fact, most of the open questions today have long been
+identified and despite the improvements, patterns for answering them are yet to
+be achieved.)
 
 
-\subsection{Use Cases}
+\subsubsection*{Iteration and conditionals}
 
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/background/vpl/}}
+    \centering
+    \includegraphics[width=\linewidth]{iteration-vpl.png}
+    \caption{}\label{fig:vpl-iteration:1}
+  \end{subfigure}%
+  \qquad %-- that adds some space between th 2 figures
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/background/vpl/}}
+    \centering
+    \includegraphics[width=\linewidth]{iteration-text.png}
+    \caption{}\label{fig:vpl-iteration:2}
+  \end{subfigure}%
+  \caption[Comparrison of iteration]{A factorial function, written in a vpl, and textual form}%
+  \label{fig:vpl-iteration}
+  \end{figure}
 
-\subsubsection{Notable applications}
+A problem described in almost all reviewed vpl literature (Source: advanced in dataflow, SOURCE: Dataflow programming,  SOURCE: COGNITIVE), is that the \ac{dag} model of diagram-based vpls are ill-suited for representing even the most basic flow control statements: \m{if, else, for, while}.
+Even if the acyclic quality of the dataflow graph is omitted, the resulting models are significantly more complicated compared to their textual counterparts, as shown by \reffig{fig:vpl-iteration}.
 
-Programming via a visual interface 
+\subsubsection*{Encapsulation \& reusability}
+Similar and yet different is the topic of encapsulation, or, how (SOURCE: COGNITIVE) names this problem: 'visibility'.
+It is widely known that as a program scales in size, the complexity of handling the application scales exponentially.
+In textual languages, reducing this complexity is often achieved by means of encapsulating sub-routines and re-usable parts of the program into separate functions.
+Inner functionality is then hidden, and operations can be performed on a higher level of abstraction. 
+This hierarchy of abstraction is just as achievable for \ac{vpl}s as described by (SOURCE: Dataflow programming).
+However only a select number of \ac{vpl}s offer a form of encapsulation, and even less allow the creation of reusable functions, or creating reusable libraries from vpl scripts.
+It appears that \ac{vpl} researches and developers are either not aware of the importance of encapsulation, or have encountered problems in representing this feature in a graphical manner.
 
-\begin{enumerate}
-  \item Internet of Things (IoT) [3], [10], mobile 
-  application development [51], robotics [8], and Virtual/Augmented Reality [4].
-  
-\end{enumerate}
+% \subsubsection{High viscocsity}
+% Viscosity was surprisingly high in the languages we looked at. The role of the diagram editor is crucial, yet few research papers in the usual programming literature discuss the design of effective diagram editors. In our straw viscosity test we found a range from about 1 minute to about 9 minutes for making semantically equivalent changes to programs in different languages. Visibility can be very poor. Systematic, easy-to-understand search tools need to be developed and user-tested, and if at all possible de facto standards should be adopted.
 
+\subsubsection*{Subjective Assessment}
+Additionally, the claims that \ac{vpl}s lend themselves well for end-user development is problematic from a technical perspective. 
+Usability is a nebulous phenomenon, and challenging to measure empirically.
+As often with more subjective matter, researchers have yet to form a consensus over a general evaluation framework. 
+There is, however, a reasonable consensus on the 'qualities' a VPL should aspire to. 
+This is different from a full assessment framework, but nontheless useful for comparing \ac{vpl}s.
+The dimensions given in the cognitive dimensions framework (SOURCE) have acquired a somewhat canonical nature within \ac{vpl} research.
+The number of citations of this work is relatively high, and indeed, almost all \ac{vpl} studies the author was able to find referred back to this critical work.   
+In so far as this study needs to address the usability of the prototype VPL, we will thus follow this consensus, and base any assessment on (SOURCE).
+
+% - we will make no such attempt. usability serves as background motivation. 
+% - this study assumes vpl's are 'in general' more usable to end-users 
+% than text-based alternatives, based on the positive results of most of the 
+% studies analysed by communicating_2021.
+
+\subsubsection*{Poor life-cycle support}
+Finally, (communicating 2021) names the 'life cycle' of applications created by \ac{vpl}s as one of the most overlooked aspects within VPL research.
+Out of the 30 studies covered by the meta analysis, only one briefly touched the topic of life cycle. 
+Life cycle in this context refers to all other activities besides "creating an application that does what it needs to do".
+Examples of these activities are version control, extending an existing application, debugging, testing the codebase, and publishing the application to be used outside of an \ac{ide}. 
+These operational aspects are critical to making any application succeed, and \ac{eud} research should not be limited to purely the aspect of creating functionalities.
+
+This oversight on life-cycle aspects can be found in the \ac{vpl} \& low-coding industry as well. 
 \begin{note}
-  Traditionally, visual programming has been successfully used to help novices
-  learn basics of programming by visualizing elements of a program. 
- However, visual programming is increasingly being used by end 
- users in various domains to create and tailor applications that are useful 
- beyond the realm of education. 
- For instance, VPLs are now being used in fields such as 
- the 
- 
- From characterizing_2021
- 
- other major use cases: 
- - PLC: Ladder
+TODO: Formalize these ramblings, or don't. 
+
+- no existing VPL ( that I know of ) has proper git-based version control. 
+  - Most vpls use proprietary storage and collaboration methods. 
+- vpls which are able to compile to a textual format are rare
+  - vpls able to compile to a programming language, or a headless format, are even more rare. 
+
+- Let alone: on operational programming paradigms such as Test driven development (TDD), continuous integration (CI), continuous delivery (CD).  
+
+- in general, the life-cycle support of most vpls found in the low-coding industry are closely tied to their business models. 
+  - Users can only use the publication tools, version control tools, and package / library managers offered to them by the vendor.
+
 \end{note}
 
-%   \item Ladder Diagram (src), the industry-standard method of programming Programmable Logic Controllers (PLCs)
+And while we are on the topic of publication, only 16 out of 30 of the tools analysed by (communicating 2021) were available publicly with some documentation.
+It seems the lack of publication tooling might also partially be due to a lack of publication in general. 
 
-\subsubsection{Use case: Dataflow modelling}
-Lastly, vpls are also very beneficial in dataflow modelling, and otherwise situations dealing with concurrency. 
-
-(Github Actions)
-
-\begin{lstlisting}
-  - Dataflow modelling is a field closely related to visual programming.
-  - However, where visual programming is concerned with many aspects, 
-  interface and usability being one of them, dataflow modelling is 
-  primairly concerned with the correct representation of data transformation.   
-  - within the field of dataflow modelling, it turned out that certain 
-  visual programming paradigms are advantageous, since they make parallel 
-  programming explicit. Thus, these fields are often named in conjunction. 
-  - The important take-away is that visual programming is not 
-  just a matter of UI or a stylistic choice.
-  
-  - By more correctly representing dataflow and communicating 
-  opportunities for parallel computation, it can lead to faster applications.
-  \end{lstlisting}
-  
-
-\subsection{Disadvantages and known issues}
-
-- data flow
-- viscocsity
-
-The representation of control flow remains a problem in the VPLs we examined. In the sections above we have documented examples of poor visibility and of th
-
-USABILITY ANALYSIS OF VISUAL PROGRAMMNG ENVIRONMENTS 167 need for hard mental operations, supported in some cases by direct empirical observations and in others by apparent close similarity to well-studied structures like self-embedded sentences and ‘knights and knaves’ puzzles. Our impression is that this remains a problem in general with the dataflow model, and needs vigorous consideration. Other computational models may resolve the difficulty, of course. Particularly in this area, designers of VPL environments should beware of assuming that they can themselves foresee all their users’ problems; experience in the general field of HCI has not supported that view
-
-
-Viscosity was surprisingly high in the languages we looked at. The role of the diagram editor is crucial, yet few research papers in the usual programming literature discuss the design of effective diagram editors. In our straw viscosity test we found a range from about 1 minute to about 9 minutes for making semantically equivalent changes to programs in different languages. Visibility can be very poor. Systematic, easy-to-understand search tools need to be developed and user-tested, and if at all possible de facto standards should be adopted.
-
-\subsubsection*{REVIEW}
-Challenges
-\begin{lstlisting}
-  - several challenges exist within the research field of visual programming. 
-  - literature study (knowling what is and isnt being researched)
-  - based upon : prior meta-analysis of 'characterizing_2021'
-\end{lstlisting}
-
-Difficulty in assessment of 'usability'
-\begin{lstlisting}
-  - usability is a nebulous phenomenon, hard to measure empirically.
-  - no consensus on evaluation frameworks among VPL researchers. 
-
-  BUT (leave this part, mention it later)
-  - we will make no such attempt. usability serves as background motivation. 
-  - this study assumes vpl's are 'in general' more usable to end-users 
-  than text-based alternatives, based on the positive results of most of the 
-  studies analysed by communicating_2021.   
-\end{lstlisting}
-
-web based visual programming is underresearched
-\begin{lstlisting}
-  
-  large challenge
-  - not many examples
-    of these examples: 
-    - no suitable starter projects
-    - none are concerned with geometry
-
-    - Visual programming environment for geo-computation 
-    \emph{in a browser} has not been tried before. 
-
-
-    "Finally, 53.3% (16) of the tools were available publicly with some documentation. 
-    We strongly recommend that future tools are made available for end users as well as comprehensive documentation to ensure tool adoption and sustainability." communicating_2021 
-   -> not fully related, but making this vpl web-based could seriously help this aspect of vpl assessment.   
-
-\end{lstlisting}
-
-VPL availabilty and life cycle
-\begin{lstlisting}
-Finally, (communicating_2021) names the 'life cycle' of apps created 
-with the VPL as one of the most overlooked aspects within VPL research. 
-- extend 
-- debug
-- publish
-- run
-\end{lstlisting}
 
 \subsection{Conclusion}
 
-(Just brainstorming)
-- very different than textual 
-- advantages and disadvantages regarding textual and visual programming
-
-- Only successful in very select areas
-
-
-- But in these areas, they are widely popular.
-
+The background literature clearly indicates many advantageous properties of vpls, both in terms of (end) user experience and the dataflow programming properties. 
+Additionally, the studies showed important considerations which have to be taken into account in the design of any vpl.  
+Lastly, the studies agree on several open-ended issues of which a satisfying answer is yet to be found. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -672,30 +679,40 @@ with the VPL as one of the most overlooked aspects within VPL research.
 \section{Browser-based geocomputation}
 \label{sec:related-geoweb}
 
-this study refers to client-side geocomputation as 'browser-based geocomputation', in order to circumvent the ambiguity between native clients like QGIS, and web clients. 
+this study refers to client-side geocomputation as Browser-based geocomputation, in order to circumvent the ambiguity between native clients like QGIS, and web clients, as described in \refsec{sec:background-web}.
 
-\subsection{The geospatial web}
+\subsection{The case}
 
 Browser based geo-information systems have become an indispensable component of the wider geospatial software landscape. 
 For the average person, an interactive \ac{gis} web application is often their first and only exposure to such a system, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
 
 As stated in \refsec{sec:background-web}, web applications offer safety, distribution and accessibility advantages over native applications.
 
-\subsection{Browser based geocomputation}
+However, despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geocomputation} is usually not present within the same software environment as the web app. 
+Consequently, current geospatial web applications serve for the most part as viewers; visualizers of pre-processed data. 
 
-Despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geocomputation} is usually not present within the same software environment as the web app. Consequently, current geospatial web applications serve for the most part as viewers; visualizers of pre-processed data. 
-
-However, this limited range of capabilities inhibits the number of use cases geographical web applications can serve, and with that the usefulness of web \ac{gis} as a whole.
+This limited range of capabilities inhibits the number of use cases geographical web applications can serve, and with that the usefulness of web \ac{gis} as a whole (SOURCE??).
 If web applications gain \ac{geocomputation} capabilities, they could grow to be just as diverse and useful as desktop \ac{gis} applications, with the added benefits of being a web application. It would allow for a new range of highly accessible and sharable geocomputation and analysis tools, which end-users could use to post-process and analyze geodata quickly, uniquely, and on demand.
 
-... This is why browser-based geoprocessing is being researched ...
+This need has let to the field of \ac{bbg}.
+
+\subsection{Related works}
+
+% NEW PRACTICAL ATTEMPT. WHY? 
+% - csg still has a lot of potential
+% - previous studies:
+%   - are dated
+%   - prioritized theory over practicalities
+%   - utilized the web's major feature of Accessibility and the clients feature of    
+%     Interactivity inadequately 
+%   - were not creative enough in terms of possible use-cases 
 
 Browser-based geocomputation has seen some academic interest throughout the last decade \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
 
-The aforementioned papers each try to apply this trend to the field of geo-informatics. 
-Hamilton et. al. created a such a 'thick-client', capable of replacing certain elements of server-side geoprocessing \cite{hamilton_client-side_2014}. 
-However, the results are unfavorable towards JavaScript. 
-The paper states how "the current implementation of web browsers are limited in their ability to execute JavaScript geoprocessing and not yet prepared to process data sizes larger than about 7,000 to 10,000 vertices before either prompting an unresponsive script warning in the browser or potentially losing the interest of the user.". While these findings are insightful, they are not directly applicable to the efforts of this study proposal. Three reasons for this:
+Hamilton et. al. created a 'thick-client', capable of replacing certain elements of server-side geoprocessing with browser-based geoprocessing \cite{hamilton_client-side_2014}. 
+At first glance, the results seem unfavorable . 
+The paper states how "the current implementation of web browsers are limited in their ability to execute JavaScript geoprocessing and not yet prepared to process data sizes larger than about 7,000 to 10,000 vertices before either prompting an unresponsive script warning in the browser or potentially losing the interest of the user."(SOURCE). 
+While these findings are insightful, they are not directly applicable to the efforts of this study proposal. Three reasons for this:
 
 \begin{itemize}
   \item The paper stems from 2014. Since then, web browsers have seen a significant increase in performance thanks to advancements in JavaScript JIT compilers \cite{haas_bringing_2017, kulawiak_analysis_2019}. 
@@ -704,27 +721,33 @@ The paper states how "the current implementation of web browsers are limited in 
 \end{itemize}
 
 The same statements can be made about similar efforts of Panidi et. al. \cite{panidi_hybrid_2015}. 
-However, Panidi et. al. never proposed client-side geoprocessing as a replacement of server-side geoprocessing. Instead, the authors propose a hybrid approach, combining the advantages of server-side and client-side geoprocessing. 
-They also present the observation that client-side versus server-side geoprocessing shouldn't necessarily be a compassion of performance. 
-"User convenience" as they put it, might dictate the usage of client-side geoprocessing in certain situations, despite speed considerations \cite{panidi_hybrid_2015}. 
+However, Panidi et. al. never proposed browser-based geoprocessing as a replacement of server-side geoprocessing. 
+Instead, the authors propose a hybrid approach, combining the advantages of server-side and browser-based geoprocessing. 
+They also present the observation that browser-based versus server-side geoprocessing shouldn't necessarily be a compassion of performance. 
+"User convenience" as they put it, might dictate the usage of browser-based geoprocessing in certain situations, despite speed considerations \cite{panidi_hybrid_2015}. 
 
 This concern the general web community would label as \ac{ux}, is shared by a more recent paper \cite{kulawiak_analysis_2019}. 
 Their article examines the current state of the web from the point of view of developing cost-effective Web-GIS applications for companies and institutions. 
-Their research reaches a conclusion favorable towards client-side data processing: "[Client-side data processing], in particular, shows new opportunities for cost optimization of Web-GIS development and deployment. 
+Their research reaches a conclusion favorable towards browser-based data processing: "[Client-side data processing], in particular, shows new opportunities for cost optimization of Web-GIS development and deployment. 
 The introduction of HTML5 has permitted for construction of platform-independent thick clients which offer data processing performance which under the right circumstances may be close to that of server-side solutions. 
 In this context, institutions [...] should consider implementing Web-GIS with client-side data processing, which could result in cost savings without negative impacts on the user experience.".
 
 % Based on the topic of client-side geospatial processing, we can state that web technologies contain a very dynamic temporal component. All research can become outdated, but performance analysis of web technologies are especially quick to change.  
 
-From these papers we can conclude a true academic and even commercial interest in client-side geoprocessing in the last decade. However, researchers quickly encounter problems during practical implementations in the past. This might not hold up thanks to recent browser features, but these papers still show how small, practical implementation details can relate to considerable changes in \ac{ux}. 
-
-Additionally, to the best of the authors's knowledge, all papers concerned with browser-based geoprocessing either tried to use existing JavaScript libraries, or tried to write their own WebAssembly / JavaScript libraries. No studies have been performed on the topic of compiling existing C++/Rust geoprocessing libraries to the web. 
-
-
-
+From these papers we can summarize a true academic and even commercial interest in browser based geoprocessing over the last decade. 
+However, practical implementation details remain highly experimental, or are simply not covered.  
+The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major javascript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
+Additionally, to the best of the authors's knowledge, all papers concerned with browser-based geoprocessing either tried to use existing JavaScript libraries, or tried to write their own experimental WebAssembly / JavaScript libraries. 
+No studies have been performed on the topic of compiling existing C++/Rust geoprocessing libraries to the web. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Browser based geoprocessing software}
+\subsubsection*{Commercial web-based geocomputations software}
+Some web-based \ac{gis} applications are starting to experiment with offering end-users geocomputation abilities. 
+
+
+
+GeoTrellis, GeoTIFF,
+
 
 % https://www.azavea.com/blog/2016/09/26/raster-foundry-model-lab-phase-ii-sbir/
 % https://geotiff.io/
@@ -739,100 +762,127 @@ Geofront will differ, for it focusses on 3D \& Point clouds instead of rasters \
 
 ModelLab says this : "Widespread access to frequent, high-resolution Earth observation imagery has created the need for innovative tools like ModelLab that will help individuals and organizations to effectively access, analyze, edit, and visualize remotely sensed data in transformative new ways without years of specialized training or ongoing investments in proprietary software and technology infrastructure. "
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % - https://openscad.org/
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Client-side geoprocessing}
-
-% NEW PRACTICAL ATTEMPT. WHY? 
-% - csg still has a lot of potential
-% - previous studies:
-%   - are dated
-%   - prioritized theory over practicalities
-%   - utilized the web's major feature of Accessibility and the clients feature of    
-%     Interactivity inadequately 
-%   - were not creative enough in terms of possible use-cases 
-
-While these studies pose a strong theoretical case for client-side geoprocessing, their practical implementations were less convincing \todo{TODO: Figure out how to phrase this better}. 
-The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major javascript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
-
-
-This study recognizes a need for a new, practical attempt at client-side geoprocessing. 
-Client-side geoprocessing is a promising prospect with potentially many use cases.
-Previous attempts are either dated due to the web's rapid advancements, or chose theory over practice.
-
-In addition, the implementations lacked creativity \todo{This needs a better phrase, but it really is the most direct way of putting it}. 
-
-The applications were either meant as small demo's, without a clear target audience or use-case in mind (just a way to demo performance), or as highly specified debugging tool for the authors.   
-But, as mentioned before, a major advantage of Web applications over native applications is \emph{Accessibility}, and a major advantage of client-focussed web apps over server-focussed web apps is \emph{Interactivity}. 
-By creating a client-side web application which is neither accessible nor interactive, the main incentive for creating a client-side web app is lost.
-Additionally, by forgoing the question of accessibility, many auxiliary use-cases of client-side geoprocessing where overlooked.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection*{The Cloud Native Geospatial movement}
+%  \subsection*{The Cloud Native Geospatial movement}
 
-( Not sure if I wanna go there... )
+% ( Not sure if I wanna go there... )
 
-% Establish OGC in two sentences, mentioning their name and Vision
-The Open Geospatial Consortium (OGC)...
-Mission: FAIR Geodata 
+% % Establish OGC in two sentences, mentioning their name and Vision
+% The Open Geospatial Consortium (OGC)...
+% Mission: FAIR Geodata 
 
-% Establish Cloud Native movement.
-% GIS as one big LAN party
-A prominent development within the OGC is the recent effort towards a \textbf{"Cloud Native Geospatial"} future. 
-This initiative aims to radically simplify geodata storehouses to static servers serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services. 
-This architecture has many advantages over current geodata storage and analysis methods:
-\begin{itemize}
-  \item These new Cloud Native geodata formats are much cheaper to access by front-end and back-end services, compared to active services.
-  \item Substituting active SQL or noSQL databases by static binary files is easier and cheaper for data providers, leading to more and more readily available geodata.
-  \item By using supercomputers (Microsoft Planetary Computer) and cloud-storage (AWS), Geodata processes could make use of near-infinite computational and storage resources. 
-  \item By having all data centralized in one location or type of location, new, large scale patterns within our geodata could be discovered.  
-  \item For web GIS, this would offer direct data streaming options, similar to services like "Netflix" or "Spotify".  
-\end{itemize}
-
-These features may have a far reaching impact on society. Chris Holmes, forerunner of the cloud-native geospatial movement, envisions what the movement could mean for even non-GIS users: 
-\emph{
-  With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. \~ Chris Holmes
-}
-% This is also reflected by cloud-native based tools like (Google Earth Engine or RasterFoundry) may achieve such a feed, by being web based and stuff...
-All these reasons explain why the OGC and many other parties are now actively pursuing this vision.
-
-But while this vision is in active development, many large-scale challenges are still in its way. 
-One of the most important challenges is the required paradigm shift within geo-computation / geoprocessing workflows. 
-The current, common geo-computation workflow of retrieving online data, only to run it through a local process and send the resulting data back into servers, will have to be reversed: In a cloud-native future, we will not retrieve data for our local process, but we will upload our process to the data.  
-This introduces a sizable challenge: \textbf{Portable, Containerized Geo-computation}.
-
-% \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}. -> Chris again
-
+% % Establish Cloud Native movement.
+% % GIS as one big LAN party
+% A prominent development within the OGC is the recent effort towards a \textbf{"Cloud Native Geospatial"} future. 
+% This initiative aims to radically simplify geodata storehouses to static servers serving large, singular binary geodata files. All processing and analysis of this geodata can then be performed by separate cloud-based web services. 
+% This architecture has many advantages over current geodata storage and analysis methods:
 % \begin{itemize}
-%   \item Up to this point, the world of GIS has done a considerable effort to make geodata more Findable, Accessible, Interoperable, and Reusable. The challenge of Portable geo-computation now forces us to extend the effort of FAIR geodata to FAIR geodata computation as well.  
-%   \item If we want our geodata processes to be just as portable as the geodata it takes as input, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing . FAIR geo-computation.
-%   \item Furthermore, it remains a mystery how these containerized containerized processes will be configured and accessed by frontend computation environments. 
-%   \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
+%   \item These new Cloud Native geodata formats are much cheaper to access by front-end and back-end services, compared to active services.
+%   \item Substituting active SQL or noSQL databases by static binary files is easier and cheaper for data providers, leading to more and more readily available geodata.
+%   \item By using supercomputers (Microsoft Planetary Computer) and cloud-storage (AWS), Geodata processes could make use of near-infinite computational and storage resources. 
+%   \item By having all data centralized in one location or type of location, new, large scale patterns within our geodata could be discovered.  
+%   \item For web GIS, this would offer direct data streaming options, similar to services like "Netflix" or "Spotify".  
 % \end{itemize}
 
-The challenge of sharing and chaining together containerized fragments of geoprocesses to a variety of environments will require more than just open source collaboration. 
-This study interprets the challenge of portable geo-computation by means of the FAIR paradigm. 
-If geodata processes need to be just as portable as the geodata forming the input and output, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata \emph{processing} as well.
-The challenge facing the cloud-native vision then becomes: \textbf{How to make geo-computation Findable, Accessible, Interoperable, and Reusable?} 
-This links back to containerization, for containerization is a very powerful method of making geo-computation more Interoperable and Reusable.
+% These features may have a far reaching impact on society. Chris Holmes, forerunner of the cloud-native geospatial movement, envisions what the movement could mean for even non-GIS users: 
+% \emph{
+%   With the introduction of accessible, centralized data, and the dramatically different workflows that follow, Cloud Native Geospatial has the potential to introduce new, non-specialized users to the power of geospatial information that GIS practitioners have enjoyed for decades. [...]. The ecosystem of geospatial experts will collaborate to create analyses and insight, but any non-expert user will be able to select and apply those to the geographic area they care about. \~ Chris Holmes
+% }
+% % This is also reflected by cloud-native based tools like (Google Earth Engine or RasterFoundry) may achieve such a feed, by being web based and stuff...
+% All these reasons explain why the OGC and many other parties are now actively pursuing this vision.
 
-% state of the art regarding this issue, make a path towards the particular thesis, and why it is an application
-The current state of the art is far removed from either portable or FAIR geo-computation. 
-\todo{Improve this intro}
-\begin{itemize}
-  \item current methods: Docker, and some geo-computation platforms.
-  \item Not many implementations using WebAssembly, while this is a prime candidate: Even the guy who made Docker said so. 
-  \item ignore the cloud: focus on the act of containerizing geoprocesses using webassembly an sich
-\end{itemize}
+% But while this vision is in active development, many large-scale challenges are still in its way. 
+% One of the most important challenges is the required paradigm shift within geo-computation / geoprocessing workflows. 
+% The current, common geo-computation workflow of retrieving online data, only to run it through a local process and send the resulting data back into servers, will have to be reversed: In a cloud-native future, we will not retrieve data for our local process, but we will upload our process to the data.  
+% This introduces a sizable challenge: \textbf{Portable, Containerized Geo-computation}.
+
+% % \textbf{and the algorithms powering the processing can be shared online and customized collaboratively}. -> Chris again
+
+% % \begin{itemize}
+% %   \item Up to this point, the world of GIS has done a considerable effort to make geodata more Findable, Accessible, Interoperable, and Reusable. The challenge of Portable geo-computation now forces us to extend the effort of FAIR geodata to FAIR geodata computation as well.  
+% %   \item If we want our geodata processes to be just as portable as the geodata it takes as input, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata processing . FAIR geo-computation.
+% %   \item Furthermore, it remains a mystery how these containerized containerized processes will be configured and accessed by frontend computation environments. 
+% %   \item Holmes: one of the vital ingredients: \emph{"and the algorithms powering the processing can be shared online and customized collaboratively"}.
+% % \end{itemize}
+
+% The challenge of sharing and chaining together containerized fragments of geoprocesses to a variety of environments will require more than just open source collaboration. 
+% This study interprets the challenge of portable geo-computation by means of the FAIR paradigm. 
+% If geodata processes need to be just as portable as the geodata forming the input and output, then perhaps the FAIR paradigm should extend from FAIR geodata to FAIR geodata \emph{processing} as well.
+% The challenge facing the cloud-native vision then becomes: \textbf{How to make geo-computation Findable, Accessible, Interoperable, and Reusable?} 
+% This links back to containerization, for containerization is a very powerful method of making geo-computation more Interoperable and Reusable.
+
+% % state of the art regarding this issue, make a path towards the particular thesis, and why it is an application
+% The current state of the art is far removed from either portable or FAIR geo-computation. 
+% \todo{Improve this intro}
+% \begin{itemize}
+%   \item current methods: Docker, and some geo-computation platforms.
+%   \item Not many implementations using WebAssembly, while this is a prime candidate: Even the guy who made Docker said so. 
+%   \item ignore the cloud: focus on the act of containerizing geoprocesses using webassembly an sich
+% \end{itemize}
+
+
 
 \section{Visual programming and geocomputation}
 \label{sec:related-geovpl}
+
+This section is dedicated to all related works on \ac{vpl}s related to geocomputation.  
+This study presents an overview of all major \ac{vpl}s present in not only \ac{gis}, but also the neighboring domains. 
+
+\subsection{ VPLs in GIS }
+
+\subsection{ VPLs in neighboring domains }
+
+As stated in \refsec{sec:background-geo}, geocomputation is for a large part related to the field of computer graphics for 
+geometry computation \& visualization aspects.
+Many other fields are highly dependent on this, which therefore can be regarded as neighboring fields. 
+These include computer aided design (CAD), Building Information Modelling (BIM), molecular biology, medical imaging, robotics, special effects, video games, and graphic design. 
+
+\begin{lstlisting} 
+   - Besides the use cases already mentioned, a significant number of 
+   visual programming applications are emerging in fields concerned 
+   with 2D and 3D geometry creation \& visualization. 
+
+  PROCEDURAL GEOMETRY 
+    - Rhino: Grasshopper
+    - Revit: Dynamo  
+    - Blender: Geometry Nodes
+    - Houdini: Procedural Modelling
+  
+  TEXTURES AND SHADERS
+    - Blender: Shader Nodes
+    - Adobe: Substance Designer
+    - Unreal Engine: Material Nodes
+    - Unity: Shader Graph
+    - Houdini: FX
+
+  PHOTOGRAMMATERY
+    - AliceVision Meshroom
+
+  These are all popular applications, many users, multiple courses and tutorials, 
+
+  The persistence of visual programming within the field of shaders and
+  geometry, suggests that visual programming languages are advantageous in
+  situations where a 'visual' product requires debugging during development. 
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 acknoledgements
 - Name similar studies or things 
@@ -853,14 +903,12 @@ acknoledgements
 \end{lstlisting}
 
 
-This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as in neighboring fields like BIM, CAD, Shader Programming and Procedural Geometry. 
+This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as in neighboring fields like BIM, CAD, computer graphics and procedural geometry. 
 All these fields benefit from the combination of both low-code automation and visual debugging.
 % The field of geo-informatics also appreciates the 'dataflow modelling' aspects (TODO FIX THIS SENTENCE)
 
 Within the field of geo informatics, \ac{vpl}s are not a new phenomenon. VPLs have been used for decades to specify geodata transformations and performing spatial analyses.  
 SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (ETL) platform automates data integration, and is widely used by GIS experts.
-
-
 
 % The environment proposed by this thesis builds from Ravi Peter's work. GeoFront can be seen as GeoFlow, but in a web browser. However, the introduction of this web component significantly changes the purpose and use-case of GeoFront compared to GeoFlow. 
 
@@ -885,39 +933,18 @@ SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (
 % Where ModelLab is build on top of recent improvements to the accessability of satellite imagery, GeoFront is build in anticipation to a similar development for point cloud datasets with the introduction of COPC.  The focus of Geofront is therefore on point cloud processing, and point-cloud based modelling, such as Digital Terrain Models (DTM). 
 
 
-\subsubsection*{ In Neighboring fields }
-In Geometry Computation \& Visualization:
-
-\begin{lstlisting} 
-   - Besides the use cases already mentioned, a significant number of 
-   visual programming applications are emerging in fields concerned 
-   with 2D and 3D geometry creation \& visualization. 
-
-  PROCEDURAL GEOMETRY 
-    - Rhino: Grasshopper
-    - Revit: Dynamo  
-    - Blender: Geometry Nodes
-    - Houdini: Procedural Modelling
-  
-  TEXTURES AND SHADERS
-    - Blender: Shader Nodes
-    - Adobe: Substance Designer
-    - Unreal Engine: Material Nodes
-    - Unity: Shader Graph
-    - Houdini: FX
-
-  These are all popular applications, many users, multiple courses and tutorials, 
-
-  The persistence of visual programming within the field of shaders and
-  geometry, suggests that visual programming languages are advantageous in
-  situations where a 'visual' product requires debugging during development. 
-\end{lstlisting}
-
-
 % -> testing & reproducability.
 % RANSAC -> many 'magic' parameter. They need to be discovered by 'play'
 % Jonathan blow -> using interactive applications, an intrinsic understanding can be gained without explicit communication.
 % Game Of Life -> impossibility of 'proving' behaviour systems. 
+
+
+
+
+
+
+
+
 
 \section{Browser-based visual programming}
 \label{sec:related-webvpl}
@@ -943,11 +970,30 @@ best example is Scratch, an educational tool.
 digging in github reaps some results, mostly experimental, in development applications
 
 \section{Browser-based Visual programming and geocomputation} 
+To the best of the author's knowledge, only one publicly available visual programming language exist which is both able to be configured and executed in a browser, and is able to be used for geodata computation.
+This application is called the Möbius modeller (Source: https://mobius-08.design-automation.net/about), and is by far the closest equivalent to the geo-web-vpl proposed by this study.
+Though it only uses javascript, the tool is able to be successfully used for an impressive range of applications, including CAD, BIM, urban planning, and GIS. 
+It uses a combination of a very 'bare-bones' diagram-based vpl, together with a very rich block-based vpl.
+In fact, the block-based vpl is so rich that is almost ceases to be a vpl altogether, and starts to be python-like language with heavy IDE support.  
 
-To the best of the author's knowledge, a publicly available visual programming language which is both able to run and execute in a browser, and is able to be used for geodata computation, does not exist. 
-However, certain applications and studies come close. 
-The best example of a similar application this study was able to find, is RasterFoundry's modellab application
-Best example: rasterfoundry, modellab but doesnt really count, since cacluations are performed in the backend (as far as we know). 
-Also, implementation details are not public. 
+This study is still different from the mobius modeller in the following aspects: 
+\begin{itemize}[-]
+  \item This study explores the usage of diagram-based vpls as opposed to a block-based vpl, to allow for the dataflow programming advantages described in \refsec{sec:background:dataflow}.
+  \item This study explores the usage of WebAssembly to both improve performance and to use existing geocomputation libraries.
+  \item This study addresses the life-cycle issues of \ac{vpl}s stated in \refsec{sec:background:vpl:disadvantages}. 
+\end{itemize}
 
 
+
+
+
+
+
+
+%% SOME THOUGHTS ON RELATED WORKS: 
+% block-based visual programming: just purely UI, diagram-based vpl add additional, functional programming qualities. 
+
+
+% GEO: the thing we want to do
+% VPL: best choice for end user development, 
+% WEB: solves the huge life-cycle problem of publication
