@@ -5,30 +5,24 @@
 % and that you master the related work. 
 
 \chapter{Background \& Related work}
-\label{chap:related}
+\label{chap:background}
 
 \begin{figure}
   \centering
   \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=250px]{geo-web-vpl.png}
+  \includegraphics[width=270px]{geo-web-vpl.png}
   \caption{Triangle Model}
   \label{fig:triangle-model}
 \end{figure}
 
-This chapter offers an overview of the theoretical background that this study builds upon, alongside a review of related studies.
-The study takes place at the intersection of three fields, represented by the corners of \reffig{fig:triangle-model}:
+This chapter offers an overview of the theoretical background that this study builds upon.
+The study takes place at the intersection of three prior bodies of work,  represented by the corners of \reffig{fig:triangle-model}:
 \begin{enumerate}[-]
-  \item \refsec{sec:background-geo} covers the background on geocomputation
+  \item \refsec{sec:background-geo} covers the background on Geocomputation
   \item \refsec{sec:background-web} covers the background on Web applications
   \item \refsec{sec:background-vpl} covers the background on Visual Programming Languages
 \end{enumerate}
-
-Additionally, while no project or study exist at the intersection of all three of these fields, we do find related studies which intersect two of these fields, represented by the edges of \reffig{fig:triangle-model}:
-\begin{enumerate}[-]
-  \item \refsec{sec:related-geoweb} reviews related works on browser-based geoprocessing
-  \item \refsec{sec:related-geovpl} reviews related works on VPLs used for geo-computation
-  \item \refsec{sec:related-webvpl} reviews related works on VPL web applications
-\end{enumerate}
+Each one of these cornerstones will be discussed and analyzed \emph{an sich}, after which \refchap{chap:related} and \refchap{chap:methodology} will focus on the interplay and connections between these bodies of work. 
 
 \section{Geocomputation}
 \label{sec:background-geo}
@@ -510,7 +504,7 @@ Harvard's introduction to computer science course, CS50, famously starts out wit
 %  From characterizing_2021
  
 
-\subsection{Advantages}
+\subsection{Advantage: Usability}
 
 Studies on \ac{vpl}s indicate that generally speaking, VPLs make it easy for end users to visualize the logic of a program, and that vpls eliminate the burden of handling syntactical errors \cite{kuhail_characterizing_2021}.
 
@@ -520,13 +514,15 @@ higher-level operators reduce the need for awkward combinations of primitives;
 and the order of activity is freer, so that programmers can proceed as seems best in putting the pieces of a program together."}. 
 Indeed, a vpl UI can be used to eliminate whole classes of errors on a UI level by, for example, not allowing the connection of two incompatible data types. 
 
+\begin{note}
+  TODO: more stuff here. This needs to be more nuanced
+\end{note}
+
 % //The meta analysis of \cite{kuhail_characterizing_2021} also 
 
 These properties together make visual programming also highly suitable for activities of \textbf{experimentation} and \textbf{debugability}, and not only for end users. 
 
-
-
-\subsection*{End User Development \& Low Coding}
+\subsection*{Advantage: End User Development \& Low Coding}
 a \ac{vpl} done right can make automation available to a very large audience, and this is exactly the point. 
 Visual Programming is part of a larger field, named End User Development (eud). 
 The field is concerned with allowing end users who are not professional software developers to write software applications, using specialized tools and activities. 
@@ -544,7 +540,7 @@ In the private sector, \ac{eud} is represented by the "low code" industry.
 Technology firms such as Google and Amazon are investing at scale in low-coding platforms (\cite{kuhail_characterizing_2021}),
 The market value was estimated at 12.500 Million USD (Source: ), and with a growth rate between 20 and 40 percent, the value may reach as high as 19 Billion by 2030 (SOURCE: FORRESTER) 
 
-\subsection{Dataflow programming}
+\subsection{Advantage: Dataflow programming}
 \label{sec:background:dataflow}
 An important aspect of especially diagram-based visual programming is its closeness to the field of dataflow programming. 
 
@@ -574,8 +570,9 @@ Functional programming has many benefits of its own besides concurrency, such as
 
 The important take-away is this: 
 A \ac{vpl} is not just a matter of a user-friendly UI or a stylistic choice.
-By closely resembling dataflow itself, and because of its functional programming nature, it can actually lead to faster and more reliable software.
-  
+This might be true for block-based vpls, but not for diagram-based vpls. 
+By closely resembling dataflow itself, and because of its functional programming nature, diagram-based vpls can actually lead to faster and more reliable software.
+
 \subsection{Disadvantages and open problems}
 \label{sec:background:vpl:disadvantages}
 
@@ -586,6 +583,8 @@ As stated by (SOURCE: functional programming), there is no such thing as a free 
 issues to answer. In fact, most of the open questions today have long been
 identified and despite the improvements, patterns for answering them are yet to
 be achieved.)
+
+% block-based visual programming: just purely UI, diagram-based vpl add additional, functional programming qualities. 
 
 
 \subsubsection*{Iteration and conditionals}
@@ -676,27 +675,32 @@ Lastly, the studies agree on several open-ended issues of which a satisfying ans
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\chapter{Related works}
+
+This chapter offers a review of related and comparable studies.
+while almost no projects or studies exist at the intersection of all three of these fields, we do find related studies which intersect two of these fields, represented by the edges of \reffig{fig:triangle-model}:
+\begin{enumerate}[-]
+  \item \refsec{sec:related-geoweb} reviews related works on browser-based geoprocessing
+  \item \refsec{sec:related-geovpl} reviews related works on VPLs used for geo-computation
+  \item \refsec{sec:related-webvpl} reviews related works on VPL web applications
+\end{enumerate}
+
+
 \section{Browser-based geocomputation}
 \label{sec:related-geoweb}
 
-this study refers to client-side geocomputation as Browser-based geocomputation, in order to circumvent the ambiguity between native clients like QGIS, and web clients, as described in \refsec{sec:background-web}.
+This section is dedicated to related works on client-side geocomputation, or browser-based geocomputation. 
+this study prefers to use "browser-based geocomputation" in order to circumvent the ambiguity between native clients like QGIS, and web clients, as described in \refsec{sec:background-web}.
 
-\subsection{The case}
-
-Browser based geo-information systems have become an indispensable component of the wider geospatial software landscape. 
-For the average person, an interactive \ac{gis} web application is often their first and only exposure to such a system, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
-
+First, a small paragraph on the motivation behind browser based geocomputation.
 As stated in \refsec{sec:background-web}, web applications offer safety, distribution and accessibility advantages over native applications.
-
-However, despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications are capable of is very limited. \ac{geocomputation} is usually not present within the same software environment as the web app. 
-Consequently, current geospatial web applications serve for the most part as viewers; visualizers of pre-processed data. 
-
-This limited range of capabilities inhibits the number of use cases geographical web applications can serve, and with that the usefulness of web \ac{gis} as a whole (SOURCE??).
+As such, browser based gis has become a sizable component of the geospatial software landscape. 
+% For the average person, an interactive \ac{gis} web application is often their first and only exposure to such a system, be it a web mapping service, a navigation system, or a pandemic outbreak dashboard. 
+However, despite the popularity of geographical web applications, the range of actual \ac{gis} abilities these applications have is generally speaking very limited. \ac{geocomputation} is usually not present within the same software environment as the web app. 
+This limited range of capabilities inhibits the number of use cases geographical web applications can serve, and with that the usefulness of web \ac{gis} as a whole.
 If web applications gain \ac{geocomputation} capabilities, they could grow to be just as diverse and useful as desktop \ac{gis} applications, with the added benefits of being a web application. It would allow for a new range of highly accessible and sharable geocomputation and analysis tools, which end-users could use to post-process and analyze geodata quickly, uniquely, and on demand.
 
 This need has let to the field of \ac{bbg}.
-
-\subsection{Related works}
 
 % NEW PRACTICAL ATTEMPT. WHY? 
 % - csg still has a lot of potential
@@ -742,25 +746,53 @@ No studies have been performed on the topic of compiling existing C++/Rust geopr
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Commercial web-based geocomputations software}
-Some web-based \ac{gis} applications are starting to experiment with offering end-users geocomputation abilities. 
-
-
-
-GeoTrellis, GeoTIFF,
-
-
-% https://www.azavea.com/blog/2016/09/26/raster-foundry-model-lab-phase-ii-sbir/
+Despite the earlier statement of the general lack of \ac{geocomputation} within browsers, there are exceptions. 
+A select number of web-based \ac{gis} applications are starting to experiment with empowering end-users with geocomputation. 
+These applications will briefly be mentioned.
+ 
 % https://geotiff.io/
-- >
-% https://www.eclipse.org/community/eclipse_newsletter/2018/december/geotrellis.php 
-% -> ModelLab
-% -> " Online tool to build, store, and execute complex geospatial models "
-% - Mobius Modeller : https://mobius.design-automation.net/pages/mobius_modeller.html
-% - GeoTIFF : https://app.geotiff.io/
-These are all similar efforts, also hooked up to the OGC cloud native developments
-Geofront will differ, for it focusses on 3D \& Point clouds instead of rasters \& map algebra, and focusses on client-side geodata consumption \& processing instead of being a server-side pipeline configurer.
+GeoTIFF (SOURCE, \reffig{fig:geotiff}), is a web-based geoTIFF processing tool, and fully open source. 
+It offers basic operations such as taking the median or \& mean of a certain area, color band arithmetic, and can plot histograms, all calculated within the browser using customly written javascript libraries.
 
-ModelLab says this : "Widespread access to frequent, high-resolution Earth observation imagery has created the need for innovative tools like ModelLab that will help individuals and organizations to effectively access, analyze, edit, and visualize remotely sensed data in transformative new ways without years of specialized training or ongoing investments in proprietary software and technology infrastructure. "
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/background/geo-web/} }
+  \includegraphics[width=270px]{geotiff.png}
+  \caption{The geoTIFF.io application}
+  \label{fig:geotiff}
+\end{figure}
+
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/background/geo-web/} }
+  \includegraphics[width=270px]{rasterfoundry-2.jpg}
+  \caption{The ModelLab application}
+  \label{fig:modellab}
+\end{figure}
+
+% https://www.eclipse.org/community/eclipse_newsletter/2018/december/geotrellis.php 
+% https://www.azavea.com/blog/2016/09/26/raster-foundry-model-lab-phase-ii-sbir/
+Azavea's Raster Foundry and ModelLab (Powered by GeoTrellis), is another GeoTIFF / raster based web processing tool, in which basic queries and calculations are possible (SOURCE). 
+This tool offers more advanced types of geocomputation, like buffering / minkowski sums, and even multi-stage processing via a simple but clear visual programming language (see \reffig{fig:modellab}). 
+% There reasoning: "Widespread access to frequent, high-resolution Earth observation imagery has created the need for innovative tools like ModelLab that will 
+However, the tool uses mostly server-side processing, making this application less relevant to this study. 
+
+Also, despite their mission statement to: "help individuals and organizations to effectively access, analyze, edit, and visualize remotely sensed data in transformative new ways without years of specialized training or ongoing investments in proprietary software and technology infrastructure."(Source), The tool appears to be reliant on their own proprietary infrastructure to save and run the application.
+The author of this study was also not able to find a public demo of the application. 
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/background/geo-web/} }
+  \includegraphics[width=270px]{omnibase.png}
+  \caption{The Omnibase application}
+  \label{fig:omnibase}
+\end{figure}
+
+The last web-based geocomputation platform this study would like to mention is Geodelta's Omnibase application (SOURCE: GEODELTA, \reffig{fig:omnibase}). 
+Omnibase is a 3D web \ac{gis} application for viewing and analyzing pointclouds and areal imagery datasets.
+It offers client-side geocomputation in the form of measuring distances between locations, and calculating the area of a polygon.  
+It also offers photogrammetry-techniques such as forward incision of a point in multiple images, but these are calculated server-side. 
 
 % - https://openscad.org/
 
@@ -826,89 +858,100 @@ ModelLab says this : "Widespread access to frequent, high-resolution Earth obser
 %   \item ignore the cloud: focus on the act of containerizing geoprocesses using webassembly an sich
 % \end{itemize}
 
-
-
 \section{Visual programming and geocomputation}
 \label{sec:related-geovpl}
 
-This section is dedicated to all related works on \ac{vpl}s related to geocomputation.  
-This study presents an overview of all major \ac{vpl}s present in not only \ac{gis}, but also the neighboring domains. 
+This section is dedicated to all related works on \ac{vpl}s related to geocomputation.
 
-\subsection{ VPLs in GIS }
+\reffig{fig:geovpl:table} offers an overview of some of the more significant \ac{vpl}s present in not only \ac{gis}, but also the neighboring domains based on computer graphics.
+Why these fields are regarded as neighbors are explained in \refsec{sec:background-geo}. 
 
-\subsection{ VPLs in neighboring domains }
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/tables/} }
+  \includegraphics[width=400px]{geovpl.png}
+  \caption{An overview of VPLs in the field of GIS and adjacent domains}
+  \label{fig:geovpl:table}
+\end{figure}
 
-As stated in \refsec{sec:background-geo}, geocomputation is for a large part related to the field of computer graphics for 
-geometry computation \& visualization aspects.
-Many other fields are highly dependent on this, which therefore can be regarded as neighboring fields. 
-These include computer aided design (CAD), Building Information Modelling (BIM), molecular biology, medical imaging, robotics, special effects, video games, and graphic design. 
-
-\begin{lstlisting} 
-   - Besides the use cases already mentioned, a significant number of 
-   visual programming applications are emerging in fields concerned 
-   with 2D and 3D geometry creation \& visualization. 
-
-  PROCEDURAL GEOMETRY 
-    - Rhino: Grasshopper
-    - Revit: Dynamo  
-    - Blender: Geometry Nodes
-    - Houdini: Procedural Modelling
-  
-  TEXTURES AND SHADERS
-    - Blender: Shader Nodes
-    - Adobe: Substance Designer
-    - Unreal Engine: Material Nodes
-    - Unity: Shader Graph
-    - Houdini: FX
-
-  PHOTOGRAMMATERY
-    - AliceVision Meshroom
-
-  These are all popular applications, many users, multiple courses and tutorials, 
-
-  The persistence of visual programming within the field of shaders and
-  geometry, suggests that visual programming languages are advantageous in
-  situations where a 'visual' product requires debugging during development. 
-\end{lstlisting}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-acknoledgements
-- Name similar studies or things 
-  - Ravi Peter: awesome c++ based application 
-    - not web
-    - not formal reseach
-
-\begin{lstlisting}
-  (explain the use-case of vpl's within the field of geo-informatics, 
-  why they are significant to us) 
-  within geomatics
-
-  - data translation: FME 
-  - cloud-native computation: modellab in rasterfoundry
-    - link to dataflow modelling
-  - debugging & experimentation: GeoFlow 
-  
-\end{lstlisting}
-
-
-This advantage of interactive, low-code automation is why the VPL continues to be a popular interface within the field of GIS, as well as in neighboring fields like BIM, CAD, computer graphics and procedural geometry. 
-All these fields benefit from the combination of both low-code automation and visual debugging.
-% The field of geo-informatics also appreciates the 'dataflow modelling' aspects (TODO FIX THIS SENTENCE)
+\subsection*{ VPLs in GIS }
 
 Within the field of geo informatics, \ac{vpl}s are not a new phenomenon. VPLs have been used for decades to specify geodata transformations and performing spatial analyses.  
-SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (ETL) platform automates data integration, and is widely used by GIS experts.
+
+By far the most well-known visual programming language within the field of \ac{gis} is the commercial \ac{etl} tool FME (Source, \reffig{fig:gisvpl:1}). 
+This tool is widely used by \ac{gis} professionals for extracting data from various sources, transforming data into a desired format, and then loading this data into a database, or just saving it locally.  
+FME is most often used within GIS to harmonize heterogenous databases, and as such specializes in tabular datasets. 
+
+The two major GIS applications ArcGIS and QGIS also have specific \ac{vpl}s attached to their applications. 
+The main use-case for these \ac{vpl}s is to automate repetitive workflows within ArcGIS or QGIS. 
+
+Lastly, Geoflow is a much newer \ac{vpl} meant for generic 3D geodata processing.
+While this application is still in an early phase,  it already offers very powerful 
+range of functions.
+It offers CGAL processes like alpha shape, triangulation and line simplification, as well as direct visualization of in-between products.
+
+% In comparison with the three aforementioned \ac{GIS} vpls, geoflow is much richer 
+
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.45\linewidth}
+  \graphicspath{{../../assets/images/background/geo-vpl/}}
+  \centering
+  \includegraphics[width=\linewidth]{arcgis.png}
+  \caption{}\label{fig:gisvpl:1}
+\end{subfigure}%
+\qquad 
+\begin{subfigure}[b]{0.45\linewidth}
+  \graphicspath{{../../assets/images/background/geo-vpl/}}
+  \centering
+  \includegraphics[width=\linewidth]{fme.png}
+  \caption{}\label{fig:gisvpl:2}
+\end{subfigure}%
+\\
+\begin{subfigure}[c]{0.45\linewidth}
+  \centering
+  \graphicspath{{../../assets/images/background/geo-vpl/}}
+  \includegraphics[width=\linewidth]{qgis.png}
+  \caption{}\label{fig:gisvpl:3}
+\end{subfigure}%
+\qquad 
+\begin{subfigure}[d]{0.45\linewidth}
+  \centering
+  \graphicspath{{../../assets/images/background/geo-vpl/}}
+  \includegraphics[width=\linewidth]{geoflow.png}
+  \caption{}\label{fig:gisvpl:4}
+\end{subfigure}%
+\caption[GIS VPLs]{Four VPLs used in the field of GIS: ArcGIS's Model Builder (a), Save Software's FME (b), QGIS's Graphical Modeler (c), and Geoflow (d).}
+\label{fig:gisvpl}
+\end{figure}
+
+\subsection*{ VPLs in neighboring domains }
+% - AliceVision Meshroom
+% - Rhino: Grasshopper
+% - Revit: Dynamo  
+% - Blender: Geometry Nodes
+% - Houdini: Procedural Modelling
+% - Blender: Shader Nodes
+% - Adobe: Substance Designer
+% - Unreal Engine: Material Nodes
+% - Unity: Shader Graph
+% - Houdini: Houdini
+% - Unreal: Blueprints
+% - Unity: Bolt
+Besides the use cases already mentioned, a significant number of 
+visual programming applications are emerging in fields concerned 
+with 2D and 3D geometry creation \& visualization. 
+
+The persistence of visual programming within the field of shaders and
+geometry, suggests that visual programming languages are advantageous in
+situations where a 'visual' product requires debugging during development. 
+
+These are all popular applications, many users, multiple courses and tutorials, 
+
+For \ac{gis} applications, this area is 
+
+% The field of geo-informatics also appreciates the 'dataflow modelling' aspects (TODO FIX THIS SENTENCE)
+
 
 % The environment proposed by this thesis builds from Ravi Peter's work. GeoFront can be seen as GeoFlow, but in a web browser. However, the introduction of this web component significantly changes the purpose and use-case of GeoFront compared to GeoFlow. 
 
@@ -919,39 +962,24 @@ SaveSoft's FME (SOURCE) is a good example of this. This Extract Load Transform (
 
 % Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
 
-
-% The entire application runs client-side in a browser, and uses a visual programming language as its primary \ac{gui}.
-% The main goal and feature of geofront is to take existing low level geo-computation libraries, and to make these interactively usable on the web. 
-% These libraries include a limited set of CGAL operations, complied from C++, and various geo-computation algorithms such as Startin, written in Rust. 
-% Being a visual programming language, GeoFront can be used to interactively alter the geodata pipeline. 
-% In between products can quickly be inspected using a 3D viewer.
-
 % We test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility \& performance of said application. We also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
 
 % These features could all be implemented by normal means ( buttons, panels, sliders ) -->
-
-% Where ModelLab is build on top of recent improvements to the accessability of satellite imagery, GeoFront is build in anticipation to a similar development for point cloud datasets with the introduction of COPC.  The focus of Geofront is therefore on point cloud processing, and point-cloud based modelling, such as Digital Terrain Models (DTM). 
-
-
-% -> testing & reproducability.
-% RANSAC -> many 'magic' parameter. They need to be discovered by 'play'
-% Jonathan blow -> using interactive applications, an intrinsic understanding can be gained without explicit communication.
-% Game Of Life -> impossibility of 'proving' behaviour systems. 
-
-
-
-
-
-
 
 
 
 \section{Browser-based visual programming}
 \label{sec:related-webvpl}
 
-Almost all visual programming languages appear to be written as native applications. 
-This could be because of \refsec{sec:background-web-terminology}
+This section is dedicated to visual programming applications running in a browser.
+It must be emphasized that of all the various vpls named in \refsec{sec:related-geovpl}, none are browser-based. 
+This is likely the case because most of those vpls are computationally intensive, C++-based applications.
 
+Nevertheless, if one looks in other domains 
+
+- name node RED
+
+- name blockly / scratch
 
 The number of visual programming languages written as web applications is surprisingly low. 
 Most applications are educational
@@ -969,7 +997,19 @@ Does exist, but very niche.
 best example is Scratch, an educational tool.
 digging in github reaps some results, mostly experimental, in development applications
 
+
+
+
+JOS: ZODRA JE HIERMEE KLAAR BENT: GA meteen door met de conclusie.
+
+ 9:00 -> begin 
+
+16:00 -> done, ga fieten :), naar ouders, en dan aan geon werken! 
+
+
 \section{Browser-based Visual programming and geocomputation} 
+
+% - Mobius Modeller : https://mobius.design-automation.net/pages/mobius_modeller.html
 To the best of the author's knowledge, only one publicly available visual programming language exist which is both able to be configured and executed in a browser, and is able to be used for geodata computation.
 This application is called the Möbius modeller (Source: https://mobius-08.design-automation.net/about), and is by far the closest equivalent to the geo-web-vpl proposed by this study.
 Though it only uses javascript, the tool is able to be successfully used for an impressive range of applications, including CAD, BIM, urban planning, and GIS. 
@@ -983,17 +1023,17 @@ This study is still different from the mobius modeller in the following aspects:
   \item This study addresses the life-cycle issues of \ac{vpl}s stated in \refsec{sec:background:vpl:disadvantages}. 
 \end{itemize}
 
-
-
-
-
-
-
-
 %% SOME THOUGHTS ON RELATED WORKS: 
-% block-based visual programming: just purely UI, diagram-based vpl add additional, functional programming qualities. 
-
 
 % GEO: the thing we want to do
 % VPL: best choice for end user development, 
 % WEB: solves the huge life-cycle problem of publication
+
+
+% SOME THOUGHTS ABOUT THE IMPORTANCE OF EXPERIMENTATION AND PLAY
+% -> testing & reproducability.
+% RANSAC -> many 'magic' parameter. 
+% Game Of Life -> impossibility of 'proving' behaviour systems. 
+% Many parameters simply need to be discovered by 'play' / simulation
+% Jonathan blow -> using interactive applications, an intrinsic understanding can be gained without explicit communication.
+

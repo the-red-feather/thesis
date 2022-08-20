@@ -1,11 +1,24 @@
-
-
-| Name            | Author                | Availability       | Source    | Audience                     | Purpose              | Link                | Notes          
-|---------------- | --------------------- | ------------------ | --------- | ---------------------------- | -------------------- | ------------------- | ----------
-| FME             | Save Software         | €2,000 one time    | Closed    | Geoprocessing intermediaries | Geoprocessing        | https://www.safe.com/fme/fme-desktop/ | 
-| The graphical modeler            | QGIS Contributors         | Free    | Open    | QGIS users | Geoprocessing        | https://www.safe.com/fme/fme-desktop/ | 
-| Houdini         | SideFX                | ~€1,690 p.y.       | Closed    | 3D modellers & SFX           | Procedural Modelling & Special effects | https://www.sidefx.com/ |
-| Geometry Nodes  | Blender Foundation & Contributors             | Free               | Open      | 3D modellers & SFX           | Procedural Modelling & Special effects | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   |
-| Grasshopper     | David Rutten / McNeel | €995 one time      | Closed    | 3D modellers & architects    | Parametric Design    | https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   |
-| geoflow         | Ravi Peter            | Free               | Open      | Geoprocessing experts        | Geoprocessing: Rapid prototyping & Visualizing in between steps | https://github.com/geoflow3d/geoflow  |
-| Dynamo          | Autodesk              | +revit €3,330 p.y. | Semi-open | Expert Revit Users           | BIM automation       | https://dynamobim.org/ | 
+|Domain|" Name            "|Related Software|" Author                "|License|Cost|" Purpose              "|" Link                "|Noteworthy Features|" Notes          "
+|-----------------|"---------------- "|-------|" --------------------- "|" --------- "|" ------------------ "|" -------------------- "|" ------------------- "|" ------------------- "|" ----------"
+1|GIS|"FME             "|"- "|" Save Software         "|Proprietary|"€ 2,000 one time    "|"ETL"|" https://www.safe.com/fme/fme-desktop/ "||" "
+3|GIS|"The Graphical Modeler            "|QGIS|" QGIS Contributors         "|Open Source|-|" Geoprocessing        "|" https://www.safe.com/fme/fme-desktop/ "||" "
+4|GIS|"Model Builder"|ArcGIS|"Esri"|Proprietary|$100 p.y. (ArcGIS)|"Geoprocessing"||Compiles to python|"Maybe a bit too abstracted..."
+2|GIS|" geoflow         "|"- "|" Ravi Peter            "|GNU Public License Version 3.0|-|"ETL for  3D geoinformation"|" https://github.com/geoflow3d/geoflow  "||
+5|Photogrammetry|"MeshRoom"|-|"AliceVision"|Mozilla Public License Version 2.0|-|"3D Reconstruction & photomodeling"||Plugins for blender, houdini, and maya|
+6|Procedural geometry|"Geometry Nodes  "|Blender|" Blender Foundation & Contributors             "|GNU Public License Version 3.0|"-       "|"Procedural Modelling & Special effects "|" https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   "|UI elements within components|
+7|Procedural geometry|"Grasshopper     "|Rhino|" David Rutten / McNeel "|Proprietary|"€ 995 one time (Rhino)     "|"Procedural Modelling / BIM"|" https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   "|Scriptable components using C# or python|"Sometimes used in GIS"
+8|Procedural geometry|"Dynamo          "|Revit|" Autodesk              "|Proprietary (Revit is needed in execution)|€ 3,330 p.y. (Revit)|"BIM"|" https://dynamobim.org/ "|-|"Slowly being replaced by Grasshopper"
+9|Procedural geometry / Shader programming|"Houdini         "|"- "|" SideFX                "|Proprietary|"€ 1,690 p.y.       "|"Procedural Modeling, material modeling, Special Effects "|" https://www.sidefx.com/ "||
+10|Shader programming|"Shader nodes"|Blender|"Blender Foundation & contributors"|GNU Public License Version 3.0|-|"Textures and material modelling & animation"|||
+12|Shader programming|"Substance Designer"|-|"Adobe"|Proprietary|"$ 240 p.y. "|"Textures and material modelling & animation"|||
+13|Shader programming|"Material Nodes"|Unreal Engine|"Epic Games"|Proprietary|Semi-free / $1,500 p.y. (UE)|"Textures and material modelling & animation"|||
+14|Shader programming|"Shader Graph"|Unity|"Unity Technologies"|Proprietary|Semi-free / $400 p.y. (Unity)|"Textures and material modelling & animation"|||
+15|Game engine programming|"Blueprints"|Unreal Engine|"Epic Games"|Proprietary|Semi-free / $1,500 p.y. (UE)|"Game programming"|||
+16|Game engine programming|"Bolt"|Unity|"Unity Technologies"|Proprietary|Semi-free / $400 p.y. (Unity)|"Game programming"|||
+||||||||||
+||||||||||
+||||||||||
+||||||||||
+||||||||||
+||||||||||
+||||||||||
