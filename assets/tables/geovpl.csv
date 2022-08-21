@@ -8,7 +8,7 @@
 6|Procedural geometry|"Geometry Nodes  "|Blender|" Blender Foundation & Contributors             "|GNU Public License Version 3.0|"-       "|"Procedural Modelling & Special effects "|" https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   "|UI elements within components|
 7|Procedural geometry|"Grasshopper     "|Rhino|" David Rutten / McNeel "|Proprietary|"€ 995 one time (Rhino)     "|"Procedural Modelling / BIM"|" https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html   "|Scriptable components using C# or python|"Sometimes used in GIS"
 8|Procedural geometry|"Dynamo          "|Revit|" Autodesk              "|Proprietary (Revit is needed in execution)|€ 3,330 p.y. (Revit)|"BIM"|" https://dynamobim.org/ "|-|"Slowly being replaced by Grasshopper"
-9|Procedural geometry / Shader programming|"Houdini         "|"- "|" SideFX                "|Proprietary|"€ 1,690 p.y.       "|"Procedural Modeling, material modeling, Special Effects "|" https://www.sidefx.com/ "||
+9|Procedural geometry / Shader programming|"Houdini         "|"- "|" SideFX                "|Proprietary|"€ 1,690 p.y.       "|"Procedural Modelling, material modelling, Special Effects "|" https://www.sidefx.com/ "||
 10|Shader programming|"Shader nodes"|Blender|"Blender Foundation & contributors"|GNU Public License Version 3.0|-|"Textures and material modelling & animation"|||
 12|Shader programming|"Substance Designer"|-|"Adobe"|Proprietary|"$ 240 p.y. "|"Textures and material modelling & animation"|||
 13|Shader programming|"Material Nodes"|Unreal Engine|"Epic Games"|Proprietary|Semi-free / $1,500 p.y. (UE)|"Textures and material modelling & animation"|||

@@ -4,7 +4,7 @@
 % It should show that you clearly know the problem you plan to solve, 
 % and that you master the related work. 
 
-\chapter{Background \& Related work}
+\chapter{Background}
 \label{chap:background}
 
 \begin{figure}
@@ -664,7 +664,6 @@ TODO: Formalize these ramblings, or don't.
 And while we are on the topic of publication, only 16 out of 30 of the tools analysed by (communicating 2021) were available publicly with some documentation.
 It seems the lack of publication tooling might also partially be due to a lack of publication in general. 
 
-
 \subsection{Conclusion}
 
 The background literature clearly indicates many advantageous properties of vpls, both in terms of (end) user experience and the dataflow programming properties. 
@@ -676,6 +675,7 @@ Lastly, the studies agree on several open-ended issues of which a satisfying ans
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Related works}
+\label{chap:related}
 
 This chapter offers a review of related and comparable studies.
 while almost no projects or studies exist at the intersection of all three of these fields, we do find related studies which intersect two of these fields, represented by the edges of \reffig{fig:triangle-model}:
@@ -684,7 +684,6 @@ while almost no projects or studies exist at the intersection of all three of th
   \item \refsec{sec:related-geovpl} reviews related works on VPLs used for geo-computation
   \item \refsec{sec:related-webvpl} reviews related works on VPL web applications
 \end{enumerate}
-
 
 \section{Browser-based geocomputation}
 \label{sec:related-geoweb}
@@ -861,10 +860,17 @@ It also offers photogrammetry-techniques such as forward incision of a point in 
 \section{Visual programming and geocomputation}
 \label{sec:related-geovpl}
 
-This section is dedicated to all related works on \ac{vpl}s related to geocomputation.
+This section is dedicated to giving an overview of related works on \ac{vpl}s related to geocomputation.
 
-\reffig{fig:geovpl:table} offers an overview of some of the more significant \ac{vpl}s present in not only \ac{gis}, but also the neighboring domains based on computer graphics.
-Why these fields are regarded as neighbors are explained in \refsec{sec:background-geo}. 
+\begin{note}
+  [I just wish to state: "these applications exist".
+  I also wish to make some comments on the interplay between geocomputation and vpl. 
+  Are these fields complimentary?
+  These will also be referred back to during the methodology chapter]    
+\end{note}
+
+\reffig{fig:geovpl:table} offers this overview of some of the more significant \ac{vpl}s present in not only \ac{gis}, but also the neighboring domains based on computer graphics.
+Why these fields are regarded as relevant are explained in \refsec{sec:background-geo}. 
 
 \begin{figure}
   \centering
@@ -926,47 +932,120 @@ It offers CGAL processes like alpha shape, triangulation and line simplification
 \end{figure}
 
 \subsection*{ VPLs in neighboring domains }
-% - AliceVision Meshroom
-% - Rhino: Grasshopper
-% - Revit: Dynamo  
-% - Blender: Geometry Nodes
-% - Houdini: Procedural Modelling
-% - Blender: Shader Nodes
-% - Adobe: Substance Designer
-% - Unreal Engine: Material Nodes
-% - Unity: Shader Graph
-% - Houdini: Houdini
-% - Unreal: Blueprints
-% - Unity: Bolt
-Besides the use cases already mentioned, a significant number of 
-visual programming applications are emerging in fields concerned 
-with 2D and 3D geometry creation \& visualization. 
 
-The persistence of visual programming within the field of shaders and
-geometry, suggests that visual programming languages are advantageous in
-situations where a 'visual' product requires debugging during development. 
+\reffig{fig:geovpl:table} shows a great number of non-GIS \ac{vpl}s.
+while these do not explicitly cover GIS, their close ties to computer graphics are still highly relevant to GIS and the activity of geocomputation.  
 
-These are all popular applications, many users, multiple courses and tutorials, 
+The choices of which vpl to include in \reffig{fig:geovpl:table} are based upon popularity.  
+The particular ones chosen see a lot of use, evident by the sheer number of courses and tutorials which cover these vpls, and the popularity of the software packages these applications are attached to. 
+In fact, many of the mentioned vpls are popular enough that it is safe to say that \ac{vpl}s are common in the wider field of computer graphics. 
+This study limits itself to four sub-domains relevant to geocomputation:
+\begin{itemize}[-]
+  \item VPLs to calculate materials, shaders and textures
+  \item VPLs to calculate geometry
+  \item VPLs to perform photogrammetry reconstruction. 
+  \item VPLs to calculate behavior and logic
+\end{itemize}
 
-For \ac{gis} applications, this area is 
+\subsubsection*{Commonalities}
+One interesting fact is that we see a great number of parallels among all these \ac{vpl}s.
+\begin{itemize}[-]
+  \item All are diagram-based vpls.
+  \item All offer inspection of in-between products. Some even visualize data being parsed between nodes.
+  \item All emphasize a process of "parametrization": with sliders and other UI elements, the vpls seem to be intended for rapid experimentation.
+\end{itemize}
+Moreover, the persistence of visual programming within these computer graphics fields, suggests that visual programming languages are advantageous for calculations dealing with 2D and 3D data.
+This might be because all these vpls, with exception to the behavior vpls, are essentially dealing with "production pipelines".
+No networking, no distributed systems, just one calculation from start to finish, to produce a desired product.  
+However, the sheer amount of possible steps within these pipelines, together with the challenges of fine-tuning many relevant parameters, and the importance of inspecting in-between products visually, do not allow these pipelines to be configured by conventional UI's. 
+Therefore, the \ac{vpl} might be a perfect fit for all 2D and 3D data pipelines.
+vpls allow rapid debugging, rapid experimentation, and the straight-forward nature of 2D/3D pipelines mitigate the challenge vpls have with representing imperative flow statements (\m{if, else, for, while, break}). 
 
-% The field of geo-informatics also appreciates the 'dataflow modelling' aspects (TODO FIX THIS SENTENCE)
+\subsubsection*{Material VPLs}
+By far the most commonplace type of vpl present in computer graphics are material Vpls. 
+In this context, the concept "material" often refers to a combination of 2D textures and shaders. 
+These include PBR settings, normal maps, bump maps, and / or custom shader programs. 
+The repetitive and time-consuming nature of manually creating textures, and the fact that some of these material properties can be inferred from each other, lead many CG applications to develop \ac{vpl}s. 
+3D artists can now use these \ac{vpl}s to create procedural textures.
 
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.45\linewidth}
+  \graphicspath{{../../assets/images/background/geo-vpl/}}
+  \centering
+  \includegraphics[width=\linewidth]{unreal-blueprints.jpg}
+  \caption{}\label{fig:logic-vpl:1}
+\end{subfigure}%
+\qquad %-- that adds some space between th 2 figures
+\begin{subfigure}[b]{0.45\linewidth}
+  \graphicspath{{../../assets/images/background/geo-vpl/}}
+  \centering
+  \includegraphics[width=\linewidth]{unity-bolt-2.png}
+  \caption{}\label{fig:logic-vpl:2}
+\end{subfigure}%
+\caption[Texture VPLs]{TODO: add texture vpls}
+\label{fig:logic-vpl}
+\end{figure}
+    
+\subsubsection*{Geometry, and photogrammetric VPLs}
 
-% The environment proposed by this thesis builds from Ravi Peter's work. GeoFront can be seen as GeoFlow, but in a web browser. However, the introduction of this web component significantly changes the purpose and use-case of GeoFront compared to GeoFlow. 
+Procedural Geometry \ac{vpl}s are not far behind the material \ac{vpl}s in terms of popularity.
+Applications like Blender's geometry nodes, Rhino's Grasshopper, or Houdini, are all widely used to automate the creation of geometry. 
+Where Houdini and Blender's vpls are primarily used in games and special effects, Grasshopper sees much usage in the Architecture, Engineering and construction industry. In this field, procedural geometry is often referred to as "parametric design".
 
-% GeoFlow's mission: Create a geoprocessing pipeline in a visual environment, in order to speed up and improve the quality of the development process of this pipeline "FOR YOURSELF", compared to text-based methods. This speed and quality comes from the fact that the visual environment makes rapid experimentation and evaluation possible. This is especially helpful for non-determinant processes, or processes containing 'magic' number parameters. Examples of these are RANSAC algorithms. 
+Alicevision's Meshroom application must also be mentioned.
+While this can be regarded as procedural modelling, the complexity and computation involved in photogrammetry make a vpl offering it a class in of itself. 
+The vpl inside of Meshroom can be used to fine tune all stages of the 3D reconstruction process.
 
-% GeoFront's mission: Use the vpl to make rapid experimentation and evaluation of your geoprocessing functions possible FOR OTHERS. This enables others to rapidly utilize your geoprocessing method. The primary use case of this is collaboration: Rapidly publish ones results, demonstrate reproducibility, retrieve feedback, etc.   
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/background/geo-vpl/}}
+    \centering
+    \includegraphics[width=\linewidth]{unreal-blueprints.jpg}
+    \caption{}\label{fig:logic-vpl:1}
+  \end{subfigure}%
+  \qquad %-- that adds some space between th 2 figures
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/background/geo-vpl/}}
+    \centering
+    \includegraphics[width=\linewidth]{unity-bolt-2.png}
+    \caption{}\label{fig:logic-vpl:2}
+  \end{subfigure}%
+  \caption[Geometry VPLs]{TODO: add geometry vpls}
+  \label{fig:logic-vpl}
+  \end{figure}
 
+\subsubsection*{Behavioral VPLs}
+The behavioral and logical vpls found in applications such as Unreal's Blueprint and Unity's Bolt (https://docs.unrealengine.com/5.0/en-US/blueprints-visual-scripting-in-unreal-engine/, https://assetstore.unity.com/packages/tools/visual-scripting/bolt-163802) are less relevant to the activity of geocomputation.
+However, one interesting property worth mentioning, is that these languages have actually designed a way for end-users to define imperative flow statements, since these could not be overlooked for behavior and logic.
+\refsec{sec:background-vpl} named conditions and loops as one of the challenges of diagram-based vpls. 
+These languages both attempted to solve this problem by introducing a special "flow state" variable. 
+It represents no value, but simply the activity of 'activating' or 'doing' the node selected. 
+\reffig{fig:logic-vpl} showcases these flow-state variables in both languages using conditionals.
+flow-state variables have their own set of rules, completely separate from connections carrying data. 
+For example, they can be used cyclically, offering users looping functionality and are allowed to have multiple sources.  
+Despite these functionalities, one might wonder if these aspects are worth these extra complications.
+Especially since these flow-state variables are effectively \m{GOTO} statements, which are widely known as an anti-pattern in large-scale software projects. 
 
-% Visual programming environment for geo-computation (geo-vpl) has been tried before, natively ( Grasshopper , FME , GeoNodes , Blender Geometry Nodes ). 
-
-% We test how well contemporary web technologies support such an application, as well as judge aspects such as accessibility \& performance of said application. We also judge if this type of application is indeed beneficial and usable as a scripting / demo environment.  
-
-% These features could all be implemented by normal means ( buttons, panels, sliders ) -->
-
-
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.45\linewidth}
+  \graphicspath{{../../assets/images/background/geo-vpl/}}
+  \centering
+  \includegraphics[width=\linewidth]{unreal-blueprints.jpg}
+  \caption{}\label{fig:logic-vpl:1}
+\end{subfigure}%
+\qquad %-- that adds some space between th 2 figures
+\begin{subfigure}[b]{0.45\linewidth}
+  \graphicspath{{../../assets/images/background/geo-vpl/}}
+  \centering
+  \includegraphics[width=\linewidth]{unity-bolt-2.png}
+  \caption{}\label{fig:logic-vpl:2}
+\end{subfigure}%
+\caption[Behavioral VPLs]{Two behavioral vpls, showing "flow-state" variables. Left: Unreal's Blueprints, Right: Unity's Bolt.}
+\label{fig:logic-vpl}
+\end{figure}
 
 \section{Browser-based visual programming}
 \label{sec:related-webvpl}
@@ -975,37 +1054,51 @@ This section is dedicated to visual programming applications running in a browse
 It must be emphasized that of all the various vpls named in \refsec{sec:related-geovpl}, none are browser-based. 
 This is likely the case because most of those vpls are computationally intensive, C++-based applications.
 
-Nevertheless, if one looks in other domains 
+Nevertheless, if one looks in other domains, we quickly see many \ac{vpl}s which are web-based. 
+Out of all 30 VPL studies covered by the meta analysis of \cite{kuhail_characterizing_2021}, 17 were web based, 7 were mobile based, and only 6 were desktop applications. 
+Kuhail et al. continue by noting that most of these 6 desktop applications were build during or before 2013. 
+The reason Kuhail et al. present for this stark difference is completely in one line with \refsec{sec:background-web}: 
+\emph{"This can be explained by the fact that desktop-based tools are cumbersome to contemporary users. They must be downloaded and installed, are operating-system dependent, and need frequent updates."}.
 
-- name node RED
-
-- name blockly / scratch
-
-The number of visual programming languages written as web applications is surprisingly low. 
-Most applications are educational
-
-
-(https://www.ucode.com/coding-classes-for-kids/is-scratch-the-same-as-blockly)
-
-(https://developers.google.com/blockly/)
-
-(https://developers.googleblog.com/2019/01/scratch-30s-new-programming-blocks.html)
+\begin{figure}
+\centering
+\begin{subfigure}[b]{0.45\linewidth}
+  \graphicspath{{../../assets/images/background/web-vpl/}}
+  \centering
+  \includegraphics[width=\linewidth]{scratch-2.png}
+  \caption{}\label{fig:webvpl:1}
+\end{subfigure}%
+\qquad 
+\begin{subfigure}[b]{0.45\linewidth}
+  \graphicspath{{../../assets/images/background/web-vpl/}}
+  \centering
+  \includegraphics[width=\linewidth]{nodered-2.png}
+  \caption{}\label{fig:webvpl:2}
+\end{subfigure}%
+\caption[web VPLs]{Two VPLs used on the web: Scratch (a), and nodeRED (b). }
+\label{fig:webvpl}
+\end{figure}
 
 % (SOURCE: https://dl.acm.org/doi/fullHtml/10.1145/1592761.1592779?casa_token=cJ1iX1YYimkAAAAA:YVyp3KFiKwD2GMuBUUIgvibbNsEgndqNQzehRnCosCpyEx51C_uNpi2D4-lsE-x88hQFSWcbTfrP_w)
+% (https://www.ucode.com/coding-classes-for-kids/is-scratch-the-same-as-blockly)
+% (https://developers.google.com/blockly/)
+% (https://developers.googleblog.com/2019/01/scratch-30s-new-programming-blocks.html)
+This study wishes to present two web based visual programming languages, which each use the web in a meaningful way.  
+The first web-vpl is "Scratch", and Googles related "Blockly" project (Source, See \reffig{fig:webvpl:1}). 
+Scratch is well-known as an educational, block-based vpl, targeted at children and young adults to teach the basics of computational thinking. 
+The program is famously used as the first assignment of Harvard university's CS50 course (Source: https://www.youtube.com/watch?v=1tnj3UCkuxU).   
+As noted by the authors of CS50, scratch is, despite this target audience, surprisingly close to any normal programming language, with for and while loops, if statements, and even event handling and asynchronous programming. 
+Scratch used to be a desktop application. 
+The web environment this vpl now occupies allows its users excellent life-cycle support. 
+Users can immediately publish their work, search for and run the work of others, and even "Remix / clone / fork" the source code of these other projects. 
+This encourages users to learn from each other.
 
-Does exist, but very niche. 
-best example is Scratch, an educational tool.
-digging in github reaps some results, mostly experimental, in development applications
-
-
-
-
-JOS: ZODRA JE HIERMEE KLAAR BENT: GA meteen door met de conclusie.
-
- 9:00 -> begin 
-
-16:00 -> done, ga fieten :), naar ouders, en dan aan geon werken! 
-
+The second exemplary web vpl this study wishes to bring to the readers attention is the "nodeRED" application (Source, see \reffig{fig:webvpl:2}). 
+This is a feature-rich diagram-based application, created to serve the domain of IoT.
+This vpl uses the browser-based platform not only for the aforementioned \refsec{sec:background-web} reasons, but also for the exact same reasons a router, NAS or IoT device often opts for a browser-based interface: 
+Servers, either small or big, explaining how they desire to be interfaced, is more or less the cornerstone all web clients are based upon.  
+If the server serves its corresponding client, users do not need to find some compatible interface themselves.
+For this reason the "nodeRED" application is a web application, even though it is mostly run on local networks.   
 
 \section{Browser-based Visual programming and geocomputation} 
 
@@ -1013,15 +1106,34 @@ JOS: ZODRA JE HIERMEE KLAAR BENT: GA meteen door met de conclusie.
 To the best of the author's knowledge, only one publicly available visual programming language exist which is both able to be configured and executed in a browser, and is able to be used for geodata computation.
 This application is called the Möbius modeller (Source: https://mobius-08.design-automation.net/about), and is by far the closest equivalent to the geo-web-vpl proposed by this study.
 Though it only uses javascript, the tool is able to be successfully used for an impressive range of applications, including CAD, BIM, urban planning, and GIS. 
-It uses a combination of a very 'bare-bones' diagram-based vpl, together with a very rich block-based vpl.
+It uses a combination of a very 'bare-bones' diagram-based vpl, together with a very rich block-based vpl (See \reffig{fig:mobiusmodeller}).
 In fact, the block-based vpl is so rich that is almost ceases to be a vpl altogether, and starts to be python-like language with heavy IDE support.  
 
-This study is still different from the mobius modeller in the following aspects: 
+The \ac{geo-web-vpl} presented by this study still differs from the mobius modeller in the following aspects: 
 \begin{itemize}[-]
   \item This study explores the usage of diagram-based vpls as opposed to a block-based vpl, to allow for the dataflow programming advantages described in \refsec{sec:background:dataflow}.
-  \item This study explores the usage of WebAssembly to both improve performance and to use existing geocomputation libraries.
-  \item This study addresses the life-cycle issues of \ac{vpl}s stated in \refsec{sec:background:vpl:disadvantages}. 
+  \item This study explores the usage of WebAssembly to hypothetically improve performance and to use existing geocomputation libraries.
+  \item This study addresses some of the life-cycle issues of \ac{vpl}s stated in \refsec{sec:background:vpl:disadvantages}. 
 \end{itemize}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/background/geo-web-vpl/}}
+    \centering
+    \includegraphics[width=\linewidth]{mobius-3.png}
+    \caption{}
+  \end{subfigure}%
+  \qquad %-- that adds some space between th 2 figures
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/background/geo-web-vpl/}}
+    \centering
+    \includegraphics[width=\linewidth]{mobius-4.png}
+    \caption{}
+  \end{subfigure}%
+  \caption[Mobius Modeller]{Images of the Mobius modeller application}%
+  \label{fig:mobiusmodeller}
+  \end{figure}
 
 %% SOME THOUGHTS ON RELATED WORKS: 
 
