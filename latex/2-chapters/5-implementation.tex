@@ -1,7 +1,16 @@
 \chapter{Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \label{chap:implementation}
 
-This chapter explains the significant implementation details of the geo-web-vpl solution.
+This chapter covers both the implementation of this study, as well as the software implementation of various ingredients needed within this study. 
+First, \refsec{sec:implementation:representation}.
+Second, \refsec{sec:implementation:compilation}.
+Then, \refsec{sec:implementation:loading}.
+Finally, \refsec{sec:implementation:utilization}.
+
+\section{\mySubRQOneTitle: The Geofront Application}
+\label{sec:implementation:representation}
+
+This section explains the significant implementation details of the geo-web-vpl solution.
 This solution is titled Geofront, as a concatenation of "geometry" and "frontend".
 
 % Explain main code setup \& components
@@ -10,15 +19,8 @@ The \m{app} repository holds the main Geofront application. It contains the sour
 The \m{engine} repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
 The repositories prefixed with a \m{gfp} are Geofront Plugins. These plugins are consumed by the main \m{app}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{\mySubRQOneTitle: The Geofront Application}
-\label{sec:app}
-
 The Geofront Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file, and this file practically represents the full application. 
-the repository used around 9.000 lines of code, divided into the following core categories and functionalities:
+the repository used around 9.000 lines of code, divided into core categories and functionalities:
 \begin{enumerate}[I]
   \item \m{shims}: Models to reason about 'programming language features', such as functions and variables.
   \item \m{nodes-canvas}: Contains the model, renderer and controller of the visual programming graph itself.  
@@ -165,49 +167,6 @@ This algorithm has several important qualities.
 If all intermediate steps are cached, this same algorithm can also be used for performing partial recalculations of the graph. 
 The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recalculate. 
 
-
-\subsection*{III. Modules} 
-
-
-The name "Modules" is also used to refer to plugins within the context of \geofront{}.
-
-Shims are automatically created
-
-\emph{explain the system to dynamically load plugins at runtime}
-
-The Dynamic nature of javascript makes it possible tto load plugins at runtime. 
-
-  
-
-\subsection{Plugins}
-What does a plugin need in order to be acceptable
-one javascript file, one type definitions file, and one optional wasm file are accepted. 
-
-ts -> normal build works out of the box
-rust -> wasm pack compile target web -> works out of the box 
-c++ -> emscripten -> more manual work needed 
-
-\subsubsection{Features}
-- IO can use:
-  - basic types (boolean / number / string)
-  - jsons, objects, interfaces (typesystem will pick up on them)
-  - ArrayBuffers (vital for performant data transfer)
-
-
-
-
-\subsection{IV. STD / The Standard Library}
-
-The standard library is a 'baked in plugin'.
-Points, lines, triangles, vectors, etc.
--> 
-
-Shims are manually created
--> eventually, large parts of the STD can become a plugin
-
-
-
-
 \subsection{V. Menu}
 Web Framework
 
@@ -274,6 +233,7 @@ Header only is an unusual
 \newpage
 
 \section{\mySubRQTwoTitle: Web-ready geoprocessing libraries}
+\label{sec:implementation:compilation}
 
 \begin{note}
 Explain the process of taking a C++ / Rust library and putting it onto a web-browser.
@@ -309,14 +269,13 @@ but it does use robust geometric predicates, and a high precision kernel (f64).
 
 \newpage
 
-\section{\mySubRQThreeTitle: The Plugin Model}
-\label{sec:impl-plugin}
+\section{\mySubRQThreeTitle: The plugin loader}
+\label{sec:implementation:loading}
 
 The last implementation which requires elaboration is the plugin model. 
 A full overview of this system can be given 
 
 % 2 types supported 
-
 
 % explain advantages & disadvantages of this system. 
 Using this system. 
@@ -337,11 +296,94 @@ Using this
 
 \subsection{Assessment}
 
-% \section{Achieved Functionality}
-
 % [screenshots]
 
 % [show functionalities]
 
 % % ## User Interaction
 % % _(basically, write a tutorial)_
+
+\subsection{Within Geofront}
+
+
+
+[explain how ]
+
+
+\subsubsection*{III. Modules} 
+
+
+The name "Modules" is also used to refer to plugins within the context of \geofront{}.
+
+Shims are automatically created
+
+\emph{explain the system to dynamically load plugins at runtime}
+
+The Dynamic nature of javascript makes it possible tto load plugins at runtime. 
+
+  
+
+\subsubsection{Plugins}
+What does a plugin need in order to be acceptable
+one javascript file, one type definitions file, and one optional wasm file are accepted. 
+
+ts -> normal build works out of the box
+rust -> wasm pack compile target web -> works out of the box 
+c++ -> emscripten -> more manual work needed 
+
+\subsubsection{Features}
+- IO can use:
+  - basic types (boolean / number / string)
+  - jsons, objects, interfaces (typesystem will pick up on them)
+  - ArrayBuffers (vital for performant data transfer)
+
+
+
+
+\subsection{IV. STD / The Standard Library}
+
+The standard library is a 'baked in plugin'.
+Points, lines, triangles, vectors, etc.
+-> 
+
+Shims are manually created
+-> eventually, large parts of the STD can become a plugin
+
+
+\subsection{Achieved Workflow}
+\emph{show the insane (rust + wasm + npm) workflow}
+
+Locally: 
+1. Write a geoprocessing / analysis library using a system-level language (rust, C++).
+2. Expose certain functions as public, using 'wasm-pack' or 'emscripten'.
+3. Compile to `.wasm` + `d.ts` + `.js`.
+4. publish to npm (very easy to do with wasm-pack, can also be done with emscripten)
+
+Alternatively: 
+1. Write a library using typescript, 
+3. Compile to `d.ts` + `.js`.
+4. publish to npm 
+
+In Geofront: 
+4. Reference the CDN (content delivery network) address of this node package. 
+
+Congrats, this is now a publicly accessible geofront plugin!
+The library is loaded, A component is created for each function, with inputs for input parameters, and a singular output. If a 'typescript tuple type' is exported, the plugin loader will create multiple outputs according to each component of the tuple.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\mySubRQFourTitle: Isocurve extractor}
+\label{sec:implementation:utilization}
+
+[show the implementation of the example application]
+
+
+
+
+

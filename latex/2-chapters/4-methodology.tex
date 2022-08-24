@@ -2,7 +2,7 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
-This chapter elaborates upon the methodology used in this study. 
+This chapter explains the methodology used in this study. 
 The overall structure of what elements this methodology precisely consists of is presented, and how these elements came to be. 
 The chapter continues with four sections, each explaining one of these components.
 But first, I wish to clarify the nature in which this study is conducted. 
@@ -30,12 +30,11 @@ And, due to the investigative nature of this study, the methodology requires to 
 As such, it bears fruit to explain how these specific questions were chosen.}
 
 % FIX THISSS 
-The related studies in \refchap{chap:related} show that a \ac{geo-web-vpl} as described by this study does not exist yet. However, many examples of geo-vpls (\refsec{sec:related-geovpl}) and web-vpls \refsec{sec:related-webvpl} do exist. 
+The related studies in \refchap{chap:related} show that only one \ac{geo-web-vpl} as described by this study exists. This is in contrast to the many examples of geo-vpls in \refsec{sec:related-geovpl} and web-vpls \refsec{sec:related-webvpl}. 
 Based on this, it can be assumed that creating a visual programming environment in a web-browser must be possible. 
 Using a \ac*{vpl} for geocomputation must also be possible. 
-
-However, the absence of a geo-web-vpl indicates some sort of hinder, preventing this type of application to be realized. Either geo-VPLs were not able to be properly used in a browser, or web-based VPLs were unable to support geocomputation functionalities. 
-Assuming, of course, that researchers and developers of these environments would have wanted to work towards a \ac{geo-web-vpl}.
+However, the greatly reduced number of geo-web-vpls indicates some sort of hinder, preventing this type of application to be realized. Either geo-VPLs were not able to be properly used in a browser, or web-based VPLs were unable to support geocomputation functionalities. 
+% Assuming, of course, that researchers and developers of these environments would have wanted to work towards a \ac{geo-web-vpl}.
 
 This study starts from the second assumption: 
 Apparently, web-based VPLs are unable to support existing geocomputation functionalities. 
@@ -45,7 +44,7 @@ geocomputation functionalities might not be able to be properly:
 \begin{itemize}[-]
   \item \textbf{compiled} into a format functional on the web
   \item \textbf{loaded} within a web-based VPL
-  \item \textbf{facilitated} by the interface of a web-based VPL
+  \item \textbf{visualized} by the interface of a web-based VPL
   \item \textbf{used} within a web-based VPL
 \end{itemize}
 As it is unknown which one of these reasons ( or which combination of reasons ) is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
@@ -54,9 +53,9 @@ Moreover, the real reason might not lie in one of these areas, but in the interp
 It is this study's objective to pose a solution to this barrier. This is stated by the main research question: \myMainRQ 
 
 The study goes about doing so, by developing a prototype \ac{geo-web-vpl}. 
-This prototype is used as an experiment and staging ground to discover the extend of possible hindrances. 
+This prototype is used as a staging ground to discover the extend of possible hindrances. 
 During its development, each one of these four possible hindrances has to be accounted for. 
-Per hindrance, document design considerations, and run experiments, all to test to what extend this prototype \ac{geo-web-vpl} fails or succeeds to provide for this aspect. 
+Per hindrance, we document design considerations, and run experiments, all to test to what extend this prototype \ac{geo-web-vpl} fails or succeeds to provide for this aspect. 
 After this is done, we can compile a final conclusion to the main research question. 
 
 The methodology of this study is structured to facilitate this process. 
@@ -83,13 +82,11 @@ TODO: diagram: show the 'locations' of the four research questions ( client / se
 
 The first component of the methodology involved the creation of the core of the prototype application, encompassed by the supporting research question : \mySubRQOne
 
-\subsection*{Why}
-
-Before exploring how lifting \emph{existing} geo-computation to the web might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a 3D vpl in general.
+% [WHY]
+Before exploring how lifting \emph{existing} geo-computation to the web might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a 3D vpl in general, both in terms of data structures and visualization. 
 A 3D VPL is defined as a vpl meant for generic 3D geometry processing.
 
-\subsection*{How}
-
+% [HOW]
 The method to answer this question is defined as follows. 
 The above question of \mySubRQOneTitle is further subdivided into 4 follow-up questions:
 \begin{enumerate}[A]
@@ -188,8 +185,7 @@ The fourth step adds geospatial data support, and adds Web Feature Services, Web
 The second component of the methodology seeks an answer to the question of \mySubRQTwoTitle: \mySubRQTwo
 
 
-\subsection*{Why}
-
+% [Why]
 Making sure a \ac{geo-web-vpl} is able to make use of native, non-js libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
 The most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \cite{haas_bringing_2017}.
 Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \cite{haas_bringing_2017,jangda_not_2019}.
@@ -205,9 +201,7 @@ However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{
 \end{enumerate}
 Discovering the extend and relevance of these compilation challenges for geo-computation libraries is why the sub-question of \mySubRQTwoTitle \space was included in this study. 
 
-\subsection*{How}
-
-% To what extend can existing geo-computation libraries be compiled for web consumption?
+% [HOW]
 Two experiments are conduced to answer this supporting research question. 
 The first focusses on making a clear, measurable comparison between compilation methods, where the second experiment focusses on compilation in a practical, realistic scenario. 
 
@@ -284,13 +278,14 @@ Startin was chosen, for the triangulation functionalities it provides are compar
 
 \section{\mySubRQThreeTitle} 
 \label{sec:method-three}
+
 In this third component of the methodology, we wish to discover how the web-exposed geocomputation libraries of \refsec{sec:method-two} can be utilized within the 3D VPL of \refsec{sec:method-one}. 
 This is once more a crucial aspect for the success of the entire \ac*{geo-web-vpl}, 
 and captured by the research question: \mySubRQThree
 
 % to what extend can a web-consumable library be loaded into a web-vpl without explicit configuration?
 
-\subsection*{Why}
+% [Why]
 
 \begin{note}
 Figure X: [geolib] --C++/Rust-> [wrapped geolib exposed to web] --wasm-> [web library wrapped for vpl] --js-> [vpl]
@@ -308,7 +303,7 @@ This would be cumbersome, prone to errors, and hurting version control by having
 
 This is why this third component of the methodology is focused on mitigating the need for the second wrapper library. 
 
-\subsection*{How}
+% How
 For this component of the methodology, the following plan was used: 
 \begin{enumerate}[-]
   \item design a library model for the prototype \ac*{geo-web-vpl}
@@ -379,19 +374,24 @@ Instead, these functions are programmatically called when the VPL engine or the 
 \section{\mySubRQFourTitle} 
 \label{sec:method-four}
 
+\begin{note}
+  CUT OUT THE USE-CASE APPLICATION ASPECT. 
+  -> we can make a utilization assessment based on the criteria alone, We dont need to create an application.
+\end{note}
+
 The final component of the methodology is dedicated to overcoming the fourth and final challenge to realizing a \ac{geo-web-vpl}, and involves the utilization of all aforementioned components. 
 In this section, we wish to discover the practical usefulness of a \ac{geo-web-vpl}, encompassed by the research question : \mySubRQFour
 
 % What are the advantages and disadvantages of using an existing geoprocessing library through a geo-web-vpl, as opposed to native utilization of said library?
 
-\subsection*{Why}
+% [WHY]
 This component of the methodology is included in the study because of the following: 
-It might be the case that a geo-web-vpl \emph{is} able to be interfaced using a web-browser, and \emph{is} able to load and run functions from native, non-js geo-computation libraries. 
+It might be the case that a geo-web-vpl \emph{is} able to represented by a web-browser, and \emph{is} able to load and run functions from native, non-js geo-computation libraries. 
 And still, it might not be able to successfully \emph{use} these libraries. 
 The entire idea of a vpl might not be sensible for the operation at hand, or some other, unforeseen aspects mitigates the practical usefulness of the environment. 
 It is therefore vital to access the actual usage of the application for accessing a geocomputation library.
 
-\subsection*{How}
+% [HOW]
 To answer the question of \mySubRQFourTitle, the following plan was used: 
 \begin{enumerate}[-]
   \item Develop a representative use-case application within the prototype \ac{geo-web-vpl}.
@@ -406,7 +406,7 @@ The application used in both test cases is an "isocurves from DTM" process.
 But also: we want the iso-curves of a specific location. How to get this data is part of the exercise
 
 \begin{note}
-- This is subject to change, according to how much I can accomplish 
+[This is subject to change, according to how much I can accomplish ]
 
 - find the required height data as WFS / WMS
 - determine a boundary
@@ -420,19 +420,43 @@ But also: we want the iso-curves of a specific location. How to get this data is
 \end{note}
 
 \subsection{Assessment Criteria}
+For the assessment criteria, the cognitive dimensions framework of \cite[]{green_usability_1996} will be used. 
+As commented on in \refsec{sec:background-vpl}, the study has acquired a canonical nature among many VPL researchers for its elaborate examination of the "Psychology of Programming".
+The age of the study indicates that the principles have stood the test of time. 
 
-\begin{note}
-Just ideas:
+The framework presents the following 13 dimensions and accompanying descriptions \cite[]{green_usability_1996}:
+\begin{enumerate}
+  \item Abstraction gradient: What are the minimum and maximum levels of abstraction? Can fragments be encapsulated? 
 
-  - how to get the data you need? 
-  - how to extract the part that you need?
-  - how to specify the input data to the application? 
-  - how to get the height parameter 'just right'? 
+  \item Closeness of mapping: What 'programming games' need to be learned? 
   
-It is not about the application, is it about DOING the desired geocomputation.  
-
-NOTE: you might want to connect this to the 3.2.1 experiment.
-
-\end{note}
+  \item Consistency: When some of the language has been learnt, how much of the rest can be inferred? 
   
+  \item Diffuseness: How many symbols or graphic entities are required to express a meaning? 
+  
+  \item Error- proneness: Does the design of the notation induce 'careless mistakes'? 
+  
+  \item Hard mental operations: Are there places where the user needs to resort to fingers or pencilled annotation to keep track of what's happening? 
+  
+  \item Hidden dependencies: Is every dependency overtly indicated in both directions? Is the indication perceptual or only symbolic? 
+  
+  \item Premature commitment: Do programmers have to make decisions before they have the information they need? 
+  
+  \item Progressive evaluation: Can a partially-complete program be executed to obtain feedback on 'How am I doing'? 
+  
+  \item Role- expressiveness: Can the reader see how each component of a program relates to the whole? 
+  
+  \item Secondary notation: Can programmers use layout, colour, other cues to convey extra meaning, above and beyond the 'official' semantics of the language? 
+  
+  \item Viscosity: How much effort is required to perform a single change? 
+  
+  \item Visibility: Is every part of the code simultaneously visible (assuming a large enough display), or it it at least possible to juxtapose any two parts side-by-side at will? If the code is dispersed, is it at least possible to know in what order to read it?
+\end{enumerate}
+
+As stated by the authors; the purpose of this framework is to make the trade-offs chosen by a language's designer explicit. It is not meant as a 'scoring' system.
+
+% Nielsen and Molichs 10 User Interface Design Guidelines
+% https://theomandel.com/resources/golden-rules-of-user-interface-design/
+% https://www.interaction-design.org/literature/article/user-interface-design-guidelines-10-rules-of-thumb
+% (old rules, but still relevant)_
 
