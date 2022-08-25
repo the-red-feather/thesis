@@ -9,17 +9,18 @@ Finally, \refsec{sec:analyses:utilization}.
 
 \section{\mySubRQOneTitle}
 \label{sec:analyses:representation}
+
 [Analyze the base implementation of geofront]
 
 (keep this very surface level, we have enough other things to be done)
 
 \section{\mySubRQTwoTitle}
 \label{sec:analyses:compilation}
+
 [Analyze the web-exposed geoprocessing libraries]
 
-(I like rust-> wasm)
-
-(I don't like C++ -> wasm)
+(rust-> wasm is powerful and feature-rich. it functions like a normal compiler. compilation was done easely. If a library cannot be compiled, the compiler statements are clear enough to identify which library causes the in)
+(C++ -> wasm requires a lot of trivia knowledge. it cannot be done often, or easely. Also behind on documentation compared to Rust).
 
 \section{\mySubRQThreeTitle}
 \label{sec:analyses:loading}
@@ -29,7 +30,169 @@ Finally, \refsec{sec:analyses:utilization}.
 \section{\mySubRQFourTitle}
 \label{sec:analyses:utilization}
 
-[Assess the utilization aspects]
+This section offers an analysis on the usability of Geofront, according to the framework described by \cite[]{green_usability_1996}.
+
+
+
+\subsection*{\emph{Abstraction gradient: What are the minimum and maximum levels of abstraction? Can fragments be encapsulated?}}
+
+Geofront was meant to support encapsulation. 
+The need for re-using parts of a script as components / functions was deemed more important than the benefits of having no abstraction hierarchy (what you see is what you get).
+An early prototype of Geofront did allow for encapsulation, by taking a subset of a Geofront script, and compiling it to a javascript subset. This could then be loaded by the library loader. 
+However, the addition of special types of nodes, and features like iteration, invalidated the \m{geofront -> js} translator.
+The translation is still possible, just not implemented.  
+As such, if a user desires re-usable components and a lower abstraction level, they will need to write a Geofront library.
+
+\textbf{Suggestion for improvement:} re-implemented the 'compile to js' procedure.
+
+(image of abstracting away a javascript subset)
+
+
+
+\subsection*{\emph{Closeness of mapping: What 'programming games' need to be learned?}}
+
+Mapping a problem to a geofront script is intuitive for the most part.
+Think of the operations needed to solve a problem, 
+find the right libraries and nodes representing these operations,
+and connect these nodes according to type. 
+However, this mapping of problem and solution is hindered by the fact that Geofront needed to support iteration. 
+
+(image of iteration problem)
+
+
+
+\subsection*{\emph{Consistency: When some of the language has been learnt, how much of the rest can be inferred? }}
+
+\cite[]{green_usability_1996} notes on the difficulty of defining 'consistency' in language design, and chose to define it as a form of 'guessability'.
+
+Geofront has introduced certain symbolic distinctions between graphical entities to aid this predictability. 
+The biggest is the distinction between \m{operation} and \m{widget} components: 
+operations are pure functions with inputs and outputs. 
+widgets represent some 'outside world' interaction, like an input value, a file, or a web service. 
+This way, 'special behavior' is isolated to widgets, making the rest of the script more predictable. 
+
+In practice, certain inconsistencies within Geofront arise due to the open nature of the plugin system. 
+the consistency of geofront is mitigated by a library with a very different notion of naming, or if the library chooses unusual input or output patterns. 
+For example, a euclidean, 3D coordinate can be specified as a \m{Vector3} object, a struct, an array of three numbers, or three different x, y, z input parameters.
+Then again, it is unclear if inconsistencies between the api's of a language's libraries are to be contributed to the inconsistency of the language as a whole. 
+
+\textbf{Suggestion for improvement:} Stabilize the api of the Geofront Standard Library.
+
+
+
+\subsection*{\emph{Diffuseness: How many symbols or graphic entities are required to express a meaning? }}
+
+Geofront periodically suffers from the same 'Diffuseness' problems \cite[]{green_usability_1996} adheres to vpls general. 
+That is, sometimes a surprising number of 'graphical entities' / nodes are required to represent a simple statement.  
+This is apparent when representing mathematical calculations. 
+
+(image of complex / simple mathematical calcluation in javascript and in geofront)
+
+\textbf{Suggestion for improvement:} These situations could be prevented by allowing scriptable components. 
+
+
+
+\subsection*{\emph{Error- proneness: Does the design of the notation induce 'careless mistakes'? }}
+
+There are some errors the user can make  in Geofront that will not be immediately obvious. 
+The biggest one is that there are no systems in place preventing large calculations. 
+These might freeze up the application. 
+
+To prevent this, the geofront interpreter should have been implemented to run on a separate thread, using a web worker. 
+Besides this, in general, many systems are in place preventing errors, such as the type-safety used throughout geofront.
+Also, by disallowing cyclical graphs, users cannot create infinite loops accidentally.
+
+
+
+\subsection*{\emph{Hard mental operations: Are there places where the user needs to resort to fingers or pencilled annotation to keep track of what's happening? }}
+
+Geofront is developed specifically to prevent "Hard mental operations".
+Following the dataflow paradigm explained in \refsec{sec:background:dataflow}, geofront chose to disallows cyclical patterns. 
+This greatly reduces the complexity of possible graph configurations, and also causes all in-between results to be immutable or 'final'.
+By then allowing these results to be inspected, and allowing the graph to be easily reconfigured, Geofront allows a workflow rooted in experimentation and 'play'.
+Users do not need to 'keep track' or 'guess' how things work.
+Instead, they can simply experience the behavior, and adjust the behavior until satisfied. 
+
+
+
+\subsection*{\emph{Hidden dependencies: Is every dependency overtly indicated in both directions? Is the indication perceptual or only symbolic? }}
+
+The dimension of 'hidden dependencies' is another way the dataflow-paradigm is advantageous. 
+The pure functions of a diagram-based vpl like Geofront make the language in general consistent and predictable.
+However, there are two exceptions to this rule:
+First, the \m{widget} nodes are allowed to produce side-effects, such as opening a window, asking for an input, making a web request, etc. 
+These are required to provide geofront with interactive inputs and outputs.
+The distinction between \m{widgets} and \m{}
+
+And second, the pureness of functions can only be maintained if all Geofront libraries also exclusively use pure functions. 
+There is no fail-safe in place to prevent the usage of a library containing functions with many side-effects. 
+
+\subsection*{\emph{Premature commitment: Do programmers have to make decisions before they have the information they need? }}
+
+In general, Geofront requires almost no premature commitment. 
+Or, rather, the level of premature commitment is in line with textual programming languages, in the sense that a user is always somewhat committed to the structure they themselves build. 
+
+One practical way in which Geofront exceeds in this dimension of premature commitment, is that the application does not require a restart upon loading a new library. 
+Users can add or remove libraries "on the fly". 
+This is unlike any vpl studied at \refsec{sec:related-geovpl} or \refsec{sec:related-webvpl}.
+
+One particular type of commitment users must be aware off, however, is the commitment to using a \ac{vpl} like Geofront. 
+Therefore, 
+
+
+\subsection*{\emph{Progressive evaluation: Can a partially-complete program be executed to obtain feedback on 'How am I doing'? }}
+
+Yes. 
+As explained at the answer for the dimension of 'Hard mental operations', this is a core aspect in how Geofront achieves its interactivity and debugability, together with its ability to inspect parameters. 
+
+(Image: Show example)
+
+\subsection*{\emph{Role- expressiveness: Can the reader see how each component of a program relates to the whole? }}
+
+as the authors of \cite[]{green_usability_1996} write: "The dimension of role-expressiveness is intended to describe how easy it is to answer the question 'what is this bit for?'"
+
+sizeable phenomenon
+
+grootste boosdoener: looping is now a simple boolean toggle within a component. 
+This makes it very non-explicit, 
+
+This leads to another problem: the problem of declarative iterations within a vpl. 
+
+
+\subsection*{\emph{Secondary notation: Can programmers use layout, color, other cues to convey extra meaning, above and beyond the 'official' semantics of the language? }}
+
+No, Geofront does not offer annotations in its current state, besides the way the nodes are configured on the canvas.  
+Geofront does provide visual indicators for types, and for if a cable / variable represents a single item, or a list of items.
+
+\textbf{Suggestion for improvement:} Provide a way to annotate: create groups, write comments, etc. 
+\textbf{Suggestion for improvement:} Type colors would also be nice.
+
+\subsection*{\emph{Viscosity: How much effort is required to perform a single change? }}
+
+Despite these efforts, the 'mouse intensive' interface of vpls like Geofront continues to be a hinder for viscosity.
+Certain situations require excessive mouse interaction, like substituting a function with another function, but keeping all inputs the same.
+In text, this would be as simple as a non-symbolic renaming of the called function.
+In geofront, this requires a lot of reconfiguration of cables. 
+
+\textbf{Suggestion for improvement:} Viscosity could be improved by creating special actions in the editor to perform these types of manipulations.  
+%  - select multiple inputs, select multiple outputs: connect by height.
+% rename node
+
+
+\subsection*{\emph{Visibility: Is every part of the code simultaneously visible (assuming a large enough display), or it it at least possible to juxtapose any two parts side-by-side at will? If the code is dispersed, is it at least possible to know in what order to read it?}}
+
+All parts of the code are simultaneously visible. 
+As the question implies, by not making the code dispersed, 
+
+\subsection{ALL IN ALL}
+[move this to conclusion]
+
+- dataflow programming aspects allow for all dataflow nicieties.
+- However, the openness of the plugin system inhibits the consistency of the language.
+  - libraries can create functions with many side effects, or they can use inconsistent input and output datatypes.
+  - This ultimately leads to confusion for the end-user.
+
+
 
 % ## Case Studies
 
