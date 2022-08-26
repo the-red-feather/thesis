@@ -19,8 +19,37 @@ Finally, \refsec{sec:analyses:utilization}.
 
 [Analyze the web-exposed geoprocessing libraries]
 
-(rust-> wasm is powerful and feature-rich. it functions like a normal compiler. compilation was done easely. If a library cannot be compiled, the compiler statements are clear enough to identify which library causes the in)
-(C++ -> wasm requires a lot of trivia knowledge. it cannot be done often, or easely. Also behind on documentation compared to Rust).
+
+\begin{note}
+  where C++ requires emscripten, rust does that almost out of the box, (rustup target add wasm32-unknown-unknown)
+  What we actually need to compare is not emscripten and wasm-bindgen, but 'embind' and 'wasm-bindgen'. 
+\end{note}
+
+
+\begin{note}
+
+  **rust-> wasm is powerful and feature-rich.** 
+  
+  - it functions like a normal compiler. compilation was done easely. 
+  - If a library cannot be compiled, the compiler statements are clear enough to identify which library causes the incompatibility. 
+  - Many Rust libraries also conveniently offer a 'no-std' option, 
+    And many crates (Rust equivalent of a library) include the web as one of their core targets. 
+  - The compile tool 'wasm-bindgen' has excelent support for converting libraries. 
+    - You can create rust libraries which from the outside look like a normal javascript library. 
+
+  **C++ -> wasm is difficult**
+  
+  - requires a lot of trivia knowledge. 
+    - Often, many subdependencies need to be traversed, and makefiles need to be manually edited. 
+    - This cannot be done often, or easely. 
+  - Documentation is behind compared to Rust.
+
+  - Libraries cannot be called. emscripten prefers a cli-type interface, and prefers you to write all the operations you wish to publish as separate command line applications. 
+
+  https://www.hellorust.com/demos/add/index.html
+  https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html
+
+\end{note}
 
 \section{\mySubRQThreeTitle}
 \label{sec:analyses:loading}
