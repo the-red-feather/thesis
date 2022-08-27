@@ -10,32 +10,68 @@ Finally, \refsec{sec:analyses:utilization}.
 \section{\mySubRQOneTitle}
 \label{sec:analyses:representation}
 
-[Analyze the base implementation of geofront]
+% - disadvantages: 
+%   - all in-between data must be stored in memory if it is to be inspected.
+%     - Can't make use of 'writing files', so that something can be removed from memory 
+%     - BUT, even when using emscripten, you are still caching all sorts of things
 
-(keep this very surface level, we have enough other things to be done)
+%   - The web is able to be used for geoprocessing, albeit with some caveats
+%     - Less control and precision
+%     - TypedArrays,
+%     - Geometric predicates 
+%     - Rounding
+%     - ETC.
+%  - Notes:
+%    - would not be possible without these modern web features
+%     - Web Assembly 
+%     - Typed Array's 
+%     - Web Workers
+%     - Web Components,
+%     - 2D Canvas API
+%     - Web GL
+
+
+[Analyze the base implementation of geofront]
+% [conclusion on implementation details]
+
+\emph{Per requirement, to what extend can these core browser features be used to implement this requirement?}
+
+\emph{Per implemented requirement, to what extend does this web implementation differ from existing, popular 3D VPLs?}
+
+Must have: 
+\begin{enumerate}[-]
+  \item a visual language
+  \item an interface to configure this visual language 
+  \item a representation of the 'variables' and 'functions' of the visual language
+  \item a way to provide input data 
+  \item a way to execute the language
+  \item a way to display or save output data
+\end{enumerate}
+
+should have:
+\begin{enumerate}[-]
+  \item A method to preview 3D data used throughout the flowchart
+  \item multiple ways to determine input data (text fields, sliders) 
+  \item multiple ways to view output data (text displays, 3D viewers, etc.)
+\end{enumerate}
 
 \section{\mySubRQTwoTitle}
 \label{sec:analyses:compilation}
 
+REQUIREMENT: libraries containing pure functions exclusively
+- no side effects, thats the whole point
+
 [Analyze the web-exposed geoprocessing libraries]
 
+\subsection{First Experiment}
+
+[Show the performance benchmarks in isolation. Also show them in action on the VPL canvas]
+
+\subsection{Second Experiment}
+
+The catch 21 between C++ and Rust.
 
 \begin{note}
-  where C++ requires emscripten, rust does that almost out of the box, (rustup target add wasm32-unknown-unknown)
-  What we actually need to compare is not emscripten and wasm-bindgen, but 'embind' and 'wasm-bindgen'. 
-\end{note}
-
-
-\begin{note}
-
-  **rust-> wasm is powerful and feature-rich.** 
-  
-  - it functions like a normal compiler. compilation was done easely. 
-  - If a library cannot be compiled, the compiler statements are clear enough to identify which library causes the incompatibility. 
-  - Many Rust libraries also conveniently offer a 'no-std' option, 
-    And many crates (Rust equivalent of a library) include the web as one of their core targets. 
-  - The compile tool 'wasm-bindgen' has excelent support for converting libraries. 
-    - You can create rust libraries which from the outside look like a normal javascript library. 
 
   **C++ -> wasm is difficult**
   
@@ -49,12 +85,48 @@ Finally, \refsec{sec:analyses:utilization}.
   https://www.hellorust.com/demos/add/index.html
   https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html
 
+
+  **rust-> wasm is powerful and feature-rich.** 
+  
+  - it functions like a normal compiler. compilation was done easely. 
+  - If a library cannot be compiled, the compiler statements are clear enough to identify which library causes the incompatibility. 
+  - Many Rust libraries also conveniently offer a 'no-std' option, 
+    And many crates (Rust equivalent of a library) include the web as one of their core targets. 
+  - The compile tool 'wasm-bindgen' has excelent support for converting libraries. 
+    - You can create rust libraries which from the outside look like a normal javascript library. 
+
 \end{note}
+
+\begin{note}
+  where C++ requires emscripten, rust does that almost out of the box, (rustup target add wasm32-unknown-unknown)
+  What we actually need to compare is not emscripten and wasm-bindgen, but 'embind' and 'wasm-bindgen'. 
+\end{note}
+
+
 
 \section{\mySubRQThreeTitle}
 \label{sec:analyses:loading}
 
 [Assess the plugin model]
+
+% - to turn a function into a component usable in a visual programming graph, lots of meta-data is needed. 
+% -> leading to config files 
+% -> leading to a barrier between regular programming libraries, and vpl libraries. 
+% -> this study opted for automated configs based on 'typescipt' headers to attempt to solve this problem. This worked, but had some new Limitations
+%    -> it did allow for rapid experimentation, and seemless interoperability
+%    -> however, other aspects like descriptions, library meta info, etc. 
+%    -> for this a 'config' of some sorts was still needed. 
+
+% Two layers of wrapper libraries are needed to take an existing rust / C++ library, and run it in a web-based visual programming language.
+
+% This is why this third component of the methodology is focused on mitigating the need for the second wrapper library. 
+
+% solutions: 
+% - automatically base visual components on typescript header-files
+% - add any 'config' information to the first type of wrapper library. 
+
+% success: this works, albeit a bit hacky
+
 
 \section{\mySubRQFourTitle}
 \label{sec:analyses:utilization}
@@ -115,11 +187,14 @@ Geofront periodically suffers from the same 'Diffuseness' problems \cite[]{green
 That is, sometimes a surprising number of 'graphical entities' / nodes are required to represent a simple statement.  
 This is apparent when representing mathematical calculations. 
 
+\begin{note}
+  - the flowchart can only represent linear processes. Many geoprocessing algorithms are iterative and make use of conditionals. These cannot easily be expressed in a DAG VPL. As such, these processes must happen within the context of a function, within a 'computational node'  
+\end{note}
+
+
 (image of complex / simple mathematical calcluation in javascript and in geofront)
 
 \textbf{Suggestion for improvement:} These situations could be prevented by allowing scriptable components. 
-
-
 
 \subsection*{\emph{Error- proneness: Does the design of the notation induce 'careless mistakes'? }}
 
@@ -130,8 +205,6 @@ These might freeze up the application.
 To prevent this, the geofront interpreter should have been implemented to run on a separate thread, using a web worker. 
 Besides this, in general, many systems are in place preventing errors, such as the type-safety used throughout geofront.
 Also, by disallowing cyclical graphs, users cannot create infinite loops accidentally.
-
-
 
 \subsection*{\emph{Hard mental operations: Are there places where the user needs to resort to fingers or pencilled annotation to keep track of what's happening? }}
 
@@ -212,16 +285,6 @@ In geofront, this requires a lot of reconfiguration of cables.
 
 All parts of the code are simultaneously visible. 
 As the question implies, by not making the code dispersed, 
-
-\subsection{ALL IN ALL}
-[move this to conclusion]
-
-- dataflow programming aspects allow for all dataflow nicieties.
-- However, the openness of the plugin system inhibits the consistency of the language.
-  - libraries can create functions with many side effects, or they can use inconsistent input and output datatypes.
-  - This ultimately leads to confusion for the end-user.
-
-
 
 % ## Case Studies
 

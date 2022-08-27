@@ -44,7 +44,7 @@ geocomputation functionalities might not be able to be properly:
 \begin{itemize}[-]
   \item \textbf{compiled} into a format functional on the web
   \item \textbf{loaded} within a web-based VPL
-  \item \textbf{visualized} by the interface of a web-based VPL
+  \item \textbf{represented / visualized} by the interface of a web-based VPL
   \item \textbf{used} within a web-based VPL
 \end{itemize}
 As it is unknown which one of these reasons ( or which combination of reasons ) is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
@@ -184,9 +184,14 @@ The fourth step adds geospatial data support, and adds Web Feature Services, Web
 \label{sec:method-two}
 The second component of the methodology seeks an answer to the question of \mySubRQTwoTitle: \mySubRQTwo
 
+\begin{note}
+  REQUIREMENT: libraries containing pure functions exclusively
+  - no side effects, thats the whole point  
+\end{note}
+
 
 % [Why]
-Making sure a \ac{geo-web-vpl} is able to make use of native, non-js libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
+Making sure a \ac{geo-web-vpl} is able to make use of native, system-level libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
 The most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \cite{haas_bringing_2017}.
 Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \cite{haas_bringing_2017,jangda_not_2019}.
 However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{wasm} also may pose challenges:
@@ -392,34 +397,34 @@ The entire idea of a vpl might not be sensible for the operation at hand, or som
 It is therefore vital to access the actual usage of the application for accessing a geocomputation library.
 
 % [HOW]
-To answer the question of \mySubRQFourTitle, the following plan was used: 
-\begin{enumerate}[-]
-  \item Develop a representative use-case application within the prototype \ac{geo-web-vpl}.
-  \item Develop a command line application capable of the very same process.
-  \item Assess both applications according to a series of assessment questions.
-\end{enumerate}
+To answer the question of \mySubRQFourTitle, the various applications created within Geofront will be subjected to a qualitative assessment. 
 
-The execution of this component of the methodology is found in \refchap{chap:results-analyses}.
+% \begin{enumerate}[-]
+%   \item Develop a representative use-case application within the prototype \ac{geo-web-vpl}.
+%   \item Develop a command line application capable of the very same process.
+%   \item Assess both applications according to a series of assessment questions.
+% \end{enumerate}
 
-\subsection{use-case application}
-The application used in both test cases is an "isocurves from DTM" process. 
-But also: we want the iso-curves of a specific location. How to get this data is part of the exercise
+% The execution of this component of the methodology is found in \refsec{sec:analyses:utilization}.
 
-\begin{note}
-[This is subject to change, according to how much I can accomplish ]
+% \subsection{use-case application}
+% The application used in both test cases is an "isocurves from DTM" process. 
+% But also: we want the iso-curves of a specific location. How to get this data is part of the exercise
 
-- find the required height data as WFS / WMS
-- determine a boundary
-- load a dtm as a regular png / tiff image
-- specify the parameters, like height delta, smoothness.
-- marching squares
-- post-process curves
-- save as wkt, geojson, or some other well-known vector format
+% \begin{note}
+% [This is subject to change, according to how much I can accomplish ]
 
+% - find the required height data as WFS / WMS
+% - determine a boundary
+% - load a dtm as a regular png / tiff image
+% - specify the parameters, like height delta, smoothness.
+% - marching squares
+% - post-process curves
+% - save as wkt, geojson, or some other well-known vector format
 
-\end{note}
+% \end{note}
 
-\subsection{Assessment Criteria}
+\subsection{Assessment Framework}
 For the assessment criteria, the cognitive dimensions framework of \cite[]{green_usability_1996} will be used. 
 The framework is useful for its focus on language features. 
 This allows the assessment to be made within the scope of this study, and without performing user-testing.

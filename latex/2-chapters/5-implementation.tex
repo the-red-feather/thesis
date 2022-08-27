@@ -272,6 +272,11 @@ but it does use robust geometric predicates, and a high precision kernel (f64).
 \section{\mySubRQThreeTitle: The plugin loader}
 \label{sec:implementation:loading}
 
+% - to turn a function into a component usable in a visual programming graph, lots of meta-data is needed. 
+% -> leading to config files 
+% -> leading to a barrier between regular programming libraries, and vpl libraries. 
+% -> this study opted for automated configs based on 'typescipt' headers to attempt to solve this problem. This worked, but had some new Limitations
+
 The last implementation which requires elaboration is the plugin model. 
 A full overview of this system can be given 
 
@@ -378,12 +383,7 @@ The library is loaded, A component is created for each function, with inputs for
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{\mySubRQFourTitle: Isocurve extractor}
+\section{\mySubRQFourTitle: Utilization}
 \label{sec:implementation:utilization}
 
-[show the implementation of the example application]
-
-
-
-
-
+[show some of the applications written]
