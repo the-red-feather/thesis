@@ -72,7 +72,7 @@ From the Shim models, the main model of the visual language can be constructed.
 The \m{nodes-canvas} category contains all logic \& visualization of the visual programming graph, and writing this category was equivalent to developing the visual programming language itself. 
 The other categories of the repository can be understood as auxiliary to this one.
 
-\subsubsection*{ Representation }
+\subsubsection*{Representation}
 
 % TODO uml diagram?
 % Picture of a single node
@@ -100,9 +100,8 @@ Because of the way Cables and Nodes reference each other, the graph has characte
 % does not solve all problems automatically
 
 Finally, this entire graph object is accessed by a larger \m{NodesCanvas} object, and this canvas has the responsibilities of "View" and "Controller". 
-\todo{More?}
 
-\subsubsection*{ Rendering }
+\subsubsection*{RenderingE}
 
 \begin{figure}
   \centering
@@ -302,7 +301,7 @@ However, specific visualization convertors are not yet implemented, for these ar
     \includegraphics[width=\linewidth]{viewer-3.png}
     \caption{}\label{fig:viewer-geometries:2}
   \end{subfigure}%
-  \caption[Geofront viewer geometries]{Some geometry visualized using the geofront viewer}
+  \caption[Geofront viewer geometries]{Some a bezier curve and surface visualized using the geofront viewer}
   \label{fig:viewer-geometries}
 \end{figure}
 
@@ -315,33 +314,31 @@ However, specific visualization convertors are not yet implemented, for these ar
 \section{\mySubRQTwoTitle: Web-ready geoprocessing libraries}
 \label{sec:implementation:compilation}
 
+\subsection{First part}
+
+\begin{note}
+TODO write a piece of code in three ways, compare them
+\end{note} 
+
+\subsection{Second part}
+
 \begin{note}
 Explain the process of taking a C++ / Rust library and putting it onto a web-browser.
-Explain differences between C++ and Rust 
-Explain problems encountered with C++ & emscripten
-Explain niceties encountered with Rust & wasm-bindgen
 \end{note}
 
 
-\subsection{C++ \& CGAL}
-
-\subsubsection{Limitations}
+\subsubsection*{C++ \& CGAL}
 
 \begin{note}
 - sub-dependencies: boost, ..., ...
 \end{note}
   
-\subsection{Rust \& startin}
+\subsubsection*{Rust \& startin}
 
 \begin{note}
 Startin is by no means a replacement of CGAL, 
 but it does use robust geometric predicates, and a high precision kernel (f64).
 \end{note}
-
-\subsection{Performance}
-- figure out the difference in load time and performance between startin's tin, cgal's tin, and my dumb triangulator.
-
-\subsection{Conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -424,11 +421,6 @@ rust -> wasm pack compile target web -> works out of the box
 c++ -> emscripten -> more manual work needed 
 
 \subsubsection{Features}
-- IO can use:
-  - basic types (boolean / number / string)
-  - jsons, objects, interfaces (typesystem will pick up on them)
-  - ArrayBuffers (vital for performant data transfer)
-
 
 
 
@@ -459,8 +451,14 @@ Alternatively:
 In Geofront: 
 4. Reference the CDN (content delivery network) address of this node package. 
 
+
 Congrats, this is now a publicly accessible geofront plugin!
 The library is loaded, A component is created for each function, with inputs for input parameters, and a singular output. If a 'typescript tuple type' is exported, the plugin loader will create multiple outputs according to each component of the tuple.
+
+- IO can use:
+  - basic types (boolean / number / string)
+  - jsons, objects, interfaces (typesystem will pick up on them)
+  - ArrayBuffers (vital for performant data transfer)
 
 
 

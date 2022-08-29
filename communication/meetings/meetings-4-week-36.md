@@ -1,16 +1,30 @@
+## HWAT DO i WANT
+- I want to finish some of the pressing issues of geofront
+- I want the thesis to be finished and of sufficient quality
+  - That is why I want to get my hands on some data. To be able to show something of substance
+  ]\
 
+
+
+
+
+
+## Thoughts
+
+- I find it weird to write the analysis chapter. 
+  - I can only give written comments, I have no data. 
 
 ## Questions: 
 
-- I'm looking for a good source on geocomputation / geodata. 
+<!-- - I'm looking for a good source on geocomputation / geodata. 
   Just generic things, like 'different types of geodata'
-
+   -->
+- What needs the most work? 
+- What feels the most incomplete?
 
 ## Known Issues 
 
 - Background & related works is too long! 
-- 
-
 
 
 ## LOG 

@@ -105,7 +105,7 @@ Question C and D are answered by \refsec{sec:analyses:representation}.
 Based on the vpl research of \refsec{sec:background-vpl}, any visual programming language must at the very least contain the following aspects: 
 \begin{enumerate}[-]
   \item a programming language model
-  \subsection a representation of the 'variables' and 'functions' of the language
+  \subitem a representation of the 'variables' and 'functions' of the language
   \item a visualization of this data model
   \item an interface to create and edit the language 
   \item a way to provide input data 
@@ -164,19 +164,19 @@ This includes the following set of features relevant for the 3D VPL:
   \item WebAssembly
 \end{enumerate}
 
-\subsection*{C: Implementation Steps}
+% \subsection*{C: Implementation Steps}
 
-\begin{note}
-TODO: An image showing the phases of development
-\end{note}
+% \begin{note}
+% TODO: An image showing the phases of development
+% \end{note}
 
-To find the answer to question C, this study implemented the core of the prototype \ac{geo-web-vpl}.
-Just like the entire study, the development trajectory for implementing will be done incrementally, ensuring results during all steps of the development. 
-The first step of the phase consists of creating the basics of the \ac{gui} itself. 
-A basic \ac{vpl} will be created which can only process boolean statements. 
-The second step involves developing the main datamodel of the VPL, to represent the program in an object-oriented way. 
-The third step adds types, geometry, and the visualization of this geometry in 3D, as well as textures / images in 2d. \
-The fourth step adds geospatial data support, and adds Web Feature Services, Web Map Services, and coordinate reference systems.  
+% To find the answer to question C, this study implemented the core of the prototype \ac{geo-web-vpl}.
+% Just like the entire study, the development trajectory for implementing will be done incrementally, ensuring results during all steps of the development. 
+% The first step of the phase consists of creating the basics of the \ac{gui} itself. 
+% A basic \ac{vpl} will be created which can only process boolean statements. 
+% The second step involves developing the main datamodel of the VPL, to represent the program in an object-oriented way. 
+% The third step adds types, geometry, and the visualization of this geometry in 3D, as well as textures / images in 2d. \
+% The fourth step adds geospatial data support, and adds Web Feature Services, Web Map Services, and coordinate reference systems.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -320,7 +320,7 @@ For this component of the methodology, the following plan was used:
   \item assess to what extend it mitigates the need for explicit configuration
 \end{enumerate}
 
-The design is given subsequently, the build implementation and assessment can be found in \refsec{sec:impl-plugin}.
+The design is given subsequently, the build implementation and assessment can be found in \refsec{sec:implementation:loading} and \refsec{sec:analyses:loading}.
 
 \subsection{Design \& Method}
 

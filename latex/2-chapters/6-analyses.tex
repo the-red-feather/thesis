@@ -12,23 +12,70 @@ Finally, \refsec{sec:analyses:utilization}.
 
 This section of the analysis covers the question of \mySubRQOneTitle, and aims in particular to answer the question: \emph{Per requirement, to what extend can core browser features be used to implement it?}.
 
-We group the requirements listed at \refsec{sec:method-one} in a group of base features, a group of dataflow features, and a group of geometry features.
+We group the requirements listed at \refsec{sec:method-one} in a group of base features,
+a group of dataflow features, and a group of geometry features.
 
-\subsection{Base VPL Features}
+\subsection{Base dataflow VPL Features}
 
-[Analyze the base implementation of geofront]
-% [conclusion on implementation details]
+\begin{note}
 
+% \begin{enumerate}[-]
+%   \item a visual language
+%   \item an interface to configure this visual language 
+%   \item a representation of the 'variables' and 'functions' of the visual language
+%   \item a way to provide input data 
+%   \item a way to execute the language
+%   \item a way to display or save output data
+%  MAKING TYPESAFE CONNECTIONS
+%  EXPLAINING THINGS TO THE USER
 
-\subsection{dataflow VPL Features}
+TODO elaborate upon each of these features
+Add type checking.
+
+"Types in general have not been solved across all languages, so we cannot just do that here. Also, how to communicate ideas about types in an end-user-friendly manner is also a sizable topic" 
+\end{note}
+
+Geofront was able to implement all normal, basic features of a dataflow VPL in the browser using JavaScript and HTML5 features.
+
+The Canvas API turned out to be a crucial feature to make the base UI functional. 
+The same level of interactivity would have been difficult to achieve using just plain html.
+However, The CPU-based rendering can get slow at a high number of components. 
 
 % - disadvantages: 
 %   - all in-between data must be stored in memory if it is to be inspected.
 %     - Can't make use of 'writing files', so that something can be removed from memory 
 
 
-\subsection{geometry VPL Features}
+\subsection{Geometry VPL Features}
 
+\begin{note}
+
+% should have:
+% \begin{enumerate}[-]
+%   \item A method to preview 3D data used throughout the flowchart
+
+%   \item multiple ways to determine input data (text fields, sliders) 
+
+%   \item multiple ways to view output data (text displays, 3D viewers, etc.)
+% \end{enumerate}
+  
+  TODO elaborate upon each of these features
+  Add type checking.
+  
+  "Types in general have not been solved across all languages, so we cannot just do that here. Also, how to communicate ideas about types in an end-user-friendly manner is also a sizable topic" 
+\end{note}
+
+Geofront was able to implement most features of a geometry-focused VPL using browser features, however there are some caveats. 
+
+To support features like loading or streaming a file, or inspecting data, the browser needs to take the full file into memory. 
+Additionally, internal representations of geometry suffer from Javascript's limited type support.
+Typescript has been used to mitigate some of these shortcomings, this still leads to trouble when type-checking at runtime. 
+The prototype-based objects also led to classes which could not be properly reflected at runtime.
+These two aspects together makes interpreting what geometry to visualize and when a difficult exercise. 
+
+% - In general, the geometry visualization, and types in geofront in specific requires examination. 
+
+however, what Geofront gets in return, is the fact that make aspects such as WebGL do not need to be included within the source code of Geofront, making it much more lightweight than an application which carries its render API with itself. 
 
 %   - The web is able to be used for geoprocessing, albeit with some caveats
 %     - Less control and precision
@@ -46,49 +93,6 @@ We group the requirements listed at \refsec{sec:method-one} in a group of base f
 %     - 2D Canvas API
 %     - Web GL
 
-
-
-
-
-Must have: 
-\begin{enumerate}[-]
-  \item a visual language
-  \item an interface to configure this visual language 
-  \item a representation of the 'variables' and 'functions' of the visual language
-  \item a way to provide input data 
-  \item a way to execute the language
-  \item a way to display or save output data
-\end{enumerate}
-
-should have:
-\begin{enumerate}[-]
-  \item A method to preview 3D data used throughout the flowchart
-  \item multiple ways to determine input data (text fields, sliders) 
-  \item multiple ways to view output data (text displays, 3D viewers, etc.)
-\end{enumerate}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-THE EVENTUAL ANSWER TO ALL OF THIS: 
-
-The browser appears to be capable of representing a dataflow-type vpl graph to an acceptable degree, 
-based on the implementation presented in \refsec{sec:implementation:representation}, and the analysis in \refsec{sec:analyses:representation}.
-The browsers biggest advantage for an application like this is the sheer amount of features a javascript program can use by default, like the 2D canvas api and WebGL. 
-These features do not need to be included within the source code of the application, leading to quick load times. 
-All three of these features proved to be vital, and were performant enough to support an application like this. 
-Only the 2D canvas Api can become slow when rendering a great number of components. 
-
-JavaScript can also be used to represent the data structure and logic needed to make a VPL functional. 
-Javascript's flexibility proved to be crucial to support advanced features like dynamically loading and using libraries at runtime. 
-The disadvantage was due to JavaScript's very limited type support, and its limited precision in general. 
-While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no distinction between different number types (\m{int, float, double}) for example. 
-The prototype-based objects also led to type-check problems. 
-Typescript has been used to mitigate some of these shortcomings.  
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,30 +106,31 @@ Typescript has been used to mitigate some of these shortcomings.
 \section{Compilation Process}
 \label{sec:analyses:compilation}
 
-REQUIREMENT: libraries containing pure functions exclusively
-- no side effects, thats the whole point
-
-
-HOWEVER 
-- existing geo-libs: 
-  - file IO focussed, (because of streaming \& big data)
-  - templates
-  - 
-
-
-
-
-[Analyze the web-exposed geoprocessing libraries]
-
-\subsection{First Experiment}
-
-[Show the performance benchmarks in isolation. Also show them in action on the VPL canvas]
-
-\subsection{Second Experiment}
-
-The catch 21 between C++ and Rust.
+\subsection{First part}
 
 \begin{note}
+[Show the performance benchmarks in isolation. Also show them in action on the VPL canvas]
+\end{note}
+  
+\subsection{Second part}
+
+
+\begin{note}
+
+  REQUIREMENT: libraries containing pure functions exclusively
+  - no side effects, thats the whole point
+  
+  
+  HOWEVER 
+  - existing geo-libs: 
+    - file IO focussed, (because of streaming \& big data)
+    - templates
+    - 
+  
+  [Analyze the web-exposed geoprocessing libraries]
+  
+  
+  The catch 21 between C++ and Rust.  
 
   **C++ -> wasm is difficult**
   
@@ -149,15 +154,23 @@ The catch 21 between C++ and Rust.
   - The compile tool 'wasm-bindgen' has excelent support for converting libraries. 
     - You can create rust libraries which from the outside look like a normal javascript library. 
 
+
+    - figure out the difference in load time and performance between startin's tin, cgal's tin, and my dumb triangulator.
+
 \end{note}
 
 \begin{note}
-  where C++ requires emscripten, rust does that almost out of the box, (rustup target add wasm32-unknown-unknown)
+  where C++ requires emscripten, rust does that almost out of the box, (rustup target add wasm32-unknown-unknown), NOTE C++ also does that with CLANG and LLVM
+
   What we actually need to compare is not emscripten and wasm-bindgen, but 'embind' and 'wasm-bindgen'. 
 \end{note}
 
 \section{Loading plugins}
 \label{sec:analyses:loading}
+
+\begin{note}
+  
+\end{note}
 
 [Assess the plugin model]
 

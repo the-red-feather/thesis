@@ -53,7 +53,7 @@ JavaScript can also be used to represent the data structure and logic needed to 
 Javascript's flexibility proved to be crucial to support features like dynamically loading and using libraries at runtime. 
 The disadvantage was due to JavaScript's very limited type support, and limited precision in general. 
 While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no distinction between different number types (\m{int, float, double}) for example. 
-The prototype-based objects also led to type-check problems. 
+% The prototype-based objects also led to type-check problems. 
 Typescript has been used to mitigate some of these shortcomings.  
 
 \begin{itemize}[ ]
@@ -323,14 +323,14 @@ This section provides a discussion on the reproducibility of the developed metho
 The many fields this study draws from mean that a great variety of auxiliary aspects were discovered during the execution ot the study. 
 Some of these aspects are listed here, and could lead to interesting topics for follow-up research. 
 
-\subsection{Deployment, Scalability}
-An earlier, very simple version of the Geofront script had the ability to be compiled to normal javascript.  
+\subsection{Deployment \& Scalability}
+An earlier, very simple version of the Geofront script had the ability to be compiled to normal javascript (see (\reffig{fig:early-geofront-compile-to-js})).  
 All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by functions. 
 This way, the application could be run headless (without the \ac{gui}) either the browser or on a server, using a "Node,js" (Source) or Deno interpreter (Source).
 
 A future study could re-implement this feature, opening up the possibility for deployment and scalability: 
-Scripts created with geofront could then deployed as web applications of themselves, or as a web processing service (WPS, SOURCE).
-Also, by running this script on a server, and ideally a server containing the geodata required in the process, one could deploy a Geofront scripts on a massive scale. to process sizable datasets.
+Scripts created with geofront could then deployed as web applications of themselves, or as a web processing services (WPS, SOURCE).
+Also, by running this script on a server, and ideally a server containing the geodata required in the process, one could deploy and run a Geofront scripts on a massive scale. 
 
 The overall purpose of this would be to create a free and open source alternative to similar tools like the Google Earth Engine, and FME cloud compute. 
 
@@ -493,9 +493,9 @@ The hypothesis was that synergies exist, and that each separate domain stand to 
 In order to make this possible, the study had to acquire a scope to explore all in-between synergies and interactions, leading to geo-vpls, web-vpls, and browser-based geocomputation. 
 Now that this study has made these connections explicit, future studies can focus on more precise aspects of these cornerstones again.
 
-\textbf{Imbalance between Software implementation and study}
+\textbf{Imbalance between software implementation and study}
 
-The third 'danger' which remained an ongoing balancing act during the conduction of this study, is the balance between 'performing a study' and 'developing an application'. 
+The third 'danger' which remained an ongoing balancing act during the execution of this study, is the balance between 'performing a study' and 'developing an application'. 
 Indeed, many of the aspects discussed throughout this study come down to implementation aspects of the geofront application. 
 
 This is why the study has attempted to generalized its findings as much as possible.
