@@ -63,14 +63,13 @@ Typescript has been used to mitigate some of these shortcomings.
 % To what extend can geocomputation libraries written in system-level languages be compiled
 % for web consumption?
 
-Based on the experiments and analysis in \refsec{sec:analyses:compilation}, the study concludes that most contemporary, C++-based geocomputation libraries cannot be sufficiently compiled for web consumption, at least not for the purposes of this study.    
+Based on the experiments and analysis in \refsec{sec:analyses:compilation}, the study concludes that most contemporary, C++-based geocomputation libraries cannot be sufficiently compiled for web consumption, at least not for the purposes of loading the functionalities within a web-VPL.    
 This is not due to wasm itself, but rather the focus of the emscripten compiler.
 The tool can be used to compile full-scale C++ applications, and even includes an emulation of a POSIX environment.
 However, it severely lacks support for compiling libraries themselves, compared to other wasm-library compilers.
 libraries generated with emscripten's 'embind' tool severely lack ergonomics, and thus would not be directly loadable in a geo-web-vpl.
 While web-implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type vpl using pure functions.
-Additionally, many scientifically oriented C++ libraries like CGAL make extensive use of meta programming and template programming. 
-These paradigms do not translate well to an environment outside of C++. 
+Additionally, many scientifically oriented C++ libraries like CGAL make extensive use of meta programming and template programming, paradigms which do not translate well to an environment outside of C++. 
 Finally, the study was able to recognize some discrepancies between the novelty of the WebAssembly format, juxtaposed to 50 year legacy of the C++ language.
 
 Despite all of this, the study was able to provide a solution to these compilation shortcomings by expanding the range of 'system-level languages' beyond C++. 

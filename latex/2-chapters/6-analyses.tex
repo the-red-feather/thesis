@@ -7,13 +7,28 @@ Second, \refsec{sec:analyses:compilation}.
 Then, \refsec{sec:analyses:loading}.
 Finally, \refsec{sec:analyses:utilization}.
 
-\section{\mySubRQOneTitle}
+\section{The base application}
 \label{sec:analyses:representation}
+
+This section of the analysis covers the question of \mySubRQOneTitle, and aims in particular to answer the question: \emph{Per requirement, to what extend can core browser features be used to implement it?}.
+
+We group the requirements listed at \refsec{sec:method-one} in a group of base features, a group of dataflow features, and a group of geometry features.
+
+\subsection{Base VPL Features}
+
+[Analyze the base implementation of geofront]
+% [conclusion on implementation details]
+
+
+\subsection{dataflow VPL Features}
 
 % - disadvantages: 
 %   - all in-between data must be stored in memory if it is to be inspected.
 %     - Can't make use of 'writing files', so that something can be removed from memory 
-%     - BUT, even when using emscripten, you are still caching all sorts of things
+
+
+\subsection{geometry VPL Features}
+
 
 %   - The web is able to be used for geoprocessing, albeit with some caveats
 %     - Less control and precision
@@ -21,6 +36,7 @@ Finally, \refsec{sec:analyses:utilization}.
 %     - Geometric predicates 
 %     - Rounding
 %     - ETC.
+
 %  - Notes:
 %    - would not be possible without these modern web features
 %     - Web Assembly 
@@ -31,12 +47,8 @@ Finally, \refsec{sec:analyses:utilization}.
 %     - Web GL
 
 
-[Analyze the base implementation of geofront]
-% [conclusion on implementation details]
 
-\emph{Per requirement, to what extend can these core browser features be used to implement this requirement?}
 
-\emph{Per implemented requirement, to what extend does this web implementation differ from existing, popular 3D VPLs?}
 
 Must have: 
 \begin{enumerate}[-]
@@ -55,11 +67,53 @@ should have:
   \item multiple ways to view output data (text displays, 3D viewers, etc.)
 \end{enumerate}
 
-\section{\mySubRQTwoTitle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+THE EVENTUAL ANSWER TO ALL OF THIS: 
+
+The browser appears to be capable of representing a dataflow-type vpl graph to an acceptable degree, 
+based on the implementation presented in \refsec{sec:implementation:representation}, and the analysis in \refsec{sec:analyses:representation}.
+The browsers biggest advantage for an application like this is the sheer amount of features a javascript program can use by default, like the 2D canvas api and WebGL. 
+These features do not need to be included within the source code of the application, leading to quick load times. 
+All three of these features proved to be vital, and were performant enough to support an application like this. 
+Only the 2D canvas Api can become slow when rendering a great number of components. 
+
+JavaScript can also be used to represent the data structure and logic needed to make a VPL functional. 
+Javascript's flexibility proved to be crucial to support advanced features like dynamically loading and using libraries at runtime. 
+The disadvantage was due to JavaScript's very limited type support, and its limited precision in general. 
+While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no distinction between different number types (\m{int, float, double}) for example. 
+The prototype-based objects also led to type-check problems. 
+Typescript has been used to mitigate some of these shortcomings.  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Compilation Process}
 \label{sec:analyses:compilation}
 
 REQUIREMENT: libraries containing pure functions exclusively
 - no side effects, thats the whole point
+
+
+HOWEVER 
+- existing geo-libs: 
+  - file IO focussed, (because of streaming \& big data)
+  - templates
+  - 
+
+
+
 
 [Analyze the web-exposed geoprocessing libraries]
 
@@ -102,9 +156,7 @@ The catch 21 between C++ and Rust.
   What we actually need to compare is not emscripten and wasm-bindgen, but 'embind' and 'wasm-bindgen'. 
 \end{note}
 
-
-
-\section{\mySubRQThreeTitle}
+\section{Loading plugins}
 \label{sec:analyses:loading}
 
 [Assess the plugin model]
@@ -127,8 +179,7 @@ The catch 21 between C++ and Rust.
 
 % success: this works, albeit a bit hacky
 
-
-\section{\mySubRQFourTitle}
+\section{Usability}
 \label{sec:analyses:utilization}
 
 This section offers an analysis on the usability of Geofront, according to the framework described by \cite[]{green_usability_1996}.
