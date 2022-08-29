@@ -1,7 +1,8 @@
 \chapter{Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \label{chap:implementation}
 
-This chapter covers both the implementation of this study, as well as the software implementation of various ingredients needed within this study. 
+This chapter covers both the implementation of this study, as well as the software implementation, of various ingredients needed within this study. 
+
 First, \refsec{sec:implementation:representation}.
 Second, \refsec{sec:implementation:compilation}.
 Then, \refsec{sec:implementation:loading}.
@@ -10,8 +11,8 @@ Finally, \refsec{sec:implementation:utilization}.
 \section{\mySubRQOneTitle: The Geofront Application}
 \label{sec:implementation:representation}
 
-This section explains the significant implementation details of the geo-web-vpl solution.
-This solution is titled Geofront, as a concatenation of "geometry" and "frontend".
+This section explains the significant components of the geo-web-vpl prototype software implementation. 
+This prototype is titled Geofront, as a concatenation of "geometry" and "frontend".
 
 % Explain main code setup \& components
 Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
@@ -25,10 +26,10 @@ the repository used around 9.000 lines of code, divided into core categories and
   \item \m{shims}: Models to reason about 'programming language features', such as functions and variables.
   \item \m{nodes-canvas}: Contains the model, renderer and controller of the visual programming graph itself.  
   \item \m{modules}: holds all classes dedicated to dynamically loading plugins.
-  \item \m{std}: The default plugin, baked into \geofront{}.   
+  \item \m{std}: The default plugin, baked into Geofront.   
   \item \m{html}: a 'web framework' of reusable html components making up the UI visuals.
   \item \m{menu}: a menu system which takes care of the model \& logic of the UI.
-  \item \m{viewer}: The 3D renderer accompanying \geofront{}.
+  \item \m{viewer}: The 3D renderer accompanying Geofront.
   \item \m{util}: Utility functions.   
 \end{enumerate}
 What follows is a clarification of some of these categories.
@@ -36,13 +37,15 @@ What follows is a clarification of some of these categories.
 \subsection*{I. Shims}
 % TODO: UML / images of shims 
 
-Since \geofront{} is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
+Since Geofront is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
 This is why the \m{FunctionShim}, \m{TypeShim}, \m{VariableShim} and \m{ModuleShim} classes exist, respectively. 
 For example, the \m{FunctionShim} offers the name, description, number of inputs, and number of outputs of a function, as well as ways to invoke the function it represents.
-These inputs and outputs have corresponding \m{TypeShims}, which are formal representations of TypeScript / JavaScript-based types. TypeShims can be structured recursively to define a \m{List of List of strings} for example. The \m{TypeShim} is also used to reason about type checking and type compatibility.
+These inputs and outputs have corresponding \m{TypeShims}, which are formal representations of TypeScript / JavaScript-based types. 
+TypeShims can be structured recursively to define a \m{List of List of strings} for example. The \m{TypeShim} is also used to reason about type checking and type compatibility.
 
-the shims are a set of classes used in almost all other categories within \geofront{}. They are located within the \m{modules} category, for this is where most shims are instantiated.
-The shim classes are designed using the Object Type design pattern (SOURCE: BIG FOUR). In short, this means that one function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared with any object wishing to use the function. 
+the shims are a set of classes used in almost all other categories within Geofront. 
+The shim classes are designed using the Object Type design pattern (SOURCE: BIG FOUR). 
+In short, this means that one function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared with any object wishing to use the function. 
 The name \m{shim} was taken from \m{wasm-bindgen}'s (SOURCE) naming convention for the auto-generated \m{JavaScript} and \m{TypeScript} files. These classes were first created as a representation of those shims.
 
 

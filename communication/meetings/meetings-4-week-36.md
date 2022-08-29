@@ -6,6 +6,10 @@
   Just generic things, like 'different types of geodata'
 
 
+## Known Issues 
+
+- Background & related works is too long! 
+- 
 
 
 
@@ -29,6 +33,13 @@ But how to proceed?
 
 Also, what is my schedule for finishing these things? 
 
+(29 August)
+- just filled the full conclusion! of course it is quicky written, and not completely finished, but it is finished enough for our purposes right now
+
+MAANDAG: 
+- kijk hoe ver je komt met de implementatie afronden 
+- 
+
 
 
 
@@ -46,8 +57,18 @@ FINISHED
 3 _DONE_
 4 _DONE_
 5 ...
+  - 5.1
+  - 5.2
+  - 5.3
+  - 5.4
+
 6 ...
-7 
+  - 6.1
+  - 6.2
+  - 6.3
+  - 6.4
+
+7 _DONE_
   - 7.1: Conclusion 
   - 7.2: Discussion
      - 7.2.1: Contribution
