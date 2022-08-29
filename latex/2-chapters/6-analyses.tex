@@ -197,9 +197,9 @@ however, what Geofront gets in return, is the fact that make aspects such as Web
 
 This section offers an analysis on the usability of Geofront, according to the framework described by \cite[]{green_usability_1996}.
 
+Abstraction gradient: What are the minimum and maximum levels of abstraction? Can fragments be encapsulated
 
-
-\subsection*{\emph{Abstraction gradient: What are the minimum and maximum levels of abstraction? Can fragments be encapsulated?}}
+\subsection*{Abstraction gradient: What are the minimum and maximum levels of abstraction? Can fragments be encapsulated?}
 
 Geofront was meant to support encapsulation. 
 The need for re-using parts of a script as components / functions was deemed more important than the benefits of having no abstraction hierarchy (what you see is what you get).
@@ -214,7 +214,7 @@ As such, if a user desires re-usable components and a lower abstraction level, t
 
 
 
-\subsection*{\emph{Closeness of mapping: What 'programming games' need to be learned?}}
+\subsection*{Closeness of mapping: What 'programming games' need to be learned?}
 
 Mapping a problem to a geofront script is intuitive for the most part.
 Think of the operations needed to solve a problem, 
@@ -226,7 +226,7 @@ However, this mapping of problem and solution is hindered by the fact that Geofr
 
 
 
-\subsection*{\emph{Consistency: When some of the language has been learnt, how much of the rest can be inferred? }}
+\subsection*{Consistency: When some of the language has been learnt, how much of the rest can be inferred?}
 
 \cite[]{green_usability_1996} notes on the difficulty of defining 'consistency' in language design, and chose to define it as a form of 'guessability'.
 
@@ -245,7 +245,7 @@ Then again, it is unclear if inconsistencies between the api's of a language's l
 
 
 
-\subsection*{\emph{Diffuseness: How many symbols or graphic entities are required to express a meaning? }}
+\subsection*{Diffuseness: How many symbols or graphic entities are required to express a meaning?}
 
 Geofront periodically suffers from the same 'Diffuseness' problems \cite[]{green_usability_1996} adheres to vpls general. 
 That is, sometimes a surprising number of 'graphical entities' / nodes are required to represent a simple statement.  
@@ -260,7 +260,7 @@ This is apparent when representing mathematical calculations.
 
 \textbf{Suggestion for improvement:} These situations could be prevented by allowing scriptable components. 
 
-\subsection*{\emph{Error- proneness: Does the design of the notation induce 'careless mistakes'? }}
+\subsection*{Error- proneness: Does the design of the notation induce 'careless mistakes'?}
 
 There are some errors the user can make  in Geofront that will not be immediately obvious. 
 The biggest one is that there are no systems in place preventing large calculations. 
@@ -270,7 +270,7 @@ To prevent this, the geofront interpreter should have been implemented to run on
 Besides this, in general, many systems are in place preventing errors, such as the type-safety used throughout geofront.
 Also, by disallowing cyclical graphs, users cannot create infinite loops accidentally.
 
-\subsection*{\emph{Hard mental operations: Are there places where the user needs to resort to fingers or pencilled annotation to keep track of what's happening? }}
+\subsection*{Hard mental operations: Are there places where the user needs to resort to fingers or pencilled annotation to keep track of what's happening?}
 
 Geofront is developed specifically to prevent "Hard mental operations".
 Following the dataflow paradigm explained in \refsec{sec:background:dataflow}, geofront chose to disallows cyclical patterns. 
@@ -281,7 +281,7 @@ Instead, they can simply experience the behavior, and adjust the behavior until 
 
 
 
-\subsection*{\emph{Hidden dependencies: Is every dependency overtly indicated in both directions? Is the indication perceptual or only symbolic? }}
+\subsection*{Hidden dependencies: Is every dependency overtly indicated in both directions? Is the indication perceptual or only symbolic?}
 
 The dimension of 'hidden dependencies' is another way the dataflow-paradigm is advantageous. 
 The pure functions of a diagram-based vpl like Geofront make the language in general consistent and predictable.
@@ -293,7 +293,7 @@ The distinction between \m{widgets} and \m{}
 And second, the pureness of functions can only be maintained if all Geofront libraries also exclusively use pure functions. 
 There is no fail-safe in place to prevent the usage of a library containing functions with many side-effects. 
 
-\subsection*{\emph{Premature commitment: Do programmers have to make decisions before they have the information they need? }}
+\subsection*{Premature commitment: Do programmers have to make decisions before they have the information they need?}
 
 In general, Geofront requires almost no premature commitment. 
 Or, rather, the level of premature commitment is in line with textual programming languages, in the sense that a user is always somewhat committed to the structure they themselves build. 
@@ -306,14 +306,14 @@ One particular type of commitment users must be aware off, however, is the commi
 Therefore, 
 
 
-\subsection*{\emph{Progressive evaluation: Can a partially-complete program be executed to obtain feedback on 'How am I doing'? }}
+\subsection*{Progressive evaluation: Can a partially-complete program be executed to obtain feedback on 'How am I doing'?}
 
 Yes. 
 As explained at the answer for the dimension of 'Hard mental operations', this is a core aspect in how Geofront achieves its interactivity and debugability, together with its ability to inspect parameters. 
 
 (Image: Show example)
 
-\subsection*{\emph{Role- expressiveness: Can the reader see how each component of a program relates to the whole? }}
+\subsection*{Role- expressiveness: Can the reader see how each component of a program relates to the whole?}
 
 as the authors of \cite[]{green_usability_1996} write: "The dimension of role-expressiveness is intended to describe how easy it is to answer the question 'what is this bit for?'"
 
@@ -325,7 +325,7 @@ This makes it very non-explicit,
 This leads to another problem: the problem of declarative iterations within a vpl. 
 
 
-\subsection*{\emph{Secondary notation: Can programmers use layout, color, other cues to convey extra meaning, above and beyond the 'official' semantics of the language? }}
+\subsection*{Secondary notation: Can programmers use layout, color, other cues to convey extra meaning, above and beyond the 'official' semantics of the language?}
 
 No, Geofront does not offer annotations in its current state, besides the way the nodes are configured on the canvas.  
 Geofront does provide visual indicators for types, and for if a cable / variable represents a single item, or a list of items.
@@ -333,7 +333,7 @@ Geofront does provide visual indicators for types, and for if a cable / variable
 \textbf{Suggestion for improvement:} Provide a way to annotate: create groups, write comments, etc. 
 \textbf{Suggestion for improvement:} Type colors would also be nice.
 
-\subsection*{\emph{Viscosity: How much effort is required to perform a single change? }}
+\subsection*{Viscosity: How much effort is required to perform a single change?}
 
 Despite these efforts, the 'mouse intensive' interface of vpls like Geofront continues to be a hinder for viscosity.
 Certain situations require excessive mouse interaction, like substituting a function with another function, but keeping all inputs the same.
@@ -345,7 +345,7 @@ In geofront, this requires a lot of reconfiguration of cables.
 % rename node
 
 
-\subsection*{\emph{Visibility: Is every part of the code simultaneously visible (assuming a large enough display), or it it at least possible to juxtapose any two parts side-by-side at will? If the code is dispersed, is it at least possible to know in what order to read it?}}
+\subsection*{Visibility: Is every part of the code simultaneously visible (assuming a large enough display), or it it at least possible to juxtapose any two parts side-by-side at will? If the code is dispersed, is it at least possible to know in what order to read it?}
 
 All parts of the code are simultaneously visible. 
 As the question implies, by not making the code dispersed, 
