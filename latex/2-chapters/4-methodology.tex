@@ -5,7 +5,9 @@
 This chapter explains the methodology used in this study. 
 It starts out with an overall structure, showing what elements this methodology precisely consists of, and how these elements came to be. 
 The chapter then continues with four sections, each explaining one of these components.
-But first, I wish to clarify the nature in which this study is conducted. 
+But first, I wish to clarify the overall methodology
+
+\section{Overall}
 
 \subsection*{Nature}
 The methodology of this study can be characterized as practical as opposed to theoretical, wholistic instead of specific, and iterative compared to linear. The prior works on browser-based geocomputation and geo-vpls indicate that a strong theoretical framework for a \ac{geo-web-vpl} is in place (Source). 
@@ -26,10 +28,10 @@ And, due to the investigative nature of this study, the methodology requires to 
 
 \subsection*{Structure}
   
-\emph{The content of this methodology is based upon the main and supporting research questions. 
-As such, it bears fruit to explain how these specific questions were chosen.}
+The content of this methodology is based upon the main and supporting research questions. 
+As such, it bears fruit to explain how these specific questions were chosen.
 
-% FIX THISSS 
+% DOES THIS STILL CONNECT TO THE NEW BACKGROUND AND RELATED WORKS
 The related studies in \refchap{chap:related} show that only one \ac{geo-web-vpl} as described by this study exists. This is in contrast to the many examples of geo-vpls in \refsec{sec:related-geovpl} and web-vpls \refsec{sec:related-webvpl}. 
 Based on this, it can be assumed that creating a visual programming environment in a web-browser must be possible. 
 Using a \ac*{vpl} for geocomputation must also be possible. 
@@ -296,49 +298,59 @@ and captured by the research question: \mySubRQThree
 
 % [Why]
 
-\begin{note}
-Figure X: [geolib] --C++/Rust-> [wrapped geolib exposed to web] --wasm-> [web library wrapped for vpl] --js-> [vpl]
-\end{note}
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/methodology/} }
+  \includegraphics[width=\linewidth]{loading-trajectory.jpg}
+  \caption[Loading Trajectory]{Loading Trajectories}
+  \label{fig:loading-trajectory}
+\end{figure}
+
+% THE REASON FOR THIS WAS DISCOVERED DURING PRELIMINARY STUDIES
 
 Most of the 3D vpls mentioned in \refsec{sec:background-vpl} offer a plugin system, or some other way to load external libraries.
 This way, the functionalities of the environments can be expanded upon.
 However, all of these plugin / library systems require explicit 'wrapper' libraries, to explain how the functionalities a text-based programming library map to components used in a visual manner.
-This forms a problem for the case of a \ac{geo-web-vpl} using non-js libraries. 
-It would mean any non-js library would have to be wrapped twice: 
-Once to expose the native library to the web (see \refsec{sec:method-two}),
+This turned out to be a problem during preliminary studies.
+If a \ac{geo-web-vpl} wishes to use non-js libraries, it would mean that these libraries would have to be wrapped twice (see \reffig{fig:loading-trajectory} A): 
+Once to expose the native library to the web using the methods described at \refsec{sec:method-two},
 And once more to map the web library to the visual language. 
 While this is a possibility, in practice, two layers of indirection are not acceptable in terms of a development workflow.
-This would be cumbersome, prone to errors, and hurting version control by having to synchronize between 4 software projects (See Figure X). 
+This would be cumbersome, prone to errors, and hurting version control by having to synchronize between 4 software projects. 
 
-This is why this third component of the methodology is focused on mitigating the need for the second wrapper library. 
+There is also a second reason for critically accessing the library / plugin loader.
+An observation was made from studying the existing geo-vpls in \refsec{sec:related-geovpl}:
+It seems that if a developer wants to create custom VPL components, they are required to write plugins very specific to that particular VPL.
+This means that practically, the library ecosystem of a VPL is entirely its own: 
+It is separated from the wider context of textual programming libraries. 
+End users are at the mercy of developers implementing their libraries in the dialect their particular VPL.
+Meanwhile, developers are forced to implement and support a multitude of wrapper libraries for VPL platforms.  
 
-% How
-For this component of the methodology, the following plan was used: 
+In contrast, if the library loader of a VPL was able to directly utilize textual libraries, the barrier between vpl ecosystems and regular text-based libraries would cease to exist, benefiting both developers and end users. 
+It might even lower the barrier between visual and textual programming in general, making it easier for VPl end-users to adopt some forms of textual programming, and vice versa. 
+
+These two reasons are why this third component of the methodology is focused on exploring and assessing a method to  mitigate the need for the second wrapper library. 
+The following plan was used: 
 \begin{enumerate}[-]
-  \item design a library model for the prototype \ac*{geo-web-vpl}
-  \item build this library model 
-  \item assess to what extend it mitigates the need for explicit configuration
+  \item Design a library / plugin model for the prototype \ac*{geo-web-vpl}
+  \item Implement this library model 
+  \item Assess to what extend it mitigates the need for explicit configuration
+  \item Assess to what extend this creates seamless interoperability between textual programming libraries, and VPL libraries.
 \end{enumerate}
 
 The design is given subsequently, the build implementation and assessment can be found in \refsec{sec:implementation:loading} and \refsec{sec:analyses:loading}.
 
 \subsection{Design \& Method}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=340px]{Model Proposal.png}
-  \caption{Plugin Model}
-  \label{fig:plugin-model}
-\end{figure}
+\begin{note}
+ TODO: I should elaborate the design some more
+\end{note}
 
-The library model consists of two components: the design for a geo-web-vpl library, and the design for a 
-loader on the side of the VPL. 
-The central idea for this model is to take the wasm-wrappers created in \refsec{sec:method-two}, and to either interpret the required information from the wasm binary and related files, or, if that is impossible, add the required information in the wasm wrapper library itself.
+The library model consists of two components: the design for a geo-web-vpl library, 
+and the design for a loader on the side of the VPL. 
+The central idea for this model is to take the wasm-wrappers created in \refsec{sec:method-two}, and to either interpret the required information from the wasm binary and related files, or, if that is impossible, add the required information in the wasm wrapper library itself as meta data.
 By doing so, we make sure that at the very least, only one wrapper library is required for exposing any non-js library to the \ac{geo-web-vpl}.
 The following information is required for the VPL to load a geocomputation library, and convert it into visual components:
-
-Mandatory: 
 \begin{enumerate}[-]
   \item A list of all functions present in the library, named.
   \item A list of all custom types (structs / classes) present in the library, also named.
@@ -347,32 +359,21 @@ Mandatory:
   \subitem An output type.
 \end{enumerate}
 
-Optional: 
+The following information is optional, but it would aid the functionality and usability of the library tremendously:
 \begin{enumerate}[-]
   \item Per function:
-  \subitem A custom name.
+  \subitem A custom, human-readable name.
   \subitem A description to explain usage.
 
   \item Per type:
-  \subitem A custom name.
+  \subitem A custom, human-readable name.
   \subitem A description to explain usage.
   \subitem A definition of how to serialize and deserialize this type  
-  \subitem A definition of how to render this type in 3D
+  \subitem A definition of how to render this type in 2D or 3D
   \subitem A definition of how to convert this type to basic types present within the geo-web-vpl.  
 \end{enumerate}
 
 The necessity to automate loading geocomputation libraries means that the \ac{geo-web-vpl} needs to be able to extract this information automatically. 
-For scope reasons, the study limits itself to only interpret the \textbf{mandatory} information fully automatically. 
-This can be achieved by using the Rust-wasm toolset "\m{wasm-bindgen}". 
-\m{wasm-bindgen} is able to generate javascript wrapper bindings for a \ac{wasm} library, accompanied by TypeScript type definitions (Source). 
-These are given in a 'd.ts' file, which can be understood as a header file, exposing the types required by all functions found in its corresponding javascript file. 
-By including the typescript compiler in the \ac{geo-web-vpl} prototype, this header file can be loaded and interpreted to find all mandatory data, including the names and path of functions and types. 
-These can then be accessed by reflecting these names and paths with the javascript files, which in turn calls the underlying \ac{wasm} binary.
-
-The \textbf{optional} data is exposed by using 'magic methods', a strategy influenced by the python programming language (source). 
-The library loader of the VPL will load certain functions, types, and methods in a special way, indicated by a naming convention. 
-These functions are loaded by the vpl, but will not be converted into visual components. 
-Instead, these functions are programmatically called when the VPL engine or the user requires this optional aspect. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

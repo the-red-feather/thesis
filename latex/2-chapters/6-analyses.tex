@@ -168,29 +168,49 @@ however, what Geofront gets in return, is the fact that make aspects such as Web
 \section{Loading plugins}
 \label{sec:analyses:loading}
 
+In this section is meant to assess to what extend Geofront's plugin loader mitigates the need for explicit configuration.
+This analysis is based on the achievements and limitations layed out by \refsec{sec:implementation:loading}.
+
+\subsection*{To what extend does the plugin loader mitigate the need for explicit configuration of plugin libraries?}
+
+Based on the results, we can state that the loader mitigates the need for explicit configuration only for the required, mandatory aspects. 
+All optional properties like human-readable names and descriptions, must be specified explicitly using a naming convention specific to Geofront. 
+
+In practice, however, there are some more "configuration" requirements. 
+The limitations outlined by \refsec{sec:implementation:loading:limits} show that there are quite a few additional considerations. 
+Geofront does not support all types or all library structures, and certain languages require additional compile limitations.
+
+Also, while the optional properties are, well, optional, one could argue that some of these properties are in fact required. 
+Libraries without 'human-readable' names and descriptions are harder to utilize on the Geofront Canvas.
+While regular programming languages also allow the creation and publication of undocumented libraries, one can question if this should also be allowed for the more end-user focussed VPL libraries.
+
+So, while the plugin loader can load some simple textual programming libraries almost without any special configuration, sizable libraries intended for consumption by Geofront will still need to be explicitly configured for Geofront.
+However, even with these requirements, this can still be considered an improvement compared to the plugin systems of geometry VPLS studied at \refsec{sec:related-geovpl}, 
+in which developers are required to create a class per exposed function.
+
+\subsection*{Assess to what extend this creates seamless interoperability between textual programming libraries, and VPL libraries?}
+
+Because of the reasons outlined above, it is save to say that this seamless interoperability is only one-directional: Libraries intended for consumption by Geofront double as also a 'normal' javascript library. 
+The configuration demands of Geofront only impair the normal, javascript-based usage by forcing a functional style, and by including certain methods only intended for Geofront. 
+Even these Geofront-specific methods might prove useful in certain scenario's, such as by providing a way to visualize data.
+
+This seamless interoperability is less prominent in the opposite direction. 
+A normal javascript library, or a javascript library using WebAssembly, can't be automatically used by Geofront in most cases. 
+Most libraries use incompatible types, or have an incompatible architecture.
+In some cases, a library might be able to load, but is then functionality impaired by the interface. 
+\reffig{fig:oop-considered-harmful} is an example of such a case.
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/6/3/} }
+  \includegraphics[width=\linewidth]{ugly-oop.png}
+  \caption[]{This typescript file technically loads correctly into Geofront, but cannot be reasonably used in Geofront}
+  \label{fig:oop-considered-harmful}
+\end{figure}
+
 \begin{note}
-  
+  TODO: Show what this looks like on the geofront canvas
 \end{note}
-
-[Assess the plugin model]
-
-% - to turn a function into a component usable in a visual programming graph, lots of meta-data is needed. 
-% -> leading to config files 
-% -> leading to a barrier between regular programming libraries, and vpl libraries. 
-% -> this study opted for automated configs based on 'typescipt' headers to attempt to solve this problem. This worked, but had some new Limitations
-%    -> it did allow for rapid experimentation, and seemless interoperability
-%    -> however, other aspects like descriptions, library meta info, etc. 
-%    -> for this a 'config' of some sorts was still needed. 
-
-% Two layers of wrapper libraries are needed to take an existing rust / C++ library, and run it in a web-based visual programming language.
-
-% This is why this third component of the methodology is focused on mitigating the need for the second wrapper library. 
-
-% solutions: 
-% - automatically base visual components on typescript header-files
-% - add any 'config' information to the first type of wrapper library. 
-
-% success: this works, albeit a bit hacky
 
 \section{Usability}
 \label{sec:analyses:utilization}
