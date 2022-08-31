@@ -12,8 +12,8 @@ The term \ac{geocomputation}, or geodata processing, is used to represent all ty
 All applications of geo-informatics require some level of geocomputation, as the raw data gathered from surveyance seldom corresponds to the precise information we wish to discover about the earth.       
 This makes geocomputation a cornerstone of the entire field of geo-informatics, and vital to all her applications.
 
-However, geocomputation is no trivial exercise. The geometrical nature of many geocomputations, the sizable nature of geodata,  together with a great variety in geodata formats and quality make geocomputation both computationally intensive and difficult to operate. 
-    
+However, geocomputation is no trivial exercise. The geometric nature of geocomputation, together with the sheer scope of geodata, and the variety in formats and quality make geocomputation both computationally intensive and difficult to operate. 
+
 In an ideal world, the activity of geocomputation should be ergonomic: Operations must perform as fast as possible, and the effects of those operations must be both clear to the user, and reliable.
 While researchers and developers have made considerable improvement over the last decades, the improvement of both geocomputation, and the activity of geocomputation, remains as relevant as ever before. 
 
@@ -23,21 +23,38 @@ these two developments require further explanation, after which the subject and 
 
 \subsection*{Visual programming}
 
+\begin{figure}
+  \centering
+  \graphicspath{{../../assets/images/background/geo-vpl/}}
+  \includegraphics[width=\linewidth]{geoflow.png}
+  \caption{Geoflow: A geocomputation VPL}
+  \label{fig:1:geoflow}
+\end{figure}
+
 % \emph{what makes a vpl a 'new' development?}
 
 Despite the existence of applications like FME, the \ac{vpl} is still considered an ongoing development within the field of geocomputation. 
 Especially in recent years, a push towards a more 'granular' \ac{vpl}s can be recognized: 
 \ac{vpl}s offering geocomputation on a smaller, more detailed level. 
 As an example, McNeels's Grasshopper (SOURCE) is increasingly being used for spatial analyses of buildings and neighborhoods, like solar irradiation or heating demands (source). 
-Meanwhile, The GeoFlow \ac{vpl} (source) was used to model the 3D envelope of a building based on a pointcloud, which was subsequently scaled up in the creation of the 3D BAG dataset (source).
+Meanwhile, GeoFlow (shown in \reffig{fig:1:geoflow}) was used to model the 3D envelope of a building based on a pointcloud, which was subsequently scaled up in the creation of the 3D BAG dataset (source).
 
 Using a \ac{geo-vpl} for more detailed geocomputation is still relatively novel, and contains many open ended questions. That geocomputation in certain scenarios benefits from the interface offered by a \ac{vpl} is probably true, indicated by the number of prior studies on the topic (source, source, source), and the popularity of \ac{vpl}s used for geodata and geometry computation. The \emph{extend} to which \ac{vpl}s benefit detailed geocomputation, is still relatively unknown. 
 
 \subsection*{Browser-based geocomputation}
 
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/background/geo-web/} }
+  \includegraphics[width=250px]{omnibase.png}
+  \caption{Omnibase: An example of browser-based geocomputation}
+  \label{fig:1:omnibase}
+\end{figure}
+
 \ac{geocomputation} within a web browser, henceforth dubbed as \ac{bbg}, is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
 Interactive geospatial data manipulation and online geospatial data processing techniques have been described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. 
-The central idea is to add browser-based geocomputation to web-mapping applications, allowing users not only to view data, but to edit and analyze the geodata to their own custom needs.
+The central idea is to add browser-based geocomputation to web-mapping applications, allowing users not only to view geodata, but to analyze it, and even fine-tune the data to their own custom needs.
+An example of this is the omnibase application in \reffig{fig:1:omnibase}, used by Dutch municipalities to measure and map buildings and infrastructure.
 
 Additionally, browser-based geocomputation, compared to native GUI or CLI geocomputation, allows geocomputation to be more \textbf{accessible} and \textbf{distributable}. 
 Accessible, since geocomputation on the web requires no installment or configuration, 
@@ -119,24 +136,23 @@ Novel browser features like WebAssembly may fix some of these issues, but this h
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Problem Statement}
-
-\begin{note}
-  TODO: make both of these presuppositions clear
-  1. Combining a geo-vpl and bbg is useful. It is valuable to figure out if it can be done properly
-  2. properly -> utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
-\end{note}
+% \begin{note}
+%   TODO: make both of these presuppositions clear
+%   1. Combining a geo-vpl and bbg is useful. It is valuable to figure out if it can be done properly
+%   2. properly -> utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
+% \end{note}
 
 The proven usefulness of a vpl for geodata computation, together with the theorized potential of browser-based geocomputation, lead to the idea of a \ac{geo-web-vpl}. 
-regrettably, this topic has seen almost no research. 
-
-A \ac{geo-web-vpl} could be the next step in the pursuit of making the activity of geocomputation more fast, clear and reliable.
-The activity of geocomputation could benefit from the experimentation and debugability advantages of a \ac{vpl}, combined with the accessibility and distribution advantages of a web application. 
+regrettably, this topic has seen little to no prior study. 
+A \ac{geo-web-vpl} could be the next step in the pursuit of making the activity of geocomputation more clear and reliable.
+The activity of geocomputation could benefit from the experimentation and debugability advantages of a \ac{vpl}, combined with the accessibility and distribution advantages of a web application.
 This format might even yield completely unique benefits.
+% making geocomputation more appealing for a larger group of end-users
 % , by means of a "1 + 1 = 3" line of reasoning.
 However, since only a very small number of geo-web-vpls exist, there is no way of definitively knowing or testing these aspects. 
 
-Prior studies give an indication to where the disconnect between the fields of geo-VPLs and web-GIS may be. This is further explained in \refchap{chap:related}.
-We encounter multiple existing geo-VPLs which cannot be used in a browser, or web-based VPLs unable or unwilling to support existing geocomputation functionalities. From this, it can be concluded that the support of existing geocomputation functionalities is a central aspect of making a geo-web-vpl succeed. 
+Prior studies give an indication to certain disconnects between the fields of geo-VPLs and web-GIS. This is further explained in \refchap{chap:related}.
+Multiple existing geo-VPLs are encountered which cannot be used in a browser, together with many web-based VPLs unable to support existing, native geocomputation functionalities. From this, it can be concluded that the support of existing geocomputation functionalities is a central aspect of making a geo-web-vpl succeed. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -144,7 +160,7 @@ We encounter multiple existing geo-VPLs which cannot be used in a browser, or we
 
 This study seeks to close the gap between geo-VPLs and browser-based geocomputation by designing, implementing, and evaluating a new prototype \ac{geo-web-vpl}.
 The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a visual programming environment is key to making a geo-web-vpl succeed. 
-As such, overcoming this technical challenge is the focal point of this study. 
+Overcoming this technical challenge is the focal point of this study. 
 
 \section{Research Questions}
 Based on this objective, the research question is formulated as follows: 
@@ -163,37 +179,7 @@ These are based upon various components of the main problem statements, further 
 \end{itemize}
 In order to obtain answers to these questions, a literature review is performed,
 a prototypical software application is developed, 
-and this application is tested and compared to existing methods using real-world datasets.
-
-
-% \subsection*{Use Case: Geofront}
-% Geofront is the name of a prototype web application, developed as part of this study.
-% Geofront is created to both contextualize this study, and to answer the question.
-
-% lowering the delta between "it works for me" and "it works for someone else"
-
-
-% WHY DOES SOMEONE WANT TO TAKE EXISTING LIBRARIES AND TURN THEM INTO A WEB-BASED VPL FORMAT? 
-% - interactive, visual debugging 
-%   - explaining the behavior of algorithms to yourself and others
-%   - why web: collaborative debugging
-% - reproducability of results
-%   - lowering the delta between "it works for me" and "it works for someone else"
-% - improving the 'online presence' of research.
-%   - making research results 'usable' via a link
-%   - interdisciplinary exchange of ideas
-
-
-% SO: Geofront is intended as a Computational Geometry Sandbox environment.
-% Meant for: 
-%  - publication
-%  - sharing ideas 
-%  - trying things out
-%  - debugging code
-%  - learning
-
-% NOT for making programming as a whole 'easier'
-
+and this application is tested and accessed on various aspects.
 
 \newpage
 \section{Scope}
@@ -215,6 +201,9 @@ While accessibility / usability is a motivation of the development of a \ac{vpl}
 
 Similarly, a survey analyzing how users experience browser-based geocomputation in comparison to native geocomputation must also be left to subsequent research. While this would gain us tremendous insight, client-side geocomputation is too new to make a balanced comparison. Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
 
+% While the research restrains itself from empirically measuring an aspect as nebulous as 'accessibility', it does demonstrate ...
+
+
 % It is my goal to introduce this as a new geocomputation option, and to name the advantages and disadvantages we can be sure of. An actual comparison of client-side vs native geocomputation is something different. 
 
 \subsection*{Only WebAssembly-based containerization}
@@ -234,35 +223,31 @@ The hypothesis is that these types of data may benefit the most from 'geo-web-vp
 For the scope of this thesis, we assume a \ac{geo-web-vpl} is very similar to any 3D VPl, like Blender Geometry Nodes, Houdini, GeoFlow, and Grasshopper. 
 It differs only in the fact that it supports geodata types, and offers common geocomputation functionalities. 
 In reality, a lot of differences and nuances exist between the field of geocomputation and the field of procedural modelling. 
-However, due to the limited scope of this study, these concerns will only be picked up at the final discussion, found at \refsec{sec:discussion}.
+However, due to time limitations, these concerns are left to future research.
+% these concerns will only be picked up at the final discussion, found at \refsec{sec:discussion}.
  
 \subsection*{Only core browser features}
 Lastly, the implementation of the geo-web-vpl will limit itself to core browser features, keeping dependencies at a minimum, in an attempt to generalize the results of the study.
-If the study would use very specific frameworks and technologies to solve key issues, questions might arise if the results of the study counts in general for browser-based geocomputation or geo-VPLs, or if they only count in this very specific scenario. 
-This study defines "Core browser features" in \refsec{sec:method-one}
+If the study would use very specific web frameworks and technologies to solve key issues, questions might arise if the results of the study counts in general for browser-based geocomputation or geo-VPLs, or if they only count in this very specific scenario. 
+"Core browser features" is defined in \refsec{sec:method-one}.
 
 \newpage
 \section{Reading Guide}
-
 The remainder of this study is structured as follows:
 
 \begin{itemize}[ ]
   \item \refchap{chap:background}, Background, provides an overview of the theoretical background that is used in the rest of this study.
   
   \item \refchap{chap:related}, Related Work, provides a review of studies comparable to this one.
-  
-  \begin{note}
-    EXPLAIN WHY -> The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
-  \end{note}
 
-  \item \refchap{chap:methodology}, Methodology, explains precisely in what way the research-questions will be answered. In addition, the main design decisions are described and justified in this part of the study.
+  \item \refchap{chap:methodology}, Methodology, explains precisely in what way the research-questions will be answered, and shows how this relates to the background and related works chapters. 
 
   \item \refchap{chap:implementation}, Implementation, presents the implementation of the methodology.
+  In addition, the main design decisions are described and justified in this part of the study.
   
-  \item \refchap{chap:analyses} analyses this implementation. 
-  % \item \refchap{chap:analyses} analyses this implementation. additionally, it describes the results obtained after the implementation of the methodology. 
+  \item \refchap{chap:analyses} analyses the results from this implementation in the various ways described by the methodology.
   
-  \item \refchap{chap:conclusion}: Conclusion \& Discussion, covers exactly that. 
-  It concludes to which extend the study was able to satisfy the main research question, and discusses unaddressed aspects of the thesis, and future works.
+  \item And finally, \refchap{chap:conclusion}: Conclusion \& Discussion, concludes to which extend the study was able to satisfy the main research question, and discusses unaddressed aspects of the thesis.
+  It also includes the envisioned future works and a reflection on the quality of the study.
 
 \end{itemize}
