@@ -5,17 +5,20 @@
 This chapter explains the methodology used in this study. 
 It starts out with an overall structure, showing what elements this methodology precisely consists of, and how these elements came to be. 
 The chapter then continues with four sections, each explaining one of these components.
-But first, I wish to clarify the overall methodology
+But first, the overall methodology.
 
-\section{Overall}
+\section{Overall methodology}
 
 \subsection*{Nature}
 The methodology of this study can be characterized as practical as opposed to theoretical, 
-wholistic instead of specific, and iterative compared to linear. 
+% wholistic instead of specific, 
+and iterative compared to linear. 
 The prior works on browser-based geocomputation and geo-vpls indicate that a strong theoretical framework for a \ac{geo-web-vpl} is in place (Source). 
 But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
-This necessitates a practical, wholistic approach in response. 
+This necessitates a practical approach in response. 
 And, due to the investigative nature of this study, the methodology requires to iterate upon itself, instead of following a singular, linear path. 
+
+% MIGHT NOW WANT TO KEEP THIS IN HERE
 
 % ...
 % % Theorie: is er maar je geloofde het niet
@@ -27,6 +30,8 @@ And, due to the investigative nature of this study, the methodology requires to 
 % - practical > theoretical : Literature study indicates enough theoretical soundness, but lots of practical questions remaining. We wish to  immediate pick up where these studies have left, and therefore we choose the direct, practical study of designing and implementing a prototype application. 
 % - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geocomputation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
 % - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
+
+\newpage
 
 \subsection*{Structure}
   
@@ -51,11 +56,11 @@ geocomputation functionalities might not be able to be properly:
   \item \textbf{represented / visualized} by the interface of a web-based, dataflow-VPL
   \item \textbf{used} within a web-based dataflow-VPL
 \end{itemize}
-As it is unknown which one of these reasons ( or which combination of reasons ) is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
+As it is unknown which one of these reasons is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
 Moreover, the real reason might not lie in one of these areas, but in the interplay between all of these factors. 
 
-It is this study's objective to pose a solution to this barrier. This is stated by the main research question: \myMainRQ 
-
+It is this study's objective to pose a solution to this barrier. 
+% This is stated by the main research question: \myMainRQ 
 The study goes about doing so, by developing a prototype \ac{geo-web-vpl} accompanied by web-compiled geocomputation libraries. 
 This prototype vpl is used as a staging ground to discover the extend of possible hindrances. 
 % During its development, each one of these four possible hindrances has to be accounted for. 
@@ -87,8 +92,9 @@ TODO: diagram: show the 'locations' of the four research questions ( client / se
 The first component of the methodology involves the question of \mySubRQOneTitle : \mySubRQOne.
 
 % [WHY]
-Before exploring how lifting \emph{existing} geo-computation to the web might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a diagram-based vpl in general, both in terms of data structures and visualization. 
+Before exploring how lifting geo-computation to the web might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a dataflow vpl in general, both in terms of data structures and visualization. 
 This was necessary because of the observation that successful vpls involved with computational geometry are all dataflow-vpls (see \refsec{sec:related-geovpl}), but no existing web-vpl concerned with geometry uses this model (\refsec{sec:related-webvpl}).
+Due to the many advantages posed in \refsec{sec:background:dataflow}, but especially the concurrency advantages, a dataflow-type VPL had to be chosen for the topic of geocomputation.
 % A 3D VPL is defined as a vpl meant for generic 3D geometry processing.
 
 % [HOW]
@@ -104,7 +110,7 @@ The above question of \mySubRQOneTitle is further subdivided into 4 follow-up qu
 Question A and B will be answered subsequently. 
 Question C and D are answered by \refsec{sec:analyses:representation}.
 
-\subsection*{A: 3D VPL requirements}
+\subsection*{A: Requirements}
 
 Based on the vpl research of \refsec{sec:background-vpl}, any visual programming language must at the very least contain the following aspects: 
 \begin{enumerate}[-]
@@ -120,11 +126,12 @@ Based on the vpl research of \refsec{sec:background-vpl}, any visual programming
 Based on popular, existing geometry vpl's (Blender, houdini, Grasshopper) A visual programming language handling 3D data should have:
 \begin{enumerate}[-]
   \item A dataflow-type VPL implementation
-  \subitem Meaning all computations should be pure functions
-  \subitem Meaning all variables should be immutable
-  \item A method to preview 3D data used throughout the flowchart
+  \subitem With all computations being pure functions
+  \subitem With all variables being immutable
+  \item A method to preview variables storing 3D data
   \item multiple ways to determine input data (text fields, sliders) 
   \item multiple ways to view output data (text displays, 3D viewers, etc.)
+  \item A method to handle types, or to guarantee type safety
 \end{enumerate}
 
 A VPL also has many requirements which cannot be listed, but instead refer to the shaping of the entire application. 
@@ -302,8 +309,8 @@ and captured by the research question: \mySubRQThree
 
 \begin{figure}
   \centering
-  \graphicspath{ {../../assets/images/methodology/} }
-  \includegraphics[width=\linewidth]{loading-trajectory.jpg}
+  \graphicspath{ {../../assets/images/4/} }
+  \includegraphics[width=\linewidth]{loading-trajectory.png}
   \caption[Loading Trajectory]{Loading Trajectories}
   \label{fig:loading-trajectory}
 \end{figure}
@@ -320,7 +327,7 @@ And once more to map the web library to the visual language.
 While this is a possibility, in practice, two layers of indirection are not acceptable in terms of a development workflow.
 This would be cumbersome, prone to errors, and hurting version control by having to synchronize between 4 software projects. 
 
-There is also a second reason for critically accessing the library / plugin loader.
+There is also a second reason for critically addressing the way plugins are loaded. 
 An observation was made from studying the existing geo-vpls in \refsec{sec:related-geovpl}:
 It seems that if a developer wants to create custom VPL components, they are required to write plugins very specific to that particular VPL.
 This means that practically, the library ecosystem of a VPL is entirely its own: 

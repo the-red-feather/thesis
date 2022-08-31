@@ -22,10 +22,14 @@ The study takes place at the intersection of three prior bodies of work,  repres
   \item \refsec{sec:background-web} covers the background on Web applications
   \item \refsec{sec:background-vpl} covers the background on Visual Programming Languages
 \end{enumerate}
-Each one of these cornerstones will be discussed and analyzed \emph{an sich}, after which \refchap{chap:related} and \refchap{chap:methodology} will focus on the interplay and connections between these bodies of work. 
+Each one of these cornerstones will be discussed and analyzed by themselves, after which \refchap{chap:related} and \refchap{chap:methodology} will focus on the interplay and connections between these bodies of work. 
 
 \section{Geocomputation}
 \label{sec:background-geo}
+
+\begin{note}
+  TODO: finish this chapter
+\end{note}
 
 This section offers a brief background on the wide topic of geocomputation. 
 
@@ -68,7 +72,7 @@ This categorization can be identified by noting if an operation appears in a nei
 This \emph{specific} category exists because of \ac{gis}s foundation in the field of Geodesy, and the nature of geographical data. 
 Geodata differentiates itself from any form of data by its sizable nature, and geospatial nature. 
 GIS dataset sizes easily scale into terabytes of data, and each datum specifically represent a real, measured, earthly phenomenon.
-This makes storage and accuracy much more relevant than other computer graphics applications. 
+This makes storage and accuracy more relevant than other computer graphics applications. 
 
 % NOTE TO SELF: GIVE CATEGORIES OF GEOCOMPUTATION IF IT IS ASKED FOR, OTHERWISE, LEAVE IT
 % \subsection{Categories of Geocomputation}
@@ -136,19 +140,28 @@ The geocomputations found in these libraries operate primarily on 2D / 2.5D rast
 How these projects related together is presented by \reffig{fig:geolib-dependencies}.
 Together, these libraries represent the core computational needs specific to the field of \ac{gis}. 
 
-For the more 'common' computational geometry needs, the \ac{cgal} library is also widely used.
+For the more common computational geometry needs, the \ac{cgal} library is also widely used.
 
-Almost all popular GIS end-user applications have these libraries at their core, such as 
+% Almost all popular GIS end-user applications have these libraries at their core, such as 
 
 \subsection{Conclusion}
+
 The Take-away: 
 
 Combination of general computational geometry, and computations very specific to GIS.
 
 Geocomputation is mostly facilitated by a very select number of C++ libraries. 
 
+\newpage
+
 \section{Frontend web applications}
 \label{sec:background-web}
+
+\begin{note}
+  TODO: this chapter is too large, the client-server / front-back elements should be trimmed down, or maybe even entirely removed. I think Its too granular. 
+
+  Also, add more pictures!
+\end{note}
 
 This section offers a background on frontend web applications.
 Since this topic is too large in scope to fully cover, three elements are chosen which are highly relevant to this study.
@@ -224,17 +237,17 @@ Web applications have specific advantages and disadvantages compared to native a
 The big advantages are that web applications are cross-platform by nature, and offer ease of accessibility, since no installment or app-store interaction is required to run or update the app (src: vpl 2019, src: hybrid).
 As soon as a web app is found, it can theoretically be used.
 The containerized nature of the web also makes web applications in general more safe. 
-For unknown native applications there is always a danger of installing malicious software, whereas an unknown web application without any privileges is practically harmless. 
+For unknown native applications there is always a danger of installing malicious software, whereas an unknown web application without any privileges is practically harmless (Needs citation). 
 The ability to share the a functional application with a link, or to embed it within the larger context of a webpage, is also not a trivial advantage.
 
-The disadvantage is that normally, web applications can only be written in one, very-high level programming language: JavaScript. 
+The disadvantage is that normally, web applications can only be written in JavaScript, a very-high level interpreted programming language. 
 Its high-level nature leads to imprecision in using computational resources. 
 For example, it makes no distinction between integer and floating point arithmetic.  
 Additionally, the safety and containerization demands of the web make web applications more removed from the operating system and hardware.
 Any type of \ac{os} interaction such as opening a window, interacting with the file system, or drawing directly to the screen buffer, is off-limits.  
 Both these layers of indirection makes web applications traditionally unfavorable for demanding, highly specialized programs. 
 
-\subsubsection*{web application and website}
+\subsubsection*{Web application and website}
 
 Lastly, a soft distinction is also made between websites, and web applications. 
 Roughly speaking, a web application is a website which requires javascript in order to be functional.
@@ -246,7 +259,9 @@ Following the above definition, twitter is a web application, despite the fact t
 \begin{note}
   Sources: 
 
-  (https://en.wikipedia.org/wiki/Web_application, i know i know, bad source, but this is more 'conventional wisdom' than true 'knowledge', couldnt find a more credible source, of what would make a person credible on this content)
+  (https://en.wikipedia.org/wiki/Web_application, bad source, but this is more 'conventional wisdom' than true 'knowledge', couldn't find a more credible source, 
+  
+  what would make a person credible on this content?)
   
   (https://en.wikipedia.org/wiki/Frontend_and_backend)
 \end{note}
@@ -264,14 +279,14 @@ In the decades that followed, the javascript runtime of web browsers saw continu
 As the web and web technologies matures, new ways of using these technologies are discovered.
 Web applications became more interactive, and frontend functionalities were slowly moved from the server to the client. 
 
-These developments have not stopped. Since 2012, a trend of \textbf{rich web-clients} can be wide recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
-At that point, the browser had become powerful enough to allow for decentralized client-server models.
-By making servers nothing more than static file servers, and adding all routing and rendering responsibilities to the client, the interactivity of a web application could be maximized. 
+These developments continued.
+Since 2012, a trend of \textbf{rich web-clients} can be widely recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
+At that point, the browser had become powerful enough to allow for more decentralized client-server models.
+By reducing servers to just static file servers, and adding all routing and rendering responsibilities to the client, the interactivity of a web application could be maximized. 
 This model was dubbed "single page application", and was and still is facilitated by javascript frameworks like Angular, React and Vue.
-However, the real facilitator of these developments are the browsers themselves.
-As the overhead created by these features would not be possible if javascript ran the way it did in 200x. 
+However, the real facilitator of these developments are the browsers vendors themselves, as these frameworks would not be possible without the performance increase of javascript. 
 
-This growth of the web application also lead to web applications being used 'natively'. 
+This growth has also lead to web applications being used 'natively'. 
 Tools like Electron (Source) allow web applications to be installed and 'run' on native machines by rendering them inside of a stripped down browser. 
 Many contemporary 'native' applications work like this, such as VS Code, Slack, and Discord.
 Additionally, tools like React Native (Source) are able to compile a web application into a native application without a browser runtime.  
@@ -283,7 +298,7 @@ In any case, it becomes clear that rich web clients and their build tooling are 
 \label{sec:background-wasm}
 
 If the line between web application and native application was already starting to get blurry, WebAssembly makes this line almost invisible. 
-From all browser-based features, WebAssembly turned out to be a deciding factor of this study. This requires us to be aware of the state of WebAssembly and its performance considerations.
+From all browser-based features, WebAssembly turned out to be a deciding factor of this study. This makes it important to be aware of the state of WebAssembly and its performance considerations.
 
 \ac{wasm} is officially dubbed the fourth type of programming language supported by all major web browsers, next to HTML, CSS, and JavaScript.
 Strictly speaking however, WebAssembly not a language, but a binary instruction format for a stack-based virtual machine.
@@ -320,13 +335,13 @@ It concludes by showing WebAssembly was not always faster, but considerably more
 Melch had this to say: "To call the WebAssembly code the coordinates will first have to be stored in a linear memory object. 
 With short run times this overhead can exceed the performance gain through WebAssembly. 
 The pure algorithm run time was always shorter with WebAssembly.". 
-These findings match \cite{jangda_not_2019}, showing that the duplication of data into the webassembly buffer is a considerable bottleneck.
+These findings match \cite{jangda_not_2019}, showing that the duplication of data into the webassembly memory buffer is a considerable bottleneck.
 
 A recent study concerned with watershed delineation \cite{sit_optimized_2019} also concluded client-side WebAssembly to be more performant than server-side C, which, as a side effect, enabled their application to be published on the web without an active server. 
 
-Lastly, the sparse matrix research of Sandhu et al. will be mentioned. \cite{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. it states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision.
+Lastly, the sparse matrix research of Sandhu et al. will be mentioned. \cite{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. it states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision, probably due to byte spacing.
 
-Even though this proposed study falls in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account when using the compile target.
+Even though this study falls in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account when using the compile target.
 
 \begin{figure}[!tbp]
   \centering
@@ -366,7 +381,7 @@ Even though this proposed study falls in the category of scientific computation,
 % \end{figure}
 
 
-% On the topic of WebAssembly, the most important conclusion to to take away from prior research is \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account during the proposed study.
+% On the topic of WebAssembly, the most important conclusion to to take away from prior research is \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account during the study.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -422,10 +437,12 @@ WebAssembly blurs the line between the web-based and native development even fur
 The compile target allows web-apps to make use of native libraries, and allows native software to be run on the web.
 This second aspect offers a complete reverse workflow compared to the now popular Electron based applications described in \refsec{sec:background-web-rich}.
  
-There was a significant delay between the improvements of the browser, and the widespread popularity of rich web clients. 
+There was a significant initial delay between the improvements of the browser, and the widespread popularity of rich web clients. 
 This study argues that as of right now, we are in the middle of a similar situation. 
 A new technologies exist, it is implemented by all major browsers, and offers completely new ways of working with the web platform as a whole. 
 The question remains what this will mean for the established models of clients and servers, the frontend and backend, and the web and native contexts. 
+
+\newpage
 
 \section{Visual Programmming}
 \label{sec:background-vpl}
@@ -443,14 +460,18 @@ Multiple types of \ac{vpl}s exist, but also multiple taxonomies of these types.
 This study bases itself on the classifications presented in \cite{kuhail_characterizing_2021}, stating four different types of visual programming languages: 
 \begin{enumerate}
   \item \textbf{Block-based languages}, in which all normal programming language features, like brackets, are represented by specific blocks which can be 'snapped' together (\label{fig:sidebyside:1}).
-  \item \textbf{Diagram-based languages}, in which programming functions or operations are represented by components, and variables are represented by links or 'cables' between these components. This makes the entire program a \ac{dag}.
-  \item \textbf{Form-based languages}, in which the functioning of a program can be configured by means of normal graphical forms. 
+  \item \textbf{Diagram-based languages}, in which programming function are represented by nodes, and variables are represented by edges between these components (\label{fig:sidebyside:2}). This makes the entire program analogous to a Graph.
+  \item \textbf{Form-based languages}, in which the functioning of a program can be configured by means of normal graphical forms (\label{fig:sidebyside:3}). 
   This approach enhances the stability and predictiveness compared to other types, at the cost of expressiveness.
-  \item \textbf{Icon-based languages}, in which users are asked to define their programs by chaining highly abstract, iconified procedures. 
+  \item \textbf{Icon-based languages}, in which users are asked to define their programs by chaining highly abstract, iconified procedures (\label{fig:sidebyside:4}). 
 \end{enumerate}
 
 The meta analysis of \cite{kuhail_characterizing_2021} shows a great preference among researchers for block- and diagram-based languages. 
 Only 4 out of 30 of the analyzed articles chose a form-based vpl, and only 2 chose an icon-based approach.  
+
+This study wishes introduce a fifth type of VPL. 
+A \textbf{Dataflow} VPL is a subtype of a diagram based VPL which only uses pure functions as computation nodes, only uses immutable variables, and which disallows cyclical patterns. This makes this VPL not only a graph, but a \ac{dag}.
+More on this in \refsec{sec:background:dataflow}.
 
 \begin{figure}
 \centering
@@ -491,7 +512,7 @@ Within the domain of systems control and engineering, The Ladder Diagram vpl (SO
 \ac{vpl}s are also widely used within computer graphics related applications, including the field of \ac{gis}, 
 These will be covered in \refsec{sec:related-geovpl}.
 Lastly, \ac{vpl}s also have great educational applications. 
-Harvard's introduction to computer science course, CS50, famously starts out with Scratch, a block-based visual programming language, mostly targeted at children to teach the basics of computational thinking. 
+Harvard's introduction to computer science course, CS50, famously starts out with Scratch, a block-based visual programming language normally targeted at children, to teach the basics of computational thinking (Source: CS50). 
 
 % \begin{note}
 %   Traditionally, visual programming has been successfully used to help novices
@@ -504,11 +525,11 @@ Harvard's introduction to computer science course, CS50, famously starts out wit
 %  From characterizing_2021
  
 
-\subsection{Advantage: Usability}
+\subsection{Usability}
 
 Studies on \ac{vpl}s indicate that generally speaking, VPLs make it easy for end users to visualize the logic of a program, and that vpls eliminate the burden of handling syntactical errors \cite{kuhail_characterizing_2021}.
 
-The locally famous Cognitive Dimentions study \cite{green_usability_1996}, state that \emph{"The construction of programs is probably easier in VPLs than in textual languages, for several reasons: 
+The locally famous Cognitive Dimentions study \cite{green_usability_1996}, states that \emph{"The construction of programs is probably easier in VPLs than in textual languages, for several reasons: 
 there are fewer syntactic planning goals to be met, such as paired delimiters, discontinuous constructs, separators, or initializations of variables; 
 higher-level operators reduce the need for awkward combinations of primitives; 
 and the order of activity is freer, so that programmers can proceed as seems best in putting the pieces of a program together."}. 
@@ -524,7 +545,7 @@ These properties together make visual programming also highly suitable for activ
 
 % ADVANTAGE: PLAYFULNESS
 
-\subsection*{Advantage: End User Development \& Low Coding}
+\subsection{End User Development \& Low Coding}
 a \ac{vpl} done right can make automation available to a very large audience, and this is exactly the point. 
 Visual Programming is part of a larger field, named End User Development (eud). 
 The field is concerned with allowing end users who are not professional software developers to write software applications, using specialized tools and activities. 
@@ -542,12 +563,12 @@ In the private sector, \ac{eud} is represented by the "low code" industry.
 Technology firms such as Google and Amazon are investing at scale in low-coding platforms (\cite{kuhail_characterizing_2021}),
 The market value was estimated at 12.500 Million USD (Source: ), and with a growth rate between 20 and 40 percent, the value may reach as high as 19 Billion by 2030 (SOURCE: FORRESTER) 
 
-\subsection{Advantage: Dataflow programming}
+\subsection{Dataflow programming}
 \label{sec:background:dataflow}
-An important aspect of especially diagram-based visual programming is its closeness to the field of dataflow programming. 
+An important aspect of the dataflow-VPL is the connection to the field of dataflow programming, which is not necessarily linked to VPLs. 
 
 Dataflow programming is a programming paradigm which internally, represents a program as a \ac{dag} (SOURCE Dataflow 2012). 
-A graphical, editable representation of a dataflow program would result into a diagram-based \ac{vpl}.
+A graphical, editable representation of a dataflow program would result into a Dataflow \ac{vpl}.
 
 The big computational advantage of this model, is that it allows for implicit concurrently (SOURCE dataflow 2012). 
 In other words, every node of a program written using dataflow programming can be executed in isolation of any other nodes, as long as the direct dependencies (the inputs) are met. 
@@ -555,7 +576,7 @@ No global state or hidden side effects means no data-race issues, which allows p
 When using other paradigms, programmers need to manually spawn and manage threads to achieve the same effect. 
 
 This leads into an interesting side-effect of using dataflow programming / a diagram-based \ac{vpl}: 
-By only permitting pure, stateless functions with no side-effect, and only immutable variables, end users automatically adopt a functional programming style.
+By only permitting pure, stateless functions with no side-effect, and only immutable variables, end users automatically adopt a functional programming style (albeit without lambda functions).
 Functional programming has many benefits of its own besides concurrency, such as clear unit testing, hot code deployment, debugging advantages, and lending itself well for compile time optimizations (SOURCE: functional programming).
 
 
@@ -578,13 +599,13 @@ By closely resembling dataflow itself, and because of its functional programming
 \subsection{Disadvantages and open problems}
 \label{sec:background:vpl:disadvantages}
 
-As stated by (SOURCE: functional programming), there is no such thing as a free lunch. 
+there is of course, no such thing as a free lunch. 
 \ac{vpl}s and dataflow programming en large have got certain disadvantages and open problems.
 
-(Dataflow programming is an area still open to further research, with some open
-issues to answer. In fact, most of the open questions today have long been
-identified and despite the improvements, patterns for answering them are yet to
-be achieved.)
+% (Dataflow programming is an area still open to further research, with some open
+% issues to answer. In fact, most of the open questions today have long been
+% identified and despite the improvements, patterns for answering them are yet to
+% be achieved.)
 
 % block-based visual programming: just purely UI, diagram-based vpl add additional, functional programming qualities. 
 
@@ -640,7 +661,7 @@ In so far as this study needs to address the usability of the prototype VPL, we 
 % than text-based alternatives, based on the positive results of most of the 
 % studies analysed by communicating_2021.
 
-\subsubsection*{Poor life-cycle support}
+\subsubsection*{Lacking Life-cycle support}
 Finally, (communicating 2021) names the 'life cycle' of applications created by \ac{vpl}s as one of the most overlooked aspects within VPL research.
 Out of the 30 studies covered by the meta analysis, only one briefly touched the topic of life cycle. 
 Life cycle in this context refers to all other activities besides "creating an application that does what it needs to do".
