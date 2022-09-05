@@ -78,3 +78,33 @@ synergies:
 # THU
 
 # FRI
+
+==============================================
+
+## Phase: Finishing the written thesis
+
+(24 august | after two weeks of work):
+- alright, chap 1,2,3,4 is more or less done
+  - 1) I have the story down 
+  - 2) 3) I know everyhing thanks to the background & related works 
+  - 4) I have the methodology down
+
+Now its time to truly DO the study. 
+But how to proceed? 
+- conclusion is a mess, lots of fragments.
+- unsure about the balance between Implementation, Analysis, experiments, discussion. 
+- I still need to perform some of these aspects. 
+
+...
+
+Also, what is my schedule for finishing these things? 
+
+(29 August)
+- just filled the full conclusion! of course it is quicky written, and not completely finished, but it is finished enough for our purposes right now'
+
+(5 September)
+- Almost everything is done, but not quite. Lets dedicate these days to filling up the remaining holes! 
+- fill up 6.1
+- fill up 5.2.1, 6.2.1
+- then, to the research required
+- then, fill up 5.2.2 and 6.2.2

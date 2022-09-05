@@ -1,9 +1,17 @@
-## HWAT DO i WANT
-- I want to finish some of the pressing issues of geofront
-- I want the thesis to be finished and of sufficient quality
-  - That is why I want to get my hands on some data. To be able to show something of substance
-  ]\
+## WHAT DO YOU WANT? YOU CAN HAVE WHAT IT IS YOU WANT, BUT WHAT DO YOU WANT? 
+- I Want to feel finality about the thesis. done. over. lets move on to new things
+- I want to make it an entry on my website
+- I want to make it a linkedin post
 
+## WHY WORK ON THIS SHIT AT ALL??
+- ITS NOT FINISHED! DO YOU WANT TO POSTPONE IT MORE?
+- YOU THINK YOU ARE DONE??? THINK AGAIN, THE WHOLE THING IS STILL CRAP!
+- 
+
+## WHAT NEEDS TO HAPPEN TO MAKE THAT HAPPEN?
+- Written thesis should be finished 
+- Presentation Script should be finished, recorded, and tested
+- Geofront itself should have more functionality, the STD requires an upgrade
 
 
 
@@ -16,11 +24,7 @@
 
 ## Questions: 
 
-<!-- - I'm looking for a good source on geocomputation / geodata. 
-  Just generic things, like 'different types of geodata'
-   -->
-- What needs the most work? 
-- What feels the most incomplete?
+ incomplete?
 
 ## Known Issues 
 
@@ -29,27 +33,3 @@
 
 
 - Editorial things: Images, diagrams, abbreviations, sources, 
-
-
-## LOG 
-
-### Dag 1
-
-(24 august | after two weeks of work):
-- alright, chap 1,2,3,4 is more or less done
-  - 1) I have the story down 
-  - 2) 3) I know everyhing thanks to the background & related works 
-  - 4) I have the methodology down
-
-Now its time to truly DO the study. 
-But how to proceed? 
-- conclusion is a mess, lots of fragments.
-- unsure about the balance between Implementation, Analysis, experiments, discussion. 
-- I still need to perform some of these aspects. 
-
-...
-
-Also, what is my schedule for finishing these things? 
-
-(29 August)
-- just filled the full conclusion! of course it is quicky written, and not completely finished, but it is finished enough for our purposes right now

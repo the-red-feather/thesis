@@ -92,66 +92,76 @@ TODO: diagram: show the 'locations' of the four research questions ( client / se
 The first component of the methodology involves the question of \mySubRQOneTitle : \mySubRQOne.
 
 % [WHY]
-Before exploring how lifting geo-computation to the web might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a dataflow vpl in general, both in terms of data structures and visualization. 
-This was necessary because of the observation that successful vpls involved with computational geometry are all dataflow-vpls (see \refsec{sec:related-geovpl}), but no existing web-vpl concerned with geometry uses this model (\refsec{sec:related-webvpl}).
-Due to the many advantages posed in \refsec{sec:background:dataflow}, but especially the concurrency advantages, a dataflow-type VPL had to be chosen for the topic of geocomputation.
+Before exploring how lifting geo-computation to a web-VPL might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a dataflow vpl for geometry computation in general, both in terms of data structures and visualization. 
+
+The assumption that a geo-web-vpl should be implemented as a dataflow vpl is made because of the many advantageous qualities layed out in \refsec{sec:background:dataflow}. 
+Additionally, and perhaps consequently, all comparable VPLs analyzed in \refsec{sec:related-geovpl} were implemented as dataflow VPLs (Blender, houdini, Grasshopper, GeoFlow), the only exception being the Möbius Modeller.
+However, this meant that a new, web-based implementation had to be made, since no existing web-vpl concerned with geometry uses this model (that this study is aware of).
+
+% As a second step, we wish to know to what extend a web-based, dataflow vpl can provide for the needs of a vpl meant for general 3D geometry processing.   
 % A 3D VPL is defined as a vpl meant for generic 3D geometry processing.
 
 % [HOW]
-A practical approach was deemed as the most fitting method to answer this question.
-The above question of \mySubRQOneTitle is further subdivided into 4 follow-up questions:
+The following approach was deemed as the most fitting method to answer this question of \mySubRQOneTitle:
 \begin{enumerate}[A]
-  \item \emph{What are the requirements of a dataflow-VPL for geometry?}
-  \item \emph{What can be defined as 'core browser features'?}
-  \item \emph{Per requirement, to what extend can core browser features be used to implement it?}.
+  \item \emph{Define the requirements of a dataflow-VPL handling geometry}
+  \item \emph{Define 'core browser features'}
+  \item \emph{Implement a dataflow-VPL in a browser according to these features}
+  \item \emph{Per requirement, to what extend is it successfully implemented by this dataflow-VPL?}.
+  \item \emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
   % \item \emph{Per implemented requirement, to what extend does this web implementation differ from native dataflow VPLs?}
 \end{enumerate}
 
-Question A and B will be answered subsequently. 
-Question C and D are answered by \refsec{sec:analyses:representation}.
+The definitions for step A and B will be made subsequently. 
+The implementation of step C is presented at \refsec{sec:implementation:representation}, 
+and the assessments of D and E can be found in \refsec{sec:analyses:representation}
 
 \subsection*{A: Requirements}
 
-Based on the vpl research of \refsec{sec:background-vpl}, any visual programming language must at the very least contain the following aspects: 
+The requirements of a dataflow-VPL implementation can be subdivided in requirements of a dataflow VPl in general, and a VPL for geo-computation specifically.
+Based on (SOURCE: dataflow VPL) any dataflow-VPL must at the very least contain the following aspects: 
 \begin{enumerate}[-]
-  \item a programming language model
-  \subitem a representation of the 'variables' and 'functions' of the language
-  \item a visualization of this data model
-  \item an interface to create and edit the language 
+  \item a base 'programming language model'
+  \subitem A representation of the 'variables' and 'functions' of the language
+  \subitem With all computations being pure functions
+  \subitem With all variables being immutable
+  \item a 'graph-like' visualization of this data model
+  \item an interface to create and edit this graph 
   \item a way to provide input data 
   \item a way to execute the language
   \item a way to display or save output data
 \end{enumerate}
-
-Based on popular, existing geometry vpl's (Blender, houdini, Grasshopper) A visual programming language handling 3D data should have:
+The implementation of these aspects would result in a 'baseline', general purpose, dataflow VPL. 
+To specialize this implementation further, A visual programming language handling geometry should have:
 \begin{enumerate}[-]
-  \item A dataflow-type VPL implementation
-  \subitem With all computations being pure functions
-  \subitem With all variables being immutable
-  \item A method to preview variables storing 3D data
-  \item multiple ways to determine input data (text fields, sliders) 
-  \item multiple ways to view output data (text displays, 3D viewers, etc.)
-  \item A method to handle types, or to guarantee type safety
+  \item Type safety 
+  \item A way to load or to create geometry data 
+  \item A way to export geometry data
+  \item A method to preview geometry data in 3D
+  \item A standard set of geometric types and operations
 \end{enumerate}
+These requirements need further explanation.
+First, regarding type safety.
+In this context, type safety refers to: 
+The input and output of a function should have a type stated, and users should be notified of incorrect usage of types, or 'invalid connections'.
+Geometry VPLs in particular need this, as many data representations of geometry are required to be precise about their data usage.
+A VPL used to construct geometry should reflect this. 
+Similarly, it should be possible to define these geometry representations as inputs, or to extract them as output. 
+This will require specialized parsers to become part of the VPL. 
+Additionally, when these types are clear and clearly communicated, users must have ways to provide these types as inputs or outputs. 
 
-A VPL also has many requirements which cannot be listed, but instead refer to the shaping of the entire application. 
-For example, interactivity a defining factor of a vpl. GUI elements should be as interactive as possible.
-However, aspects like this are hard to define or measure, and will not be included as part of this component of the methodology. 
+Regarding visualization, A hallmark of dataflow VPLs is the ability to inspect the geometry created in in-between steps, so this must be provided for.
+This is also a good fit, since the immutable nature of dataflow VPL variables make these variables ideal for caching. 
+
+Finally, a geometry VPL should contain a set of 'internal', basic types and operations.
+All aforementioned features are difficult to implement without defining some set of internally recognized data types. 
+Basic operations are needed in particular to transform between the types.
 
 % \begin{note}
 %   Figure out what to do with this: 
 %     Interactivity is the defining factor of the vpl. 
 %     a list of standard VPL features & application features required as a base-line:  
 %   - Users must be able to construct a script by visual means.
-%   - Dataflow Modelling
-%   - Dragging and dropping is a ui which
-
-%   (geo-vpl features:)
-%   - read data from user-submitted files
-%   - write data to files, downloadable by the user  
-%   - debug / inspect data in a 3D viewer
-%   - draw geometry in a 3D viewer
-% \end{note}
 
 \subsection*{B: Core browser features}
 This study defines "Core browser features" as the set of default features implemented by the three largest browser engines. 

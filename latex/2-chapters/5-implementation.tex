@@ -101,7 +101,7 @@ Because of the way Cables and Nodes reference each other, the graph has characte
 
 Finally, this entire graph object is accessed by a larger \m{NodesCanvas} object, and this canvas has the responsibilities of "View" and "Controller". 
 
-\subsubsection*{RenderingE}
+\subsubsection*{Rendering}
 
 \begin{figure}
   \centering
@@ -142,7 +142,7 @@ This is quickly noticeable within interactive applications which need to redraw 
 The Canvas is refreshed and redrawn often, and does not distinguish between unchanged and changed features. 
 This comes down to a performance linear to the amount of nodes and cables drawn. For the current implementation and scale of Geofront, this performance is acceptable. 
 
-\subsubsection*{ Style }
+\subsubsection*{Style}
 
 \begin{figure}
   \centering
@@ -159,10 +159,11 @@ Firstly, the entire graph is placed on a grid, and all nodes strictly adhere to 
 For example, a node with three inputs will always occupy three grid cells in height. 
 This grid is applied for much of the same reason as terminals \& source code are displayed using monospaced fonts. 
 Consistent sizing encourages organization and clarity, for this makes it easy for components to line up, and predict how much space something requires.  
-Cables also adhere to the grid. They alter their shape in such a way to remain as octagonal as possible, as an attempt to make connections between nodes more readable.
-This takes some additional inspiration from subway maps, as well as the design of computer chips. This makes for a good fit, since both these spatial configurations and the Geofront Script are focussed on organizing connectivity.
+Cables also adhere to the grid. They alter their shape in such a way to remain as octagonal as possible, in an attempt to make connections between nodes more readable.
+This takes some additional inspiration from subway maps, as well as the design of computer chips. 
+This makes for a good fit, as these spatial configurations and the Geofront Script are all focussed on organizing connectivity.
 
-\subsubsection{ Interaction }
+\subsubsection{Interaction}
 User Interaction is made possible through the \href{https://developer.mozilla.org/en-US/docs/web/api/event}{HTML DOM Events}. 
 This api provides ways to listen to many events, including keyboard and mouse events. 
 When the mouse is moved, its screen-space position is transformed to a grid position, which allows the user to select one or multiple objects. 
@@ -171,7 +172,7 @@ Geofront's user interface strives to match features of regular desktop applicati
 As such, the Geofront Graph supports features like undoing, redoing, duplication, copying, and pasting. 
 These functionalities can be used with the expected keyboard combinations (Ctrl + C / Ctrl + V).
 
-\subsubsection*{ Graph Manipulation }
+\subsubsection*{Graph Manipulation}
 
 In order to support these features, especially undo / redo support, we are required to explicitly track the history of the graph. 
 This is why a Command Pattern (Big Four, SOURCE) was implemented.
