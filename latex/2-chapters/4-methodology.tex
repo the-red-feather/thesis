@@ -164,21 +164,24 @@ Basic operations are needed in particular to transform between the types.
 %   - Users must be able to construct a script by visual means.
 
 \subsection*{B: Core browser features}
-This study defines "Core browser features" as the set of default features implemented by the three largest browser engines. 
-\begin{note}
-TODO: a pie chart of usage statistics
-\end{note}
-Based on these (FIGURE) market share statistics, the following three browsers engines appear to be the largest:
-\begin{enumerate}[-]
-  \item Chromium (Chrome, Edge) (Source)
-  \item Gecko (Firefox) (Source)
-  \item WebKit (Safari) (Source)
-\end{enumerate}
 
-The set of features common in all three browser engines are documented on (SOURCE: Mozilla). 
-This includes the following set of features relevant for the 3D VPL:
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/plots/browser-usage/} }
+  \includegraphics[width=0.7\linewidth]{plot.png}
+  \caption[Browser usage]{Fall 2021 desktop browser usage statistics. Data averaged over (Source, Source, Source, and Source)}
+  \label{fig:browser-usage}
+\end{figure}
+
+This study defines "Core browser features" as the set of default features implemented by the browser engines of 'major browsers'. 
+Based on the desktop browser market shares of \reffig{fig:browser-usage}, the chromium based browsers (Chrome, Edge, Opera) have the majority. 
+This is followed up by Firefox, based on the Gecko engine, and Safari, based on webkit. 
+By supporting these three engines, the vast majority of end-users can be accounted for. 
+
+The set of features common in these three browser engines are well-documented on websites like MDN web docs (SOURCE: Mozilla). 
+This set includes the following features relevant for the 3D VPL:
 \begin{enumerate}[-]
-  \item WebGL (WebGL2, WebGPU)
+  \item WebGL \& WebGL2 (WebGPU is not fully covered yet)
   \item 2D Canvas API
   \item Web Workers
   \item Web Components

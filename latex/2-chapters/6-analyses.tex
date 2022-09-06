@@ -10,88 +10,111 @@ Finally, \refsec{sec:analyses:utilization}.
 \section{The base application}
 \label{sec:analyses:representation}
 
-This section of the analysis covers the question of \mySubRQOneTitle, and aims in particular to answer the question: \emph{Per requirement, to what extend can core browser features be used to implement it?}.
+This section of the analysis covers the question of \mySubRQOneTitle, and aims in particular to answer the questions: \emph{Per requirement, to what extend is it successfully implemented by this dataflow-VPL?} and \emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
 
-We group the requirements listed at \refsec{sec:method-one} in a group of base features,
-a group of dataflow features, and a group of geometry features.
+Additionally, this section clarifies to what extend a feature could not be implemented due to shortcomings of this particular implementation, or due to a limitation of the browser environment as a whole. 
 
-\subsection{Base dataflow VPL Features}
+% We group the requirements listed at \refsec{sec:method-one} in a group of base features,
+% a group of dataflow features, and a group of geometry features.
 
-\begin{note}
+\subsection*{The extend of the dataflow-VPL implementation}
 
+\refsec{sec:method-one} named the following features which had to be implemented:
 \begin{enumerate}[-]
-  \item a visual language
-  \item an interface to configure this visual language 
-  \item a representation of the 'variables' and 'functions' of the visual language
+  \item a base 'programming language model'
+  \subitem A representation of the 'variables' and 'functions' of the language
+  \subitem With all computations being pure functions
+  \subitem With all variables being immutable
+  \item a 'graph-like' visualization of this data model
+  \item an interface to create and edit this graph 
   \item a way to provide input data 
   \item a way to execute the language
   \item a way to display or save output data
- MAKING TYPESAFE CONNECTIONS
- EXPLAINING THINGS TO THE USER
+\end{enumerate}
 
-TODO elaborate upon each of these features
-Add type checking.
+\subsubsection*{The model}
+A basic (visual) programming language model was able to be fully implemented on the web. 
+No special web features were utilized in the creation of this model, despite HashMaps and HashSets offered by the Typescript language. 
 
-"Types in general have not been solved across all languages, so we cannot just do that here. Also, how to communicate ideas about types in an end-user-friendly manner is also a sizable topic" 
-\end{note}
-
-Geofront was able to implement all normal, basic features of a dataflow VPL in the browser using JavaScript and HTML5 features.
-
-The Canvas API turned out to be a crucial feature to make the base UI functional. 
-The same level of interactivity would have been difficult to achieve using just plain html.
-However, The CPU-based rendering can get slow at a high number of components. 
-
-% - disadvantages: 
-%   - all in-between data must be stored in memory if it is to be inspected.
-%     - Can't make use of 'writing files', so that something can be removed from memory 
-
-
-\subsection{Geometry VPL Features}
+\subsubsection*{Visualization}
+Visualization of the graph is implemented using the 2D canvas api.  
+On every registered change to the graph, the canvas is redrawn. 
+The 2D canvas api makes use of explicit draw calls, rather than 'defining' some visualization, and leaving the render sequence to the renderer itself, like HTML.
+This way, One does not have to first 'create' a circle object and pass it to a renderer. 
+A circle can instantly and directly be drawn at the position specified.
+The downside of this implementation, is that all features the HTML renderer normally accounts for, like picking, conditional styling, and performant rendering of repetitious elements, are lost.
+These have to be re-implemented in javascript, which will never be as performant as the codebase of the browser engines themselves. 
+This makes the visualization slow while rendering a large amount of components (See TODO). 
 
 \begin{note}
-
-% should have:
-% \begin{enumerate}[-]
-%   \item A method to preview 3D data used throughout the flowchart
-
-%   \item multiple ways to determine input data (text fields, sliders) 
-
-%   \item multiple ways to view output data (text displays, 3D viewers, etc.)
-% \end{enumerate}
-  
-  TODO elaborate upon each of these features
-  Add type checking.
-  
-  "Types in general have not been solved across all languages, so we cannot just do that here. Also, how to communicate ideas about types in an end-user-friendly manner is also a sizable topic" 
+  TODO Show a graph with performance considerations
 \end{note}
 
-Geofront was able to implement most features of a geometry-focused VPL using browser features, however there are some caveats. 
+This slowness can be blamed partially on the implementation, and partially on the browser. 
+The browser does not offer the 'middle ground' between html-like rendering and 2D canvas-like rendering required for a visualization like the dataflow graph. 
+Still, this implementation could have experimented more with a HTML + SVG based render method.
 
-To support features like loading or streaming a file, or inspecting data, the browser needs to take the full file into memory. 
-Additionally, internal representations of geometry suffer from Javascript's limited type support.
-Typescript has been used to mitigate some of these shortcomings, this still leads to trouble when type-checking at runtime. 
-The prototype-based objects also led to classes which could not be properly reflected at runtime.
-These two aspects together makes interpreting what geometry to visualize and when a difficult exercise. 
+\subsubsection*{Editing}
+Editing of the graph was made possible by the various events offered by the browser api. 
+This allows the graph to be editable using the mouse. 
+The graph even offers 'undo' and 'redo' operations, and even 'copy' / 'paste' clipboard actions, using common shortcuts. 
+However, the implementation does lack touch \& mobile support.
 
-% - In general, the geometry visualization, and types in geofront in specific requires examination. 
+In general, these editing features are complete, but there are a few caveats caused by the browser environment.
+Namely, the browser has need of its own controls and shortcuts. 
+For example, the right mouse button brings up the browser context, and the \m{Ctrl + W} shortcut closes a browser tab, which cannot be overwritten.
+While there are some workarounds, these aspects make web applications more 'convoluted' to implement than would otherwise be ideal.
 
-however, what Geofront gets in return, is the fact that make aspects such as WebGL do not need to be included within the source code of Geofront, making it much more lightweight than an application which carries its render API with itself. 
+\subsubsection*{Execution}
+Execution of the graph works as described, albeit with a major setback: execution does not run on a separate thread. 
+This means that the interface freezes up during large calculations, and this is not acceptable. 
 
-%   - The web is able to be used for geoprocessing, albeit with some caveats
-%     - Less control and precision
-%     - TypedArrays,
-%     - Geometric predicates 
-%     - Rounding
-%     - ETC.
+The reason for this is the difficulty in achieving concurrency in the browser. 
+To create a thread, one has to instantiate a so called 'web worker' \emph{with} the actual source code included in a parameter. 
+Not only is this unusual, it forces a codebase to create separate files per thread.
+The dynamic nature in which some of Geofront dependencies are loaded made splitting up the codebase like this impossible, let alone using multiple threads for calculating each node.
 
-%  - Notes:
-%    - would not be possible without these modern web features
-%     - Web Assembly 
-%     - Typed Array's 
-%     - Web Workers
-%     - Web Components,
-%     - 2D Canvas API
-%     - Web GL
+\subsubsection*{Input and Output}
+The base dataflow VPl component of Geofront support input and output UI elements, like sliders, buttons, and text fields.
+These form special nodes on the canvas, called 'widgets'. 
+The fact that the Geofront implementation opted for a 2D canvas-based visualization made it so HTML could not be used for these aspects, and all these features had to be created from scratch.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{The extend of the geometry support implementation}
+
+\refsec{sec:method-one} named the following features as a requirement for geometry support:
+\begin{enumerate}[-]
+  \item Type safety 
+  \item A way to load or to create geometry data 
+  \item A way to export geometry data
+  \item A method to preview geometry data in 3D
+  \item A standard set of geometric types and operations
+\end{enumerate}
+
+\subsubsection*{Type Safety}
+Type safety was fully implemented by essentially creating a new 'layer' of types in typescript.
+The type system can be extended by types found in Geofront Plugins.  
+In theory, this can be used to prevent all incorrect type usage during creation of a Geofront Script.
+In practice, to support iteration, some runtime type checking was still required. 
+
+\subsubsection*{IO}
+Files can be used as inputs and extracted as outputs using the 'file load' and 'file save' widgets. 
+These files are then loaded as raw text or raw binary, which can be parsed by using a parser appropriate for that file type. 
+The problem with this implementation, is that it requires a full file to be loaded into memory. 
+Most native parsers make use of streaming to avoid this. 
+There are ways of supporting incrementally reading files in a browser, but these methods are not supported by all browsers yet. 
+
+\subsubsection*{Visualization}
+Visualization of 3d data used throughout the graph is possible thanks to WebGL. 
+The useful aspect of WebGL is the fact it does not have to be included within the source code of a program. 
+WebGL supports all render demands basic, small-scale 3D geodata visualization might need, such as point clouds and DTMs.
+large scale visualization is not possible, as the visualizer does not support idioms like frustum culling, or dynamic levels of detail. 
+
+\subsubsection*{Standard Geometry \& Operations}
+lastly, the browser and this implementation were able to support the models and operations required for basic 3D geometry, like points, lines, polygons, and meshes.
+the "TypedArray" browser feature is used extensively to bypass the fact that javascript has limited type support.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
