@@ -1,35 +1,76 @@
-## WHAT DO YOU WANT? YOU CAN HAVE WHAT IT IS YOU WANT, BUT WHAT DO YOU WANT? 
-- I Want to feel finality about the thesis. done. over. lets move on to new things
-- I want to make it an entry on my website
-- I want to make it a linkedin post
+|          |                         |
+| -------- | ----------------------- |
+| date     | 2022-09-09 - Friday
+| present  | Giorgio, Ken, Stelios, Jos
+| Location | Cyberspace
 
-## WHY WORK ON THIS SHIT AT ALL??
-- ITS NOT FINISHED! DO YOU WANT TO POSTPONE IT MORE?
-- YOU THINK YOU ARE DONE??? THINK AGAIN, THE WHOLE THING IS STILL CRAP!
-- 
+(Do you mind if I record the audio of this meeting?)
 
-## WHAT NEEDS TO HAPPEN TO MAKE THAT HAPPEN?
-- Written thesis should be finished 
-- Presentation Script should be finished, recorded, and tested
-- Geofront itself should have more functionality, the STD requires an upgrade
+# 0. Introduction
+
+Hi all!
+
+# 1. What has been done?
+
+- almost all chapters have been filled in! 
+- continued with the code to get some geodata on the canvas, which was a success:
+  - COPC files can now be loaded and visualized
+  
+
+# 2. Where are we currently? 
+
+- Background & related works is too long! 
+- Editorial work still incomplete (sources, images, diagrams, abbreviations)
+- 'strange analysis chapter' -> can't put my word on it, but the analysis chapter needs some changes
+- Missing parts in the implementation and analysis chapters, working on that
 
 
+# 3. Questions
 
-
-
-## Thoughts
+- I really wish to know where I'm at: 
+    - How is the narrative?
+    - What should really be in order for the P4? 
+    - Are there any crucial parts missing?
+    - Are there any parts of the thesis 'unacceptable'?
 
 - I find it weird to write the analysis chapter. 
   - I can only give written comments, I have no data. 
 
-## Questions: 
+- I built a 'personal reflection' this week, should I include that in the final meeting
 
- incomplete?
+# 4. What needs to be done for next meeting? 
 
-## Known Issues 
+- All editorial work finished 
+  - no missing images 
+  - no missing sources
+  - no sentences stopping randomly
+  - no missing abbreviations
 
-- Background & related works is too long! 
+- The studies referred to have to be conducted.
+
+- The remaining empty chapters 5.2 and 6.2 should be filled  
+
+# 5. Administrative: 
+
+- P4 all set? 
+- Hugo? 
+
+# 6. Next Meeting 
+
+https://calendar.google.com/calendar
 
 
+# 7. W.V.T.T.K.
 
-- Editorial things: Images, diagrams, abbreviations, sources, 
+-
+
+# 8. Closure
+
+Thank you for your time 
+
+
+# NOTES DURING MEETING 
+
+```
+
+```
