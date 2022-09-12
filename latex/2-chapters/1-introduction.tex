@@ -139,6 +139,49 @@ Novel browser features like WebAssembly may pose a solution to some of these ope
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\subsection*{Structure}
+  
+The content of this methodology is based upon the main and supporting research questions. 
+As such, it bears fruit to explain how these specific questions were chosen.
+
+% DOES THIS STILL CONNECT TO THE NEW BACKGROUND AND RELATED WORKS
+The related studies in \refchap{chap:related} show that only one \ac{geo-web-vpl} as described by this study exists. This is in contrast to the many examples of geo-vpls in \refsec{sec:related-geovpl} and web-vpls \refsec{sec:related-webvpl}. 
+Based on this, it can be assumed that creating a visual programming environment in a web-browser must be possible. 
+Using a \ac*{vpl} for geocomputation must also be possible. 
+However, the greatly reduced number of geo-web-vpls indicates some sort of hinder, preventing this type of application to be realized. Either geo-VPLs were not able to be properly used in a browser, or web-based VPLs were unable to support geocomputation functionalities. 
+% Assuming, of course, that researchers and developers of these environments would have wanted to work towards a \ac{geo-web-vpl}.
+
+This study starts from the second assumption: 
+Apparently, web-based VPLs are unable to support existing geocomputation functionalities. 
+This could be because of several reasons, of which this study identifies four major ones.
+
+geocomputation functionalities might not be able to be properly:
+\begin{itemize}[-]
+  \item \textbf{compiled} into a format functional on the web
+  \item \textbf{loaded} within a web-based VPL
+  \item \textbf{represented / visualized} by the interface of a web-based, dataflow-VPL
+  \item \textbf{used} within a web-based dataflow-VPL
+\end{itemize}
+As it is unknown which one of these reasons is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
+Moreover, the real reason might not lie in one of these areas, but in the interplay between all of these factors. 
+
+It is this study's objective to pose a solution to this barrier. 
+% This is stated by the main research question: \myMainRQ 
+The study goes about doing so, by developing a prototype \ac{geo-web-vpl} accompanied by web-compiled geocomputation libraries. 
+This prototype vpl is used as a staging ground to discover the extend of possible hindrances. 
+% During its development, each one of these four possible hindrances has to be accounted for. 
+Per hindrance, we document design considerations, and run experiments, all to test to what extend this prototype \ac{geo-web-vpl} fails or succeeds to provide for this aspect. 
+After this is done, we can compile a final conclusion to the main research question. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Problem Statement}
 % \begin{note}
 %   TODO: make both of these presuppositions clear

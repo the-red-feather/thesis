@@ -15,7 +15,8 @@ Hi all!
 - almost all chapters have been filled in! 
 - continued with the code to get some geodata on the canvas, which was a success:
   - COPC files can now be loaded and visualized
-  
+
+
 
 # 2. Where are we currently? 
 
@@ -23,6 +24,7 @@ Hi all!
 - Editorial work still incomplete (sources, images, diagrams, abbreviations)
 - 'strange analysis chapter' -> can't put my word on it, but the analysis chapter needs some changes
 - Missing parts in the implementation and analysis chapters, working on that
+
 
 
 # 3. Questions
@@ -38,6 +40,8 @@ Hi all!
 
 - I built a 'personal reflection' this week, should I include that in the final meeting
 
+
+
 # 4. What needs to be done for next meeting? 
 
 - All editorial work finished 
@@ -50,14 +54,19 @@ Hi all!
 
 - The remaining empty chapters 5.2 and 6.2 should be filled  
 
+
+
 # 5. Administrative: 
 
 - P4 all set? 
 - Hugo? 
 
+
+
 # 6. Next Meeting 
 
 https://calendar.google.com/calendar
+
 
 
 # 7. W.V.T.T.K.

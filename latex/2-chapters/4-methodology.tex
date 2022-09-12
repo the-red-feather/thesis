@@ -3,11 +3,21 @@
 \label{chap:methodology}
 
 This chapter explains the methodology used in this study. 
-It starts out with an overall structure, showing what elements this methodology precisely consists of, and how these elements came to be. 
-The chapter then continues with four sections, each explaining one of these components.
-But first, the overall methodology.
 
-\section{Overall methodology}
+The study is subdivided into four components, each representing a sub-research question, which is in turn based upon one of the challenges of a geo-web-vpl. 
+The questions are posed in such a way that answering them will require us to explore the extend of this challenge, and find possible solutions.
+
+(See reffig)
+
+\begin{note}
+TODO: diagram: 4 research questions -> four possible barriers of geocomputation
+\end{note}
+
+\begin{note}
+TODO: diagram: show the 'locations' of the four research questions ( client / server / native, etc.)
+\end{note}
+
+
 
 \subsection*{Nature}
 The methodology of this study can be characterized as practical as opposed to theoretical, 
@@ -30,61 +40,6 @@ And, due to the investigative nature of this study, the methodology requires to 
 % - practical > theoretical : Literature study indicates enough theoretical soundness, but lots of practical questions remaining. We wish to  immediate pick up where these studies have left, and therefore we choose the direct, practical study of designing and implementing a prototype application. 
 % - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geocomputation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
 % - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
-
-\newpage
-
-\subsection*{Structure}
-  
-The content of this methodology is based upon the main and supporting research questions. 
-As such, it bears fruit to explain how these specific questions were chosen.
-
-% DOES THIS STILL CONNECT TO THE NEW BACKGROUND AND RELATED WORKS
-The related studies in \refchap{chap:related} show that only one \ac{geo-web-vpl} as described by this study exists. This is in contrast to the many examples of geo-vpls in \refsec{sec:related-geovpl} and web-vpls \refsec{sec:related-webvpl}. 
-Based on this, it can be assumed that creating a visual programming environment in a web-browser must be possible. 
-Using a \ac*{vpl} for geocomputation must also be possible. 
-However, the greatly reduced number of geo-web-vpls indicates some sort of hinder, preventing this type of application to be realized. Either geo-VPLs were not able to be properly used in a browser, or web-based VPLs were unable to support geocomputation functionalities. 
-% Assuming, of course, that researchers and developers of these environments would have wanted to work towards a \ac{geo-web-vpl}.
-
-This study starts from the second assumption: 
-Apparently, web-based VPLs are unable to support existing geocomputation functionalities. 
-This could be because of several reasons, of which this study identifies four major ones.
-
-geocomputation functionalities might not be able to be properly:
-\begin{itemize}[-]
-  \item \textbf{compiled} into a format functional on the web
-  \item \textbf{loaded} within a web-based VPL
-  \item \textbf{represented / visualized} by the interface of a web-based, dataflow-VPL
-  \item \textbf{used} within a web-based dataflow-VPL
-\end{itemize}
-As it is unknown which one of these reasons is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
-Moreover, the real reason might not lie in one of these areas, but in the interplay between all of these factors. 
-
-It is this study's objective to pose a solution to this barrier. 
-% This is stated by the main research question: \myMainRQ 
-The study goes about doing so, by developing a prototype \ac{geo-web-vpl} accompanied by web-compiled geocomputation libraries. 
-This prototype vpl is used as a staging ground to discover the extend of possible hindrances. 
-% During its development, each one of these four possible hindrances has to be accounted for. 
-Per hindrance, we document design considerations, and run experiments, all to test to what extend this prototype \ac{geo-web-vpl} fails or succeeds to provide for this aspect. 
-After this is done, we can compile a final conclusion to the main research question. 
-
-The methodology of this study is structured to facilitate this process. 
-It is subdivided into four components, each representing a sub-research question, which is in turn based upon one of these possible hindrances. The questions are posed in such a way that answering them will require us to explore the extend of the hindrance, and find possible solutions.
-
-The remained of this chapter covers the four components of this methodology, and how this relates to this prototype. 
-
-\begin{note}
-TODO: diagram: 4 research questions -> four possible barriers of geocomputation
-\end{note}
-
-\begin{note}
-TODO: diagram: show the 'locations' of the four research questions ( client / server / native, etc.)
-\end{note}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{\mySubRQOneTitle} 
 \label{sec:method-one}
