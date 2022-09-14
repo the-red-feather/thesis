@@ -1,16 +1,55 @@
 \chapter{Introduction}
 
+\begin{note}
+
+Stelios Draft Comments
+======================
+
+In general, I think it's going well. I think the intro is fine, although it can be improved. I like the conclusions quite a lot, tbh. You are giving proper and interesting answers to the raised questions. The rest is a bit of a very rough draft, as I see. So, some specific points:
+
+TODO: Tone down stuff
+-  It seems like you have placed several bits here and there that seem like either introduction or conclusions. I feel your enthusiasm and excitement in your writing, but I think you are bringing questions and answers in places were people would normally just expect a simple narrative of what you did and what are the results.
+
+TODO: Write 6.2
+-  Speaking of results, we are missing the experiments so please put this at your first priority. This is because it feels like you promise things that you do not deliver.
+
+TODO: Find & Replace
+-  In general, you are using some very bold statements and informal expressions. The latter is kinda okay, but the first one is very dangerous. I've noticed words like "crucial", "by far" or "impressive" which seem very biased and subjective, so better be avoided. You can still use them here and there (mostly in the conclusions), but I think you use them way  too much (again, I can see your enthusiasm).
+
+TODO: Find & Replace 
+-  Minor thing, but I think you have confused \citet with \citep. The first one is used when the citation is part of the sentence and the latter when it's at the end of a sentence (or in a parenthesis, anyway).
+
+\end{note}
+
 % \subsection*{Geodata \& Geodata computation}
 
 The field of \ac{gis} concerns itself with the collection, processing, storage, and visualization of geodata. 
 By doing do, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
 This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, governance, navigation, the military, and agriculture.   
 
-Central to this effort is the process of converting raw geodata into meaningful geo-information. 
-[KEN: please use an example]
+\begin{note}  
+* p.1 this effort -> what effort?] 
+\end{note}
+
+
+Central to this e ffort is the process of converting raw geodata into meaningful geo-information. 
+
+\begin{note}
+  [* raw data into meaningful geoinformation -> example(s)]
+\end{note}
+
 Additionally, the effort often involves executing transformations or calculations on existing datasets. 
+
+\begin{note}
+  * geocomputation -> what is the link to previous sentences?
+\end{note}
+
 The term \ac{geocomputation}, or geodata processing, is used to represent all types of computations performed on geographical datasets. Anything from the calculation of the area of a region, to a \ac{crs} transformations, or converting a raster dataset into a vectorized dataset, can be regarded as geocomputation.
 All applications of geo-informatics require some level of geocomputation, as the raw data gathered from surveyance seldom corresponds to the precise information we wish to discover about the earth.       
+
+\begin{note}
+  * geoinformatics or GIS -> just choose one and make an argument based on it
+\end{note}
 This makes geocomputation a cornerstone of the entire field of geo-informatics, and vital to all her applications.
 
 Despite major advancements during the last 20 years in geocomputation and geocomputation platforms, geocomputation remains no trivial exercise. 
@@ -37,7 +76,13 @@ these two developments require further explanation, after which the subject and 
 
 % \emph{what makes a vpl a 'new' development?}
 \begin{note}
-  TODO: this chapter should probably be rewritten to connect more to the current content of the thesis
+  * introduce VPLs, then start with link between VPLs and geocomputation -> what do they solve?
+  p.2 introduce browser-based VPLs and what they solve
+
+  TODO: go straight to geo-web-vpls, no chill.
+
+  then explain the current shortcomings of 'em
+  
 \end{note}
 
 The \ac{vpl} is still considered an ongoing development within the field of geocomputation, despite popular examples like FME (Source, TODO add picture). 
@@ -46,7 +91,13 @@ Especially in recent years, a push towards a more 'granular' \ac{vpl}s can be re
 As an example, McNeels's Grasshopper (SOURCE) is increasingly being used for spatial analyses of buildings and neighborhoods, like solar irradiation or heating demands (source). 
 Meanwhile, GeoFlow (shown in \reffig{fig:1:geoflow}) was used to model the 3D envelope of a building based on a pointcloud, which was subsequently scaled up in the creation of the 3D BAG dataset (source).
 
-Using a \ac{geo-vpl} for more detailed geocomputation is still relatively novel, and contains many open ended questions. That geocomputation in certain scenarios benefits from the interface offered by \ac{vpl}s like these is probably true, indicated by the number of prior studies on the topic (source, source, source), and the popularity of \ac{vpl}s used for geodata and geometry computation. The \emph{extent} to which \ac{vpl}s benefit detailed geocomputation, is still relatively unknown. 
+Using a \ac{geo-vpl} for more detailed geocomputation is still relatively novel, and contains many open ended questions. That geocomputation in certain scenarios benefits from the interface offered by \ac{vpl}s like these is probably true, indicated by the number of prior studies on the topic (source, source, source), and the popularity of \ac{vpl}s used 
+
+\begin{note}
+  * p.3 what studies?
+\end{note}
+
+for geodata and geometry computation. The \emph{extent} to which \ac{vpl}s benefit detailed geocomputation, is still relatively unknown. 
 
 \subsection*{Browser-based geocomputation}
 
@@ -193,6 +244,13 @@ After this is done, we can compile a final conclusion to the main research quest
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Problem Statement}
+\begin{note}
+  * problem statement -> be more concise, what is exactly the problem?
+  * p.4 libraries? this comes too late, specify it beforehand
+  
+* support?
+\end{note}
+
 % \begin{note}
 %   TODO: make both of these presuppositions clear
 %   1. Combining a geo-vpl and bbg is useful. It is valuable to figure out if it can be done properly
@@ -239,6 +297,13 @@ Based on this objective, the research question is formulated as follows:
 \subsection*{Supporting Questions}
 The following supporting questions are defined to aid in answering the main question.
 These are based upon various components of the main problem statements, further explained in \refchap{chap:methodology}
+
+\begin{note}
+  - first question -> you really studied it?
+  - I'd remove to what extent? it's hard to answer
+  - missing evaluation in questions -> performance evaluation?
+\end{note}
+
 \begin{itemize}[-]
   \item \mySubRQOne
   \item \mySubRQTwo
@@ -263,6 +328,10 @@ Adding backend-based geocomputation to a geo-web-VPL would be an excellent follo
 Future work could research the possibility of utilizing a hybrid strategy of both client-side and server-side geocomputation, following in the footsteps of \cite{panidi_hybrid_2015}. 
 
 \subsection*{No Usability Comparison} % 
+\begin{note}
+  needs a better argument for usability -> technical feasibility only
+\end{note}
+
 While accessibility / usability is a motivation of the development of a \ac{vpl}, and while usability will be analyzed to a limited extent, no claims will be made that this method of geocomputation is \emph{more} usable as opposed to existing geocomputation methods. This research attempts to solve practical inhibitions in order to discover whether or not browser-based, vpl-based geocomputation is \emph{a} viable, usable option. If it turns out that this method is viable enough technically, future research will be needed to definitively proof \emph{how} usable it is compared to all other existing methods.  
 
 % This paper seeks to first close this gap, limiting itself to overcoming the technical and design boundaries in the pursuit of practical client-side geocomputation.
@@ -275,6 +344,13 @@ Similarly, a survey analyzing how users experience browser-based geocomputation 
 % It is my goal to introduce this as a new geocomputation option, and to name the advantages and disadvantages we can be sure of. An actual comparison of client-side vs native geocomputation is something different. 
 
 \subsection*{Only WebAssembly-based containerization}
+
+\begin{note}
+  p.5 is backend geocomputation really browser-based geocomputation? I'd say no, could be used to shorten this section
+
+  -> I would still include this part, when I explain my thesis to colleagues and other people, this is one of the things which comes up. Better safe than sorry.
+\end{note}
+
 This thesis examines a WebAssembly-based approach to containerization and distribution of geocomputation functionalities. 
 Containerization using Docker is also possible for server-side applications, but is not (easily) usable within a browser. 
 For this reason, Docker-based containerization is left out of this studies' examination. 
