@@ -22,9 +22,6 @@ TODO
      - They frame the issue simply in terms of code portability
      
 
-* 
-* 
-
 
 
 

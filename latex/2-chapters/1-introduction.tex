@@ -24,7 +24,7 @@ TODO: Find & Replace
 % \subsection*{Geodata \& Geodata computation}
 
 The field of \ac{gis} concerns itself with the collection, processing, storage, and visualization of geodata. 
-By doing do, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
+By doing so, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
 This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, governance, navigation, the military, and agriculture.   
 
 \begin{note}  
@@ -50,7 +50,7 @@ All applications of geo-informatics require some level of geocomputation, as the
 \begin{note}
   * geoinformatics or GIS -> just choose one and make an argument based on it
 \end{note}
-This makes geocomputation a cornerstone of the entire field of geo-informatics, and vital to all her applications.
+This makes geocomputation a cornerstone of the entire field of geo-informatics, and vital to all its applications.
 
 Despite major advancements during the last 20 years in geocomputation and geocomputation platforms, geocomputation remains no trivial exercise. 
 The geometric nature of geocomputation, together with the sheer scope of geodata, and the variety in formats and quality make geocomputation both computationally intensive and difficult to operate. 
@@ -62,7 +62,7 @@ the improvement of both geocomputation, and the activity of geocomputation, rema
 
 In recent years, two promising developments regarding geocomputation are emerging:
 Visual programming, and browser-based geocomputation. 
-these two developments require further explanation, after which the subject and goal this thesis can be made clear.
+These two developments require further explanation, after which the subject and goal this thesis can be made clear.
 
 \subsection*{Visual programming}
 
@@ -97,7 +97,7 @@ Using a \ac{geo-vpl} for more detailed geocomputation is still relatively novel,
   * p.3 what studies?
 \end{note}
 
-for geodata and geometry computation. The \emph{extent} to which \ac{vpl}s benefit detailed geocomputation, is still relatively unknown. 
+For geodata and geometry computation. The \emph{extent} to which \ac{vpl}s benefit detailed geocomputation, is still relatively unknown. 
 
 \subsection*{Browser-based geocomputation}
 
@@ -115,11 +115,11 @@ The central idea is to add browser-based geocomputation to web-mapping applicati
 An example of this is the Omnibase application in \reffig{fig:1:omnibase}, used by Dutch municipalities to measure and map buildings and infrastructure.
 
 Additionally, browser-based geocomputation, compared to native GUI or CLI geocomputation, allows geocomputation to be more \textbf{accessible} and \textbf{distributable}. 
-Accessible, since geocomputation on the web requires no installment or configuration, 
+Accessible, since geocomputation on the web requires no installation or configuration, 
 and distributable, since the web is cross-platform by default, and poses many advantages for updating, sharing, and licensing applications. 
-By performing these calculations in the browser rather than on a server, server resources can be spared, and customly computed geodata does not have to be resend to the user upon every computation request ([back up with sources from related works]).
+By performing these calculations in the browser rather than on a server, server resources can be spared, and customly computed geodata does not have to be resent to the user upon every computation request ([back up with sources from related works]).
 
-However, Browser-based geocomputation also has many open-ended questions and challenges. 
+However, browser-based geocomputation also has many open questions and challenges. 
 The big catch is that browsers \& javascript are not ideal hosts for geocomputation. 
 As an interpreted language, Javascript is slower and more imprecise compared to system-level languages like C++.
 In addition, it has limited support regarding reading and writing files, and does not possess of a rich ecosystem of geocomputation libraries.  
@@ -283,6 +283,7 @@ Two problems exist in this context:
 2. Secondly, existing implementations are not using a dataflow paradigm
 -> functional programming, inspect parameters, 
 
+TODO: make this more straightforward
 
 This study seeks to close the gap between geo-VPLs and browser-based geocomputation by designing, implementing, and evaluating a new prototype \ac{geo-web-vpl}.
 The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a visual programming environment is key to making a geo-web-vpl succeed. 

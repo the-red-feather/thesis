@@ -243,7 +243,7 @@ The big advantages are that web applications are cross-platform by nature, and o
 As soon as a web app is found, it can theoretically be used.
 The containerized nature of the web also makes web applications in general more safe. 
 For unknown native applications there is always a danger of installing malicious software, whereas an unknown web application without any privileges is practically harmless (Needs citation). 
-The ability to share the a functional application with a link, or to embed it within the larger context of a webpage, is also not a trivial advantage.
+The ability to share an application with a link, or to embed it within the larger context of a webpage, is also not a trivial advantage.
 
 The disadvantage is that normally, web applications can only be written in JavaScript, a very-high level interpreted programming language. 
 Its high-level nature leads to imprecision in using computational resources. 
@@ -344,7 +344,7 @@ These findings match \cite{jangda_not_2019}, showing that the duplication of dat
 
 A recent study concerned with watershed delineation \cite{sit_optimized_2019} also concluded client-side WebAssembly to be more performant than server-side C, which, as a side effect, enabled their application to be published on the web without an active server. 
 
-Lastly, the sparse matrix research of Sandhu et al. will be mentioned. \cite{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. it states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision, probably due to byte spacing.
+Lastly, the sparse matrix research of Sandhu et al. will be mentioned. \cite{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. It states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision, probably due to byte spacing.
 
 Even though this study falls in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account when using the compile target.
 
@@ -464,11 +464,11 @@ A visual programming language allows users to create programs by adding preconfi
 Multiple types of \ac{vpl}s exist, but also multiple taxonomies of these types.
 This study bases itself on the classifications presented in \cite{kuhail_characterizing_2021}, stating four different types of visual programming languages: 
 \begin{enumerate}
-  \item \textbf{Block-based languages}, in which all normal programming language features, like brackets, are represented by specific blocks which can be 'snapped' together (\label{fig:sidebyside:1}).
-  \item \textbf{Diagram-based languages}, in which programming function are represented by nodes, and variables are represented by edges between these components (\label{fig:sidebyside:2}). This makes the entire program analogous to a Graph.
-  \item \textbf{Form-based languages}, in which the functioning of a program can be configured by means of normal graphical forms (\label{fig:sidebyside:3}). 
+  \item \textbf{Block-based languages}, in which all normal programming language features, like brackets, are represented by specific blocks which can be 'snapped' together (see \reffig{fig:vpl-types:1}).
+  \item \textbf{Diagram-based languages}, in which programming function are represented by nodes, and variables are represented by edges between these components (see \reffig{fig:vpl-types:2}). This makes the entire program analogous to a Graph.
+  \item \textbf{Form-based languages}, in which the functioning of a program can be configured by means of normal graphical forms (see \reffig{fig:vpl-types:3}). 
   This approach enhances the stability and predictiveness compared to other types, at the cost of expressiveness.
-  \item \textbf{Icon-based languages}, in which users are asked to define their programs by chaining highly abstract, iconified procedures (\label{fig:sidebyside:4}). 
+  \item \textbf{Icon-based languages}, in which users are asked to define their programs by chaining highly abstract, iconified procedures (see \reffig{fig:vpl-types:4}). 
 \end{enumerate}
 
 The meta analysis of \cite{kuhail_characterizing_2021} shows a great preference among researchers for block- and diagram-based languages. 
@@ -551,8 +551,8 @@ These properties together make visual programming also highly suitable for activ
 % ADVANTAGE: PLAYFULNESS
 
 \subsection{End User Development \& Low Coding}
-a \ac{vpl} done right can make automation available to a very large audience, and this is exactly the point. 
-Visual Programming is part of a larger field, named End User Development (eud). 
+A \ac{vpl} has the potential to make automation available to a very large audience, and this is exactly its purpose. 
+Visual Programming is part of a larger field, named End User Development (EUD). 
 The field is concerned with allowing end users who are not professional software developers to write software applications, using specialized tools and activities. 
 This however, does not mean that experienced developers have nothing to gain from this research. 
 Lowering the cognitive load of certain types of software development could save time and energy which can then be spend on more worthwhile and demanding tasks. 
@@ -603,8 +603,7 @@ By closely resembling dataflow itself, and because of its functional programming
 
 \subsection{Disadvantages and open problems}
 \label{sec:background:vpl:disadvantages}
-
-there is of course, no such thing as a free lunch. 
+ 
 \ac{vpl}s and dataflow programming en large have got certain disadvantages and open problems.
 
 % (Dataflow programming is an area still open to further research, with some open
@@ -634,7 +633,7 @@ there is of course, no such thing as a free lunch.
   \end{subfigure}%
   \caption[Comparrison of iteration]{A factorial function, written in a vpl, and textual form}%
   \label{fig:vpl-iteration}
-  \end{figure}
+\end{figure}
 
 A problem described in almost all reviewed vpl literature (Source: advanced in dataflow, SOURCE: Dataflow programming,  SOURCE: COGNITIVE), is that the \ac{dag} model of diagram-based vpls are ill-suited for representing even the most basic flow control statements: \m{if, else, for, while}.
 Even if the acyclic quality of the dataflow graph is omitted, the resulting models are significantly more complicated compared to their textual counterparts, as shown by \reffig{fig:vpl-iteration}.

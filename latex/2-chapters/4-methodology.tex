@@ -290,11 +290,14 @@ and captured by the research question: \mySubRQThree
 Most of the 3D vpls mentioned in \refsec{sec:background-vpl} offer a plugin system, or some other way to load external libraries.
 This way, the functionalities of the environments can be expanded upon.
 However, all of these plugin / library systems require explicit 'wrapper' libraries, to explain how the functionalities a text-based programming library map to components used in a visual manner.
+\begin{note}
+  TODO: SHOW VISUAL EXAMPLE
+\end{note}
 This turned out to be a problem during preliminary studies.
 If a \ac{geo-web-vpl} wishes to use non-js libraries, it would mean that these libraries would have to be wrapped twice (see \reffig{fig:loading-trajectory} A): 
 Once to expose the native library to the web using the methods described at \refsec{sec:method-two},
 And once more to map the web library to the visual language. 
-While this is a possibility, in practice, two layers of indirection are not acceptable in terms of a development workflow.
+While this is a possibility, in practice, two layers of wrappers are not acceptable in terms of a development workflow.
 This would be cumbersome, prone to errors, and hurting version control by having to synchronize between 4 software projects. 
 
 There is also a second reason for critically addressing the way plugins are loaded. 

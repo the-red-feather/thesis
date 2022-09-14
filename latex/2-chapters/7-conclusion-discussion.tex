@@ -70,7 +70,7 @@ However, it severely lacks support for compiling libraries themselves, compared 
 libraries generated with emscripten's 'embind' tool severely lack ergonomics, and thus would not be directly loadable in a geo-web-vpl.
 While web-implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type vpl using pure functions.
 Additionally, many scientifically oriented C++ libraries like CGAL make extensive use of meta programming and template programming, paradigms which do not translate well to an environment outside of C++. 
-Finally, the study was able to recognize some discrepancies between the novelty of the WebAssembly format, juxtaposed to 50 year legacy of the C++ language.
+Finally, the study was able to recognize some discrepancies between the novelty of the WebAssembly format, juxtaposed to 50-year-old legacy of the C++ language.
 
 Despite all of this, the study was able to provide a solution to these compilation shortcomings by expanding the range of 'system-level languages' beyond C++. 
 The Rust programming language offers a performance and level of control similar to C++, and has better wasm-library support thanks to the \m{wasm-bindgen} toolkit. 
@@ -152,8 +152,7 @@ The full extent of the results of this study is represented by this section, as 
     \subitem Additionally, by having conducted this study on the intersection of all three of those fields, the study shows in what way these fields can be of help to one another. 
 
   \item \textbf{A novel workflow of publishing and using native libraries on the web}
-    \subitem Using the environment, you can take a rust-based geo-computation function or library, 
-    and without very many steps, use it within a visual programming environment. 
+    \subitem Using the environment, a rust-based geo-computation function or library can be used within a visual programming environment with a minimum of in-between steps.
     In software development, this can be used to lower the delta between "it works for me" and "it works for someone else".
     The environment also be used to:
     \subitem Visually debug, 
@@ -177,7 +176,7 @@ The contributions mentioned above to have limitations, which can be described as
   \item \textbf{Only Rust, Js \& Ts library support}
 For now, only 'Rust' and 'JavaScript / TypeScript' can be properly used as libraries. However, most libraries relevant to geo-computation are C++ based. While C++ has excellent support for compiling full, self contained applications to WebAssembly using the 'emscripten' toolset, it lacks rust's level of support in compiling existing libraries.
 
-    In \refsec{sec:analyses:compilation}, The issues between compiling C++ and Rust libraries were given. 
+    In \refsec{sec:analyses:compilation}, The issues between compiling C++ and Rust libraries were presented. 
     Since a stable method of using C++ can not be provided for at the current moment,
   \item \textbf{In practice, not all libraries can be used }
   - While it is indeed possible to use and run any rust library with `wasm-bindgen` annotations or any js + ts library, in order to properly communicate, visualize, and make data interoperable, special 'config' functions and methods are needed. 
@@ -222,7 +221,7 @@ While it seems convoluted to compile a native library to WebAssembly and then ex
 The 'WASI' project is a good example of this (Source: https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/). 
 However, this experiment turned out to be a full-sized study in itself, and so had to be left to subsequent studies due to time constrains. 
 
-\subsubsection*{Q: Why not build everything as a native application, and publish the entire thing as wasm?}
+\subsubsection*{Q: Why not build everything as a native application, and publish the entire application as wasm?}
 
 This would indeed be more performant, especially if the native version of the application is also distributed. 
 Users could choose themselves if they wish to sacrifice the performance and native experience for accessibility on the web. 
@@ -258,15 +257,17 @@ This leads to specific config files and classes, which in turns creates a barrie
 
 And lastly, having limited access to the file system really hurts the usefulness of the vpl as a data processing application.
 This aspect has not been properly addressed during this study.
-The cloud-native geospatial movement might pose a solutions to this aspect, as well as the brand new 
-
-This study recommends cloud-native as a solution to this problem, and has added 
+This study recommends the novel web services cloud-native as a solution to this problem, and has added 
   
+\begin{note}
+  finish this
+\end{note}
+
 \subsubsection*{Q: Is a geo-web-vpl the same as a 3D vpl with existing geoprocessing functionalities attached? In other words, is geoprocessing nothing else than procedural modelling?}
 
 No, but it is a good start. 
 A geo-web-vpl is \emph{at the very least} a Geometry VPL. 
-Ofcourse, an actual geocomputation vpl might require more features, such as a global CRS, support of base-maps, more control on precision, etc. 
+Indeed, an actual geocomputation vpl might require more features, such as a global CRS, support of base-maps, more control on precision, etc. 
 These important aspects must be left for future work.
 
 \subsubsection*{Q: Usage: Who benefits from a web-geo-vpl, and how? }
@@ -453,16 +454,16 @@ Here I reflect on possible shortcomings of the thesis in terms of value and qual
 
 \textbf{Biases regarding C++ and Rust}
 
-First of all, In the comparison between C++ and Rust, the studies conducted proved to be unfavorable towards C++. 
+First of all, in the comparison between C++ and Rust, the studies conducted proved to be unfavorable towards C++. 
 it could be that C++ was judged unfairly, due to the authors personal inexperience with the build tooling of the language. 
 Many complications were encountered during compilation, leading to extensive editing of makefiles and attempts at recompiling forked subdependencies of CGAL using 'hacky fixes'.  
 It is unknown how much of this was due to personal C++ inexperience, inflexibility of the libraries in question, or the shortcomings of the toolchain. 
 
-Despite this, the study still did everything to make the judgement as non-bias as possible.
+Despite this, the study still did everything to make the judgement as non-biased as possible.
 Preliminary studies were conducted with both languages, and additional C++ courses were followed. 
 
-It could even be the case that this particular study is more fair than a study conducted by authors with more experience with C++, since before the assessment between Rust and C++, approximately the amount of time was spend with both languages. 
-If an author was more familiar with one of the two languages, this might have lead to a bias result. 
+It could even be the case that this particular study is more fair than a study conducted by authors with more experience with C++, 
+since before the assessment between Rust and C++, approximately the same amount of time was spent with both languages. 
 
 \textbf{Scope too large}
 

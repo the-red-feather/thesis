@@ -196,7 +196,7 @@ the "TypedArray" browser feature is used extensively to bypass the fact that jav
 \label{sec:analyses:loading}
 
 In this section is meant to assess to what extent Geofront's plugin loader mitigates the need for explicit configuration.
-This analysis is based on the achievements and limitations layed out by \refsec{sec:implementation:loading}.
+This analysis is based on the achievements and limitations explained by \refsec{sec:implementation:loading}.
 
 \subsection*{To what extent does the plugin loader mitigate the need for explicit configuration of plugin libraries?}
 
@@ -217,9 +217,9 @@ in which developers are required to create a class per exposed function.
 
 \subsection*{Assess to what extent this creates seamless interoperability between textual programming libraries, and VPL libraries?}
 
-Because of the reasons outlined above, it is save to say that this seamless interoperability is only one-directional: Libraries intended for consumption by Geofront double as also a 'normal' javascript library. 
+Because of the reasons outlined above, it is safe to say that this seamless interoperability is only one-directional: Libraries intended for consumption by Geofront double as also a 'normal' javascript library. 
 The configuration demands of Geofront only impair the normal, javascript-based usage by forcing a functional style, and by including certain methods only intended for Geofront. 
-Even these Geofront-specific methods might prove useful in certain scenario's, such as by providing a way to visualize data.
+Even these Geofront-specific methods might prove useful in certain scenarios, such as by providing a way to visualize data.
 
 This seamless interoperability is less prominent in the opposite direction. 
 A normal javascript library, or a javascript library using WebAssembly, can't be automatically used by Geofront in most cases. 
