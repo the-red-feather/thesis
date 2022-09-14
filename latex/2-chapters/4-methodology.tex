@@ -4,10 +4,8 @@
 
 This chapter explains the methodology used in this study. 
 
-The study is subdivided into four components, each representing a sub-research question, which is in turn based upon one of the challenges of a geo-web-vpl. 
-The questions are posed in such a way that answering them will require us to explore the extend of this challenge, and find possible solutions.
-
-(See reffig)
+The study is subdivided into four components, each representing a sub-research question, which is in turn based upon one of the challenges of a geo-web-vpl (See reffig). 
+The questions are posed in such a way that answering them will require us to explore the extent of this challenge, and find possible solutions.
 
 \begin{note}
 TODO: diagram: 4 research questions -> four possible barriers of geocomputation
@@ -47,13 +45,13 @@ And, due to the investigative nature of this study, the methodology requires to 
 The first component of the methodology involves the question of \mySubRQOneTitle : \mySubRQOne.
 
 % [WHY]
-Before exploring how lifting geo-computation to a web-VPL might take place, this study first wished to discover to what extend the web browser is able to facilitate the interface of a dataflow vpl for geometry computation in general, both in terms of data structures and visualization. 
+Before exploring how lifting geo-computation to a web-VPL might take place, this study first wished to discover to what extent the web browser is able to facilitate the interface of a dataflow vpl for geometry computation in general, both in terms of data structures and visualization. 
 
 The assumption that a geo-web-vpl should be implemented as a dataflow vpl is made because of the many advantageous qualities layed out in \refsec{sec:background:dataflow}. 
 Additionally, and perhaps consequently, all comparable VPLs analyzed in \refsec{sec:related-geovpl} were implemented as dataflow VPLs (Blender, houdini, Grasshopper, GeoFlow), the only exception being the Möbius Modeller.
 However, this meant that a new, web-based implementation had to be made, since no existing web-vpl concerned with geometry uses this model (that this study is aware of).
 
-% As a second step, we wish to know to what extend a web-based, dataflow vpl can provide for the needs of a vpl meant for general 3D geometry processing.   
+% As a second step, we wish to know to what extent a web-based, dataflow vpl can provide for the needs of a vpl meant for general 3D geometry processing.   
 % A 3D VPL is defined as a vpl meant for generic 3D geometry processing.
 
 % [HOW]
@@ -62,9 +60,9 @@ The following approach was deemed as the most fitting method to answer this ques
   \item \emph{Define the requirements of a dataflow-VPL handling geometry}
   \item \emph{Define 'core browser features'}
   \item \emph{Implement a dataflow-VPL in a browser according to these features}
-  \item \emph{Per requirement, to what extend is it successfully implemented by this dataflow-VPL?}.
+  \item \emph{Per requirement, to what extent is it successfully implemented by this dataflow-VPL?}.
   \item \emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
-  % \item \emph{Per implemented requirement, to what extend does this web implementation differ from native dataflow VPLs?}
+  % \item \emph{Per implemented requirement, to what extent does this web implementation differ from native dataflow VPLs?}
 \end{enumerate}
 
 The definitions for step A and B will be made subsequently. 
@@ -187,7 +185,7 @@ However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{
   \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
   \item Compiling an \emph{library} to \ac{wasm} is seriously different from compiling a full \emph{application} to wasm. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
 \end{enumerate}
-Discovering the extend and relevance of these compilation challenges for geo-computation libraries is why the sub-question of \mySubRQTwoTitle \space was included in this study. 
+Discovering the extent and relevance of these compilation challenges for geo-computation libraries is why the sub-question of \mySubRQTwoTitle \space was included in this study. 
 
 % [HOW]
 Two experiments are conduced to answer this supporting research question. 
@@ -271,7 +269,7 @@ In this third component of the methodology, we wish to discover how the web-expo
 This is once more a crucial aspect for the success of the entire \ac*{geo-web-vpl}, 
 and captured by the research question: \mySubRQThree
 
-% to what extend can a web-consumable library be loaded into a web-vpl without explicit configuration?
+% to what extent can a web-consumable library be loaded into a web-vpl without explicit configuration?
 
 % [Why]
 
@@ -311,8 +309,8 @@ The following plan was used:
 \begin{enumerate}[-]
   \item Design a library / plugin model for the prototype \ac*{geo-web-vpl}
   \item Implement this library model 
-  \item Assess to what extend it mitigates the need for explicit configuration
-  \item Assess to what extend this creates seamless interoperability between textual programming libraries, and VPL libraries.
+  \item Assess to what extent it mitigates the need for explicit configuration
+  \item Assess to what extent this creates seamless interoperability between textual programming libraries, and VPL libraries.
 \end{enumerate}
 
 The design is given subsequently, the build implementation and assessment can be found in \refsec{sec:implementation:loading} and \refsec{sec:analyses:loading}.

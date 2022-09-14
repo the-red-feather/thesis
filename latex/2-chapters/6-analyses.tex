@@ -10,14 +10,14 @@ Finally, \refsec{sec:analyses:utilization}.
 \section{The base application}
 \label{sec:analyses:representation}
 
-This section of the analysis covers the question of \mySubRQOneTitle, and aims in particular to answer the questions: \emph{Per requirement, to what extend is it successfully implemented by this dataflow-VPL?} and \emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
+This section of the analysis covers the question of \mySubRQOneTitle, and aims in particular to answer the questions: \emph{Per requirement, to what extent is it successfully implemented by this dataflow-VPL?} and \emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
 
-Additionally, this section clarifies to what extend a feature could not be implemented due to shortcomings of this particular implementation, or due to a limitation of the browser environment as a whole. 
+Additionally, this section clarifies to what extent a feature could not be implemented due to shortcomings of this particular implementation, or due to a limitation of the browser environment as a whole. 
 
 % We group the requirements listed at \refsec{sec:method-one} in a group of base features,
 % a group of dataflow features, and a group of geometry features.
 
-\subsection*{The extend of the dataflow-VPL implementation}
+\subsection*{The extent of the dataflow-VPL implementation}
 
 \refsec{sec:method-one} named the following features which had to be implemented:
 \begin{enumerate}[-]
@@ -82,7 +82,7 @@ The fact that the Geofront implementation opted for a 2D canvas-based visualizat
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection*{The extend of the geometry support implementation}
+\subsection*{The extent of the geometry support implementation}
 
 \refsec{sec:method-one} named the following features as a requirement for geometry support:
 \begin{enumerate}[-]
@@ -191,10 +191,10 @@ the "TypedArray" browser feature is used extensively to bypass the fact that jav
 \section{Loading plugins}
 \label{sec:analyses:loading}
 
-In this section is meant to assess to what extend Geofront's plugin loader mitigates the need for explicit configuration.
+In this section is meant to assess to what extent Geofront's plugin loader mitigates the need for explicit configuration.
 This analysis is based on the achievements and limitations layed out by \refsec{sec:implementation:loading}.
 
-\subsection*{To what extend does the plugin loader mitigate the need for explicit configuration of plugin libraries?}
+\subsection*{To what extent does the plugin loader mitigate the need for explicit configuration of plugin libraries?}
 
 Based on the results, we can state that the loader mitigates the need for explicit configuration only for the required, mandatory aspects. 
 All optional properties like human-readable names and descriptions, must be specified explicitly using a naming convention specific to Geofront. 
@@ -211,7 +211,7 @@ So, while the plugin loader can load some simple textual programming libraries a
 However, even with these requirements, this can still be considered an improvement compared to the plugin systems of geometry VPLS studied at \refsec{sec:related-geovpl}, 
 in which developers are required to create a class per exposed function.
 
-\subsection*{Assess to what extend this creates seamless interoperability between textual programming libraries, and VPL libraries?}
+\subsection*{Assess to what extent this creates seamless interoperability between textual programming libraries, and VPL libraries?}
 
 Because of the reasons outlined above, it is save to say that this seamless interoperability is only one-directional: Libraries intended for consumption by Geofront double as also a 'normal' javascript library. 
 The configuration demands of Geofront only impair the normal, javascript-based usage by forcing a functional style, and by including certain methods only intended for Geofront. 

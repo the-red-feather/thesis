@@ -4,7 +4,7 @@
 
 The field of \ac{gis} concerns itself with the collection, processing, storage, and visualization of geodata. 
 By doing do, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
-This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, navigation, the military, and agriculture.   
+This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, governance, navigation, the military, and agriculture.   
 
 Central to this effort is the process of converting raw geodata into meaningful geo-information. 
 Additionally, the effort often involves executing transformations or calculations on existing datasets. 
@@ -12,7 +12,8 @@ The term \ac{geocomputation}, or geodata processing, is used to represent all ty
 All applications of geo-informatics require some level of geocomputation, as the raw data gathered from surveyance seldom corresponds to the precise information we wish to discover about the earth.       
 This makes geocomputation a cornerstone of the entire field of geo-informatics, and vital to all her applications.
 
-However, geocomputation is no trivial exercise. The geometric nature of geocomputation, together with the sheer scope of geodata, and the variety in formats and quality make geocomputation both computationally intensive and difficult to operate. 
+Despite major advancements during the last 20 years in geocomputation and geocomputation platforms, geocomputation remains no trivial exercise. 
+The geometric nature of geocomputation, together with the sheer scope of geodata, and the variety in formats and quality make geocomputation both computationally intensive and difficult to operate. 
 
 In an ideal world, the activity of geocomputation should be ergonomic: Operations must perform as fast as possible, and the effects of those operations must be both clear to the user, and reliable.
 While researchers and developers have made considerable improvement over the last decades, the improvement of both geocomputation, and the activity of geocomputation, remains as relevant as ever before. 
@@ -42,7 +43,7 @@ Especially in recent years, a push towards a more 'granular' \ac{vpl}s can be re
 As an example, McNeels's Grasshopper (SOURCE) is increasingly being used for spatial analyses of buildings and neighborhoods, like solar irradiation or heating demands (source). 
 Meanwhile, GeoFlow (shown in \reffig{fig:1:geoflow}) was used to model the 3D envelope of a building based on a pointcloud, which was subsequently scaled up in the creation of the 3D BAG dataset (source).
 
-Using a \ac{geo-vpl} for more detailed geocomputation is still relatively novel, and contains many open ended questions. That geocomputation in certain scenarios benefits from the interface offered by \ac{vpl}s like these is probably true, indicated by the number of prior studies on the topic (source, source, source), and the popularity of \ac{vpl}s used for geodata and geometry computation. The \emph{extend} to which \ac{vpl}s benefit detailed geocomputation, is still relatively unknown. 
+Using a \ac{geo-vpl} for more detailed geocomputation is still relatively novel, and contains many open ended questions. That geocomputation in certain scenarios benefits from the interface offered by \ac{vpl}s like these is probably true, indicated by the number of prior studies on the topic (source, source, source), and the popularity of \ac{vpl}s used for geodata and geometry computation. The \emph{extent} to which \ac{vpl}s benefit detailed geocomputation, is still relatively unknown. 
 
 \subsection*{Browser-based geocomputation}
 
@@ -163,15 +164,15 @@ geocomputation functionalities might not be able to be properly:
   \item \textbf{represented / visualized} by the interface of a web-based, dataflow-VPL
   \item \textbf{used} within a web-based dataflow-VPL
 \end{itemize}
-As it is unknown which one of these reasons is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extend these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
+As it is unknown which one of these reasons is causing this barrier, the study must encompass all four of these possible hindrances, and access to what extent these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
 Moreover, the real reason might not lie in one of these areas, but in the interplay between all of these factors. 
 
 It is this study's objective to pose a solution to this barrier. 
 % This is stated by the main research question: \myMainRQ 
 The study goes about doing so, by developing a prototype \ac{geo-web-vpl} accompanied by web-compiled geocomputation libraries. 
-This prototype vpl is used as a staging ground to discover the extend of possible hindrances. 
+This prototype vpl is used as a staging ground to discover the extent of possible hindrances. 
 % During its development, each one of these four possible hindrances has to be accounted for. 
-Per hindrance, we document design considerations, and run experiments, all to test to what extend this prototype \ac{geo-web-vpl} fails or succeeds to provide for this aspect. 
+Per hindrance, we document design considerations, and run experiments, all to test to what extent this prototype \ac{geo-web-vpl} fails or succeeds to provide for this aspect. 
 After this is done, we can compile a final conclusion to the main research question. 
 
 
@@ -243,7 +244,7 @@ Adding backend-based geocomputation to a geo-web-VPL would be an excellent follo
 Future work could research the possibility of utilizing a hybrid strategy of both client-side and server-side geocomputation, following in the footsteps of \cite{panidi_hybrid_2015}. 
 
 \subsection*{No Usability Comparison} % 
-While accessibility / usability is a motivation of the development of a \ac{vpl}, and while usability will be analyzed to a limited extend, no claims will be made that this method of geocomputation is \emph{more} usable as opposed to existing geocomputation methods. This research attempts to solve practical inhibitions in order to discover whether or not browser-based, vpl-based geocomputation is \emph{a} viable, usable option. If it turns out that this method is viable enough technically, future research will be needed to definitively proof \emph{how} usable it is compared to all other existing methods.  
+While accessibility / usability is a motivation of the development of a \ac{vpl}, and while usability will be analyzed to a limited extent, no claims will be made that this method of geocomputation is \emph{more} usable as opposed to existing geocomputation methods. This research attempts to solve practical inhibitions in order to discover whether or not browser-based, vpl-based geocomputation is \emph{a} viable, usable option. If it turns out that this method is viable enough technically, future research will be needed to definitively proof \emph{how} usable it is compared to all other existing methods.  
 
 % This paper seeks to first close this gap, limiting itself to overcoming the technical and design boundaries in the pursuit of practical client-side geocomputation.
 
@@ -300,7 +301,7 @@ The remainder of this study is structured as follows:
   
   \item \refchap{chap:analyses} analyses the results from this implementation in the various ways described by the methodology.
   
-  \item And finally, \refchap{chap:conclusion}: Conclusion \& Discussion, concludes to which extend the study was able to satisfy the main research question, and discusses unaddressed aspects of the thesis.
+  \item And finally, \refchap{chap:conclusion}: Conclusion \& Discussion, concludes to which extent the study was able to satisfy the main research question, and discusses unaddressed aspects of the thesis.
   It also includes the envisioned future works and a reflection on the quality of the study.
 
 \end{itemize}
