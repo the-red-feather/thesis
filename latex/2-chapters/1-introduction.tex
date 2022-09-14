@@ -7,6 +7,7 @@ By doing do, we offer the world priceless information about the land we build on
 This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, governance, navigation, the military, and agriculture.   
 
 Central to this effort is the process of converting raw geodata into meaningful geo-information. 
+[KEN: please use an example]
 Additionally, the effort often involves executing transformations or calculations on existing datasets. 
 The term \ac{geocomputation}, or geodata processing, is used to represent all types of computations performed on geographical datasets. Anything from the calculation of the area of a region, to a \ac{crs} transformations, or converting a raster dataset into a vectorized dataset, can be regarded as geocomputation.
 All applications of geo-informatics require some level of geocomputation, as the raw data gathered from surveyance seldom corresponds to the precise information we wish to discover about the earth.       
@@ -15,8 +16,10 @@ This makes geocomputation a cornerstone of the entire field of geo-informatics, 
 Despite major advancements during the last 20 years in geocomputation and geocomputation platforms, geocomputation remains no trivial exercise. 
 The geometric nature of geocomputation, together with the sheer scope of geodata, and the variety in formats and quality make geocomputation both computationally intensive and difficult to operate. 
 
-In an ideal world, the activity of geocomputation should be ergonomic: Operations must perform as fast as possible, and the effects of those operations must be both clear to the user, and reliable.
-While researchers and developers have made considerable improvement over the last decades, the improvement of both geocomputation, and the activity of geocomputation, remains as relevant as ever before. 
+While researchers and developers have made considerable improvement over the last decades, 
+the improvement of both geocomputation, and the activity of geocomputation, remains as relevant as ever before. 
+
+\subsection*{The Geo web VPL}
 
 In recent years, two promising developments regarding geocomputation are emerging:
 Visual programming, and browser-based geocomputation. 
@@ -70,6 +73,9 @@ The big catch is that browsers \& javascript are not ideal hosts for geocomputat
 As an interpreted language, Javascript is slower and more imprecise compared to system-level languages like C++.
 In addition, it has limited support regarding reading and writing files, and does not possess of a rich ecosystem of geocomputation libraries.  
 Novel browser features like WebAssembly may pose a solution to some of these open questions, but this has not seen substantial research. 
+
+% Plagiarism!!!! 
+% This is often addressed by maintaining multiple code bases: one web-based, usually written in JavaScript, and one for desktop and mobile, often written in C/C++. The maintenance of several code bases slows down innovation and makes evolution time-consuming. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,12 +146,15 @@ Novel browser features like WebAssembly may pose a solution to some of these ope
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection*{Dataflow programming}
 
-\subsection*{Structure}
+The assumption that a geo-web-vpl should be implemented as a dataflow vpl is made because of the many advantageous qualities layed out in \refsec{sec:background:dataflow}. 
+Additionally, and perhaps consequently, all comparable VPLs analyzed in \refsec{sec:related-geovpl} were implemented as dataflow VPLs (Blender, houdini, Grasshopper, GeoFlow), the only exception being the Möbius Modeller.
+However, this meant that a new, web-based implementation had to be made, since no existing web-vpl concerned with geometry uses this model (that this study is aware of).
+
+
+\subsection*{Library Portability}
   
-The content of this methodology is based upon the main and supporting research questions. 
-As such, it bears fruit to explain how these specific questions were chosen.
-
 % DOES THIS STILL CONNECT TO THE NEW BACKGROUND AND RELATED WORKS
 The related studies in \refchap{chap:related} show that only one \ac{geo-web-vpl} as described by this study exists. This is in contrast to the many examples of geo-vpls in \refsec{sec:related-geovpl} and web-vpls \refsec{sec:related-webvpl}. 
 Based on this, it can be assumed that creating a visual programming environment in a web-browser must be possible. 
@@ -206,6 +215,16 @@ From this, it can be concluded that bridging this gap is vital in making any geo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Research Objective}
+
+
+Two problems exist in this context: 
+
+1. firstly, code portability. 
+-> geo-web-vpl do not make use of native, industry standard geocomputation libraries
+
+2. Secondly, existing implementations are not using a dataflow paradigm
+-> functional programming, inspect parameters, 
+
 
 This study seeks to close the gap between geo-VPLs and browser-based geocomputation by designing, implementing, and evaluating a new prototype \ac{geo-web-vpl}.
 The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a visual programming environment is key to making a geo-web-vpl succeed. 
