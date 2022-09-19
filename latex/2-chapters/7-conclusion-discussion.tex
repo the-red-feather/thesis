@@ -52,7 +52,7 @@ Only the 2D canvas Api can become slow when rendering a great number of componen
 JavaScript can also be used to represent the data structure and logic needed to make a VPL functional. 
 Javascript's flexibility proved to be crucial to support features like dynamically loading and using libraries at runtime. 
 The disadvantage was due to JavaScript's very limited type support, and limited precision in general. 
-While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no distinction between different number types (\m{int, float, double}) for example. 
+While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no meaningful distinction between number types (\m{int, float, double}) for example. 
 % The prototype-based objects also led to type-check problems. 
 Typescript has been used to mitigate some of these shortcomings.  
 
@@ -150,6 +150,13 @@ The full extent of the results of this study is represented by this section, as 
   \item \textbf{A new implementation of a web-based visual programming language for geocomputation}
     \subitem By providing the full source code of the application and all libraries used within the application, together will all implementation details given in \refchap{chap:implementation}, this study aims to provide guidance for all subsequent studies on the topic of VPLs, geocomputation, or geoweb applications. 
     \subitem Additionally, by having conducted this study on the intersection of all three of those fields, the study shows in what way these fields can be of help to one another. 
+
+% We introduce the \"Geofront\" application, which achieves this accessibility in two ways: 
+% Firstly, geoprocessing libraries, written in either Rust or C++, are compiled to WebAssembly: binaries which can be run in any modern browser, client-side. This mitigates the need for any installation, and allows the software to be directly used as soon as a website is fully loaded. WebAssembly offers a performance comparable to native usage. Geofront accepts these binaries as plugins.
+
+% Secondly, Geofront itself is set up as a web-based visual programming environment, complete with a 3D viewer and WMS, WFS \& WMTS support. Using these tools, users can interactively run these geoprocessing libraries with different datasets and parameters. Using visual programming, the user can chain and alter geoprocessing steps, visualize in-between products, and save \& load these workflows.
+
+
 
   \item \textbf{A novel workflow of publishing and using native libraries on the web}
     \subitem Using the environment, a rust-based geo-computation function or library can be used within a visual programming environment with a minimum of in-between steps.
@@ -530,15 +537,15 @@ This imbalance led to a time-consuming complication between research and softwar
 Nevertheless, through many iterations, I was eventually able to integrate both the ideas and the thesis at large with this software implementation.
 I have learned two additional major lessons from conducting this study: 
 One, writing well is hard work. 
-Clearly boiling a story down to the bare minimum, the essence, asks great deal of time and energy. 
+Boiling a story down to the essentials asks a great deal of time and energy. 
 I would not call the current story this study tells concise, but it is much more precise than I was able to write at the beginning of this adventure.
 
 And two, I must learn to rely on the work of others.
 This is difficult, as it is contrary to my personal conviction on the great importance of "learning from scratch".
 Both the software implementation and the written thesis had me figuring out a lot of aspects from scratch, and this had advantages and disadvantages.
-The advantage is that 'doing things again yourself', is probably one of the most educational things one can do. 
-We must understand the inner workings of the things we work with, and especially of the things we wish to improve. 
-It is unrealistic to expect you can continue from a point, without working your way towards that point from first principles. 
+The advantage is that 'doing the work again yourself', is probably one of the most educational endeavors one can do. 
+We must understand the inner workings of the systems we work with, and especially of the systems we wish to improve. 
+% It is unrealistic to expect you can continue from a point, without working your way towards that point from first principles. 
 This is why I took the risk of developing many aspects of this thesis anew. 
 Even if this might turn out to be a parallel study, it would only reinforce the 're' in research. 
 

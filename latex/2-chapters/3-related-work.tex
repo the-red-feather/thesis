@@ -12,6 +12,38 @@ while almost no projects or studies exist at the intersection of all three of th
 \section{Browser-based geocomputation}
 \label{sec:related-geoweb}
 
+\begin{note}
+  NOTE: this was cut:
+% \subsection*{Browser-based geocomputation}
+
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../assets/images/background/geo-web/} }
+%   \includegraphics[width=250px]{omnibase.png}
+%   \caption{Omnibase: An example of browser-based geocomputation}
+%   \label{fig:1:omnibase}
+% \end{figure}
+
+Browser-based \ac{geocomputation} is slowly gaining traction during the last decade \cite{kulawiak_analysis_2019, panidi_hybrid_2015, hamilton_client-side_2014}. 
+Interactive geospatial data manipulation and online geospatial data processing techniques have been described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. 
+The central idea is to add browser-based geocomputation to web-mapping applications, allowing users not only to view geodata, but to analyze it, and even fine-tune the data to their own custom needs.
+An example of this is the Omnibase application in \reffig{fig:1:omnibase}, used by Dutch municipalities to measure and map buildings and infrastructure.
+
+Additionally, browser-based geocomputation, compared to native GUI or CLI geocomputation, allows geocomputation to be more \textbf{accessible} and \textbf{distributable}. 
+Accessible, since geocomputation on the web requires no installation or configuration, 
+and distributable, since the web is cross-platform by default, and poses many advantages for updating, sharing, and licensing applications. 
+By performing these calculations in the browser rather than on a server, server resources can be spared, and customly computed geodata does not have to be resent to the user upon every computation request ([back up with sources from related works]).
+
+However, browser-based geocomputation also has many open questions and challenges. 
+The big catch is that browsers \& javascript are not ideal hosts for geocomputation. 
+As an interpreted language, Javascript is slower and more imprecise compared to system-level languages like C++.
+In addition, it has limited support regarding reading and writing files, and does not possess of a rich ecosystem of geocomputation libraries.  
+Novel browser features like WebAssembly may pose a solution to some of these open questions, but this has not seen substantial research. 
+
+
+\end{note}
+
+
 This section is dedicated to related works on client-side geocomputation, or browser-based geocomputation. 
 this study prefers to use "browser-based geocomputation" in order to circumvent the ambiguity between native clients like QGIS, and web clients, as described in \refsec{sec:background-web}.
 
@@ -219,6 +251,8 @@ Lastly, Geoflow is a much newer \ac{vpl} meant for generic 3D geodata processing
 While this application is still in an early phase,  it already offers very powerful 
 range of functions.
 It offers CGAL processes like alpha shape, triangulation and line simplification, as well as direct visualization of in-between products.
+Geoflow was used to model the 3D envelope of a building based on a pointcloud, which was subsequently scaled up in the creation of the 3D BAG dataset (source).
+
 
 % In comparison with the three aforementioned \ac{GIS} vpls, geoflow is much richer 
 
@@ -289,8 +323,8 @@ vpls allow rapid debugging, rapid experimentation, and the straight-forward natu
 By far the most commonplace type of vpl present in computer graphics are material Vpls. 
 In this context, the concept "material" often refers to a combination of 2D textures and shaders. 
 These include PBR settings, normal maps, bump maps, and / or custom shader programs. 
-The repetitive and time-consuming nature of manually creating textures, and the fact that some of these material properties can be inferred from each other, lead many CG applications to develop \ac{vpl}s. 
-3D artists can now use these \ac{vpl}s to create procedural textures.
+The repetitive and time-consuming nature of manually creating textures, and the fact that some of these material properties can be inferred from each other, lead many CG applications to develop \ac{VPL}s. 
+3D artists can now use these \ac{VPL}s to create procedural textures.
 
 \begin{figure}
 \centering
