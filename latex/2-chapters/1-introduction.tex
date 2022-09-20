@@ -40,6 +40,7 @@ These alternative models are represented by a \ac{GUI}, in which the program mig
 The value a VPL lies in the fact that constructing or editing a program in a visual way can be a faster process than using a textual method, even for the most experienced software developers (Source: VPLs, Source, Vpls). 
 Additionally, a \ac{VPL} allows for End User Development (Source). 
 A \ac{VPL} may make processes more accessible to end users, as it allows practitioners to automate some processes and workflows like a software developer, but without needing a background in software development (Source: End user development). 
+Finally, VPLs may even have performance and reliability advantages over textual languages, but only if it is implemented as a so-called dataflow-type VPL (Source: Dataflow). 
 
 These qualities are beneficial to geocomputation, and perhaps as a consequence, geocomputation by means of visual programming is not an uncommon phenomena in the field of \ac{GIS}.
 For example, Safe software's FME (SOURCE) is a popular \ac{VPL} among \ac{GIS} practitioners, arguably due to the way it simplifies the process of writing a \ac{ETL} pipeline. 
@@ -66,148 +67,74 @@ This study focusses on the particular problem of library portability. % and inte
 Successful geocomputation pipelines often relies on operations found in a select number of libraries. 
 Most major, industry-standard geocomputation libraries are native, C++-based libraries. 
 Examples of these are GDAL, PROJ, and GEOS. 
-However, A web based geocomputation VPL like the Mobius Modeller does not make use of these libraries, and has to use javascript equivalents like Turf (Source).
-While it should be possible to port a library like GDAL to javascript, guarantying that these two versions show the same behavior will be complex and time consuming. This will slow down development, or create large version discrepancies. 
+However, A web based geocomputation VPL like the Mobius Modeller does not make use of these libraries, and uses javascript equivalents like Turf (Source).
+While it is possible to port a library like GDAL to javascript, guarantying that these two versions show the same behavior will be complex and time consuming. Additionally, managing duplicate libraries in general will slow down development, or create large version discrepancies. (Source: MAPLIBRE-RS) 
 
-Fortunately, on a theoretical level, it is possible to compile a native C++ library to a web-consumable format using the 'WebAssembly' binary format.
+Fortunately, on a theoretical level, it is possible to compile a native C++ library to a web-consumable format using the 'WebAssembly' binary format \citep{haas_bringing_2017}.
 This way, only one library needs to be maintained to serve all platforms, both native and web. 
-However, no example exists of a web-based geocomputation VPLs which make use of native geocomputation libraries.
+However, to the best of the author's knowledge, no example exists of a web-based geocomputation VPLs which make use of native geocomputation libraries.
+The theoretical possibility combined with the practical absence of any implementation, leads this study to assume that a practical inhibition is in place, preventing native geocomputation libraries to be used by a web VPL.
 
-This could be because of several of reasons
+The source of this inhibition is unclear. 
+There are many aspects and components to compiling a native geocomputation library, and using it on the web, in a VPL format. 
+Given the absence of an implementation, the possibility remains that it could be any one of these aspects and components, or even an interplay between all of these factors. 
+This study identifies three challenges to using a native geocomputation library in a web-based VPL:
 
-It is unclear in which 
+\subsubsection*{\mySubRQTwoTitle}
 
-There are many aspects in between writing a native geocomputation library, and using it on the web, in a VPL format. 
+% Secondly, native geocomputation functionalities might not be able to be properly \textbf{compiled} into a format functional on the web.
+% (wasm limitations)
 
+% Making sure a \ac{geo-web-vpl} is able to make use of native, system-level libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
+Firstly, the challenge of compilation. 
+As explained before, the most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \cite{haas_bringing_2017}.
+Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \cite{haas_bringing_2017,jangda_not_2019}.
+However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{wasm} also may pose challenges:
 
-This study starts from the assumption that web-based VPLs are unable to support existing geocomputation functionalities. 
-This could be because of several reasons, of which this study identifies four major ones.
+% The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. 
 
-geocomputation functionalities might not be able to be properly:
-\begin{itemize}[-]
-  \item \textbf{compiled} into a format functional on the web (wasm limitations)
-  \item \textbf{loaded} within a web-based VPL (bindings)
-  \item \textbf{represented / visualized} by the interface of a web-based, dataflow-VPL (explain more about dataflow VPL)
-  \item \textbf{used} within a web-based dataflow-VPL
-\end{itemize}
+\begin{enumerate}[-]
+  \item \ac{wasm} promises a 'near native performance' (Source: Wasm). However, this can be quite situational, as multiple studies have shown \cite{jangda_not_2019} (Source: the bachelor thesis). 
+  \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not function without workarounds. 
+  \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
+  \item Compiling an \emph{library} to \ac{wasm} is seriously different from compiling a full \emph{application} to wasm. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
+\end{enumerate}
+% Discovering the extent and relevance of these compilation challenges for geo-computation libraries is why the sub-question of \mySubRQTwoTitle \space was included in this study.
 
-As it is unknown which one of these reasons is causing this barrier, the study must cover all four of these possible hindrances, and access if and how this challenge can be overcome. 
+\subsubsection*{\mySubRQThreeTitle}
 
+Secondly, even if the libraries are compiled to a web-ready format, geocomputation functionalities might not be able to \textbf{load} properly within a web-based VPL.
 
-these aspects form a hinder towards the main goal of a \ac{geo-web-vpl}. 
-Moreover, the real reason might not lie in one of these areas, but in the interplay between all of these factors. 
+This is a challenge of writing an appropriate binding system. 
+When writing Python bindings to a C++ library for example, one has to consider the way both languages operate, and make sure the discrepancies between the language models are accounted for, such as manual memory management. 
+This is not different from a visual language interfacing with a web-compiled native library. 
+However, this situation adds additional challenges, as the host \ac{VPL} does not necessarily know the source language of the binary. 
 
-It is this study's objective to pose a solution to this barrier. 
-% This is stated by the main research question: \myMainRQ 
-The study goes about doing so, by developing a prototype \ac{geo-web-vpl} accompanied by web-compiled geocomputation libraries. 
-This prototype vpl is used as a staging ground to discover the extent of possible hindrances. 
-% During its development, each one of these four possible hindrances has to be accounted for. 
-Per hindrance, we document design considerations, and run experiments, all to test to what extent this prototype \ac{geo-web-vpl} fails or succeeds to provide for this aspect. 
-After this is done, we can compile a final conclusion to the main research question. 
+% This is a matter of bindings, 
+\subsubsection*{\mySubRQFourTitle}
 
+Finally, It might be the case that a web-based VPL \emph{is} able to load and run functions from native, non-js geo-computation libraries. 
+And still, one might not be able to successfully \textbf{use} these libraries.
 
+Central to this challenge of utilization is the aforementioned dataflow VPL format. 
+The performance and reliability needed for geocomputation makes a strong argument that any geocomputation VPL should be implemented as a dataflow VPL. 
+This is also evident from the fact that almost all geocomputation and geometry manipulation VPLs are implemented as a dataflow VPL (see \refsec{sec:related-geovpl}).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{note}
-%   TODO: make both of these presuppositions clear
-%   1. Combining a geo-vpl and bbg is useful. It is valuable to figure out if it can be done properly
-%   2. properly -> utilization of existing, native geocomputation libraries within a VP environment is key to making a geo-web-vpl succeed. 
-% \end{note}
-
-
-
-% Plagiarism!!!! 
-% This is often addressed by maintaining multiple code bases: one web-based, usually written in JavaScript, and one for desktop and mobile, often written in C/C++. The maintenance of several code bases slows down innovation and makes evolution time-consuming. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Note: this are all fragments and motivations. I'm leaving them here, don't
-% be bothered by them, keep things concise, but if we need extra baggage, we 
-% can get it from here. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% This design of geofront contains several challenges. Browser-based geocomputation (BBGC) might not be as performant as back-end / native geocomputation \cite{panidi_hybrid_2015, hamilton_client-side_2014}, even with the usage of WebAssembly \cite{jangda_not_2019}. 
-% Additionally, since current visual programming environments all fall short on at least one of the above features, the visual programming environment will have to be created from scratch.
-
-% The cloud-native geospatial movement represents a significant opportunity and challenge to these VPL interfaces. The \textbf{opportunity} lies in the fact that a VPL interface is highly suitable as a 'configurator' or 'IDE' for cloud-computation. The promise of interactive, low-code automation matches the desire of most cloud native geocomputation providers to support users of different backgrounds, both programmers and non-programmers, both full GIS experts as well as non-experts (SOURCE: Modellab, SOURCE: Chris Holmes). A good example of this is the ModelLab VPL, found in Raster Foundry (SOURCE). This is also evident in the fact that existing VPL's like FME and Grasshopper have added proprietary cloud-computation features like FME Cloud (SOURCE) and ShapeDiver (SOURCE), respectively.
-
-% <!-- HOWEVERRRRRRRRR -->
-% However, the major \textbf{challenge} is that as of right now and despite these developments, popular VPL's fall short on a number of priorities and features required for cloud-native geospatial computation. 
-% These shortcomings include their closed and proprietary nature, their distance from regular programming features and conventions (git version control, continuous integration), and the non-containerized, one to one relationship between the IDE application \& the cloud hosting platform. All of this hinders their suitability as general, cloud-computation configurers. 
+However, it may be that native geocomputation functionalities are unfit for this model. 
+The model requires all functions to be pure, and all variables to be immutable. 
+This might invalidate some of the operations found in these libraries, or make other operations complicated to use in practice.
 
 
-% For a geocomputation method to match the 'cloud native geospatial movement'
-
-% Currently, WebAssembly is the only way one can take a geocomputation function from an arbitrary source, and use it in both the browser and on a server. 
-% We wish to discover if this has any practical use cases. 
-
-% - "As massive datasets become more and move available, the availability of the \emph{means} to process and analyse these data becomes more and more relevant". 
-
-% Despite these advantages, open, accessible vpl's are often unavailable. 
-% - Expensive, proprietary environments 
-% - Require specific plugins in order to utilize open, industry standard geocomputation libraries
-% - Not FAIR geocomputation
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% This thesis explores if these in-between processing steps could also be performed within a web application.  
-
-% This way, geodata processing applications could profit from the ease of accessibility and maintainability granted by the web as a platform.  
-
-% <!-- More Why of web GIS and web-geocomputation: 
-% - making the geoweb more feature-rich
-% - allowing quick demonstration (wapm)
-% - allowing easy access (overleaf)
-
-% ## Motivation
-% Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process: Retrieval and visualization. 
-% The processing stages in-between are almost always performed on the desktop using environments like QGIS or ArcGIS, or by writing and using CLI tools. 
-
-% <!-- At the same time, a need arrises -->
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Under normal circumstances, Web applications within the field of geo-informatics are mostly used for the first and final stages of a common geodata process.  
-% (
-% If one wishes to retrieve geodata, web portals are used to discover the required datasets. After this, the OGC Web Services are often utilized to download and truly access this geodata. 
-
-% This geodata is then processed locally, using QGIS, ArcGIS, command line tools, or any other 
-
-% and at the end Tools like Leaflet and Celcium have been created to visualize the earth in both 2D and 3D , and tools like d3.js can produce interactive graphs to supplement these web pages. 
-
-% There is, however, more to the web than just visualization. Due to 
-% )
-% This thesis asks the question if the web could do more than just visualization. 
-
-% By creating the use-case application GeoFront, we ask the question if a modern web browser, and the current state of the client-side web technologies are capable of facilitating  
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Research Objective}
+This study seeks to improve the state of browser-based geocomputation VPLs.
+This is pursuit by researching a possible solution to the library portability problem found in existing browser-based geocomputation VPLs.
 
-Two problems exist in this context: 
+The study poses that this problem can only be overcome if native geocomputation libraries are able to be properly compiled, loaded and utilized in a browser-based dataflow-VPL format. 
+There are multitude of technical challenges present within each one of these steps, and in between these steps. 
+Seeking and analyzing solutions to these challenges is the focal point of this study. 
 
-1. firstly, code portability. 
--> geo-web-vpl do not make use of native, industry standard geocomputation libraries
 
-2. Secondly, existing implementations are not using a dataflow paradigm
--> functional programming, inspect parameters, 
-
-TODO: make this more straightforward
-
-This study seeks to close the gap between geo-VPLs and browser-based geocomputation by designing, implementing, and evaluating a new prototype \ac{geo-web-vpl}.
-The study starts from the presupposition that proper utilization of existing, native geocomputation libraries within a visual programming environment is key to making a geo-web-vpl succeed. 
-Overcoming this technical challenge is the focal point of this study. 
 
 \section{Research Questions}
 Based on this objective, the research question is formulated as follows: 
@@ -217,13 +144,7 @@ Based on this objective, the research question is formulated as follows:
 
 \subsection*{Supporting Questions}
 The following supporting questions are defined to aid in answering the main question.
-These are based upon various components of the main problem statements, further explained in \refchap{chap:methodology}
-
-\begin{note}
-  - first question -> you really studied it?
-  - I'd remove to what extent? it's hard to answer
-  - missing evaluation in questions -> performance evaluation?
-\end{note}
+These are based upon the components of the main problem statement.
 
 \begin{itemize}[-]
   \item \mySubRQOne
@@ -231,33 +152,46 @@ These are based upon various components of the main problem statements, further 
   \item \mySubRQThree
   \item \mySubRQFour
 \end{itemize}
+
+\subsection*{Evaluation}
 In order to obtain answers to these questions, a literature review is performed,
-a prototypical software application is developed, 
-and this application is tested and accessed on various aspects.
+a prototype web-based geocomputation VPL is developed, 
+and this application is accessed on various aspects.
+
+This prototype vpl is both used as a test case to discover the extent of possible challenges, as well as a staging ground for possible solutions. 
+The specific way in which each sub-research question is evaluated is explained in \refchap{chap:methodology}.
 
 \newpage
 \section{Scope}
-The scope of this thesis is cornered in the following six ways: 
+The scope of this thesis is bounded in the following six ways: 
 
 \subsection*{Only frontend geocomputation}
-This study excludes any \emph {backend} based geocomputation.
-A web application \textit{could} be used to orchestrate geocomputation web-services, which could also deliver a form of browser-based geocomputation to end-users. 
-However, for the scope of this thesis, we limit ourselves to purely client-side solutions, with calculations literally happening within the clients browser. 
-This is also why this study excludes the OGC standard of the \ac{wps} \cite{ogc_web_2015}.
 
-Adding backend-based geocomputation to a geo-web-VPL would be an excellent follow-up investigation to this study. 
-Future work could research the possibility of utilizing a hybrid strategy of both client-side and server-side geocomputation, following in the footsteps of \cite{panidi_hybrid_2015}. 
+% \begin{note}
+%   [KEN]: p.5 is backend geocomputation really browser-based geocomputation? I'd say no, could be used to shorten this section
+
+%   [JOS]: I would still include this part, when I explain my thesis to colleagues and other people, the difference between 'web-based geocomputation' and 'browser-based' comes up. Better safe than sorry.
+%   I have, however, trimmed this section down a bit
+% \end{note}
+
+There is a nuance between 'web-based geocomputation' and 'browser-based geocomputation'. 
+'Web' can refer to both frontend and backend computation methods, 'browser' refers purely to frontend computations. 
+This study focusses on browser-based geocomputation, and as such, excludes any \emph {backend} based geocomputation.
+% A web application \textit{could} be used to orchestrate geocomputation web-services, which could also deliver a form of browser-based geocomputation to end-users. 
+% However, for the scope of this thesis, we limit ourselves to purely client-side solutions, with calculations literally happening within the clients browser. 
+% This is also why this study excludes the OGC standard of the \ac{WPS} \cite{ogc_web_2015}.
+
+Adding backend-based geocomputation to a web VPL would be an excellent follow-up investigation to this study, following in the footsteps of studies like \cite{panidi_hybrid_2015}. 
 
 \subsection*{No Usability Comparison} % 
-\begin{note}
-  needs a better argument for usability -> technical feasibility only
-\end{note}
 
-While accessibility / usability is a motivation of the development of a \ac{vpl}, and while usability will be analyzed to a limited extent, no claims will be made that this method of geocomputation is \emph{more} usable as opposed to existing geocomputation methods. This research attempts to solve practical inhibitions in order to discover whether or not browser-based, vpl-based geocomputation is \emph{a} viable, usable option. If it turns out that this method is viable enough technically, future research will be needed to definitively proof \emph{how} usable it is compared to all other existing methods.  
+While accessibility / usability is a motivation of the development of a \ac{VPL}, and while usability will be analyzed to a limited extent, no claims will be made that this method of geocomputation is \emph{more} usable as opposed to existing geocomputation methods. 
+This research attempts to solve practical inhibitions in order to discover whether or not browser-based, vpl-based geocomputation is \emph{a} viable, usable option. If it turns out that this method is viable enough technically, future research will be needed to definitively proof \emph{how} usable it is compared to all other existing methods. 
+Similarly, a survey analyzing how users experience browser-based geocomputation in comparison to native geocomputation must also be left to subsequent research. 
+
+This choice is made, because browser-based, VPL-based geocomputation is too new of a method to make a balanced comparison against any other method. Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
 
 % This paper seeks to first close this gap, limiting itself to overcoming the technical and design boundaries in the pursuit of practical client-side geocomputation.
-
-Similarly, a survey analyzing how users experience browser-based geocomputation in comparison to native geocomputation must also be left to subsequent research. While this would be insightful, client-side geocomputation is too new to make a balanced comparison. Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
 
 % While the research restrains itself from empirically measuring an aspect as nebulous as 'accessibility', it does demonstrate ...
 
@@ -266,39 +200,34 @@ Similarly, a survey analyzing how users experience browser-based geocomputation 
 
 \subsection*{Only WebAssembly-based containerization}
 
-\begin{note}
-  p.5 is backend geocomputation really browser-based geocomputation? I'd say no, could be used to shorten this section
-
-  -> I would still include this part, when I explain my thesis to colleagues and other people, this is one of the things which comes up. Better safe than sorry.
-\end{note}
-
 This thesis examines a WebAssembly-based approach to containerization and distribution of geocomputation functionalities. 
 Containerization using Docker is also possible for server-side applications, but is not (easily) usable within a browser. 
 For this reason, Docker-based containerization is left out of this studies' examination. 
 And to clarify: Docker and WebAssembly are not mutually exclusive models, and could be used in conjunction on servers or native environments. 
 
 \subsection*{Mostly Point Cloud/ DTM focussed geocomputation}
+
 We are also required to concentrate the scope of 'geocomputation', which is a sizable phenomenon.
 The term is generally used to cover all operations on geodata, from rasters, tabular datasets, highly structured datasets such as the CityJSON or IndoorGML, and point clouds. 
 Due to time limitations, we are forced to focus on particular type of geocomputation.
 3D-based geocomputation is chosen, with a particular focus on pointclouds and DTMs. 
-The hypothesis is that these types of data may fit the small-scale geocomputation of a 'geo-web-vpl' well due to the local optimality quality of many DTM procedures (Such as the \ac{dt}), 
+The hypothesis is that these types of data may fit the small-scale geocomputation of a VPL well due to the local optimality quality of many DTM procedures (Such as the \ac{DT}), 
 
-\subsection*{Assumption: a '\ac{geo-web-vpl}' is a normal Geometry VPL able to handle geodata}
-For the scope of this thesis, we assume a Web-VPL for geocomputation is practically the same as a web-VPL for generic geometry processing.
-Examples of "Geometry VPLs" are Blender's Geometry Nodes, Houdini, GeoFlow, and Grasshopper.
+\subsection*{Assumption: a 'Geocomputation-VPL' is a Geometry VPL able to handle geodata}
+For the scope of this thesis, we assume a VPL for geocomputation is practically the same as a VPL for generic geometry processing.
+Examples of "Geometry VPLs" are Blender's Geometry Nodes, Houdini, and Grasshopper.
 More on this in chapter \refsec{sec:related-geovpl}.
 
-A geo-web-vpl differs only in the fact that it supports additional geodata types, and offers functionalities specific to processing those types.  
-This assumption is safe to make since a 'geo-web-vpl' will \emph{at the very least} require the same features as a 'normal' geometry VPL, due to their common dependency on the field of computer graphics and computational geometry.
+A Geocomputation VPL differs only in the fact that it supports additional geodata types, and offers functionalities specific to processing those types.  
+This assumption is safe to make since a geocomputation VPL will \emph{at the very least} require the same features as a 'normal' geometry VPL, due to their common dependency on the field of computer graphics and computational geometry.
 
 Still, in reality, a lot of differences and nuances exist between the field of geocomputation and the field of procedural modelling. 
 However, due to time limitations, these concerns are left to future research.
 % these concerns will only be picked up at the final discussion, found at \refsec{sec:discussion}.
  
 \subsection*{Only core browser features}
-Lastly, the implementation of the geo-web-vpl will limit itself to core browser features, keeping dependencies at a minimum, in an attempt to generalize the results of the study.
-If the study would use very specific web frameworks and technologies to solve key issues, questions might arise if the results of the study counts in general for browser-based geocomputation or geo-VPLs, or if they only count in this very specific scenario. 
+Lastly, the implementation of the prototype geocomputation VPL will limit itself to core browser features, keeping dependencies at a minimum, in an attempt to generalize the results of the study.
+If the study would use very specific web frameworks and technologies to solve key issues, questions might arise if the results of the study counts in general for browser-based geocomputation or geocomputation VPLs, or if they only count in this very specific scenario. 
 "Core browser features" is defined in \refsec{sec:method-one}.
 
 \newpage
@@ -310,10 +239,10 @@ The remainder of this study is structured as follows:
   
   \item \refchap{chap:related}, Related Work, provides a review of studies comparable to this one.
 
-  \item \refchap{chap:methodology}, Methodology, explains precisely in what way the research-questions will be answered, and shows how this relates to the background and related works chapters. 
+  \item \refchap{chap:methodology}, Methodology, explains precisely in what way the research-questions will be answered.
+  In addition, the main design decisions are described and justified in this part of the study.
 
   \item \refchap{chap:implementation}, Implementation, presents the implementation of the methodology.
-  In addition, the main design decisions are described and justified in this part of the study.
   
   \item \refchap{chap:analyses} analyses the results from this implementation in the various ways described by the methodology.
   

@@ -7,6 +7,12 @@ Lead up to P4 hand-in: work notes:
 
 
 
+Changelog
+==========================
+- added an abstract
+- changed the introduction significantly 
+- changed from four sub research questions to just three my 'merging' the first and last one
+
 
 TODO
 ----

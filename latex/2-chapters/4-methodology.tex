@@ -49,7 +49,7 @@ And, due to the investigative nature of this study, the methodology requires to 
 The first component of the methodology involves the question of \mySubRQOneTitle : \mySubRQOne.
 
 % [WHY]
-Before exploring how lifting geo-computation to a web-VPL might take place, this study first wished to discover to what extent the web browser is able to facilitate the interface of a dataflow vpl for geometry computation in general, both in terms of data structures and visualization. 
+% Before exploring how lifting geo-computation to a web-VPL might take place, this study first wished to discover to what extent the web browser is able to facilitate the interface of a dataflow vpl for geometry computation in general, both in terms of data structures and visualization. 
 
 % As a second step, we wish to know to what extent a web-based, dataflow vpl can provide for the needs of a vpl meant for general 3D geometry processing.   
 % A 3D VPL is defined as a vpl meant for generic 3D geometry processing.
@@ -174,23 +174,6 @@ The second component of the methodology seeks an answer to the question of \mySu
   - no side effects, thats the whole point  
 \end{note}
 
-
-% [Why]
-Making sure a \ac{geo-web-vpl} is able to make use of native, system-level libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
-The most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \cite{haas_bringing_2017}.
-Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \cite{haas_bringing_2017,jangda_not_2019}.
-However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{wasm} also may pose challenges:
-
-% The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. 
-
-\begin{enumerate}[-]
-  \item \ac{wasm} promises a 'near native performance' (Source: Wasm). However, this can be quite situational, as multiple studies have shown \cite{jangda_not_2019} (Source: the bachelor thesis). 
-  \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not function without workarounds. 
-  \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
-  \item Compiling an \emph{library} to \ac{wasm} is seriously different from compiling a full \emph{application} to wasm. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
-\end{enumerate}
-Discovering the extent and relevance of these compilation challenges for geo-computation libraries is why the sub-question of \mySubRQTwoTitle \space was included in this study. 
-
 % [HOW]
 Two experiments are conduced to answer this supporting research question. 
 The first focusses on making a clear, measurable comparison between compilation methods, where the second experiment focusses on compilation in a practical, realistic scenario. 
@@ -275,7 +258,6 @@ and captured by the research question: \mySubRQThree
 
 % to what extent can a web-consumable library be loaded into a web-vpl without explicit configuration?
 
-% [Why]
 
 \begin{figure}
   \centering
@@ -285,33 +267,7 @@ and captured by the research question: \mySubRQThree
   \label{fig:loading-trajectory}
 \end{figure}
 
-% THE REASON FOR THIS WAS DISCOVERED DURING PRELIMINARY STUDIES
 
-Most of the 3D vpls mentioned in \refsec{sec:background-vpl} offer a plugin system, or some other way to load external libraries.
-This way, the functionalities of the environments can be expanded upon.
-However, all of these plugin / library systems require explicit 'wrapper' libraries, to explain how the functionalities a text-based programming library map to components used in a visual manner.
-\begin{note}
-  TODO: SHOW VISUAL EXAMPLE
-\end{note}
-This turned out to be a problem during preliminary studies.
-If a \ac{geo-web-vpl} wishes to use non-js libraries, it would mean that these libraries would have to be wrapped twice (see \reffig{fig:loading-trajectory} A): 
-Once to expose the native library to the web using the methods described at \refsec{sec:method-two},
-And once more to map the web library to the visual language. 
-While this is a possibility, in practice, two layers of wrappers are not acceptable in terms of a development workflow.
-This would be cumbersome, prone to errors, and hurting version control by having to synchronize between 4 software projects. 
-
-There is also a second reason for critically addressing the way plugins are loaded. 
-An observation was made from studying the existing geo-vpls in \refsec{sec:related-geovpl}:
-It seems that if a developer wants to create custom VPL components, they are required to write plugins very specific to that particular VPL.
-This means that practically, the library ecosystem of a VPL is entirely its own: 
-It is separated from the wider context of textual programming libraries. 
-End users are at the mercy of developers implementing their libraries in the dialect their particular VPL.
-Meanwhile, developers are forced to implement and support a multitude of wrapper libraries for VPL platforms.  
-
-In contrast, if the library loader of a VPL was able to directly utilize textual libraries, the barrier between vpl ecosystems and regular text-based libraries would cease to exist, benefiting both developers and end users. 
-It might even lower the barrier between visual and textual programming in general, making it easier for VPl end-users to adopt some forms of textual programming, and vice versa. 
-
-These two reasons are why this third component of the methodology is focused on exploring and assessing a method to  mitigate the need for the second wrapper library. 
 The following plan was used: 
 \begin{enumerate}[-]
   \item Design a library / plugin model for the prototype \ac*{geo-web-vpl}
@@ -323,6 +279,42 @@ The following plan was used:
 The design is given subsequently, the build implementation and assessment can be found in \refsec{sec:implementation:loading} and \refsec{sec:analyses:loading}.
 
 \subsection{Design \& Method}
+
+MAKE THIS A SUPRISE: A REVELATION AS PART OF THE IMPLEMENTATION
+\begin{note}
+
+  This turned out to be a problem during preliminary studies.
+  If a \ac{geo-web-vpl} wishes to use non-js libraries, it would mean that these libraries would have to be wrapped twice (see \reffig{fig:loading-trajectory} A): 
+  Once to expose the native library to the web using the methods described at \refsec{sec:method-two},
+  And once more to map the web library to the visual language. 
+  While this is a possibility, in practice, two layers of wrappers are not acceptable in terms of a development workflow.
+  This would be cumbersome, prone to errors, and hurting version control by having to synchronize between 4 software projects. 
+  
+  There is also a second reason for critically addressing the way plugins are loaded. 
+  An observation was made from studying the existing geo-vpls in \refsec{sec:related-geovpl}:
+  It seems that if a developer wants to create custom VPL components, they are required to write plugins very specific to that particular VPL.
+  This means that practically, the library ecosystem of a VPL is entirely its own: 
+  It is separated from the wider context of textual programming libraries. 
+  End users are at the mercy of developers implementing their libraries in the dialect their particular VPL.
+  Meanwhile, developers are forced to implement and support a multitude of wrapper libraries for VPL platforms.  
+  
+  In contrast, if the library loader of a VPL was able to directly utilize textual libraries, the barrier between vpl ecosystems and regular text-based libraries would cease to exist, benefiting both developers and end users. 
+  It might even lower the barrier between visual and textual programming in general, making it easier for VPl end-users to adopt some forms of textual programming, and vice versa. 
+  
+  
+\end{note}
+% THE REASON FOR THIS WAS DISCOVERED DURING PRELIMINARY STUDIES
+
+% Most of the 3D vpls mentioned in \refsec{sec:background-vpl} offer a plugin system, or some other way to load external libraries.
+% This way, the functionalities of the environments can be expanded upon.
+% However, all of these plugin / library systems require explicit 'wrapper' libraries, to explain how the functionalities a text-based programming library map to components used in a visual manner.
+
+
+\begin{note}
+  TODO: SHOW VISUAL EXAMPLE
+\end{note}
+
+
 
 \begin{note}
  TODO: I should elaborate the design some more
@@ -374,14 +366,6 @@ The necessity to automate loading geocomputation libraries means that the \ac{ge
 The final component of the methodology is dedicated to overcoming the fourth and final challenge to realizing a \ac{geo-web-vpl}, and involves the utilization of all aforementioned components. 
 In this section, we wish to discover the practical usefulness of a \ac{geo-web-vpl}, encompassed by the research question : \mySubRQFour
 
-% What are the advantages and disadvantages of using an existing geoprocessing library through a geo-web-vpl, as opposed to native utilization of said library?
-
-% [WHY]
-This component of the methodology is included in the study because of the following: 
-It might be the case that a geo-web-vpl \emph{is} able to represented by a web-browser, and \emph{is} able to load and run functions from native, non-js geo-computation libraries. 
-And still, it might not be able to successfully \emph{use} these libraries. 
-The entire idea of a vpl might not be sensible for the operation at hand, or some other, unforeseen aspects mitigates the practical usefulness of the environment. 
-It is therefore vital to access the actual usage of the application for accessing a geocomputation library.
 
 % [HOW]
 To answer the question of \mySubRQFourTitle, the various applications created within Geofront will be subjected to a qualitative assessment. 
