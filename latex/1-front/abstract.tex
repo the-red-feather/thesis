@@ -9,7 +9,7 @@ Performing geocomputations by utilizing a visual programming language (VPL) with
 In this context, the portability of existing geocomputation libraries is a common problem.
 This is often addressed by maintaining duplicate JavaScript alternatives to libraries such as GDAL, PROJ, and GEOS, complicating innovation.  
 
-The study poses that this problem can only be overcome if native geocomputation libraries are able to be properly \emph{compiled}, \emph{loaded}, \emph{utilized} in a browser-based dataflow-VPL format.
+The study poses that this problem can only be overcome if native geocomputation libraries are able to be properly \emph{compiled}, \emph{loaded}, and \emph{utilized} in a browser-based dataflow-VPL format.
 Discovering if and how this can be done is the central question of this study. 
 % This study seeks to improve the state of web-based geocomputation VPLs 
 % by discovering if the library portability problem can be overcome, and if so, how.
@@ -17,7 +17,7 @@ Discovering if and how this can be done is the central question of this study.
 This question is answered by testing a possible solution.
 A proof of concept web-based VPL is designed, implemented and evaluated, which makes use of a novel plugin system, as well as a directed, acyclic graph-based data model \& interface.
 
-Using this proof of concept, the study was able to demonstrate that the web platform was sufficiently capable of \emph{representing} a VPL capable of constructing geocomputation pipelines.
+Using this proof of concept, the study was able to demonstrate that the web platform was sufficiently capable of representing a dataflow VPL capable of constructing geocomputation pipelines.
 The functional programming-properties of this dataflow VPL also makes geo-libraries sufficiently \emph{usable}, albeit with some well-known caveats of dataflow-VPLs, like the representation of conditionals and iteration. 
 
 The current methods of \emph{compiling} existing C++ geocomputation libraries to the web turned out to be insufficient for the purposes of this study.  

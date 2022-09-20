@@ -30,6 +30,8 @@ and lastly, a self reflection (\refsec{sec:reflection}).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
 \section{Conclusion}
 \label{sec:conclusion}
 
@@ -42,17 +44,18 @@ It starts with answering the sub research questions and concludes with the answe
   \item 1. "\mySubRQOne"
 \end{itemize}
 
-The browser appears to be capable of representing a dataflow-type vpl graph to an acceptable degree, 
+The full answer of this question is represented by \refsec{sec:implementation:representation}.
+Overall, the browser appears to be capable of representing a dataflow-type vpl graph to an acceptable degree, 
 based on the implementation presented in \refsec{sec:implementation:representation}, and the analysis in \refsec{sec:analyses:representation}.
 The browsers biggest advantage for an application like this is the sheer amount of features a javascript program can use by default, like the 2D canvas api, the DOM, and WebGL. 
 These features do not need to be included within the source code of the application, leading to quick load times. 
 All three of these features proved to be vital, and were performant enough to support an application like this. 
 Only the 2D canvas Api can become slow when rendering a great number of components. 
 
-JavaScript can also be used to represent the data structure and logic needed to make a VPL functional. 
+JavaScript was used to represent the data structure and logic needed to make a VPL functional. 
 Javascript's flexibility proved to be crucial to support features like dynamically loading and using libraries at runtime. 
 The disadvantage was due to JavaScript's very limited type support, and limited precision in general. 
-While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no meaningful distinction between number types (\m{int, float, double}) for example. 
+While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no meaningful distinction between number types (\m{int, float, double}), for example. 
 % The prototype-based objects also led to type-check problems. 
 Typescript has been used to mitigate some of these shortcomings.  
 
@@ -80,7 +83,7 @@ regrettably, not many rust-based geocomputation libraries are written in pure ru
 Thus, the conclusion is a dilemma between Rust and C++.
 C++ has a strong foundation of existing geocomputation libraries compared to newer languages like Rust.  
 However, this same legacy inhibits its portability, which makes it harder to compile to web browsers. 
-Rust is for the forseeable future a better choice for writing easily consumable, portable libraries, but does not have a mature ecosystem of geocomputation libraries. 
+Rust is for the forseeable future a better choice for writing easily consumable, portable libraries, but does not have a fully mature ecosystem of geocomputation libraries. 
 
 To overcome this, the study suggests that either the 'embind' tool must be expanded to the level of functionality of 'wasm-bindgen', or geocomputation libraries must be rewritten in Rust. 
 This second option seems counterproductive, but as stated in (SOURCE: maplibre.rs): "innovation often requires selectively ignoring prior work."
@@ -120,14 +123,14 @@ As a consequence, libraries can create functions with many side effects, or they
 % How can a VPL be used to support and execute existing geo-computation libraries in a browser?
 % So, Does Geofront succeed in "converting existing geocomputation libraries to a sharable VPL format?" 
 
-A VPL can support existing geocomputation libraries if and only if these libraries are able to be \emph{compiled}, \emph{loaded}, \emph{represented}, and \emph{utilized} in a VPL format.
+A VPL can support existing geocomputation libraries if and only if these libraries are able to be \emph{compiled}, \emph{loaded}, and \emph{utilized} in a dataflow VPL format.
 
-Using a new javascript implementation of an acyclic, graph-based VPL, the study was able to demonstrate how the web platform can be used to \emph{represent} a VPL capable of constructing scripts from these libraries.
+Using a new javascript implementation of an acyclic, graph-based VPL, the study was able to demonstrate how the web platform can be used to represent a dataflow-VPL capable of hosting these libraries.
 The dataflow-properties of a graph-based VPL like this also makes this libraries sufficiently \emph{usable}, albeit with some well-known caveats of dataflow-VPLS, like the representation of conditionals and iteration. 
 
 The current methods of \emph{compiling} existing C++ geocomputation libraries to the web turned out to be insufficient for the purposes of this study.  
 This is due to emscripten's focus on compiling full C++ applications instead of libraries.
-Despite this, the study wás able to demonstrate how a novel method can be used to sufficiently \emph{compile} and \emph{load} a Rust-library for usage in the VPL.
+Despite this, the study wás able to demonstrate how a novel method can be used to  \emph{compile} and \emph{load} a Rust-library for usage in the VPL.
 While not many contemporary geocomputation libraries are written in Rust, the study offers this method to either offer emscripten contributors a blueprint of a desired workflow, or to offer geocomputation library contributors a powerful use-case for the Rust language. 
 
 All in all, this means that either if the Rust ecosystem gains more mature geocomputation libraries, or if Emscripten's capabilities improve, then the code portability problem \& dataflow problem of existing web-based geocomputation VPLS can be overcome. 
@@ -142,163 +145,174 @@ All in all, this means that either if the Rust ecosystem gains more mature geoco
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
 \section{Contributions}
 \label{sec:contribution}
-The full extent of the results of this study is represented by this section, as well as \refsec{sec:limitations}.
 
+The study was able to deliver two major contributions:
 \begin{itemize}[-]
-  \item \textbf{A new implementation of a web-based visual programming language for geocomputation}
-    \subitem By providing the full source code of the application and all libraries used within the application, together will all implementation details given in \refchap{chap:implementation}, this study aims to provide guidance for all subsequent studies on the topic of VPLs, geocomputation, or geoweb applications. 
-    \subitem Additionally, by having conducted this study on the intersection of all three of those fields, the study shows in what way these fields can be of help to one another. 
-
+  \item \textbf{A new implementation of a web-based geocomputation VPL}
+    This study introduces a novel javascript implementation of a web-based dataflow-VPL capable of both geometry processing, as well as geocomputation.
+    Compared to existing web-based alternatives, this VPL is closer in design and functionality to common geometry VPLs like grasshopper, as it adheres to being a graph-based dataflow VPL. 
 % We introduce the \"Geofront\" application, which achieves this accessibility in two ways: 
 % Firstly, geoprocessing libraries, written in either Rust or C++, are compiled to WebAssembly: binaries which can be run in any modern browser, client-side. This mitigates the need for any installation, and allows the software to be directly used as soon as a website is fully loaded. WebAssembly offers a performance comparable to native usage. Geofront accepts these binaries as plugins.
 
 % Secondly, Geofront itself is set up as a web-based visual programming environment, complete with a 3D viewer and WMS, WFS \& WMTS support. Using these tools, users can interactively run these geoprocessing libraries with different datasets and parameters. Using visual programming, the user can chain and alter geoprocessing steps, visualize in-between products, and save \& load these workflows.
 
-
-
   \item \textbf{A novel workflow of publishing and using native libraries on the web}
-    \subitem Using the environment, a rust-based geo-computation function or library can be used within a visual programming environment with a minimum of in-between steps.
-    In software development, this can be used to lower the delta between "it works for me" and "it works for someone else".
-    The environment also be used to:
-    \subitem Visually debug, 
-    \subitem fine tune parameters of unintuitive / empirical algorithms, 
-    \subitem Compare performance of similar libraries,
-    \subitem Load libraries with a minimum of configuration steps: Any Javascript, Typescript or Rust library which satisfies the conditions layed out in \refsec{sec:implementation:loading:limits}, automatically works in Geofront.
-    \subitem And, unique to this environment, do this all online, in a 'published' format: the full configuration can be shared using a URL.
-    \subitem This combination of features makes Geofront unique among both geo-VPLS and web-VPLS. 
+    Secondly, a new workflow was developed to allow a geo-computation function or library to be used within a visual programming environment.
+    Moreover, this can be done with a minimum of configuration steps: 
+    Any Javascript, Typescript or Rust library which satisfies the conditions layed out in \refsec{sec:implementation:loading:limits}, automatically functions in Geofront.
     
     % CITYJSON VALIDATOR ARGUMENT: THE WEB CAN BE USED TO IMMEDIATELY MAKE SOME TOOL / SOME RESEARCH PROJECT OPERATIONAL 'IN THE REAL WORLD'. THIS WAY, DATA CAN BE GATHERED, USER FEEDBACK CAN BE GATHERED, AND THE TOOL CAN BE EVALUATED IN TERMS OF REPRODUCABILITY. FINALLY, IT OFFERS THE POSSIBILITY OF THE TOOL BEING ACTUALLY USED, IN PRACTICE. 
 % z
-    
 \end{itemize}
+
+These two contributions together lead to an environment suited for a number of use cases, including: 
+\begin{itemize}
+  \item Visual debugging: One can use this environment visualize the result of an algorithm in 2D or 3D.
+  \item Fine tuning parameters: In situations where algorithms contain unintuitive or empirically derived parameters (e.g. RANSAC), a visual environment can be use to quickly try out multiple settings, and to observe their effects.
+  \item Benchmarking: Geofront can be used to test the web performance of multiple algorithms written in different languages. 
+  \item Publication: Geofront scripts can be shared using a link. 
+    this can be used to make a native library usable online, and by doing so, it may help to lower the delta between 'it works for me' and 'it works for someone else'.
+\end{itemize} 
+The combination of these features together make Geofront unique among both \\ geo-VPLS and web-VPLS. 
+by providing the full source code, together will all implementation details given in \refchap{chap:implementation}, this study aims to provide guidance for all subsequent studies on the topic of VPLs, geocomputation, or geoweb applications.
+
+
 
 \section{Limitations}
 \label{sec:limitations}
 
-The contributions mentioned above to have limitations, which can be described as follows:
-
+The contributions mentioned above have the following limitations:
 \begin{itemize}[-]
   \item \textbf{Only Rust, Js \& Ts library support}
-For now, only 'Rust' and 'JavaScript / TypeScript' can be properly used as libraries. However, most libraries relevant to geo-computation are C++ based. While C++ has excellent support for compiling full, self contained applications to WebAssembly using the 'emscripten' toolset, it lacks rust's level of support in compiling existing libraries.
+  For now, only libraries written in Rust or Javascript / Typescript can be used in Geofront. 
+  Due to the results layed out in \refsec{sec:analyses:compilation}, a stable method of using any C++ library can not be provided for at the current moment.
 
-    In \refsec{sec:analyses:compilation}, The issues between compiling C++ and Rust libraries were presented. 
-    Since a stable method of using C++ can not be provided for at the current moment,
   \item \textbf{In practice, not all libraries can be used }
-  - While it is indeed possible to use and run any rust library with `wasm-bindgen` annotations or any js + ts library, in order to properly communicate, visualize, and make data interoperable, special 'config' functions and methods are needed. 
-  \item \textbf{Only small-scale geodata is possible}
-    The 'near native performance' has some caveats, as explained in \refsec{sec:analyses:compilation}, but is not a problem at large. 
-    What is a problem is the fact that geodata is in general large.  
-    - the environment uses browser-based calculations, so it cannot be used properly for big data, or other expensive processes.
-    Future work: compile the flowchart, run it headless on a server for large datasets.
+  \refsec{sec:implementation:loading:limits} shows that not all Rust and JS/TS libraries are supported. 
+  Additionally, in order to properly communicate, visualize, and make data interoperable, special 'config' functions and methods are still required. 
   
+  \item \textbf{Only small-scale geodata is possible}
+  the Geofront environment uses browser-based calculations, which does not lend itself well to process datasets larger than a certain threshold. 
+  This means it cannot be used properly for big data, or other expensive processes. 
+
+  % was not part of this study
+  % First of all, the purpose of this study was only to get geocomputation libraries to the web, and inside of a vpl format. 
+  
+  
+  % But still, lets give the devil his due:
+  % Even when processing "smaller" datasets of, lets say 4 GB, most of the 'flowchart niceties' of geofront will cease to be useful. 
+  % Inspecting this data will take more time than its worth, and reconfiguring the flowchart will take a long time. 
+  % This can be mitigated by using web workers, but it will still not be very ergonomic to work with. 
+  
+  % When datasets become larger thansmall datasets of , most of the 'flowchart niceties' of geofront will cease to be useful. 
+
   \item \textbf{Implementation shortcomings} 
-    Its still a prototype, and has many usability shortcomings, explained in \refsec{sec:analyses:utilization}.
-    In particular, many geocomputation-specific aspects are missing. 
+  Geofront is a prototype, and has many usability shortcomings, explained in \refsec{sec:analyses:utilization}.
+  In addition, many geocomputation-specific aspects are missing, such as a topographical base layer.  
 \end{itemize}
+
+
 
 \section{Discussion}
 \label{sec:discussion}
-Questions on the decisions made during the study, and the answer this study is able to provide.
+This section covers questions on the decisions made during the study, and the answer this study is able to provide as a response.
 
-\subsubsection*{Q: Geodata is big data. Will this web application be scalable to handle big datasets?}
+\subsubsection*{Q: Geodata is almost always big data. Will this web environment be scalable to handle big datasets?}
 
 % 3. web interface
 % - Having no file system really hurts the usefulness of the vpl as a data processing application.
 % -> file system API is coming to fix this
 % -> This study recommends cloud-native as a solution to this problem, and has added 
 
-One of the problems to address when considering the ergonomics of geocomputation, is the fact that geodata is almost always big data. 
-A web application cannot be expected to process huge datasets. 
-So how does geofront address this fundamental aspect of geoprocessing? 
+% One of the problems to address when considering the ergonomics of geocomputation, is the fact that geodata is almost always big data. 
+% A web application cannot be expected to process huge datasets. 
+% So how does geofront address this fundamental aspect of geoprocessing? 
 
-First of all, the purpose of this study was only to get geocomputation libraries to the web, and inside of a vpl format. 
-Scaling the application up to handle big data was not part of this study, and had to be left to future work. 
+The sizeable nature of geodata is a component fundamental to geocomputation.
+However, scaling the application up to handle big data deviated too much from the core goal of this thesis to solve the problem of library portability, and had to be left to future work. 
 
-But still, lets give the devil his due:
-Even when processing "smaller" datasets of, lets say 4 GB, most of the 'flowchart niceties' of geofront will cease to be useful. 
-Inspecting this data will take more time than its worth, and reconfiguring the flowchart will take a long time. 
-This can be mitigated by using web workers, but it will still not be very ergonomic to work with. 
-
-To pose a solution, this study experimented with compiling a full Geofront Script to javascript.
+Still, to pose a solution, this study experimented with compiling a \\ full Geofront script to javascript.
 This can be regarded as a 'release' build of the Geocomputation pipeline: 
-It would have allowed native CLI-execution using Node.js or Deno, without any dependencies to Geofront itself. 
-While it seems convoluted to compile a native library to WebAssembly and then execute it natively again, it is actually a sound strategy for building scalable, containerized programs for the cloud. 
-The 'WASI' project is a good example of this (Source: https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/). 
-However, this experiment turned out to be a full-sized study in itself, and so had to be left to subsequent studies due to time constrains. 
+It would have allowed native CLI-execution using Node.js (Source) or Deno (Source), without any dependency or reference to Geofront itself.
+Only the libraries used within the pipeline would need to be referenced, and this could have been done using regular javascript import statements, and npm.
 
-\subsubsection*{Q: Why not build everything as a native application, and publish the entire application as wasm?}
+% While it seems convoluted to compile a native library to WebAssembly and then execute it natively again, it is actually a sound strategy for building scalable, containerized programs for the cloud. 
+% The 'WASI' project is a good example of this (Source: https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/). 
+However, this experiment turned out to be a full-sized study in itself, and so had to be left to subsequent studies due to time constraints. 
 
-This would indeed be more performant, especially if the native version of the application is also distributed. 
-Users could choose themselves if they wish to sacrifice the performance and native experience for accessibility on the web. 
+\subsubsection*{Q: Why wasn't Geofront developed as a native application, and published to the web as a whole?}
 
-However, many features key to the solution and workflows proposed would be lost in a setup like that. 
-Geofront would then be 'just' a geo-VPL. 
+A native-first build of Geofront would indeed be more performant, especially if the application is fully hybridized:
+If both a native and web build of an application are available, then Users can choose for themselves if they wish to sacrifice the performance and native experience for the accessibility of a web build. 
+ 
+However, many features key to the solution and workflow specific to Geofront would be lost in such a setup.  
 (Prospected) features like dynamically loading plugins, scriptable components, or the compilation to javascript would be lost, or would have to be regained by incorporating a browser engine \emph{within} this native application. 
-Additionally, all features Geofront gets 'for free', like the DOM, the Canvas API, and WebGL, would have to be included within the application. 
 
-\subsubsection*{Q: Where was this 'barrier' the methodology spoke of?}
+However, a valid criticism can be made that this study could have opted for adding more native-first components, such as the maplibre renderer (Source: Maplibre-rs)
 
-Recall that the methodology states how the barrier preventing geo-web-VPLS from adapting native libraries, 
-must be because of issues encountered during \textbf{compilation}, \textbf{Loading}, \textbf{Representation}, or \textbf{used}, or a combination of these factors. 
+% \subsubsection*{Q: Where was this 'barrier' the methodology spoke of?}
 
-After the conclusion of this study, three major issues can be identified, which indeed occupy spaces in between the above four factors. 
+% Recall that the methodology states how the barrier preventing geo-web-VPLS from adapting native libraries, 
+% must be because of issues encountered during \textbf{compilation}, \textbf{Loading}, \textbf{Representation}, or \textbf{used}, or a combination of these factors. 
 
-\textbf{1. Compilation and Loading}
+% After the conclusion of this study, three major issues can be identified, which indeed occupy spaces in between the above four factors. 
 
-Firstly, it turned out to be challenging to expose existing libraries in a way usable by a dataflow-vpl. 
-- "just compiling to wasm" was not enough.
-- Webassembly is a double edged sword. Interfacing with wasm binaries from javascript is slow: lots of duplication of data. 
--> catch 22 beyween rust and C++
+% \textbf{1. Compilation and Loading}
 
-
-\textbf{2. Disconnect between textual and visual programming}
-
-Secondly, to turn a 'normal' function into a component usable in a dataflow graph, additional metadata needs to be specified.
-This leads to specific config files and classes, which in turns creates a barrier between regular programming libraries, and vpl libraries. 
-\refsec{sec:implementation:loading} represents the attempted solution to this problem. 
+% Firstly, it turned out to be challenging to expose existing libraries in a way usable by a dataflow-vpl. 
+% - "just compiling to wasm" was not enough.
+% - Webassembly is a double edged sword. Interfacing with wasm binaries from javascript is slow: lots of duplication of data. 
+% -> catch 22 beyween rust and C++
 
 
-\textbf{3. Web interfacing}
+% \textbf{2. Disconnect between textual and visual programming}
 
-And lastly, having limited access to the file system really hurts the usefulness of the vpl as a data processing application.
-This aspect has not been properly addressed during this study.
-This study recommends the novel web services cloud-native as a solution to this problem, and has added 
-  
-\begin{note}
-  finish this
-\end{note}
+% Secondly, to turn a 'normal' function into a component usable in a dataflow graph, additional metadata needs to be specified.
+% This leads to specific config files and classes, which in turns creates a barrier between regular programming libraries, and vpl libraries. 
+% \refsec{sec:implementation:loading} represents the attempted solution to this problem. 
 
-\subsubsection*{Q: Is a geo-web-vpl the same as a 3D vpl with existing geoprocessing functionalities attached? In other words, is geoprocessing nothing else than procedural modelling?}
 
-No, but it is a good start. 
-A geo-web-vpl is \emph{at the very least} a Geometry VPL. 
-Indeed, an actual geocomputation vpl might require more features, such as a global CRS, support of base-maps, more control on precision, etc. 
-These important aspects must be left for future work.
+% \textbf{3. Web interfacing}
 
-\subsubsection*{Q: Usage: Who benefits from a web-geo-vpl, and how? }
-This study proposes 4 use-cases:
-\begin{enumerate}[-]
-  \item Educational Sandbox
-  \item Web Demo Environment
-  \item End-user geoprocessing environment 
-  \item Rapid prototyping environment
-\end{enumerate}
+% And lastly, having limited access to the file system really hurts the usefulness of the vpl as a data processing application.
+% This aspect has not been properly addressed during this study.
+% This study recommends the novel web services cloud-native as a solution to this problem, and has added 
 
-\subsubsection*{Q: Is this environment truly accessible?}
 
+% \subsubsection*{Q: Is a geo-web-vpl the same as a 3D vpl with existing geoprocessing functionalities attached? In other words, is geoprocessing nothing else than procedural modelling?}
+
+% No, but it is a good start. 
+% A geo-web-vpl is \emph{at the very least} a Geometry VPL. 
+% Indeed, an actual geocomputation vpl might require more features, such as a global CRS, support of base-maps, more control on precision, etc. 
+% These important aspects must be left for future work.
+
+% \subsubsection*{Q: Usage: Who benefits from a web-geo-vpl, and how? }
+% This study proposes 4 use-cases:
+% \begin{enumerate}[-]
+%   \item Educational Sandbox
+%   \item Web Demo Environment
+%   \item End-user geoprocessing environment 
+%   \item Rapid prototyping environment
+% \end{enumerate}
+
+\subsubsection*{Q: A large reason for developing web-based VPLs is accessibility.  Is this environment accessible?}
+
+This study can only answer this question to a limited degree. 
 Based on the analysis given at \refsec{sec:analyses:utilization}, it is safe to say that based on its features, Geofront is about as accessible as comparable geo-vpls, like geoflow or grasshopper. 
 However, this analysis is only based on the achieved functionality and features. 
 Actual user-testing is required to assess The true accessibility of the tool.
 
-\subsubsection*{Q: Is this environment truly a competitor to native / other methods of geoprocessing?}
+\subsubsection*{Q: Is this environment a competitor to native methods of geocomputation?}
 
 In theory, yes.
-Using the workflow as described, native geocomputation libraries could be written, and these same tools could be used on the web at near native performance. 
+Using the workflow as described, native geocomputation libraries could be used on the web at near native performance, without requiring installation.
 Additionally, the web offers enough functionality so that even sizable, local datasets could be processed this way.
 In practice, the dilemma between Rust and C++ means that in the sort term, this environment will not be used for professional geocomputation.
-Additionally, the tool is still in a prototypical state, and will need to be more stable to be used professionally. 
+Additionally, the tool is still in a prototypical state, and will need to be more stable and reliable before being used professionally. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -310,20 +324,20 @@ The many fields this study draws from mean that a great variety of auxiliary asp
 Some of these aspects are listed here, and could lead to interesting topics for follow-up research. 
 
 \subsection{Deployment \& Scalability}
-An earlier, very simple version of the Geofront script had the ability to be compiled to normal javascript (see (\reffig{fig:early-geofront-compile-to-js})).  
+An early build of Geofront had the ability to compile a Geofront script to regular javascript (see (\reffig{fig:early-geofront-compile-to-js})).  
 All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by functions. 
-This way, the application could be run headless (without the \ac{gui}) either the browser or on a server, using a "Node,js" (Source) or Deno interpreter (Source).
+This way, the application could be run headless (without the \ac{GUI}) either the browser or on a server, using a "Node,js" (Source) or Deno interpreter (Source).
 
 A future study could re-implement this feature, opening up the possibility for deployment and scalability: 
 Scripts created with geofront could then deployed as web applications of themselves, or as a web processing services (WPS, SOURCE).
 Also, by running this script on a server, and ideally a server containing the geodata required in the process, one could deploy and run a Geofront scripts on a massive scale. 
 
-The overall purpose of this would be to create a free and open source alternative to similar tools like the Google Earth Engine, and FME cloud compute. 
+The overall purpose of this would be to create a free and open source alternative to tools like the Google Earth Engine, and FME cloud compute. 
 
 \subsection{Streamed, on demand geocomputation}
 
-The study showed that browser-based geocomputation using Rust is entirely possible. 
-This possibility might allow for an entirely new type of geoprocessing workflow, which could replace some use-cases that now require big-data processing and storage.
+This study showed that browser-based geocomputation is reasonably viable. 
+This might allow for a new type of geoprocessing workflow, which could replace some use-cases that now require big-data processing and storage.
 Instead of storing the sizable, pre-processed results of some geocomputation, an application could take a raw dataset base layer, and process it on-demand in a browser.
 
 This would have several advantages. 
@@ -342,9 +356,9 @@ One is that rust is widely considered as a more stable, less runtime error-prone
 The second one is that Rust compiled to WebAssembly sees extensive use on both cloud and edge servers.  
 This could be very interesting to the "cloud-native geospatial" movement. 
 This web GIS movement aims to create the tools necessary to send geocomputation to servers, rather than sending geodata to the places where they are processed.
-To do this, geocomputation must become much more interoperable, more exchangeable, and Rust compiled to WebAssembly forms an excellent candidate. 
+To do this, geocomputation must become much more interoperable, more exchangeable, and Rust compiled to WebAssembly forms a viable candidate. 
 
-Therefore, studying Rust-based geocomputation for cloud native and edge computing, would be an excellent topic for subsequent research. 
+Therefore, studying Rust-based geocomputation for the purpose of cloud native and edge computing, would be a promising topic for subsequent research. 
 
 \subsection{FAIR geocomputation}
 % The study has only scratched the surface on what is possible with combining geocomputation with the fields of Visual programming, and web applications. 
@@ -353,8 +367,8 @@ The study chose to pursuit this on a practical, technical level.
 
 However, a more theoretical study could also be performed. 
 It turns out that these ideas of 'less cumbersome geodata processing', have something in common with many of the geoweb studies on data accessibility and usability (\cite{brink_geospatial_2018}).
-The ideas of 'data silo's', 'FAIR geodata', and 'denichifying of \ac{gis} data' (see \cite{brink_geospatial_2018}) map well to geocomputation:
-Functionality Silo's, FAIR geocomputation, denichifying of \ac{gis} computation. 
+The ideas of 'data silo's', 'FAIR geodata', and 'denichifying of \ac{GIS} data' (see \cite{brink_geospatial_2018}) map well to geocomputation:
+Functionality Silo's, FAIR geocomputation, denichifying of \ac{GIS} computation. 
 
 Therefore, an interesting question for a subsequent study could be: "How could geocomputation become more Findable, Accessible, Interoperable, and Reusable?", or "How to integrate the function-silo's of GIS, BIM \& CAD?"
 By focussing on data processing actions rather than the data itself, we could shed a new light on why data discrepancies and inaccessibility exist. 

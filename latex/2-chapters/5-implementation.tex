@@ -463,10 +463,10 @@ Finally, not all languages are equally supported:
 
   \item \textbf{Rust}:
     Libraries compiled to webassembly using the "\m{wasm-bindgen}" work "out of the box" in most cases.
-    \m{wasm-bindgen} is able to generate javascript wrapper bindings for a \ac{wasm} library, accompanied by TypeScript type definitions (Source). 
-    This wrapper handles type conversions and memory safety. 
+    \m{wasm-bindgen} is able to generate javascript wrapper bindings for a \ac{wasm} library, accompanied by TypeScript type definitions. 
+    This wrapper handles type conversions. 
     
-    However, rust libraries compiled to the web use have to be initialized. 
+    However, rust libraries compiled to the web do require a initialization step. 
     As such, the loader now checks if the library looks like a Rust library, and if it does, it uses a slightly altered loading method.
   \item \textbf{C++}
     At the time of writing this study, the 'embind' compiler (explained in \refsec{sec:implementation:loading}) does not have an option to compile a typescript declaration file. 
