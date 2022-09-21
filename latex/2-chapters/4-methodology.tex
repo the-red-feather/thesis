@@ -13,14 +13,15 @@ The first step of the methodology involves the question: \mySubRQOne.
 This implementation is required as a host for all subsequent steps of the methodology. 
 While the initial plan was to re-use an existing web VPL, the related works review of \refchap{chap:related} showcased that no exiting browser-based geocomputation VPL would be an appropriate fit.
 The Mobius Modeller (Source) came closest, but the sizable nature of this project makes aligning its goals with the goals of this study challenging. 
-Building a custom implementation would also allow more degrees of freedom, in terms of designing a VPL which takes hosting geocomputation libraries from multiple hosts  into account from the beginning of its design. 
+Building a custom implementation would also allow more degrees of freedom, in terms of designing a VPL which takes hosting geocomputation libraries from multiple hosts  into account from the start. 
 
 The following approach was deemed as the most fitting method for implementing this VPL. 
-First, the requirements of a dataflow-VPL handling geometry are defined.
+First, the requirements of a dataflow-VPL handling geometry have to be made clear.
 Secondly, in order to know what tools may be used to implement this VPl, a small analysis of "widely supported browser features" is made. 
 Then, with both these constraints known, a design for a web VPL can be layed out, which can be subsequently implemented. 
 
-\subsection*{Requirements}
+\newpage
+\subsection{Requirements}
 
 The requirements of a dataflow-VPL implementation can be subdivided in requirements of a dataflow VPl in general, and a VPL for geo-computation specifically.
 Based on (SOURCE: dataflow VPL) any dataflow-VPL must at the very least contain the following aspects: 
@@ -66,7 +67,7 @@ Basic operations are needed in particular to transform between the types.
 %     a list of standard VPL features & application features required as a base-line:  
 %   - Users must be able to construct a script by visual means.
 
-\subsection*{Widely supported browser features}
+\subsection{Widely supported browser features}
 
 \begin{figure}
   \centering
@@ -91,102 +92,127 @@ This set includes the following features relevant for the 3D VPL:
   \item WebAssembly
 \end{enumerate}
 
-\subsection*{Design}
+\subsection{Design}
 
 \begin{note}
-  MAKE SOME UML DIAGRAMS
-  todo: rewrite everything to make sense! 
+  TODO: MAKE SOME UML DIAGRAMS
 \end{note}
 
-setup: 
-\begin{enumerate}[-]
-  \item \m{shims}: Models to reason about 'programming language features', such as functions and variables.
-  \item \m{nodes-canvas}: Contains the model, renderer and controller of the visual programming graph itself.  
-  \item \m{modules}: holds all classes dedicated to dynamically loading plugins.
-  \item \m{std}: The default plugin, baked into Geofront.   
-  \item \m{html}: a 'web framework' of reusable html components making up the UI visuals.
-  \item \m{menu}: a menu system which takes care of the model \& logic of the UI.
-  \item \m{viewer}: The 3D renderer accompanying Geofront.   
-\end{enumerate}
+A software application of a VPL adhering to the specifications mentioned can be implemented in several ways. 
+The design chosen is a \ac{MVC} setup written in javascript.  
+The \ac{MVC} is a common model for interface-focussed applications, and allows us to reason about the model of the VPL language an a separate level from the editor / viewer.
+The JavaScript language will be used instead of webassembly alternatives, in order to limit the usage of webassembly to just the libraries. 
+Using WebAssembly too much at too many different locations will make the results of this study less clear.
 
+Javascript is a multi-paradigm language.
+This study chose an object-oriented approach, and will use some of the design patterns layed out in (SOURCE: BIG FOUR).
+This design is further elaborated in the subsequent sections, first by covering the Shim classes, followed up by design details corresponding to the model, view and controller:
 
-\subsubsection*{Shims}
+\subsubsection*{Shim Types}
 
 \begin{figure}
   \centering
   \graphicspath{ {../../assets/images/implementation/} }
   \includegraphics[width=\linewidth]{shim-uml.png}
-  \caption[Shim Classes]{}
+  \caption[Shim Classes]{Shim classes. (pseudo) code is presented instead of a UML diagram, to be clear about the recursive aspects. TODO: add modules to this screenshot }
   \label{fig:shim-classes}
 \end{figure}
 
-Since Geofront is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
-This is why the \m{FunctionShim}, \m{TypeShim}, \m{VariableShim} and \m{ModuleShim} classes exist, respectively (see \reffig{fig:shim-classes}). 
-For example, the \m{FunctionShim} offers the name, description, number of inputs, and number of outputs of a function, as well as ways to invoke the function it represents.
-These inputs and outputs have corresponding \m{TypeShims}, which are formal representations of TypeScript / JavaScript-based types. 
-TypeShims can be structured recursively to define a \m{List of List of strings} for example. The \m{TypeShim} is also used to reason about type checking and type compatibility.
+Firstly, since a VPL is partially a programming language, a model is needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins.
+For example, we desire to store a description of a function, how many input parameters it needs, and which variable types each input requires. 
 
-the shims are a set of classes used in almost all other categories within Geofront. 
+These needs led to the design of classes serving as equivalents of these language features, called shims. 
+\reffig{fig:shim-classes} shows a type-shim and function-shim respectively. 
+A Shim equivalents of a module, and a VPL graph are also required. 
+
 The shim classes are designed using the Object Type design pattern (SOURCE: BIG FOUR). 
-In short, this means that one function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared with any object wishing to use the function. 
-The name \m{shim} was taken from \m{wasm-bindgen}'s (SOURCE) naming convention for the auto-generated \m{JavaScript} and \m{TypeScript} files. These classes were first created as a representation of those shims.
+This means that these objects are used as types. 
+For example, a loaded function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared as a read only with any object wishing to eventually use the function. 
+% the \m{FunctionShim} offers the name, description, number of inputs, and number of outputs of a function, as well as ways to invoke the function it represents.
+This is also useful for defining recursive types. 
+TypeShims can be structured recursively to define a \m{List of List of strings} for example. 
 
-\subsubsection{Nodes Canvas}
-From the Shim models, the main model of the visual language can be constructed. 
-The \m{nodes-canvas} category contains all logic \& visualization of the visual programming graph, and writing this category was equivalent to developing the visual programming language itself. 
-The other categories of the repository can be understood as auxiliary to this one.
 
-\subsubsection*{Representation}
 
-% TODO uml diagram?
-% Picture of a single node
-% Picture of a single cable
+\subsubsection*{Model}
 
-The architecture of Geofront's visual programming language is first and foremost a Model View Controller setup. 
-The Model is at its core a Directed Acyclic Graph (DAG). 
-This DAG is an object-oriented, graph-like representation of the data flow of a regular programming language. 
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/implementation/} }
+  \includegraphics[width=\linewidth]{shim-uml.png}
+  \caption[Shim Classes]{TODO: MAKE A DAG UML THING}
+  \label{fig:dag-model}
+\end{figure}
 
-This architecture is implemented using multiple classes. The Viewer and Controller are represented by the \m{NodesCanvas}, which has access to a \m{Graph} Model, containing \m{Nodes} and \m{Cables}. 
+From the Shims, the main model of a VPL script can be conceived (see \reffig{fig:dag-model}). 
+This model is at its core a \ac{DAG}. 
+This \ac{DAG} should be a object-oriented, graph-like representation of the data flow of a regular programming language. 
+This design can be implemented by writing a \m{Graph} class, containing \m{Node} and \m{Cable} objects. 
 
-Nodes are analogous to the "Functions" of normal programming languages. 
-As such, a Node knows about the function they invoke through a \m{FunctionShim} reference. 
-The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a \m{Cable} (SEE PICTURE).  
-As the name implies, these Nodes form the nodes of the DAG. However, they differ from a pure DAG implementation, in that they also provide pointers back in the reverse direction, forming essentially a normal graph, or a doubly linked list. 
+In this model, Nodes are analogous to function \emph{invocations} of normal programming languages. 
+As such, a Node knows about the function they represent through a \m{FunctionShim} reference. 
+The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a \m{Cable}.  
+As the name implies, these Nodes form the nodes of the DAG. 
+However, they differ from a pure DAG implementation, in that they also provide pointers back in the reverse direction, forming essentially a normal graph, or a doubly linked list. 
+This is required for keeping track of all references pointing to a Node, so that upon the deletion of a node, all pointers can quickly be identified and nullified.
 
-The Cables are \geofront{}s analogy to normal "Variables". Cables know about the type they represent through a \m{TypeShim}. A Cable must have exactly one origin, which is an output socket of a Nodes, and must have one or more destinations, which are the input sockets of other Nodes (SEE PICTURE).
-
-From these ingredients, a graph can be constructed. 
-To reason about this graph as a whole, the \m{Graph} class was introduced. 
-It contains methods and functions to add or remove nodes, to add and remove cables between nodes, to parse the graph from and to a json, and to calculate the graph.  
-This study chose to centralize most logic to this Graph, instead of adding complex logic to individual Nodes. 
-This centralized approach was deemed more clear: Many of the required functionalities cover multiple nodes, and this is better presented from an "overview" perspective.
+The Cables of this model are an analogy to the variables of regular languages. 
+Cables know about the type they represent through a \m{TypeShim}. 
+A Cable must have exactly one origin, which is an output socket of a Nodes, 
+and must have one or more destinations, which are the input sockets of other Nodes.
+This is required for the same reasons as the doubly linked nature of the Cables. 
+ 
+To reason about the graph as a whole, a overarching \m{Graph} class will be needed.
+This is what would be called a 'program' or 'script' in a regular language. 
 Because of the way Cables and Nodes reference each other, the graph has characteristics of a doubly linked list data structure. 
-Using normal references in these types of situations could easily lead to memory management issues such as Dangling Pointers. 
-Substituting references with ids makes it easier to prevent these types of problems. 
-% does not solve all problems automatically
-
-Finally, this entire graph object is accessed by a larger \m{NodesCanvas} object, and this canvas has the responsibilities of "View" and "Controller". 
+Using normal references in these types of situations could easily lead to memory management issues such as Dangling Pointers.
+For this reason, centralizing the graph logic is desirable over adding complex logic to individual Nodes. 
+This will make it possible to substitute references with id integers to prevent these types of problems. 
 
 
-\subsubsection*{Graph Manipulation}
 
-In order to support these features, especially undo / redo support, we are required to explicitly track the history of the graph. 
-This is why a Command Pattern (Big Four, SOURCE) was implemented.
-Instead of directly editing the graph, all actions are represented by \m{Action} objects. 
+\subsubsection*{View}
+
+The view aspect of the VPL will require three main components. 
+First, the graph itself will need to be visualized in some manner.
+A graph based visualization will be used, based on the node-cable connections of the graph model. 
+Important to this view is that it will need to react to changes. 
+Users will want to add, select, change, and delete nodes, and these interactions should be clear. 
+This makes the 'canvas API' an ideal fit to this component.
+
+Secondly, since not all actions and interactions will be done by clicking on the graph itself, a \ac{GUI} surrounding this graph visualization is required.
+This will also need to house common application features, like 'new', 'save', 'load', 'export', etc.  
+The browser context means that this aspect will need to be facilitated by HTML. 
+Styling is required to make what is essentially a website look and behave like an application. 
+
+Finally, the VPL requires some way of visualizing 3D geometry, so that in-between products containing spatial data can be viewed. 
+a custom 3D engine, specialized to the needs of the VPL, would be best option for this aspect.
+
+\subsubsection*{Controller}
+
+Finally, a controller will be needed to modify and manipulate the VPL.
+It will need to house all types of interactions, such as loading and saving a VPL script, model manipulation and updating the view only when necessary.
+Two important aspects require further explanation: Keeping track of history, and calculating the graph. 
+
+\emph{History}
+
+In order to support all these interactions, especially undo / redo support, we are required to explicitly track the history of the graph. 
+A Command Pattern (SOURCE: Big Four) makes for a good fit in this regard.
+Instead of directly editing the graph, all manipulation actions should be represented as \m{Action} objects. 
 Each Action can 'do' and 'undo' a specific action, and the data needed to make this do and undo are stored within the action. 
-By then introducing a bridge class we decouple the graph and controller, only allowing interaction with the graph by giving this bridge Action objects. The Bridge maintains a stack of undo and redo actions, which represents this history.  
+By then introducing a \m{Bridge} class, the model and controller can be separated, only allowing interaction with the model by serving this bridge Action objects. The \m{Bridge} maintains a stack of undo and redo actions, which represents this history.  
 
 % Additionally, editing any graph data structure is never trivial. 
 % Special care must be taken to ensure the validity of a graph before and after changes, and is especially the case with Geofront's Doubly linked graph. 
 % To the best of the authors knowledge, these is no "trick" or "pattern" to ease this. Instead, the Graph and Graph Decoupler classes both have been designed in such a way 
 
-\subsubsection*{Graph Calculation}
+\emph{Calculation}
 
-When regarding the Geofront graph, or any other programming language, we see many functions requiring variables which are the result of other functions. 
+When regarding the graph model, or any other programming language, we see many functions requiring variables which are the result of other functions. 
 This is why a graph like this can also be called a dependency graph. 
-If we wish to calculate the result of the graph, these dependencies must be taken into account. 
-We must sort the functions the graph in such a way that all dependencies are known before a function is calculated.
-This problem is known as a topological sorting problem, and can be solved using Kahn's algorithm (\refsec{fig:kahn}): 
+If one wishes to calculate the result of a VPL script, then these dependencies must be taken into account. 
+The functions the graph muse be sorted in such a way that all dependencies are known before a function is calculated.
+Such a problem is known as a topological sorting problem, and can be solved using Kahn's algorithm (\refsec{fig:kahn}): 
 
 \begin{figure}
   \centering
@@ -219,31 +245,15 @@ This problem is known as a topological sorting problem, and can be solved using 
   \label{fig:kahn}
 \end{figure}
 
-Using this algorithm for calculation has several important qualities. 
+Using this algorithm for calculating a VPL has several important qualities. 
 First of all, it detects cyclical graph patterns without getting trapped within such a loop. 
-Graphs implemented on the basis of an event-system suffer from this drawback, and models like these must continuously check their own topology to avoid loops. 
+VPLs implemented on the basis of an event-system suffer from this drawback, and models such as those must continuously check their own topology to avoid loops. 
 
 Secondly, by sorting the \emph{order} of calculation before actually performing the calculations, we can use the algorithm for more than just the calculation.
-It was this aspect which enabled an earlier version of Geofront to compile a Geofront Script to Javascript at runtime (see \reffig{fig:early-geofront-compile-to-js}).
+For example, in theory this could be used to compile a VPL Script to Javascript at runtime, by composing a list of functions based on this order. 
 
 Finally, if all intermediate calculation results are cached, this same algorithm can also be used for performing partial recalculations of the graph. 
-The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recalculate. 
-
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/implementation/} }
-  \includegraphics[width=\linewidth]{early-geofront.png}
-  \caption[Geofront to js]{An early build of geofront, showing compilation to javascript}
-  \label{fig:early-geofront-compile-to-js}
-\end{figure}
-
-\subsection*{Viewer}
-
-Finally, the VPL requires some way of visualizing 3D geometry, so that in-between products containing spatial data can be viewed. 
-
-This study sought to test the browser itself, rather than to test the functionalities of applications layered on top of it, in order to make benchmarks as 'clear' as possible. 
-
-This is why the application will use a custom 3D engine, specialized to the needs of the VPL. 
+The starting positions of the algorithm then simply become the altered parameter, after which only the invalidated functions will recalculate. 
 
 % \subsection*{C: Implementation Steps}
 
@@ -268,11 +278,16 @@ This is why the application will use a custom 3D engine, specialized to the need
 \section{Loading \& Bindings System} 
 \label{sec:method-bindings}
 
-The second step of the methodology involves developing the bindings system, 
-used to load libraries from heterogenous sources. 
+
+
+
+The second step of the methodology involves developing a method to use libraries from native sources within the VPL outlined above. 
 This aspect of the methodology seeks an answer to the question: \mySubRQThree.
 
 % to what extent can a web-consumable library be loaded into a web-vpl without explicit configuration?
+
+
+\subsection{Design \& Method}
 
 \begin{figure}
   \centering
@@ -282,18 +297,6 @@ This aspect of the methodology seeks an answer to the question: \mySubRQThree.
   \label{fig:loading-trajectory}
 \end{figure}
 
-
-The following plan was used: 
-\begin{enumerate}[-]
-  \item Design a library / plugin model for the prototype VPL
-  \item Implement this library model 
-  \item Assess to what extent it mitigates the need for explicit configuration
-  \item Assess to what extent this creates seamless interoperability between textual programming libraries, and VPL libraries.
-\end{enumerate}
-
-The design is given subsequently, the build implementation and assessment can be found in \refsec{sec:implementation:loading} and \refsec{sec:analyses:loading}.
-
-\subsection{Design \& Method}
 
 MAKE THIS A SUPRISE: A REVELATION AS PART OF THE IMPLEMENTATION
 \begin{note}
@@ -368,6 +371,16 @@ The necessity to automate loading geocomputation libraries means that the \ac{ge
 
 
 \subsection{Design}
+
+The design is based upon two core presuppositions:
+
+1: wasm-compiled library model must be distributed and used like regular javascript libraries. 
+
+2: the binding system \& library loader must be able to accept regular javascript libraries. 
+
+this would maximize the portability of wasm-libraries.
+
+
 
 \begin{note}
   TODO: rewrite as a design specification

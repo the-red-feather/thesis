@@ -341,8 +341,17 @@ The many fields this study draws from mean that a great variety of auxiliary asp
 Some of these aspects are listed here, and could lead to interesting topics for follow-up research. 
 
 \subsection{Deployment \& Scalability}
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/implementation/} }
+  \includegraphics[width=\linewidth]{early-geofront.png}
+  \caption[Geofront to js]{An early build of geofront, showing compilation to javascript}
+  \label{fig:early-geofront-compile-to-js}
+\end{figure}
+
 An early build of Geofront had the ability to compile a Geofront script to regular javascript (see (\reffig{fig:early-geofront-compile-to-js})).  
-All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by functions. 
+All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by a variable token. 
 This way, the application could be run headless (without the \ac{GUI}) either the browser or on a server, using a "Node,js" (Source) or Deno interpreter (Source).
 
 A future study could re-implement this feature, opening up the possibility for deployment and scalability: 
