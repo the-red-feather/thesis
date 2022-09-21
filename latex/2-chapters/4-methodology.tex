@@ -2,74 +2,25 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
-\begin{note}
-  ch.4 structure probably should be in intro?
-\end{note}
-
 This chapter explains the methodology used in this study. 
+The overall methodology is to first develop a base VPL (\refsec{sec:method-base-vpl}), followed up by developing a binding system for this VPL (\refsec{sec:method-bindings}). 
+The final step is to set up and execute a series of tests (\refsec{sec:method-bindings}), to analyze the extend to which these implementations solve the various challenges raised by \refchap{chap:intro}.
 
-The study is subdivided into four components, each representing a sub-research question, which is in turn based upon one of the challenges of a geo-web-vpl (See reffig). 
-The questions are posed in such a way that answering them will require us to explore the extent of this challenge, and find possible solutions.
+\section{Base VPL} 
+\label{sec:method-base-vpl}
 
-% \begin{note}
-% TODO: diagram: 4 research questions -> four possible barriers of geocomputation
-% \end{note}
+The first step of the methodology involves the question: \mySubRQOne.
+This implementation is required as a host for all subsequent steps of the methodology. 
+While the initial plan was to re-use an existing web VPL, the related works review of \refchap{chap:related} showcased that no exiting browser-based geocomputation VPL would be an appropriate fit.
+The Mobius Modeller (Source) came closest, but the sizable nature of this project makes aligning its goals with the goals of this study challenging. 
+Building a custom implementation would also allow more degrees of freedom, in terms of designing a VPL which takes hosting geocomputation libraries from multiple hosts  into account from the beginning of its design. 
 
-% \begin{note}
-% TODO: diagram: show the 'locations' of the four research questions ( client / server / native, etc.)
-% \end{note}
+The following approach was deemed as the most fitting method for implementing this VPL. 
+First, the requirements of a dataflow-VPL handling geometry are defined.
+Secondly, in order to know what tools may be used to implement this VPl, a small analysis of "widely supported browser features" is made. 
+Then, with both these constraints known, a design for a web VPL can be layed out, which can be subsequently implemented. 
 
-
-
-\subsection*{Nature}
-The methodology of this study can be characterized as practical as opposed to theoretical, 
-% wholistic instead of specific, 
-and iterative compared to linear. 
-The prior works on browser-based geocomputation and geo-vpls indicate that a strong theoretical framework for a \ac{geo-web-vpl} is in place (Source). 
-But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
-This necessitates a practical approach in response. 
-And, due to the investigative nature of this study, the methodology requires to iterate upon itself, instead of following a singular, linear path. 
-
-% MIGHT NOW WANT TO KEEP THIS IN HERE
-
-% ...
-% % Theorie: is er maar je geloofde het niet
-% % praktische implementatie om de Throerie weerleggen
-% The prior works on browser-based geoprocessing indicate that a theoretical framework for browser-based geoprocessing vpl is in place. 
-% But, and this is especially evident in the studies regarding client-side geoprocessing, the practical implementation of these theories
-
-% Choices: 
-% - practical > theoretical : Literature study indicates enough theoretical soundness, but lots of practical questions remaining. We wish to  immediate pick up where these studies have left, and therefore we choose the direct, practical study of designing and implementing a prototype application. 
-% - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geocomputation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
-% - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
-
-\section{\mySubRQOneTitle} 
-\label{sec:method-one}
-
-The first component of the methodology involves the question of \mySubRQOneTitle : \mySubRQOne.
-
-% [WHY]
-% Before exploring how lifting geo-computation to a web-VPL might take place, this study first wished to discover to what extent the web browser is able to facilitate the interface of a dataflow vpl for geometry computation in general, both in terms of data structures and visualization. 
-
-% As a second step, we wish to know to what extent a web-based, dataflow vpl can provide for the needs of a vpl meant for general 3D geometry processing.   
-% A 3D VPL is defined as a vpl meant for generic 3D geometry processing.
-
-% [HOW]
-The following approach was deemed as the most fitting method to answer this question of \mySubRQOneTitle:
-\begin{enumerate}[A]
-  \item \emph{Define the requirements of a dataflow-VPL handling geometry}
-  \item \emph{Define 'core browser features'}
-  \item \emph{Implement a dataflow-VPL in a browser according to these features}
-  \item \emph{Per requirement, to what extent is it successfully implemented by this dataflow-VPL?}.
-  \item \emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
-  % \item \emph{Per implemented requirement, to what extent does this web implementation differ from native dataflow VPLs?}
-\end{enumerate}
-
-The definitions for step A and B will be made subsequently. 
-The implementation of step C is presented at \refsec{sec:implementation:representation}, 
-and the assessments of D and E can be found in \refsec{sec:analyses:representation}
-
-\subsection*{A: Requirements}
+\subsection*{Requirements}
 
 The requirements of a dataflow-VPL implementation can be subdivided in requirements of a dataflow VPl in general, and a VPL for geo-computation specifically.
 Based on (SOURCE: dataflow VPL) any dataflow-VPL must at the very least contain the following aspects: 
@@ -98,10 +49,9 @@ First, regarding type safety.
 In this context, type safety refers to: 
 The input and output of a function should have a type stated, and users should be notified of incorrect usage of types, or 'invalid connections'.
 Geometry VPLs in particular need this, as many data representations of geometry are required to be precise about their data usage.
-A VPL used to construct geometry should reflect this. 
-Similarly, it should be possible to define these geometry representations as inputs, or to extract them as output. 
-This will require specialized parsers to become part of the VPL. 
+A VPL used to construct geometry should reflect this.
 Additionally, when these types are clear and clearly communicated, users must have ways to provide these types as inputs or outputs. 
+This will require specialized parsers to become part of the VPL, such as an obj and geojson reader and writers. 
 
 Regarding visualization, A hallmark of dataflow VPLs is the ability to inspect the geometry created in in-between steps, so this must be provided for.
 This is also a good fit, since the immutable nature of dataflow VPL variables make these variables ideal for caching. 
@@ -116,11 +66,7 @@ Basic operations are needed in particular to transform between the types.
 %     a list of standard VPL features & application features required as a base-line:  
 %   - Users must be able to construct a script by visual means.
 
-\subsection*{B: Core browser features}
-
-\begin{note}
-  4.2 not sure if it's really studied, feels kind of improvised after the fact -> to be expanded based on what we discussed
-\end{note}
+\subsection*{Widely supported browser features}
 
 \begin{figure}
   \centering
@@ -130,10 +76,10 @@ Basic operations are needed in particular to transform between the types.
   \label{fig:browser-usage}
 \end{figure}
 
-This study defines "Core browser features" as the set of default features implemented by the browser engines of 'major browsers'. 
+This study defines "widely supported browser features" as the set of default features implemented by the browser engines of 'major browsers'. 
 Based on the desktop browser market shares of \reffig{fig:browser-usage}, the chromium based browsers (Chrome, Edge, Opera) have the majority. 
 This is followed up by Firefox, based on the Gecko engine, and Safari, based on webkit. 
-By supporting these three engines, the vast majority of end-users can be accounted for. 
+By supporting these three engines, the vast majority of end-users can be served.
 
 The set of features common in these three browser engines are well-documented on websites like MDN web docs (SOURCE: Mozilla). 
 This set includes the following features relevant for the 3D VPL:
@@ -144,6 +90,160 @@ This set includes the following features relevant for the 3D VPL:
   \item Web Components
   \item WebAssembly
 \end{enumerate}
+
+\subsection*{Design}
+
+\begin{note}
+  MAKE SOME UML DIAGRAMS
+  todo: rewrite everything to make sense! 
+\end{note}
+
+setup: 
+\begin{enumerate}[-]
+  \item \m{shims}: Models to reason about 'programming language features', such as functions and variables.
+  \item \m{nodes-canvas}: Contains the model, renderer and controller of the visual programming graph itself.  
+  \item \m{modules}: holds all classes dedicated to dynamically loading plugins.
+  \item \m{std}: The default plugin, baked into Geofront.   
+  \item \m{html}: a 'web framework' of reusable html components making up the UI visuals.
+  \item \m{menu}: a menu system which takes care of the model \& logic of the UI.
+  \item \m{viewer}: The 3D renderer accompanying Geofront.   
+\end{enumerate}
+
+
+\subsubsection*{Shims}
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/implementation/} }
+  \includegraphics[width=\linewidth]{shim-uml.png}
+  \caption[Shim Classes]{}
+  \label{fig:shim-classes}
+\end{figure}
+
+Since Geofront is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
+This is why the \m{FunctionShim}, \m{TypeShim}, \m{VariableShim} and \m{ModuleShim} classes exist, respectively (see \reffig{fig:shim-classes}). 
+For example, the \m{FunctionShim} offers the name, description, number of inputs, and number of outputs of a function, as well as ways to invoke the function it represents.
+These inputs and outputs have corresponding \m{TypeShims}, which are formal representations of TypeScript / JavaScript-based types. 
+TypeShims can be structured recursively to define a \m{List of List of strings} for example. The \m{TypeShim} is also used to reason about type checking and type compatibility.
+
+the shims are a set of classes used in almost all other categories within Geofront. 
+The shim classes are designed using the Object Type design pattern (SOURCE: BIG FOUR). 
+In short, this means that one function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared with any object wishing to use the function. 
+The name \m{shim} was taken from \m{wasm-bindgen}'s (SOURCE) naming convention for the auto-generated \m{JavaScript} and \m{TypeScript} files. These classes were first created as a representation of those shims.
+
+\subsubsection{Nodes Canvas}
+From the Shim models, the main model of the visual language can be constructed. 
+The \m{nodes-canvas} category contains all logic \& visualization of the visual programming graph, and writing this category was equivalent to developing the visual programming language itself. 
+The other categories of the repository can be understood as auxiliary to this one.
+
+\subsubsection*{Representation}
+
+% TODO uml diagram?
+% Picture of a single node
+% Picture of a single cable
+
+The architecture of Geofront's visual programming language is first and foremost a Model View Controller setup. 
+The Model is at its core a Directed Acyclic Graph (DAG). 
+This DAG is an object-oriented, graph-like representation of the data flow of a regular programming language. 
+
+This architecture is implemented using multiple classes. The Viewer and Controller are represented by the \m{NodesCanvas}, which has access to a \m{Graph} Model, containing \m{Nodes} and \m{Cables}. 
+
+Nodes are analogous to the "Functions" of normal programming languages. 
+As such, a Node knows about the function they invoke through a \m{FunctionShim} reference. 
+The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a \m{Cable} (SEE PICTURE).  
+As the name implies, these Nodes form the nodes of the DAG. However, they differ from a pure DAG implementation, in that they also provide pointers back in the reverse direction, forming essentially a normal graph, or a doubly linked list. 
+
+The Cables are \geofront{}s analogy to normal "Variables". Cables know about the type they represent through a \m{TypeShim}. A Cable must have exactly one origin, which is an output socket of a Nodes, and must have one or more destinations, which are the input sockets of other Nodes (SEE PICTURE).
+
+From these ingredients, a graph can be constructed. 
+To reason about this graph as a whole, the \m{Graph} class was introduced. 
+It contains methods and functions to add or remove nodes, to add and remove cables between nodes, to parse the graph from and to a json, and to calculate the graph.  
+This study chose to centralize most logic to this Graph, instead of adding complex logic to individual Nodes. 
+This centralized approach was deemed more clear: Many of the required functionalities cover multiple nodes, and this is better presented from an "overview" perspective.
+Because of the way Cables and Nodes reference each other, the graph has characteristics of a doubly linked list data structure. 
+Using normal references in these types of situations could easily lead to memory management issues such as Dangling Pointers. 
+Substituting references with ids makes it easier to prevent these types of problems. 
+% does not solve all problems automatically
+
+Finally, this entire graph object is accessed by a larger \m{NodesCanvas} object, and this canvas has the responsibilities of "View" and "Controller". 
+
+
+\subsubsection*{Graph Manipulation}
+
+In order to support these features, especially undo / redo support, we are required to explicitly track the history of the graph. 
+This is why a Command Pattern (Big Four, SOURCE) was implemented.
+Instead of directly editing the graph, all actions are represented by \m{Action} objects. 
+Each Action can 'do' and 'undo' a specific action, and the data needed to make this do and undo are stored within the action. 
+By then introducing a bridge class we decouple the graph and controller, only allowing interaction with the graph by giving this bridge Action objects. The Bridge maintains a stack of undo and redo actions, which represents this history.  
+
+% Additionally, editing any graph data structure is never trivial. 
+% Special care must be taken to ensure the validity of a graph before and after changes, and is especially the case with Geofront's Doubly linked graph. 
+% To the best of the authors knowledge, these is no "trick" or "pattern" to ease this. Instead, the Graph and Graph Decoupler classes both have been designed in such a way 
+
+\subsubsection*{Graph Calculation}
+
+When regarding the Geofront graph, or any other programming language, we see many functions requiring variables which are the result of other functions. 
+This is why a graph like this can also be called a dependency graph. 
+If we wish to calculate the result of the graph, these dependencies must be taken into account. 
+We must sort the functions the graph in such a way that all dependencies are known before a function is calculated.
+This problem is known as a topological sorting problem, and can be solved using Kahn's algorithm (\refsec{fig:kahn}): 
+
+\begin{figure}
+  \centering
+  \begin{lstlisting}
+    Step -1: 
+      Make an `order` list
+    Step 0: 
+      Make a `visisted` counter, initialized at 0
+    Step 1: 
+      Make a `dependency` counter for each node, initialized at 0
+    Step 2: 
+      Add 1 to this counter for each input edge of this node.
+    Step 3: 
+      Fill a queue with all dependency 0 nodes. 
+      These are the starter nodes.
+    Step 4: 
+      Remove a node from the queue (Dequeue operation) and then:
+      add the nodes' id to the `order` list.
+      Increment `visisted` counter by 1.
+      Decrease `dependency` counter by 1 for all dependent nodes.
+      If one `dependency` counter reaches 0, 
+        add it to the queue.
+    Step 5: 
+      Repeat Step 4 until the queue is empty.
+    Step 6: 
+      If `visisted` counter is not equal to the number of nodes, 
+        then the graph was degenerate, and probably cyclical. 
+    \end{lstlisting}
+  \caption[Kahns algorithm]{Khan's algorithm in pseudo code}
+  \label{fig:kahn}
+\end{figure}
+
+Using this algorithm for calculation has several important qualities. 
+First of all, it detects cyclical graph patterns without getting trapped within such a loop. 
+Graphs implemented on the basis of an event-system suffer from this drawback, and models like these must continuously check their own topology to avoid loops. 
+
+Secondly, by sorting the \emph{order} of calculation before actually performing the calculations, we can use the algorithm for more than just the calculation.
+It was this aspect which enabled an earlier version of Geofront to compile a Geofront Script to Javascript at runtime (see \reffig{fig:early-geofront-compile-to-js}).
+
+Finally, if all intermediate calculation results are cached, this same algorithm can also be used for performing partial recalculations of the graph. 
+The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recalculate. 
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/implementation/} }
+  \includegraphics[width=\linewidth]{early-geofront.png}
+  \caption[Geofront to js]{An early build of geofront, showing compilation to javascript}
+  \label{fig:early-geofront-compile-to-js}
+\end{figure}
+
+\subsection*{Viewer}
+
+Finally, the VPL requires some way of visualizing 3D geometry, so that in-between products containing spatial data can be viewed. 
+
+This study sought to test the browser itself, rather than to test the functionalities of applications layered on top of it, in order to make benchmarks as 'clear' as possible. 
+
+This is why the application will use a custom 3D engine, specialized to the needs of the VPL. 
 
 % \subsection*{C: Implementation Steps}
 
@@ -165,99 +265,14 @@ This set includes the following features relevant for the 3D VPL:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{\mySubRQTwoTitle} 
-\label{sec:method-two}
-The second component of the methodology seeks an answer to the question of \mySubRQTwoTitle: \mySubRQTwo
+\section{Loading \& Bindings System} 
+\label{sec:method-bindings}
 
-\begin{note}
-  REQUIREMENT: libraries containing pure functions exclusively
-  - no side effects, thats the whole point  
-\end{note}
-
-% [HOW]
-Two experiments are conduced to answer this supporting research question. 
-The first focusses on making a clear, measurable comparison between compilation methods, where the second experiment focusses on compilation in a practical, realistic scenario. 
-
-Both studies limit themselves to native libraries written in C++ and Rust. 
-C++ was chosen, since almost all relevant geocomputation libraries are written in C++, like CGAL and PROJ. 
-Rust was chosen, since this language is likely to be a future choice for geocomputation libraries, and possesses powerful WebAssembly support. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{First Experiment}
-The first experiment compares three different methods of bringing the same geocomputation procedure to the web. 
-This way, quantitative, measurable aspects of these methods can be compared. 
-The following three methods are tested:
-\begin{enumerate}[-]
-  \item Write the procedure in normal javascript
-  \item Write the procedure in C++, compile to wasm using the \m{emscriptem} toolkit (Source)
-  \item Write the procedure in Rust, compile to wasm using the \m{wasm-bindgen} toolkit (Source)
-\end{enumerate}
-These procedures are all tested within the same web application, using the same data. 
-By taking two different languages, we can distinguish between shortcomings of \ac{wasm} itself, and the \ac{wasm} support of a language.  
-
-The procedure chosen is a 2D convex hull calculation of a set of sample points. 
-The chosen procedure must be small enough to clearly reason about performance differences, and yet large enough to pose a substantial computational challenge, validating the usage of \ac{wasm}.
-
-\begin{note}
-  Expand upon the procedure
-\end{note}
-
-The three methods will be compared in terms of:
-\begin{enumerate}[-]
-  \item performance
-  \item load times
-  \item memory usage
-\end{enumerate}
-
-\begin{note}
-  - todo: turn features around into assessment criteria
-  - performance: load times, run times
-  - current state of webassembly & js. how much faster is it? is it even faster? 
-     - data translation steps, do they mitigate performance gains? 
-     - also given the fact that we are doing 'functions on sets'/ declarative instead of imperative styles, forced by the format of dataflow programming. 
-\end{note}
-
-The studies on browser-based geocomputation (\refsec{sec:related-geoweb}) appear to have conducted a similar experiment, by comparing the same procedure written in C++ and javascript. 
-However, these studies compared javascript against a native, non-web compilation of C++. 
-This experiment also differs in distinguishing between \ac{wasm} itself, and a language's \ac{wasm} support.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Second Experiment}
-The second experiment is a qualitative comparison between compiling a full-scale library written in Rust, to a full library written in C++. 
-This way, the tooling and workflow can be compared for a realistic use-case. 
-The study will be conducted by attempting to compile both libraries using their respective \ac{wasm} toolsets, and noting the differences in workflow, supported features, and the resulting wasm library. 
-
-we wish to compile these languages without 'disturbing' them: they must be kept the exact same for normal, native usage. 
-We will instead create 'wrapper' libraries. 
-
-\subsubsection*{Library One: CGAL}
-The first library tested is CGAL, written in C++, compiled using \m{emscriptem}.
-CGAL will be used as an exemplary C++ library. 
-For one, this library is well established and very relevant to geoprocessing as a whole. 
-Many other C++ geo-libraries depend on it.
-Moreover, it is a sizable and complex project, making it highly likely the problems described by related works will be encountered. 
-We could choose more simple libraries, but this will not be representative of most C++ geoprocessing libraries. 
-
-\subsubsection*{Library Two: Startin}
-The second library tested is the Startin library, written in Rust, compiled using \m{wasm-bindgen}.  
-This library is both smaller in scope, and less well-known than CGAL. 
-Ideally, a library with a size and popularity comparable to CGAL should have been chosen.
-However, Rust is still a relatively unknown language in the field of GIS. 
-Startin was chosen, for the triangulation functionalities it provides are comparable to that of CGAL, in terms of performance, and geometric robustness (Source). 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{\mySubRQThreeTitle} 
-\label{sec:method-three}
-
-In this third component of the methodology, we wish to discover how the web-exposed geocomputation libraries of \refsec{sec:method-two} can be utilized within the 3D VPL of \refsec{sec:method-one}. 
-This is once more a crucial aspect for the success of the entire \ac*{geo-web-vpl}, 
-and captured by the research question: \mySubRQThree
+The second step of the methodology involves developing the bindings system, 
+used to load libraries from heterogenous sources. 
+This aspect of the methodology seeks an answer to the question: \mySubRQThree.
 
 % to what extent can a web-consumable library be loaded into a web-vpl without explicit configuration?
-
 
 \begin{figure}
   \centering
@@ -270,7 +285,7 @@ and captured by the research question: \mySubRQThree
 
 The following plan was used: 
 \begin{enumerate}[-]
-  \item Design a library / plugin model for the prototype \ac*{geo-web-vpl}
+  \item Design a library / plugin model for the prototype VPL
   \item Implement this library model 
   \item Assess to what extent it mitigates the need for explicit configuration
   \item Assess to what extent this creates seamless interoperability between textual programming libraries, and VPL libraries.
@@ -349,53 +364,147 @@ The following information is optional, but it would aid the functionality and us
 
 The necessity to automate loading geocomputation libraries means that the \ac{geo-web-vpl} needs to be able to extract this information automatically. 
 
+
+
+
+\subsection{Design}
+
+\begin{note}
+  TODO: rewrite as a design specification
+\end{note}
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/diagrams/} }
+  \includegraphics[width=\linewidth]{Model Proposal.png}
+  \caption{Plugin Model}
+  \label{fig:plugin-model}
+\end{figure}
+
+The automated extraction of all \textbf{required} information is implemented by utilizing TypeScript Declaration 'd.ts' files. 
+A 'd.ts' file can be understood as a 'header' file generated by the TypeScript compiler, exposing the types required by all functions found in a corresponding javascript file.
+By using the typescript compiler in Geofront, this header file could be loaded and interpreted to find all basic information, including the names, the namespace location of where to find a functions, and all input and output types.
+This extraction of types was required, since these are not present in javascript source code, and types are needed in explaining to the end-user how to use a function, and in making Geofront typesafe.
+
+With the extracted information from the "d.ts" file, its corresponding Javascript file could now be traversed and read.
+javascript's nature as a scripting language proved to be highly effective for this:
+Firstly, its dynamic nature allowed a library to be loaded and incorporated at runtime without any special alterations. 
+Hot-loading libraries in C++ for example, can't usually be done without significantly altering the way a program runs. 
+Secondly, javascript's prototype-based classes and its support for reflection allowed the plugin loader to localize and collect all functions within a library.
+And lastly, the "first-class function support" allowed these functions to be referenced by the nodes on the Geofront Canvas. 
+
+Because Geofront is implemented as a Dataflow-VPL, the loader seeks to extract only (pure) functions. 
+However, many libraries also include classes, as these can make an API more clear to use. 
+Geofront's loader supports classes by converting them to a series of normal functions. 
+Static methods and constructors can be converted directly, and methods are converted into functions with the object as the first argument.
+
+The \textbf{optional} data was exposed by using a 'magic methods' strategy, influenced by the python programming language (SOURCE: PYTHON MAGIC METHODS). 
+The library loader of the VPL will load certain functions, types, and methods in a special way, indicated by a naming convention. 
+These functions are loaded by the vpl, but will not be converted into visual components. 
+Instead, these functions are programmatically called when the VPL engine or the user requires this optional aspect. 
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{\mySubRQFourTitle} 
-\label{sec:method-four}
+\section{Tests}
+The purpose of this final step of the methodology is to gather the results and data needed for answering the second and fourth research questions. 
+
+\subsection{Compilation Tests}
+
+The first set up tests seek the data needed to answer the question of \mySubRQTwoTitle: \mySubRQTwo
+
+The first test focusses on making a clear, measurable comparison between compilation methods, where the second experiment focusses on compilation in a practical, realistic scenario. 
+Both tests limit themselves to native libraries written in C++ and Rust. 
+C++ was chosen, since almost all relevant geocomputation libraries are written in C++, like CGAL and PROJ. 
+Rust was chosen, since this language is likely to be a future choice for geocomputation libraries, and possesses powerful WebAssembly support. 
+
+
+\subsubsection{First Experiment}
+The first experiment compares three different methods of bringing the same geocomputation procedure to the web. 
+This way, quantitative, measurable aspects of these methods can be compared. 
+The following three methods are tested:
+\begin{enumerate}[-]
+  \item Write the procedure in normal javascript
+  \item Write the procedure in C++, compile to wasm using the \m{emscriptem} toolkit (Source)
+  \item Write the procedure in Rust, compile to wasm using the \m{wasm-bindgen} toolkit (Source)
+\end{enumerate}
+These procedures are all tested within the same web application, using the same data. 
+By taking two different languages, we can distinguish between shortcomings of \ac{wasm} itself, and the \ac{wasm} support of a language.  
+
+The procedure chosen is a 2D convex hull calculation of a set of sample points. 
+The chosen procedure must be small enough to clearly reason about performance differences, and yet large enough to pose a substantial computational challenge, validating the usage of \ac{wasm}.
+
+\begin{note}
+  Expand upon the procedure
+\end{note}
+
+The three methods will be compared in terms of:
+\begin{enumerate}[-]
+  \item performance
+  \item load times
+  \item memory usage
+\end{enumerate}
+
+\begin{note}
+  - todo: turn features around into assessment criteria
+  - performance: load times, run times
+  - current state of webassembly & js. how much faster is it? is it even faster? 
+     - data translation steps, do they mitigate performance gains? 
+     - also given the fact that we are doing 'functions on sets'/ declarative instead of imperative styles, forced by the format of dataflow programming. 
+\end{note}
+
+The studies on browser-based geocomputation (\refsec{sec:related-geoweb}) appear to have conducted a similar experiment, by comparing the same procedure written in C++ and javascript. 
+However, these studies compared javascript against a native, non-web compilation of C++. 
+This experiment also differs in distinguishing between \ac{wasm} itself, and a language's \ac{wasm} support.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Second Experiment}
+The second experiment is a qualitative comparison between compiling a full-scale library written in Rust, to a full library written in C++. 
+This way, the tooling and workflow can be compared for a realistic use-case. 
+The study will be conducted by attempting to compile both libraries using their respective \ac{wasm} toolsets, and noting the differences in workflow, supported features, and the resulting wasm library. 
+
+we wish to compile these languages without 'disturbing' them: they must be kept the exact same for normal, native usage. 
+We will instead create 'wrapper' libraries. 
+
+\textbf{Library One: CGAL} \\
+The first library tested is CGAL, written in C++, compiled using \m{emscriptem}.
+CGAL will be used as an exemplary C++ library. 
+For one, this library is well established and very relevant to geoprocessing as a whole. 
+Many other C++ geo-libraries depend on it.
+Moreover, it is a sizable and complex project, making it highly likely the problems described by related works will be encountered. 
+We could choose more simple libraries, but this will not be representative of most C++ geoprocessing libraries. 
+
+\textbf{Library Two: Startin} \\
+The second library tested is the Startin library, written in Rust, compiled using \m{wasm-bindgen}.  
+This library is both smaller in scope, and less well-known than CGAL. 
+Ideally, a library with a size and popularity comparable to CGAL should have been chosen.
+However, Rust is still a relatively unknown language in the field of GIS. 
+Startin was chosen, for the triangulation functionalities it provides are comparable to that of CGAL, in terms of performance, and geometric robustness (Source). 
+
+\subsection{Usage tests}
+
+The second set up tests seek the data needed to answer the question of \mySubRQFourTitle: \mySubRQFour.
+
+To acquire this data, the various applications created within Geofront will be subjected to a qualitative assessment. 
+
 
 \begin{note}
   CUT OUT THE USE-CASE APPLICATION ASPECT. 
   -> we can make a utilization assessment based on the criteria alone, We dont need to create an application.
+
+\item \emph{Per requirement, to what extent is it successfully implemented by this dataflow-VPL?}.
+  \item \emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
+
 \end{note}
 
-The final component of the methodology is dedicated to overcoming the fourth and final challenge to realizing a \ac{geo-web-vpl}, and involves the utilization of all aforementioned components. 
-In this section, we wish to discover the practical usefulness of a \ac{geo-web-vpl}, encompassed by the research question : \mySubRQFour
 
-
-% [HOW]
-To answer the question of \mySubRQFourTitle, the various applications created within Geofront will be subjected to a qualitative assessment. 
-
-% \begin{enumerate}[-]
-%   \item Develop a representative use-case application within the prototype \ac{geo-web-vpl}.
-%   \item Develop a command line application capable of the very same process.
-%   \item Assess both applications according to a series of assessment questions.
-% \end{enumerate}
-
-% The execution of this component of the methodology is found in \refsec{sec:analyses:utilization}.
-
-% \subsection{use-case application}
-% The application used in both test cases is an "isocurves from DTM" process. 
-% But also: we want the iso-curves of a specific location. How to get this data is part of the exercise
-
-% \begin{note}
-% [This is subject to change, according to how much I can accomplish ]
-
-% - find the required height data as WFS / WMS
-% - determine a boundary
-% - load a dtm as a regular png / tiff image
-% - specify the parameters, like height delta, smoothness.
-% - marching squares
-% - post-process curves
-% - save as wkt, geojson, or some other well-known vector format
-
-% \end{note}
-
-\subsection{Assessment Framework}
+\subsubsection{Assessment Framework}
 For the assessment criteria, the cognitive dimensions framework of \cite[]{green_usability_1996} will be used. 
 The framework is useful for its focus on language features. 
 This allows the assessment to be made within the scope of this study, and without performing user-testing.
@@ -433,8 +542,59 @@ The framework presents the following 13 dimensions and accompanying descriptions
 
 As stated by the authors; the purpose of this framework is to make the trade-offs chosen by a language's designer explicit. It is not meant as a 'scoring' system.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% OLD STUFF
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+% \begin{enumerate}[-]
+%   \item Develop a representative use-case application within the prototype \ac{geo-web-vpl}.
+%   \item Develop a command line application capable of the very same process.
+%   \item Assess both applications according to a series of assessment questions.
+% \end{enumerate}
+
+% The execution of this component of the methodology is found in \refsec{sec:analyses:utilization}.
+
+% \subsection{use-case application}
+% The application used in both test cases is an "isocurves from DTM" process. 
+% But also: we want the iso-curves of a specific location. How to get this data is part of the exercise
+
+% \begin{note}
+% [This is subject to change, according to how much I can accomplish ]
+
+% - find the required height data as WFS / WMS
+% - determine a boundary
+% - load a dtm as a regular png / tiff image
+% - specify the parameters, like height delta, smoothness.
+% - marching squares
+% - post-process curves
+% - save as wkt, geojson, or some other well-known vector format
+
+% \end{note}
+
 % Nielsen and Molichs 10 User Interface Design Guidelines
 % https://theomandel.com/resources/golden-rules-of-user-interface-design/
 % https://www.interaction-design.org/literature/article/user-interface-design-guidelines-10-rules-of-thumb
 % (old rules, but still relevant)_
-

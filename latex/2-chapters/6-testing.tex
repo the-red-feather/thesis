@@ -1,136 +1,12 @@
-\chapter{Analyses}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\label{chap:analyses}
+\chapter{Testing}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\label{chap:testing}
 
-\begin{note}
-  better answering questions at the end, not throughout the thesis
-\end{note}
-
-In this chapter the various software implementations and design choices made in \refchap{chap:implementation} are analyzed. 
-First, \refsec{sec:analyses:representation}.
-Second, \refsec{sec:analyses:compilation}.
-Then, \refsec{sec:analyses:loading}.
-Finally, \refsec{sec:analyses:utilization}.
-
-\section{The base application}
-\label{sec:analyses:representation}
-
-This section of the analysis covers the question of \mySubRQOneTitle, and aims in particular to answer the questions: \emph{Per requirement, to what extent is it successfully implemented by this dataflow-VPL?} and \emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
-
-Additionally, this section clarifies to what extent a feature could not be implemented due to shortcomings of this particular implementation, or due to a limitation of the browser environment as a whole. 
-
-% We group the requirements listed at \refsec{sec:method-one} in a group of base features,
-% a group of dataflow features, and a group of geometry features.
-
-\subsection*{The extent of the dataflow-VPL implementation}
-
-\refsec{sec:method-one} named the following features which had to be implemented:
-\begin{enumerate}[-]
-  \item a base 'programming language model'
-  \subitem A representation of the 'variables' and 'functions' of the language
-  \subitem With all computations being pure functions
-  \subitem With all variables being immutable
-  \item a 'graph-like' visualization of this data model
-  \item an interface to create and edit this graph 
-  \item a way to provide input data 
-  \item a way to execute the language
-  \item a way to display or save output data
-\end{enumerate}
-
-\subsubsection*{The model}
-A basic (visual) programming language model was able to be fully implemented on the web. 
-No special web features were utilized in the creation of this model, despite HashMaps and HashSets offered by the Typescript language. 
-
-\subsubsection*{Visualization}
-Visualization of the graph is implemented using the 2D canvas api.  
-On every registered change to the graph, the canvas is redrawn. 
-The 2D canvas api makes use of explicit draw calls, rather than 'defining' some visualization, and leaving the render sequence to the renderer itself, like HTML.
-This way, One does not have to first 'create' a circle object and pass it to a renderer. 
-A circle can instantly and directly be drawn at the position specified.
-The downside of this implementation, is that all features the HTML renderer normally accounts for, like picking, conditional styling, and performant rendering of repetitious elements, are lost.
-These have to be re-implemented in javascript, which will never be as performant as the codebase of the browser engines themselves. 
-This makes the visualization slow while rendering a large amount of components (See TODO). 
-
-\begin{note}
-  TODO Show a graph with performance considerations
-\end{note}
-
-This slowness can be blamed partially on the implementation, and partially on the browser. 
-The browser does not offer the 'middle ground' between html-like rendering and 2D canvas-like rendering required for a visualization like the dataflow graph. 
-Still, this implementation could have experimented more with a HTML + SVG based render method.
-
-\subsubsection*{Editing}
-Editing of the graph was made possible by the various events offered by the browser api. 
-This allows the graph to be editable using the mouse. 
-The graph even offers 'undo' and 'redo' operations, and even 'copy' / 'paste' clipboard actions, using common shortcuts. 
-However, the implementation does lack touch \& mobile support.
-
-In general, these editing features are complete, but there are a few caveats caused by the browser environment.
-Namely, the browser has need of its own controls and shortcuts. 
-For example, the right mouse button brings up the browser context, and the \m{Ctrl + W} shortcut closes a browser tab, which cannot be overwritten.
-While there are some workarounds, these aspects make web applications more 'convoluted' to implement than would otherwise be ideal.
-
-\subsubsection*{Execution}
-Execution of the graph works as described, albeit with a major setback: execution does not run on a separate thread. 
-This means that the interface freezes up during large calculations, and this is not acceptable. 
-
-The reason for this is the difficulty in achieving concurrency in the browser. 
-To create a thread, one has to instantiate a so called 'web worker' \emph{with} the actual source code included in a parameter. 
-Not only is this unusual, it forces a codebase to create separate files per thread.
-The dynamic nature in which some of Geofront dependencies are loaded made splitting up the codebase like this impossible, let alone using multiple threads for calculating each node.
-
-\subsubsection*{Input and Output}
-The base dataflow VPl component of Geofront support input and output UI elements, like sliders, buttons, and text fields.
-These form special nodes on the canvas, called 'widgets'. 
-The fact that the Geofront implementation opted for a 2D canvas-based visualization made it so HTML could not be used for these aspects, and all these features had to be created from scratch.
+In this chapter the various software implementations and design choices made in \refchap{chap:implementation} are used and tested on various aspects. 
+This is done to gather the data needed to answer the second, third and fourth research question. 
+It consists of the sections \refsec{sec:analyses:compilation}, \refsec{sec:analyses:loading}, and \refsec{sec:analyses:utilization}.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection*{The extent of the geometry support implementation}
-
-\refsec{sec:method-one} named the following features as a requirement for geometry support:
-\begin{enumerate}[-]
-  \item Type safety 
-  \item A way to load or to create geometry data 
-  \item A way to export geometry data
-  \item A method to preview geometry data in 3D
-  \item A standard set of geometric types and operations
-\end{enumerate}
-
-\subsubsection*{Type Safety}
-Type safety was fully implemented by essentially creating a new 'layer' of types in typescript.
-The type system can be extended by types found in Geofront Plugins.  
-In theory, this can be used to prevent all incorrect type usage during creation of a Geofront Script.
-In practice, to support iteration, some runtime type checking was still required. 
-
-\subsubsection*{IO}
-Files can be used as inputs and extracted as outputs using the 'file load' and 'file save' widgets. 
-These files are then loaded as raw text or raw binary, which can be parsed by using a parser appropriate for that file type. 
-The problem with this implementation, is that it requires a full file to be loaded into memory. 
-Most native parsers make use of streaming to avoid this. 
-There are ways of supporting incrementally reading files in a browser, but these methods are not supported by all browsers yet. 
-
-\subsubsection*{Visualization}
-Visualization of 3d data used throughout the graph is possible thanks to WebGL. 
-The useful aspect of WebGL is the fact it does not have to be included within the source code of a program. 
-WebGL supports all render demands basic, small-scale 3D geodata visualization might need, such as point clouds and DTMs.
-large scale visualization is not possible, as the visualizer does not support idioms like frustum culling, or dynamic levels of detail. 
-
-\subsubsection*{Standard Geometry \& Operations}
-lastly, the browser and this implementation were able to support the models and operations required for basic 3D geometry, like points, lines, polygons, and meshes.
-the "TypedArray" browser feature is used extensively to bypass the fact that javascript has limited type support.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Compilation Process}
+\section{Compilation Tests}
 \label{sec:analyses:compilation}
 
 \subsection{First part}
@@ -192,50 +68,13 @@ the "TypedArray" browser feature is used extensively to bypass the fact that jav
   What we actually need to compare is not emscripten and wasm-bindgen, but 'embind' and 'wasm-bindgen'. 
 \end{note}
 
-\section{Loading plugins}
-\label{sec:analyses:loading}
+\section{Loading Tests}
 
-In this section is meant to assess to what extent Geofront's plugin loader mitigates the need for explicit configuration.
-This analysis is based on the achievements and limitations explained by \refsec{sec:implementation:loading}.
+\begin{note}
+  TODO
+\end{note}
 
-\subsection*{To what extent does the plugin loader mitigate the need for explicit configuration of plugin libraries?}
-
-Based on the results, we can state that the loader mitigates the need for explicit configuration only for the required, mandatory aspects. 
-All optional properties like human-readable names and descriptions, must be specified explicitly using a naming convention specific to Geofront. 
-
-In practice, however, there are some more "configuration" requirements. 
-The limitations outlined by \refsec{sec:implementation:loading:limits} show that there are quite a few additional considerations. 
-Geofront does not support all types or all library structures, and certain languages require additional compile limitations.
-
-Also, while the optional properties are, well, optional, one could argue that some of these properties are in fact required. 
-Libraries without 'human-readable' names and descriptions are harder to utilize on the Geofront Canvas.
-While regular programming languages also allow the creation and publication of undocumented libraries, one can question if this should also be allowed for the more end-user focussed VPL libraries.
-
-So, while the plugin loader can load some simple textual programming libraries almost without any special configuration, sizable libraries intended for consumption by Geofront will still need to be explicitly configured for Geofront.
-However, even with these requirements, this can still be considered an improvement compared to the plugin systems of geometry VPLS studied at \refsec{sec:related-geovpl}, 
-in which developers are required to create a class per exposed function.
-
-\subsection*{Assess to what extent this creates seamless interoperability between textual programming libraries, and VPL libraries?}
-
-Because of the reasons outlined above, it is safe to say that this seamless interoperability is only one-directional: Libraries intended for consumption by Geofront double as also a 'normal' javascript library. 
-The configuration demands of Geofront only impair the normal, javascript-based usage by forcing a functional style, and by including certain methods only intended for Geofront. 
-Even these Geofront-specific methods might prove useful in certain scenarios, such as by providing a way to visualize data.
-
-This seamless interoperability is less prominent in the opposite direction. 
-A normal javascript library, or a javascript library using WebAssembly, can't be automatically used by Geofront in most cases. 
-Most libraries use incompatible types, or have an incompatible architecture.
-In some cases, a library might be able to load, but is then functionality impaired by the interface. 
-\reffig{fig:oop-considered-harmful} is an example of such a case.
-
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/6/3/} }
-  \includegraphics[width=\linewidth]{ugly-oop.png}
-  \caption[]{This typescript file technically loads correctly into Geofront, but cannot be reasonably used on the Geofront canvas. TODO: show what this looks like on canvas}
-  \label{fig:oop-considered-harmful}
-\end{figure}
-
-\section{Usability}
+\section{Usability Tests}
 \label{sec:analyses:utilization}
 
 This section offers an analysis on the usability of Geofront, according to the framework described by \cite[]{green_usability_1996}.
@@ -406,6 +245,18 @@ As the question implies, by not making the code dispersed,
 
 % ## Final 
 % _Answer research questions ????_
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% OLD OLD OLD OLD OLD OLD OLD OLD OLD OLD OLD OLD OLD OLD OLD
+
+
+% We group the requirements listed at \refsec{sec:method-one} in a group of base features,
+% a group of dataflow features, and a group of geometry features.
 
 
 % \section{Experiments}

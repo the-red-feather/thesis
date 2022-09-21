@@ -1,13 +1,12 @@
 \chapter{Implementation}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \label{chap:implementation}
-This section presents the (software) implementation details of the methodology.
-
-First, \refsec{sec:implementation:representation}.
-Second, \refsec{sec:implementation:compilation}.
-Then, \refsec{sec:implementation:loading}.
-Finally, \refsec{sec:implementation:utilization}.
+This section presents the implementation details of the first and second step of the methodology. 
 
 \section{The Geofront Application}
+
+\begin{note}
+  todo: rewrite everything to make sense! 
+\end{note}
 
 \begin{figure}
   \centering
@@ -24,90 +23,15 @@ Finally, \refsec{sec:implementation:utilization}.
   
 \end{note}
 
-\label{sec:implementation:representation}
-To implement the component of \mySubRQOneTitle, the core of the prototype application had to be created.
-To the best of the authors knowledge, no web-based dataflow-VPL project could be found to serve as a starting point. 
-This is why the full application had to be created from scratch (actual scratch, not to be confused with the scratch language: (SOURCE: SCRATCH LANGUAGE)). 
-
 This section explains the significant components of this prototype application. 
 The prototype is titled "Geofront", as a concatenation of "geometry" and "frontend".
+Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} (SOURCE: https://github.com/thegeofront).
 
-% Explain main code setup \& components
-Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} : https://github.com/thegeofront .
-The \m{app} repository holds the main Geofront application. It contains the source code for most aspects, such as the basic UI, the visual programming interface, and the standard components. The application is hosted at (https://thegeofront.github.io/).
-The \m{engine} repository is the library used for the 3D visualizations, some of the logic within the graph components, and some helper functions.
-The repositories prefixed with a \m{gfp} are Geofront Plugins. These plugins are consumed by the main \m{app}.
-
-The Geofront Application (\m{app}) is set up using a \m{TypeScript} codebase. It uses \m{webpack} to compile this to a singular javascript file, and this file practically represents the full application. 
-the repository used around 9.000 lines of code, divided into core categories and functionalities:
-\begin{enumerate}[-]
-  \item \m{shims}: Models to reason about 'programming language features', such as functions and variables.
-  \item \m{nodes-canvas}: Contains the model, renderer and controller of the visual programming graph itself.  
-  \item \m{modules}: holds all classes dedicated to dynamically loading plugins.
-  \item \m{std}: The default plugin, baked into Geofront.   
-  \item \m{html}: a 'web framework' of reusable html components making up the UI visuals.
-  \item \m{menu}: a menu system which takes care of the model \& logic of the UI.
-  \item \m{viewer}: The 3D renderer accompanying Geofront.   
-\end{enumerate}
-What follows is a clarification of some of these categories.
-
-\subsection{Shims}
-
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/implementation/} }
-  \includegraphics[width=\linewidth]{shim-uml.png}
-  \caption[Shim Classes]{}
-  \label{fig:shim-classes}
-\end{figure}
-
-Since Geofront is partially a programming language, a way was needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins. 
-This is why the \m{FunctionShim}, \m{TypeShim}, \m{VariableShim} and \m{ModuleShim} classes exist, respectively (see \reffig{fig:shim-classes}). 
-For example, the \m{FunctionShim} offers the name, description, number of inputs, and number of outputs of a function, as well as ways to invoke the function it represents.
-These inputs and outputs have corresponding \m{TypeShims}, which are formal representations of TypeScript / JavaScript-based types. 
-TypeShims can be structured recursively to define a \m{List of List of strings} for example. The \m{TypeShim} is also used to reason about type checking and type compatibility.
-
-the shims are a set of classes used in almost all other categories within Geofront. 
-The shim classes are designed using the Object Type design pattern (SOURCE: BIG FOUR). 
-In short, this means that one function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared with any object wishing to use the function. 
-The name \m{shim} was taken from \m{wasm-bindgen}'s (SOURCE) naming convention for the auto-generated \m{JavaScript} and \m{TypeScript} files. These classes were first created as a representation of those shims.
-
-
-\subsection{Nodes Canvas}
-From the Shim models, the main model of the visual language can be constructed. 
-The \m{nodes-canvas} category contains all logic \& visualization of the visual programming graph, and writing this category was equivalent to developing the visual programming language itself. 
-The other categories of the repository can be understood as auxiliary to this one.
-
-\subsubsection*{Representation}
-
-% TODO uml diagram?
-% Picture of a single node
-% Picture of a single cable
-
-The architecture of Geofront's visual programming language is first and foremost a Model View Controller setup. 
-The Model is at its core a Directed Acyclic Graph (DAG). 
-This DAG is an object-oriented, graph-like representation of the data flow of a regular programming language. 
-
-This architecture is implemented using multiple classes. The Viewer and Controller are represented by the \m{NodesCanvas}, which has access to a \m{Graph} Model, containing \m{Nodes} and \m{Cables}. 
-
-Nodes are analogous to the "Functions" of normal programming languages. 
-As such, a Node knows about the function they invoke through a \m{FunctionShim} reference. 
-The node contains a number of input and output sockets based on this information, and each socket contains exactly one optional reference to a \m{Cable} (SEE PICTURE).  
-As the name implies, these Nodes form the nodes of the DAG. However, they differ from a pure DAG implementation, in that they also provide pointers back in the reverse direction, forming essentially a normal graph, or a doubly linked list. 
-
-The Cables are \geofront{}s analogy to normal "Variables". Cables know about the type they represent through a \m{TypeShim}. A Cable must have exactly one origin, which is an output socket of a Nodes, and must have one or more destinations, which are the input sockets of other Nodes (SEE PICTURE).
-
-From these ingredients, a graph can be constructed. 
-To reason about this graph as a whole, the \m{Graph} class was introduced. 
-It contains methods and functions to add or remove nodes, to add and remove cables between nodes, to parse the graph from and to a json, and to calculate the graph.  
-This study chose to centralize most logic to this Graph, instead of adding complex logic to individual Nodes. 
-This centralized approach was deemed more clear: Many of the required functionalities cover multiple nodes, and this is better presented from an "overview" perspective.
-Because of the way Cables and Nodes reference each other, the graph has characteristics of a doubly linked list data structure. 
-Using normal references in these types of situations could easily lead to memory management issues such as Dangling Pointers. 
-Substituting references with ids makes it easier to prevent these types of problems. 
-% does not solve all problems automatically
-
-Finally, this entire graph object is accessed by a larger \m{NodesCanvas} object, and this canvas has the responsibilities of "View" and "Controller". 
+The Geofront Application (\m{app}) is implemented according to the design layed out in \refchap{chap:methodology}.
+It is implemented using \m{TypeScript}. 
+\m{webpack} is used to compile this codebase into a singular javascript file, and this file practically serves as the full application. 
+the repository spend around 9.000 lines of code, divided into core categories and functionalities.
+What follows is a clarification of the implementation of some of these categories.
 
 \subsubsection*{Rendering}
 
@@ -138,7 +62,7 @@ Finally, this entire graph object is accessed by a larger \m{NodesCanvas} object
 \end{figure}
 
 This nodes data model must be rendered to the screen so users can comprehend and edit the graph. 
-This visualization is achieved by using the \href{https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API}{HTML5 Canvas Api}. 
+This visualization is achieved by using the SOURCE: \href{https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API}{HTML5 Canvas Api}. 
 The Canvas API is a raster-based drawing tool, offering an easy to use, high-level api to draw 2D shapes such as lines, squares, circles, and polygons. 
 The Nodes Canvas uses this API to draw polylines and polygons at runtime, to represent the cables and nodes respectively. 
 These basic shapes and their styles change dynamically, based on features like the length of a cable, how many input sockets a node requires, or whether or not a node is selected. 
@@ -181,75 +105,6 @@ Geofront's user interface strives to match features of regular desktop applicati
 As such, the Geofront Graph supports features like undoing, redoing, duplication, copying, and pasting. 
 These functionalities can be used with the expected keyboard combinations (Ctrl + C / Ctrl + V).
 
-\subsubsection*{Graph Manipulation}
-
-In order to support these features, especially undo / redo support, we are required to explicitly track the history of the graph. 
-This is why a Command Pattern (Big Four, SOURCE) was implemented.
-Instead of directly editing the graph, all actions are represented by \m{Action} objects. 
-Each Action can 'do' and 'undo' a specific action, and the data needed to make this do and undo are stored within the action. 
-By then introducing a bridge class we decouple the graph and controller, only allowing interaction with the graph by giving this bridge Action objects. The Bridge maintains a stack of undo and redo actions, which represents this history.  
-
-% Additionally, editing any graph data structure is never trivial. 
-% Special care must be taken to ensure the validity of a graph before and after changes, and is especially the case with Geofront's Doubly linked graph. 
-% To the best of the authors knowledge, these is no "trick" or "pattern" to ease this. Instead, the Graph and Graph Decoupler classes both have been designed in such a way 
-
-\subsubsection*{Calculation}
-
-When regarding the Geofront graph, or any other programming language, we see many functions requiring variables which are the result of other functions. 
-This is why a graph like this can also be called a dependency graph. 
-If we wish to calculate the result of the graph, these dependencies must be taken into account. 
-We must sort the functions the graph in such a way that all dependencies are known before a function is calculated.
-This problem is known as a topological sorting problem, and can be solved using Kahn's algorithm (\refsec{fig:kahn}): 
-
-\begin{figure}
-  \centering
-  \begin{lstlisting}
-    Step -1: 
-      Make an `order` list
-    Step 0: 
-      Make a `visisted` counter, initialized at 0
-    Step 1: 
-      Make a `dependency` counter for each node, initialized at 0
-    Step 2: 
-      Add 1 to this counter for each input edge of this node.
-    Step 3: 
-      Fill a queue with all dependency 0 nodes. 
-      These are the starter nodes.
-    Step 4: 
-      Remove a node from the queue (Dequeue operation) and then:
-      add the nodes' id to the `order` list.
-      Increment `visisted` counter by 1.
-      Decrease `dependency` counter by 1 for all dependent nodes.
-      If one `dependency` counter reaches 0, 
-        add it to the queue.
-    Step 5: 
-      Repeat Step 4 until the queue is empty.
-    Step 6: 
-      If `visisted` counter is not equal to the number of nodes, 
-        then the graph was degenerate, and probably cyclical. 
-    \end{lstlisting}
-  \caption[Kahns algorithm]{Khan's algorithm in pseudo code}
-  \label{fig:kahn}
-\end{figure}
-
-Using this algorithm for calculation has several important qualities. 
-First of all, it detects cyclical graph patterns without getting trapped within such a loop. 
-Graphs implemented on the basis of an event-system suffer from this drawback, and models like these must continuously check their own topology to avoid loops. 
-
-Secondly, by sorting the \emph{order} of calculation before actually performing the calculations, we can use the algorithm for more than just the calculation.
-It was this aspect which enabled an earlier version of Geofront to compile a Geofront Script to Javascript at runtime (see \reffig{fig:early-geofront-compile-to-js}).
-
-Finally, if all intermediate calculation results are cached, this same algorithm can also be used for performing partial recalculations of the graph. 
-The starting positions of the algorithm then simply become the altered parameter, after which only the required functions will recalculate. 
-
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/implementation/} }
-  \includegraphics[width=\linewidth]{early-geofront.png}
-  \caption[Geofront to js]{An early build of geofront, showing compilation to javascript}
-  \label{fig:early-geofront-compile-to-js}
-\end{figure}
-
 % \subsection{V. Menu}
 % Web Framework
 
@@ -281,20 +136,16 @@ The starting positions of the algorithm then simply become the altered parameter
   \label{fig:geofront-viewer}
 \end{figure}
 
-Finally, the VPL requires some way of visualizing 3D geometry, so that in-between products containing spatial data can be viewed. 
-
-This study sought to test the browser itself, rather than to test the functionalities of applications layered on top of it, in order to make benchmarks as 'clear' as possible. 
-
-This is why the application makes use of a 3D engine written from scratch to visualize the geometry. 
-It goes beyond the scope of this thesis to explain its implementation details, but it can be seen as similar to Three.js (Source).
-It uses WebGL and the OpenGL Shading Language (glsl) as its graphics api. 
+The 3D viewer attached to the geofront application is also implemented in typescript. 
+It is similar in architecture to the Three.js render engine (Source).
+It uses WebGL and the OpenGL Shading Language (glsl) as its graphics API. 
 
 The viewer can be used to represent and visualize various geometries, such as points, lines, meshes, bezier curves, and bezier surfaces.
 Images can also be rendered, which are represented as a quad mesh with a texture. 
 
 These visualization options open the possibility of visualizing a great number of different geodata types, such as DTM / DSM, GEOtiff, Point clouds, and OGC vector data. 
 
-However, specific visualization convertors are not yet implemented, for these are reliant upon the compilation of existing geocomputation libraries. 
+However, specific visualization convertors are not implemented, for these are reliant upon the compilation of existing geocomputation libraries. 
 
 \begin{figure}
   \centering
@@ -315,90 +166,128 @@ However, specific visualization convertors are not yet implemented, for these ar
   \label{fig:viewer-geometries}
 \end{figure}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection*{The extent of the dataflow-VPL implementation}
+
+\refsec{sec:method-one} named the following features which had to be implemented:
+\begin{enumerate}[-]
+  \item a base 'programming language model'
+  \subitem A representation of the 'variables' and 'functions' of the language
+  \subitem With all computations being pure functions
+  \subitem With all variables being immutable
+  \item a 'graph-like' visualization of this data model
+  \item an interface to create and edit this graph 
+  \item a way to provide input data 
+  \item a way to execute the language
+  \item a way to display or save output data
+\end{enumerate}
+
+\subsubsection*{The model}
+A basic (visual) programming language model was able to be fully implemented on the web. 
+No special web features were utilized in the creation of this model, despite HashMaps and HashSets offered by the Typescript language. 
+
+\subsubsection*{Visualization}
+Visualization of the graph is implemented using the 2D canvas api.  
+On every registered change to the graph, the canvas is redrawn. 
+The 2D canvas api makes use of explicit draw calls, rather than 'defining' some visualization, and leaving the render sequence to the renderer itself, like HTML.
+This way, One does not have to first 'create' a circle object and pass it to a renderer. 
+A circle can instantly and directly be drawn at the position specified.
+The downside of this implementation, is that all features the HTML renderer normally accounts for, like picking, conditional styling, and performant rendering of repetitious elements, are lost.
+These have to be re-implemented in javascript, which will never be as performant as the codebase of the browser engines themselves. 
+This makes the visualization slow while rendering a large amount of components (See TODO). 
+
+\begin{note}
+  TODO Show a graph with performance considerations
+\end{note}
+
+This slowness can be blamed partially on the implementation, and partially on the browser. 
+The browser does not offer the 'middle ground' between html-like rendering and 2D canvas-like rendering required for a visualization like the dataflow graph. 
+Still, this implementation could have experimented more with a HTML + SVG based render method.
+
+\subsubsection*{Editing}
+Editing of the graph was made possible by the various events offered by the browser api. 
+This allows the graph to be editable using the mouse. 
+The graph even offers 'undo' and 'redo' operations, and even 'copy' / 'paste' clipboard actions, using common shortcuts. 
+However, the implementation does lack touch \& mobile support.
+
+In general, these editing features are complete, but there are a few caveats caused by the browser environment.
+Namely, the browser has need of its own controls and shortcuts. 
+For example, the right mouse button brings up the browser context, and the \m{Ctrl + W} shortcut closes a browser tab, which cannot be overwritten.
+While there are some workarounds, these aspects make web applications more 'convoluted' to implement than would otherwise be ideal.
+
+\subsubsection*{Execution}
+Execution of the graph works as described, albeit with a major setback: execution does not run on a separate thread. 
+This means that the interface freezes up during large calculations, and this is not acceptable. 
+
+The reason for this is the difficulty in achieving concurrency in the browser. 
+To create a thread, one has to instantiate a so called 'web worker' \emph{with} the actual source code included in a parameter. 
+Not only is this unusual, it forces a codebase to create separate files per thread.
+The dynamic nature in which some of Geofront dependencies are loaded made splitting up the codebase like this impossible, let alone using multiple threads for calculating each node.
+
+\subsubsection*{Input and Output}
+The base dataflow VPl component of Geofront support input and output UI elements, like sliders, buttons, and text fields.
+These form special nodes on the canvas, called 'widgets'. 
+The fact that the Geofront implementation opted for a 2D canvas-based visualization made it so HTML could not be used for these aspects, and all these features had to be created from scratch.
+
+
+\subsection*{The extent of the geometry support implementation}
+
+\refsec{sec:method-one} named the following features as a requirement for geometry support:
+\begin{enumerate}[-]
+  \item Type safety 
+  \item A way to load or to create geometry data 
+  \item A way to export geometry data
+  \item A method to preview geometry data in 3D
+  \item A standard set of geometric types and operations
+\end{enumerate}
+
+\subsubsection*{Type Safety}
+Type safety was fully implemented by essentially creating a new 'layer' of types in typescript.
+The type system can be extended by types found in Geofront Plugins.  
+In theory, this can be used to prevent all incorrect type usage during creation of a Geofront Script.
+In practice, to support iteration, some runtime type checking was still required. 
+
+\subsubsection*{IO}
+Files can be used as inputs and extracted as outputs using the 'file load' and 'file save' widgets. 
+These files are then loaded as raw text or raw binary, which can be parsed by using a parser appropriate for that file type. 
+The problem with this implementation, is that it requires a full file to be loaded into memory. 
+Most native parsers make use of streaming to avoid this. 
+There are ways of supporting incrementally reading files in a browser, but these methods are not supported by all browsers yet. 
+
+\subsubsection*{Visualization}
+Visualization of 3d data used throughout the graph is possible thanks to WebGL. 
+The useful aspect of WebGL is the fact it does not have to be included within the source code of a program. 
+WebGL supports all render demands basic, small-scale 3D geodata visualization might need, such as point clouds and DTMs.
+large scale visualization is not possible, as the visualizer does not support idioms like frustum culling, or dynamic levels of detail. 
+
+\subsubsection*{Standard Geometry \& Operations}
+lastly, the browser and this implementation were able to support the models and operations required for basic 3D geometry, like points, lines, polygons, and meshes.
+the "TypedArray" browser feature is used extensively to bypass the fact that javascript has limited type support.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 
-\section{Web-ready geoprocessing libraries}
-\label{sec:implementation:compilation}
-
-\subsection{First part}
-
-https://github.com/mapbox/earcut
-https://crates.io/crates/earcutr
-
-\begin{note}
-TODO write a piece of code in three ways, compare them
-\end{note} 
-
-\subsection{Second part}
-
-\begin{note}
-Explain the process of taking a C++ / Rust library and putting it onto a web-browser.
-\end{note}
-
-
-\subsubsection*{C++ \& CGAL}
-
-\begin{note}
-- sub-dependencies: boost, ..., ...
-\end{note}
-  
-\subsubsection*{Rust \& startin}
-
-\begin{note}
-Startin is by no means a replacement of CGAL, 
-but it does use robust geometric predicates, and a high precision kernel (f64).
-\end{note}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-
-\section{The plugin model}
+\section{The binding system}
 \label{sec:implementation:loading}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=\linewidth]{Model Proposal.png}
-  \caption{Plugin Model}
-  \label{fig:plugin-model}
-\end{figure}
-
-\subsection{Geofront's Plugin Loader}
-
-Geofront's plugin loader was implemented according to the specifications layed out at \refsec{sec:method-three}.
-This specification notes how certain \textbf{required} and \textbf{optional} information has to be extracted from each imported library, in order to properly use them. 
-
-The automated extraction of all \textbf{required} information is implemented by utilizing TypeScript Declaration 'd.ts' files. 
-A 'd.ts' file can be understood as a 'header' file generated by the TypeScript compiler, exposing the types required by all functions found in a corresponding javascript file.
-By using the typescript compiler in Geofront, this header file could be loaded and interpreted to find all basic information, including the names, the namespace location of where to find a functions, and all input and output types.
-This extraction of types was crucial, since these are not present in javascript source code, and types are crucial in explaining to the end-user how to use a function, and in making Geofront typesafe.
-
-With the extracted information from the "d.ts" file, its corresponding Javascript file could now be traversed and read.
-javascript's nature as a scripting language proved to be highly effective for this:
-Firstly, its dynamic nature allowed a library to be loaded and incorporated at runtime without any special alterations. 
-Hot-loading libraries in C++ for example, can't usually be done without significantly altering the way a program runs. 
-Secondly, javascript's prototype-based classes and its support for reflection allowed the plugin loader to localize and collect all functions within a library.
-And lastly, the "first-class function support" allowed these functions to be referenced by the nodes on the Geofront Canvas. 
-
-Because Geofront is implemented as a Dataflow-VPL, the loader seeks to extract only (pure) functions. 
-However, many libraries also include classes, as these can make an API more clear to use. 
-Geofront's loader supports classes by converting them to a series of normal functions. 
-Static methods and constructors can be converted directly, and methods are converted into functions with the object as the first argument.
-
-The \textbf{optional} data was exposed by using a 'magic methods' strategy, influenced by the python programming language (SOURCE: PYTHON MAGIC METHODS). 
-The library loader of the VPL will load certain functions, types, and methods in a special way, indicated by a naming convention. 
-These functions are loaded by the vpl, but will not be converted into visual components. 
-Instead, these functions are programmatically called when the VPL engine or the user requires this optional aspect. 
-
 \subsection{Achieved functionality}
-
 A loaded library can now be used inside Geofront to create nodes on the canvas. 
 These nodes have inputs connectors for each input argument, and output connectors per return value (Multiple outputs connectors are created from tuples). 
 
@@ -480,8 +369,7 @@ Finally, not all languages are equally supported:
     While the loader's ability to work with WebAssembly is promising, additional testing is required before Geofront can claim to support any language. 
 \end{itemize}
 
-
-\subsection{Achieved Workflow}
+\subsection{Workflow}
 % \emph{show the insane (rust + wasm + npm) workflow}
 
 With all the above considerations in mind, the following workflow can now be used to create a Geofront Plugin, which, as explained, doubles as a normal javascript library. 
@@ -531,38 +419,47 @@ This workflow turned out to be very useful for the purpose of rapid experimentat
   \label{fig:todo-more-images}
 \end{figure}
 
+\subsection{AGAIN: achieved functionality \& limitations}
+\label{sec:analyses:loading}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this section is meant to assess to what extent Geofront's plugin loader mitigates the need for explicit configuration.
+This analysis is based on the achievements and limitations explained by \refsec{sec:implementation:loading}.
 
-\section{Utilization}
-\label{sec:implementation:utilization}
+\subsubsection*{To what extent does the plugin loader mitigate the need for explicit configuration of plugin libraries?}
 
-\begin{note}
-  TODO: I might want to add some example applications. 
-  Then those will be added here. 
-\end{note}
+Based on the results, we can state that the loader mitigates the need for explicit configuration only for the required, mandatory aspects. 
+All optional properties like human-readable names and descriptions, must be specified explicitly using a naming convention specific to Geofront. 
 
-% WHY DOES SOMEONE WANT TO TAKE EXISTING LIBRARIES AND TURN THEM INTO A WEB-BASED VPL FORMAT? 
-% - interactive, visual debugging 
-%   - explaining the behavior of algorithms to yourself and others
-%   - why web: collaborative debugging
-% - reproducability of results
-%   - lowering the delta between "it works for me" and "it works for someone else"
-% - improving the 'online presence' of research.
-%   - making research results 'usable' via a link
-%   - interdisciplinary exchange of ideas
+In practice, however, there are some more "configuration" requirements. 
+The limitations outlined by \refsec{sec:implementation:loading:limits} show that there are quite a few additional considerations. 
+Geofront does not support all types or all library structures, and certain languages require additional compile limitations.
+
+Also, while the optional properties are, well, optional, one could argue that some of these properties are in fact required. 
+Libraries without 'human-readable' names and descriptions are harder to utilize on the Geofront Canvas.
+While regular programming languages also allow the creation and publication of undocumented libraries, one can question if this should also be allowed for the more end-user focussed VPL libraries.
+
+So, while the plugin loader can load some simple textual programming libraries almost without any special configuration, sizable libraries intended for consumption by Geofront will still need to be explicitly configured for Geofront.
+However, even with these requirements, this can still be considered an improvement compared to the plugin systems of geometry VPLS studied at \refsec{sec:related-geovpl}, 
+in which developers are required to create a class per exposed function.
+
+\subsubsection*{Assess to what extent this creates seamless interoperability between textual programming libraries, and VPL libraries?}
+
+Because of the reasons outlined above, it is safe to say that this seamless interoperability is only one-directional: Libraries intended for consumption by Geofront double as also a 'normal' javascript library. 
+The configuration demands of Geofront only impair the normal, javascript-based usage by forcing a functional style, and by including certain methods only intended for Geofront. 
+Even these Geofront-specific methods might prove useful in certain scenarios, such as by providing a way to visualize data.
+
+This seamless interoperability is less prominent in the opposite direction. 
+A normal javascript library, or a javascript library using WebAssembly, can't be automatically used by Geofront in most cases. 
+Most libraries use incompatible types, or have an incompatible architecture.
+In some cases, a library might be able to load, but is then functionality impaired by the interface. 
+\reffig{fig:oop-considered-harmful} is an example of such a case.
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/6/3/} }
+  \includegraphics[width=\linewidth]{ugly-oop.png}
+  \caption[]{This typescript file technically loads correctly into Geofront, but cannot be reasonably used on the Geofront canvas. TODO: show what this looks like on canvas}
+  \label{fig:oop-considered-harmful}
+\end{figure}
 
 
-% SO: Geofront is intended as a Computational Geometry Sandbox environment.
-% Meant for: 
-%  - publication
-%  - sharing ideas 
-%  - trying things out
-%  - debugging code
-%  - learning
-
-% NOT for making programming as a whole 'easier'

@@ -1,5 +1,5 @@
 \chapter{Introduction}
-
+\label{chap:intro}
 % \subsection*{Geodata \& Geodata computation}
 
 The field of \ac{GIS} concerns itself with the collection, processing, storage, and visualization of geodata. 
@@ -78,7 +78,7 @@ The theoretical possibility combined with the practical absence of any implement
 The source of this inhibition is unclear. 
 There are many aspects and components to compiling a native geocomputation library, and using it on the web, in a VPL format. 
 Given the absence of an implementation, the possibility remains that it could be any one of these aspects and components, or even an interplay between all of these factors. 
-This study identifies three challenges to using a native geocomputation library in a web-based VPL:
+This study identifies three main challenges to using a native geocomputation library in a web-based VPL:
 
 \subsubsection*{\mySubRQTwoTitle}
 
@@ -87,14 +87,14 @@ This study identifies three challenges to using a native geocomputation library 
 
 % Making sure a \ac{geo-web-vpl} is able to make use of native, system-level libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
 Firstly, the challenge of compilation. 
-As explained before, the most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \cite{haas_bringing_2017}.
-Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \cite{haas_bringing_2017,jangda_not_2019}.
+As explained before, the most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \citep{haas_bringing_2017}.
+Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \citep{haas_bringing_2017,jangda_not_2019}.
 However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{wasm} also may pose challenges:
 
 % The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. 
 
 \begin{enumerate}[-]
-  \item \ac{wasm} promises a 'near native performance' (Source: Wasm). However, this can be quite situational, as multiple studies have shown \cite{jangda_not_2019} (Source: the bachelor thesis). 
+  \item \ac{wasm} promises a 'near native performance' (Source: Wasm). However, this can be quite situational, as multiple studies have shown \citep{jangda_not_2019} (Source: the bachelor thesis). 
   \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not function without workarounds. 
   \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
   \item Compiling an \emph{library} to \ac{wasm} is seriously different from compiling a full \emph{application} to wasm. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
@@ -109,6 +109,7 @@ This is a challenge of writing an appropriate binding system.
 When writing Python bindings to a C++ library for example, one has to consider the way both languages operate, and make sure the discrepancies between the language models are accounted for, such as manual memory management. 
 This is not different from a visual language interfacing with a web-compiled native library. 
 However, this situation adds additional challenges, as the host \ac{VPL} does not necessarily know the source language of the binary. 
+
 
 % This is a matter of bindings, 
 \subsubsection*{\mySubRQFourTitle}
@@ -128,12 +129,11 @@ This might invalidate some of the operations found in these libraries, or make o
 
 \section{Research Objective}
 This study seeks to improve the state of browser-based geocomputation VPLs.
-This is pursuit by researching a possible solution to the library portability problem found in existing browser-based geocomputation VPLs.
+This is pursuit by studying a possible solution to the library portability problem found in existing browser-based geocomputation VPLs.
 
-The study poses that this problem can only be overcome if native geocomputation libraries are able to be properly compiled, loaded and utilized in a browser-based dataflow-VPL format. 
+The study poses that the library portability problem can only be overcome if native geocomputation libraries are able to be properly compiled, loaded and utilized in a browser-based dataflow-VPL format. 
 There are multitude of technical challenges present within each one of these steps, and in between these steps. 
 Seeking and analyzing solutions to these challenges is the focal point of this study. 
-
 
 
 \section{Research Questions}
@@ -142,9 +142,13 @@ Based on this objective, the research question is formulated as follows:
   \item \myMainRQ
 \end{itemize}
 
+
 \subsection*{Supporting Questions}
 The following supporting questions are defined to aid in answering the main question.
-These are based upon the components of the main problem statement.
+The first question serves as a prerequisite for attempting to answer the remaining three. 
+The other three research questions are based upon the three main categories of challenges of the library portability problem.  
+These questions are posed in such a way that answering them will require us to explore the extent of this challenge, and find possible solutions.
+
 
 \begin{itemize}[-]
   \item \mySubRQOne
@@ -160,6 +164,35 @@ and this application is accessed on various aspects.
 
 This prototype vpl is both used as a test case to discover the extent of possible challenges, as well as a staging ground for possible solutions. 
 The specific way in which each sub-research question is evaluated is explained in \refchap{chap:methodology}.
+
+% \begin{note}
+% TODO: diagram: 4 research questions -> four possible barriers of geocomputation
+% \end{note}
+
+% \begin{note}
+% TODO: diagram: show the 'locations' of the four research questions ( client / server / native, etc.)
+% \end{note}
+
+% \subsection*{Nature}
+% The methodology of this study can be characterized as practical as opposed to theoretical, 
+% % wholistic instead of specific, 
+% and iterative compared to linear. 
+% The prior works on browser-based geocomputation and geo-vpls indicate that a strong theoretical framework for a \ac{geo-web-vpl} is in place (Source). 
+% But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
+% This necessitates a practical approach in response. 
+% And, due to the investigative nature of this study, the methodology requires to iterate upon itself, instead of following a singular, linear path. 
+
+% MIGHT NOW WANT TO KEEP THIS IN HERE
+% ...
+% % Theorie: is er maar je geloofde het niet
+% % praktische implementatie om de Throerie weerleggen
+% The prior works on browser-based geoprocessing indicate that a theoretical framework for browser-based geoprocessing vpl is in place. 
+% But, and this is especially evident in the studies regarding client-side geoprocessing, the practical implementation of these theories
+
+% Choices: 
+% - practical > theoretical : Literature study indicates enough theoretical soundness, but lots of practical questions remaining. We wish to  immediate pick up where these studies have left, and therefore we choose the direct, practical study of designing and implementing a prototype application. 
+% - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geocomputation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
+% - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
 
 \newpage
 \section{Scope}
@@ -244,7 +277,7 @@ The remainder of this study is structured as follows:
 
   \item \refchap{chap:implementation}, Implementation, presents the implementation of the methodology.
   
-  \item \refchap{chap:analyses} analyses the results from this implementation in the various ways described by the methodology.
+  \item \refchap{chap:analyses} tests the results from this implementation in various ways described by the methodology.
   
   \item And finally, \refchap{chap:conclusion}: Conclusion \& Discussion, concludes to which extent the study was able to satisfy the main research question, and discusses unaddressed aspects of the thesis.
   It also includes the envisioned future works and a reflection on the quality of the study.

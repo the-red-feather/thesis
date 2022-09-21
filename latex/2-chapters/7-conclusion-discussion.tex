@@ -10,12 +10,10 @@
 % many promising use-cases, such as on-demand geodata processing apps, educational demo apps, and code sharing. 
 % However, extensive user-group testing is required before any definitive statements on accessibility and fitness for geo-computation can be made.  
 
-This chapter consists of the answers to the study.
-questions that were given in the first chapter (\refsec{sec:conclusion}), 
-a summary of the most significant contributions (\refsec{sec:contribution}) and the limitations of these contributions (\refsec{sec:limitations}), 
-a discussion of the value and quality of this study (\refsec{sec:discussion}),
-a number of theorized implications of this study (\refsec{sec:future-work}),
-and lastly, a self reflection (\refsec{sec:reflection}).
+This chapter contains the conclusion of this study. 
+It starts out by answering the research questions posed in the introduction (\refsec{sec:conclusion}), followed up by a summary of the most significant contributions (\refsec{sec:contribution}) and the limitations of these contributions (\refsec{sec:limitations}).
+It continues by addressing points of discussion about this study (\refsec{sec:discussion}), which is followed by a number of theorized implications of this study (\refsec{sec:future-work}), a reflection on the value and quality of this study
+(\refsec{sec:reflection}), and, lastly, a personal reflection (\refsec{sec:personal-reflection})
 
 % \begin{note}
 %   Important: 
@@ -30,13 +28,11 @@ and lastly, a self reflection (\refsec{sec:reflection}).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paragraph answers the research questions. 
-It starts with answering the sub research questions and concludes with the answer to the main research question
+This section answers the research questions. 
+It starts with answering the sub research questions, and concludes with the answer to the main research question.
 
 \subsection*{Sub Questions}
 
@@ -53,7 +49,7 @@ All three of these features proved to be vital, and were performant enough to su
 Only the 2D canvas Api can become slow when rendering a great number of components. 
 
 JavaScript was used to represent the data structure and logic needed to make a VPL functional. 
-Javascript's flexibility proved to be crucial to support features like dynamically loading and using libraries at runtime. 
+Javascript's flexibility proved to be useful to support features like dynamically loading and using libraries at runtime. 
 The disadvantage was due to JavaScript's very limited type support, and limited precision in general. 
 While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no meaningful distinction between number types (\m{int, float, double}), for example. 
 % The prototype-based objects also led to type-check problems. 
@@ -299,6 +295,27 @@ However, a valid criticism can be made that this study could have opted for addi
 %   \item Rapid prototyping environment
 % \end{enumerate}
 
+% WHY DOES SOMEONE WANT TO TAKE EXISTING LIBRARIES AND TURN THEM INTO A WEB-BASED VPL FORMAT? 
+% - interactive, visual debugging 
+%   - explaining the behavior of algorithms to yourself and others
+%   - why web: collaborative debugging
+% - reproducability of results
+%   - lowering the delta between "it works for me" and "it works for someone else"
+% - improving the 'online presence' of research.
+%   - making research results 'usable' via a link
+%   - interdisciplinary exchange of ideas
+
+
+% SO: Geofront is intended as a Computational Geometry Sandbox environment.
+% Meant for: 
+%  - publication
+%  - sharing ideas 
+%  - trying things out
+%  - debugging code
+%  - learning
+
+% NOT for making programming as a whole 'easier'
+
 \subsubsection*{Q: A large reason for developing web-based VPLs is accessibility.  Is this environment accessible?}
 
 This study can only answer this question to a limited degree. 
@@ -350,7 +367,7 @@ Examples of this would be a streamed delaunay triangulation, TIN interpolation o
 
 \subsection{Rust-based geocomputation \& Cloud Native}
 An interesting aspect this study was able to touch on is using Rust for geocomputation.
-The reason for this was the extensive support for webassembly, which was crucial for browser-based geocomputation. 
+The reason for this was the extensive support for webassembly, which was essential for browser-based geocomputation. 
 However, there are two additional reasons one might want to perform geocomputation within Rust.
 One is that rust is widely considered as a more stable, less runtime error-prone language than C++, while offering similar performance and features. 
 The second one is that Rust compiled to WebAssembly sees extensive use on both cloud and edge servers.  
@@ -530,7 +547,9 @@ Nevertheless, the study has attempted to scope this subjectivity by basing its a
 \newpage
 
 \section{Personal Reflection}
-A thesis is, at its core, an attempt to formulate something. 
+\label{sec:personal-reflection}
+
+A thesis is, among many things, an attempt to formulate. 
 To clarify and structure a phenomenon, as much for yourself as for the public. 
 This thesis can also be regarded as such an attempt. 
 I tried to understand a phenomenon you might call: "End User Geodata Processing". 
