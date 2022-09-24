@@ -176,8 +176,8 @@ This will make it possible to substitute references with id integers to prevent 
 The view aspect of the VPL will require three main components. 
 First, the graph itself will need to be visualized in some manner.
 A graph based visualization will be used, based on the node-cable connections of the graph model. 
-Important to this view is that it will need to react to changes. 
-Users will want to add, select, change, and delete nodes, and these interactions should be clear. 
+Important to this view is that it will need to be redrawn often. 
+Users will want to add, select, change, and delete nodes, and these interactions should be clearly represented. 
 This makes the 'canvas API' an ideal fit to this component.
 
 Secondly, since not all actions and interactions will be done by clicking on the graph itself, a \ac{GUI} surrounding this graph visualization is required.
@@ -274,84 +274,107 @@ The starting positions of the algorithm then simply become the altered parameter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Loading \& Bindings System} 
+\newpage
+\section{Plugin System} 
 \label{sec:method-bindings}
 
-
-
-
 The second step of the methodology involves developing a method to use libraries from native sources within the VPL outlined above. 
-This aspect of the methodology seeks an answer to the question: \mySubRQThree.
+This aspect of the methodology seeks to design a base to answer the questions: \mySubRQTwo and \mySubRQThree.
+
+The plugin system refers to the combination of the plugin model these libraries will need to adhere to, together with the importer of those libraries in the VPL. 
+This section will cover the design of both, as well as the proposed compilation workflow.
 
 % to what extent can a web-consumable library be loaded into a web-vpl without explicit configuration?
 
+\subsection{Terminology}
 
-\subsection{Design \& Method}
+Firstly, some confusion exists between 'libraries' and 'plugins'.
+The distinction between them is relevant to the design of the plugin system. 
+Typically, one would use the terminology 'libraries' and 'bindings' when referring to expanding the functionality of a codebase with a 'package of functions'.
+One would use 'plugins' when referring to practically the same phenomena, but within the context of an application.
+
+With a VPL being something in between a programming language and an application, it remains difficult to determine the appropriate terminology.  
+This is further complicated if a plugin is able to double as a library, as will be explained.
+
+\subsection{Requirements}
+
+First and foremost, in order to use software libraries written in system-level languages in a web browser, these libraries will need to be compiled to the WebAssembly binary format (see \refsec{sec:background-wasm}). 
+Secondly, in order to use these binaries on a VPL canvas, they must include some explanation of how to expose its inner functionality as VPL visual components.
+Thirdly, the core design goal for the plugin system is library portability.
+Portability in this context refers to: "usable in multiple locations".
+As such, the native geocomputation libraries we seek to support must not only be compiled to a format usable in a web-based VPL, but to a format usable on the web as a whole. 
+And finally, the full workflow of bringing a geo-library to the web VPL should be as automated as possible. 
+
+\newpage
+\subsection{Design}
+
+These requirements lead to the following design.
+A plugin:
+\begin{enumerate}[-]
+  \item Must wrap a geocomputation library compiled with WebAssembly.
+  \item Must include optional metadata about how the library may be used in the VPL.
+  \item Must be packaged as a regular javascript library.
+  \item Must be distributed using a \ac{CDN} like the Node Package Manager (NPM).
+\end{enumerate}
+
+Furthermore, the plugin loader of the VPL must be able to: 
+\begin{enumerate}[-]
+  \item accept a regular javascript library as a plugin. 
+  \item load exposed metadata about all included logic.
+  \item convert this to an internal representation of a library.
+\end{enumerate}
+
+The plugin system will utilize the infrastructure of regular javascript libraries as much as possible. 
+
+Additionally, this setup adresses the portability requirement by making these libraries interoperable with unaffiliated projects on both the frontend and backend (see \reffig{fig:plugin-model}).
+
+For the scope of this system, we will refer to a native geo-library wrapped with the appropriate VPL / javascript bindings as a 'plugin', even though these projects are javascript libraries, and can be loaded as a library into regular javascript projects. 
 
 \begin{figure}
   \centering
-  \graphicspath{ {../../assets/images/4/} }
-  \includegraphics[width=\linewidth]{loading-trajectory.png}
-  \caption[Loading Trajectory]{Loading Trajectories}
-  \label{fig:loading-trajectory}
+  \graphicspath{ {../../assets/diagrams/} }
+  \includegraphics[width=\linewidth]{Model Proposal.png}
+  \caption{Plugin Design}
+  \label{fig:plugin-model}
+\end{figure}
+
+The components mentioned above fit together to propose the following workflow to use a native geo-library in a Web VPL: 
+\begin{enumerate}
+  \item Write or find a geocomputation library written in either C++ or Rust. 
+  \item Create a second library, in which a subset of this 
+     library is flagged and wrapped as 'functions usable on the web'.
+  \item Optional: Include metadata about how to use this plugin.
+  \item Compile this library with a compatible compiler: Emscripten for C++ (Source), 'wasm-pack' combined with 'wasm-bindgen' for rust (Source).
+  \item Publish the results of these compilers to a \ac{CDN}. 
+  
+  \item Within the VPL: Reference the CDN address to the plugin loader. 
+  \item The plugin loader now loads and converts the exposed functions, and includes them in the list of VPL components, ready to be used in the VPL. 
+\end{enumerate}
+Several steps in this workflow require elaboration, which will be given in the subsequent sections: 
+
+\subsection{Plugin Model}
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/diagrams/} }
+  \includegraphics[width=\linewidth]{Model Proposal.png}
+  \caption{TODO: Proposed Plugin model}
+  \label{fig:plugin-model}
 \end{figure}
 
 
-MAKE THIS A SUPRISE: A REVELATION AS PART OF THE IMPLEMENTATION
-\begin{note}
-
-  This turned out to be a problem during preliminary studies.
-  If a \ac{geo-web-vpl} wishes to use non-js libraries, it would mean that these libraries would have to be wrapped twice (see \reffig{fig:loading-trajectory} A): 
-  Once to expose the native library to the web using the methods described at \refsec{sec:method-two},
-  And once more to map the web library to the visual language. 
-  While this is a possibility, in practice, two layers of wrappers are not acceptable in terms of a development workflow.
-  This would be cumbersome, prone to errors, and hurting version control by having to synchronize between 4 software projects. 
-  
-  There is also a second reason for critically addressing the way plugins are loaded. 
-  An observation was made from studying the existing geo-vpls in \refsec{sec:related-geovpl}:
-  It seems that if a developer wants to create custom VPL components, they are required to write plugins very specific to that particular VPL.
-  This means that practically, the library ecosystem of a VPL is entirely its own: 
-  It is separated from the wider context of textual programming libraries. 
-  End users are at the mercy of developers implementing their libraries in the dialect their particular VPL.
-  Meanwhile, developers are forced to implement and support a multitude of wrapper libraries for VPL platforms.  
-  
-  In contrast, if the library loader of a VPL was able to directly utilize textual libraries, the barrier between vpl ecosystems and regular text-based libraries would cease to exist, benefiting both developers and end users. 
-  It might even lower the barrier between visual and textual programming in general, making it easier for VPl end-users to adopt some forms of textual programming, and vice versa. 
-  
-  
-\end{note}
-% THE REASON FOR THIS WAS DISCOVERED DURING PRELIMINARY STUDIES
-
-% Most of the 3D vpls mentioned in \refsec{sec:background-vpl} offer a plugin system, or some other way to load external libraries.
-% This way, the functionalities of the environments can be expanded upon.
-% However, all of these plugin / library systems require explicit 'wrapper' libraries, to explain how the functionalities a text-based programming library map to components used in a visual manner.
-
-
-\begin{note}
-  TODO: SHOW VISUAL EXAMPLE
-\end{note}
-
-
-
-\begin{note}
- TODO: I should elaborate the design some more
-\end{note}
-
-The library model consists of two components: the design for a geo-web-vpl library, 
-and the design for a loader on the side of the VPL. 
-The central idea for this model is to take the wasm-wrappers created in \refsec{sec:method-two}, and to either interpret the required information from the wasm binary and related files, or, if that is impossible, add the required information in the wasm wrapper library itself as meta data.
-By doing so, we make sure that at the very least, only one wrapper library is required for exposing any non-js library to the \ac{geo-web-vpl}.
+The central idea for this model is to either interpret the required information from the wasm binary and related files, or, if that is impossible, add the required information in the wasm wrapper library itself as meta data.
 The following information is required for the VPL to load a geocomputation library, and convert it into visual components:
+
 \begin{enumerate}[-]
-  \item A list of all functions present in the library, named.
-  \item A list of all custom types (structs / classes) present in the library, also named.
+  \item A list of all functions present in the library, uniquely named.
+  \item A list of all custom types (structs / classes) present in the library, also uniquely named.
   \item Per function:  
   \subitem A list of all input parameters, name and type.
   \subitem An output type.
 \end{enumerate}
 
-The following information is optional, but it would aid the functionality and usability of the library tremendously:
+The following information is optional, but it would improve the functionality and usability of the library:
 \begin{enumerate}[-]
   \item Per function:
   \subitem A custom, human-readable name.
@@ -360,9 +383,9 @@ The following information is optional, but it would aid the functionality and us
   \item Per type:
   \subitem A custom, human-readable name.
   \subitem A description to explain usage.
-  \subitem A definition of how to serialize and deserialize this type  
-  \subitem A definition of how to render this type in 2D or 3D
-  \subitem A definition of how to convert this type to basic types present within the geo-web-vpl.  
+  \subitem Functions for serializing and deserializing this type (binary, json)  
+  \subitem Functions for rendering this type in 2D or 3D.
+  \subitem A 'constructor' and 'deconstructor', to convert this type from and to basic types present within the VPL.  
 \end{enumerate}
 
 The necessity to automate loading geocomputation libraries means that the \ac{geo-web-vpl} needs to be able to extract this information automatically. 
@@ -370,45 +393,31 @@ The necessity to automate loading geocomputation libraries means that the \ac{ge
 
 
 
-\subsection{Design}
-
-The design is based upon two core presuppositions:
-
-1: wasm-compiled library model must be distributed and used like regular javascript libraries. 
-
-2: the binding system \& library loader must be able to accept regular javascript libraries. 
-
-this would maximize the portability of wasm-libraries.
-
-
-
-\begin{note}
-  TODO: rewrite as a design specification
-\end{note}
+\subsection{Loader}
 
 \begin{figure}
   \centering
   \graphicspath{ {../../assets/diagrams/} }
   \includegraphics[width=\linewidth]{Model Proposal.png}
-  \caption{Plugin Model}
+  \caption{TODO: javascript \& d.ts headers}
   \label{fig:plugin-model}
 \end{figure}
 
-The automated extraction of all \textbf{required} information is implemented by utilizing TypeScript Declaration 'd.ts' files. 
+The automated extraction of all \textbf{required} information can be done by utilizing TypeScript Declaration 'd.ts' files. 
 A 'd.ts' file can be understood as a 'header' file generated by the TypeScript compiler, exposing the types required by all functions found in a corresponding javascript file.
-By using the typescript compiler in Geofront, this header file could be loaded and interpreted to find all basic information, including the names, the namespace location of where to find a functions, and all input and output types.
-This extraction of types was required, since these are not present in javascript source code, and types are needed in explaining to the end-user how to use a function, and in making Geofront typesafe.
+By using the typescript compiler in the VPL, this header file could be loaded and interpreted to find all basic information, including the names, the namespace where to find a functions, and all input and output types.
+This extraction of types was required, since these are not present in javascript source code, and types are needed in explaining to the end-user how to use a function, and in making the VPL typesafe.
 
-With the extracted information from the "d.ts" file, its corresponding Javascript file could now be traversed and read.
-javascript's nature as a scripting language proved to be highly effective for this:
+With the extracted information from the "d.ts" file, a corresponding Javascript file can be traversed and loaded as a VPL plugin. 
+javascript's nature as a scripting language can be utilized for this:
 Firstly, its dynamic nature allowed a library to be loaded and incorporated at runtime without any special alterations. 
 Hot-loading libraries in C++ for example, can't usually be done without significantly altering the way a program runs. 
-Secondly, javascript's prototype-based classes and its support for reflection allowed the plugin loader to localize and collect all functions within a library.
-And lastly, the "first-class function support" allowed these functions to be referenced by the nodes on the Geofront Canvas. 
+Secondly, javascript's prototype-based classes and its support for reflection allows a plugin loader to localize and collect all functions within a library.
+And lastly, the "first-class function support" allowed these functions to be referenced and called by the Nodes of the VPL Graph. 
 
-Because Geofront is implemented as a Dataflow-VPL, the loader seeks to extract only (pure) functions. 
-However, many libraries also include classes, as these can make an API more clear to use. 
-Geofront's loader supports classes by converting them to a series of normal functions. 
+Because the VPL will be implemented as a Dataflow-VPL, the loader seeks to extract only (pure) functions. 
+However, many libraries also include classes, as these can make an API more clear to use using regular languages. 
+The plugin loader will need to support classes by converting them to a series of normal functions. 
 Static methods and constructors can be converted directly, and methods are converted into functions with the object as the first argument.
 
 The \textbf{optional} data was exposed by using a 'magic methods' strategy, influenced by the python programming language (SOURCE: PYTHON MAGIC METHODS). 
@@ -416,26 +425,19 @@ The library loader of the VPL will load certain functions, types, and methods in
 These functions are loaded by the vpl, but will not be converted into visual components. 
 Instead, these functions are programmatically called when the VPL engine or the user requires this optional aspect. 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newpage
 \section{Tests}
-The purpose of this final step of the methodology is to gather the results and data needed for answering the second and fourth research questions. 
+The purpose of this final step of the methodology is to gather the results and data needed for properly answering the second, third fourth sub-research questions. 
 
 \subsection{Compilation Tests}
 
-The first set up tests seek the data needed to answer the question of \mySubRQTwoTitle: \mySubRQTwo
-
-The first test focusses on making a clear, measurable comparison between compilation methods, where the second experiment focusses on compilation in a practical, realistic scenario. 
-Both tests limit themselves to native libraries written in C++ and Rust. 
-C++ was chosen, since almost all relevant geocomputation libraries are written in C++, like CGAL and PROJ. 
-Rust was chosen, since this language is likely to be a future choice for geocomputation libraries, and possesses powerful WebAssembly support. 
-
+The first test focusses on making a measurable comparison between compilation methods, where the second experiment focusses on compilation in a practical, realistic scenario. 
 
 \subsubsection{First Experiment}
 The first experiment compares three different methods of bringing the same geocomputation procedure to the web. 

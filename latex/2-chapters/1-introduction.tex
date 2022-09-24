@@ -196,7 +196,7 @@ The specific way in which each sub-research question is evaluated is explained i
 
 \newpage
 \section{Scope}
-The scope of this thesis is bounded in the following six ways: 
+The scope of this thesis is bounded in the following seven ways: 
 
 \subsection*{Only frontend geocomputation}
 
@@ -258,14 +258,24 @@ Still, in reality, a lot of differences and nuances exist between the field of g
 However, due to time limitations, these concerns are left to future research.
 % these concerns will only be picked up at the final discussion, found at \refsec{sec:discussion}.
  
+\subsection*{Only geocomputation libraries written in C++ \& Rust}
+The study limits itself to native libraries written in C++ and Rust. 
+C++ was chosen, since almost all relevant geocomputation libraries are written in C++, like CGAL and PROJ. 
+Rust was chosen, for its extensive WebAssembly support. 
+It also appears to be the most popular language for writing WebAssembly (Source: The State of WebAssembly 2022).
+It contains a number of relevant geocomputation libraries, but not to the same extend as C++.
+
 \subsection*{Only core browser features}
 Lastly, the implementation of the prototype geocomputation VPL will limit itself to core browser features, keeping dependencies at a minimum, in an attempt to generalize the results of the study.
 If the study would use very specific web frameworks and technologies to solve key issues, questions might arise if the results of the study counts in general for browser-based geocomputation or geocomputation VPLs, or if they only count in this very specific scenario. 
 "Core browser features" is defined in \refsec{sec:method-one}.
 
 \newpage
+
+
 \section{Reading Guide}
 The remainder of this study is structured as follows:
+
 
 \begin{itemize}[ ]
   \item \refchap{chap:background}, Background, provides an overview of the theoretical background that is used in the rest of this study.
@@ -277,7 +287,7 @@ The remainder of this study is structured as follows:
 
   \item \refchap{chap:implementation}, Implementation, presents the implementation of the methodology.
   
-  \item \refchap{chap:analyses} tests the results from this implementation in various ways described by the methodology.
+  \item \refchap{chap:testing}, Testing, tests the results from this implementation in various ways described by the methodology.
   
   \item And finally, \refchap{chap:conclusion}: Conclusion \& Discussion, concludes to which extent the study was able to satisfy the main research question, and discusses unaddressed aspects of the thesis.
   It also includes the envisioned future works and a reflection on the quality of the study.

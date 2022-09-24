@@ -23,139 +23,148 @@
 This chapter offers an overview of the theoretical background that this study builds upon.
 The study takes place at the intersection of three prior bodies of work,  represented by the corners of \reffig{fig:triangle-model}:
 \begin{enumerate}[-]
-  \item \refsec{sec:background-geo} covers the background on Geocomputation
-  \item \refsec{sec:background-web} covers the background on Web applications
-  \item \refsec{sec:background-vpl} covers the background on Visual Programming Languages
+  \item Geocomputation
+  \item Web applications
+  \item Visual Programming Languages
 \end{enumerate}
-Each one of these cornerstones will be discussed and analyzed by themselves, after which \refchap{chap:related} and \refchap{chap:methodology} will focus on the interplay and connections between these bodies of work. 
 
-\section{Geocomputation}
-\label{sec:background-geo}
+Since giving a full overview of all aspects of these bodies of work is too extensive, only key elements within these bodies will be mentioned and elaborated. 
 
-\begin{note}
-  TODO: finish this chapter
-\end{note}
+% \section{Geocomputation Libraries}
+% \label{sec:background-geo}
 
-This section offers a brief background on the wide topic of geocomputation. 
+% \begin{note}
+%   TODO: finish this chapter
+% \end{note}
 
-% PURPOSE: Show that you understand geo-computation | Show why the rest of the study will focus on the computer graphics side of things
+% This section offers a brief background on the wide topic of geocomputation. 
 
-Geocomputation is a central component of the wider field of geo-informatics. 
-The term geocomputation, or geodata processing, is used to represent all types of computations performed on geographical data. 
-Anything from the calculation of an area of a polygon, to \ac{crs} transformations, feature overlay, or converting a raster dataset into a vectorized dataset, is regarded as geocomputation.
+% % PURPOSE: Show that you understand geo-computation | Show why the rest of the study will focus on the computer graphics side of things
 
-It must be emphasized that a geocomputational procedure is always fully defined by and dependent upon its input and output data types (similar to any type of computation). 
-This is also why geocomputation is seldom a \emph{goal} in itself, but much rather the \emph{means} to discovering geo-information. 
+% Geocomputation is a central component of the wider field of geo-informatics. 
+% The term geocomputation, or geodata processing, is used to represent all types of computations performed on geographical data. 
+% Anything from the calculation of an area of a polygon, to \ac{crs} transformations, feature overlay, or converting a raster dataset into a vectorized dataset, is regarded as geocomputation.
 
-\begin{note}
-  TODO: show images of geo-computation
-\end{note}
+% It must be emphasized that a geocomputational procedure is always fully defined by and dependent upon its input and output data types (similar to any type of computation). 
+% This is also why geocomputation is seldom a \emph{goal} in itself, but much rather the \emph{means} to discovering geo-information. 
 
-\subsection{Similarities and differences with neighboring fields}
+% \begin{note}
+%   TODO: show images of geo-computation
+% \end{note}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=380px]{geocomputation.png}
-  \caption{Geocomputation in relation to other fields}
-  \label{fig:geocomputation}
-\end{figure}
+% \subsection{Similarities and differences with neighboring fields}
 
-Geocomputation can be seen as an applied field of the more general field of computer graphics. 
-Other applications of computer graphics include computer aided design (CAD), Building Information Modelling (BIM), molecular biology, medical imaging, robotics, but also special effects, video games, and graphic design.
-For this reason, these applied fields can be regarded as neighbors to geocomputation \& GIS. 
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../assets/diagrams/} }
+%   \includegraphics[width=380px]{geocomputation.png}
+%   \caption{Geocomputation in relation to other fields}
+%   \label{fig:geocomputation}
+% \end{figure}
 
-It is important to recognize that certain geocomputational procedures fully overlap with computer graphics and these neighboring fields, while others are very specific to the field of GIS and geo-informatics.
-As an example, matrix transformations and reprojections are commonplace in the wider field of computer graphics, but transformations formalized and structured in the form of \ac*{crs} is very specific to the field of GIS (See \reffig{fig:geocomputation}).
-As such, geocomputational procedures can roughly be categorized in two fields: 
-\begin{itemize}[-]
-  \item geocomputations \emph{specific} to \ac{gis},
-  \item \emph{common} computational geometry procedures
-\end{itemize}
-This categorization can be identified by noting if an operation appears in a neighboring field, or just in the field of \ac{gis}.
+% Geocomputation can be seen as an applied field of the more general field of computer graphics. 
+% Other applications of computer graphics include computer aided design (CAD), Building Information Modelling (BIM), molecular biology, medical imaging, robotics, but also special effects, video games, and graphic design.
+% For this reason, these applied fields can be regarded as neighbors to geocomputation \& GIS. 
 
-This \emph{specific} category exists because of \ac{gis}s foundation in the field of Geodesy, and the nature of geographical data. 
-Geodata differentiates itself from any form of data by its sizable nature, and geospatial nature. 
-GIS dataset sizes easily scale into terabytes of data, and each datum specifically represent a real, measured, earthly phenomenon.
-This makes storage and accuracy more relevant than other computer graphics applications. 
-
-% NOTE TO SELF: GIVE CATEGORIES OF GEOCOMPUTATION IF IT IS ASKED FOR, OTHERWISE, LEAVE IT
-% \subsection{Categories of Geocomputation}
-
-% Geocomputation is a very broadly defined phenomenon, used to represent a great variety of computations. 
-% To give an overview of this variety, a hierarchical subdivision of different types of geocomputation can be given, based on a subdivision of geodata types.
-
-% The following distinctions are made between different geodata types:
-% \begin{itemize}
-%   \item Uniform
-%   \subitem Rasters (Imagery)
-%   \subitem Hexagons
-%   \item Irregular, Vector-based
-%   \subitem TIN 
-%   \subitem solids
-%   \subitem 3D Tiles
-%   \item Semantic geodata:
-%   \subitem Tabular geodata (QGIS)
-%   \subitem Hierarchical, 'object oriented' geodata (GML / JSON) 
-%   \item Point-cloud
+% It is important to recognize that certain geocomputational procedures fully overlap with computer graphics and these neighboring fields, while others are very specific to the field of GIS and geo-informatics.
+% As an example, matrix transformations and reprojections are commonplace in the wider field of computer graphics, but transformations formalized and structured in the form of \ac*{crs} is very specific to the field of GIS (See \reffig{fig:geocomputation}).
+% As such, geocomputational procedures can roughly be categorized in two fields: 
+% \begin{itemize}[-]
+%   \item geocomputations \emph{specific} to \ac{gis},
+%   \item \emph{common} computational geometry procedures
 % \end{itemize}
+% This categorization can be identified by noting if an operation appears in a neighboring field, or just in the field of \ac{gis}.
 
-% Corresponding geocomputations are typically grouped together with one of these types of data. 
-% However, this taxonomy is not perfect, since many computations exist \emph{between} between two different types of geodata.
+% This \emph{specific} category exists because of \ac{gis}s foundation in the field of Geodesy, and the nature of geographical data. 
+% Geodata differentiates itself from any form of data by its sizable nature, and geospatial nature. 
+% GIS dataset sizes easily scale into terabytes of data, and each datum specifically represent a real, measured, earthly phenomenon.
+% This makes storage and accuracy more relevant than other computer graphics applications. 
 
-% \subsubsection{Raster Geocomputation}
+% % NOTE TO SELF: GIVE CATEGORIES OF GEOCOMPUTATION IF IT IS ASKED FOR, OTHERWISE, LEAVE IT
+% % \subsection{Categories of Geocomputation}
 
-% - image processing
-% - transformation kernels 
+% % Geocomputation is a very broadly defined phenomenon, used to represent a great variety of computations. 
+% % To give an overview of this variety, a hierarchical subdivision of different types of geocomputation can be given, based on a subdivision of geodata types.
 
-% \subsubsection{Vector Geocomputation}
+% % The following distinctions are made between different geodata types:
+% % \begin{itemize}
+% %   \item Uniform
+% %   \subitem Rasters (Imagery)
+% %   \subitem Hexagons
+% %   \item Irregular, Vector-based
+% %   \subitem TIN 
+% %   \subitem solids
+% %   \subitem 3D Tiles
+% %   \item Semantic geodata:
+% %   \subitem Tabular geodata (QGIS)
+% %   \subitem Hierarchical, 'object oriented' geodata (GML / JSON) 
+% %   \item Point-cloud
+% % \end{itemize}
+
+% % Corresponding geocomputations are typically grouped together with one of these types of data. 
+% % However, this taxonomy is not perfect, since many computations exist \emph{between} between two different types of geodata.
+
+% % \subsubsection{Raster Geocomputation}
+
+% % - image processing
+% % - transformation kernels 
+
+% % \subsubsection{Vector Geocomputation}
 
 
-% \subsubsection{Semantic Geocomputation}
-% \begin{enumerate}[-]
-%   \item often raster or vector at the core, with semantics layered on top 
-% \end{enumerate}
+% % \subsubsection{Semantic Geocomputation}
+% % \begin{enumerate}[-]
+% %   \item often raster or vector at the core, with semantics layered on top 
+% % \end{enumerate}
 
-% - 
-% - 
+% % - 
+% % - 
 
-% \subsubsection{Pointcloud Geocomputation}
+% % \subsubsection{Pointcloud Geocomputation}
 
-\subsection{Geocomputation libraries}
+% \subsection{Geocomputation libraries}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/background} }
-  \includegraphics[width=380px]{all-geo-libraries-explained.jpg}
-  \caption{Dependency graph of common geocomputation libraries. (This needs validation) }
-  \label{fig:geolib-dependencies}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../assets/images/background} }
+%   \includegraphics[width=380px]{all-geo-libraries-explained.jpg}
+%   \caption{Dependency graph of common geocomputation libraries. (This needs validation) }
+%   \label{fig:geolib-dependencies}
+% \end{figure}
 
-Numerous geocomputational software libraries exist, written in a plethora of programming languages. 
-Still, a certain 'Canon' can be defined based on popularity in terms of numbers of downloads, numbers of contributors, and number of dependent projects.  
+% Numerous geocomputational software libraries exist, written in a plethora of programming languages. 
+% Still, a certain 'Canon' can be defined based on popularity in terms of numbers of downloads, numbers of contributors, and number of dependent projects.  
 
-Out of all open-source geocomputational libraries, the ones developed and maintained by the \ac{osgeo} (Source) can be regarded as the most significant to the field of \ac{gis}. 
-These libraries include:
-\begin{itemize}[]
-  \item The \ac{gdal} (Source) 
-  \item The Cartographic Projections and Coordinate Transformations Library titled PROJ (Source)
-  \item The Geometry Engine Open Source (GEOS) (Source)
-\end{itemize}
-The geocomputations found in these libraries operate primarily on 2D / 2.5D raster and Simple Feature datasets (Source).
-How these projects related together is presented by \reffig{fig:geolib-dependencies}.
-Together, these libraries represent the core computational needs specific to the field of \ac{gis}. 
+% Out of all open-source geocomputational libraries, the ones developed and maintained by the \ac{osgeo} (Source) can be regarded as the most significant to the field of \ac{gis}. 
+% These libraries include:
+% \begin{itemize}[]
+%   \item The \ac{gdal} (Source) 
+%   \item The Cartographic Projections and Coordinate Transformations Library titled PROJ (Source)
+%   \item The Geometry Engine Open Source (GEOS) (Source)
+% \end{itemize}
+% The geocomputations found in these libraries operate primarily on 2D / 2.5D raster and Simple Feature datasets (Source).
+% How these projects related together is presented by \reffig{fig:geolib-dependencies}.
+% Together, these libraries represent the core computational needs specific to the field of \ac{gis}. 
 
-For the more common computational geometry needs, the \ac{cgal} library is also widely used.
+% For the more common computational geometry needs, the \ac{cgal} library is also widely used.
 
-% Almost all popular GIS end-user applications have these libraries at their core, such as 
+% % Almost all popular GIS end-user applications have these libraries at their core, such as 
 
-\subsection{Conclusion}
+% \subsection{Conclusion}
 
-The Take-away: 
+% The Take-away: 
 
-Combination of general computational geometry, and computations very specific to GIS.
+% Combination of general computational geometry, and computations very specific to GIS.
 
-Geocomputation is mostly facilitated by a very select number of C++ libraries. 
+% Geocomputation is mostly facilitated by a very select number of C++ libraries. 
+
+
+
+
+
+
+
+
 
 \newpage
 
@@ -171,105 +180,6 @@ Geocomputation is mostly facilitated by a very select number of C++ libraries.
 This section offers a background on frontend web applications.
 Since this topic is too large in scope to fully cover, three elements are chosen which are highly relevant to this study.
 Finally, these three topics are linked to each other in \refsec{sec:background-web-conclusion}.
-
-\subsection{Distributed systems}
-\label{sec:background-web-terminology}
-
-In software development of distributed systems, the following phrases exist: 
-\begin{enumerate}[-]
-  \item Client and Server 
-  \item Frontend and backend
-  \item Native application and web application
-  \item web application and website
-\end{enumerate}
-While these phrases do overlap to an extend, years of interchangeable usage have lead to their differences often being overlooked. 
-This study wishes to shed light on the relationships between these phenomena, as the nuances between them are vital to this studies contribution.
-
-\subsubsection*{The client-server model}
-
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/misc/} }
-  \includegraphics[width=380px]{todo.jpg}
-  \caption{A typical client-server interaction) }
-  \label{fig:client-server}
-\end{figure}
-
-First, the client-server model. 
-The client-server model refers to a distributed application architecture which balances storage and processing responsibilities between two cooperating types of programs: 
-Clients and servers.
-In this model, a client sends a request to a server, and the server provides the response asked for (see \reffig{fig:client-server}).
-While this model immediately invokes images of web clients and web servers, it is important to recognize that the client-server model is far older than either web applications, or the World Wide Web in general. 
-It is an abstract computational model, of which the World Wide Web is just one example.
-A corresponding client and server may even exist on the same machine. 
-A program running on a machine can act as a client, a server, or both, based on the role this program sets out to fulfill in relationship to other programs. 
-
-The client-server model is beneficial for sharing resources, both in terms of storage and processing. 
-A distinction is made between centralized models, in which the bulk of these resources are centralized on one or more servers, and decentralized models, which distribute and offload some or all of the computational resources to the clients. 
-A centralized model has the advantage of making clients simple and interchangeable, at the cost of making them highly reliant on the uptake of and connection to the server. This also generates more client-server traffic. 
-A decentralized model makes clients independent and decreases traffic, at the cost of the complications caused by decentralized architectures. 
-The choice between a centralized or decentralized client-server model is therefore highly reliant on the resources of client and server hardware, as well as the quality of the connection between the server and client.  
-
-\subsubsection*{Frontend and backend}
-
-The terms frontend and backend, though closely related to clients and servers, refer to different phenomenon. 
-Both are separations of concerns, a design principle prevalent in computer science to specialize a program into separate responsibilities. 
-However, client and server programs are defined by their separation into "requester" and "responder" roles, whereas the frontend and backend are defined by their separation into "presentation" and "data access" functions. 
-Presentation functions are responsible for interacting with the end-user of the application, and is concerned with aspects such as user interface, user interaction, and rendering.
-"data access" interacts with the physical hardware of the machine, and is concerned with aspects such as storage methods, database management, and scalability.  
-It just so happens that the presentation functions often corresponds with a requester role,
-and that data access functions often corresponds with the responder role.
-However, this is never a given. 
-A server can be responsible for providing both the frontend and backend functionality, in the case the presentation of an application is rendered on this server. 
-
-\subsubsection*{Native application and web application}
-
-The nuances between a web application and a native application must also be specified, alongside their relationship to clients and servers. 
-In this context, we make a distinction between \emph{Programs}, which refer to individual processes on either the side of the client or the server, and an \emph{application}, which either represents a non-distributed, self contained program, or represents the whole of corresponding client and server programs together.
-Client programs or server programs are also often abbreviated as clients and servers.  
-If a client runs without the corresponding server it relies upon, we can say that the client functions, but the entire \emph{application} does not function. 
-In practice, however, the term 'web app' often specifically refers to the client, confusingly enough.
-
-In any case, a program is considered native if it directly runs on the operating system of a device.
-A program is considered web-based or browser-based if a browser is required to run it. 
-A web application always has a client, as it will always need to be initially served by a corresponding server.
-However, the extent to which the functionality of a web app is self contained or continuously reliant on this server may vary.
-A native program may also be a client, as there is nothing preventing a native program of making the exact same web request as a web application. 
-
-Due to this ambiguity of 'client-side' being able to refer to both native and web clients, this study makes use of the terminology 'browser-based programs' or 'browser-based applications', to point to web clients in particular. 
-
-Web applications have specific advantages and disadvantages compared to native applications. 
-The big advantages are that web applications are cross-platform by nature, and offer ease of accessibility, since no installment or app-store interaction is required to run or update the app (src: vpl 2019, src: hybrid).
-As soon as a web app is found, it can theoretically be used.
-The containerized nature of the web also makes web applications in general more safe. 
-For unknown native applications there is always a danger of installing malicious software, whereas an unknown web application without any privileges is practically harmless (Needs citation). 
-The ability to share an application with a link, or to embed it within the larger context of a webpage, is also not a trivial advantage.
-
-The disadvantage is that normally, web applications can only be written in JavaScript, a very-high level interpreted programming language. 
-Its high-level nature leads to imprecision in using computational resources. 
-For example, it makes no distinction between integer and floating point arithmetic.  
-Additionally, the safety and containerization demands of the web make web applications more removed from the operating system and hardware.
-Any type of \ac{os} interaction such as opening a window, interacting with the file system, or drawing directly to the screen buffer, is off-limits.  
-Both these layers of indirection makes web applications traditionally unfavorable for demanding, highly specialized programs. 
-
-\subsubsection*{Web application and website}
-
-Lastly, a soft distinction is also made between websites, and web applications. 
-Roughly speaking, a web application is a website which requires javascript in order to be functional.
-This makes websites more static, and web applications more dynamic, being able to change based on user input.  
-Wikipedia (Source) can be considered a website, whereas overleaf (Source) is definitively a web application. 
-Many border cases also exist, like Twitter (Source).
-Following the above definition, twitter is a web application, despite the fact that its core functionalities could be implemented without any client-side javascript.
-
-\begin{note}
-  Sources: 
-
-  (https://en.wikipedia.org/wiki/Web_application, bad source, but this is more 'conventional wisdom' than true 'knowledge', couldn't find a more credible source, 
-  
-  what would make a person credible on this content?)
-  
-  (https://en.wikipedia.org/wiki/Frontend_and_backend)
-\end{note}
 
 
 \subsection{Rich Clients}
@@ -310,6 +220,17 @@ Strictly speaking however, WebAssembly not a language, but a binary instruction 
 (SOURCE: https://webassembly.org/)
 it can be used to, theoretically, run any application or library in a web browser, regardless of the language used to create it, be it C/C++, Python, C\#, Java, or Rust. 
 This means that in order to create a web application, developers can now in principle develop a normal, native application instead, which can then be compiled to WebAssembly, and served on the web just like any other web application. 
+
+\subsubsection*{Applications}
+
+The WebAssembly standard may solve many existing problems, and leads to multiple new use cases (SOURCE: https://blog.scottlogic.com/2022/06/20/state-of-wasm-2022.html).
+
+Based on the contemporary usage of WebAssembly, it is safe to conclude that it leads to a significant paradigm shift 
+
+\begin{note}
+  TODO: convert all the dumb client / server writings into a chapter which may live here  
+\end{note}
+
 
 \subsubsection*{Limitations}
 

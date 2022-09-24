@@ -287,6 +287,38 @@ the "TypedArray" browser feature is used extensively to bypass the fact that jav
 \section{The binding system}
 \label{sec:implementation:loading}
 
+\subsection{Execution}
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/4/} }
+  \includegraphics[width=\linewidth]{loading-trajectory.png}
+  \caption[Loading Trajectory]{Loading Trajectories}
+  \label{fig:loading-trajectory}
+\end{figure}
+
+\begin{note}
+
+  This turned out to be a problem during preliminary studies.
+  If a \ac{geo-web-vpl} wishes to use non-js libraries, it would mean that these libraries would have to be wrapped twice (see \reffig{fig:loading-trajectory} A): 
+  Once to expose the native library to the web using the methods described at \refsec{sec:method-two},
+  And once more to map the web library to the visual language. 
+  While this is a possibility, in practice, two layers of wrappers are not acceptable in terms of a development workflow.
+  This would be cumbersome, prone to errors, and hurting version control by having to synchronize between 4 software projects. 
+  
+  There is also a second reason for critically addressing the way plugins are loaded. 
+  An observation was made from studying the existing geo-vpls in \refsec{sec:related-geovpl}:
+  It seems that if a developer wants to create custom VPL components, they are required to write plugins very specific to that particular VPL.
+  This means that practically, the library ecosystem of a VPL is entirely its own: 
+  It is separated from the wider context of textual programming libraries. 
+  End users are at the mercy of developers implementing their libraries in the dialect their particular VPL.
+  Meanwhile, developers are forced to implement and support a multitude of wrapper libraries for VPL platforms.  
+  
+  In contrast, if the library loader of a VPL was able to directly utilize textual libraries, the barrier between vpl ecosystems and regular text-based libraries would cease to exist, benefiting both developers and end users. 
+  It might even lower the barrier between visual and textual programming in general, making it easier for VPl end-users to adopt some forms of textual programming, and vice versa. 
+  
+\end{note}
+
 \subsection{Achieved functionality}
 A loaded library can now be used inside Geofront to create nodes on the canvas. 
 These nodes have inputs connectors for each input argument, and output connectors per return value (Multiple outputs connectors are created from tuples). 
@@ -369,13 +401,12 @@ Finally, not all languages are equally supported:
     While the loader's ability to work with WebAssembly is promising, additional testing is required before Geofront can claim to support any language. 
 \end{itemize}
 
-\subsection{Workflow}
+\subsection{Achieved Workflow}
 % \emph{show the insane (rust + wasm + npm) workflow}
 
 With all the above considerations in mind, the following workflow can now be used to create a Geofront Plugin, which, as explained, doubles as a normal javascript library. 
 If Rust or C++ is used, this setup "triples" as also a native geoprocessing library.
 The Geofront standard library is implemented using workflow with Rust.
-This workflow turned out to be very useful for the purpose of rapid experimentation. 
 
 \begin{lstlisting}
   
@@ -405,7 +436,7 @@ This workflow turned out to be very useful for the purpose of rapid experimentat
 
   In Geofront: 
   4. Reference the CDN (content delivery network) address of this node package. 
-  5. Use the library!
+  5. Use the library.
 
   * these parts contain many caveats, explained in Section 5.2
 

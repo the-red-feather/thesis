@@ -1,6 +1,6 @@
 \chapter*{Abstract}
 Geocomputation is a cornerstone of GIS \& modern mapping needs.
-While major advancements during the last 20 years have been achieved, writing a geocomputational pipeline remains a complex, non-trivial exercise. 
+While the last decades have seen major advancements, writing a geocomputational pipeline remains a complex, non-trivial exercise. 
 Performing geocomputations by utilizing a visual programming language (VPL) within a web browser is a novel development which seeks to simplify this process, allowing more people to write pipelines more successfully.
 % It would, in theory, allow end-users to author geocomputation pipelines, without the need of a software development background, and without the need to install software.
 % utilizing a dataflow model.
@@ -9,8 +9,9 @@ Performing geocomputations by utilizing a visual programming language (VPL) with
 In this context, the portability of existing geocomputation libraries is a common problem.
 This is often addressed by maintaining duplicate JavaScript alternatives to libraries such as GDAL, PROJ, and GEOS, complicating innovation.  
 
-The study poses that this problem can only be overcome if native geocomputation libraries are able to be properly \emph{compiled}, \emph{loaded}, and \emph{utilized} in a browser-based dataflow-VPL format.
-Discovering if and how this can be done is the central question of this study. 
+This study seeks to improve the state of browser-based geocomputation VPLs by attempting to bringing industry-standard geo-libraries to these environments. 
+The study poses that this can only be done if native geocomputation libraries can be \emph{compiled} to WebAssembly, \emph{loaded} into a VPL, and \emph{utilized} in a browser-based dataflow-VPL format.
+Discovering if and how these steps can be performed is the central question of this study. 
 % This study seeks to improve the state of web-based geocomputation VPLs 
 % by discovering if the library portability problem can be overcome, and if so, how.
 
@@ -18,14 +19,14 @@ This question is answered by testing a possible solution.
 A proof of concept web-based VPL is designed, implemented and evaluated, which makes use of a novel plugin system, as well as a directed, acyclic graph-based data model \& interface.
 
 Using this proof of concept, the study was able to demonstrate that the web platform was sufficiently capable of representing a dataflow VPL capable of constructing geocomputation pipelines.
-The functional programming-properties of this dataflow VPL also makes geo-libraries sufficiently \emph{usable}, albeit with some well-known caveats of dataflow-VPLs, like the representation of conditionals and iteration. 
+The functional programming-properties of this dataflow VPL also makes geo-libraries sufficiently \emph{usable}, albeit with some well-known caveats of dataflow-VPLs, like the representation of conditionals and iteration.  
 
 The current methods of \emph{compiling} existing C++ geocomputation libraries to the web turned out to be insufficient for the purposes of this study.  
-This is due to the Emscripten compiler's focus on compiling full C++ applications instead of separate libraries.
-Despite this, the study wás able to demonstrate how a novel method can be used to sufficiently \emph{compile} and \emph{load} a Rust-library for usage in the VPL.
-While not many contemporary geocomputation libraries are written in Rust, the study offers this method to either offer emscripten contributors a blueprint of a desired workflow, or to offer geocomputation library contributors a powerful use-case for the Rust language. 
+This is due to the Emscripten compiler's focus on compiling full C++ applications instead of separate libraries. 
+Despite this, the study wás able to demonstrate how a novel method can be used to sufficiently \emph{compile} and \emph{load} multiple Rust-libraries for usage in the VPL, thanks to more feature-rich webassembly support in the Rust ecosystem. 
+While Rusts geocomputation libraries are young, the study presents this method to either offer emscripten contributors a blueprint of a desired workflow, or to offer geocomputation library contributors a powerful use-case for the Rust language. 
 
-All in all, this means that either if the Rust ecosystem gains more mature geocomputation libraries, or if Emscripten's capabilities improve, then the code portability problem \& dataflow problem of existing web-based geocomputation VPLS can be solved. 
+All in all, this means that either if the geocomputation libraries found in the Rust ecosystem mature, or if Emscripten's capabilities improve, then the code portability problem \& dataflow problem of existing web-based geocomputation VPLS can be solved. 
 
 
 \begin{note}

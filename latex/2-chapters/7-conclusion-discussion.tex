@@ -340,7 +340,7 @@ Additionally, the tool is still in a prototypical state, and will need to be mor
 The many fields this study draws from mean that a great variety of auxiliary aspects were discovered during the execution ot the study. 
 Some of these aspects are listed here, and could lead to interesting topics for follow-up research. 
 
-\subsection{Deployment \& Scalability}
+\subsection{Deployment \& scalability}
 
 \begin{figure}
   \centering
@@ -355,7 +355,7 @@ All libraries were converted to normal import statement, all nodes were replaced
 This way, the application could be run headless (without the \ac{GUI}) either the browser or on a server, using a "Node,js" (Source) or Deno interpreter (Source).
 
 A future study could re-implement this feature, opening up the possibility for deployment and scalability: 
-Scripts created with geofront could then deployed as web applications of themselves, or as a web processing services (WPS, SOURCE).
+Scripts created with geofront could then deployed as a web worker, as a web applications of themselves, or as a web processing services (WPS, SOURCE).
 Also, by running this script on a server, and ideally a server containing the geodata required in the process, one could deploy and run a Geofront scripts on a massive scale. 
 
 The overall purpose of this would be to create a free and open source alternative to tools like the Google Earth Engine, and FME cloud compute. 
@@ -364,36 +364,41 @@ The overall purpose of this would be to create a free and open source alternativ
 
 This study showed that browser-based geocomputation is reasonably viable. 
 This might allow for a new type of geoprocessing workflow, which could replace some use-cases that now require big-data processing and storage.
-Instead of storing the sizable, pre-processed results of some geocomputation, an application could take a raw dataset base layer, and process it on-demand in a browser.
+A big problem in the \ac{GIS} industry is having to process and store sizable datasets, while only a portion of it will be actually used. 
+A possible solution could be to take a raw dataset base layer, and process it on-demand in a browser.
 
 This would have several advantages. 
 First, end-users can specify the scope and parameters of this process, making the data immediately fine-tuned to the specific needs of this user. 
 Secondly, this could be a more cost-effective method, as cloud computation \& Terabytes of storage are time consuming and expensive phenomena.
 
-This type of \emph{On demand geocomputation} is certainly not a drop-in replacement for all use cases. 
+This type of \emph{on demand geocomputation} is certainly not a drop-in replacement for all use cases. 
 But, in situations which can guarantee a 'local correctness', and if the scope asked by the used is not too large, this should be possible. 
 Examples of this would be a streamed delaunay triangulation, TIN interpolation or color-band arithmetic. 
 
-\subsection{Rust-based geocomputation \& Cloud Native}
+\subsection{Rust-based geocomputation \& cloud native geospatial}
+
 An interesting aspect this study was able to touch on is using Rust for geocomputation.
 The reason for this was the extensive support for webassembly, which was essential for browser-based geocomputation. 
-However, there are two additional reasons one might want to perform geocomputation within Rust.
-One is that rust is widely considered as a more stable, less runtime error-prone language than C++, while offering similar performance and features. 
-The second one is that Rust compiled to WebAssembly sees extensive use on both cloud and edge servers.  
+However, there are additional reasons one might want to perform geocomputation within Rust.
+One is that rust is widely considered as a more stable, less runtime error-prone language than C++, while offering similar performance and features.
+Additionally, rust Wasm binaries also tend to be smaller than C++ wasm binaries.  
+
 This could be very interesting to the "cloud-native geospatial" movement. 
-This web GIS movement aims to create the tools necessary to send geocomputation to servers, rather than sending geodata to the places where they are processed.
-To do this, geocomputation must become much more interoperable, more exchangeable, and Rust compiled to WebAssembly forms a viable candidate. 
+This \ac{GIS} movement aims to create the tools necessary to send geocomputation to servers, rather than sending geodata to the places where they are processed.
+To do this, geocomputation must become much more portable than it currently is, and Rust compiled to WebAssembly might proof to be a strong candidate for creating exchangeable, performant, compact, and error-proof binaries.
+It already sees usage on both cloud and edge servers (State of WebAssembly, 2022).  
 
 Therefore, studying Rust-based geocomputation for the purpose of cloud native and edge computing, would be a promising topic for subsequent research. 
 
 \subsection{FAIR geocomputation}
+
 % The study has only scratched the surface on what is possible with combining geocomputation with the fields of Visual programming, and web applications. 
 The introduction theorized on how both VPLS and web-apps could be used to make geocomputation less cumbersome.
 The study chose to pursuit this on a practical, technical level. 
 
 However, a more theoretical study could also be performed. 
-It turns out that these ideas of 'less cumbersome geodata processing', have something in common with many of the geoweb studies on data accessibility and usability (\cite{brink_geospatial_2018}).
-The ideas of 'data silo's', 'FAIR geodata', and 'denichifying of \ac{GIS} data' (see \cite{brink_geospatial_2018}) map well to geocomputation:
+It turns out that these ideas of 'less cumbersome geodata processing', have something in common with many of the geoweb studies on data accessibility and usability \citep{brink_geospatial_2018}.
+The ideas of 'data silo's', 'FAIR geodata', and 'denichifying of \ac{GIS} data' (see \citet{brink_geospatial_2018}) map well to geocomputation:
 Functionality Silo's, FAIR geocomputation, denichifying of \ac{GIS} computation. 
 
 Therefore, an interesting question for a subsequent study could be: "How could geocomputation become more Findable, Accessible, Interoperable, and Reusable?", or "How to integrate the function-silo's of GIS, BIM \& CAD?"
