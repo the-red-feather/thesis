@@ -139,6 +139,7 @@ TypeShims can be structured recursively to define a \m{List of List of strings} 
 
 
 \subsubsection*{Model}
+\label{sec:method-model}
 
 \begin{figure}
   \centering
@@ -176,13 +177,14 @@ This will make it possible to substitute references with id integers to prevent 
 
 
 \subsubsection*{View}
+\label{sec:method-view}
 
 The view aspect of the VPL will require three main components. 
 First, the graph itself will need to be visualized in some manner.
 A graph based visualization will be used, based on the node-cable connections of the graph model. 
 Important to this view is that it will need to be redrawn often. 
 Users will want to add, select, change, and delete nodes, and these interactions should be clearly represented. 
-This makes the 'canvas API' an ideal fit to this component.
+This makes the 'canvas API' (Source) an ideal fit to this component.
 
 Secondly, since not all actions and interactions will be done by clicking on the graph itself, a \ac{GUI} surrounding this graph visualization is required.
 This will also need to house common application features, like 'new', 'save', 'load', 'export', etc.  
@@ -193,6 +195,7 @@ Finally, the VPL requires some way of visualizing 3D geometry, so that in-betwee
 a custom 3D engine, specialized to the needs of the VPL, would be best option for this aspect.
 
 \subsubsection*{Controller}
+\label{sec:method-controller}
 
 Finally, a controller will be needed to modify and manipulate the VPL.
 It will need to house all types of interactions, such as loading and saving a VPL script, model manipulation and updating the view only when necessary.
@@ -280,7 +283,7 @@ The starting positions of the algorithm then simply become the altered parameter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Plugin System} 
-\label{sec:method-bindings}
+\label{sec:method-plugin-system}
 
 The second step of the methodology involves developing a method to use libraries from native sources within the VPL outlined above. 
 This aspect of the methodology seeks to design a base to answer the questions: \mySubRQTwo and \mySubRQThree.

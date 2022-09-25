@@ -7,11 +7,6 @@
 \chapter{Background}
 \label{chap:background}
 
-\begin{note}
-  ch.2 own images? or refs needed
-  not sure if all parts are necessary / useful -> not really comprehensive and also not very linked to thesis topic (2.1 intro, 2.2.1,
-\end{note}
-
 \begin{figure}
   \centering
   \graphicspath{ {../../assets/diagrams/} }
@@ -28,7 +23,8 @@ The study takes place at the intersection of three prior bodies of work,  repres
   \item Visual Programming Languages
 \end{enumerate}
 
-Since giving a full overview of all aspects of these bodies of work is too extensive, only key elements within these bodies will be mentioned and elaborated. 
+Since giving a full overview of all aspects of these bodies of work is too extensive, only key elements within these bodies will be mentioned and elaborated, namely the visual programming languages, and WebAssembly.  
+
 
 % \section{Geocomputation Libraries}
 % \label{sec:background-geo}
@@ -158,30 +154,18 @@ Since giving a full overview of all aspects of these bodies of work is too exten
 
 % Geocomputation is mostly facilitated by a very select number of C++ libraries. 
 
-
-
-
-
-
-
-
-
 \newpage
 
-\section{Frontend web applications}
+\section{WebAssembly}
 \label{sec:background-web}
 
-\begin{note}
-  TODO: this chapter is too large, the client-server / front-back elements should be trimmed down, or maybe even entirely removed. I think Its too granular. 
-
-  Also, add more pictures!
-\end{note}
-
-This section offers a background on frontend web applications.
-Since this topic is too large in scope to fully cover, three elements are chosen which are highly relevant to this study.
+This section offers a background on WebAssembly, and how this technology is currently used in frontend web applications.
 
 \subsection{Rich Clients}
 \label{sec:background-web-rich}
+
+The significance of the WebAssembly standard for the point of view of web applications, can be best understood in conjunction with the Rich client phenomenon. 
+This is why this explanation starts out by framing WebAssembly within this context.
 
 % In the starting years of the World Wide Web, web applications as we understand them know were not possible, and the web consisted of websites exclusively. 
 % Then, with the inclusion of the javascript scripting language in 199x (Source), and browser plugins like Adobe Flash (Source), the first couple of web application slowly started to be developed. 
@@ -194,7 +178,7 @@ Since this topic is too large in scope to fully cover, three elements are chosen
 
 % These developments continued.
 
-Since 2012, a trend of \textbf{rich web-clients} can be widely recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
+Since 2012, a trend of rich web-clients can be widely recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
 Around this time, browser engines had become performant enough to allow more decentralized client-server models.
 By reducing servers to just static file servers, and adding all routing and rendering responsibilities to the client, the interactivity of a web application could be maximized. 
 This led to models like "single page application", which are facilitated by javascript frameworks like Angular, React and Vue.
@@ -207,7 +191,7 @@ Additionally, tools like React Native (Source) are able to compile a web applica
 % If the applications resulting from both types of tools are to be regarded as 'web apps' or 'native apps', is left as an exercise to the reader. 
 It becomes clear that rich web clients and their build tooling are starting to blur the line between native and web software.
 
-\subsection{WebAssembly}
+\subsection{The WebAssembly Standard}
 \label{sec:background-wasm}
 
 If the line between web application and native application was starting to blur, 
@@ -225,7 +209,7 @@ it can be utilized to run a native application or library in a web browser, rega
 This means that in order to create a web application, developers can now in principle develop a normal, native application instead, which can then be compiled to WebAssembly, and served on the web just like any other web application. 
 
 
-\subsubsection*{Applications}
+\subsection*{Applications}
 
 It is important to note that these features offer a reverse workflow compared to the now popular Electron based applications described in \refsec{sec:background-web-rich}.
 Applications can now be written natively, and subsequently published to the web, instead of writing software as a web application, which may be packaged as a desktop application. 
@@ -238,7 +222,7 @@ The WebAssembly format has several other use cases (SOURCE: https://blog.scottlo
 \end{note}
 
 
-\subsubsection*{Limitations}
+\subsection*{Limitations}
 
 The sentence above uses the phrase \emph{in principle}, since there are quite a few caveats to the format. 
 While in theory any application can be compiled to WebAssembly, in practice, not all applications turn into functional webassembly applications, due to certain factors.
@@ -255,7 +239,7 @@ This is what the majority of current WebAssembly projects look like.
 However, this layer of javascript 'boilerplate' or 'glue code' is inefficient, as it leads to duplication and redirection.
 Additionally, platforms wishing to support WebAssembly must now also support javascript. 
 
-\subsubsection*{Performance}
+\subsection*{Performance}
 
 The initial performance benchmarks look promising. The majority of performance comparisons show that WebAssembly only takes 10\% longer than the native binary it was compared to \cite{haas_bringing_2017}. A later study confirms this by reproducing these benchmarks \cite{jangda_not_2019}. It even notices that improvements have been made in the two years between the studies. However, Jangda et. al. criticize the methodology of these benchmarks, stating that only small scale, scientific operations where benchmarked, each containing only 100 lines of code. The paper then continues to show WebAssembly is much more inefficient and inconsistent when it comes to larger applications which use IO operations and contain less-optimized code. These applications turn out to be up to twice as slow compared to native, according to their own, custom benchmarks. 
 Jangda et. al. reason that some of this performance difference will disappear the more mature and adopted WebAssembly becomes, but state that WebAssembly has some unavoidable performance penalties as well. 
