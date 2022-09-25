@@ -16,13 +16,6 @@ This section presents the implementation details of the first and second step of
   \label{fig:geofront-app}
 \end{figure}
 
-\begin{note}
-  [Stelios]  Where you describe the implementation I made a comment about you mentioning git(hub) too much. Imo, git(hub) is just the place where you store the code, but the structure of your code and everything around the implementation is only independent from the version control system that you use. We normally just leave a sentence about this, stating that the code is available as open source in a repository. But because you have the organization and the multiple repos, maybe you can have a small paragraph about that summarizing this. But don't mix this with the actual discussion about implementation.
-
-  [Ken] division between 4 and 5 is weird, 4 feels empty and 5 where the actual content is  feels like 5 doesn't actually implement the methodology of 4, but instead follows the actual logic of the Code
-  
-\end{note}
-
 This section explains the significant components of this prototype application. 
 The prototype is titled "Geofront", as a concatenation of "geometry" and "frontend".
 Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} (SOURCE: https://github.com/thegeofront).
@@ -484,13 +477,3 @@ A normal javascript library, or a javascript library using WebAssembly, can't be
 Most libraries use incompatible types, or have an incompatible architecture.
 In some cases, a library might be able to load, but is then functionality impaired by the interface. 
 \reffig{fig:oop-considered-harmful} is an example of such a case.
-
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/6/3/} }
-  \includegraphics[width=\linewidth]{ugly-oop.png}
-  \caption[]{This typescript file technically loads correctly into Geofront, but cannot be reasonably used on the Geofront canvas. TODO: show what this looks like on canvas}
-  \label{fig:oop-considered-harmful}
-\end{figure}
-
-

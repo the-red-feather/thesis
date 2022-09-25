@@ -179,53 +179,59 @@ Since giving a full overview of all aspects of these bodies of work is too exten
 
 This section offers a background on frontend web applications.
 Since this topic is too large in scope to fully cover, three elements are chosen which are highly relevant to this study.
-Finally, these three topics are linked to each other in \refsec{sec:background-web-conclusion}.
-
 
 \subsection{Rich Clients}
 \label{sec:background-web-rich}
 
-In the early days of the World Wide Web, web applications were practically impossible, and the web consisted of websites exclusively. 
-Then, with the introduction of the javascript scripting language in 199x (Source), and browser plugins like Adobe Flash (Source), the first couple of web application slowly started to be developed. 
-Still, these early web applications exclusively used a centralized client-server model.
-The clients were simple, and completely reliant on the server. 
+% In the starting years of the World Wide Web, web applications as we understand them know were not possible, and the web consisted of websites exclusively. 
+% Then, with the inclusion of the javascript scripting language in 199x (Source), and browser plugins like Adobe Flash (Source), the first couple of web application slowly started to be developed. 
+% Still, these early web applications exclusively used a centralized client-server model.
+% The clients were simple, and completely reliant on the server. 
 
-In the decades that followed, the javascript runtime of web browsers saw continuous improvements, alongside additions like HTML5, facilitating more interactive usage of webpages.
-As the web and web technologies matures, new ways of using these technologies are discovered.
-Web applications became more interactive, and frontend functionalities were slowly moved from the server to the client. 
+% In the decades that followed, the javascript runtime of web browsers saw continuous improvements, alongside additions like HTML5, facilitating more interactive usage of webpages.
+% As the web and web technologies matures, new ways of using these technologies are discovered.
+% Web applications became more interactive, and frontend functionalities were slowly moved from the server to the client. 
 
-These developments continued.
+% These developments continued.
+
 Since 2012, a trend of \textbf{rich web-clients} can be widely recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
-At that point, the browser had become powerful enough to allow for more decentralized client-server models.
+Around this time, browser engines had become performant enough to allow more decentralized client-server models.
 By reducing servers to just static file servers, and adding all routing and rendering responsibilities to the client, the interactivity of a web application could be maximized. 
-This model was dubbed "single page application", and was and still is facilitated by javascript frameworks like Angular, React and Vue.
-However, the real facilitator of these developments are the browsers vendors themselves, as these frameworks would not be possible without the performance increase of javascript. 
+This led to models like "single page application", which are facilitated by javascript frameworks like Angular, React and Vue.
+However, the real facilitator of these developments are the browsers vendors themselves, as these frameworks would not be possible without the performance increase granted by improvements of the various javascript Just In Time compilers. 
 
 This growth has also lead to web applications being used 'natively'. 
 Tools like Electron (Source) allow web applications to be installed and 'run' on native machines by rendering them inside of a stripped down browser. 
 Many contemporary 'native' applications work like this, such as VS Code, Slack, and Discord.
 Additionally, tools like React Native (Source) are able to compile a web application into a native application without a browser runtime.  
-
-If the applications resulting from both types of tools are to be regarded as 'web apps' or 'native apps', is left as an exercise to the reader. 
-In any case, it becomes clear that rich web clients and their build tooling are starting to blur the line between native and web software.
+% If the applications resulting from both types of tools are to be regarded as 'web apps' or 'native apps', is left as an exercise to the reader. 
+It becomes clear that rich web clients and their build tooling are starting to blur the line between native and web software.
 
 \subsection{WebAssembly}
 \label{sec:background-wasm}
 
-If the line between web application and native application was already starting to get blurry, WebAssembly makes this line almost invisible. 
+If the line between web application and native application was starting to blur, 
+WebAssembly makes this line almost invisible. 
 From all browser-based features, WebAssembly turned out to be a deciding factor of this study. This makes it important to be aware of the state of WebAssembly and its performance considerations.
 
-\ac{wasm} is officially dubbed the fourth type of programming language supported by all major web browsers, next to HTML, CSS, and JavaScript.
-Strictly speaking however, WebAssembly not a language, but a binary instruction format for a stack-based virtual machine.
-(SOURCE: https://webassembly.org/)
-it can be used to, theoretically, run any application or library in a web browser, regardless of the language used to create it, be it C/C++, Python, C\#, Java, or Rust. 
+\ac{wasm} is a binary instruction format for a conceptual, stack-based virtual machine 
+(SOURCE: https://webassembly.org/).
+By combining this low-level format with features like a system of incremental privileges, \ac{wasm} makes for a performant compilation target which can be run containerized, and thus safe.
+
+Contrary to its name, WebAssembly has no specific link to the web or assembly language. 
+It was, however, designed for the web. 
+\ac{wasm} is officially dubbed the fourth type of programming language supported by all major web browsers, next to HTML, CSS, and JavaScript (Source: mozilla post).
+it can be utilized to run a native application or library in a web browser, regardless of the language used to create it, be it C/C++, Python, C\#, Java, or Rust. 
 This means that in order to create a web application, developers can now in principle develop a normal, native application instead, which can then be compiled to WebAssembly, and served on the web just like any other web application. 
+
 
 \subsubsection*{Applications}
 
-The WebAssembly standard may solve many existing problems, and leads to multiple new use cases (SOURCE: https://blog.scottlogic.com/2022/06/20/state-of-wasm-2022.html).
+It is important to note that these features offer a reverse workflow compared to the now popular Electron based applications described in \refsec{sec:background-web-rich}.
+Applications can now be written natively, and subsequently published to the web, instead of writing software as a web application, which may be packaged as a desktop application. 
 
-Based on the contemporary usage of WebAssembly, it is safe to conclude that it leads to a significant paradigm shift 
+The WebAssembly format has several other use cases (SOURCE: https://blog.scottlogic.com/2022/06/20/state-of-wasm-2022.html).
+
 
 \begin{note}
   TODO: convert all the dumb client / server writings into a chapter which may live here  
@@ -355,18 +361,18 @@ Even though this study falls in the category of scientific computation, these pe
 
 % .....
 
-\subsection{Conclusion}
-\label{sec:background-web-conclusion}
+% \subsection{Conclusion}
+% \label{sec:background-web-conclusion}
 
-When reading \refsec{sec:background-web-terminology}, \refsec{sec:background-web-rich}, and \refsec{sec:background-wasm} together, a pattern emerges. 
-WebAssembly blurs the line between the web-based and native development even further than the rich clients, and invites a further re-examination of our established models of distributed systems.
-The compile target allows web-apps to make use of native libraries, and allows native software to be run on the web.
-This second aspect offers a complete reverse workflow compared to the now popular Electron based applications described in \refsec{sec:background-web-rich}.
+% When reading \refsec{sec:background-web-terminology}, \refsec{sec:background-web-rich}, and \refsec{sec:background-wasm} together, a pattern emerges. 
+% WebAssembly blurs the line between the web-based and native development even further than the rich clients, and invites a further re-examination of our established models of distributed systems.
+% The compile target allows web-apps to make use of native libraries, and allows native software to be run on the web.
+% This second aspect offers a complete reverse workflow compared to the now popular Electron based applications described in \refsec{sec:background-web-rich}.
  
-There was a significant initial delay between the improvements of the browser, and the widespread popularity of rich web clients. 
-This study argues that as of right now, we are in the middle of a similar situation. 
-A new technologies exist, it is implemented by all major browsers, and offers completely new ways of working with the web platform as a whole. 
-The question remains what this will mean for the established models of clients and servers, the frontend and backend, and the web and native contexts. 
+% There was a significant initial delay between the improvements of the browser, and the widespread popularity of rich web clients. 
+% This study argues that as of right now, we are in the middle of a similar situation. 
+% A new technologies exist, it is implemented by all major browsers, and offers completely new ways of working with the web platform as a whole. 
+% The question remains what this will mean for the established models of clients and servers, the frontend and backend, and the web and native contexts. 
 
 \newpage
 

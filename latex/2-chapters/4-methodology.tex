@@ -2,6 +2,10 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
+\begin{note}
+  [JF]: should this be present or past tense? 
+\end{note}
+
 This chapter explains the methodology used in this study. 
 The overall methodology is to first develop a base VPL (\refsec{sec:method-base-vpl}), followed up by developing a binding system for this VPL (\refsec{sec:method-bindings}). 
 The final step is to set up and execute a series of tests (\refsec{sec:method-bindings}), to analyze the extend to which these implementations solve the various challenges raised by \refchap{chap:intro}.
@@ -308,8 +312,9 @@ And finally, the full workflow of bringing a geo-library to the web VPL should b
 \newpage
 \subsection{Design}
 
-These requirements lead to the following design.
-A plugin:
+These requirements lead to the following design for the plugin system.
+Both the model of what a plugin should look like, and the plugin loader on the side of the VPL must be designed in conjunction, to make sure the models match.  
+The plugin model:
 \begin{enumerate}[-]
   \item Must wrap a geocomputation library compiled with WebAssembly.
   \item Must include optional metadata about how the library may be used in the VPL.
@@ -324,9 +329,10 @@ Furthermore, the plugin loader of the VPL must be able to:
   \item convert this to an internal representation of a library.
 \end{enumerate}
 
-The plugin system will utilize the infrastructure of regular javascript libraries as much as possible. 
-
-Additionally, this setup adresses the portability requirement by making these libraries interoperable with unaffiliated projects on both the frontend and backend (see \reffig{fig:plugin-model}).
+This system utilizes the infrastructure of regular javascript libraries as much as possible. 
+This way, existing javascript tooling, such as \ac{CDN}s, can be utilized for distribution, updates and version control.
+Additionally, this setup addresses the portability requirement by making these libraries interoperable with unaffiliated projects on both the frontend and backend (see \reffig{fig:plugin-model}).
+It might even allow libraries to be loaded which were never intended to be used by the VPL.
 
 For the scope of this system, we will refer to a native geo-library wrapped with the appropriate VPL / javascript bindings as a 'plugin', even though these projects are javascript libraries, and can be loaded as a library into regular javascript projects. 
 
@@ -343,28 +349,81 @@ The components mentioned above fit together to propose the following workflow to
   \item Write or find a geocomputation library written in either C++ or Rust. 
   \item Create a second library, in which a subset of this 
      library is flagged and wrapped as 'functions usable on the web'.
-  \item Optional: Include metadata about how to use this plugin.
-  \item Compile this library with a compatible compiler: Emscripten for C++ (Source), 'wasm-pack' combined with 'wasm-bindgen' for rust (Source).
+  \subitem Optional: Include metadata to add additional functionality to the library
+  \item Compile this library with a compatible compiler.
   \item Publish the results of these compilers to a \ac{CDN}. 
   
   \item Within the VPL: Reference the CDN address to the plugin loader. 
   \item The plugin loader now loads and converts the exposed functions, and includes them in the list of VPL components, ready to be used in the VPL. 
 \end{enumerate}
-Several steps in this workflow require elaboration, which will be given in the subsequent sections: 
+What follows is an elaboration on the side of the plugin model, and on the side of the plugin loader.
 
 \subsection{Plugin Model}
+
+The plugin model serves three purposes:
+
+\subsubsection{Compilation}
+
+One, it needs to form a bridge between the language in which the geocomputation library is written, and javascript. 
+In other words, the requirements of the WebAssembly compiler compatible with the language in question must be adhered to. 
+Both the C++ and Rust compilers require functions to be flagged explicitly for compilation. 
+Additionally, for a library to be compilable, all dependent libraries must also be able to compile to wasm.
+For C++, the Emscripten compiler can be used to compile to WebAssembly (Source). 
+A minimum example of what a 'emscripten-ready-library' looks like can be seen in \reffig{fig:minimum-cpp-wasm}.
+
+For Rust, the 'wasm-pack' and 'wasm-bindgen' toolkits enable \ac{wasm} compilation (Source).
+A minimum example of what this looks like can be seen in \reffig{fig:minimum-rust-wasm}.
+These toolkits do not require incremental compilation steps.
+What is needed, however, is to make sure all dependencies do not use incompatible features, like os file system access. 
+Fortunately, most Rust libraries are written with 'no-std' use-cases in mind, and contain flags to easily exclude these features. 
 
 \begin{figure}
   \centering
   \graphicspath{ {../../assets/diagrams/} }
   \includegraphics[width=\linewidth]{Model Proposal.png}
-  \caption{TODO: Proposed Plugin model}
-  \label{fig:plugin-model}
+  \caption{TODO:  C++: Minimum WebAssembly example}
+  \label{fig:minimum-cpp-wasm}
 \end{figure}
 
 
-The central idea for this model is to either interpret the required information from the wasm binary and related files, or, if that is impossible, add the required information in the wasm wrapper library itself as meta data.
-The following information is required for the VPL to load a geocomputation library, and convert it into visual components:
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/diagrams/} }
+  \includegraphics[width=\linewidth]{Model Proposal.png}
+  \caption{TODO: Rust: Minimum WebAssembly example}
+  \label{fig:minimum-rust-wasm}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/diagrams/} }
+  \includegraphics[width=\linewidth]{Model Proposal.png}
+  \caption{TODO: Rust: Exclude std features}
+  \label{fig:minimum-rust-wasm-no-std}
+\end{figure}
+
+\subsubsection{Wrapping}
+
+Two, it needs to bridge the gap between the dataflow-VPL and regular software library on a functional level. 
+This comes down to wrapping the functionality of the geocomputation library as pure functions. 
+This often leads to making copies of inputs / outputs, or grouping a series of steps to make an imperative interface functional (See \reffig{fig:oop-considered-harmful})
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/6/3/} }
+  \includegraphics[width=\linewidth]{ugly-oop.png}
+  \caption[]{This typescript file technically loads correctly into Geofront, but cannot be reasonably used on the Geofront canvas. TODO: show what this looks like on canvas}
+  \label{fig:oop-considered-harmful}
+\end{figure}
+
+\subsubsection{Flagging}
+
+And Three, it need to communicate the content of the plugin to the VPL. 
+We distinguish between \emph{required} data, and \emph{optional data}.
+The central idea for this aspect is to generate this information automatically from the wasm binary and related files.
+Only when that is impossible, should the information be manually hardcoded within the plugin.
+
+The following information is \emph{required} for the VPL to load a geocomputation library, and convert it into visual components:
 
 \begin{enumerate}[-]
   \item A list of all functions present in the library, uniquely named.
@@ -374,7 +433,7 @@ The following information is required for the VPL to load a geocomputation libra
   \subitem An output type.
 \end{enumerate}
 
-The following information is optional, but it would improve the functionality and usability of the library:
+The following information is \emph{optional}, but it would improve the functionality and usability of the library:
 \begin{enumerate}[-]
   \item Per function:
   \subitem A custom, human-readable name.
@@ -388,12 +447,15 @@ The following information is optional, but it would improve the functionality an
   \subitem A 'constructor' and 'deconstructor', to convert this type from and to basic types present within the VPL.  
 \end{enumerate}
 
-The necessity to automate loading geocomputation libraries means that the \ac{geo-web-vpl} needs to be able to extract this information automatically. 
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/diagrams/} }
+  \includegraphics[width=\linewidth]{Model Proposal.png}
+  \caption{TODO: Proposed Plugin model with flagged functions}
+  \label{fig:plugin-model}
+\end{figure}
 
-
-
-
-\subsection{Loader}
+\subsection{Plugin Loader}
 
 \begin{figure}
   \centering
@@ -403,6 +465,7 @@ The necessity to automate loading geocomputation libraries means that the \ac{ge
   \label{fig:plugin-model}
 \end{figure}
 
+On the side of the plugin loader within the VPL, all the compiled, wrapped and flagged information within the plugin needs to be extracted. 
 The automated extraction of all \textbf{required} information can be done by utilizing TypeScript Declaration 'd.ts' files. 
 A 'd.ts' file can be understood as a 'header' file generated by the TypeScript compiler, exposing the types required by all functions found in a corresponding javascript file.
 By using the typescript compiler in the VPL, this header file could be loaded and interpreted to find all basic information, including the names, the namespace where to find a functions, and all input and output types.
@@ -433,59 +496,68 @@ Instead, these functions are programmatically called when the VPL engine or the 
 
 \newpage
 \section{Tests}
-The purpose of this final step of the methodology is to gather the results and data needed for properly answering the second, third fourth sub-research questions. 
+
+The purpose of this final step of the methodology is to gather the results and data needed for properly answering the second, third fourth sub-research questions.
+This will be done by using the VPL and plugin loader to create an application. 
+This application, and the process to create it, will then be assessed.
+
+\subsubsection{Application}
+
+\begin{note}
+TODO: make a point cloud -> dtm obj tool / isocurves svg / tool
+\end{note}
+
+% \subsubsection{First Experiment}
+% The first experiment compares three different methods of bringing the same geocomputation procedure to the web. 
+% This way, quantitative, measurable aspects of these methods can be compared. 
+% The following three methods are tested:
+% \begin{enumerate}[-]
+%   \item Write the procedure in normal javascript
+%   \item Write the procedure in C++, compile to wasm using the \m{emscriptem} toolkit (Source)
+%   \item Write the procedure in Rust, compile to wasm using the \m{wasm-bindgen} toolkit (Source)
+% \end{enumerate}
+% These procedures are all tested within the same web application, using the same data. 
+% By taking two different languages, we can distinguish between shortcomings of \ac{wasm} itself, and the \ac{wasm} support of a language.  
+
+% The procedure chosen is a 2D convex hull calculation of a set of sample points. 
+% The chosen procedure must be small enough to clearly reason about performance differences, and yet large enough to pose a substantial computational challenge, validating the usage of \ac{wasm}.
+
+% \begin{note}
+%   Expand upon the procedure
+% \end{note}
+
+% The three methods will be compared in terms of:
+% \begin{enumerate}[-]
+%   \item performance
+%   \item load times
+%   \item memory usage
+% \end{enumerate}
+
+% \begin{note}
+%   - todo: turn features around into assessment criteria
+%   - performance: load times, run times
+%   - current state of webassembly & js. how much faster is it? is it even faster? 
+%      - data translation steps, do they mitigate performance gains? 
+%      - also given the fact that we are doing 'functions on sets'/ declarative instead of imperative styles, forced by the format of dataflow programming. 
+% \end{note}
+
+% The studies on browser-based geocomputation (\refsec{sec:related-geoweb}) appear to have conducted a similar experiment, by comparing the same procedure written in C++ and javascript. 
+% However, these studies compared javascript against a native, non-web compilation of C++. 
+% This experiment also differs in distinguishing between \ac{wasm} itself, and a language's \ac{wasm} support.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \subsubsection{Second Experiment
 
 \subsection{Compilation Tests}
 
-The first test focusses on making a measurable comparison between compilation methods, where the second experiment focusses on compilation in a practical, realistic scenario. 
+The first set of tests focusses on making a comparison between compilation methods.
 
-\subsubsection{First Experiment}
-The first experiment compares three different methods of bringing the same geocomputation procedure to the web. 
-This way, quantitative, measurable aspects of these methods can be compared. 
-The following three methods are tested:
-\begin{enumerate}[-]
-  \item Write the procedure in normal javascript
-  \item Write the procedure in C++, compile to wasm using the \m{emscriptem} toolkit (Source)
-  \item Write the procedure in Rust, compile to wasm using the \m{wasm-bindgen} toolkit (Source)
-\end{enumerate}
-These procedures are all tested within the same web application, using the same data. 
-By taking two different languages, we can distinguish between shortcomings of \ac{wasm} itself, and the \ac{wasm} support of a language.  
-
-The procedure chosen is a 2D convex hull calculation of a set of sample points. 
-The chosen procedure must be small enough to clearly reason about performance differences, and yet large enough to pose a substantial computational challenge, validating the usage of \ac{wasm}.
-
-\begin{note}
-  Expand upon the procedure
-\end{note}
-
-The three methods will be compared in terms of:
-\begin{enumerate}[-]
-  \item performance
-  \item load times
-  \item memory usage
-\end{enumerate}
-
-\begin{note}
-  - todo: turn features around into assessment criteria
-  - performance: load times, run times
-  - current state of webassembly & js. how much faster is it? is it even faster? 
-     - data translation steps, do they mitigate performance gains? 
-     - also given the fact that we are doing 'functions on sets'/ declarative instead of imperative styles, forced by the format of dataflow programming. 
-\end{note}
-
-The studies on browser-based geocomputation (\refsec{sec:related-geoweb}) appear to have conducted a similar experiment, by comparing the same procedure written in C++ and javascript. 
-However, these studies compared javascript against a native, non-web compilation of C++. 
-This experiment also differs in distinguishing between \ac{wasm} itself, and a language's \ac{wasm} support.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Second Experiment}
-The second experiment is a qualitative comparison between compiling a full-scale library written in Rust, to a full library written in C++. 
+This is a qualitative comparison between compiling a full-scale library written in Rust, to a full library written in C++. 
 This way, the tooling and workflow can be compared for a realistic use-case. 
 The study will be conducted by attempting to compile both libraries using their respective \ac{wasm} toolsets, and noting the differences in workflow, supported features, and the resulting wasm library. 
 
 we wish to compile these languages without 'disturbing' them: they must be kept the exact same for normal, native usage. 
-We will instead create 'wrapper' libraries. 
 
 \textbf{Library One: CGAL} \\
 The first library tested is CGAL, written in C++, compiled using \m{emscriptem}.
@@ -504,20 +576,13 @@ Startin was chosen, for the triangulation functionalities it provides are compar
 
 \subsection{Usage tests}
 
-The second set up tests seek the data needed to answer the question of \mySubRQFourTitle: \mySubRQFour.
+The second set of tests seek the data needed to answer the question of \mySubRQFourTitle: \mySubRQFour.
+To acquire this data, an application will be created using the VPL, which will be subjected to a qualitative assessment. 
 
-To acquire this data, the various applications created within Geofront will be subjected to a qualitative assessment. 
+\subsubsection{Feature Assessment}
 
-
-\begin{note}
-  CUT OUT THE USE-CASE APPLICATION ASPECT. 
-  -> we can make a utilization assessment based on the criteria alone, We dont need to create an application.
-
-\item \emph{Per requirement, to what extent is it successfully implemented by this dataflow-VPL?}.
-  \item \emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
-
-\end{note}
-
+\emph{Per requirement, to what extent is it successfully implemented by this dataflow-VPL?}.
+\emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
 
 \subsubsection{Assessment Framework}
 For the assessment criteria, the cognitive dimensions framework of \cite[]{green_usability_1996} will be used. 
