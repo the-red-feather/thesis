@@ -31,24 +31,24 @@ However, to specify its contribution, an explanation of this method must first b
   \centering
   \graphicspath{{../../assets/images/background/geo-vpl/}}
   \includegraphics[width=\linewidth]{geoflow.png}
-  \caption{Geoflow: A geocomputation VPL (Source)}
+  \caption{Geoflow: A geocomputation VPL. \citep{peters_geoflow_2019}}
   \label{fig:1:geoflow}
 \end{figure}
 
 A visual programming language is a type of programming language which uses an alternative model to the textual source code of regular programming languages. 
-These alternative models are represented by a \ac{GUI}, in which the program might take the shape of a graph or a block-based instruction set. 
-The value a VPL lies in the fact that constructing or editing a program in a visual way can be a faster process than using a textual method, even for the most experienced software developers (Source: VPLs, Source, Vpls). 
-Additionally, a \ac{VPL} allows for End User Development (Source). 
-A \ac{VPL} may make processes more accessible to end users, as it allows practitioners to automate some processes and workflows like a software developer, but without needing a background in software development (Source: End user development). 
-Finally, VPLs may even have performance and reliability advantages over textual languages, but only if it is implemented as a so-called dataflow-type VPL (Source: Dataflow). 
+These alternative models are represented by a \ac{GUI}, in which the program might take the shape of a graph or a block-based instruction set for example. 
+The value a VPL lies in the fact that constructing or editing a program in a visual way can be a faster process than using a textual method, even for the most experienced software developers \citep{green_usability_1996, kuhail_characterizing_2021}.
+Additionally, a \ac{VPL} allows for End User Development \citep{kuhail_characterizing_2021}: 
+In general, \ac{VPL} makes processes more accessible to end users, as it allows practitioners to automate some processes and workflows like a software developer, but without needing a full background in software development \citep{benac_recent_2022}. 
+Finally, VPLs may even possess performance and reliability advantages over textual languages, but only if it is implemented as a so-called dataflow-type VPL \citep{sousa_dataflow_2012}. 
 
 These qualities are beneficial to geocomputation, and perhaps as a consequence, geocomputation by means of visual programming is not an uncommon phenomena in the field of \ac{GIS}.
-For example, Safe software's FME (SOURCE) is a popular \ac{VPL} among \ac{GIS} practitioners, arguably due to the way it simplifies the process of writing a \ac{ETL} pipeline. 
-Another example is McNeel's Grasshopper (source), often used for small-scale spatial analyses, like solar irradiation or heating demands of a neighborhood (source). 
+For example, Safe software's FME \citep{safe-software_fme_2022} is a popular \ac{VPL} among \ac{GIS} practitioners, arguably due to the way it simplifies the process of writing a \ac{ETL} pipeline. 
+Another example is McNeel's Grasshopper \citep{rutten_grasshopper_2012}, often used for small-scale spatial analyses, like solar irradiation or heating demands of a neighborhood \citep{sadeghipour_roudsari_ladybug_2013}. 
 
-A new development regarding Geocomputation VPLs is attempting to make these VPLs web applications.
-The value in this that web applications require no explicit installment to use the application (source: vpl 2019, source: hybrid). 
-The Mobius Modeller is a good example of a browser-based geocomputation VPL.
+A new development regarding Geocomputation VPLs is attempting to make these VPLs run in a web browser.
+The value of this is that web applications require no explicit installment to use the application, giving them distribution and accessibility advantages over native applications \citep{kuhail_characterizing_2021, panidi_hybrid_2015}. 
+The Mobius Modeller is a good example of a browser-based geocomputation VPL \citep{janssen_mobius_2021}.
 The application allows users to configure a calculation by visual means in a web browser, which can then be shared as a stand-alone web application. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -67,8 +67,8 @@ This study focusses on the particular problem of library portability. % and inte
 Successful geocomputation pipelines often relies on operations found in a select number of libraries. 
 Most major, industry-standard geocomputation libraries are native, C++-based libraries. 
 Examples of these are GDAL, PROJ, and GEOS. 
-However, A web based geocomputation VPL like the Mobius Modeller does not make use of these libraries, and uses javascript equivalents like Turf (Source).
-While it is possible to port a library like GDAL to javascript, guarantying that these two versions show the same behavior will be complex and time consuming. Additionally, managing duplicate libraries in general will slow down development, or create large version discrepancies. (Source: MAPLIBRE-RS) 
+However, A web based geocomputation VPL like the Mobius Modeller does not make use of these libraries, and uses javascript equivalents like Turf \citep{turf_contributors_turfjs_2022}.
+While it is possible to port a library like GDAL to javascript, guarantying that these two versions show the same behavior will be complex and time consuming. Additionally, managing duplicate libraries like this will slow down development, or create large version discrepancies \citep{ammann_maplibre-rs_2022}.
 
 Fortunately, on a theoretical level, it is possible to compile a native C++ library to a web-consumable format using the 'WebAssembly' binary format \citep{haas_bringing_2017}.
 This way, only one library needs to be maintained to serve all platforms, both native and web. 
@@ -94,7 +94,7 @@ However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{
 % The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. 
 
 \begin{enumerate}[-]
-  \item \ac{wasm} promises a 'near native performance' (Source: Wasm). However, this can be quite situational, as multiple studies have shown \citep{jangda_not_2019} (Source: the bachelor thesis). 
+  \item \ac{wasm} promises a 'near native performance' \citep{haas_bringing_2017}. However, this can be quite situational, as multiple studies have shown \citep{jangda_not_2019, melch_performance_2019}. 
   \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not function without workarounds. 
   \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
   \item Compiling an \emph{library} to \ac{wasm} is seriously different from compiling a full \emph{application} to wasm. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
@@ -105,7 +105,7 @@ However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{
 
 Secondly, even if the libraries are compiled to a web-ready format, geocomputation functionalities might not be able to \textbf{load} properly within a web-based VPL.
 
-This is a challenge of writing an appropriate binding system. 
+This is a challenge of designing an appropriate binding system or plugin loader. 
 When writing Python bindings to a C++ library for example, one has to consider the way both languages operate, and make sure the discrepancies between the language models are accounted for, such as manual memory management. 
 This is not different from a visual language interfacing with a web-compiled native library. 
 However, this situation adds additional challenges, as the host \ac{VPL} does not necessarily know the source language of the binary. 
@@ -126,10 +126,9 @@ The model requires all functions to be pure, and all variables to be immutable.
 This might invalidate some of the operations found in these libraries, or make other operations complicated to use in practice.
 
 
-
 \section{Research Objective}
 This study seeks to improve the state of browser-based geocomputation VPLs.
-This is pursuit by studying a possible solution to the library portability problem found in existing browser-based geocomputation VPLs.
+This is done by studying a possible solution to the library portability problem found in existing browser-based geocomputation VPLs.
 
 The study poses that the library portability problem can only be overcome if native geocomputation libraries are able to be properly compiled, loaded and utilized in a browser-based dataflow-VPL format. 
 There are multitude of technical challenges present within each one of these steps, and in between these steps. 
@@ -262,17 +261,15 @@ However, due to time limitations, these concerns are left to future research.
 The study limits itself to native libraries written in C++ and Rust. 
 C++ was chosen, since almost all relevant geocomputation libraries are written in C++, like CGAL and PROJ. 
 Rust was chosen, for its extensive WebAssembly support. 
-It also appears to be the most popular language for writing WebAssembly (Source: The State of WebAssembly 2022).
+It also appears to be the most popular language for writing WebAssembly \citep{eberhardt_state_2022}.
 It contains a number of relevant geocomputation libraries, but not to the same extend as C++.
 
 \subsection*{Only core browser features}
 Lastly, the implementation of the prototype geocomputation VPL will limit itself to core browser features, keeping dependencies at a minimum, in an attempt to generalize the results of the study.
 If the study would use very specific web frameworks and technologies to solve key issues, questions might arise if the results of the study counts in general for browser-based geocomputation or geocomputation VPLs, or if they only count in this very specific scenario. 
-"Core browser features" is defined in \refsec{sec:method-one}.
+"Core browser features" is defined in \refsec{sec:method-base-vpl}.
 
 \newpage
-
-
 \section{Reading Guide}
 The remainder of this study is structured as follows:
 
