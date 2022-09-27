@@ -4,6 +4,7 @@ This chapter presents the execution of the first and second step of the methodol
 It discusses the achieved functionality, and mentions the ways this implementation fell short of the methodology.
 
 \section{The Geofront Application}
+\label{sec:implementation:app}
 
 \begin{figure}
   \centering
@@ -15,7 +16,10 @@ It discusses the achieved functionality, and mentions the ways this implementati
 
 This section discusses the extend of the prototype \ac{VPL} implementation. 
 The prototype is titled "Geofront", as a concatenation of "geometry" and "frontend".
-Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} (SOURCE: https://github.com/thegeofront).
+Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} .
+
+% TODO: do something with appendix
+% (SOURCE: https://github.com/thegeofront)
 
 The Geofront Application is implemented according to the design layed out in \refsec{sec:method:base-vpl}, and uses TypeScript as its main language. 
 \m{webpack} is used to compile this codebase into a singular javascript file, and this file practically serves as the full application. 
@@ -73,7 +77,7 @@ In practice, to support iteration, some runtime type checking was still required
 \end{figure}
 
 The graph data model must be rendered to the screen so users can comprehend and edit the graph. 
-This visualization is achieved by using the SOURCE: \href{https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API}{HTML5 Canvas Api}. 
+This visualization is achieved by using the HTML5 Canvas Api. 
 The Canvas API is a raster-based drawing tool, offering an easy to use, high-level api to draw 2D shapes such as lines, squares, circles, and polygons. 
 The Nodes Canvas uses this API to draw polylines and polygons at runtime, to represent the cables and nodes respectively. 
 These basic shapes and their styles change dynamically, based on features like the length of a cable, how many input sockets a node requires, or whether or not a node is selected. 
@@ -97,7 +101,7 @@ This performance hit is partially due to the implementation, and partially due t
 The browser does not offer a 'middle ground' between html-like rendering and 2D canvas-like rendering required for a visualization like the dataflow graph. 
 Still, this implementation could have experimented more with a HTML + SVG based render method.
 
-\subsubsection*{Style}
+\subsubsection*{Presentation}
 
 \begin{figure}
   \centering
@@ -107,8 +111,8 @@ Still, this implementation could have experimented more with a HTML + SVG based 
   \label{fig:a-full-graph}
 \end{figure}
 
-Special care has been put into the style of the implementation.
-The visuals take inspiration from various geometry VPLS, such as Blender's GeometryNodes, McNeel's Grasshopper, and Ravi Peter's GeoFlow (SOURCE). 
+Special care has been put into the presentation of the implementation.
+The layout takes inspiration from various geometry VPLs mentioned at \refsec{sec:related-geovpl}, such as Blender's GeometryNodes, McNeel's Grasshopper, and Ravi Peter's GeoFlow. 
 A few notable exceptions, however. 
 Firstly, the entire graph is placed on a grid, and all nodes adhere to this grid (see \reffig{fig:a-full-graph}). 
 For example, a node with three inputs will always occupy three grid cells in height. 
@@ -129,7 +133,6 @@ Cables also adhere to the grid. They alter their shape in such a way to remain a
 \end{figure}
 
 The 3D viewer attached to the geofront application is also implemented in typescript. 
-It is similar in architecture to the Three.js render engine (Source).
 It uses WebGL and the OpenGL Shading Language (glsl) as its graphics API. 
 The viewer can be used to represent and visualize various geometries, such as points, lines, meshes, bezier curves, and bezier surfaces.
 Images can also be rendered, which are represented as a quad mesh with a texture. 
@@ -217,7 +220,6 @@ There are ways of supporting incrementally reading files in a browser, but these
 
 The plugin system is implemented according to design discussed in \refsec{sec:method:plugin-system}.
 The implementation comes down to a plugin loader written inside of the Geofront application, with an accompanied workflow of how to create such a plugin. 
-Several demo plugins were created during the development of this implementation, which are covered by \refsec{sec:analyses:compilation}.
 
 \subsection{The plugin loader}
 \label{sec:implementation:loading:limits}
