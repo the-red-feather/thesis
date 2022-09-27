@@ -29,10 +29,6 @@ Since giving a full overview of all aspects of these bodies of work is too exten
 % \section{Geocomputation Libraries}
 % \label{sec:background-geo}
 
-% \begin{note}
-%   TODO: finish this chapter
-% \end{note}
-
 % This section offers a brief background on the wide topic of geocomputation. 
 
 % % PURPOSE: Show that you understand geo-computation | Show why the rest of the study will focus on the computer graphics side of things
@@ -43,10 +39,6 @@ Since giving a full overview of all aspects of these bodies of work is too exten
 
 % It must be emphasized that a geocomputational procedure is always fully defined by and dependent upon its input and output data types (similar to any type of computation). 
 % This is also why geocomputation is seldom a \emph{goal} in itself, but much rather the \emph{means} to discovering geo-information. 
-
-% \begin{note}
-%   TODO: show images of geo-computation
-% \end{note}
 
 % \subsection{Similarities and differences with neighboring fields}
 
@@ -204,23 +196,22 @@ By combining this low-level format with features like a system of incremental pr
 it can be utilized to run a native application or library in a web browser, regardless of the language used to create it, be it C/C++, Python, C\#, Java, or Rust. 
 This means that in order to create a web application, developers can now in principle develop a normal, native application instead, which can then be compiled to WebAssembly, and served on the web just like any other web application. 
 
-
 \subsection*{Applications}
 
-It is important to note that these features offer a reverse workflow compared to the now popular Electron based applications described in \refsec{sec:background-web-rich}.
+These features together offer a reverse workflow compared to the now popular Electron based applications described in \refsec{sec:background-web-rich}.
 Applications can now be written natively, and subsequently published to the web, instead of writing software as a web application, which may be packaged as a desktop application. 
 
 The WebAssembly format has several other use cases.
-Contrary to its name, WebAssembly has no specific link to the web or assembly language, and its name is only a remnant of its initial use-case.
-A cross-platform, safe binary format, together with a versatile runtime implemented in several languages, makes WebAssembly applicable for other use cases. 
+Contrary to its name, WebAssembly has no specific link to the web or assembly language, its name being a remnant of its initial use-case.
+A cross-platform binary format which is designed to be lightweight, fast and safe, together with a versatile runtime implemented in several languages, makes WebAssembly applicable for other use cases. 
 It is currently sees usage as a plugin system, as a runtime for serverless cloud-compute services, and as a lightweight runtime for IoT devices, according to a small-scale survey \citep{eberhardt_state_2022}. 
-Still, compiling libraries and application to the web remains the main, post popular application of WebAssembly, according to the same article. 
+Still, compiling libraries and application to the web remains the main, post popular application of WebAssembly. 
+This study is focussed on the web usage of WebAssembly, and will treat it with mainly that use-case in mind.
 
 \subsection*{Limitations}
 
 \emph{in principle}, and if the appropriate compilers exist, any application and library written in any language can be compiled to WebAssembly. 
 In practice, there are quite a few caveats to the format. 
-
 These limitations can be split up into two groups: 
 Limitations due to the web platform, and limitations due to the current state of the language and its host.
 
@@ -229,36 +220,36 @@ There is no '\m{os}' or '\m{sys}' it can call out to, as it cannot ask for resou
 Secondly, WebAssembly is in its early phases as a language, and is intended as a simple, bare-bones, low-level compile target. 
 For example, the current version does not support concurrency features like multithreading.
 
-Many of these shortcomings can be mitigated by calling JavaScript and HTML5 features from WebAssembly. 
+Many of these shortcomings can be mitigated by calling JavaScript using HTML5 features from WebAssembly. 
 This is what the majority of current WebAssembly projects look like. 
 However, this layer of javascript 'boilerplate' or 'glue code' is inefficient, as it leads to duplication and redirection.
 Additionally, platforms wishing to support WebAssembly must now also support javascript. 
 
 \subsection*{Performance}
 
-The initial performance benchmarks look promising. The majority of performance comparisons show that WebAssembly only takes 10\% longer than the native binary it was compared to \cite{haas_bringing_2017}. A later study confirms this by reproducing these benchmarks \cite{jangda_not_2019}. It even notices that improvements have been made in the two years between the studies. However, Jangda et. al. criticize the methodology of these benchmarks, stating that only small scale, scientific operations where benchmarked, each containing only 100 lines of code. The paper then continues to show WebAssembly is much more inefficient and inconsistent when it comes to larger applications which use IO operations and contain less-optimized code. These applications turn out to be up to twice as slow compared to native, according to their own, custom benchmarks. 
+The initial performance benchmarks look promising. The majority of performance comparisons show that WebAssembly only takes 10\% longer than the native binary it was compared to \citet{haas_bringing_2017}. A later study confirms this by reproducing these benchmarks \citep{jangda_not_2019}. It even notices that improvements have been made in the two years between the studies. However, Jangda et. al. criticize the methodology of these benchmarks, stating that only small scale, scientific operations where benchmarked, each containing only 100 lines of code. The paper then continues to show WebAssembly is much more inefficient and inconsistent when it comes to larger applications which use IO operations and contain less-optimized code. These applications turn out to be up to twice as slow compared to native, according to their own, custom benchmarks. 
 Jangda et. al. reason that some of this performance difference will disappear the more mature and adopted WebAssembly becomes, but state that WebAssembly has some unavoidable performance penalties as well. 
 One of these penalties is the extra translation step, shown in \reffig{fig:wasm-trajectory}, which is indeed unavoidable when utilizing an in-between compilation target. 
 
-Some studies have taken place evaluating \ac{wasm}'s performance for geospatial operations specifically. 
-Melch performed extensive benchmarks on polygon simplification algorithms written in both javascript and WebAssembly \cite{melch_performance_2019}. 
+Some studies have taken place evaluating \ac{wasm}'s performance  \\ for geospatial operations specifically. 
+Melch performed extensive benchmarks on polygon simplification algorithms written in both javascript and WebAssembly \citep{melch_performance_2019}. 
 It concludes by showing WebAssembly was not always faster, but considerably more consistent. 
 Melch had this to say: "To call the WebAssembly code the coordinates will first have to be stored in a linear memory object. 
 With short run times this overhead can exceed the performance gain through WebAssembly. 
 The pure algorithm run time was always shorter with WebAssembly.". 
-These findings match \cite{jangda_not_2019}, showing that the duplication of data into the webassembly memory buffer is a considerable bottleneck.
+These findings match \citet{jangda_not_2019}, showing that the duplication of data into the webassembly memory buffer is a considerable bottleneck.
 
-A recent study concerned with watershed delineation \cite{sit_optimized_2019} also concluded client-side WebAssembly to be more performant than server-side C, which, as a side effect, enabled their application to be published on the web without an active server. 
+A recent study concerned with watershed delineation \citep{sit_optimized_2019} also concluded client-side WebAssembly to be more performant than server-side C, which, as a side effect, enabled their application to be published on the web without an active server. 
 
-Lastly, the sparse matrix research of Sandhu et al. will be mentioned. \cite{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. It states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision, probably due to byte spacing.
+Lastly, the sparse matrix research of Sandhu et al. must be mentioned \citep{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. It states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision, probably due to byte spacing.
 
-Even though this study falls in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \cite{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account when using the compile target.
+Even though geocomputation can fall in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \citet{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account when using the compile target.
 
 \begin{figure}[!tbp]
   \centering
   \begin{minipage}[b]{0.80\textwidth}
-    \graphicspath{ {../../assets/images/misc/} }
-    \includegraphics[width=300px]{todo.jpg}
+    \graphicspath{ {../../assets/images/2/} }
+    \includegraphics[width=300px]{wasm-perf.png}
     \caption{Comparison of compilation trajectories}
     % based on the finding of \cite{jangda_not_2019}
     \label{fig:wasm-trajectory}
@@ -355,7 +346,7 @@ Even though this study falls in the category of scientific computation, these pe
 
 \newpage
 
-\section{Visual Programmming}
+\section{Visual Programming}
 \label{sec:background-vpl}
 
 The third body of work this study draws from is works on the topic of visual programming. 
@@ -363,14 +354,14 @@ This section offers a brief overview on the topic itself, after which since \ref
 
 \subsection*{Visual programming languages}
 
-A \ac{vpl}, or visual programming environment, is a type of programming language represented in a graphical, non-textual manner.
-A VPL often refers to both the language and the \ac{ide} which presents this language in an editable way, by means of a \ac{gui}.
-A visual programming language allows users to create programs by adding preconfigured components to a canvas, and connecting these components to form programs. 
+A \ac{VPL}, or visual programming environment, is a type of programming language represented and manipulated in a graphical, non-textual manner.
+A VPL often refers to both the language and the \ac{IDE} which presents this language in an editable way, by means of a \ac{GUI}.
+A visual programming language allows users to create programs by adding reconfigured components to a canvas, and connecting these components to form programs. 
 
-Multiple types of \ac{vpl}s exist, but also multiple taxonomies of these types.
-This study bases itself on the classifications presented in \cite{kuhail_characterizing_2021}, stating four different types of visual programming languages: 
+Multiple types of \ac{VPL}s exist, but also multiple taxonomies of these types.
+This study bases itself on the classifications presented in \citet{kuhail_characterizing_2021}, stating four different types of visual programming languages: 
 \begin{enumerate}
-  \item \textbf{Block-based languages}, in which all normal programming language features, like brackets, are represented by specific blocks which can be 'snapped' together (see \reffig{fig:vpl-types:1}).
+  \item \textbf{Block-based languages}, in which all normal programming language \\ features, like brackets, are represented by specific blocks which can be 'snapped' together (see \reffig{fig:vpl-types:1}).
   \item \textbf{Diagram-based languages}, in which programming function are represented by nodes, and variables are represented by edges between these components (see \reffig{fig:vpl-types:2}). This makes the entire program analogous to a Graph.
   \item \textbf{Form-based languages}, in which the functioning of a program can be configured by means of normal graphical forms (see \reffig{fig:vpl-types:3}). 
   This approach enhances the stability and predictiveness compared to other types, at the cost of expressiveness.
@@ -380,8 +371,8 @@ This study bases itself on the classifications presented in \cite{kuhail_charact
 The meta analysis of \cite{kuhail_characterizing_2021} shows a great preference among researchers for block- and diagram-based languages. 
 Only 4 out of 30 of the analyzed articles chose a form-based vpl, and only 2 chose an icon-based approach.  
 
-This study wishes introduce a fifth type of VPL. 
-A \textbf{Dataflow} VPL is a subtype of a diagram based VPL which only uses pure functions as computation nodes, only uses immutable variables, and which disallows cyclical patterns. This makes this VPL not only a graph, but a \ac{dag}.
+This study requires to introduce a fifth type of VPL. 
+A \textbf{Dataflow} VPL is a subtype of a diagram based VPL which only uses pure functions as computation nodes, only uses immutable variables, and which disallows cyclical patterns. This makes this VPL not only a graph, but a \ac{DAG}.
 More on this in \refsec{sec:background:dataflow}.
 
 \begin{figure}
@@ -413,17 +404,21 @@ More on this in \refsec{sec:background:dataflow}.
   \includegraphics[width=\linewidth]{icon-based.jpg}
   \caption{}\label{fig:vpl-types:4}
 \end{subfigure}%
-\caption[Types of \ac{vpl}s]{Four different types of visual programming languages: Block-based, diagram-based, form-based, and icon-based, respectively}%
+\caption[Types of \ac{vpl}s]{Four different types of visual programming languages: 
+Block-based \citep{resnick_scratch_2009}, 
+diagram-based \citep{blender_foundation__contributers_geometry_2022}, 
+form-based \citep{weber_form-based_2013}, 
+and icon-based \citep{francese_iconic_2017}, respectively}%
 \label{fig:vpl-types}
 \end{figure}
 
 Visual programming languages are used in numerous domains. 
-The vpls of the 30 studies examined by (SOURCE) were aimed at domains such as the Internet of Things, robotics, mobile application development, and augmented reality. 
-Within the domain of systems control and engineering, The Ladder Diagram vpl (SOURCE) is the industry-standard for programming Programmable Logic Controllers (PLCs).
-\ac{vpl}s are also widely used within computer graphics related applications, including the field of \ac{gis}, 
+The vpls of the 30 studies examined by \citet{kuhail_characterizing_2021} were aimed at domains such as the Internet of Things, robotics, mobile application development, and augmented reality. 
+Within the domain of systems control and engineering, The Ladder Diagram vpl \citep{control_automation_ladder_2018} is the industry-standard for programming Programmable Logic Controllers (PLCs).
+\ac{VPL}s are also widely used within computer graphics related applications, including the field of \ac{GIS}, 
 These will be covered in \refsec{sec:related-geovpl}.
-Lastly, \ac{vpl}s also have great educational applications. 
-Harvard's introduction to computer science course, CS50, famously starts out with Scratch, a block-based visual programming language normally targeted at children, to teach the basics of computational thinking (Source: CS50). 
+Lastly, \ac{VPL}s also have great educational applications. 
+Harvard's introduction to computer science course, CS50, famously starts out with Scratch, a block-based visual programming language normally targeted at children, to teach the basics of computational thinking \citep{yu_cs50s_2021}. 
 
 % \begin{note}
 %   Traditionally, visual programming has been successfully used to help novices
@@ -438,57 +433,62 @@ Harvard's introduction to computer science course, CS50, famously starts out wit
 
 \subsection{Usability}
 
-Studies on \ac{vpl}s indicate that generally speaking, VPLs make it easy for end users to visualize the logic of a program, and that vpls eliminate the burden of handling syntactical errors \cite{kuhail_characterizing_2021}.
+Studies on \ac{VPL}s indicate that generally speaking, VPLs make it easy for end users to visualize the logic of a program, and that vpls eliminate the burden of handling syntactical errors \cite{kuhail_characterizing_2021}.
 
-The locally famous Cognitive Dimentions study \cite{green_usability_1996}, states that \emph{"The construction of programs is probably easier in VPLs than in textual languages, for several reasons: 
+The locally famous Cognitive Dimensions study \cite{green_usability_1996}, states that \emph{"The construction of programs is probably easier in VPLs than in textual languages, for several reasons: 
 there are fewer syntactic planning goals to be met, such as paired delimiters, discontinuous constructs, separators, or initializations of variables; 
 higher-level operators reduce the need for awkward combinations of primitives; 
 and the order of activity is freer, so that programmers can proceed as seems best in putting the pieces of a program together."}. 
 Indeed, a vpl UI can be used to eliminate whole classes of errors on a UI level by, for example, not allowing the connection of two incompatible data types. 
-
-\begin{note}
-  TODO: this is a weak argument. This also needs to be more nuanced
-\end{note}
-
-% //The meta analysis of \cite{kuhail_characterizing_2021} also 
 
 These properties together make visual programming also highly suitable for activities of \textbf{experimentation} and \textbf{debugability}, and not only for end users. 
 
 % ADVANTAGE: PLAYFULNESS
 
 \subsection{End User Development \& Low Coding}
-A \ac{vpl} has the potential to make automation available to a large audience, and this is exactly its purpose. 
-Visual Programming is part of a larger field, named End User Development (EUD). 
-The field is concerned with allowing end users who are not professional software developers to write software applications, using specialized tools and activities. 
+A \ac{VPL} has the potential to make automation available to a large audience, and this is exactly its purpose. 
+Visual Programming is part of a larger field, named \ac{EUD}. 
+The field is concerned with allowing end users who are not professional software developers to write applications and automate processes, using specialized tools and activities. 
+
+\citet{kuhail_characterizing_2021} point out two serious advantages of EUD. 
+First, end users know their own domain and needs better than anyone else, and are often aware of specificities in their respective contexts. 
+And two, end users outnumber developers with formal training at least by a factor of 30-to-1.
 This however, does not mean that experienced developers have nothing to gain from this research. 
 Lowering the cognitive load of certain types of software development could save time and energy which can then be spend on more worthwhile and demanding tasks. 
 
-\cite{kuhail_characterizing_2021} point out two serious advantages of EUD. 
-First, end users know their own domain and needs better than anyone else, and are often aware of specificities in their respective contexts (\cite{kuhail_characterizing_2021}). 
-And two, end users outnumber developers with formal training at least by a factor of 30-to-1 according to Kuhail et. al., and my suspicion is that this might be much higher.
+Not all \ac{EUD} applications are \ac{VPL}s. A good example of this is \citet{elliott_tangible_2007} constructed a \ac{GUI} algebra system to allow non-cli-based application to 'pipe' data between applications, just like how UNIX-based programs can be composed into pipes \reffig{fig:gui-algebra}.
 
-% rewrite this more professionally...
-I would like to add that offering the general public a chance to automate repetitious workflows might not only increase productivity, but can also greatly improve the quality of life in general, by focussing on the profound instead of the mundane. 
+In the private sector, \ac{EUD} is represented by the "low code" industry. 
+Technology firms such as Google and Amazon are investing at scale in low-coding platforms \citep{kuhail_characterizing_2021}.
+The market value was estimated at 12.500 Million USD, and with a growth rate between 20 and 40 percent, the value may reach as high as 19 Billion by 2030 \citep*{ltd_low-code_2021}.
+Despite this being just market speculation, it does give an indication in a general need for end-user development solutions.
 
-In the private sector, \ac{eud} is represented by the "low code" industry. 
-Technology firms such as Google and Amazon are investing at scale in low-coding platforms (\cite{kuhail_characterizing_2021}),
-The market value was estimated at 12.500 Million USD (Source: ), and with a growth rate between 20 and 40 percent, the value may reach as high as 19 Billion by 2030 (SOURCE: FORRESTER) 
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.80\textwidth}
+    \graphicspath{ {../../assets/images/2/} }
+    \includegraphics[width=300px]{gui-algebra.png}
+    \caption{End User development by means of GUI algebra}
+    % based on the finding of \cite{jangda_not_2019}
+    \label{fig:gui-algebra}
+  \end{minipage}
+\end{figure}
 
 \subsection{Dataflow programming}
 \label{sec:background:dataflow}
-An important aspect of the dataflow-VPL is the connection to the field of dataflow programming, which is not necessarily linked to VPLs. 
+An important aspect of the dataflow-VPL is the connection to the field of dataflow programming, which is also a more general field than \ac{VPL}s in particular. 
 
-Dataflow programming is a programming paradigm which internally, represents a program as a \ac{dag} (SOURCE Dataflow 2012). 
-A graphical, editable representation of a dataflow program would result into a Dataflow \ac{vpl}.
+Dataflow programming is a programming paradigm which internally, represents a program as a \ac{DAG} \citep{sousa_dataflow_2012}. 
+A graphical, editable representation of a dataflow program would result into a Dataflow \ac{VPL}.
 
-The big computational advantage of this model, is that it allows for implicit concurrently (SOURCE dataflow 2012). 
+The big computational advantage of this model, is that it allows for implicit concurrently \citep{sousa_dataflow_2012}. 
 In other words, every node of a program written using dataflow programming can be executed in isolation of any other nodes, as long as the direct dependencies (the inputs) are met. 
 No global state or hidden side effects means no data-race issues, which allows parallel execution of the program by default.
 When using other paradigms, programmers need to manually spawn and manage threads to achieve the same effect. 
 
-This leads into an interesting side-effect of using dataflow programming / a diagram-based \ac{vpl}: 
+This leads into an interesting side-effect of using dataflow programming / a diagram-based \ac{VPL}: 
 By only permitting pure, stateless functions with no side-effect, and only immutable variables, end users automatically adopt a functional programming style (albeit without lambda functions).
-Functional programming has many benefits of its own besides concurrency, such as clear unit testing, hot code deployment, debugging advantages, and lending itself well for compile time optimizations (SOURCE: functional programming).
+Functional programming has many benefits of its own besides concurrency, such as clear unit testing, hot code deployment, debugging advantages, and lending itself well for compile time optimizations \citep{akhmechet_functional_2006, elliott_tangible_2007}.
 
 
 % functional programming
@@ -502,15 +502,14 @@ Functional programming has many benefits of its own besides concurrency, such as
 % specific type of application is commonly denominated as Cell-Oriented DPF or
 % Reactive programming.
 
-The important take-away is this: 
-A \ac{vpl} is not just a matter of a user-friendly UI or a stylistic choice.
-This might be true for block-based vpls, but not for diagram-based vpls. 
+All that to say, creating a \ac{VPL} is not just a matter of designing a stylistic, user-friendly \ac{GUI} alternative to regular programming.
+This might be true for other types of VPLs, but not for diagram-based ones. 
 By closely resembling dataflow itself, and because of its functional programming nature, diagram-based vpls can actually lead to faster and more reliable software.
 
 \subsection{Disadvantages and open problems}
 \label{sec:background:vpl:disadvantages}
  
-\ac{vpl}s and dataflow programming en large have got certain disadvantages and open problems.
+\ac{VPL}s and dataflow programming en large have got certain disadvantages and open problems:
 
 % (Dataflow programming is an area still open to further research, with some open
 % issues to answer. In fact, most of the open questions today have long been
@@ -537,34 +536,34 @@ By closely resembling dataflow itself, and because of its functional programming
     \includegraphics[width=\linewidth]{iteration-text.png}
     \caption{}\label{fig:vpl-iteration:2}
   \end{subfigure}%
-  \caption[Comparrison of iteration]{A factorial function, written in a vpl, and textual form}%
+  \caption[Comparison of iteration]{A factorial function, written in a vpl, and in a textual language \citep{sousa_dataflow_2012}}%
   \label{fig:vpl-iteration}
 \end{figure}
 
-A problem described in almost all reviewed vpl literature (Source: advanced in dataflow, SOURCE: Dataflow programming,  SOURCE: COGNITIVE), is that the \ac{dag} model of diagram-based vpls are ill-suited for representing even the most basic flow control statements: \m{if, else, for, while}.
+A problem described in almost all reviewed vpl literature \citep{green_usability_1996,sousa_dataflow_2012, kuhail_characterizing_2021}, is that the \ac{DAG} model of diagram-based vpls are ill-suited for representing even the most basic flow control statements: \m{if, else, for, while}.
 Even if the acyclic quality of the dataflow graph is omitted, the resulting models are significantly more complicated compared to their textual counterparts, as shown by \reffig{fig:vpl-iteration}.
 
 \subsubsection*{Encapsulation \& reusability}
-Similar and yet different is the topic of encapsulation, or, how (SOURCE: COGNITIVE) names this problem: 'visibility'.
-It is widely known that as a program scales in size, the complexity of handling the application scales exponentially.
+Similar and yet different is the topic of encapsulation, or, how \citet{green_usability_1996} names this problem: 'visibility'.
+It is widely known that as a program scales in size, the complexity of managing the application scales exponentially with it.
 In textual languages, reducing this complexity is often achieved by means of encapsulating sub-routines and re-usable parts of the program into separate functions.
 Inner functionality is then hidden, and operations can be performed on a higher level of abstraction. 
-This hierarchy of abstraction is just as achievable for \ac{vpl}s as described by (SOURCE: Dataflow programming).
-However only a select number of \ac{vpl}s offer a form of encapsulation, and even less allow the creation of reusable functions, or creating reusable libraries from vpl scripts.
-It appears that \ac{vpl} researches and developers are either not aware of the importance of encapsulation, or have encountered problems in representing this feature in a graphical manner.
+This hierarchy of abstraction is just as achievable for \ac{VPL}s as described by \citet{sousa_dataflow_2012}.
+However only a select number of \ac{VPL}s offer a form of encapsulation, and even less allow the creation of reusable functions, or creating reusable libraries from vpl scripts.
+It appears that \ac{VPL} researches and developers are either not aware of the importance of encapsulation, or have encountered problems in representing this feature in a graphical manner.
 
 % \subsubsection{High viscocsity}
 % Viscosity was surprisingly high in the languages we looked at. The role of the diagram editor is crucial, yet few research papers in the usual programming literature discuss the design of effective diagram editors. In our straw viscosity test we found a range from about 1 minute to about 9 minutes for making semantically equivalent changes to programs in different languages. Visibility can be very poor. Systematic, easy-to-understand search tools need to be developed and user-tested, and if at all possible de facto standards should be adopted.
 
 \subsubsection*{Subjective Assessment}
-Additionally, the claims that \ac{vpl}s lend themselves well for end-user development is problematic from a technical perspective. 
+Additionally, the claims that \ac{VPL}s lend themselves well for end-user development is problematic from a technical perspective. 
 Usability is a nebulous phenomenon, and challenging to measure empirically.
 As often with more subjective matter, researchers have yet to form a consensus over a general evaluation framework. 
 There is, however, a reasonable consensus on the 'qualities' a VPL should aspire to. 
-This is different from a full assessment framework, but nontheless useful for comparing \ac{vpl}s.
-The dimensions given in the cognitive dimensions framework (SOURCE) have acquired a somewhat canonical nature within \ac{vpl} research.
-The number of citations of this work is relatively high, and indeed, almost all \ac{vpl} studies the author was able to find referred back to this critical work.   
-In so far as this study needs to address the usability of the prototype VPL, we will thus follow this consensus, and base any assessment on (SOURCE).
+This is different from a full assessment framework, but nonetheless useful for comparing \ac{VPL}s.
+The dimensions given by the cognitive dimensions framework \citep{green_usability_1996} have acquired a somewhat canonical nature within \ac{VPL} research.
+The number of citations of this work is relatively high, and indeed, almost all \ac{VPL} studies the author was able to find referred back to this work.   
+In so far as this study needs to address the usability of the prototype VPL, we will thus follow this consensus, and base any assessment on this framework.
 
 % - we will make no such attempt. usability serves as background motivation. 
 % - this study assumes vpl's are 'in general' more usable to end-users 
@@ -572,30 +571,36 @@ In so far as this study needs to address the usability of the prototype VPL, we 
 % studies analysed by communicating_2021.
 
 \subsubsection*{Lacking Life-cycle support}
-Finally, (communicating 2021) names the 'life cycle' of applications created by \ac{vpl}s as one of the most overlooked aspects within VPL research.
+Finally, \citet{kuhail_characterizing_2021} names the 'life cycle' of applications created by \ac{VPL}s as one of the most overlooked aspects within VPL research.
 Out of the 30 studies covered by the meta analysis, only one briefly touched the topic of life cycle. 
 Life cycle in this context refers to all other activities besides "creating an application that does what it needs to do".
-Examples of these activities are version control, extending an existing application, debugging, testing the codebase, and publishing the application to be used outside of an \ac{ide}. 
-These operational aspects are critical to making any application succeed, and \ac{eud} research should not be limited to purely the aspect of creating functionalities.
+Examples of these activities are version control, extending an existing application, debugging, testing the codebase, and publishing the application to be used outside of an \ac{IDE}. 
+These operational aspects are important to making any application succeed, and \ac{EUD} research should not be limited to purely the aspect of creating functionalities.
 
-This oversight on life-cycle aspects can be found in the \ac{vpl} \& low-coding industry as well. 
-\begin{note}
-TODO: Formalize these ramblings, or don't. 
+This literary study was able to confirm this. 
+Not one of the open source VPLs mentioned by this chapter or the upcoming \refsec{sec:related-geovpl} or \refsec{sec:related-webvpl}, contains aspects like Git version control, or integration / delivery pipelines.
+For paid \ac{VPL}s, deployment and version control is sometimes possible for a fee. 
+However, users can only use the publication tools, version control tools, and package / library managers offered to them by the vendors.
 
-- no existing VPL ( that I know of ) has proper git-based version control. 
-  - Most vpls use proprietary storage and collaboration methods. 
-- vpls which are able to compile to a textual format are rare
-  - vpls able to compile to a programming language, or a headless format, are even more rare. 
+% This oversight on life-cycle aspects can be found in the \ac{VPL} \& low-coding industry as well. 
 
-- Let alone: on operational programming paradigms such as Test driven development (TDD), continuous integration (CI), continuous delivery (CD).  
+% \begin{note}
+% TODO: Formalize these ramblings, or don't. 
 
-- in general, the life-cycle support of most vpls found in the low-coding industry are closely tied to their business models. 
-  - Users can only use the publication tools, version control tools, and package / library managers offered to them by the vendor.
+% - no existing VPL ( that I know of ) has proper git-based version control. 
+%   - Most vpls use proprietary storage and collaboration methods. 
+% - vpls which are able to compile to a textual format are rare
+%   - vpls able to compile to a programming language, or a headless format, are even more rare. 
 
-\end{note}
+% - Let alone: on operational programming paradigms such as Test driven development (TDD), continuous integration (CI), continuous delivery (CD).  
 
-And while we are on the topic of publication, only 16 out of 30 of the tools analysed by (communicating 2021) were available publicly with some documentation.
-It seems the lack of publication tooling might also partially be due to a lack of publication in general. 
+% - in general, the life-cycle support of most vpls found in the low-coding industry are closely tied to their business models. 
+%   - Users can only use the publication tools, version control tools, and package / library managers offered to them by the vendor.
+
+% \end{note}
+
+And on the topic of publication, only 16 out of 30 of the tools analyzed by \citet{kuhail_characterizing_2021} were available publicly with some documentation.
+It seems the lack of publication tooling might be partially due to a lack of publication in general. 
 
 \subsection{Conclusion}
 
