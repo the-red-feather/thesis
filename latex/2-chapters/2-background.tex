@@ -7,16 +7,8 @@
 \chapter{Background}
 \label{chap:background}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=270px]{geo-web-vpl.png}
-  \caption{Triangle Model}
-  \label{fig:triangle-model}
-\end{figure}
-
 This chapter offers an overview of the theoretical background that this study builds upon.
-The study takes place at the intersection of three prior bodies of work,  represented by the corners of \reffig{fig:triangle-model}:
+The study takes place at the intersection of three prior bodies of work:
 \begin{enumerate}[-]
   \item Geocomputation
   \item Web applications
@@ -146,9 +138,7 @@ Since giving a full overview of all aspects of these bodies of work is too exten
 
 % Geocomputation is mostly facilitated by a very select number of C++ libraries. 
 
-\newpage
-
-\section{WebAssembly}
+\section{WebAssembly \& Web Applications}
 \label{sec:background-web}
 
 This section offers a background on WebAssembly, and how this technology is currently used in frontend web applications.
@@ -468,7 +458,7 @@ Despite this being just market speculation, it does give an indication in a gene
   \begin{minipage}[b]{0.80\textwidth}
     \graphicspath{ {../../assets/images/2/} }
     \includegraphics[width=300px]{gui-algebra.png}
-    \caption{End User development by means of GUI algebra}
+    \caption{End User development by means of GUI algebra \citep{elliott_tangible_2007}}
     % based on the finding of \cite{jangda_not_2019}
     \label{fig:gui-algebra}
   \end{minipage}
@@ -570,17 +560,17 @@ In so far as this study needs to address the usability of the prototype VPL, we 
 % than text-based alternatives, based on the positive results of most of the 
 % studies analysed by communicating_2021.
 
-\subsubsection*{Lacking Life-cycle support}
+\subsubsection*{Life-cycle support}
 Finally, \citet{kuhail_characterizing_2021} names the 'life cycle' of applications created by \ac{VPL}s as one of the most overlooked aspects within VPL research.
 Out of the 30 studies covered by the meta analysis, only one briefly touched the topic of life cycle. 
 Life cycle in this context refers to all other activities besides "creating an application that does what it needs to do".
 Examples of these activities are version control, extending an existing application, debugging, testing the codebase, and publishing the application to be used outside of an \ac{IDE}. 
 These operational aspects are important to making any application succeed, and \ac{EUD} research should not be limited to purely the aspect of creating functionalities.
 
-This literary study was able to confirm this. 
-Not one of the open source VPLs mentioned by this chapter or the upcoming \refsec{sec:related-geovpl} or \refsec{sec:related-webvpl}, contains aspects like Git version control, or integration / delivery pipelines.
-For paid \ac{VPL}s, deployment and version control is sometimes possible for a fee. 
-However, users can only use the publication tools, version control tools, and package / library managers offered to them by the vendors.
+This literary study agrees with the findings of \citet{kuhail_characterizing_2021}: 
+Not one of the open source VPLs mentioned by this chapter or the upcoming \refsec{sec:related-geovpl} or \refsec{sec:related-webvpl}, contained life-cycle aspects like Git version control, or integration / delivery pipelines.
+For paid \ac{VPL}s, deployment and version control is sometimes possible for a fee (See \citet{safe-software_fme_2022}). 
+However, in such a situation, users are limited to the publication tools, version control tools, and package / library managers offered to them by the vendors.
 
 % This oversight on life-cycle aspects can be found in the \ac{VPL} \& low-coding industry as well. 
 
