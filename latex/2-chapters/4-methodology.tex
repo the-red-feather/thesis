@@ -2,21 +2,21 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
-\begin{note}
-  [JF]: should this be present or past tense? 
-\end{note}
+% \begin{note}
+%   [JF]: should this be present or past tense? 
+% \end{note}
 
 This chapter explains the methodology used in this study. 
-The overall methodology is to first develop a base VPL (\refsec{sec:method-base-vpl}), followed up by developing a binding system for this VPL (\refsec{sec:method-bindings}). 
-The final step is to set up and execute a series of tests (\refsec{sec:method-bindings}), to analyze the extend to which these implementations solve the various challenges raised by \refchap{chap:intro}.
+The overall methodology is to first develop a base VPL (\refsec{sec:method:base-vpl}), followed up by developing a binding system for this VPL (\refsec{sec:method:plugin-system}). 
+The final step is to set up and execute a series of tests (\refsec{sec:method:tests}), to analyze the extend to which these implementations solve the various challenges raised by \refchap{chap:intro}.
 
 \section{Base VPL} 
-\label{sec:method-base-vpl}
+\label{sec:method:base-vpl}
 
 The first step of the methodology involves the question: \mySubRQOne.
 This implementation is required as a host for all subsequent steps of the methodology. 
 While the initial plan was to re-use an existing web VPL, the related works review of \refchap{chap:related} showcased that no exiting browser-based geocomputation VPL would be an appropriate fit.
-The Mobius Modeller (Source) came closest, but the sizable nature of this project makes aligning its goals with the goals of this study challenging. 
+The Mobius Modeller \citep{janssen_mobius_2021} came closest, but the sizable nature of this project makes aligning its goals with the goals of this study challenging. 
 Building a custom implementation would also allow more degrees of freedom, in terms of designing a VPL which takes hosting geocomputation libraries from multiple hosts  into account from the start. 
 
 The following approach was deemed as the most fitting method for implementing this VPL. 
@@ -28,7 +28,7 @@ Then, with both these constraints known, a design for a web VPL can be layed out
 \subsection{Requirements}
 
 The requirements of a dataflow-VPL implementation can be subdivided in requirements of a dataflow VPl in general, and a VPL for geo-computation specifically.
-Based on (SOURCE: dataflow VPL) any dataflow-VPL must at the very least contain the following aspects: 
+Based on the literature study of \refsec{sec:background-vpl}, any dataflow-VPL must at least contain the following aspects: 
 \begin{enumerate}[-]
   \item a base 'programming language model'
   \subitem A representation of the 'variables' and 'functions' of the language
@@ -77,7 +77,7 @@ Basic operations are needed in particular to transform between the types.
   \centering
   \graphicspath{ {../../assets/plots/browser-usage/} }
   \includegraphics[width=0.7\linewidth]{plot.png}
-  \caption[Browser usage]{Fall 2021 desktop browser usage statistics. Data averaged over (Source, Source, Source, and Source)}
+  \caption[Browser usage]{Fall 2021 desktop browser usage statistics. Data averaged over (\citep{dashiki_simple_2020,w3counter_global_2020,the_netmarketshare_team_browser_2020,statcounter_global_stats_browser_2020})}
   \label{fig:browser-usage}
 \end{figure}
 
@@ -86,7 +86,7 @@ Based on the desktop browser market shares of \reffig{fig:browser-usage}, the ch
 This is followed up by Firefox, based on the Gecko engine, and Safari, based on webkit. 
 By supporting these three engines, the vast majority of end-users can be served.
 
-The set of features common in these three browser engines are well-documented on websites like MDN web docs (SOURCE: Mozilla). 
+The set of features common in these three browser engines are well-documented on websites like MDN web docs \citep{mozilla_mdn_2022}. 
 This set includes the following features relevant for the 3D VPL:
 \begin{enumerate}[-]
   \item WebGL \& WebGL2 (WebGPU is not fully covered yet)
@@ -109,7 +109,7 @@ The JavaScript language will be used instead of webassembly alternatives, in ord
 Using WebAssembly too much at too many different locations will make the results of this study less clear.
 
 Javascript is a multi-paradigm language.
-This study chose an object-oriented approach, and will use some of the design patterns layed out in (SOURCE: BIG FOUR).
+This study chose an object-oriented approach, and will use some of the design patterns layed out in \citep{gamma_design_1994}.
 This design is further elaborated in the subsequent sections, first by covering the Shim classes, followed up by design details corresponding to the model, view and controller:
 
 \subsubsection*{Shim Types}
@@ -129,7 +129,7 @@ These needs led to the design of classes serving as equivalents of these languag
 \reffig{fig:shim-classes} shows a type-shim and function-shim respectively. 
 A Shim equivalents of a module, and a VPL graph are also required. 
 
-The shim classes are designed using the Object Type design pattern (SOURCE: BIG FOUR). 
+The shim classes are designed using the Object Type design pattern \citep{gamma_design_1994}. 
 This means that these objects are used as types. 
 For example, a loaded function corresponds to exactly one \m{FunctionShim} instance, and that this instance is shared as a read only with any object wishing to eventually use the function. 
 % the \m{FunctionShim} offers the name, description, number of inputs, and number of outputs of a function, as well as ways to invoke the function it represents.
@@ -184,7 +184,7 @@ First, the graph itself will need to be visualized in some manner.
 A graph based visualization will be used, based on the node-cable connections of the graph model. 
 Important to this view is that it will need to be redrawn often. 
 Users will want to add, select, change, and delete nodes, and these interactions should be clearly represented. 
-This makes the 'canvas API' (Source) an ideal fit to this component.
+This makes the HTML5 'canvas API' an ideal fit to this component.
 
 Secondly, since not all actions and interactions will be done by clicking on the graph itself, a \ac{GUI} surrounding this graph visualization is required.
 This will also need to house common application features, like 'new', 'save', 'load', 'export', etc.  
@@ -204,7 +204,7 @@ Two important aspects require further explanation: Keeping track of history, and
 \emph{History}
 
 In order to support all these interactions, especially undo / redo support, we are required to explicitly track the history of the graph. 
-A Command Pattern (SOURCE: Big Four) makes for a good fit in this regard.
+A Command Pattern \citep{gamma_design_1994} makes for a good fit in this regard.
 Instead of directly editing the graph, all manipulation actions should be represented as \m{Action} objects. 
 Each Action can 'do' and 'undo' a specific action, and the data needed to make this do and undo are stored within the action. 
 By then introducing a \m{Bridge} class, the model and controller can be separated, only allowing interaction with the model by serving this bridge Action objects. The \m{Bridge} maintains a stack of undo and redo actions, which represents this history.  
@@ -283,7 +283,7 @@ The starting positions of the algorithm then simply become the altered parameter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Plugin System} 
-\label{sec:method-plugin-system}
+\label{sec:method:plugin-system}
 
 The second step of the methodology involves developing a method to use libraries from native sources within the VPL outlined above. 
 This aspect of the methodology seeks to design a base to answer the questions: \mySubRQTwo and \mySubRQThree.
@@ -371,10 +371,10 @@ One, it needs to form a bridge between the language in which the geocomputation 
 In other words, the requirements of the WebAssembly compiler compatible with the language in question must be adhered to. 
 Both the C++ and Rust compilers require functions to be flagged explicitly for compilation. 
 Additionally, for a library to be compilable, all dependent libraries must also be able to compile to wasm.
-For C++, the Emscripten compiler can be used to compile to WebAssembly (Source). 
+For C++, the Emscripten compiler can be used to compile to WebAssembly \citep{}. 
 A minimum example of what a 'emscripten-ready-library' looks like can be seen in \reffig{fig:minimum-cpp-wasm}.
 
-For Rust, the 'wasm-pack' and 'wasm-bindgen' toolkits enable \ac{wasm} compilation (Source).
+For Rust, the 'wasm-pack' and 'wasm-bindgen' toolkits enable \ac{wasm} compilation \citep{contributors_wasm-bindgen_2022,contributors_wasm-pack_2022}.
 A minimum example of what this looks like can be seen in \reffig{fig:minimum-rust-wasm}.
 These toolkits do not require incremental compilation steps.
 What is needed, however, is to make sure all dependencies do not use incompatible features, like os file system access. 
@@ -450,23 +450,23 @@ The following information is \emph{optional}, but it would improve the functiona
   \subitem A 'constructor' and 'deconstructor', to convert this type from and to basic types present within the VPL.  
 \end{enumerate}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=\linewidth]{Model Proposal.png}
-  \caption{TODO: Proposed Plugin model with flagged functions}
-  \label{fig:plugin-model}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../assets/diagrams/} }
+%   \includegraphics[width=\linewidth]{Model Proposal.png}
+%   \caption{TODO: Proposed Plugin model with flagged functions}
+%   \label{fig:plugin-model}
+% \end{figure}
 
-\subsection{Plugin Loader}
+% \subsection{Plugin Loader}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=\linewidth]{Model Proposal.png}
-  \caption{TODO: javascript \& d.ts headers}
-  \label{fig:plugin-model}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../assets/diagrams/} }
+%   \includegraphics[width=\linewidth]{Model Proposal.png}
+%   \caption{TODO: javascript \& d.ts headers}
+%   \label{fig:plugin-model}
+% \end{figure}
 
 On the side of the plugin loader within the VPL, all the compiled, wrapped and flagged information within the plugin needs to be extracted. 
 The automated extraction of all \textbf{required} information can be done by utilizing TypeScript Declaration 'd.ts' files. 
@@ -486,9 +486,8 @@ However, many libraries also include classes, as these can make an API more clea
 The plugin loader will need to support classes by converting them to a series of normal functions. 
 Static methods and constructors can be converted directly, and methods are converted into functions with the object as the first argument.
 
-The \textbf{optional} data was exposed by using a 'magic methods' strategy, influenced by the python programming language (SOURCE: PYTHON MAGIC METHODS). 
-The library loader of the VPL will load certain functions, types, and methods in a special way, indicated by a naming convention. 
-These functions are loaded by the vpl, but will not be converted into visual components. 
+The \textbf{optional} data can be exposed by flagging functions with a standard prefix.
+These functions are then loaded by the vpl, but will not be converted into visual components. 
 Instead, these functions are programmatically called when the VPL engine or the user requires this optional aspect. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -499,7 +498,7 @@ Instead, these functions are programmatically called when the VPL engine or the 
 
 \newpage
 \section{Tests}
-
+\label{sec:method:tests}
 % The purpose of this final step of the methodology
 With both the VPL and the plugin system in place, the final step of the methodology is introduced to gather the results and data needed for properly answering the second, third fourth sub-research questions.
 
@@ -582,7 +581,7 @@ The second library tested is the Startin library, written in Rust, compiled usin
 This library is both smaller in scope, and less well-known than CGAL. 
 Ideally, a library with a size and popularity comparable to CGAL should have been chosen.
 However, Rust is still a relatively unknown language in the field of GIS. 
-Startin was chosen, for the triangulation functionalities it provides are comparable to that of CGAL, in terms of performance, and geometric robustness (Source). 
+Startin was chosen, for the triangulation functionalities it provides are comparable to that of CGAL, in terms of performance, and geometric robustness. 
 
 \subsection{Usage tests}
 

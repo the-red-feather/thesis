@@ -17,7 +17,7 @@ This section discusses the extend of the prototype \ac{VPL} implementation.
 The prototype is titled "Geofront", as a concatenation of "geometry" and "frontend".
 Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} (SOURCE: https://github.com/thegeofront).
 
-The Geofront Application is implemented according to the design layed out in \refsec{sec:method-base-vpl}, and uses TypeScript as its main language. 
+The Geofront Application is implemented according to the design layed out in \refsec{sec:method:base-vpl}, and uses TypeScript as its main language. 
 \m{webpack} is used to compile this codebase into a singular javascript file, and this file practically serves as the full application. 
 the repository spend around 9.000 lines of code, divided into core categories and functionalities.
 What follows is a clarification of the implementation of some of these categories.
@@ -215,7 +215,7 @@ There are ways of supporting incrementally reading files in a browser, but these
 \section{The plugin system}
 \label{sec:implementation:loading}
 
-The plugin system is implemented according to design discussed in \refsec{sec:method-plugin-system}.
+The plugin system is implemented according to design discussed in \refsec{sec:method:plugin-system}.
 The implementation comes down to a plugin loader written inside of the Geofront application, with an accompanied workflow of how to create such a plugin. 
 Several demo plugins were created during the development of this implementation, which are covered by \refsec{sec:analyses:compilation}.
 
@@ -354,7 +354,7 @@ The Geofront standard library is also implemented by using workflow with Rust.
 
 \subsection{Automation and portability}
 
-The \refsec{sec:method-plugin-system} mentioned the requirements of library portability and automation. 
+The \refsec{sec:method:plugin-system} mentioned the requirements of library portability and automation. 
 In this section we assess to what extend this implementation was able to succeed on delivering these two requirements. 
 
 \subsubsection*{Automation \& exposure of metadata}
