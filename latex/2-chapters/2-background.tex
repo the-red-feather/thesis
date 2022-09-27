@@ -185,9 +185,9 @@ This led to models like "single page application", which are facilitated by java
 However, the real facilitator of these developments are the browsers vendors themselves, as these frameworks would not be possible without the performance increase granted by improvements of the various javascript Just In Time compilers. 
 
 This growth has also lead to web applications being used 'natively'. 
-Tools like Electron (Source) allow web applications to be installed and 'run' on native machines by rendering them inside of a stripped down browser. 
+Tools like Electron \citep{contributors_electron_2022} allow web applications to be installed and 'run' on native machines by rendering them inside of a stripped down browser. 
 Many contemporary 'native' applications work like this, such as VS Code, Slack, and Discord.
-Additionally, tools like React Native (Source) are able to compile a web application into a native application without a browser runtime.  
+Additionally, tools like React Native \citep{contributors_react_2022} are able to compile a web application into a native application without a browser runtime.  
 % If the applications resulting from both types of tools are to be regarded as 'web apps' or 'native apps', is left as an exercise to the reader. 
 It becomes clear that rich web clients and their build tooling are starting to blur the line between native and web software.
 
@@ -198,13 +198,9 @@ If the line between web application and native application was starting to blur,
 WebAssembly makes this line almost invisible. 
 From all browser-based features, WebAssembly turned out to be a deciding factor of this study. This makes it important to be aware of the state of WebAssembly and its performance considerations.
 
-\ac{wasm} is a binary instruction format for a conceptual, stack-based virtual machine 
-(SOURCE: https://webassembly.org/).
+\ac{wasm} is a binary instruction format for a conceptual, stack-based virtual machine \citep{contributors_webassembly_2022}.
 By combining this low-level format with features like a system of incremental privileges, \ac{wasm} makes for a performant compilation target which can be run containerized, and thus safe.
-
-Contrary to its name, WebAssembly has no specific link to the web or assembly language. 
-It was, however, designed for the web. 
-\ac{wasm} is officially dubbed the fourth type of programming language supported by all major web browsers, next to HTML, CSS, and JavaScript (Source: mozilla post).
+\ac{wasm} is officially dubbed the fourth type of programming language supported by all major web browsers, next to HTML, CSS, and JavaScript \citep{w3c_world_2019}.
 it can be utilized to run a native application or library in a web browser, regardless of the language used to create it, be it C/C++, Python, C\#, Java, or Rust. 
 This means that in order to create a web application, developers can now in principle develop a normal, native application instead, which can then be compiled to WebAssembly, and served on the web just like any other web application. 
 
@@ -214,18 +210,17 @@ This means that in order to create a web application, developers can now in prin
 It is important to note that these features offer a reverse workflow compared to the now popular Electron based applications described in \refsec{sec:background-web-rich}.
 Applications can now be written natively, and subsequently published to the web, instead of writing software as a web application, which may be packaged as a desktop application. 
 
-The WebAssembly format has several other use cases (SOURCE: https://blog.scottlogic.com/2022/06/20/state-of-wasm-2022.html).
-
-
-\begin{note}
-  TODO: convert all the dumb client / server writings into a chapter which may live here  
-\end{note}
-
+The WebAssembly format has several other use cases.
+Contrary to its name, WebAssembly has no specific link to the web or assembly language, and its name is only a remnant of its initial use-case.
+A cross-platform, safe binary format, together with a versatile runtime implemented in several languages, makes WebAssembly applicable for other use cases. 
+It is currently sees usage as a plugin system, as a runtime for serverless cloud-compute services, and as a lightweight runtime for IoT devices, according to a small-scale survey \citep{eberhardt_state_2022}. 
+Still, compiling libraries and application to the web remains the main, post popular application of WebAssembly, according to the same article. 
 
 \subsection*{Limitations}
 
-The sentence above uses the phrase \emph{in principle}, since there are quite a few caveats to the format. 
-While in theory any application can be compiled to WebAssembly, in practice, not all applications turn into functional webassembly applications, due to certain factors.
+\emph{in principle}, and if the appropriate compilers exist, any application and library written in any language can be compiled to WebAssembly. 
+In practice, there are quite a few caveats to the format. 
+
 These limitations can be split up into two groups: 
 Limitations due to the web platform, and limitations due to the current state of the language and its host.
 
@@ -462,7 +457,7 @@ These properties together make visual programming also highly suitable for activ
 % ADVANTAGE: PLAYFULNESS
 
 \subsection{End User Development \& Low Coding}
-A \ac{vpl} has the potential to make automation available to a very large audience, and this is exactly its purpose. 
+A \ac{vpl} has the potential to make automation available to a large audience, and this is exactly its purpose. 
 Visual Programming is part of a larger field, named End User Development (EUD). 
 The field is concerned with allowing end users who are not professional software developers to write software applications, using specialized tools and activities. 
 This however, does not mean that experienced developers have nothing to gain from this research. 
