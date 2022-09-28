@@ -262,6 +262,25 @@ For example, in theory this could be used to compile a VPL Script to Javascript 
 Finally, if all intermediate calculation results are cached, this same algorithm can also be used for performing partial recalculations of the graph. 
 The starting positions of the algorithm then simply become the altered parameter, after which only the invalidated functions will recalculate. 
 
+\emph{Mutability}
+
+Recall that a variable in this VPL model always has one origin, and one or multiple destinations, just like variables a regular language.
+The calculation system requires to know the mutability of the destination function parameters. 
+This has two reasons.
+First, to allow concurrent calculations, all functions using a variable should only be allowed to use a immutable references to this variable, in order to prevent data races. 
+And secondly, to prevent unnecessary copies of variables, only one function should be allow to 'claim ownership' of a variable, as in, modify the data and pass it along as output, or delete it and free the memory. 
+This is inspired by the Rust language model \citep{contributors_what_2022}. 
+In such a system, concurrency can still occur between all other immutable references to this variable.
+However, only when all these calculations are done, may this final transformative step occur.
+
+All this to say, the mutability of function parameters must be known in order to create a performant and memory efficient graph calculation system.  
+
+\begin{note}
+  TODO: this requires follow up, and a graphic illustration
+\end{note}
+
+
+
 % \subsection*{C: Implementation Steps}
 
 % \begin{note}

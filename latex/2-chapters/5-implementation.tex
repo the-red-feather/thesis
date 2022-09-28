@@ -180,6 +180,9 @@ Web workers have to be implemented and instantiated using separate javascript fi
 Not only is this unusual, it forces a codebase to create separate files per multithreaded operation.
 The dynamic nature in which some of Geofront dependencies are loaded made splitting up the codebase like this difficult, let alone using multiple threads for calculating each node.
 
+Additionally, both Typescript and WebAssembly do not make the mutability of variables explicit, nor was this implementation able to find a substitute method to add a mutability model on top of these languages. 
+This made implementing the concurrency model explained in \refsec{sec:method-controller} impossible.
+
 \subsubsection{Interaction}
 User Interaction is made possible through the \href{https://developer.mozilla.org/en-US/docs/web/api/event}{HTML DOM Events}. 
 This api provides ways to listen to many events, including keyboard and mouse events. 

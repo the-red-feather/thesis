@@ -43,17 +43,16 @@ It starts with answering the sub research questions, and concludes with the answ
 The full answer of this question is represented by \refsec{sec:method:base-vpl} and \refsec{sec:implementation:app}.
 Overall, the browser appears to be capable of representing a dataflow-type vpl graph to an acceptable degree, 
 based on the implementation presented in \refsec{sec:implementation:app}.
-The browsers biggest advantage for an application like this is the sheer amount of features a javascript program can use by default, like the 2D canvas api, the DOM, and WebGL. 
+The browsers biggest advantage for an application like this is the amount of features a javascript program can use by default, like the 2D canvas api, the DOM, and WebGL. 
 These features do not need to be included within the source code of the application, leading to quick load times. 
 All three of these features proved to be vital, and were performant enough to support an application like this. 
 Only the 2D canvas Api can become slow when rendering a great number of components. 
 
-JavaScript was used to represent the data structure and logic needed to make a VPL functional. 
+TypeScript (JavaScript) was used to represent the data structure and logic needed to make a VPL functional. 
 Javascript's flexibility proved to be useful to support features like dynamically loading and using libraries at runtime. 
-The disadvantage was due to JavaScript's very limited type support, and limited precision in general. 
-While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no meaningful distinction between number types (\m{int, float, double}), for example. 
-% The prototype-based objects also led to type-check problems. 
-Typescript has been used to mitigate some of these shortcomings.  
+However, TypeScript's limited type support at runtime, the absence of explicit immutability, and the limited precision in general (no integer atomic, only \m{number}), all hindered the implementation of the VPL model proposed.   
+
+% While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no meaningful distinction between number types (\m{int, float, double}), for example.
 
 \begin{itemize}[ ]
   \item 2. "\mySubRQTwo"
@@ -66,12 +65,12 @@ Based on the experiments and analysis in \refsec{sec:testing:compilation}, the s
 This is not due to wasm itself, but rather the focus of the emscripten compiler.
 The tool can be used to compile full-scale C++ applications, and even includes an emulation of a POSIX environment.
 However, it severely lacks support for compiling libraries themselves, compared to other wasm-library compilers.
-libraries generated with emscripten's 'embind' tool severely lack ergonomics, and thus would not be directly loadable in a geo-web-vpl.
-While web-implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type vpl using pure functions.
+libraries generated with emscripten's 'embind' tool use irregular syntax, which troubles its ability to be loaded in a geo-web-vpl.
+While web-implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type vpl requiring pure functions.
 Additionally, many scientifically oriented C++ libraries like CGAL make extensive use of meta programming and template programming, paradigms which do not translate well to an environment outside of C++. 
-Finally, the study was able to recognize some discrepancies between the novelty of the WebAssembly format, juxtaposed to 50-year-old legacy of the C++ language.
+Finally, the study was able to recognize some discrepancies between the novelty of the WebAssembly format, juxtaposed to 50-year-old legacy of the C++ language, leading to large wasm binaries.
 
-Despite all of this, the study was able to provide a solution to these compilation shortcomings by expanding the range of 'system-level languages' beyond C++. 
+Despite this, the study was able to provide a solution to these compilation shortcomings by expanding the range of 'system-level languages' beyond C++. 
 The Rust programming language offers a performance and level of control similar to C++, and has better wasm-library support thanks to the \m{wasm-bindgen} toolkit. 
 Using this toolkit, the study could successfully expose a native geocomputation library in a manner properly consumable by a web-vpl.
 regrettably, not many rust-based geocomputation libraries are written in pure rust, and the general pool of existing geocomputation libraries is limited due to the novelty of the language. 
@@ -82,7 +81,7 @@ However, this same legacy inhibits its portability, which makes it harder to com
 Rust is for the forseeable future a better choice for writing easily consumable, portable libraries, but does not have a fully mature ecosystem of geocomputation libraries. 
 
 To overcome this, the study suggests that either the 'embind' tool must be expanded to the level of functionality of 'wasm-bindgen', or geocomputation libraries must be rewritten in Rust. 
-This second option seems counterproductive, but as stated in \citep{ammann_maplibre-rs_2022}: "innovation often requires selectively ignoring prior work."
+This second option seems counterproductive, but as stated by \citet{ammann_maplibre-rs_2022}: "innovation often requires selectively ignoring prior work."
 
 \begin{itemize}[ ]
   \item 3. "\mySubRQThree"
@@ -233,7 +232,7 @@ However, scaling the application up to handle big data deviated too much from th
 
 Still, to pose a solution, this study experimented with compiling a \\ full Geofront script to javascript.
 This can be regarded as a 'release' build of the Geocomputation pipeline: 
-It would have allowed native CLI-execution using Deno \citep{contributers_deno_2022}, without any dependency or reference to Geofront itself.
+It would have allowed native CLI-execution using Deno \citep{contributors_deno_2022}, without any dependency or reference to Geofront itself.
 Only the libraries used within the pipeline would need to be referenced, and this could have been done using regular javascript import statements, and npm.
 
 % While it seems convoluted to compile a native library to WebAssembly and then execute it natively again, it is actually a sound strategy for building scalable, containerized programs for the cloud. 
@@ -352,7 +351,7 @@ Some of these aspects are listed here, and could lead to interesting topics for 
 
 An early build of Geofront had the ability to compile a Geofront script to regular javascript (see (\reffig{fig:early-geofront-compile-to-js})).  
 All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by a variable token. 
-This way, the application could be run headless (without the \ac{GUI}) either the browser or on a server, using a local javascript runtime like Deno \citep{contributers_deno_2022}.
+This way, the application could be run headless (without the \ac{GUI}) either the browser or on a server, using a local javascript runtime like Deno \citep{contributors_deno_2022}.
 
 A future study could re-implement this feature, opening up the possibility for deployment and scalability: 
 Scripts created with geofront could then deployed as a web worker, as a web applications of themselves, or as a web processing services \citep{open_geospatial_consortium_web_2015}.
