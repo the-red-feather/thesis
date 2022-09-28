@@ -124,41 +124,65 @@ This way, a variable of type 'Triangulation' can be viewed in 3D by clicking on 
 
 \subsection{C++: Minimal plugin}  
 
-Making a minimal C++ plugin work on the Geofront canvas required significantly more in-between steps. 
+Making a minimal C++ plugin work in a Geofront graph was unsuccessful.
+It was, however, possible to compile the plugin file to WebAssembly, and to use it in a web demo, but this was not without its obstacles. 
+
+First of all, the construction of the C++ source code itself.
+Emscripten's \m{embind} tool uses a macro syntax to flag functions marked for javascript compilation, shown in \reffig{fig:min-cpp-source}. 
+While it does work similar to Rusts \m{wasm_bindgen}, cpp macro's do not allow for any pre-compile-time code checking, and can produce hard to decipher error messages. 
+
+Secondly, to compile this file to the right binary with accompanied javascript wrapper, it had to be compiled using the \m{-sMODULARIZE=1} and \m{-sEXPORT_ES6=1} flags enabled.
+Otherwise, the javascript produced uses an import syntax too deviant to have any chance to be loaded into Geofront. 
+It must be noted that emscripten was behind on documentation compared to 'wasm-pack' and the rust-wasm organization \citep*{contributors_wasm-pack_2022}. 
+it does not offer many examples, or thorough explanations on what many of the compiler flags do or mean \citep*{emscripten_organization_emscripten_2022}.
+wasm-pack on the other hand offers complete tutorials, a range of starter projects, and elaborate documentation of most of its functionalities. 
+
+Thirdly, the compilation with the right flags enabled resulted in a valid '\m{wasm}' and '\m{js}' file, but not a '\m{d.ts}' file.
+Emscripten does not support typescript declaration files, and third-party tooling to add this is only conceptual at this point in time. 
+So, while this does allow for a working web demo similar to the Rust equivalent, shown in \reffig{fig:min-cpp-demo}, this makes it hard to determine the content of both files programmatically. 
+This was partially solved by using javascript reflection.
+By creating a blacklist of all 134 default functions the emscripten javascript wrapper comes with with the aforementioned flags enabled, we can distill the imported module down to the 2 symbols exposed by embind in this case, the \m{add} function and \m{Point} class.
+However, by doing this, all function types and the names of all parameters are lost, and can not be loaded into Geofront, which in turn does not allow the resulting Geofront graph to be type safe. 
+Another solution would have been to add static information about the functions and function types as strings in the CPP file, but this would have been a too manual of a solution to a problem which should be able to be solved automatically, as 'wasm-pack' did.
+
+Finally, while javascript file was albe to be loaded 
+
+This is fully due to the implementation choices of the Geofront plugin loader. 
+to load a plugin at runtime, the source files are fetched and interpreted at runtime. 
+This makes it so files within 
+
+% All in all, too many obstacles were in the way of successfully loading C++ within Geofront within the time frame of this study. 
+
+\begin{figure}
+  \graphicspath{{../../assets/images/6.1.3}}
+  \centering
+  \includegraphics[width=0.50\linewidth]{demo.PNG}
+  \caption[loading a plugin]{web demo}
+  \label{fig:min-cpp-demo}
+\end{figure}
+
+\begin{figure}
+  \graphicspath{{../../assets/images/6.1.3/}}
+  \centering
+  \includegraphics[width=0.50\linewidth]{source.PNG}
+  \caption[loading a plugin]{}
+  \label{fig:min-cpp-source}
+\end{figure}
+
+\begin{figure}
+  \graphicspath{{../../assets/images/6.1.3/}}
+  \centering
+  \includegraphics[width=0.50\linewidth]{whitelist.PNG}
+  \caption[loading a plugin]{Some of the 134 functions the emscripten compiler includes in its javascript wrapper, which had to be filtered out.}
+  \label{fig:min-cpp-whitelist}
+\end{figure}
 
 
-
-
-(make and show a minimum C++ plugin example)
-
-\begin{note}
-
-  \begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\linewidth}
-      \graphicspath{{../../assets/images/6.1.1/}}
-      \centering
-      \includegraphics[width=\linewidth]{7.PNG}
-      \caption{}\label{fig:rust-plugin-on-canvas:1}
-    \end{subfigure}%
-    \qquad %-- that adds some space between th 2 figures
-    \begin{subfigure}[b]{0.45\linewidth}
-      \graphicspath{{../../assets/images/6.1.1/}}
-      \centering
-      \includegraphics[width=\linewidth]{6.PNG}
-      \caption{}\label{fig:rust-plugin-on-canvas:2}
-    \end{subfigure}%
-    \caption[minimal rust geofront plugin: usage]{Usage On the canvas}
-    \label{fig:rust-plugin-on-canvas}
-  \end{figure}
-
-\end{note}
 
 \subsection{C++: CGAL plugin}
 
-
-
-(make and show a minimum geofront plugin example)
+If the minimum cpp plugin example could not be loaded into Geofront, it will be unsurprising that the entirety of CGAL could also not be compiled into a suitable format ready for VPL consumption.
+Several steps towards this goal were made however.
 
 \begin{note}
   
@@ -179,6 +203,22 @@ Making a minimal C++ plugin work on the Geofront canvas required significantly m
   https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html
 
 \end{note}
+
+
+\subsection{Comparison}
+
+\begin{lstlisting}
+  combined size of all compiler artifacts produced by wasm-back / emscripten
+
+  wasm-pack:
+  rust min:       20140 bytes
+  startin:       114263 bytes
+
+  emscripten:
+  cpp min:        68424 bytes
+  cgal tin test  257994 bytes
+
+\end{lstlisting}
 
 \section{Usability Tests}
 \label{sec:testing:usability}
