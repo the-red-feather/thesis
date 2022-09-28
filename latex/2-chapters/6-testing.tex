@@ -131,7 +131,7 @@ First of all, the construction of the C++ source code itself.
 Emscripten's \m{embind} tool uses a macro syntax to flag functions marked for javascript compilation, shown in \reffig{fig:min-cpp-source}. 
 While it does work similar to Rusts \m{wasm_bindgen}, cpp macro's do not allow for any pre-compile-time code checking, and can produce hard to decipher error messages. 
 
-Secondly, to compile this file to the right binary with accompanied javascript wrapper, it had to be compiled using the \m{-sMODULARIZE=1} and \m{-sEXPORT_ES6=1} flags enabled.
+Secondly, to compile this file to the right binary with accompanied javascript wrapper, it had to be compiled using the relatively unknown \m{-sMODULARIZE=1} and \m{-sEXPORT_ES6=1} flags enabled.
 Otherwise, the javascript produced uses an import syntax too deviant to have any chance to be loaded into Geofront. 
 It must be noted that emscripten was behind on documentation compared to 'wasm-pack' and the rust-wasm organization \citep*{contributors_wasm-pack_2022}. 
 it does not offer many examples, or thorough explanations on what many of the compiler flags do or mean \citep*{emscripten_organization_emscripten_2022}.
@@ -145,19 +145,21 @@ By creating a blacklist of all 134 default functions the emscripten javascript w
 However, by doing this, all function types and the names of all parameters are lost, and can not be loaded into Geofront, which in turn does not allow the resulting Geofront graph to be type safe. 
 Another solution would have been to add static information about the functions and function types as strings in the CPP file, but this would have been a too manual of a solution to a problem which should be able to be solved automatically, as 'wasm-pack' did.
 
-Finally, while javascript file was albe to be loaded 
-
-This is fully due to the implementation choices of the Geofront plugin loader. 
-to load a plugin at runtime, the source files are fetched and interpreted at runtime. 
-This makes it so files within 
-
-% All in all, too many obstacles were in the way of successfully loading C++ within Geofront within the time frame of this study. 
+Finally, with a custom system in place to load embind files, the plugin loader could attempt to load both the js and wasm file. 
+It is here were an obstacle was encountered, which could not be solved within the time frame of this study. 
+The JavaScript wrapper file dynamically fetches the WebAssembly file. 
+This is allowed when importing a javascript library in a regular, modern fashion. 
+However, this is incompatible with the implementation choices of the Geofront plugin loader. 
+To load a plugin dynamically, it fetches and interprets the source files at runtime. 
+However, for security reasons, dynamically fetching a wasm file within these runtime interpretations is not allowed.
+The \m{wasm-pack} solution does not have the same problem, for it allows the WebAssembly file to be parsed within its initialization function.
+A change within the emscripten javascript wrapper would allow this obstacle to be overcome, but this must be left to subsequent research. 
 
 \begin{figure}
   \graphicspath{{../../assets/images/6.1.3}}
   \centering
   \includegraphics[width=0.50\linewidth]{demo.PNG}
-  \caption[loading a plugin]{web demo}
+  \caption[loading a plugin]{Cpp-wasm web demo}
   \label{fig:min-cpp-demo}
 \end{figure}
 
@@ -165,7 +167,7 @@ This makes it so files within
   \graphicspath{{../../assets/images/6.1.3/}}
   \centering
   \includegraphics[width=0.50\linewidth]{source.PNG}
-  \caption[loading a plugin]{}
+  \caption[loading a plugin]{Cpp Plugin Source file}
   \label{fig:min-cpp-source}
 \end{figure}
 
@@ -173,37 +175,48 @@ This makes it so files within
   \graphicspath{{../../assets/images/6.1.3/}}
   \centering
   \includegraphics[width=0.50\linewidth]{whitelist.PNG}
-  \caption[loading a plugin]{Some of the 134 functions the emscripten compiler includes in its javascript wrapper, which had to be filtered out.}
+  \caption[loading a plugin]{Emscripten JavaScript wrapper blacklist }
   \label{fig:min-cpp-whitelist}
 \end{figure}
-
-
 
 \subsection{C++: CGAL plugin}
 
 If the minimum cpp plugin example could not be loaded into Geofront, it will be unsurprising that the entirety of CGAL could also not be compiled into a suitable format ready for VPL consumption.
 Several steps towards this goal were made however.
 
-\begin{note}
-  
-  HOWEVER 
-  - existing geo-libs: 
-    - file IO focussed, (because of streaming \& big data)
-    - templates
-  
-  **C++ -> wasm is difficult**
-  
-  - requires a lot of trivia knowledge. 
-    - Often, many subdependencies need to be traversed, and makefiles need to be manually edited. 
-    - This cannot be done often, or easely. 
-  - Documentation?
-  - Libraries cannot be called. emscripten prefers a cli-type interface, and prefers you to write all the operations you wish to publish as separate command line applications. 
+- compiling and using a CGAL kernel
 
-  https://www.hellorust.com/demos/add/index.html
-  https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html
+- compiling and using a TIN to a limited extend
 
-\end{note}
+However, this study too could not be fully completed within the time frame of this study. 
+Two problems prevented completion:
 
+The first one has to do with rewriting inputs and outputs to CGAL functionality.
+The most common ways to provide CGAL functions with data, and to retrieve results, is to read and write files. 
+While this can be used on the web, the virtual file system wrappers presented by Emscripten add irregular syntax to the plugin, again compromising any chance it can be loaded into Geofront.
+So, a way is needed to present CGAL with data directly from javascript or other wasm binaries, without reading or writing files. 
+Initial tests were performed by parsing input data as a string buffer, which could then be 'read' like a file by CGAL.
+
+The second issue with this process is to make sure all dependencies, like Boost, are compiled together with CGAL.
+Legacy makefile build systems complicate this process. 
+To get the current demo's working, several dependencies and sub-dependencies had to be manually traversed, their makefiles had to be edited, and the projects had to be re-compiled and copied to different location, to be used by the emscripten compiler exclusively. 
+This is an unsustainable workflow, which will complicate development.  
+
+\begin{figure}
+  \graphicspath{{../../assets/images/6.1.4/}}
+  \centering
+  \includegraphics[width=0.50\linewidth]{demo-2.PNG}
+  \caption[loading a plugin]{Cpp Plugin Source file}
+  \label{fig:cgal-tryout-2}
+\end{figure}
+
+\begin{figure}
+  \graphicspath{{../../assets/images/6.1.4/}}
+  \centering
+  \includegraphics[width=0.50\linewidth]{demo-3.PNG}
+  \caption[loading a plugin]{Emscripten JavaScript wrapper blacklist }
+  \label{fig:cgal-tryout-3}
+\end{figure}
 
 \subsection{Comparison}
 

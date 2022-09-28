@@ -17,4 +17,8 @@ While early alpha projects do exist which rectify some of these shortcomings (So
 this makes it difficult to use the compiled library as a normal javascript library, 
 and makes it even more difficult to programmatically extract the right functions.  
 
+potential sources: 
+  
+  https://www.hellorust.com/demos/add/index.html
+  https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html
 
