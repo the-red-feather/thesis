@@ -1,7 +1,7 @@
 \chapter*{Abstract}
 Geocomputation is a cornerstone of GIS \& modern mapping needs.
 While the last decades have seen major advancements, writing a geocomputational pipeline remains a complex, non-trivial exercise. 
-Performing geocomputations by utilizing a visual programming language (VPL) within a web browser is a novel development which seeks to simplify this process, allowing more people to write pipelines more successfully.
+Performing geocomputations by utilizing a visual programming language (VPL) within a web browser is a novel development which seeks to simplify this process, allowing more people to write these types of pipelines more successfully.
 % It would, in theory, allow end-users to author geocomputation pipelines, without the need of a software development background, and without the need to install software.
 % utilizing a dataflow model.
 % This model is the standard within VPLs dealing with geometry processing, and contains many advantages in terms of performance and reliability.
@@ -23,37 +23,37 @@ The functional programming-properties of this dataflow VPL also makes geo-librar
 
 The current methods of \emph{compiling} existing C++ geocomputation libraries to the web turned out to be insufficient for the purposes of this study.  
 This is due to the Emscripten compiler's focus on compiling full C++ applications instead of separate libraries. 
-Despite this, the study wás able to demonstrate how a novel method can be used to sufficiently \emph{compile} and \emph{load} multiple Rust-libraries for usage in the VPL, thanks to more feature-rich webassembly support in the Rust ecosystem. 
+Despite this, the study wás able to demonstrate how a novel method can be used to sufficiently \emph{compile} and \emph{load} multiple Rust-libraries for usage in the VPL, thanks to more feature-rich WebAssembly tools in the Rust ecosystem. 
 While Rusts geocomputation libraries are young, the study presents this method to either offer emscripten contributors a blueprint of a desired workflow, or to offer geocomputation library contributors a powerful use-case for the Rust language. 
 
 All in all, this means that either if the geocomputation libraries found in the Rust ecosystem mature, or if Emscripten's capabilities improve, then the code portability problem \& dataflow problem of existing web-based geocomputation VPLS can be solved. 
 
 
-\begin{note}
+% \begin{note}
 
-    "make a simple narrative of what you did and what are the results."
-    "make it not be a very rough draft"
-    "6.2: deliver the things you promised."
-    "make it more formal: replace: "crucial", "by far" or "impressive""
+%     "make a simple narrative of what you did and what are the results."
+%     "make it not be a very rough draft"
+%     "6.2: deliver the things you promised."
+%     "make it more formal: replace: "crucial", "by far" or "impressive""
 
-    Stelios Draft Comments
-    ======================
+%     Stelios Draft Comments
+%     ======================
     
-    In general, I think it's going well. I think the intro is fine, although it can be improved. I like the conclusions quite a lot, tbh. You are giving proper and interesting answers to the raised questions. The rest is a bit of a very rough draft, as I see. So, some specific points:
+%     In general, I think it's going well. I think the intro is fine, although it can be improved. I like the conclusions quite a lot, tbh. You are giving proper and interesting answers to the raised questions. The rest is a bit of a very rough draft, as I see. So, some specific points:
     
-    TODO: Tone down stuff
-    -  It seems like you have placed several bits here and there that seem like either introduction or conclusions. I feel your enthusiasm and excitement in your writing, but I think you are bringing questions and answers in places were people would normally just expect a simple narrative of what you did and what are the results.
+%     TODO: Tone down stuff
+%     -  It seems like you have placed several bits here and there that seem like either introduction or conclusions. I feel your enthusiasm and excitement in your writing, but I think you are bringing questions and answers in places were people would normally just expect a simple narrative of what you did and what are the results.
     
-    TODO: Write 6.2
-    -  Speaking of results, we are missing the experiments so please put this at your first priority. This is because it feels like you promise things that you do not deliver.
+%     TODO: Write 6.2
+%     -  Speaking of results, we are missing the experiments so please put this at your first priority. This is because it feels like you promise things that you do not deliver.
     
-    TODO: Find & Replace
-    -  In general, you are using some very bold statements and informal expressions. The latter is kinda okay, but the first one is very dangerous. I've noticed words like "crucial", "by far" or "impressive" which seem very biased and subjective, so better be avoided. You can still use them here and there (mostly in the conclusions), but I think you use them way  too much (again, I can see your enthusiasm).
+%     TODO: Find & Replace
+%     -  In general, you are using some very bold statements and informal expressions. The latter is kinda okay, but the first one is very dangerous. I've noticed words like "crucial", "by far" or "impressive" which seem very biased and subjective, so better be avoided. You can still use them here and there (mostly in the conclusions), but I think you use them way  too much (again, I can see your enthusiasm).
     
-    TODO: Find & Replace 
-    -  Minor thing, but I think you have confused \citet with \citep. The first one is used when the citation is part of the sentence and the latter when it's at the end of a sentence (or in a parenthesis, anyway).
+%     TODO: Find & Replace 
+%     -  Minor thing, but I think you have confused \citet with \citep. The first one is used when the citation is part of the sentence and the latter when it's at the end of a sentence (or in a parenthesis, anyway).
     
-\end{note}
+% \end{note}
 
 
 

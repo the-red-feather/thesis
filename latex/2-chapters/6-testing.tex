@@ -6,64 +6,141 @@ This is done to gather the data needed to answer the second, third and fourth re
 It consists of the sections \refsec{sec:testing:compilation} and \refsec{sec:testing:usability}.
 
 
-\section{Compilation Tests}
+\section{Plugin Compilation Tests}
 \label{sec:testing:compilation}
 
-% WHY? (move this over to methodology)
-We wish to assess how well the plugin system handles different libraries, and different languages. 
+\subsection{Rust: minimal plugin}
+The compilation of a minimum Rust plugin, exposing a function, a class, and a method was successful. 
+% APPENDIX?
+\reffig{fig:min-rust-plugin-code:1} Shows the source code of this plugin. 
+The 'wasm-bindgen' library allows functions and classes to be annotated as 'bound to javascript'. 
+This simplifies the compilation process to WebAssembly greatly. 
+It also clearly states errors if a property or class are incompatible to be exposed. 
 
-\subsection{Writing a Geofront plugin in Rust}
+This library was compiled to WebAssembly and javascript using 'wasm-pack'. 
+This produces multiple artifacts, showcased in \reffig{fig:rust-plugin:compilation-results}. 
+This figure also showcases how wasm-pack wraps the functionality: 
+The \m{point\_distance} function exposed by the wasm file is wrapped by the javascript file, converting it to look like a regular javascript class.
 
-\subsubsection{Minimal}
- 
+To check if the result is valid, a small html demo was created to load and use the library (see \reffig{fig:min-rust-plugin-code:2}).
+Note how the JavaScript library wrapping the wasm file looks and works almost like a normal javascript library, the only difference being a 'init' function, which is required to be run before using the library, and the need to free the memory of used object with the \m{free\(\)} method.
 
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/6.1.1/}}
+    \centering
+    \includegraphics[width=\linewidth]{8.PNG}
+    \caption{}\label{fig:min-rust-plugin-code:1}
+  \end{subfigure}%
+  \qquad %-- that adds some space between th 2 figures
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/6.1.1/}}
+    \centering
+    \includegraphics[width=\linewidth]{9.PNG}
+    \caption{}\label{fig:min-rust-plugin-code:2}
+  \end{subfigure}%
+  \caption[minimal rust geofront plugin: usage]{Rust Source code (a) and web demo (b)}
+  \label{fig:min-rust-plugin-code}
+\end{figure}
 
-(make and show a minimum geofront plugin example)
+\begin{figure}
+  \graphicspath{{../../assets/images/6.1.1/}}
+  \centering
+  \includegraphics[width=\linewidth]{13.PNG}
+  \caption[compilation artifacts]{Compilation artifacts: A Typescript Declaration file, a javascript file, and a WebAssembly binary, visualized as WebAssembly Text (WAT). }
+  \label{fig:rust-plugin:compilation-results}
+\end{figure}
 
+To load this project into Geofront, a reference to the path of the compilation artifacts must be specified within the Geofront GUI, shown in \reffig{fig:min-rust-plugin-import}.
+A local path was used for convenience, instead of publishing this demo to npm, and accessing it via a \ac{CDN}.
 
+\begin{figure}
+  \graphicspath{{../../assets/images/6.1.1/}}
+  \centering
+  \includegraphics[width=0.50\linewidth]{2.PNG}
+  \caption[loading a plugin]{Loading a plugin into Geofront using the \ac{GUI}}
+  \label{fig:min-rust-plugin-import}
+\end{figure}
 
-\subsubsection{Existing library}
+\reffig{fig:rust-plugin-on-canvas:1} shows how all functions in this demo are loaded correctly, and \reffig{fig:rust-plugin-on-canvas:2} shows that the functions indeed work as expected to create two Graphs. 
+Note how the parameter names and Types are also loaded, indicated by the names visualized at the input and output of the nodes.
+This is thanks to the 'd.ts' file of \reffig{fig:rust-plugin:compilation-results}.
 
+All in all, no problems were encountered.
 
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/6.1.1/}}
+    \centering
+    \includegraphics[width=\linewidth]{7.PNG}
+    \caption{}\label{fig:rust-plugin-on-canvas:1}
+  \end{subfigure}%
+  \qquad %-- that adds some space between th 2 figures
+  \begin{subfigure}[b]{0.45\linewidth}
+    \graphicspath{{../../assets/images/6.1.1/}}
+    \centering
+    \includegraphics[width=\linewidth]{6.PNG}
+    \caption{}\label{fig:rust-plugin-on-canvas:2}
+  \end{subfigure}%
+  \caption[minimal rust geofront plugin: usage]{Usage On the canvas}
+  \label{fig:rust-plugin-on-canvas}
+\end{figure}
 
-(show startin, also in usage)
+\subsection{Rust: Startin plugin}
 
+Compilation of the \m{Startin} library was also successful. 
+Startin already offered a wasm-ready library, this could directly be loaded into Geofront. 
+However, the API exposed by this library used a non-functional style, making it hard to properly use the library on a VPL canvas. 
+This is why a custom plugin library still had to be created, in which functions like '\m{new\_from\_vec}' were added to support functional usage. 
 
+Other than that, all steps performed by the minimal Rust plugin could be made with this project as well, as shown in \reffig{fig:startin-plugin}. 
+This also showcases the usage of the 'Renderable' bindings. 
+This way, a variable of type 'Triangulation' can be viewed in 3D by clicking on it.
 
-\subsection{Writing a Geofront plugin in C++}
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{\linewidth}
+    \graphicspath{{../../assets/images/6.1.2}}
+    \centering
+    \includegraphics[width=\linewidth]{1.PNG}
+  \end{subfigure}%
+  \\ 
+  \begin{subfigure}[b]{\linewidth}
+    \graphicspath{{../../assets/images/6.1.2}}
+    \centering
+    \includegraphics[width=\linewidth]{5.PNG}
+  \end{subfigure}%
+  \\
+  \begin{subfigure}[b]{\linewidth}
+    \graphicspath{{../../assets/images/6.1.2}}
+    \centering
+    \includegraphics[width=\linewidth]{2.PNG}
+  \end{subfigure}%
+  \caption[Types of \ac{vpl}s]{Startin, loaded as plugin within Geofront}%
+  \label{fig:startin-plugin}
+  \end{figure}
 
-\subsubsection{Minimal}
-  
+\subsection{C++: Minimal plugin}  
 
-(make and show a minimum geofront plugin example)
-
-
-
-\subsubsection{Existing libraries}
-
-(make and show a minimum geofront plugin example)
-
-\subsection{Comparison}
-
-In this chapter: Judge, but do not conclude.
+(make and show a minimum C++ plugin example)
 
 \begin{note}
 
-  REQUIREMENT: libraries containing pure functions exclusively
-  - no side effects, thats the whole point
-  
+\end{note}
+
+\subsection{C++: CGAL plugin}
+
+(make and show a minimum geofront plugin example)
+
+\begin{note}
   
   HOWEVER 
   - existing geo-libs: 
     - file IO focussed, (because of streaming \& big data)
     - templates
-    - 
   
-  [Analyze the web-exposed geoprocessing libraries]
-  
-  
-  The catch 21 between C++ and Rust.  
-
   **C++ -> wasm is difficult**
   
   - requires a lot of trivia knowledge. 
@@ -75,41 +152,16 @@ In this chapter: Judge, but do not conclude.
   https://www.hellorust.com/demos/add/index.html
   https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html
 
-  **rust-> wasm is powerful and feature-rich.** 
-  
-  - it functions like a normal compiler. compilation was done easely. 
-  - If a library cannot be compiled, the compiler statements are clear enough to identify which library causes the incompatibility. 
-  - Many Rust libraries also conveniently offer a 'no-std' option, 
-    And many crates (Rust equivalent of a library) include the web as one of their core targets. 
-  - The compile tool 'wasm-bindgen' has excelent support for converting libraries. 
-    - You can create rust libraries which from the outside look like a normal javascript library. 
-
-\end{note}
-
-\begin{note}
-
-  TODO: make a table showing differences
-
-  where C++ requires emscripten, rust does that almost out of the box, (rustup target add wasm32-unknown-unknown), NOTE C++ also does that with CLANG and LLVM
-
-  What we actually need to compare is not emscripten and wasm-bindgen, but 'embind' and 'wasm-bindgen'. 
-
-  - figure out the difference in load time and performance between startin's tin, cgal's tin, and my dumb triangulator.
-
-  C++ WebAssembly also tend to be larger
-
-  [Show the performance benchmarks in isolation. Also show them in action on the VPL canvas]
-
 \end{note}
 
 \section{Usability Tests}
 \label{sec:testing:usability}
 
-\subsection{Demo applications}
+% \subsection{Demo applications}
 
-- Show a demo
+% - Show a demo
 
-- Show a bit of performance of said demo
+% - Show a bit of performance of said demo
 
 \subsection{Assessment}
 

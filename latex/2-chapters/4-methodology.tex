@@ -521,19 +521,48 @@ Instead, these functions are programmatically called when the VPL engine or the 
 % The purpose of this final step of the methodology
 With both the VPL and the plugin system in place, the final step of the methodology is introduced to gather the results and data needed for properly answering the second, third fourth sub-research questions.
 
-\begin{note}
-  - see how well the plugin system is able to handle C++ and Rust native libraries. 
-  - see how usable the resulting applications created within the VPL are.     
-\end{note}
+% \begin{note}
+%   - see how well the plugin system is able to handle C++ and Rust native libraries. 
+%   - see how usable the resulting applications created within the VPL are.     
+% \end{note}
 
-This will be done by using the VPL and plugin loader to create an application. 
-This application, and the process to create it, will then be assessed.
+\subsection{Compilation Tests}
+To test the ability of the VPl and the plugin system to host different libraries and different languages, four demo plugins are compiled and loaded within the VPL.  
+The Rust language and C++ are tested. 
+Per test, the workflow layed out in \refsec{sec:method:plugin-system} is followed. 
+Per language, a minimum plugin is first created, assessing if and how well a simple function, method, and class can be exposed to the VPL.
+After this demo, a more sizable, existing geocomputation library is compiled.
 
-\subsubsection{Application}
+These tests are meant as a qualitative comparison between compiling a full-scale library written in Rust, to a full library written in C++. 
+This way, the tooling and workflow can be compared for a realistic use-case. 
+The study is conducted by compiling both libraries using their respective \ac{wasm} toolsets, and noting the differences in workflow, supported features, and the resulting plugins. 
 
-\begin{note}
-TODO: make a point cloud -> dtm obj tool / isocurves svg / tool
-\end{note}
+The libraries must be compiled without 'disruption': They must be kept the exact same for normal, native usage. 
+
+\subsubsection{C++ Library: CGAL} 
+The library tested for C++ is CGAL, compiled using \m{emscriptem}. 
+For one, this library is well established and very relevant to geoprocessing as a whole. 
+Many other C++ geo-libraries depend on it.
+Moreover, it is a sizable and complex project, making it highly likely the problems described by \refsec{sec:background-wasm} are encountered. 
+We could choose more simple libraries, but this is not representative of most C++ geoprocessing libraries. 
+
+\subsubsection{Rust Library: Startin}
+The second library tested is the Startin library, written in Rust, compiled using \m{wasm-bindgen}.  
+This library is smaller in scope than CGAL. 
+Ideally, a library with a size comparable to CGAL should have been chosen, to make for a balanced comparison. 
+However, Rust is still a relatively unknown language in the field of GIS, making libraries like these difficult to find. 
+Startin was chosen, for the triangulation functionalities it provides makes for a good comparison against CGALs Triangulator. 
+It also, just like CGAL, makes use of a high precision kernel, and offers geometric robustness. 
+
+
+% This will be done by using the VPL and plugin loader to create an application. 
+% This application, and the process to create it, will then be assessed.
+
+% \subsubsection{Application}
+
+% \begin{note}
+% TODO: make a point cloud -> dtm obj tool / isocurves svg / tool
+% \end{note}
 
 % \subsubsection{First Experiment}
 % The first experiment compares three different methods of bringing the same geocomputation procedure to the web. 
@@ -576,31 +605,6 @@ TODO: make a point cloud -> dtm obj tool / isocurves svg / tool
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \subsubsection{Second Experiment
-
-\subsection{Compilation Tests}
-
-The first set of tests focusses on making a comparison between compilation methods.
-
-This is a qualitative comparison between compiling a full-scale library written in Rust, to a full library written in C++. 
-This way, the tooling and workflow can be compared for a realistic use-case. 
-The study will be conducted by attempting to compile both libraries using their respective \ac{wasm} toolsets, and noting the differences in workflow, supported features, and the resulting wasm library. 
-
-we wish to compile these languages without 'disturbing' them: they must be kept the exact same for normal, native usage. 
-
-\textbf{Library One: CGAL} \\
-The first library tested is CGAL, written in C++, compiled using \m{emscriptem}.
-CGAL will be used as an exemplary C++ library. 
-For one, this library is well established and very relevant to geoprocessing as a whole. 
-Many other C++ geo-libraries depend on it.
-Moreover, it is a sizable and complex project, making it highly likely the problems described by related works will be encountered. 
-We could choose more simple libraries, but this will not be representative of most C++ geoprocessing libraries. 
-
-\textbf{Library Two: Startin} \\
-The second library tested is the Startin library, written in Rust, compiled using \m{wasm-bindgen}.  
-This library is both smaller in scope, and less well-known than CGAL. 
-Ideally, a library with a size and popularity comparable to CGAL should have been chosen.
-However, Rust is still a relatively unknown language in the field of GIS. 
-Startin was chosen, for the triangulation functionalities it provides are comparable to that of CGAL, in terms of performance, and geometric robustness. 
 
 \subsection{Usage tests}
 

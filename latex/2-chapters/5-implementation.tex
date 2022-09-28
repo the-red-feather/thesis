@@ -93,9 +93,9 @@ lastly, the implementation chose to redraw the full canvas on every registered c
 These limitations come together to a performance linear to the amount of nodes and cables drawn. For the current implementation and scale of Geofront, this performance is acceptable.  
 Still, the application slows down when rendering a large amount of components (See TODO). 
 
-\begin{note}
-  TODO Show a graph with performance considerations
-\end{note}
+% \begin{note}
+%   TODO Show a graph with performance considerations
+% \end{note}
 
 This performance hit is partially due to the implementation, and partially due to browser feature limitations. 
 The browser does not offer a 'middle ground' between html-like rendering and 2D canvas-like rendering required for a visualization like the dataflow graph. 
@@ -228,7 +228,7 @@ The implementation comes down to a plugin loader written inside of the Geofront 
 \label{sec:implementation:loading:limits}
 
 The plugin loader implemented in Geofront can load a javascript / typescript library, and convert it into appropriate visual components. 
-What this looks like in practice can be seen in \reffig{fig:todo-1}.
+% What this looks like in practice can be seen in \reffig{fig:todo-1}.
 As prescribed by the methodology, Typescript declaration files are loaded to determine the name, location, parameter types of functions. 
 This works similar for libraries which include a WebAssembly binary.
 
@@ -248,9 +248,9 @@ Functions using callbacks, promises, complex types, or generics, cannot be prope
 Libraries utilizing "method chaining APIs" can be loaded, but are difficult to use as intended on the Geofront Canvas.
 Also bear in mind that the loader does not perform any checks to see if the loaded library actually uses pure functions. 
 
-\begin{note}
-  TODO show example
-\end{note}
+% \begin{note}
+%   TODO show example
+% \end{note}
 
 \subsubsection*{Types}
 The plugin loader can only load functions using acceptable input and output types. 
@@ -264,22 +264,22 @@ The types may only include:
 The typesystem of the plugin loader will pick up on types exposed by a library, and include them within the type safety system of Geofront. 
 However, this does mean that certain types are not supported, like asynchronous promises, or functions as variables. 
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  % \includegraphics[width=\linewidth]{Model Proposal.png}
-  \caption[]{TODO: show importer side-by-side}
-  \label{fig:todo-1}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../assets/diagrams/} }
+%   % \includegraphics[width=\linewidth]{Model Proposal.png}
+%   \caption[]{TODO: show importer side-by-side}
+%   \label{fig:todo-1}
+% \end{figure}
 
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  % \includegraphics[width=\linewidth]{Model Proposal.png}
-  \caption[]{TODO: show more achieved functionality}
-  \label{fig:todo-2}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../assets/diagrams/} }
+%   % \includegraphics[width=\linewidth]{Model Proposal.png}
+%   \caption[]{TODO: show more achieved functionality}
+%   \label{fig:todo-2}
+% \end{figure}
 
 \subsubsection*{Supported languages}
 Finally, not all languages are equally supported:
@@ -309,6 +309,8 @@ Finally, not all languages are equally supported:
 \end{itemize}
 
 \subsection{Achieved Workflow}
+\label{sec:implementation:workflow}
+
 % \emph{show the insane (rust + wasm + npm) workflow}
 
 With all the above considerations in mind, the following workflow can now be used to create a Geofront Plugin, which, as explained, doubles as a normal javascript library. 
@@ -318,21 +320,24 @@ The Geofront standard library is also implemented by using workflow with Rust.
 \begin{lstlisting}
   
   Using Typescript: 
-  1. Write or find a geoprocessing / analysis library using typescript, 
+  1. Write or find a geoprocessing / analysis library 
+     using typescript, 
   2. Compile and bundle to a `d.ts` + `.js` file.
   3. publish to npm 
 
   Using Rust: 
   1. Write or find a geoprocessing / analysis library using rust
   2. Create a second library, which exposes a subset of this 
-     library as 'functions usable on the web', using 'wasm-pack'.
+     library as 'functions usable on the web', using 'wasm-pack' 
+     and 'wasm-bindgen'.
   3. Compile to `.wasm` + `d.ts` + `.js`.
-  4. publish to npm (`wasm-pack publish`)
+  4. publish to npm (`wasm-pack publish`), or use a local address.
   
   Using C++: 
   1. Write or find a C++ based geoprocessing / analysis library. 
   2. Create a second library, which exposes a subset of this 
-     library as 'functions usable on the web', using 'emscripten'*.
+     library as 'functions usable on the web', using 'emscripten' 
+     and 'embind'.
   3. Compile to a `.wasm` and `.js` file using emscripten.
   4. Create a third 'js' library, which wraps the functionality* 
      exposed by empscripten
@@ -342,20 +347,18 @@ The Geofront standard library is also implemented by using workflow with Rust.
   ---------------------------------------------------------
 
   In Geofront: 
-  4. Reference the CDN (content delivery network) address of this node package. 
-  5. Use the library.
-
-  * these parts contain many caveats, explained in Section 5.2
+  A. Reference the CDN (content delivery network) address of this node package. 
+  B. Use the library.
 
 \end{lstlisting}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  % \includegraphics[width=\linewidth]{Model Proposal.png}
-  \caption[]{TODO: show the achieved workflow visually}
-  \label{fig:todo-more-images}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../assets/diagrams/} }
+%   % \includegraphics[width=\linewidth]{Model Proposal.png}
+%   \caption[]{TODO: show the achieved workflow visually}
+%   \label{fig:todo-more-images}
+% \end{figure}
 
 \subsection{Automation and portability}
 
