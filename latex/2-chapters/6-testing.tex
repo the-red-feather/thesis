@@ -266,8 +266,10 @@ These benchmarks primarily test how performant the \\ javascript - WebAssembly i
   js   min:       22 ms +/-  2 * SD
 \end{lstlisting}
 
+The scripts run are shown in \reffig{fig:perf-benchmark}.
+
 These results also clearly show the emscripten wrapper is not able to compete with the wasm-pack solution.
-From experimentation, it could be discovered that the performance hit is caused by the initialization step of the 'Point' classes. 
+From experimentation, performance hit could be narrowed down to initialization step of the 'Point' classes. 
 
 These results may suggest two phenomena:
 One, just like the artifact size comparison, this difference could be because emscripten is written from the point of view of a C++ application, and use case does not require custom javascript - C++ interoperability. 
@@ -275,7 +277,7 @@ A full application compiled with emscripten only needs to address javascript thr
 A full application seldom needs access to specific javascript processes the way this demo does. 
 
 And two, the C++ builds may be suffering from 'legacy burden', as described by \citet{ammann_maplibre-rs_2022}. 
-The emscripten solution needs to take more edge cases into account, has more complicated dependencies, and software compiled using emscripten must be more heterogenous than a younger language like Rust. '
+The emscripten solution needs to take more edge cases into account, has more complicated dependencies, and software compiled using emscripten must be more heterogenous than a younger language like Rust.
 This all could lead to a significant performance hit.
 
 \begin{figure}
