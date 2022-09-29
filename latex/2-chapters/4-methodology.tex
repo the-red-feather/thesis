@@ -8,7 +8,7 @@
 
 This chapter explains the methodology used in this study. 
 The overall methodology is to first develop a base VPL (\refsec{sec:method:base-vpl}), followed up by developing a binding system for this VPL (\refsec{sec:method:plugin-system}). 
-The final step is to set up and execute a series of tests (\refsec{sec:method:tests}), to analyze the extend to which these implementations solve the various challenges raised by \refchap{chap:intro}.
+The final step is to set up and execute a series of tests (\refsec{sec:method:tests}), to analyze the extent to which these implementations solve the various challenges raised by \refchap{chap:intro}.
 
 \section{Base VPL} 
 \label{sec:method:base-vpl}
@@ -98,9 +98,9 @@ This set includes the following features relevant for the 3D VPL:
 
 \subsection{Design}
 
-\begin{note}
-  TODO: MAKE SOME UML DIAGRAMS
-\end{note}
+% \begin{note}
+%   TODO: MAKE SOME UML DIAGRAMS
+% \end{note}
 
 A software application of a VPL adhering to the specifications mentioned can be implemented in several ways. 
 The design chosen is a \ac{MVC} setup written in javascript.  
@@ -118,7 +118,7 @@ This design is further elaborated in the subsequent sections, first by covering 
   \centering
   \graphicspath{ {../../assets/images/implementation/} }
   \includegraphics[width=\linewidth]{shim-uml.png}
-  \caption[Shim Classes]{Shim classes. (pseudo) code is presented instead of a UML diagram, to be clear about the recursive aspects. TODO: add modules to this screenshot }
+  \caption[Shim Classes]{Shim classes. (pseudo) code is presented instead of a UML diagram, to be clear about the recursive aspects. (TODO: add modules) }
   \label{fig:shim-classes}
 \end{figure}
 
@@ -143,9 +143,9 @@ TypeShims can be structured recursively to define a \m{List of List of strings} 
 
 \begin{figure}
   \centering
-  \graphicspath{ {../../assets/images/implementation/} }
-  \includegraphics[width=\linewidth]{shim-uml.png}
-  \caption[Shim Classes]{TODO: MAKE A DAG UML THING}
+  \graphicspath{ {../../assets/images/misc/} }
+  \includegraphics[width=\linewidth]{placeholder.png}
+  \caption[Shim Classes]{(TODO: MAKE A DAG UML)}
   \label{fig:dag-model}
 \end{figure}
 
@@ -275,10 +275,9 @@ However, only when all these calculations are done, may this final transformativ
 
 All this to say, the mutability of function parameters must be known in order to create a performant and memory efficient graph calculation system.  
 
-\begin{note}
-  TODO: this requires follow up, and a graphic illustration
-\end{note}
-
+% \begin{note}
+%   TODO: this requires follow up, and a graphic illustration
+% \end{note}
 
 
 % \subsection*{C: Implementation Steps}
@@ -401,25 +400,24 @@ Fortunately, most Rust libraries are written with 'no-std' use-cases in mind, an
 
 \begin{figure}
   \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=\linewidth]{Model Proposal.png}
+  \graphicspath{ {../../assets/images/misc/} }
+  \includegraphics[width=\linewidth]{placeholder.png}
   \caption{TODO:  C++: Minimum WebAssembly example}
   \label{fig:minimum-cpp-wasm}
 \end{figure}
 
-
 \begin{figure}
   \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=\linewidth]{Model Proposal.png}
+  \graphicspath{ {../../assets/images/misc/} }
+  \includegraphics[width=\linewidth]{placeholder.png}
   \caption{TODO: Rust: Minimum WebAssembly example}
   \label{fig:minimum-rust-wasm}
 \end{figure}
 
 \begin{figure}
   \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=\linewidth]{Model Proposal.png}
+  \graphicspath{ {../../assets/images/misc/} }
+  \includegraphics[width=\linewidth]{placeholder.png}
   \caption{TODO: Rust: Exclude std features}
   \label{fig:minimum-rust-wasm-no-std}
 \end{figure}
@@ -434,7 +432,7 @@ This often leads to making copies of inputs / outputs, or grouping a series of s
   \centering
   \graphicspath{ {../../assets/images/6/3/} }
   \includegraphics[width=\linewidth]{ugly-oop.png}
-  \caption[]{This typescript file technically loads correctly into Geofront, but cannot be reasonably used on the Geofront canvas. TODO: show what this looks like on canvas}
+  \caption[]{This typescript is written in a non-functional manner, troubling its conversion to the functional model used by a dataflow VPL}
   \label{fig:oop-considered-harmful}
 \end{figure}
 

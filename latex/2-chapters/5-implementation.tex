@@ -14,7 +14,7 @@ It discusses the achieved functionality, and mentions the ways this implementati
   \label{fig:geofront-app}
 \end{figure}
 
-This section discusses the extend of the prototype \ac{VPL} implementation. 
+This section discusses the extent of the prototype \ac{VPL} implementation. 
 The prototype is titled "Geofront", as a concatenation of "geometry" and "frontend".
 Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} .
 
@@ -42,7 +42,7 @@ In practice, to support iteration, some runtime type checking was still required
   \centering
   \graphicspath{ {../../assets/images/implementation/} }
   \includegraphics[width=\linewidth]{full-application.png}
-  \caption[Geofront]{The Geofront Application}
+  \caption[Geofront]{Geofront Types (TODO)}
   \label{fig:geofront-types}
 \end{figure}
 
@@ -72,7 +72,7 @@ In practice, to support iteration, some runtime type checking was still required
     \includegraphics[width=\linewidth]{widgets.png}
     \caption{}\label{fig:node-cable:3}
   \end{subfigure}%
-  \caption[Nodes, Widgets and Cables]{The basic canvas components of Geofront: a Node (A), a Cable (B), and some Widgets (C) }
+  \caption[Nodes, Widgets and Cables]{The basic canvas components of Geofront: a Node (A), a Cable (B), and multiple Widgets (C) }
   \label{fig:node-cable}
 \end{figure}
 
@@ -363,7 +363,7 @@ The Geofront standard library is also implemented by using workflow with Rust.
 \subsection{Automation and portability}
 
 The \refsec{sec:method:plugin-system} mentioned the requirements of library portability and automation. 
-In this section we assess to what extend this implementation was able to succeed on delivering these two requirements. 
+In this section we assess to what extent this implementation was able to succeed on delivering these two requirements. 
 
 \subsubsection*{Automation \& exposure of metadata}
 
@@ -384,7 +384,7 @@ in which developers are required to create a class per exposed function.
 
 \subsubsection{Portability}
 
-This system creates seamless interoperability between a textual programming library, and a VPL plugin to an extend. 
+This system creates seamless interoperability between a textual programming library, and a VPL plugin to an extent. 
 However, because of the reasons outlined above, it is also safe to say that this seamless interoperability is only one-directional: 
 Libraries intended for consumption by Geofront double as also a 'normal' javascript library. 
 The configuration demands of Geofront only impair the normal, javascript-based usage by forcing a functional style, and by including certain methods only intended for Geofront. 

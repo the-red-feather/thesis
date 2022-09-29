@@ -48,7 +48,7 @@ Note how the JavaScript library wrapping the wasm file looks and works almost li
   \graphicspath{{../../assets/images/6.1.1/}}
   \centering
   \includegraphics[width=\linewidth]{13.PNG}
-  \caption[compilation artifacts]{Compilation artifacts: A Typescript Declaration file, a javascript file, and a WebAssembly binary, visualized as WebAssembly Text (WAT). }
+  \caption[compilation artifacts]{wasm-pack Compilation artifacts: A Typescript Declaration file, a javascript file, and a WebAssembly binary, visualized as WebAssembly Text (WAT). }
   \label{fig:rust-plugin:compilation-results}
 \end{figure}
 
@@ -101,19 +101,19 @@ This way, a variable of type 'Triangulation' can be viewed in 3D by clicking on 
 
 \begin{figure}
   \centering
-  \begin{subfigure}[b]{\linewidth}
+  \begin{subfigure}[b]{0.90\linewidth}
     \graphicspath{{../../assets/images/6.1.2}}
     \centering
     \includegraphics[width=\linewidth]{1.PNG}
   \end{subfigure}%
   \\ 
-  \begin{subfigure}[b]{\linewidth}
+  \begin{subfigure}[b]{0.90\linewidth}
     \graphicspath{{../../assets/images/6.1.2}}
     \centering
     \includegraphics[width=\linewidth]{5.PNG}
   \end{subfigure}%
   \\
-  \begin{subfigure}[b]{\linewidth}
+  \begin{subfigure}[b]{0.90\linewidth}
     \graphicspath{{../../assets/images/6.1.2}}
     \centering
     \includegraphics[width=\linewidth]{2.PNG}
@@ -129,12 +129,13 @@ It was, however, possible to compile the plugin file to WebAssembly, and to use 
 
 First of all, the construction of the C++ source code itself.
 Emscripten's \m{embind} tool uses a macro syntax to flag functions marked for javascript compilation, shown in \reffig{fig:min-cpp-source}. 
-While it does work similar to Rusts \m{wasm_bindgen}, cpp macro's do not allow for any pre-compile-time code checking, and can produce hard to decipher error messages. 
 
-Secondly, to compile this file to the right binary with accompanied javascript wrapper, it had to be compiled using the relatively unknown \m{-sMODULARIZE=1} and \m{-sEXPORT_ES6=1} flags enabled.
-Otherwise, the javascript produced uses an import syntax too deviant to have any chance to be loaded into Geofront. 
-It must be noted that emscripten was behind on documentation compared to 'wasm-pack' and the rust-wasm organization \citep*{contributors_wasm-pack_2022}. 
-it does not offer many examples, or thorough explanations on what many of the compiler flags do or mean \citep*{emscripten_organization_emscripten_2022}.
+While it does work similar to Rusts \m{wasm-bindgen}, cpp macro's do not allow for any pre-compile-time code checking, and can produce hard to decipher error messages. 
+
+Secondly, to compile this file to the right binary with accompanied javascript wrapper, it had to be compiled using the relatively unknown \m{-sMODULARIZE=1} and \m{-sEXPORT\_ES6=1} flags enabled.
+Otherwise, the javascript produced uses an import syntax too deviant from regular import statements to have any chance to be loaded into Geofront. 
+It must be noted that emscripten was behind on documentation compared to 'wasm-pack' and the rust-wasm organization \citep{contributors_wasm-pack_2022}. 
+it does not offer many examples, or thorough explanations on what many of the compiler flags do or mean \citep{emscripten_organization_emscripten_2022}.
 wasm-pack on the other hand offers complete tutorials, a range of starter projects, and elaborate documentation of most of its functionalities. 
 
 Thirdly, the compilation with the right flags enabled resulted in a valid '\m{wasm}' and '\m{js}' file, but not a '\m{d.ts}' file.
@@ -174,7 +175,7 @@ A change within the emscripten javascript wrapper would allow this obstacle to b
 \begin{figure}
   \graphicspath{{../../assets/images/6.1.3/}}
   \centering
-  \includegraphics[width=0.50\linewidth]{whitelist.PNG}
+  \includegraphics[width=0.50\linewidth]{blacklist.PNG}
   \caption[loading a plugin]{Emscripten JavaScript wrapper blacklist }
   \label{fig:min-cpp-whitelist}
 \end{figure}
@@ -185,7 +186,7 @@ If the minimum cpp plugin example could not be loaded into Geofront, it will be 
 Several steps towards this goal were made however.
 
 A web demo was able to utilize the CGAL kernel \reffig{fig:cgal-tryout-2}, for basic operations. 
-Additionally, A subsequent web demo can utilize the CGAL TIN to a limited extend \reffig{fig:cgal-tryout-3}.
+Additionally, A subsequent web demo can utilize the CGAL TIN to a limited extent \reffig{fig:cgal-tryout-3}.
 
 However, this study too could not be fully completed within the time frame of this study. 
 Two problems prevented completion:
@@ -201,11 +202,13 @@ Legacy makefile build systems complicate this process.
 To get the current demo's working, several dependencies and sub-dependencies had to be manually traversed, their makefiles had to be edited, and the projects had to be re-compiled and copied to different location, to be used by the emscripten compiler exclusively. 
 This is an unsustainable workflow, which will complicate development.  
 
+% Additionally, many scientifically oriented C++ libraries like CGAL make extensive use of meta programming and template programming, paradigms which do not translate well to an environment outside of C++. 
+
 \begin{figure}
   \graphicspath{{../../assets/images/6.1.4/}}
   \centering
-  \includegraphics[width=0.50\linewidth]{demo-2.PNG}
-  \caption[loading a plugin]{Cpp Plugin Source file}
+  \includegraphics[width=\linewidth]{demo-2.PNG}
+  \caption[loading a plugin]{CGAL Kernel Demo}
   \label{fig:cgal-tryout-2}
 \end{figure}
 
@@ -213,24 +216,94 @@ This is an unsustainable workflow, which will complicate development.
   \graphicspath{{../../assets/images/6.1.4/}}
   \centering
   \includegraphics[width=0.50\linewidth]{demo-3.PNG}
-  \caption[loading a plugin]{Emscripten JavaScript wrapper blacklist }
+  \caption[loading a plugin]{CGAL Triangulation Demo}
   \label{fig:cgal-tryout-3}
 \end{figure}
 
+\newpage
 \subsection{Comparison}
 
+\subsubsection*{Size}
+
+Combined size of all compiler artifacts produced by wasm-back / emscripten:
+
 \begin{lstlisting}
-  combined size of all compiler artifacts produced by wasm-back / emscripten
 
   wasm-pack:
-  rust min:       20140 bytes
-  startin:       114263 bytes
+  rust min:       20140 bytes 
+  startin:       114263 bytes 
 
   emscripten:
-  cpp min:        68424 bytes
-  cgal tin test  257994 bytes
+  cpp min:        68424 bytes (3.4 times more)
+  cgal tin test  257994 bytes (2.3 times more)
 
 \end{lstlisting}
+
+It is safe to say that the emscripten wrappers are significantly heavier, especially given the fact that the wasm-pack artifacts include typescript header files and were not optimized for size, while the cpp builds where.
+
+This study speculates this difference could be because emscripten's primary use-case is compiling complete applications. 
+This requires a more heavy wrapper, offering features like file servers. 
+When compiling sizable C++ applications, the overhead of this wrapper can be marginalized.
+However, apparently, emscripten is not able to distinguish between full applications, and small, granular use-cases like this one, and must include the 'full emscripten runtime' in all cases.
+
+\subsubsection*{Performance}
+
+The performance benchmarks. 
+These benchmarks primarily test how performant the \\ javascript - WebAssembly interactions are. 
+
+\begin{lstlisting}
+
+  100.000 iterations:
+
+  init: 
+  rust min:       59 ms +/-  8 * SD
+  cpp  min:       71 ms +/-  6 * SD
+  js   min:        0 ms
+
+  process: 
+  rust min:      131 ms +/-  5 * SD
+  cpp  min:      967 ms +/- 30 * SD
+  js   min:       22 ms +/-  2 * SD
+\end{lstlisting}
+
+These results also clearly show the emscripten wrapper is not able to compete with the wasm-pack solution.
+From experimentation, it could be discovered that the performance hit is caused by the initialization step of the 'Point' classes. 
+
+These results may suggest two phenomena:
+One, just like the artifact size comparison, this difference could be because emscripten is written from the point of view of a C++ application, and use case does not require custom javascript - C++ interoperability. 
+A full application compiled with emscripten only needs to address javascript through emscripten own interface, which could be more performant. 
+A full application seldom needs access to specific javascript processes the way this demo does. 
+
+And two, the C++ builds may be suffering from 'legacy burden', as described by \citet{ammann_maplibre-rs_2022}. 
+The emscripten solution needs to take more edge cases into account, has more complicated dependencies, and software compiled using emscripten must be more heterogenous than a younger language like Rust. '
+This all could lead to a significant performance hit.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.32\linewidth}
+    \graphicspath{{../../assets/images/6.1.5/}}
+    \centering
+    \includegraphics[width=\linewidth]{rust.PNG}
+    \caption{}
+  \end{subfigure}%
+  \qquad %-- that adds some space between th 2 figures
+  \begin{subfigure}[b]{0.32\linewidth}
+    \graphicspath{{../../assets/images/6.1.5/}}
+    \centering
+    \includegraphics[width=\linewidth]{cpp.PNG}
+    \caption{}
+  \end{subfigure}%
+  \qquad
+  \begin{subfigure}[b]{0.32\linewidth}
+    \graphicspath{{../../assets/images/6.1.5/}}
+    \centering
+    \includegraphics[width=\linewidth]{js.PNG}
+    \caption{}
+  \end{subfigure}%
+  \caption[benchmark]{Rust vs C++ vs js performance benchmarks}
+  \label{fig:perf-benchmark}
+\end{figure}
+
 
 \section{Usability Tests}
 \label{sec:testing:usability}
@@ -263,11 +336,19 @@ Mapping a problem to a geofront script is intuitive for the most part.
 Think of the operations needed to solve a problem, 
 find the right libraries and nodes representing these operations,
 and connect these nodes according to type. 
-However, this mapping of problem and solution is hindered by the fact that Geofront needed to support iteration. 
+However, this mapping of problem and solution is hindered by the fact that Geofront needed to support iteration, shown in \reffig{fig:programming-game}. 
 
-(image of iteration problem)
+Based on the studies and experiences with existing VPLs \refsec{sec:background-vpl}, these types of 'iteration games' are known to be a significant hinder to the closeness of mapping principle.
 
-
+\begin{figure}
+  \graphicspath{{../../assets/images/6.2/}}
+  \centering
+  \includegraphics[width=\linewidth]{programming-game.PNG}
+  \caption[]{An example of a 'programming game' within Geofront. The 'loop' toggle  indicates if an component should operate on a full list, or operate on all individual items within the list. 
+  This can be used to iterate over a 'list of objects' column-wise, or row-wise. This is considered a 'game', since this is not an obvious interaction, and must be learned before properly using Geofront. }
+  \label{fig:programming-game}
+\end{figure}
+ 
 
 \subsubsection*{Consistency: When some of the language has been learnt, how much of the rest can be inferred?}
 
@@ -284,24 +365,21 @@ the consistency of geofront is mitigated by a library with a very different noti
 For example, a euclidean, 3D coordinate can be specified as a \m{Vector3} object, a struct, an array of three numbers, or three different x, y, z input parameters.
 Then again, it is unclear if inconsistencies between the api's of a language's libraries are to be contributed to the inconsistency of the language as a whole. 
 
-\textbf{Suggestion for improvement:} Stabilize the api of the Geofront Standard Library.
-
-
+% \textbf{Suggestion for improvement:} Stabilize the api of the Geofront Standard Library.
 
 \subsubsection*{Diffuseness: How many symbols or graphic entities are required to express a meaning?}
 
 Geofront periodically suffers from the same 'Diffuseness' problems \cite[]{green_usability_1996} adheres to vpls general. 
 That is, sometimes a surprising number of 'graphical entities' / nodes are required to represent a simple statement.  
-This is apparent when representing mathematical calculations. 
+This is apparent when representing simple mathematical calculations. 
 
-\begin{note}
-  - the flowchart can only represent linear processes. Many geoprocessing algorithms are iterative and make use of conditionals. These cannot easily be expressed in a DAG VPL. As such, these processes must happen within the context of a function, within a 'computational node'  
-\end{note}
+Additionally, the flowchart can only represent linear processes. Many geoprocessing algorithms are iterative and make use of conditionals. These cannot easily be expressed in a Dataflow VPL. As such, these processes must happen within the context of a function, within a 'node'.
 
+A widget evaluating a line of javascript could help improve diffuseness. For now, if a user desires to use dense mathematical statements, or functions with many conditionals and complex iteration, a Geofront Plugin should be created.
 
-(image of complex / simple mathematical calcluation in javascript and in geofront)
+% (image of complex / simple mathematical calcluation in javascript and in geofront)
 
-\textbf{Suggestion for improvement:} These situations could be prevented by allowing scriptable components. 
+% \textbf{Suggestion for improvement:} These situations could be prevented by allowing scriptable components. 
 
 \subsubsection*{Error- proneness: Does the design of the notation induce 'careless mistakes'?}
 
@@ -345,8 +423,9 @@ One practical way in which Geofront exceeds in this dimension of premature commi
 Users can add or remove libraries "on the fly". 
 This is unlike any vpl studied at \refsec{sec:related-geovpl} or \refsec{sec:related-webvpl}.
 
-One particular type of commitment users must be aware off, however, is the commitment to using a \ac{VPL} like Geofront. 
-Therefore, 
+One particular type of commitment users must be aware off, however, is the commitment to using a \ac{VPL} like Geofront in general.
+The current version of Geofront does not support compilation to JavaScript yet, which would mitigate this premature commitment. 
+% Therefore, 
 
 
 \subsubsection*{Progressive evaluation: Can a partially-complete program be executed to obtain feedback on 'How am I doing'?}
@@ -354,27 +433,30 @@ Therefore,
 Yes. 
 As explained at the answer for the dimension of 'Hard mental operations', this is a core aspect in how Geofront achieves its interactivity and debugability, together with its ability to inspect parameters. 
 
-(Image: Show example)
+% (Image: Show example)
 
 \subsubsection*{Role- expressiveness: Can the reader see how each component of a program relates to the whole?}
 
 as the authors of \cite[]{green_usability_1996} write: "The dimension of role-expressiveness is intended to describe how easy it is to answer the question 'what is this bit for?'"
 
-sizeable phenomenon
+One of the ways Geofront addressed this is by making a distinction between nodes possessing pure operations, and nodes producing side effects, like widgets. 
 
-grootste boosdoener: looping is now a simple boolean toggle within a component. 
-This makes it very non-explicit, 
+% sizeable phenomenon
 
-This leads to another problem: the problem of declarative iterations within a vpl. 
+% grootste boosdoener: looping is now a simple boolean toggle within a component. 
+% This makes it very non-explicit, 
 
+% This leads to another problem: the problem of declarative iterations within a vpl. 
 
 \subsubsection*{Secondary notation: Can programmers use layout, color, other cues to convey extra meaning, above and beyond the 'official' semantics of the language?}
 
 No, Geofront does not offer annotations in its current state, besides the way the nodes are configured on the canvas.  
 Geofront does provide visual indicators for types, and for if a cable / variable represents a single item, or a list of items.
 
-\textbf{Suggestion for improvement:} Provide a way to annotate: create groups, write comments, etc. 
-\textbf{Suggestion for improvement:} Type colors would also be nice.
+This could be improved by providing a way to annotate: to create groups, to write comments, etc. 
+Type colors, or some other way to distinguish data based on iconography, would also improve the secondary notation principle.
+% \textbf{Suggestion for improvement:} 
+% \textbf{Suggestion for improvement:} Type colors would also be nice.
 
 \subsubsection*{Viscosity: How much effort is required to perform a single change?}
 
@@ -383,15 +465,13 @@ Certain situations require excessive mouse interaction, like substituting a func
 In text, this would be as simple as a non-symbolic renaming of the called function.
 In geofront, this requires a lot of reconfiguration of cables. 
 
-\textbf{Suggestion for improvement:} Viscosity could be improved by creating special actions in the editor to perform these types of manipulations.  
+Viscosity could be improved by creating special actions in the editor to perform these types of manipulations.  
 %  - select multiple inputs, select multiple outputs: connect by height.
 % rename node
 
-
 \subsubsection*{Visibility: Is every part of the code simultaneously visible (assuming a large enough display), or it it at least possible to juxtapose any two parts side-by-side at will? If the code is dispersed, is it at least possible to know in what order to read it?}
 
-All parts of the code are simultaneously visible. 
-As the question implies, by not making the code dispersed, 
+All parts of the code are simultaneously visible, and geofront does not offer any way of creating new popups or screens.
 
 % ## Case Studies
 

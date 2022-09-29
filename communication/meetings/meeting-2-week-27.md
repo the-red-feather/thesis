@@ -167,7 +167,7 @@ Notes during meeting...
 
 *"These are notes written during this period. It explains my thought process, but are not very coherent or well-edited."*
 
-on the one hand: I dislike 'easy programming languages' to an extend
+on the one hand: I dislike 'easy programming languages' to an extent
   - I'm a huge fan of the 'rust' idea: certain things must become more complicated again, to do them right and securely 
 
 - BUT: my thesis is about creating an 'accessible' visual programming language. How do I square these two things? 

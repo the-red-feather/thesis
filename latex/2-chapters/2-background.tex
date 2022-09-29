@@ -15,8 +15,7 @@ The study takes place at the intersection of three prior bodies of work:
   \item Visual Programming Languages
 \end{enumerate}
 
-Since giving a full overview of all aspects of these bodies of work is too extensive, only key elements within these bodies will be mentioned and elaborated, namely the visual programming languages, and WebAssembly.  
-
+Since giving a full overview of all aspects of these bodies of work is too extensive, only key elements within these bodies will be mentioned and elaborated, namely the visual programming language, and WebAssembly.  
 
 % \section{Geocomputation Libraries}
 % \label{sec:background-geo}
@@ -141,6 +140,7 @@ Since giving a full overview of all aspects of these bodies of work is too exten
 \section{WebAssembly \& Web Applications}
 \label{sec:background-web}
 
+From all browser-based features, WebAssembly turned out to be a deciding factor of this study. This makes it important to be aware of the state of WebAssembly and its performance considerations.
 This section offers a background on WebAssembly, and how this technology is currently used in frontend web applications.
 
 \subsection{Rich Clients}
@@ -171,14 +171,13 @@ Tools like Electron \citep{contributors_electron_2022} allow web applications to
 Many contemporary 'native' applications work like this, such as VS Code, Slack, and Discord.
 Additionally, tools like React Native \citep{contributors_react_2022} are able to compile a web application into a native application without a browser runtime.  
 % If the applications resulting from both types of tools are to be regarded as 'web apps' or 'native apps', is left as an exercise to the reader. 
-It becomes clear that rich web clients and their build tooling are starting to blur the line between native and web software.
+It becomes clear that rich web clients and surrounding tools are starting to blur the line between native and web software.
 
-\subsection{The WebAssembly Standard}
+\subsection{The WebAssembly standard}
 \label{sec:background-wasm}
 
 If the line between web application and native application was starting to blur, 
 WebAssembly makes this line almost invisible. 
-From all browser-based features, WebAssembly turned out to be a deciding factor of this study. This makes it important to be aware of the state of WebAssembly and its performance considerations.
 
 \ac{wasm} is a binary instruction format for a conceptual, stack-based virtual machine \citep{contributors_webassembly_2022}.
 By combining this low-level format with features like a system of incremental privileges, \ac{wasm} makes for a performant compilation target which can be run containerized, and thus safe.
@@ -211,7 +210,7 @@ Secondly, WebAssembly is in its early phases as a language, and is intended as a
 For example, the current version does not support concurrency features like multithreading.
 
 Many of these shortcomings can be mitigated by calling JavaScript using HTML5 features from WebAssembly. 
-This is what the majority of current WebAssembly projects look like. 
+This is how many current WebAssembly projects are set up. 
 However, this layer of javascript 'boilerplate' or 'glue code' is inefficient, as it leads to duplication and redirection.
 Additionally, platforms wishing to support WebAssembly must now also support javascript. 
 
@@ -338,9 +337,8 @@ Even though geocomputation can fall in the category of scientific computation, t
 
 \section{Visual Programming}
 \label{sec:background-vpl}
-
-The third body of work this study draws from is works on the topic of visual programming. 
-This section offers a brief overview on the topic itself, after which since \refsec{sec:related-geovpl} and \refsec{sec:related-webvpl} cover uses of visual programming in geocomputation and on the web, respectively. 
+ 
+This section offers an overview on the topic of visual programming, after which \refsec{sec:related-geovpl} and \refsec{sec:related-webvpl} cover uses of visual programming in geocomputation and on the web, respectively. 
 
 \subsection*{Visual programming languages}
 

@@ -62,12 +62,11 @@ However, TypeScript's limited type support at runtime, the absence of explicit i
 % for web consumption?
 
 Based on the experiments and analysis in \refsec{sec:testing:compilation}, the study concludes that most contemporary, C++-based geocomputation libraries cannot be sufficiently compiled for web consumption, at least not for the purposes of loading the functionalities within a web-VPL.    
-This is not due to wasm itself, but rather the focus of the emscripten compiler.
-The tool can be used to compile full-scale C++ applications, and even includes an emulation of a POSIX environment.
-However, it severely lacks support for compiling libraries themselves, compared to other wasm-library compilers.
-libraries generated with emscripten's 'embind' tool use irregular syntax, which troubles its ability to be loaded in a geo-web-vpl.
-While web-implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type vpl requiring pure functions.
-Additionally, many scientifically oriented C++ libraries like CGAL make extensive use of meta programming and template programming, paradigms which do not translate well to an environment outside of C++. 
+This is not due to wasm itself, but rather because of the focus of the emscripten compiler, combined with the implementation requirements of a  web VPL.
+Emscripten can be used to compile full-scale C++ applications, and offers an emulation of a POSIX environment.
+However, it lacks support for compiling libraries themselves, compared to other wasm-library compilers.
+libraries generated with emscripten's 'embind' tool use irregular syntax, which troubles its ability to be loaded programmatically.
+While web implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type vpl requiring pure functions.
 Finally, the study was able to recognize some discrepancies between the novelty of the WebAssembly format, juxtaposed to 50-year-old legacy of the C++ language, leading to large wasm binaries.
 
 Despite this, the study was able to provide a solution to these compilation shortcomings by expanding the range of 'system-level languages' beyond C++. 
@@ -78,9 +77,9 @@ regrettably, not many rust-based geocomputation libraries are written in pure ru
 Thus, the conclusion is a dilemma between Rust and C++.
 C++ has a strong foundation of existing geocomputation libraries compared to newer languages like Rust.  
 However, this same legacy inhibits its portability, which makes it harder to compile to web browsers. 
-Rust is for the forseeable future a better choice for writing easily consumable, portable libraries, but does not have a fully mature ecosystem of geocomputation libraries. 
+Rust is for the forseeable future a better choice for writing easily consumable, portable libraries, but does not have a fully mature ecosystem of geocomputation libraries yet. 
 
-To overcome this, the study suggests that either the 'embind' tool must be expanded to the level of functionality of 'wasm-bindgen', or geocomputation libraries must be rewritten in Rust. 
+To offer a solution, the study suggests that either the 'embind' tool must be expanded to the level of functionality of 'wasm-bindgen', or geocomputation libraries must be rewritten in Rust. 
 This second option seems counterproductive, but as stated by \citet{ammann_maplibre-rs_2022}: "innovation often requires selectively ignoring prior work."
 
 \begin{itemize}[ ]
@@ -102,7 +101,7 @@ Even worse, the libraries could use references pointing to the same object, elim
 \end{itemize}
 % To what extent can a 'geo-web-vpl' be \textbf{used} to create geodata pipelines?
 
-Based on the analysis of Geofront in \refsec{sec:testing:usability}, it can be concluded that a geo-web-VPL can be used for geocomputation to a sufficient extend.  
+Based on the analysis of Geofront in \refsec{sec:testing:usability}, it can be concluded that a geo-web-VPL can be used for geocomputation to a sufficient extent.  
 The analysis shows that many of Geofront's best aspects for the purpose of geocomputation are a consequence of the design decision to use a diagram-based, dataflow-type VPL.
 Examples of these are how the Functional programming paradigm leads to pure functions and immutable variables, making the graph as a whole behave in a predicable manner, allowing for the inspection of in-between data at runtime. 
 However, the openness of the plugin system inhibits the consistency of these functional aspects.
@@ -170,17 +169,17 @@ These two contributions together lead to an environment suited for a number of u
   \item Fine tuning parameters: In situations where algorithms contain unintuitive or empirically derived parameters (e.g. RANSAC), a visual environment can be use to quickly try out multiple settings, and to observe their effects.
   \item Benchmarking: Geofront can be used to test the web performance of multiple algorithms written in different languages. 
   \item Publication: Geofront scripts can be shared using a link. 
-    this can be used to make a native library usable online, and by doing so, it may help to lower the delta between 'it works for me' and 'it works for someone else'.
+    this can be used to make a native library usable online, and by doing so, it may help to lower the delta between 'my library works for me' and 'my library works for someone else'.
 \end{itemize} 
 The combination of these features together make Geofront unique among both \\ geo-VPLS and web-VPLS. 
-by providing the full source code, together will all implementation details given in \refchap{chap:implementation}, this study aims to provide guidance for all subsequent studies on the topic of VPLs, geocomputation, or geoweb applications.
+by providing the full source code, together will all implementation details given in \refchap{chap:implementation}, this study aims to provide guidance for all subsequent studies on the topic of VPLs, geocomputation, or geoweb applications using WebAssembly.
 
 
 
 \section{Limitations}
 \label{sec:limitations}
 
-The contributions mentioned above have the following limitations:
+These contributions are bound by following limitations:
 \begin{itemize}[-]
   \item \textbf{Only Rust, Js \& Ts library support}
   For now, only libraries written in Rust or Javascript / Typescript can be used in Geofront. 

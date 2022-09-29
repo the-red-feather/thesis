@@ -1,8 +1,8 @@
 \chapter{Related works}
 \label{chap:related}
 
-This chapter offers a review of related and comparable studies.
-While almost no projects or studies exist at the intersection of all three of these fields, we do find related studies which intersect two of these fields, represented by the edges of \reffig{fig:triangle-model}:
+This chapter offers a review of related and comparable studies and projects.
+While almost no studies exist at the intersection of all three of these fields, we do find many related studies and projects which intersect two of these fields, represented by the edges of \reffig{fig:triangle-model}:
 \begin{enumerate}[-]
   \item \refsec{sec:related-geoweb} reviews related works on browser-based geoprocessing
   \item \refsec{sec:related-geovpl} reviews related works on VPLs used for geo-computation
@@ -294,7 +294,7 @@ This study limits itself to four sub-domains relevant to geocomputation:
 \begin{itemize}[-]
   \item VPLs to calculate materials, shaders and textures
   \item VPLs to calculate geometry
-  \item VPLs to perform photogrammetry reconstruction. 
+  \item VPLs for photogrammetry 
   \item VPLs to calculate behavior and logic
 \end{itemize}
 
@@ -303,14 +303,14 @@ One interesting fact is that we see a great number of parallels among all these 
 \begin{itemize}[-]
   \item All are diagram-based vpls.
   \item All offer inspection of in-between products. Some even visualize data being parsed between nodes.
-  \item All emphasize a process of "parametrization": with sliders and other UI elements, the vpls seem to be intended for rapid experimentation.
+  \item All emphasize a process of "parametrization": parameters of various functions can be configured using sliders, curves, and other \ac{GUI} elements. This allows quick experimentation of different settings.
 \end{itemize}
 Moreover, the persistence of visual programming within these computer graphics fields, suggests that visual programming languages are advantageous for calculations dealing with 2D and 3D data.
 
 The study speculates that this might be the case, because all these vpls, with exception to the behavior vpls, are essentially dealing with "functional data pipelines".
 No distributed systems or event driven architectures, just one calculation from start to finish, to produce a desired product.  
 However, the sheer amount of possible steps within these pipelines, together with the challenges of fine-tuning many relevant parameters, and the importance of inspecting in-between products visually, do not allow these pipelines to be configured by conventional UI's. 
-Therefore, the \ac{VPL} might be a perfect fit for all 2D and 3D functional data pipelines.
+However, a \ac{VPL} does deliver these features.
 % vpls allow rapid debugging, rapid experimentation, and the straight-forward nature of 2D/3D pipelines mitigate the challenge vpls have with representing imperative flow statements (\m{if, else, for, while, break}). 
 
 \subsubsection*{Material VPLs}
@@ -318,7 +318,7 @@ By far the most commonplace type of vpl present in computer graphics are materia
 In this context, the concept "material" often refers to a combination of 2D textures and shaders. 
 These include PBR settings, normal maps, bump maps, and / or custom shader programs. 
 The repetitive and time-consuming nature of manually creating textures, and the fact that some of these material properties can be inferred from each other, lead many CG applications to develop \ac{VPL}s for this particular purpose. 
-3D artists can now use these \ac{VPL}s to create procedural textures.
+3D artists use these \ac{VPL}s to create procedural materials.
 
 \begin{figure}
   \centering
@@ -435,21 +435,21 @@ Servers, either small or big, explaining how they desire to be interfaced, is mo
 If the server serves its corresponding client, users do not need to find some compatible interface themselves.
 For this reason the "nodeRED" application is a web application, even though it is mostly run on local networks.   
 
-\section{Browser-based, visual geocomputation programming} 
+\section{Browser-based geocomputation using a VPL} 
 
 % - Mobius Modeller : https://mobius.design-automation.net/pages/mobius_modeller.html
 To the best of the author's knowledge, only one publicly available visual programming language exist which is both able to be configured and executed in a browser, and is able to be used for geodata computation.
-This application is called the Möbius modeller \citep{janssen_mobius_2021}, and is the closest equivalent to the geo-web-vpl proposed by this study.
+This application is called the Möbius Modeller \citep{janssen_mobius_2021}, and is the closest equivalent to the geo-web-vpl proposed by this study.
 Though it only uses javascript, the tool is able to be successfully used for a number of applications, including CAD, BIM, urban planning, and GIS. 
 It uses a combination of a 'bare-bones' diagram-based vpl, together with a rich block-based vpl (See \reffig{fig:mobiusmodeller}).
 In fact, the block-based vpl is so rich that is almost ceases to be a vpl altogether, and starts to be python-like language with heavy IDE support.  
 
-% The \ac{geo-web-vpl} presented by this study still differs from the mobius modeller in the following aspects: 
-% \begin{itemize}[-]
-%   \item This study explores the usage of diagram-based vpls as opposed to a block-based vpl, to allow for the dataflow programming advantages described in \refsec{sec:background:dataflow}.
-%   \item This study explores the usage of WebAssembly to hypothetically improve performance and to use existing geocomputation libraries.
-%   \item This study addresses some of the life-cycle issues of \ac{VPL}s stated in \refsec{sec:background:vpl:disadvantages}. 
-% \end{itemize}
+The VPL proposed by this study still differs from the mobius modeller in the following ways: 
+\begin{itemize}[-]
+  \item This study explores the usage of a pure dataflow VPL, as opposed to the multiple types of VPLs used by the Möbius Modeller. This is done to allow for the dataflow programming advantages described in \refsec{sec:background:dataflow}.
+  \item This study explores the usage of WebAssembly to hypothetically improve performance and to use existing geocomputation libraries.
+  \item This study addresses some of the life-cycle issues of \ac{VPL}s stated in \refsec{sec:background:vpl:disadvantages}. 
+\end{itemize}
 
 \begin{figure}
   \centering

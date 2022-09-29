@@ -57,11 +57,11 @@ However, to specify its contribution, an explanation of this method must first b
 % - unlimited access to functionality & composability, usability, and composability
 
 A visual programming language is a type of programming language which uses an alternative model to the textual source code of regular programming languages. 
-These alternative models are represented by a \ac{GUI}, in which the program might take the shape of a graph or a block-based instruction set for example. 
+These alternative models are represented by a \ac{GUI}, in which the program might take the shape of for example a graph, or a block-based instruction set.
 The value a VPL lies in the fact that constructing or editing a program in a visual way can be a faster process than using a textual method, even for the most experienced software developers \citep{green_usability_1996, kuhail_characterizing_2021}.
-Additionally, a \ac{VPL} allows for End User Development \citep{kuhail_characterizing_2021}: 
-In general, \ac{VPL} makes processes more accessible to end users, as it allows practitioners to automate some processes and workflows like a software developer, but without needing a full background in software development \citep{benac_recent_2022}. 
-Finally, VPLs may even possess performance and reliability advantages over textual languages, but only if it is implemented as a so-called dataflow-type VPL \citep{sousa_dataflow_2012}. 
+Additionally, a \ac{VPL} allows for so-called End User Development \citep{kuhail_characterizing_2021}.
+A \ac{VPL} makes development more accessible to end users, as it allows practitioners to automate some processes and workflows like a software developer, but without needing a full background in software development \citep{benac_recent_2022}. 
+Finally, a VPL may even possess performance and reliability advantages over textual languages if it is implemented as a dataflow-type VPL \citep{sousa_dataflow_2012}. 
 
 These qualities are beneficial to geocomputation, and perhaps as a consequence, geocomputation by means of visual programming is not an uncommon phenomena in the field of \ac{GIS}.
 For example, Safe software's FME \citep{safe-software_fme_2022} is a popular \ac{VPL} among \ac{GIS} practitioners, arguably due to the way it simplifies the process of writing a \ac{ETL} pipeline. 
@@ -238,16 +238,19 @@ Adding backend-based geocomputation to a web VPL would be an excellent follow-up
 
 \subsection*{No Usability Comparison} % 
 
-While accessibility / usability is a motivation of the development of a \ac{VPL}, and while usability will be analyzed to a limited extent, no claims will be made that this method of geocomputation is \emph{more} usable as opposed to existing geocomputation methods. 
-This research attempts to solve practical inhibitions in order to discover whether or not browser-based, vpl-based geocomputation is \emph{a} viable, usable option. If it turns out that this method is viable enough technically, future research will be needed to definitively proof \emph{how} usable it is compared to all other existing methods. 
-Similarly, a survey analyzing how users experience browser-based geocomputation in comparison to native geocomputation must also be left to subsequent research. 
+This research attempts to solve the practical problem of library portability. 
+We must therefore access if a library can be \emph{used} in a VPL context. 
+But, while accessibility and usability are motivations for this study, and while usability will be analyzed to a limited extent, no claims will be made that this method of geocomputation is \emph{more} usable as opposed to existing geocomputation methods. 
 
-This choice is made, because browser-based, VPL-based geocomputation is too new of a method to make a balanced comparison against any other method. Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
+If it turns out that library portability is viable enough technically, future research will be needed to definitively proof \emph{how} usable VPL usage of a library is compared to all other existing methods. 
+Similarly, a survey analyzing how users experience browser-based geocomputation in comparison to native geocomputation is also not part of this particular study.  
+
+This distinction is made, because browser-based, VPL-based geocomputation is too new of a method to make a balanced comparison against any other methods. 
+Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
 
 % This paper seeks to first close this gap, limiting itself to overcoming the technical and design boundaries in the pursuit of practical client-side geocomputation.
 
 % While the research restrains itself from empirically measuring an aspect as nebulous as 'accessibility', it does demonstrate ...
-
 
 % It is my goal to introduce this as a new geocomputation option, and to name the advantages and disadvantages we can be sure of. An actual comparison of client-side vs native geocomputation is something different. 
 
@@ -283,7 +286,7 @@ The study limits itself to native libraries written in C++ and Rust.
 C++ was chosen, since almost all relevant geocomputation libraries are written in C++, like CGAL and PROJ. 
 Rust was chosen, for its extensive WebAssembly support. 
 It also appears to be the most popular language for writing WebAssembly \citep{eberhardt_state_2022}.
-It contains a number of relevant geocomputation libraries, but not to the same extend as C++.
+It contains a number of relevant geocomputation libraries, but not to the same extent as C++.
 
 \subsection*{Only core browser features}
 Lastly, the implementation of the prototype geocomputation VPL will limit itself to core browser features, keeping dependencies at a minimum, in an attempt to generalize the results of the study.
