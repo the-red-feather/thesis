@@ -1,84 +1,165 @@
-# intro
+NOTES 
+==================================
 
-### *why is geo-computation important?* <br><br>
+Mission: 
+----------------------------------
 
-Geo-computation is a process central to the whole field of GIS. 
-The term 'geo-computation 'represents all types of computations performed on geographical datasets, from the calculation of an area of a polygon, to CRS transformations, or converting a raster dataset into a vectorized dataset.  
-Almost all applications of GIS require geo-computation to an extend, as the raw data gathered from surveyance seldom corresponds to the precise information we wish to discover.      
-This makes geo-computation a cornerstone of the entire field of GIS. 
-All applications of GIS, be it ..., ... or, ..., rely on geo-computation to be fast, clear and reliable. 
-
-### *What has happened to geo-computation?* <br><br>
-
-The quest of making geo-computation fast, clear and reliable, has seen research and development for decades, but is still an ongoing process. 
-
-However, geo-computation is challenging due to the nature of geodata:
-- Big Data: The sizable nature of geodata makes geo-computation both computationally intensive and unwieldy. 
-
-- Variety in formats: 
-
-- Variety in quality
-
-- lots of edge cases
+- Just go over the paper, no fancy work
+- Make it MVP, then start upgrading
+- Make a very straight-forward narrative
+- Finish in time for mirror practice
 
 
-fast not only in runtime, but fast in full usage: quick to install, to start up, to configure the process, to perform the calculations, and to visualize and examine if the calculations performed as desired. 
-
-(offer different types of geodata transformation and manipulation)
-
-```
-Command line interfaces (GRASSGIS)
-          ||
-          || (cumbersome, hard to see what you are doing)
-          \/
-Graphical User Interfaces (argGIS, QGIS)
-
-```
-This is sort of the point we're at. 
-
-*What is happening to geo-computation now?*
-
-We see two promising developments emerging in the field of geo-computation: 
-
-- Low coding -> scripting without programming, automation without having a CS-degree. 
-  L Visual Scripting (FME, Grasshopper, Geoflow)
-
-- browser-based geoprocessing
-  L Operationalize workflows or processes
-  L Make it easier to share
-
-*why are vpls used for geo-computation?* 
-- Parametrization: 
-- Experimentation: 
-
-*why is the web used for geo-computation?*
-- Accessibility: no installment or configuration burden
-- Collaboration: web applications can quickly be distributed
-
-# problem: 
-
-- geoprocessing using either the web or vpls is niche, underdeveloped. This leads to the disadvantages being over-emphasised, and the advantages underappreciated. 
-- no way of both using the advantages of the web and a vpl, since no geo-computation web vpl exist. 
+Sunday: 
+- make 
 
 
-# This study 
+Narrative sketches:
+----------------------------------
 
-This study explores the possibility of combining both visual programming and browser-based geo-computation. By doing so, users could benefit from the advantages of both developments, while specific shortcomings of one of these developments might be mitigated by the other one. 
+- Geocomputation
 
+- disconnect between application and library
 
-these  niceties of a vpl or of the web have always had significant drawbacks
+- VPLs are one of the ways to solve this disconnect
+  - it is BOTH a programming language and an application at the same time
+
+- VPL
+  - WHY?
+    - breaks the divide between 'library' and 'application'
 
 
 
 
-<!-- % 1) General story on geo-information. Go from data to application
-% - geo-information applications are extremely valuable
-% - bring the side of the gis application & geo-computation to the reader's attention. 
 
-% Component of geo-computation.
-% Overlap with other fields (CAD, medical, sfx) 
-% Computational Geometry
-% Examples: 
-% Fit plane through 3d-points
-% Triangulation
-% Convex hull -->
+PRESENTATION SCRIPT
+==================================
+
+0 pre-intro
+==================================
+
+- Hello everyone, thank you for coming 
+- Name the title 
+- Content will be as can be expected: 
+  - intro
+  - background & related studies
+  - methodology
+  - implementation
+  - tests
+  - conclusion
+
+
+
+1 Introduction
+===================================
+
+1.1 Motivation
+-----------------------------------
+
+### Geocomputation 
+
+### Library & Application 
+
+### Visual Programming
+
+### The Web
+
+1.2 Problem 
+-----------------------------------
+
+### Library Portability
+
+### Three aspects:
+
+### I. Compilation
+
+### II. Loading 
+
+### III. Usage
+
+1.3 Objective 
+-----------------------------------
+
+### Purpose of the study
+- Goal: Solving the library portability problem for web-based Vpls. 
+
+- In doing so: Improving the state of web-based VPLs
+
+- How: The study is about how to correctly compile, load and use libraries 
+in a web-based dataflow VPL
+
+- Research Question: 
+
+- Sub questions:
+
+
+
+2 Background & 3 Related works
+===============================
+
+2.1 VPLs
+----
+
+### Types 
+
+### Related VPLs
+
+
+2.2 WebAssembly
+-----------
+
+### Rich Clients
+
+### WebAssembly
+
+
+
+3 Methodology
+==============
+
+( quickly the plan )
+( some implementation details )
+
+2.1 Base VPL
+------------
+
+2.2 Plugin System
+-----------------
+
+2.3 Tests
+---------
+
+4 Implementation
+================
+
+2.1 Base VPL
+------------
+(achieved functionality)
+
+2.2 Plugin System
+-----------------
+(achieved functionality)
+
+5 Tests 
+=======
+
+5.1
+
+6 Conclusion
+============
+
+6.1 Answers
+-----------
+
+6.2 Future Work
+---------------
+
+
+
+---------
+
+
+---------
+
+
+
