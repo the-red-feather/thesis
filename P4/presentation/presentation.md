@@ -28,7 +28,56 @@ Narrative sketches:
   - WHY?
     - breaks the divide between 'library' and 'application'
 
+===================
 
+Geocomputation software is usually 
+
+SPLIT INTO TWO CATEGORIES: Applications and Libraries. 
+They have different intentions and strengths :
+
+APP: 
+User-friendly 
+usable
+concrete
+visual
+
+LIBRARY
+programmer-friendly
+composable
+abstract
+syntactic
+
+------------------------------
+
+HOWEVER
+
+This split has drawbacks:
+
+- applications are not programmer friendly: 
+  - applications limit access to functionality
+  - applications are not composable normally
+
+- libraries are not end-user friendly:
+  - functionalities are not directly accessible.
+
+[Elliott, 2007]
+
+Software applications and libraries 
+
+------------------------------
+
+THE DREAM
+
+  - unlimited access to:
+    - functionality
+    - composability
+    - usability 
+    
+-------------------------------
+
+VPLs: 
+
+on of the possible solutions to bring application and library closer together
 
 
 
