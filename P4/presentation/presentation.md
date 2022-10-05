@@ -17,67 +17,7 @@ Sunday:
 Narrative sketches:
 ----------------------------------
 
-- Geocomputation
 
-- disconnect between application and library
-
-- VPLs are one of the ways to solve this disconnect
-  - it is BOTH a programming language and an application at the same time
-
-- VPL
-  - WHY?
-    - breaks the divide between 'library' and 'application'
-
-===================
-
-Geocomputation software is usually 
-
-SPLIT INTO TWO CATEGORIES: Applications and Libraries. 
-They have different intentions and strengths :
-
-APP: 
-User-friendly 
-usable
-concrete
-visual
-
-LIBRARY
-programmer-friendly
-composable
-abstract
-syntactic
-
-------------------------------
-
-HOWEVER
-
-This split has drawbacks:
-
-- applications are not programmer friendly: 
-  - applications limit access to functionality
-  - applications are not composable normally
-
-- libraries are not end-user friendly:
-  - functionalities are not directly accessible.
-
-[Elliott, 2007]
-
-Software applications and libraries 
-
-------------------------------
-
-THE DREAM
-
-  - unlimited access to:
-    - functionality
-    - composability
-    - usability 
-    
--------------------------------
-
-VPLs: 
-
-on of the possible solutions to bring application and library closer together
 
 
 
@@ -99,7 +39,9 @@ PRESENTATION SCRIPT
   - tests
   - conclusion
 
-
+- background and related studies are integrated within the methodology.
+  - However, numbering is kept the same with the chapters of the written thesis, 
+    to make the relation between the presentation and thesis more clear. 
 
 1 Introduction
 ===================================
@@ -107,78 +49,247 @@ PRESENTATION SCRIPT
 1.1 Motivation
 -----------------------------------
 
-### Geocomputation 
 
-### Library & Application 
+- **GEOCOMPUTATION** 
+  - (or Geoprocessing)
+  - is one of the CORNERSTONES of GIS and all modern mapping needs.
+  - It is a broad topic, almost to broad to consider.
+  - The term 'geocomputation' is used to represent all types of computations performed on geographical datasets. 
+    - Anything from: 
+      - the calculation of the area of a region, 
+      - to a Coordinate Reference System (CRS) transformations
+      - or converting a raster dataset into a vectorized dataset,
+    - can be regarded as geocomputation.
 
-### Visual Programming
 
-### The Web
+- **GEOCOMPUTATION SOFTWARE NORMALLY COMES IN TWO FORMS**: Applications, and Libraries [REF: Elliott, 2007]
+  - PROPERTIES: different intentions & strengths
+    - APP: 
+      - User-friendly 
+      - usable
+      - concrete
+      - visual
+
+    - LIBRARY
+      - programmer-friendly
+      - composable
+      - abstract
+      - syntactic
+
+  - HOWEVER: This split in intensions has drawbacks:
+    - applications are not programmer friendly: 
+      - applications limit access to functionality
+      - applications are not usually composable
+    
+    - libraries are not end-user friendly:
+      - functionalities are not directly accessible.
+      - no GUI \ visualization support out of the box
+
+    - THIS IS EXTRA IMPORTANT FOR GIS
+      - Visualization is a necessity
+      - Composability is a necessity
+    
+    - THE DREAM: unlimited access to the functionality, composability, and usability of software.
+   
+
+- **THERE ARE MULTIPLE WAYS** researchers and developers have tried to bring software applications and libraries closer together.
+    (Unix Pipes, Jupyter notebook, GUI algebra [REF: Elliott, 2007])
+
+- **ARE ONE OF THESE WAYS IS THE VISUAL PROGRAMMING LANGUAGE** 
+  - VPL: Constructing a program by using a GUI. 
+  - This makes a VPL BOTH a programming language and an application at the same time.
+  - Some examples within the field of GIS are: FME, Grasshopper, Geoflow.
+
+  - **new development: Web VPLS**
+    - 'live' alongside web GIS (as more and more GIS applications are starting to become web-based, it makes sense that 'configuring automation' in a web browser becomes a need).
+    - Accessibility advantages: (no installation, easier distribution and licensing)
+      (- Overleaf) 
+    - GIS example: mobius modeller
 
 1.2 Problem 
 -----------------------------------
 
-### Library Portability
+- **PROBLEM: library portability**
+    - The same software libraries which we could use with native VPLs can now suddenly not be used anymore on the web.
+    - This hinders the original goal of 'bringing Libraries and (Web) Applications closer together'
+    - web based alternatives exist, but
+      - time consuming to synchronize and test features [Ref: mapbox.rs]
+      - which in turn hinders innovation
 
-### Three aspects:
 
-### I. Compilation
+- **Goal: Solving the library portability problem for web-based VPLs.**
+  - make it so native, system level libraries can be used in a web-based VPL. 
+  - but how? 
+  
 
-### II. Loading 
+- **Three challenges are identified** to using native library in a vpl: 
+    - Firstly, **I. Compilation**:   
+      -  the most viable option for using a non-js library in a web browser, is by compiling it to **WebAssembly** [Haas et al., 2017].
+      - WebAssembly is a binary instruction set meant for virtual machine execution.
+        - It has multiple use cases, one of which is safely executing software written in a variety of languages on the web.  
+      - However, wasm compilation may pose challenges:
+        - There are differences between programming languages 
+          - in the level of support granted by their specific **wasm compilers**. 
+          - (Novelty of the language)       
+        - **Not** all code can be compiled **unconditionally**
+          - (examples: no file system access, no multithreading support) 
 
-### III. Usage
+    - Secondly, **II. Loading**:
+      - In order to load system level libraries in a web VPL, one needs to: 
+        - Interoperate between the language models of the compiled WebAssembly binary and Javascript.
+        - Interoperate between the language models of Javascript and the Visual Language.
+      - This is complicated by the fact that the WebAssembly binary can be created from different languages.   
+      - Designing an interconnected binding system, in which all three languages have to be taken into account, forms the content of this second challenge  
+
+    - Lastly **III. Utilization**: 
+      - Finally, It might be the case that a web-based VPL is able to **load and run** functions from WebAssembly **compiled** libraries. 
+      And yet, one might not be able to successfully **use** these libraries.
+      - The challenge is to connect the language model of the web-based VPL to the models of these libraries on a software design level rather than a technical Loading level. 
+
 
 1.3 Objective 
 -----------------------------------
 
-### Purpose of the study
-- Goal: Solving the library portability problem for web-based Vpls. 
-
-- In doing so: Improving the state of web-based VPLs
-
-- How: The study is about how to correctly compile, load and use libraries 
-in a web-based dataflow VPL
-
-- Research Question: 
-
-- Sub questions:
+- **The Objective of the study** is to attempt to solve the library portability problem for web-based VPLs.
+  - In doing so: Contributing to the state of web-based VPLs
+  - And: Contributing to closing the gap between library and (web) applications.
 
 
-
-02 Background & 03 Related works
-===============================
-
-2.1 VPLs
-----
-
-### Types 
-
-### Related VPLs
+- **How**: Design, implement, examine and discuss a possible solution for \
+  compiling, loading and using industry-standard geo-libraries in a web based VPL.  
 
 
-2.2 WebAssembly
------------
+- **Research Question**: 
+  - How can native geocomputation libraries be compiled, loaded, and utilized within a browser-based dataflow-VPL?
 
-### Rich Clients
 
-### WebAssembly
+- **Sub questions**:
+  - The following supporting questions are defined to aid in answering the main question. The first question serves as a prerequisite for attempting to answer the remaining three. The other three research questions are based upon the three main categories of challenges of the library portability problem. 
+
+  - How to implement a browser-based dataflow-vpl for processing 3D geometry?
+
+  - How can geocomputation libraries written in system-level languages be **compiled** for web consumption?
+
+  - How can a web-consumable library be **loaded** into a web-vpl without explicit configuration?
+
+  - To what extent can a Web based vpl equipped with native libraries be used to create geodata pipelines?
+
+
+02 Background 
+=============
+
+VPL
+---
+- VPLs are often researched as part of the field of "End User Development".
+- Show some different type of VPLs
+
+Dataflow modelling
+------------------
+- Dataflow modelling is a field of study which offers a different perspective on VPLs. 
+- Where the wider field of End User Development regard VPLs mostly from a UI / GUI / UX point of view, 
+  - Dataflow modelling focusses more on the language model of VPls. 
+  
+- A special type of VPL is regarded. 
+  - This study calls this type a 'Dataflow VPL'.
+
+- Dataflow VPL are defined as Graph based VPL, 
+  - with only pure, stateless, functions without side-effects.
+    ( not triggering anything special, using global properties, etc. ) 
+  - and with immutable variables, 
+    ( meaning that variables are not allowed to change after initialization )
+
+- If this sounds familiar to you, you are right: 
+  - The observation of research in the field of dataflow modelling, 
+    is that dataflow VPL starts to look like a Functional Programming model, 
+    (but without 'first class functions'). 
+  - As such, dataflow VPLs enjoy similar advantages as functional programming: 
+    -
+    
+
+
+An important aspect of the dataflow-VPL is the connection to the field of dataflow programming, which is also a more general field than VPLs in particular.
+Dataflow programming is a programming paradigm which internally, represents a program as a DAG. 
+A graphical, editable representation of a dataflow program would result into a Dataflow VPL.
+
+The big computational advantage of this model, is that it allows for implicit concurrently [Sousa, 2012]. 
+In other words, every node of a program written using dataflow programming can be executed in isolation of any other nodes, 
+as long as the direct dependencies (the inputs) are met. 
+No global state or hidden side effects means no data-race issues, 
+which allows parallel execution of the program by default. 
+When using other paradigms, programmers need to manually spawn and manage threads to achieve the same effect.
+
+This also leads into an interesting side-effect of using dataflow programming / a diagram-based VPL: 
+By only permitting pure, stateless functions with no side-effect, and only immutable
+variables, end users automatically adopt a functional programming style (albeit without
+lambda functions). 
+Functional programming has many benefits of its own besides concurrency, such as:
+- clear unit testing
+- hot code deployment
+- debugging advantages,
+- and lending itself well for compile time optimizations.
+
+All that to say, creating a VPL is not just a matter of designing a stylistic, user-friendly GUI
+alternative to regular programming. 
+This might be true for other types of VPLs, but not for diagram-based ones. 
+By closely resembling dataflow itself, and because of its functional programming nature, 
+diagram-based VPLs can actually lead to faster and more reliable software.
 
 
 
 04 Methodology
 ==============
 
-( quickly the plan )
-( some implementation details )
+- The methodology used to find answers to these questions is defined as follows: 
+  - First, a **custom web VPL** is designed and implemented as a **host** for the libraries. 
+  - Second, a **plugin system** is designed and implemented.
+    - The system consists of: 
+      - A Plugin Loader on the side of this VPL, and 
+      - A Plugin model the libraries must adhere to. 
+  - Finally, Two sets of **tests** are performed to analyse to what extent this solution allows for proper utilization of native libraries. 
 
-2.1 Base VPL
-------------
 
-2.2 Plugin System
------------------
+05 Solution
+===========
 
-2.3 Tests
----------
+Base VPL
+--------
+
+- **WHY**
+  - A VPL was required as a host for all subsequent steps of the methodology.
+    - More specifically, A Dataflow-type VPL was deemed the most suited fit for geocomputation 
+
+    - Building a custom implementation would also allow more degrees of freedom, in
+terms of designing a VPL which takes hosting geocomputation libraries from multiple hosts
+into account from the start.
+    - Additionally, no existing web-based VPLs were implemented as Dataflow VPLs.
+
+
+
+
+the related works review of Chapter 3 showcased that  The Mobius Modeller [Janssen, 2021] came closest,
+but the sizable nature of this project makes aligning its goals with the goals of this study chal-
+lenging.
+The following approach was deemed as the most fitting method for implementing this VPL.
+First, the requirements of a dataflow-VPL handling geometry have to be made clear. Secondly,
+in order to know what tools may be used to implement this VPl, a small analysis of ”widely
+supported browser features” is made. Then, with both these constraints known, a design for
+a web VPL can be layed out, which can be subsequently implemented.
+
+
+
+2.2 Plugin System Design
+------------------------
+
+
+2.3 WebAssembly
+-----------
+
+### Rich Clients
+
+### WebAssembly -->
+
+
+
 
 05 Implementation
 ================
@@ -191,10 +302,14 @@ in a web-based dataflow VPL
 -----------------
 (achieved functionality)
 
+
+
 06 Tests 
 =======
 
 5.1
+
+
 
 07 Conclusion
 ============
@@ -212,80 +327,66 @@ This implementation had advantages and disadvantages:
 + The big advantage of a TypeScript implementation is that a great number of features do not need to be included within the source code of the application, leading to quick load times.
     + WebGL, UI (HTML), 2D Canvas API
 
-+ Also, Javascript’s flexibility proved to be useful to support features like dynami-
-cally loading and using libraries at runtime.
++ Also, Javascript’s flexibility proved to be useful to support features like dynamically loading and using libraries at runtime.
 
 - However, TypeScript does not have any runtime support for types, leading to reflection problems and problems with javascript types (no integer atomic, only number),
 
-- Also, the absence of explicit immutability made it so that functions will need to be 'thrusted' to not alter their input data. 
+- Also, the absence of explicit immutability made it so that all functions will need to be 'thrusted' to not alter their input data. 
+
+
 
 ### sub 2 ”How can geocomputation libraries written in system-level languages be compiled for web consumption?”
 
-Based on 6.1: 
-
+Based on the first set of tests: 
 The conclusion is a dilemma between Rust and C++:
 
-Rust
-+ 
+**Rust** 
+- The study could successfully expose multiple native geocomputation library in a manner properly consumable by a web-vpl. 
+
+- This lead to a variety of applications, like loading a `.laz / .copc` point cloud, and triangulating it.
+
+- Regrettably, the Rust language is too new to contain libraries which can be considered 'industry standard'.
 
 
-C++ 
-- Has a strong foundation of existing geocomputation libraries compared to newer languages like Rust. However, this same legacy inhibits its portability, which makes it harder to compile to web browsers. 
-- This study was not able to properly load C++ projects within the plugin system, due to the fact that the Emscripten compiler did not provide the same level of features as wasm-pack.
+**C++** 
+- C++ based geocomputation libraries cannot be sufficiently compiled for web consumption, at least not for the purposes of loading the functionalities within a web-VPL. 
 
-- A series of workarounds explained 6.1 came close, but the time frame of this study
+- The Emscripten compiler did not provide the same level of features as Rust's `wasm-pack`.
 
+- A series of workarounds had to be created. These workarounds came close to successful utilization, 
+  but the time frame of this study did not allow a final workaround to be implemented.
 
+- C++ Has a strong foundation of existing geocomputation libraries compared to newer languages like Rust. 
+  - However, this same legacy inhibits its portability, which makes for Larger binaries, less performant 'wrapper' features, 
+    and makes it overall harder to compile to web browsers.
 
-Based on the experiments and analysis in Section 6.1, the study concludes that most con-
-temporary, C++-based geocomputation libraries cannot be sufficiently compiled for web con-
-sumption, at least not for the purposes of loading the functionalities within a web-VPL. This is
-not due to wasm itself, but rather because of the focus of the emscripten compiler, combined
-with the implementation requirements of a web VPL. Emscripten can be used to compile
-full-scale C++ applications, and offers an emulation of a POSIX environment. However, it
-lacks support for compiling libraries themselves, compared to other wasm-library compilers.
-libraries generated with emscripten’s ’embind’ tool use irregular syntax, which troubles its
-ability to be loaded programmatically. While web implementations do exist like ’GDAL-js’,
-these solutions are required to work though Web Workers, and use the emscripten virtual file
-systems, which again compromises their usage for the purpose of a dataflow-type vpl requir-
-ing pure functions. Finally, the study was able to recognize some discrepancies between the
-novelty of the WebAssembly format, juxtaposed to 50-year-old legacy of the C++ language,
-leading to large wasm binaries.
-Despite this, the study was able to provide a solution to these compilation shortcomings by
-expanding the range of ’system-level languages’ beyond C++. The Rust programming lan-
-guage offers a performance and level of control similar to C++, and has better wasm-library
-support thanks to the wasm-bindgen toolkit. Using this toolkit, the study could successfully
-expose a native geocomputation library in a manner properly consumable by a web-vpl. re-
-grettably, not many rust-based geocomputation libraries are written in pure rust, and the
-general pool of existing geocomputation libraries is limited due to the novelty of the lan-
-guage.
-Thus, the conclusion is a dilemma between Rust and C++. C++ has a strong foundation of
-existing geocomputation libraries compared to newer languages like Rust. However, this
-same legacy inhibits its portability, which makes it harder to compile to web browsers. Rust
-is for the forseeable future a better choice for writing easily consumable, portable libraries,
-but does not have a fully mature ecosystem of geocomputation libraries yet.
-To offer a solution, the study suggests that either the ’embind’ tool must be expanded to the
+<!-- 
+- To offer a solution, the study suggests that either the ’embind’ tool must be expanded to the
 level of functionality of ’wasm-bindgen’, or geocomputation libraries must be rewritten in
-Rust. This second option seems counterproductive, but as stated by Ammann et al. [2022]:
-”innovation often requires selectively ignoring prior work.
+Rust.  -->
+
+<!-- This second option seems counterproductive, but as stated by Ammann et al. [2022]:
+”innovation often requires selectively ignoring prior work. -->
 
 ### sub 3 ”To what extent can a web-consumable library be loaded into a web-vpl without explicit configuration?”
 
-Based on the method described in Section 4.2 and Section 5.2, and the analysis of Section 6.1,
-it can be concluded that it is possible and even sufficiently usable to load a web-library into a
-VPL without explicit configuration. It also had the desired effect of breaking down the barrier
-between vpl libraries and regular text-based libraries: Using this method, only one type of li-
-brary is needed to serve both. Moreover, it led to a workflow in which rapid experimentation
-was possible, since this method allows users to develop a library locally, and then quickly
+- It can be concluded that it is possible and even sufficiently usable to load a web-library into a VPL without explicit configuration. 
+
+- Additionally, Using this method, only one type of library is needed to serve **Three formats**: as **VPL plugin**, as **native C++ / Rust library**, and as **Js library**. 
+
+- Moreover, it led to a workflow in which **rapid experimentation** was possible, since this method allows users to develop a library locally, and then quickly
 experiment and test its usage online.
+
 The drawback of allowing this seamless interoperability and rapid experimentation, is that
 many important properties like descriptions and library metadata do not need to be explicitly
 specified, and could not be automatically extracted. These properties still had to be added to
 the libraries in the shape of methods with a recognizable naming convention.
+
 Additionally, the freedom of granted by not restricting input and output types can lead to
 a confusing user experience, since there is no way of restricting libraries to use particular
 type convention. Even worse, the libraries could use references pointing to the same object,
 eliminating the ’immutable, no side effects’ nature of a dataflow-type VPL.
+
 
 ### sub 4: ”How can a ’geo-web-vpl’ be used to create geodata pipelines?”
 
@@ -300,17 +401,25 @@ aspects. Imported libraries are not forced to exclusively use pure function. As 
 libraries can create functions with many side effects, or they can use inconsistent input and
 output datatypes, ultimately leading to confusion for the end-user.
 
+
 ### main: ”How can native geocomputation libraries be compiled, loaded, and utilized within a browser-based dataflow-VPL?”
 
 A VPL can support existing geocomputation libraries if and only if these libraries are able to
 be compiled, loaded, and utilized in a dataflow VPL format.
-Using a new javascript implementation of an acyclic, graph-based VPL, the study was able
+
+- Using a new javascript implementation of an acyclic, graph-based VPL, the study was able
 to demonstrate how the web platform can be used to represent a dataflow-VPL capable of
-hosting these libraries. The dataflow-properties of a graph-based VPL like this also makes
-this libraries sufficiently usable, albeit with some well-known caveats of dataflow-VPLS, like
+hosting these libraries. 
+
+- The dataflow-properties of a graph-based VPL like this also makes
+this libraries sufficiently usable, albeit with some well-known caveats of dataflow-VPLs, like
 the representation of conditionals and iteration.
+
+
+
 The current methods of compiling existing C++ geocomputation libraries to the web turned
-out to be insufficient for the purposes of this study. This is due to emscripten’s focus on com-
+out to be insufficient for the purposes of this study. 
+This is due to emscripten’s focus on com-
 piling full C++ applications instead of libraries. Despite this, the study w ́as able to demon-
 strate how a novel method can be used to compile and load a Rust-library for usage in the VPL.
 While not many contemporary geocomputation libraries are written in Rust, the study offers
@@ -320,42 +429,19 @@ All in all, this means that either if the Rust ecosystem gains more mature geoco
 braries, or if Emscripten’s capabilities improve, then the code portability problem & dataflow
 problem of existing web-based geocomputation VPLS can be overcome.
 
-7.2 Future work
----------------
+<!-- 
+Discussion
+----------
 
-### A: Deployment & Scalability
-
-Scripts created with geofront should be able to be deployed as a server-side processing application. 
-By running a script on a server, and ideally a server containing the geodata required in the process, one could deploy and run a Geofront scripts on a massive scale.
-The overall purpose of this would be to create a Free and Open Source Software alternative to tools like the Google Earth Engine, and FME cloud compute.
-
-The way GeoFlow achieved this is by creating a command line executable able to run the save file of a script ( a .json in our case).
-
-However, this can also be achieved by compiling this save file to an executable language like python or javascript, and running that in a python or javascript runtime. 
-
+- Dataflow modelling? 
+  - Not fully. 
+  - Difficult to create a true dataflow-VPL in javascript. 
   
-### B: Rust, Containerization, and cloud native geospatial
-
-An interesting aspect this study was able to touch on is using Rust for geocomputation. The
-reason for this was the extensive support for webassembly, which was essential for browser-
-based geocomputation. However, there are additional reasons one might want to perform
-geocomputation within Rust. One is that rust is widely considered as a more stable, less
-runtime error-prone language than C++, while offering similar performance and features.
-
-Additionally, rust Wasm binaries also tend to be smaller than C++ wasm binaries.
-This could be very interesting to the ”cloud-native geospatial” movement. 
-
-This GIS movement aims to create the tools necessary to send geocomputation to servers, rather than sending geodata to the places where they are processed. 
-
-To do this, geocomputation must become much more portable than it currently is, and Rust compiled to WebAssembly might proof to be a strong candidate for creating exchangeable, performant, compact, and error-proof binaries. 
-It already sees usage on both cloud and edge servers (State of WebAssembly, 2022).
-Therefore, studying Rust-based geocomputation for the purpose of cloud native and edge
-computing, would be a promising topic for subsequent research.
-
----------
-
-
----------
+- Divide between Library and Application? 
+  - The plugin system counts as an interesting contribution to this aspect.
+  - However, ability for this VPL to be regarded as a tool for automation is still limited by multiple implementation aspects:
+    - No way to 'export' a geofront script as a standalone application, without the VPL.
+    - No way to run a Geofront script natively -->
 
 
 
