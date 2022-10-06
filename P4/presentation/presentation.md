@@ -14,6 +14,8 @@ Sunday:
 - make slide for each beat of the story
 
 
+- get over akwardness of presenting
+
 Narrative sketches:
 ----------------------------------
 
@@ -27,27 +29,15 @@ PRESENTATION SCRIPT
 0 pre-intro
 ==================================
 
-- Hello everyone, thank you for coming 
-- Name the title 
+- Hello everyone, thank you all for coming 
+- Today I would like to give you a small, 10 minute presentation to explain my P4 Draft Thesis in broad strokes. 
 
 - Content will be as can be expected: 
-  - Introduction
-  - Problem statement
-  - Solution
-  - Conclusion
 
-- the time constraints of only 10 minutes will 
-
-- background and related studies are integrated within the methodology.
-  - However, numbering is kept the same with the chapters of the written thesis, 
-    to make the relation between the presentation and thesis more clear. 
-
-- I will go over the main items of the thesis
-
-1 Introduction
+Introduction
 ===================================
 
-1.1 Motivation
+Motivation
 -----------------------------------
 <!-- 
 - **GEOCOMPUTATION** 
@@ -61,84 +51,80 @@ PRESENTATION SCRIPT
       - or converting a raster dataset into a vectorized dataset,
     - can be regarded as geocomputation. -->
 
-- **GIS SOFTWARE NORMALLY COMES IN TWO FORMS**: Applications, and Libraries [REF: Elliott, 2007]
-  - PROPERTIES: different intentions & strengths
-    - APP: 
-      - User-friendly 
-      - usable
-      - concrete
-      - visual
-
-    - LIBRARY
-      - programmer-friendly
-      - composable
-      - abstract
-      - syntactic
+- **GIS SOFTWARE NORMALLY COMES IN ONE OF TWO FORMS**: Applications, and Libraries [REF: Elliott, 2007]
+  <!-- - ( This dichotomy is so obvious that we seldom question it, but bear with me ) -->
+  Both have different intensions and strengths
+  Software libraries are tailored to programmers, and generally offer rich functionality which the programmer can use to compose new software.
+  Applications are tailored towards end-users, and offer a subset of functionality, but offer much more in terms of interactivity and visualization. 
 
   - HOWEVER: This split in intensions has drawbacks:
-    - applications are not programmer friendly: 
-      - applications limit access to functionality
-      - applications are not usually composable
-    
+
     - libraries are not end-user friendly:
       - functionalities are not directly accessible.
       - no GUI \ visualization support out of the box
 
-    - THIS IS EXTRA IMPORTANT FOR GIS
-      - Visualization is a necessity
-      - Composability is a necessity
+    - applications are not programmer friendly: 
+      - applications limit access to functionality
+      - applications are not usually composable
     
-    - THE DREAM: unlimited access to the functionality, composability, and usability of software.
-   
-
+- **For GIS: we desire Visualization & Composability**
+    
 - **THERE ARE MULTIPLE WAYS** researchers and developers have tried to bring software applications and libraries closer together.
-    (Unix Pipes, Jupyter notebook, GUI algebra [REF: Elliott, 2007])
+    <!-- (Unix Pipes, Jupyter notebook, GUI algebra [REF: Elliott, 2007]) -->
 
-- **ARE ONE OF THESE WAYS IS THE VISUAL PROGRAMMING LANGUAGE** 
-  - VPL: Constructing a program by using a GUI. 
-  - This makes a VPL BOTH a programming language and an application at the same time.
-  - Some examples within the field of GIS are: FME, Grasshopper, Geoflow.
-
+- **ONE OF THESE WAYS IS THE VISUAL PROGRAMMING LANGUAGE** 
+  - A visual programming language, or VPL for short, is both a programming language and a graphical application. 
+  - Because of this, it can both be used to 
+    - interact with and visualize geodata 
+    - compose automated procedures
+ 
   - **new development: Web VPLS**
-    - 'live' alongside web GIS (as more and more GIS applications are starting to become web-based, it makes sense that 'configuring automation' in a web browser becomes a need).
-    - Accessibility advantages: (no installation, easier distribution and licensing)
-      (- Overleaf) 
-    - GIS example: mobius modeller
+    - 'live' alongside web GIS 
+    - (as more and more GIS applications are starting to become web-based, it makes sense that 'configuring automation' in a web browser becomes a need).
+    - Accessibility advantages: no installation 
+      <!-- (no installation, easier distribution and licensing) -->
+      <!-- (- Overleaf)  -->
+    <!-- - GIS example: mobius modeller -->
 
-1.2 Problem 
+
+
+Problem 
 -----------------------------------
 
 - **PROBLEM: library portability**
-    - The same software libraries which we could use with native VPLs can now suddenly not be used anymore on the web.
+    - many of the native VPLS use critical 'geocomputation' libraries which make these VPLs usable for GIS. 
+    - However, these same libraries cannot be used on the web by normal means.
     - This hinders the original goal of 'bringing Libraries and (Web) Applications closer together'
     - web based alternatives exist, but
       - time consuming to synchronize and test features [Ref: mapbox.rs]
       - which in turn hinders innovation
+
+- **Goal: Solving the library portability problem for web-based VPLs.**
+  - make it so native, system level libraries can be used in a web-based VPL. 
+
+
+
+Objective 
+==============================
+
+- **The Objective of the study** is to attempt to solve the library portability problem for web-based VPLs.
+  - In doing so: Contributing to the quality of web-based VPLs
+  - And: Contributing to closing the gap between library and (web) applications.
+
+- **Research Question**: 
+  - How can native geocomputation libraries be compiled, loaded, and utilized within a browser-based dataflow-VPL?
+
+- **How**: 
+
+- Practical: This study has Designed, implemented, and discussed a possible solution 
 
 - Three challenges are identified** to using native library in a vpl: 
     - Firstly, **I. Compilation**:
     - Secondly, **II. Loading**:
     - Lastly **III. Utilization**: 
 
-
-- **Goal: Solving the library portability problem for web-based VPLs.**
-  - make it so native, system level libraries can be used in a web-based VPL. 
-  
-1.3 Objective 
------------------------------------
-
-- **The Objective of the study** is to attempt to solve the library portability problem for web-based VPLs.
-  - In doing so: Contributing to the state of web-based VPLs
-  - And: Contributing to closing the gap between library and (web) applications.
-
-
-- **How**: Design, implement, examine and discuss a possible solution for \
-  compiling, loading and using industry-standard geo-libraries in a web based VPL.  
-
-
-- **Research Question**: 
-  - How can native geocomputation libraries be compiled, loaded, and utilized within a browser-based dataflow-VPL?
-
+-  The libraries we intend to bring to the web-VPL are industry-standard geo-libraries, written in system level languages, like C++ or Rust
+<!-- 
 
 - **Sub questions**:
   - The following supporting questions are defined to aid in answering the main question. The first question serves as a prerequisite for attempting to answer the remaining three. The other three research questions are based upon the three main categories of challenges of the library portability problem. 
@@ -150,24 +136,16 @@ PRESENTATION SCRIPT
   - How can a web-consumable library be **loaded** into a web-vpl without explicit configuration?
 
   - To what extent can a Web based vpl equipped with native libraries be used to create geodata pipelines?
-
+ -->
 
 Background 
-==========
+===============================
 
-VPL
----
-- VPLs are often researched as part of the field of "End User Development".
-- Show some different type of VPLs
 
-Dataflow modelling
+Dataflow VPL
 ------------------
-- Dataflow modelling is a field of study which offers a different perspective on VPLs. 
-- Where the wider field of End User Development regard VPLs mostly from a UI / GUI / UX point of view, 
-  - Dataflow modelling focusses more on the language model of VPls. 
-  
-- A special type of VPL is regarded. 
-  - This study calls this type a 'Dataflow VPL'.
+
+A dataflow VPL is a specific type of Graph VPL with a set of constraints:  
 
 - Dataflow VPL are defined as Graph based VPL, 
   - with only pure, stateless, functions without side-effects.
@@ -175,56 +153,57 @@ Dataflow modelling
   - and with immutable variables, 
     ( meaning that variables are not allowed to change after initialization )
 
-- If this sounds familiar to you, you are right: 
-  - The observation of research in the field of dataflow modelling, 
-    is that dataflow VPL starts to look like a Functional Programming model, 
-    (but without 'first class functions'). 
-  - As such, dataflow VPLs enjoy similar advantages as functional programming: 
-    -
-    
-An important aspect of the dataflow-VPL is the connection to the field of dataflow programming, which is also a more general field than VPLs in particular.
-Dataflow programming is a programming paradigm which internally, represents a program as a DAG. 
-A graphical, editable representation of a dataflow program would result into a Dataflow VPL.
+which allows it to gain qualities akin to 'Functional Programming'
 
-The big computational advantage of this model, is that it allows for implicit concurrently [Sousa, 2012]. 
-In other words, every node of a program written using dataflow programming can be executed in isolation of any other nodes, 
-as long as the direct dependencies (the inputs) are met. 
-No global state or hidden side effects means no data-race issues, 
-which allows parallel execution of the program by default. 
-When using other paradigms, programmers need to manually spawn and manage threads to achieve the same effect.
+These qualities can roughly be grouped as 'clarity for both programmer and machine'
+- Leading to better performance and usage
 
-This also leads into an interesting side-effect of using dataflow programming / a diagram-based VPL: 
-By only permitting pure, stateless functions with no side-effect, and only immutable
-variables, end users automatically adopt a functional programming style (albeit without
-lambda functions). 
-Functional programming has many benefits of its own besides concurrency, such as:
-- clear unit testing
-- hot code deployment
-- debugging advantages,
-- and lending itself well for compile time optimizations.
+- and maybe because of this, almost all VPLs handling Geometry that I have looked at as part of the background study, are implemented as 'semi' dataflow VPLs:
 
-All that to say, creating a VPL is not just a matter of designing a stylistic, user-friendly GUI
-alternative to regular programming. 
-This might be true for other types of VPLs, but not for diagram-based ones. 
-By closely resembling dataflow itself, and because of its functional programming nature, 
-diagram-based VPLs can actually lead to faster and more reliable software.
+- This observation had consequences for the methodology. 
 
 Methodology
 ===========
 
-- The methodology used to find answers to these questions is defined as follows: 
+- To understand the methodology of this study, it is important to recognize all the language models a Geo-library needs to traverse to go from native library, to a 'plugin library' incorporated in a web-based VPL. 
+
+- Moreover, the language model of the VPL itself also count as one of those language models, as it is a programming language to a degree. 
+  - The model of a dataflow VPL was chosen for all the reasons of the previous chapter. 
+  - However, this model did not have a web implementation yet, and had to be created from scratch. 
+
+- With those things said, the methodology is defined as follows: 
   - First, a **custom web VPL** is designed and implemented as a **host** for the libraries. 
   - Second, a **plugin system** is designed and implemented.
     - The system consists of: 
       - A Plugin Loader on the side of this VPL, and 
-      - A Plugin model the libraries must adhere to. 
+      - A Plugin model the plugin libraries must adhere to. 
   - Finally, Two sets of **tests** are performed:
      - one set to analyse to what extent this plugin system allows for the compilation of native libraries.
-     - one set of tests to analyse to what extent this solution allows for proper utilization of those native libraries. 
-
+     - one set of tests to analyse to what extent this solution allows for proper utilization of those native libraries in the VPL environment. 
 
 Results
-=======
+==============
+
+To begin with the base VPL: 
+
+
+
+
+Answer to research question: 
+Q: ”How can native geocomputation libraries be compiled, loaded, and utilized within a browser-based dataflow-VPL?”
+A: The key to successfully compiling, loading and using geo-libraries is to address the
+frictions between the four required groups of languages:
+
+The proposed solution managed to sufficiently address these frictions for the Rust language.
+However, Rust geo-libraries are too young to be considered industry standards.
+Further study is required for incorporating C++. 
+
+
+
+
+
+
+
 
 Results : Base VPL
 ------------------
@@ -301,3 +280,23 @@ use a diagram-based, dataflow-type VPL.
 
 - However, as stated by the previous results, certain implementation details led to compromises to this model, 
   ultimately leading to confusion for the end-user
+
+
+
+
+Conclusion
+=======================
+
+The extent to which the study was able to implement the methodology, all came down to this: 
+
+The implementation needed to address the discrepancies between 4 groups of languages:
+1. Existing geocomputation libraries (C++, Rust)
+2. WebAssembly 
+3. JavaScript / Typescript
+  - wasm wrappers
+  - VPL & loader source code 
+4. The dataflow VPL
+  - Pure functions, immutable variables
+
+This study focussed on the disconnect between a dataflow VPL model on the one hand, and existing (geocomputation) libraries on the other hand, and tried to mitigate the discrepancy between these two, and all intermediate languages required for web compilation.  
+
