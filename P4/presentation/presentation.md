@@ -9,6 +9,8 @@ PRESENTATION SCRIPT
 
 - Content will be as can be expected: 
 
+<div class="page"></div>
+
 Introduction
 ===================================
 
@@ -114,7 +116,7 @@ Objective
  -->
 
 
-
+<div class="page"></div>
 
 Background 
 ===============================
@@ -141,7 +143,7 @@ These qualities can roughly be grouped as 'clarity for both programmer and machi
 - This observation had consequences for the methodology. 
 
 
-
+<div class="page"></div>
 
 Methodology
 ===========
@@ -175,7 +177,7 @@ Methodology
      - one set of tests to analyse to what extent this solution allows for proper utilization of those native libraries in the VPL environment. 
 
 
-
+<div class="page"></div>
 
 Results
 ==============
@@ -228,11 +230,6 @@ This is a minimal example of a Rust library, which is loaded by the plugin loade
 3 Compilation Tests
 ---------------------------
 
-
-Results : Compilation Tests
----------------------------
-
-
 The aforementioned plugin system was tested by attempting to load multiple libraries. 
 The conclusion of these tests raise a dilemma between Rust and C++:
 
@@ -255,7 +252,11 @@ The conclusion of these tests raise a dilemma between Rust and C++:
   - However, this same legacy inhibits its portability, which makes for Larger binaries, less performant 'wrapper' features, 
     and makes it overall harder to compile to web browsers.
 
+### IMAGES
 
+Discuss what you see...
+
+<div class="page"></div>
 
 Conclusion
 =======================
