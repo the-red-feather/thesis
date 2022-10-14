@@ -79,3 +79,114 @@
 \newcommand{\mySubRQFour}{\textit{How can a 'geo-web-vpl' be \textbf{used} to create geodata pipelines?}}
 
 
+
+
+
+
+
+
+% ********************************************************************
+% listings from arsclassica
+% ********************************************************************
+
+\let\orgtheindex\theindex
+\let\orgendtheindex\endtheindex
+\def\theindex{%
+	\def\twocolumn{\begin{multicols}{2}}%
+	\def\onecolumn{}%
+	\clearpage
+	\orgtheindex
+}
+\def\endtheindex{%
+	\end{multicols}%
+	\orgendtheindex
+}
+
+\makeindex
+
+% ********************************************************************
+% listings
+% ********************************************************************
+
+\definecolor{lightergray}{gray}{0.99}
+
+\lstset{language=[LaTeX]Tex,
+    keywordstyle=\color{RoyalBlue},
+    basicstyle=\normalfont\ttfamily,
+    commentstyle=\color{Emerald}\ttfamily,
+    stringstyle=\rmfamily,
+    numbers=none,
+    numberstyle=\scriptsize,
+    stepnumber=5,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frameround=ftff,
+    frame=lines,
+    backgroundcolor=\color{lightergray}
+} 
+
+\lstset{morekeywords=%
+        {function, f32, i32},
+        commentstyle=\color{Emerald}\ttfamily,%
+        frame=lines}
+
+\lstset{basicstyle=\normalfont\ttfamily}
+\lstset{flexiblecolumns=true}
+\lstset{moredelim={[is][\normalfont\itshape]{/*}{*/}}}
+\lstset{basicstyle=\normalfont\ttfamily}
+\lstset{flexiblecolumns=false}
+\lstset{moredelim={[is][\ttfamily]{!?}{?!}}} 
+\lstset{escapeinside={£*}{*£}}
+\lstset{firstnumber=last}
+\lstset{moredelim={[is][\ttfamily]{!?}{?!}}}
+
+\DeclareRobustCommand*{\pacchetto}[1]{{\normalfont\ttfamily#1}%
+\index{Pacchetto!#1@\texttt{#1}}%
+\index{#1@\texttt{#1}}}
+
+\DeclareRobustCommand*{\bibtex}{\textsc{Bib}\TeX%
+\index{bibtex@\textsc{Bib}\protect\TeX}%
+}
+
+\DeclareRobustCommand*{\amseuler}{\protect\AmS{} Euler%
+\index{AmS Euler@\protect\AmS~Euler}%
+\index{Font!AmS Euler@\protect\AmS~Euler}}
+
+\lstnewenvironment{code}% 
+{\setkeys{lst}{columns=fullflexible,keepspaces=true}%
+\lstset{basicstyle=\small\ttfamily}%
+}{}
+
+\lstset{extendedchars} 
+\lstnewenvironment{sidebyside}{% 
+    \global\let\lst@intname\@empty 
+    \setbox\z@=\hbox\bgroup 
+    \setkeys{lst}{columns=fullflexible,% 
+    linewidth=0.45\linewidth,keepspaces=true,%
+    breaklines=true,% 
+    breakindent=0pt,%
+    boxpos=t,%
+    basicstyle=\small\ttfamily
+}% 
+    \lst@BeginAlsoWriteFile{\jobname.tmp}% 
+}{% 
+    \lst@EndWriteFile\egroup 
+        \begin{center}% 
+            \begin{minipage}{0.45\linewidth}% 
+                \hbox to\linewidth{\box\z@\hss} 
+            \end{minipage}% 
+            \qquad 
+            \begin{minipage}{0.45\linewidth}%
+            \setkeys{lst}{frame=none}% 
+                \leavevmode \catcode`\^^M=5\relax 
+                \small\input{\jobname.tmp}% 
+            \end{minipage}% 
+        \end{center}% 
+} 
+
+\lstset{numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt
+}   

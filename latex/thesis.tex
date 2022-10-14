@@ -6,13 +6,20 @@
     openright,
     fleqn,%
     parskip=half,%
+    total={170mm,257mm},
     BCOR=5mm,
     DIV=10,
     footinclude=false%
     numbers=noenddot,
     cleardoublepage=empty]{scrbook}
 
+% \documentclass[10pt,a4paper,twoside,openright,titlepage,fleqn,%
+%     headinclude,,footinclude,BCOR5mm,%
+%     numbers=noenddot,cleardoublepage=empty,%
+%     tablecaptionabove]{scrreprt}
+
 \usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} % this package magically allows symbol chars: `{}$^#` in listings
 \usepackage{mathpazo} %-- use Palatino font
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[square]{natbib}
@@ -40,6 +47,17 @@
 % [JF] added later by me 
 % \usepackage{acro}
 % \usepackage{acronym}
+
+\usepackage[eulerchapternumbers,subfig,beramono,eulermath,pdfspacing,listings]{classicthesis}
+\usepackage{arsclassica}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={140mm,230mm},
+ left=30mm,
+ top=30mm,
+ }
+
 \input{mysettings}
 
 \setcapindent{1em} %-- for captions of Figures
@@ -52,7 +70,7 @@
 \publishers{A thesis submitted to the Delft University of Technology in partial fulfillment of the requirements for the degree of Master of Science in Geomatics}
 
 \begin{document}
-
+% \pagestyle{plain}
 
 %******************************************************************
 % Frontmatter
@@ -94,32 +112,20 @@
 \include{2-chapters/5-implementation}
 \include{2-chapters/6-testing}
 \include{2-chapters/7-conclusion-discussion}
-
 \appendix
-
-%%%
 \cleardoublepage
-%-- *mandatory* appendix about the reproducibility
 \include{3-appendices/reproducibility}
-%-- other examples of Appendix, not mandatory
-% \include{3-appendices/someumldia}
 
 % *****************************************************************
 % Backmatter
 %******************************************************************
-\backmatter 
-
-%- bibliography
+\backmatter
+ 
 \bibliographystyle{apalike}
 \bibliography{library}
-
-
-
 \clearpage
 \include{4-back/colophon}
 \cleardoublepage
-
-
 \includepdf{0-cover/cover_back.pdf}
 
 \end{document}
