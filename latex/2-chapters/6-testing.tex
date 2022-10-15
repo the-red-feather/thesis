@@ -25,6 +25,8 @@ The \m{point\_distance} function exposed by the wasm file is wrapped by the java
 To check if the result is valid, a small html demo was created to load and use the library (see \reffig{fig:min-rust-plugin-code:2}).
 Note how the JavaScript library wrapping the wasm file looks and works almost like a normal javascript library, the only difference being a 'init' function, which is required to be run before using the library, and the need to free the memory of used object with the \m{free\(\)} method.
 
+
+
 \begin{figure}
   \centering
   \begin{subfigure}[b]{0.45\linewidth}
@@ -40,6 +42,18 @@ Note how the JavaScript library wrapping the wasm file looks and works almost li
     \includegraphics[width=\linewidth]{9.PNG}
     \caption{}\label{fig:min-rust-plugin-code:2}
   \end{subfigure}%
+
+  \begin{subfigure}[b]{0.45\linewidth}
+    \begin{lstlisting}
+      // todo fill this with the source instead of these nasty screenshots
+      function multiply(a: f32, b: f32) -> f32 {
+        a * b
+      }
+    \end{lstlisting}  
+  \end{subfigure}%
+
+    
+
   \caption[minimal rust geofront plugin: usage]{Rust Source code (a) and web demo (b)}
   \label{fig:min-rust-plugin-code}
 \end{figure}
