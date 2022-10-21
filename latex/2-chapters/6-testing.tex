@@ -138,8 +138,13 @@ This way, a variable of type 'Triangulation' can be viewed in 3D by clicking on 
 
 \subsection{C++: Minimal plugin}  
 
+\begin{note}
+  TODO: make this better
+  HUGO: please explain interfacing troubles better
+\end{note}
+
 Making a minimal C++ plugin work in a Geofront graph was unsuccessful.
-It was, however, possible to compile the plugin file to WebAssembly, and to use it in a web demo, but this was not without its obstacles. 
+It was, however, possible to compile the plugin file to WebAssembly, and to use it in a web demo, but this was not without limitations. 
 
 First of all, the construction of the C++ source code itself.
 Emscripten's \m{embind} tool uses a macro syntax to flag functions marked for javascript compilation, shown in \reffig{fig:min-cpp-source}. 

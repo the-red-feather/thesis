@@ -2,6 +2,11 @@
 \label{chap:intro}
 % \subsection*{Geodata \& Geodata computation}
 
+\begin{note}
+  - Add balancing act between application and server 
+  - Add serverless aspect: "as a side effect, enabled their application to be published on the web without an active server. "
+\end{note}
+
 The field of \ac{GIS} concerns itself with the collection, processing, storage, and visualization of geodata. 
 By doing so, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
 This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, governance, navigation, the military, and agriculture.   
@@ -82,6 +87,64 @@ The application allows users to configure a calculation by visual means in a web
 
 \subsection*{Problem Statement}
   
+\begin{note}
+  
+VPL:
+
+
+
+
+
+
+VPL: bridge between application and library
+- I want to focus on this particular reason for a VPL. 
+  - but, more reasons for using VPLs exist, such as end-user development (eud) (source)
+
+It is this particular aspect which sees significant usage in other applied CG fields, but not GIS.
+The central hypothesis of this study is that:
+- A: Given the similarities of the field of GIS with other applied CG fields,
+- And B: Given the success of VPLs within some of these other fields as a tool to bridge the gap between library and application,
+- Then C: The field of GIS stands to gain much from further investigation into VPLs.
+
+
+
+
+Questions which needs answering in the introduction: 
+
+- Why does the field of GIS need (another) VPL?
+  - In GIS, VPLs are almost exclusively used as server-side or native ETL tools. 
+  - However, VPLs can serve many other purposes, which are currently not being explored. 
+  - One possible application of a VPL in GIS is using them for web-based, serverless geocomputation. 
+  - 
+
+
+- What makes it necesairy to develop a VPL specific for GIS? Can't existing VPL's be used?
+- In other words: What is a GIS VPL in relationship to general VPLs:
+    - To a large extend, a GIS VPL will require the same features as a VPL for other fields which can be considered 'applied CG'.
+        - Construct and view geometry, large collection of transformation components, UI components, etc.
+        - However,  
+    - In one word: scalability. 
+    - Other applied GIS fields do not have the same 
+	- This means that any VPL which claims to be 'aimed at GIS', will need to at least provide an answer on how it can be scaled.	
+
+  
+  - However, A stark difference compared to the larger field of applied CG. can be found in the need of scalability in GIS 
+    - While development of GIS tools and geo-pipelines often occur on a small scale, the eventual execution of these tools often needs to happen on sizable datasets. 
+  
+
+
+
+PROBLEM STATEMENT
+
+- Explain ideal GIS VPL
+- Then explain how current GIS VPLs come short of this
+- Then explain what this thesis will focus on
+
+
+
+
+\end{note}
+
 The web based geocomputation VPL is a novel development, and contains a multitude of unaddressed challenges.
 This study focusses on the particular problem of library portability. % and integration
 
@@ -92,7 +155,14 @@ However, A web based geocomputation VPL like the Mobius Modeller does not make u
 While it is possible to port a library like GDAL to javascript, guarantying that these two versions show the same behavior will be complex and time consuming. Additionally, managing duplicate libraries like this will slow down development, or create large version discrepancies \citep{ammann_maplibre-rs_2022}.
 
 Fortunately, on a theoretical level, it is possible to compile a native C++ library to a web-consumable format using the 'WebAssembly' binary format \citep{haas_bringing_2017}.
-This way, only one library needs to be maintained to serve all platforms, both native and web. 
+This way, only one library needs to be maintained to serve all platforms, both native and web.
+
+\begin{note}
+  HUGO: Make C++ into C / C++ 
+  HUGO: Examples of this are Proj and Laz, no? 
+  - hyperpink all abbreviations
+\end{note}
+
 However, to the best of the author's knowledge, no example exists of a web-based geocomputation VPLs which make use of native geocomputation libraries.
 The theoretical possibility combined with the practical absence of any implementation, leads this study to assume that a practical inhibition is in place, preventing native geocomputation libraries to be used by a web VPL.
 
@@ -118,7 +188,7 @@ However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{
   \item \ac{wasm} promises a 'near native performance' \citep{haas_bringing_2017}. However, this can be quite situational, as multiple studies have shown \citep{jangda_not_2019, melch_performance_2019}. 
   \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not function without workarounds. 
   \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
-  \item Compiling an \emph{library} to \ac{wasm} is seriously different from compiling a full \emph{application} to wasm. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
+  \item Compiling a \emph{library} to \ac{wasm} is significantly different from compiling a full \emph{application} to \ac{wasm}. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
 \end{enumerate}
 % Discovering the extent and relevance of these compilation challenges for geo-computation libraries is why the sub-question of \mySubRQTwoTitle \space was included in this study.
 
@@ -169,6 +239,15 @@ The first question serves as a prerequisite for attempting to answer the remaini
 The other three research questions are based upon the three main categories of challenges of the library portability problem.  
 These questions are posed in such a way that answering them will require us to explore the extent of this challenge, and find possible solutions.
 
+\begin{note}
+  HUGO: What makes it Spatial?!?!
+
+  sub-questions: 
+- A GUI for supporting browser-based, serverless geocomputation.
+- Plugin system for portability & scalability
+
+
+\end{note}
 
 \begin{itemize}[-]
   \item \mySubRQOne

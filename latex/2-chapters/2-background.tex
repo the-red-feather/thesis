@@ -7,6 +7,16 @@
 \chapter{Background}
 \label{chap:background}
 
+
+\begin{note}
+
+  what does it mean to design a VPL?
+  What does it mean to design a VPL for computational geometry and Computer Graphics (CG)?
+  what does it mean to design a VPL for GIS?
+  What does it mean to design a VPL for web-based, cloud-native GIS?   
+  
+\end{note}
+
 This chapter offers an overview of the theoretical background that this study builds upon.
 The study takes place at the intersection of three prior bodies of work:
 \begin{enumerate}[-]
@@ -199,15 +209,19 @@ This study is focussed on the web usage of WebAssembly, and will treat it with m
 
 \subsection*{Limitations}
 
-\emph{in principle}, and if the appropriate compilers exist, any application and library written in any language can be compiled to WebAssembly. 
+\begin{note}
+  Look carefully at this
+\end{note}
+
+\emph{In principle}, and if the appropriate compilers exist, any application and library written in any language can be compiled to WebAssembly. 
 In practice, there are quite a few caveats to the format. 
 These limitations can be split up into two groups: 
 Limitations due to the web platform, and limitations due to the current state of the language and its host.
 
 First of all, WebAssembly is required to adhere to the same containerization restrictions as javascript and the web at large. 
 There is no '\m{os}' or '\m{sys}' it can call out to, as it cannot ask for resources which could be a potential security risk, like the file system.
-Secondly, WebAssembly is in its early phases as a language, and is intended as a simple, bare-bones, low-level compile target. 
-For example, the current version does not support concurrency features like multithreading.
+Secondly, WebAssembly is in its early phases as a language, and is intended as a simple, low-level compile target. 
+This leads to limitations like how only simple, numerical values can be used when interfacing with \ac{wasm} functions, as well as the fact that the current version does not support concurrency features like multithreading.
 
 Many of these shortcomings can be mitigated by calling JavaScript using HTML5 features from WebAssembly. 
 This is how many current WebAssembly projects are set up. 
@@ -221,16 +235,17 @@ Jangda et. al. reason that some of this performance difference will disappear th
 One of these penalties is the extra translation step, shown in \reffig{fig:wasm-trajectory}, which is indeed unavoidable when utilizing an in-between compilation target. 
 
 Some studies have taken place evaluating \ac{wasm}'s performance  \\ for geospatial operations specifically. 
-Melch performed extensive benchmarks on polygon simplification algorithms written in both javascript and WebAssembly \citep{melch_performance_2019}. 
-It concludes by showing WebAssembly was not always faster, but considerably more consistent. 
-Melch had this to say: "To call the WebAssembly code the coordinates will first have to be stored in a linear memory object. 
+\citet{melch_performance_2019} performed extensive benchmarks on polygon simplification algorithms written in both javascript and WebAssembly. 
+The study concludes by showing WebAssembly was not always faster, but considerably more consistent. 
+The performance of the javascript implementation 
+\citet{melch_performance_2019} had this to say: "To call the WebAssembly code the coordinates will first have to be stored in a linear memory object. 
 With short run times this overhead can exceed the performance gain through WebAssembly. 
 The pure algorithm run time was always shorter with WebAssembly.". 
 These findings match \citet{jangda_not_2019}, showing that the duplication of data into the webassembly memory buffer is a considerable bottleneck.
 
 A recent study concerned with watershed delineation \citep{sit_optimized_2019} also concluded client-side WebAssembly to be more performant than server-side C, which, as a side effect, enabled their application to be published on the web without an active server. 
 
-Lastly, the sparse matrix research of Sandhu et al. must be mentioned \citep{sandhu_sparse_2018}. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. It states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision, probably due to byte spacing.
+Lastly, the sparse matrix research of \citet{sandhu_sparse_2018} must be mentioned. It shows again that WebAssembly's performance gain is most notable when performing scientific computations. It states: "For JavaScript, we observed that the best performing browser demonstrated a slowdown of only 2.2x to 5.8x versus C. Somewhat surprisingly, for WebAssembly, we observed similar or better performance as compared to C, for the best performing browser.". It also shows how certain preconceptions must be disregarded during research. For example, it turned out that for WebAssembly and JavaScript, double-precision arithmetic was more performant than single-precision, probably due to byte spacing.
 
 Even though geocomputation can fall in the category of scientific computation, these performance considerations will still have to be taken into account. The most important conclusion to to take away from prior research on WebAssembly is that \ac{wasm} must not be regarded as a 'drop-in replacement', as \citet{melch_performance_2019} puts it. Just like any language, WebAssembly has strengths and weaknesses. While \ac{wasm} is designed to be as unassumptious and unopinionated about its source language as possible, the implementations of host environments do favor certain programming patterns and data structures over others, and this will have to be taken into account when using the compile target.
 
@@ -332,8 +347,6 @@ Even though geocomputation can fall in the category of scientific computation, t
 % This study argues that as of right now, we are in the middle of a similar situation. 
 % A new technologies exist, it is implemented by all major browsers, and offers completely new ways of working with the web platform as a whole. 
 % The question remains what this will mean for the established models of clients and servers, the frontend and backend, and the web and native contexts. 
-
-\newpage
 
 \section{Visual Programming}
 \label{sec:background-vpl}

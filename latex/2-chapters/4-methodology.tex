@@ -24,7 +24,6 @@ First, the requirements of a dataflow-VPL handling geometry have to be made clea
 Secondly, in order to know what tools may be used to implement this VPl, a small analysis of "widely supported browser features" is made. 
 Then, with both these constraints known, a design for a web VPL can be layed out, which can be subsequently implemented. 
 
-\newpage
 \subsection{Requirements}
 
 The requirements of a dataflow-VPL implementation can be subdivided in requirements of a dataflow VPl in general, and a VPL for geo-computation specifically.
@@ -58,7 +57,7 @@ A VPL used to construct geometry should reflect this.
 Additionally, when these types are clear and clearly communicated, users must have ways to provide these types as inputs or outputs. 
 This will require specialized parsers to become part of the VPL, such as an obj and geojson reader and writers. 
 
-Regarding visualization, A hallmark of dataflow VPLs is the ability to inspect the geometry created in in-between steps, so this must be provided for.
+Regarding visualization, A hallmark of dataflow VPLs is the ability to inspect the geometry created in-between steps, so this must be provided for.
 This is also a good fit, since the immutable nature of dataflow VPL variables make these variables ideal for caching. 
 
 Finally, a geometry VPL should contain a set of 'internal', basic types and operations.
@@ -389,7 +388,7 @@ One, it needs to form a bridge between the language in which the geocomputation 
 In other words, the requirements of the WebAssembly compiler compatible with the language in question must be adhered to. 
 Both the C++ and Rust compilers require functions to be flagged explicitly for compilation. 
 Additionally, for a library to be compilable, all dependent libraries must also be able to compile to wasm.
-For C++, the Emscripten compiler can be used to compile to WebAssembly \citep{}. 
+For C++, the Emscripten compiler can be used to compile to WebAssembly \citep*{emscripten_organization_emscripten_2022}. 
 A minimum example of what a 'emscripten-ready-library' looks like can be seen in \reffig{fig:minimum-cpp-wasm}.
 
 For Rust, the 'wasm-pack' and 'wasm-bindgen' toolkits enable \ac{wasm} compilation \citep{contributors_wasm-bindgen_2022,contributors_wasm-pack_2022}.
@@ -536,6 +535,14 @@ This way, the tooling and workflow can be compared for a realistic use-case.
 The study is conducted by compiling both libraries using their respective \ac{wasm} toolsets, and noting the differences in workflow, supported features, and the resulting plugins. 
 
 The libraries must be compiled without 'disruption': They must be kept the exact same for normal, native usage. 
+
+\begin{note}
+  HUGO: GDAL-JS ???
+    L takes some time to convert it to a functional model
+    L cannot be used by the plugin system directly, but can be used as a dependency in geofront itself.
+  STARTIN: small s
+
+\end{note}
 
 \subsubsection{C++ Library: CGAL} 
 The library tested for C++ is CGAL, compiled using \m{emscriptem}. 

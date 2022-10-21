@@ -300,7 +300,6 @@ Finally, not all languages are equally supported:
     At the time of writing this study, the 'embind' compiler (explained in \refsec{sec:implementation:loading}) does not have an option to compile a typescript declaration file. 
     Additionally, the javascript generated to wrap the wasm binary is not a wrapper handling type conversions and memory safety like Rust. 
     Instead, it uses a custom architecture programmatically expose javascript wrapper functions one by one, and leaves it to the user of the library to deal with type conversions and memory safety. 
-    
     These two aspects combined makes it so C++ cannot use Geofront's loader directly, and must use an additional in-between wrapper libraries.
 
   \item \textbf{Other languages}
