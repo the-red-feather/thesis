@@ -1,41 +1,46 @@
 
+[ken]
+and indeed: don't go back to the drawing board!
+you have a good base
+better to build on that to fix things
+in my opinion: cloud native is only a section or couple paragraphs in the final chapter
+zooming in: research question/subquestions that cover other aspects
+(not just loading libraries into webassembly) 
+so that you can adequately present the UI/UX aspects
+this also solves issues with the research questions
+and conclusions: should be partially fixed by changing subquestions
+but also: try to be more precise
+bring numbers, examples, tables, etc to back your statements
+because right now the final chapter often reads more like an essay
+
+
 =========================================================================================
 =========================================================================================
 =========================================================================================
+
 
 
 
 Introduction
 ============
 
-[The current geocomputation intro]
+visualization and analysis
 
-Two major developments to the GIS software landscape are changing how and were we are performing geocomputations: 
 
-1. Cloud-first paradigm shift
-  - More and more geodata is becoming available online, either as an active web service, or as passive, static data storage.   
-  - The preference slowly shifts from downloading geodata, and performing calculations locally, 
+  <!-- - The preference slowly shifts from downloading geodata, and performing calculations locally, 
     to uploading the code itself towards the location the geodata is stored, and performing calculations there [source](one of the main cloud native papers).
   - As a consequence, we see cloud-based geocomputation platforms being developed, like the Google Earth Engine [source](Google earth engine). 
-    -> offers a platform for people to create geocomputation pipelines, and run it on their servers. 
+    -> offers a platform for people to create geocomputation pipelines, and run it on their servers.  -->
 
-2. introduction and adoption of webassembly (webassembly papers)
-  - run native code on the web. 
+1. More and more geodata is becoming available online as passive, static data storage.   
+
 
 -------------------------------
 
-These two developments together also offer the opportunity of geocomputation in the browser, instead of native
-  -> Benefits availability and distribution: 
-     - No installment
-     - Shared by a link
-  -> Benefits reproducibility & open science:
-     - Software developed is not only open source, but directly usable.
-     (- Developers are forced to address the openness of data used.)
+Taken together, 
 
-Impact: Webassembly allows an expanded definition of 'cross-platform libraries' [mapbox.rs]
-  - Windows, Mac, Linux, **and the Web**. ( and no-OS )
-  - This is benefitial for the same reason as traditional cross-platform arguments: 
-    - no duplicate libraries, no burden of synchronizing functionality across multiple libraries   
+
+
 
 Problem: 
 -----------------------------
@@ -114,12 +119,19 @@ Possible Solution: A web-based dataflow VPL
 
 This study seeks a possible solution which is able to adhere to these principles. 
 
-1. **Local Correctness principle** 
+
+
+Methodology
+==================
+
+
+Scalability will be achieved in three ways: 
+1. **Local Correctness** 
    -> The application is a Dataflow VPL, which adheres to functional programming principles.
-2. **Portability principle** 
+2. **Portability** 
    -> The application is web based.
    -> The application uses native geocomputation libraries in a portable format.
-3. **Minimum abstraction Cost principle** 
+3. **Minimum abstraction Cost** 
    -> The application uses a unique plugin system, to offer direct usage these portable libraries. 
    -> Pipelines to offer direct usage these portable libraries.
 
@@ -140,7 +152,7 @@ Then, perform a series of tests and assessments to judge to what extend the impl
 Research Questions
 ==================
 
-__MAIN QUESTION__: Is a web-based dataflow VPL a viable option for constructing browser-based geocomputation pipelines?
+__MAIN QUESTION__: Is a GUI-rich dataflow VPL a viable option for constructing browser-based geocomputation pipelines?
 
 1. What GUI features are required to facilitate a geocomputation VPL in a web browser?
 

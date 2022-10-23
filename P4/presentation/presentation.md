@@ -28,7 +28,7 @@ Motivation
       - or converting a raster dataset into a vectorized dataset,
     - can be regarded as geocomputation. -->
 
-- **GIS SOFTWARE NORMALLY COMES IN ONE OF TWO FORMS**: Applications, and Libraries [REF: Elliott, 2007]
+- **ALL SOFTWARE NORMALLY COMES IN ONE OF TWO FORMS**: Applications, and Libraries [REF: Elliott, 2007]
   <!-- - ( This dichotomy is so obvious that we seldom question it, but bear with me ) -->
   Both have different intensions and strengths
   Software libraries are tailored to programmers, and generally offer rich functionality which the programmer can use to compose new software.
@@ -37,8 +37,7 @@ Motivation
   - HOWEVER: This split in intensions has drawbacks:
 
     - libraries are not end-user friendly:
-      - functionalities are not directly accessible.
-      - no GUI \ visualization support out of the box
+ 
 
     - applications are not programmer friendly: 
       - applications limit access to functionality

@@ -1,34 +1,103 @@
 \chapter{Introduction}
 \label{chap:intro}
-% \subsection*{Geodata \& Geodata computation}
 
 \begin{note}
-  - Add balancing act between application and server 
-  - Add serverless aspect: "as a side effect, enabled their application to be published on the web without an active server. "
+  Story once and for all: 
+  - Web 
+  - VPL
+\end{note}
+
+\begin{note}
+  (intro influenced by Elliott C. (2007). Tangible Functional Programming)
 \end{note}
 
 The field of \ac{GIS} concerns itself with the collection, processing, storage, and visualization of geodata. 
 By doing so, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
 This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, governance, navigation, the military, and agriculture.   
 
-Central to these goals is \ac{geocomputation}. 
-The term geocomputation, or geodata processing, is used to represent all types of computations performed on geographical datasets. Anything from the calculation of the area of a region, to a \ac{CRS} transformations, or converting a raster dataset into a vectorized dataset, can be regarded as geocomputation.
 
-geocomputation is a cornerstone of \ac{GIS}, and vital to almost all its applications.
-In the field of GIS, the raw \emph{data} gathered from direct land surveyance (e.g. terrain height samples) seldom equals to the precise \emph{information} we wish to discover about the earth (e.g. is my city in risk of flooding?).
-To convert data into more rich information, a refinement and analysis process by means of geocomputation is required. 
-Geocomputation is also necessary for specializing geodata. 
-For example, various computations are needed for converting raw cadastral records into a base map useful to urban planners.
+WE ARE CONSTANTLY LOOKING INTO NEW WAYS OF PROVIDING THE PUBLIC WITH BOTH GEODATA, AND THE TOOLS TO PROCESS AND ANALYSE GEODATA.
+- VPL
+- WEB
+THIS STUDY WILL BE ABOUT THE LADDER 
 
-Despite major advancements during the last decades in geocomputation and geocomputation platforms, geocomputation remains no trivial exercise. 
-The geometric nature of geocomputation, together with the sheer scope of geodata and the variety in formats and quality, make geocomputation both computationally intensive and difficult to operate. 
+The maps and analysis tools used to share this information often takes the form of web applications.  
+A web applications offer distribution advantages over native applications. 
+It allows the same source code to be used across different platforms without alteration, including windows, mac, linux, and mobile devices. 
+Moreover, web applications do not need to be installed, and can directly be accessed using a link. 
 
-While researchers and developers have made considerable improvement over the last \\ decades, the improvement of both geocomputation, and the activity of geocomputation, remains as relevant as ever before. 
+\subsection*{Developments}
 
-In recent years, a new development regarding geocomputation is emerging:
-browser-based geocomputation by means of a \ac{VPL}.
-The goal of this study is to contribute to this development. 
-However, to specify its contribution, an explanation of this method must first be given.
+Two major developments have occurred with great relevance to web GIS applications.
+
+The first development concerns static file hosting.
+Various geodata formats are increasingly becoming available as singular, statically hosted files, 
+as opposed to active web services which query databases, and use dynamic routing (WMS, WFS, WMTS). 
+Examples of this are the Cloud Optimized GeoTiff (SOURCE), and the COPC file format (SOURCE). 
+Static file hosting is orders of magnitude more cheap in terms of performance, and scales more easily to accommodate high amounts of web requests.
+This leads static hosting to be a cheaper alternative to active servers.
+
+The second development is the introduction and adoption of the WebAssembly language. 
+WebAssembly is a compilation target, added to most major web browsers since 2020. 
+It offers a method to publish native software as a component of a web application. 
+WebAssembly mitigates the need for web-based, javascript alternatives of native software applications and libraries. 
+Examples of this are [mapbox.rs].
+
+% Impact: Webassembly allows an expanded definition of 'cross-platform libraries' [mapbox.rs]
+%   - This is benefitial for the same reason as traditional cross-platform arguments: 
+%     - no duplicate libraries, no burden of synchronizing functionality across multiple libraries   
+
+Both these developments taken together leads to a paradigm shift which is important to recognize.
+A current, regular GIS web application would utilize OGC standard web services like WMS, WFS, WMTS, or WPS, (SOURCE) to access or process all requested geodata. 
+However, statically hosted geodata might mitigate the need for WMS, WFS and WMTS, and WebAssembly could replace backend geocomputation services.  
+With both developments used in conjunction, applications can be created which uses no active servers at all: Serverless GIS web applications.
+
+% -> This enables serving more people while using less computational resources on the backend. 
+% , this might allow for a new type of GIS web application, 
+% one which can operate 'serverless': Meaning no active server is required for using the web application. 
+
+\subsection*{Objective}
+
+This study seeks to contribute to serverless GIS web applications.
+
+In particular, this study wishes to explore if a new type of application is possible because of these developments. 
+an experiment in putting geocomputation abilities directly into the hands of end-users. 
+
+A web application which is able to directly utilize core transformation and analysis capabilities found in native geo-libraries. 
+
+the capabilities of such an application: A serverless, 
+
+
+
+
+
+
+allows web applications to 
+Together, these technologies could be used to offer geodata and the means to process them 
+
+
+
+new relationship between GIS web UI's, and 
+
+
+asks \ac{GIS} researchers to rethink our current models of GIS web applications. 
+
+- WebAssembly can be used to bring almost any transformation and analysis tool to a web application. 
+
+
+
+- 
+
+
+also offer the opportunity of geocomputation in the browser, instead of native
+  -> serverless geocomputation: geocomputation without any active server. 
+
+% <!-- 
+% (-> Benefits reproducibility & open science:)
+%     (- Software developed is not only open source, but directly usable.)
+%     (- Developers are forced to address the openness of data used.) -->
+
+
 
 \subsection*{The (web) VPL}
 
@@ -89,58 +158,33 @@ The application allows users to configure a calculation by visual means in a web
   
 \begin{note}
   
-VPL:
-
-
-
-
-
-
-VPL: bridge between application and library
+VPL: Bridge between application and library
 - I want to focus on this particular reason for a VPL. 
   - but, more reasons for using VPLs exist, such as end-user development (eud) (source)
 
 It is this particular aspect which sees significant usage in other applied CG fields, but not GIS.
-The central hypothesis of this study is that:
-- A: Given the similarities of the field of GIS with other applied CG fields,
-- And B: Given the success of VPLs within some of these other fields as a tool to bridge the gap between library and application,
-- Then C: The field of GIS stands to gain much from further investigation into VPLs.
-
-
-
-
-Questions which needs answering in the introduction: 
-
-- Why does the field of GIS need (another) VPL?
-  - In GIS, VPLs are almost exclusively used as server-side or native ETL tools. 
-  - However, VPLs can serve many other purposes, which are currently not being explored. 
-  - One possible application of a VPL in GIS is using them for web-based, serverless geocomputation. 
-  - 
-
-
-- What makes it necesairy to develop a VPL specific for GIS? Can't existing VPL's be used?
-- In other words: What is a GIS VPL in relationship to general VPLs:
-    - To a large extend, a GIS VPL will require the same features as a VPL for other fields which can be considered 'applied CG'.
-        - Construct and view geometry, large collection of transformation components, UI components, etc.
-        - However,  
-    - In one word: scalability. 
-    - Other applied GIS fields do not have the same 
-	- This means that any VPL which claims to be 'aimed at GIS', will need to at least provide an answer on how it can be scaled.	
-
-  
-  - However, A stark difference compared to the larger field of applied CG. can be found in the need of scalability in GIS 
-    - While development of GIS tools and geo-pipelines often occur on a small scale, the eventual execution of these tools often needs to happen on sizable datasets. 
-  
 
 
 
 PROBLEM STATEMENT
 
-- Explain ideal GIS VPL
-- Then explain how current GIS VPLs come short of this
-- Then explain what this thesis will focus on
+- VPLs are relatively unexplored within the field of GIS. 
+  - VPLs serve mostly as developer tools (ETL)
+  
+- This thesis 
 
+   - provide core capabilities of geo-libraries directly to end-users.
+     
+   - provide these libraries with a customizable, composable UI.
 
+   - provide a way to scale this.
+
+- For this, a web-based, serverless VPL will be developed.
+
++ GIS VPL, 
+ 
+
+If we sum up these various considerationss
 
 
 \end{note}
@@ -218,6 +262,11 @@ This might invalidate some of the operations found in these libraries, or make o
 
 
 \section{Research Objective}
+
+
+
+
+
 This study seeks to improve the state of browser-based geocomputation VPLs.
 This is done by studying a possible solution to the library portability problem found in existing browser-based geocomputation VPLs.
 
