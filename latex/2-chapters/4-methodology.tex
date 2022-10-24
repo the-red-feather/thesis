@@ -8,7 +8,80 @@ So, we are in need of a platform in which:
 - These libraries can be composed into programs
 - 
 
+
+
 \end{note}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAKEN FROM INTRODUCTION
+
+% Fortunately, on a theoretical level, it is possible to compile a native C++ library to a web-consumable format using the 'WebAssembly' binary format \citep{haas_bringing_2017}.
+% This way, only one library needs to be maintained to serve all platforms, both native and web.
+
+% \begin{note}
+%   HUGO: Make C++ into C / C++ 
+%   HUGO: Examples of this are Proj and Laz, no? 
+%   - hyperpink all abbreviations
+% \end{note}
+
+% However, to the best of the author's knowledge, no example exists of a web-based geocomputation VPLs which make use of native geocomputation libraries.
+% The theoretical possibility combined with the practical absence of any implementation, leads this study to assume that a practical inhibition is in place, preventing native geocomputation libraries to be used by a web VPL.
+
+% The source of this inhibition is unclear. 
+% There are many aspects and components to compiling a native geocomputation library, and using it on the web, in a VPL format. 
+% Given the absence of an implementation, the possibility remains that it could be any one of these aspects and components, or even an interplay between all of these factors. 
+% This study identifies three main challenges to using a native geocomputation library in a web-based VPL:
+
+% \subsubsection*{\mySubRQTwoTitle}
+
+% % Secondly, native geocomputation functionalities might not be able to be properly \textbf{compiled} into a format functional on the web.
+% % (wasm limitations)
+
+% % Making sure a \ac{geo-web-vpl} is able to make use of native, system-level libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
+% Firstly, the challenge of compilation. 
+% As explained before, the most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \citep{haas_bringing_2017}.
+% Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \citep{haas_bringing_2017,jangda_not_2019}.
+% However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{wasm} also may pose challenges:
+
+% % The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. 
+
+% \begin{enumerate}[-]
+%   \item \ac{wasm} promises a 'near native performance' \citep{haas_bringing_2017}. However, this can be quite situational, as multiple studies have shown \citep{jangda_not_2019, melch_performance_2019}. 
+%   \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not function without workarounds. 
+%   \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
+%   \item Compiling a \emph{library} to \ac{wasm} is significantly different from compiling a full \emph{application} to \ac{wasm}. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
+% \end{enumerate}
+% % Discovering the extent and relevance of these compilation challenges for geo-computation libraries is why the sub-question of \mySubRQTwoTitle \space was included in this study.
+
+% \subsubsection*{\mySubRQThreeTitle}
+
+% Secondly, even if the libraries are compiled to a web-ready format, geocomputation functionalities might not be able to \textbf{load} properly within a web-based VPL.
+
+% This is a challenge of designing an appropriate binding system or plugin loader. 
+% When writing Python bindings to a C++ library for example, one has to consider the way both languages operate, and make sure the discrepancies between the language models are accounted for, such as manual memory management. 
+% This is not different from a visual language interfacing with a web-compiled native library. 
+% However, this situation adds additional challenges, as the host \ac{VPL} does not necessarily know the source language of the binary. 
+
+
+% % This is a matter of bindings, 
+% \subsubsection*{\mySubRQFourTitle}
+
+% Finally, It might be the case that a web-based VPL \emph{is} able to load and run functions from native, non-js geo-computation libraries. 
+% And still, one might not be able to successfully \textbf{use} these libraries.
+
+% Central to this challenge of utilization is the aforementioned dataflow VPL format. 
+% The performance and reliability needed for geocomputation makes a strong argument that any geocomputation VPL should be implemented as a dataflow VPL. 
+% This is also evident from the fact that almost all geocomputation and geometry manipulation VPLs are implemented as a dataflow VPL (see \refsec{sec:related-geovpl}).
+
+% However, it may be that native geocomputation functionalities are unfit for this model. 
+% The model requires all functions to be pure, and all variables to be immutable. 
+% This might invalidate some of the operations found in these libraries, or make other operations complicated to use in practice.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAKEN FROM INTRODUCTION
 
 % \begin{note}
 %   [JF]: should this be present or past tense? 

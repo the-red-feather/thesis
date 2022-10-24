@@ -1,85 +1,5 @@
 \chapter*{Abstract}
 
-
-\begin{note}
-
-    Lessons
-    ==========
-    
-    - give yourself clear todo's per day. 
-      Not too little, not too much.
-      Upon completion, the day falls apart
-    
-    
-    TODO
-    ============
-    
-    high-level
-    ----------
-    
-    [ ] The intro / story needs to be altered 
-        - stronger tie to Geo & web
-        - VPL + Web
-    
-    [ ] rewrite and balance research questions
-    
-    - [ ] than trickle down the consequences of those changes throughout the thesis
-    - [ ] and fix all that needs to be fixed (images and stuff)
-    - [ ] put TODO notes everywhere
-    mid-level
-    ---------
-    
-    [x] Deep dive in Hugo's comments, fix those aspects 
-      - [x] sort acronyms
-    
-    [ ] Add a stronger web-component in the introduction (presentation)
-    [ ] Add cloud native / cloud-based geodata component to the introduction  
-    
-    [ ] Cleanup Chapter 2 and 3.  
-      - Some parts are still more relevant than other parts. 
-      - Also, there are some things I say or use in chapter 4, 5, and 6, that were not properly explained in chapter 2. Examples of this are emscripten, or CGAL. 
-      - However, a complete rewrite would be too much work.
-      - Would love to hear your take on this.
-    
-    [ ] Make chapter 4 and 5 more streamlined 
-      - I've noticed that I repeat myself quite often.
-      - I think this is because I was not sure if I already said something relevant in the chapter before.
-    
-    [ ] Show your results more clearly, do the coding you have done justice
-    
-    [ ] finish chapter 6 properly 
-      - Experiments: add a section on a use-case application, using potree + startin + geofront std + obj downloader
-    
-    [ ] write stronger, more clear conclusions.
-      - hmm, i think they are already quite clear. But again, this is to be reconsidered when the overall story of the thesis changes  
-    
-    low-level 
-    -------------------
-    
-    - [x] Add arsclassica template to the thesis
-    - [x] Make the code snippets / listings work properly
-    - [x] replace all code screenshot with proper listings
-    - [ ] create all missing uml diagrams
-    - [ ] add proper graphs for the data you've gathered 
-    - [ ] Add all proper metadata to Zotero, for a nice bibliography
-    
-    - [ ] Fix all TODO graphics
-    - [ ] Fix all acronyms,
-    - [ ] Sort the acronyms at the end 
-    - [ ] Make sure CiteT and citeP is properly used everywhere. No more raw 'et. al.' statments 
-    - [ ] Capitalize all VPL
-    - [ ] Sources need to be fixed (more data, check if I can do things like 'empscripten contributors')
-
-
-
-
-
-\end{note}
-
-\begin{note}
-    TODO: rewrite abstract in accordance with new story
-\end{note}
-
 Geocomputation is a cornerstone of GIS \& modern mapping needs.
 While the last decades have seen major advancements, writing a geocomputational pipeline remains a complex, non-trivial exercise. 
 Performing geocomputations by utilizing a visual programming language (VPL) within a web browser is a novel development which seeks to simplify this process, allowing more people to write these types of pipelines more successfully.
@@ -136,19 +56,11 @@ All in all, this means that either if the geocomputation libraries found in the 
     
 % \end{note}
 
-
-
-
 % This might allow web based VPLs for geocomputation to be 
-
 % Geodata computation is important.
-
 % Geodata computation is difficult.
-
 % geo-web-vpls could help, but have seen little research
-
 % This study: design, implement, analyze a new prototype geo-web-vpl. 
-
 % Design-> utilize existing, native libraries written in C++ \& Rust on the web, in the format of a vpl.
 
 % results -> it works.
@@ -164,10 +76,6 @@ All in all, this means that either if the geocomputation libraries found in the 
 
 % All of this makes the process of geocomputation difficult. 
 
-% two ways of improving the process are actively being researched: Geocomputation by visual programming, and Geocomputation in web browsers.
-% This study seeks to combine the advantages of both these approaches by 
-
-
 
 % This thesis presents GeoFront, a web-based visual programming language, similar to Grasshopper \& FME. 
 % With GeoFront, geoprocessing \& computational design flowcharts can be viewed, run, and shared using the web.  
@@ -182,15 +90,6 @@ All in all, this means that either if the geocomputation libraries found in the 
 % The advantages and disadvantages of browser based geo-computation, compared to native or server-side geo-computation, are examined in several scenario's. 
 % Both quantitative indicators, like loading and runtime performance, as well as qualitative indicators, like the fitness for an intended use-case, are measured in each of these cases.
 % This study concludes that based on these measurements, browser-based geo-computation is not only possible, but fast, and an enabler of many promising use-cases, such as on-demand geodata processing apps, educational demo apps, and code sharing. However, extensive user-group testing is required before any definitive statements on accessibility and fitness for geo-computation can be made.  
-
-% Konstantinos' abstract
-% x are continuously becoming more popular among practitioners due to [...]
-% However, there is no [...] to allow [...]
-
-% Problem: Web GIS and GEO-VPL have not found each other yet. 
-% A general geo-web-vpl does not exist yet.  
-
-% [what]
 
 % Following the implementation, the project was tested by simulating use-case scenarios. 
 % The tests demonstrate the feasibility of [...]
@@ -244,14 +143,85 @@ All in all, this means that either if the geocomputation libraries found in the 
 
 % \todo{[JF]: I need to add more critical notes on promises of accessibility. Is a webapp truly accessible? Is a flowchart interactive, or does it hinder interactiveness? }
 
-% We believe that such a web application can make geoprocessing more accessible to practitioners.
-
+% I believe that such a web application can make geoprocessing more accessible to practitioners.
+% This empowers users to create small geoprocessing demo's, and share these 
+% With geofront, geoprocessing libraries can be loaded and used interactively. Users are also able to create and share flowcharts.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % 
-% This empowers users to create small geoprocessing demo's, and share these 
-
-% With geofront, geoprocessing libraries can be loaded and used interactively. Users are also able to create and share flowcharts.
 
 
 %%%%%
+
+
+
+\begin{note}
+
+  Lessons
+  ==========
+  
+  - give yourself clear todo's per day. 
+    Not too little, not too much.
+    Upon completion, the day falls apart
+  
+  
+  TODO
+  ============
+  
+  high-level
+  ----------
+  
+  [x] The intro / story needs to be altered 
+      - stronger tie to Geo & web
+      - VPL + Web
+  
+  [ ] rewrite and balance research questions
+  - [ ] than trickle down the consequences of those changes throughout the thesis
+  - [ ] and fix all that needs to be fixed (images and stuff)
+  - [ ] put TODO notes everywhere
+  mid-level
+  ---------
+  
+  [ ] TODO: rewrite abstract in accordance with new story
+
+  [x] Deep dive in Hugo's comments, fix those aspects 
+    - [x] sort acronyms
+  
+  [x] Add a stronger web-component in the introduction (presentation)
+  [x] Add cloud native / cloud-based geodata component to the introduction  
+  
+  [ ] Cleanup Chapter 2 and 3.  
+    - Some parts are still more relevant than other parts. 
+    - Also, there are some things I say or use in chapter 4, 5, and 6, that were not properly explained in chapter 2. Examples of this are emscripten, or CGAL. 
+    - However, a complete rewrite would be too much work.
+    - Would love to hear your take on this.
+  
+  [ ] Make chapter 4 and 5 more streamlined 
+    - I've noticed that I repeat myself quite often.
+    - I think this is because I was not sure if I already said something relevant in the chapter before.
+  
+  [ ] Show your results more clearly, do the coding you have done justice
+  
+  [ ] finish chapter 6 properly 
+    - Experiments: add a section on a use-case application, using potree + startin + geofront std + obj downloader
+  
+  [ ] write stronger, more clear conclusions.
+    - hmm, i think they are already quite clear. But again, this is to be reconsidered when the overall story of the thesis changes  
+  
+  low-level: thursday & friday
+  -------------------
+
+  - [ ] TODO: write Acknowledgements
+  - [x] Add arsclassica template to the thesis
+  - [x] Make the code snippets / listings work properly
+  - [x] replace all code screenshot with proper listings
+  - [ ] create all missing uml diagrams
+  - [ ] add proper graphs for the data you've gathered 
+  - [ ] Add all proper metadata to Zotero, for a nice bibliography
+  - [ ] Fix all TODO graphics
+  - [ ] Fix all acronyms,
+  - [ ] Sort the acronyms at the end 
+  - [ ] Make sure CiteT and citeP is properly used everywhere. No more raw 'et. al.' statments 
+  - [ ] Capitalize all VPL / replace with acronyms
+  - [ ] Sources need to be fixed (more data, check if I can do things like 'empscripten contributors')
+\end{note}

@@ -1,16 +1,10 @@
 
 [ken]
-and indeed: don't go back to the drawing board!
-you have a good base
-better to build on that to fix things
-in my opinion: cloud native is only a section or couple paragraphs in the final chapter
-zooming in: research question/subquestions that cover other aspects
-(not just loading libraries into webassembly) 
-so that you can adequately present the UI/UX aspects
-this also solves issues with the research questions
-and conclusions: should be partially fixed by changing subquestions
-but also: try to be more precise
-bring numbers, examples, tables, etc to back your statements
+- and indeed: don't go back to the drawing board!: you have a good base, better to build on that to fix things
+1. zooming in: research question/subquestions that cover other aspects (not just loading libraries into webassembly) so that you can 
+2. adequately present the UI/UX aspects, this also solves issues with the research questions
+3. and conclusions: should be partially fixed by changing subquestions
+4. try to be more precise bring numbers, examples, tables, etc to back your statements
 because right now the final chapter often reads more like an essay
 
 
@@ -127,10 +121,9 @@ Methodology
 
 Scalability will be achieved in three ways: 
 1. **Local Correctness** 
-   -> The application is a Dataflow VPL, which adheres to functional programming principles.
+   -> The VPL prototype is designed as a Dataflow VPL, which allows implicit concurrency.
 2. **Portability** 
-   -> The application is web based.
-   -> The application uses native geocomputation libraries in a portable format.
+   -> The application uses native geocomputation libraries which behave the same way in the front- and back-end. 
 3. **Minimum abstraction Cost** 
    -> The application uses a unique plugin system, to offer direct usage these portable libraries. 
    -> Pipelines to offer direct usage these portable libraries.
@@ -143,8 +136,6 @@ Scalability will be achieved in three ways:
 This study
 ==========
 
-Goal: To contribute to our understanding of these new developments and their consequences. 
-How: Explore the possibility of using a browser-based dataflow VPL as a geocomputation platform.
 More precisely: Design and develop a proof of concept application which attempts to adhere to the three aforementioned principles for a browser- and cloud-ready geocomputation pipeline mentioned above.
 Then, perform a series of tests and assessments to judge to what extend the implementation adheres to these principles.
 
@@ -156,11 +147,12 @@ __MAIN QUESTION__: Is a GUI-rich dataflow VPL a viable option for constructing b
 
 1. What GUI features are required to facilitate a geocomputation VPL in a web browser?
 
-2. **Local Correctness**: Are the functional properties of a dataflow-VPL uphold by this solution?
+2. Are the functional properties of a dataflow-VPL uphold by this solution?
 
-3. **Portability**: How can native geocomputation libraries be compiled, loaded, and utilized within a browser-based dataflow-VPL?
+3. How can native geocomputation libraries be compiled, loaded, and utilized within a browser-based dataflow-VPL?
 
-4. **Minimum abstraction**: What measures are taken to reduce the abstraction cost of this solution, and how effective were these measures?
+4. What measures are taken to reduce the abstraction cost of this solution, and how effective are these measures?
+
 (A: javascript, unsuccessful, Libraries, very successful, but only on a usage level. The abstractions of translating between rust and javascript are still in place.)
 
 Conclusion
@@ -186,7 +178,7 @@ Background
 what does it mean to design a VPL?
 What does it mean to design a VPL for computational geometry and Computer Graphics (CG)?
 what does it mean to design a VPL for GIS?
-What does it mean to design a VPL for web-based, cloud-native GIS?   
+What does it mean to design a VPL for web-based GIS?   
 
 The 3 principles:
 - 
@@ -230,37 +222,4 @@ Based on the explorations and findings of this study, it has become clear that t
 ...
 
 
-
-
-
-======================================================================================================================================
-
-_"Make a sketch for what you are truly trying to achieve personally. Then convert it to 'acceptable' form"_ 
-
-
-
-
-
-
-
-
-
 <!-- Node.js has been developed, not because there is any real use-case to running javascript natively, OTHER than making it so one language can reach all locations and platform: Frontend, Backend, Native applications (Electron).  -->
-
-
-
-
-==========================================================
-
-_Alright, now how to tie this with the application and library dichotomy?_
-
-VPL + WEB + GEO
-
-wasm + cloud = bbg
-
-
-1. web + cloud = bbg.
-2. looking for ways 
-
-VPL: the way?
-

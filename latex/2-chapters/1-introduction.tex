@@ -1,105 +1,85 @@
 \chapter{Introduction}
 \label{chap:intro}
 
-\begin{note}
-  Story once and for all: 
-  - Web 
-  - VPL
-\end{note}
-
-\begin{note}
-  (intro influenced by Elliott C. (2007). Tangible Functional Programming)
-\end{note}
-
 The field of \ac{GIS} concerns itself with the collection, processing, storage, and visualization of geodata. 
 By doing so, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
 This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, governance, navigation, the military, and agriculture.   
+As such, the field of \ac{GIS} is continuously looking for new ways to provide these fields and industries with both the data and tools they need to succeed. 
 
+\subsection*{Problem Statement and Goal}
 
-WE ARE CONSTANTLY LOOKING INTO NEW WAYS OF PROVIDING THE PUBLIC WITH BOTH GEODATA, AND THE TOOLS TO PROCESS AND ANALYSE GEODATA.
-- VPL
-- WEB
-THIS STUDY WILL BE ABOUT THE LADDER 
+This thesis concerns itself with the latter: Providing tools. 
+The problem this study seeks to address, is that the core transformation and analysis tools found in \ac{GIS} software libraries, are normally not directly accessible by practitioners in the fields mentioned above: governance, infrastructure, urban planning, etc.
+A small number of native software Libraries written in C/ C++, like PROJ, CGAL or GDAL, play a foundational role of almost all \ac{GIS} tools. 
+However, end users with a profession different than software developer, are often unable to directly access these libraries. 
+The tools can only be used indirectly, and only when a software developer has incorporated these functionalities in an application. 
+Similarly, if research leads to a new \ac{GIS} library, end users are at the mercy of a software developer implementing the functionalities of said library as a usable application, or as a plugin for an existing \ac{GIS} environment like QGIS \citep*{qgis_community_qgis_2022}.
+Moreover, even if these capabilities are added to an application, the tools are almost always added in a non-composable format (TODO: SEE IMAGE). This leads to labor intensive procedures and repetitive workflows, as opposed to automated, re-usable procedures.
+% Not taking advantage of the full potential of these libraries 
+It is safe to say that the limited reach of these libraries translates to a reduced societal impact, and with it, the \ac{GIS} research these libraries are based upon.
 
-The maps and analysis tools used to share this information often takes the form of web applications.  
-A web applications offer distribution advantages over native applications. 
-It allows the same source code to be used across different platforms without alteration, including windows, mac, linux, and mobile devices. 
-Moreover, web applications do not need to be installed, and can directly be accessed using a link. 
+% Not taking advantage of the full potential of these libraries 
+% Not taking advantage of the full potential of 3DCMs applications due to lack of (good)
+% maintenance is equivalent to discarding information already obtained. Considering
+% the versatility of 3DCMs and how entangled cities are with society,  Furthermore, lim-
+% itations in maintenance such as lack of managing tools by the organizations that
+% possess the 3DCM, increases the administrating costs of a 3DCM. This often results
+% into outsourcing —the biggest part of— its maintenance, by providing the neces-
+% sary component-datasets to third parties. In some cases the solution for an updated
+% 3DCM includes the (re)generation of completely new iterations of the model from
+% scratch [Airaksinen et al., 2019], through, that a very small proportion of practitioners is able to perform.
 
-\subsection*{Developments}
+The overarching goal of this study is to allow end-users more \textbf{direct} access to core transformation and analysis capabilities found in native \ac{GIS} libraries, in a format which allows \textbf{composability}.
 
-Two major developments have occurred with great relevance to web GIS applications.
+The study attempts to meet this goal by studying two domains in the field of \ac{GIS}, and developing a possible solution from them.
+The goal of \textbf{composability} is addressed by using the knowledge found within the field of \textbf{visual programming}.
+The goal of \textbf{direct accessibility} is met by studying the field of \textbf{static web applications}.  
+To make the research goals of this study more precise, these two domains must briefly be addressed.
+% taking advantage 
 
-The first development concerns static file hosting.
-Various geodata formats are increasingly becoming available as singular, statically hosted files, 
-as opposed to active web services which query databases, and use dynamic routing (WMS, WFS, WMTS). 
-Examples of this are the Cloud Optimized GeoTiff (SOURCE), and the COPC file format (SOURCE). 
-Static file hosting is orders of magnitude more cheap in terms of performance, and scales more easily to accommodate high amounts of web requests.
-This leads static hosting to be a cheaper alternative to active servers.
+% new relationship between GIS web UI's, and 
 
-The second development is the introduction and adoption of the WebAssembly language. 
-WebAssembly is a compilation target, added to most major web browsers since 2020. 
-It offers a method to publish native software as a component of a web application. 
-WebAssembly mitigates the need for web-based, javascript alternatives of native software applications and libraries. 
-Examples of this are [mapbox.rs].
+% \begin{note}
+  
+% VPL: Bridge between application and library
+% - I want to focus on this particular reason for a VPL. 
+%   - but, more reasons for using VPLs exist, such as end-user development (eud) (source)
 
-% Impact: Webassembly allows an expanded definition of 'cross-platform libraries' [mapbox.rs]
-%   - This is benefitial for the same reason as traditional cross-platform arguments: 
-%     - no duplicate libraries, no burden of synchronizing functionality across multiple libraries   
-
-Both these developments taken together leads to a paradigm shift which is important to recognize.
-A current, regular GIS web application would utilize OGC standard web services like WMS, WFS, WMTS, or WPS, (SOURCE) to access or process all requested geodata. 
-However, statically hosted geodata might mitigate the need for WMS, WFS and WMTS, and WebAssembly could replace backend geocomputation services.  
-With both developments used in conjunction, applications can be created which uses no active servers at all: Serverless GIS web applications.
-
-% -> This enables serving more people while using less computational resources on the backend. 
-% , this might allow for a new type of GIS web application, 
-% one which can operate 'serverless': Meaning no active server is required for using the web application. 
-
-\subsection*{Objective}
-
-This study seeks to contribute to serverless GIS web applications.
-
-In particular, this study wishes to explore if a new type of application is possible because of these developments. 
-an experiment in putting geocomputation abilities directly into the hands of end-users. 
-
-A web application which is able to directly utilize core transformation and analysis capabilities found in native geo-libraries. 
-
-the capabilities of such an application: A serverless, 
+% It is this particular aspect which sees significant usage in other applied CG fields, but not GIS.
 
 
 
+% PROBLEM STATEMENT
+
+% - VPLs are relatively unexplored within the field of GIS. 
+%   - VPLs serve mostly as developer tools (ETL)
+  
+% - This thesis 
+%    - provide capabilities of core geo-libraries directly to end-users.
+%    - provide these capabilities in a composable way using a VPL. 
+%    - provide customizable, composable UI.
+%    - provide a way to scale this.
+
+% - For this, a web-based, serverless VPL will be developed.
+
+% + GIS VPL, 
+ 
+
+% If we sum up these various considerationss
 
 
+% \end{note}
 
-allows web applications to 
-Together, these technologies could be used to offer geodata and the means to process them 
+% The web based geocomputation VPL is a novel development, and contains a multitude of unaddressed challenges.
+% This study focusses on the particular problem of library portability. % and integration
 
+% Successful geocomputation pipelines often relies on operations found in a select number of libraries. 
+% Most major, industry-standard geocomputation libraries are native, C++-based libraries. 
+% Examples of these are GDAL, PROJ, and GEOS. 
+% However, A web based geocomputation VPL like the Mobius Modeller does not make use of these libraries, and uses javascript equivalents like Turf \citep{turf_contributors_turfjs_2022}.
+% While it is possible to port a library like GDAL to javascript, guarantying that these two versions show the same behavior will be complex and time consuming. Additionally, managing duplicate libraries like this will slow down development, or create large version discrepancies \citep{ammann_maplibre-rs_2022}.
 
-
-new relationship between GIS web UI's, and 
-
-
-asks \ac{GIS} researchers to rethink our current models of GIS web applications. 
-
-- WebAssembly can be used to bring almost any transformation and analysis tool to a web application. 
-
-
-
-- 
-
-
-also offer the opportunity of geocomputation in the browser, instead of native
-  -> serverless geocomputation: geocomputation without any active server. 
-
-% <!-- 
-% (-> Benefits reproducibility & open science:)
-%     (- Software developed is not only open source, but directly usable.)
-%     (- Developers are forced to address the openness of data used.) -->
-
-
-
-\subsection*{The (web) VPL}
+\subsection*{Composability: Visual Programming}
 
 \begin{figure}
   \centering
@@ -109,15 +89,49 @@ also offer the opportunity of geocomputation in the browser, instead of native
   \label{fig:1:geoflow}
 \end{figure}
 
-% from :  Conal Elliott
-% tangible values
+A \ac{VPL} is a type of programming language represented by a \ac{GUI}, rather than a text-based source code.
+A \ac{VPL} 'script' might take the shape of for example a graph, or a block-based instruction set.
+
+The goal and purpose of a VPL can be framed in multiple ways. 
+This study draws from the perspective presented in \citep*{elliott_tangible_2007}.
+This perspective brings focus to the discrepancies between software libraries, and software applications, and notes that in certain situations, properties of both libraries and applications are desired. 
+Software libraries often contain expressive, re-usable functionalities, but do not provide a \ac{UI} of themselves, and must be turned into an application before utilization.
+Software applications on the other hand, can offer a rich \ac{GUI}, but lose the ability to be re-composed into new software like libraries. Additionally, library functionalities presented through an applications are often reduced and less feature rich compared to the functionality of the library itself.
+A VPL can be seen as an attempt to extract the best properties of both software libraries and applications. 
+It can offer composability to applications, and \ac{GUI}s to libraries.
+ 
+A VPL can be desirable format for a \ac{GIS} application.
+% application which both offers visualization and composability is 
+Two important characteristics of \ac{GIS} are the size and spatial nature of geodata.
+The size of geodata makes automation a necessity, as manual editing would quickly become labour intensive.
+The spatial nature of geodata means that visualization is key in understanding and assessing the quality of data. 
+In most cases, A visualization also forms the end product of \ac{GIS} labour.
+Additionally, \ac{GIS} Procedures sometimes require empirically defined parameters, which can be aided by using UI features like sliders. 
+
+Given this characterization, it becomes clear that \ac{VPL}s are beneficial, because they allow both automation and a rich \ac{GUI} within one application. 
+This also explains the requirements a VPL needs to adhere to in order to 'qualify' as a \ac{GIS} \ac{VPL}:
+\begin{enumerate}
+  \item It needs to be scalable to handle sizable datasets.
+  \item It needs to provide a rich \ac{GUI}, capable of visualizing geodata, and quickly exploring different parametrizations of various procedures.
+\end{enumerate}
+
+% This makes viewers an important component of the field.
+
+% As such, the field often finds itself desiring solutions 
+% or a \ac{GIS} operation
+% Lastly, a VPL can aid with the parametrization of \ac{GIS} procedures. 
+% Procedures like RANSAC take many 'magic parameters', which often need to be configured empirically, that is to say: "By trial and error". The Right UI can aid this.
+
+% WHY GIS for VPL: 
+% - a gis vpl requires attention to scalability. 
+
+% ADDRESS THE QUESTIONS
 
 % libraries 
 % means to an end
 
 % applications 
 % the end (dead end)
-
 
 
 % The split has drawbacks: 
@@ -130,21 +144,20 @@ also offer the opportunity of geocomputation in the browser, instead of native
 % The dream: 
 % - unlimited access to functionality & composability, usability, and composability
 
-A visual programming language is a type of programming language which uses an alternative model to the textual source code of regular programming languages. 
-These alternative models are represented by a \ac{GUI}, in which the program might take the shape of for example a graph, or a block-based instruction set.
-The value a VPL lies in the fact that constructing or editing a program in a visual way can be a faster process than using a textual method, even for the most experienced software developers \citep{green_usability_1996, kuhail_characterizing_2021}.
-Additionally, a \ac{VPL} allows for so-called End User Development \citep{kuhail_characterizing_2021}.
-A \ac{VPL} makes development more accessible to end users, as it allows practitioners to automate some processes and workflows like a software developer, but without needing a full background in software development \citep{benac_recent_2022}. 
-Finally, a VPL may even possess performance and reliability advantages over textual languages if it is implemented as a dataflow-type VPL \citep{sousa_dataflow_2012}. 
+% TODO ADD THIS TO RELATED WORKS SECTION 
+% A VPL interface could also be valuable for different reasons. 
 
-These qualities are beneficial to geocomputation, and perhaps as a consequence, geocomputation by means of visual programming is not an uncommon phenomena in the field of \ac{GIS}.
-For example, Safe software's FME \citep{safe-software_fme_2022} is a popular \ac{VPL} among \ac{GIS} practitioners, arguably due to the way it simplifies the process of writing a \ac{ETL} pipeline. 
-Another example is McNeel's Grasshopper \citep{rutten_grasshopper_2012}, often used for small-scale spatial analyses, like solar irradiation or heating demands of a neighborhood \citep{sadeghipour_roudsari_ladybug_2013}. 
+% constructing or editing a program in a visual way can be a faster process than using a textual method, even for the most experienced software developers \citep{green_usability_1996, kuhail_characterizing_2021}.
+% Additionally, a \ac{VPL} allows for so-called End User Development \citep{kuhail_characterizing_2021}.
+% A \ac{VPL} makes development more accessible to end users, as it allows practitioners to automate some processes and workflows like a software developer, but without needing a full background in software development \citep{benac_recent_2022}. 
+% Finally, a VPL may even possess performance and reliability advantages over textual languages if it is implemented as a dataflow-type VPL \citep{sousa_dataflow_2012}. 
 
-A new development regarding Geocomputation VPLs is attempting to make these VPLs run in a web browser.
-The value of this is that web applications require no explicit installment to use the application, giving them distribution and accessibility advantages over native applications \citep{kuhail_characterizing_2021, panidi_hybrid_2015}. 
-The Mobius Modeller is a good example of a browser-based geocomputation VPL \citep{janssen_mobius_2021}.
-The application allows users to configure a calculation by visual means in a web browser, which can then be shared as a stand-alone web application. 
+% These qualities are beneficial to geocomputation, and perhaps as a consequence, geocomputation by means of visual programming is not an uncommon phenomena in the field of \ac{GIS}.
+% For example, Safe software's FME \citep{safe-software_fme_2022} is a popular \ac{VPL} among \ac{GIS} practitioners, arguably due to the way it simplifies the process of writing a \ac{ETL} pipeline. 
+% Another example is McNeel's Grasshopper \citep{rutten_grasshopper_2012}, often used for small-scale spatial analyses, like solar irradiation or heating demands of a neighborhood \citep{sadeghipour_roudsari_ladybug_2013}. 
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -154,164 +167,154 @@ The application allows users to configure a calculation by visual means in a web
 % Additionally, and perhaps consequently, all comparable VPLs analyzed in \refsec{sec:related-geovpl} were implemented as dataflow VPLs (Blender, houdini, Grasshopper, GeoFlow), the only exception being the Möbius Modeller.
 % However, this meant that a new, web-based implementation had to be made, since no existing web-vpl concerned with geometry uses this model (that this study is aware of).
 
-\subsection*{Problem Statement}
-  
-\begin{note}
-  
-VPL: Bridge between application and library
-- I want to focus on this particular reason for a VPL. 
-  - but, more reasons for using VPLs exist, such as end-user development (eud) (source)
-
-It is this particular aspect which sees significant usage in other applied CG fields, but not GIS.
 
 
+\subsection*{Direct access: Static web applications}
 
-PROBLEM STATEMENT
+The maps and analysis tools used to share geo-information often take the form of web applications.  
+A web applications offer distribution advantages over native applications \citep{kuhail_characterizing_2021, panidi_hybrid_2015}. 
+It allows the same source code to be used across different platforms without alteration, including windows, mac, linux, and mobile devices. 
+Moreover, web applications do not need to be installed, and can directly be accessed using a link. 
 
-- VPLs are relatively unexplored within the field of GIS. 
-  - VPLs serve mostly as developer tools (ETL)
-  
-- This thesis 
+Two major developments have occurred with great relevance to web GIS applications.
 
-   - provide core capabilities of geo-libraries directly to end-users.
-     
-   - provide these libraries with a customizable, composable UI.
+The first development concerns static file hosting.
+Various geodata formats are increasingly becoming available as singular, statically hosted files, 
+as opposed to the active \ac{OGC} web services which query databases, and use dynamic routing \citep{open_geospatial_consortium_web_2015}.
+Examples of these static formats are the Cloud Optimized GeoTiff (SOURCE), and the COPC file format (SOURCE). 
+Static file hosting is orders of magnitude more cheap in terms of performance and literal cloud-host pricing, and scales more easily to accommodate high amounts of web requests.
 
-   - provide a way to scale this.
+The second development is the introduction and adoption of the WebAssembly language \citep{haas_bringing_2017}. 
+WebAssembly is a compilation target, added to most major web browsers since late 2019 \citep{w3c_world_2019}. 
+Among many purposes, it offers a method to publish native software as (part of) a web application. 
+WebAssembly partially mitigates the need for web-based, javascript alternatives of native software applications and libraries. 
+It also allows software which previously could only be run on servers, to be executed in the browser. 
+Examples of this are how \citet{ammann_maplibre-rs_2022} built a map viewer which was both able to serve native and web needs.
 
-- For this, a web-based, serverless VPL will be developed.
+% Impact: Webassembly allows an expanded definition of 'cross-platform libraries' [mapbox.rs]
+%   - This is benefitial for the same reason as traditional cross-platform arguments: 
+%     - no duplicate libraries, no burden of synchronizing functionality across multiple libraries   
 
-+ GIS VPL, 
- 
-
-If we sum up these various considerationss
-
-
-\end{note}
-
-The web based geocomputation VPL is a novel development, and contains a multitude of unaddressed challenges.
-This study focusses on the particular problem of library portability. % and integration
-
-Successful geocomputation pipelines often relies on operations found in a select number of libraries. 
-Most major, industry-standard geocomputation libraries are native, C++-based libraries. 
-Examples of these are GDAL, PROJ, and GEOS. 
-However, A web based geocomputation VPL like the Mobius Modeller does not make use of these libraries, and uses javascript equivalents like Turf \citep{turf_contributors_turfjs_2022}.
-While it is possible to port a library like GDAL to javascript, guarantying that these two versions show the same behavior will be complex and time consuming. Additionally, managing duplicate libraries like this will slow down development, or create large version discrepancies \citep{ammann_maplibre-rs_2022}.
-
-Fortunately, on a theoretical level, it is possible to compile a native C++ library to a web-consumable format using the 'WebAssembly' binary format \citep{haas_bringing_2017}.
-This way, only one library needs to be maintained to serve all platforms, both native and web.
+% Both these developments taken together leads to a paradigm shift which is important to recognize.
+% A current, regular GIS web application would likely utilize OGC standardized web services like WMS, WFS, WMTS, or WPS, \citep{open_geospatial_consortium_web_2015} to access or process all requested geodata. 
+% However, statically hosted geodata might mitigate the need for WMS, WFS and WMTS, and WebAssembly could replace certain WPS and backend geocomputation services.  
+With both developments used in conjunction, applications can be created which use no active servers at all: Static GIS web applications.
 
 \begin{note}
-  HUGO: Make C++ into C / C++ 
-  HUGO: Examples of this are Proj and Laz, no? 
-  - hyperpink all abbreviations
+  GEOCOMPUTATION
 \end{note}
 
-However, to the best of the author's knowledge, no example exists of a web-based geocomputation VPLs which make use of native geocomputation libraries.
-The theoretical possibility combined with the practical absence of any implementation, leads this study to assume that a practical inhibition is in place, preventing native geocomputation libraries to be used by a web VPL.
+% more autonomous: Can operate more independently from its back-end counterpart.
 
-The source of this inhibition is unclear. 
-There are many aspects and components to compiling a native geocomputation library, and using it on the web, in a VPL format. 
-Given the absence of an implementation, the possibility remains that it could be any one of these aspects and components, or even an interplay between all of these factors. 
-This study identifies three main challenges to using a native geocomputation library in a web-based VPL:
-
-\subsubsection*{\mySubRQTwoTitle}
-
-% Secondly, native geocomputation functionalities might not be able to be properly \textbf{compiled} into a format functional on the web.
-% (wasm limitations)
-
-% Making sure a \ac{geo-web-vpl} is able to make use of native, system-level libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
-Firstly, the challenge of compilation. 
-As explained before, the most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \citep{haas_bringing_2017}.
-Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \citep{haas_bringing_2017,jangda_not_2019}.
-However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{wasm} also may pose challenges:
-
-% The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. 
-
-\begin{enumerate}[-]
-  \item \ac{wasm} promises a 'near native performance' \citep{haas_bringing_2017}. However, this can be quite situational, as multiple studies have shown \citep{jangda_not_2019, melch_performance_2019}. 
-  \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not function without workarounds. 
-  \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
-  \item Compiling a \emph{library} to \ac{wasm} is significantly different from compiling a full \emph{application} to \ac{wasm}. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
-\end{enumerate}
-% Discovering the extent and relevance of these compilation challenges for geo-computation libraries is why the sub-question of \mySubRQTwoTitle \space was included in this study.
-
-\subsubsection*{\mySubRQThreeTitle}
-
-Secondly, even if the libraries are compiled to a web-ready format, geocomputation functionalities might not be able to \textbf{load} properly within a web-based VPL.
-
-This is a challenge of designing an appropriate binding system or plugin loader. 
-When writing Python bindings to a C++ library for example, one has to consider the way both languages operate, and make sure the discrepancies between the language models are accounted for, such as manual memory management. 
-This is not different from a visual language interfacing with a web-compiled native library. 
-However, this situation adds additional challenges, as the host \ac{VPL} does not necessarily know the source language of the binary. 
+% Serverless web applications
+% This leads static hosting to be a cheaper alternative to active servers.
 
 
-% This is a matter of bindings, 
-\subsubsection*{\mySubRQFourTitle}
+% This study seeks to contribute to serverless GIS web applications.
+% In particular, this study wishes to explore if a new type of application is possible because of these developments. 
+% A web application which is able to directly utilize core transformation and analysis capabilities found in native geo-libraries. 
+% the capabilities of such an application: A serverless, 
+% allows web applications to 
+% Together, these technologies could be used to offer geodata and the means to process them 
+% asks \ac{GIS} researchers to rethink our current models of GIS web applications. 
+% - WebAssembly can be used to bring almost any transformation and analysis tool to a web application. 
+% also offer the opportunity of geocomputation in the browser, instead of native
+%   -> serverless geocomputation: geocomputation without any active server. 
 
-Finally, It might be the case that a web-based VPL \emph{is} able to load and run functions from native, non-js geo-computation libraries. 
-And still, one might not be able to successfully \textbf{use} these libraries.
+% <!-- 
+% (-> Benefits reproducibility & open science:)
+%     (- Software developed is not only open source, but directly usable.)
+%     (- Developers are forced to address the openness of data used.) -->
 
-Central to this challenge of utilization is the aforementioned dataflow VPL format. 
-The performance and reliability needed for geocomputation makes a strong argument that any geocomputation VPL should be implemented as a dataflow VPL. 
-This is also evident from the fact that almost all geocomputation and geometry manipulation VPLs are implemented as a dataflow VPL (see \refsec{sec:related-geovpl}).
 
-However, it may be that native geocomputation functionalities are unfit for this model. 
-The model requires all functions to be pure, and all variables to be immutable. 
-This might invalidate some of the operations found in these libraries, or make other operations complicated to use in practice.
+
+
+% -> This enables serving more people while using less computational resources on the backend. 
+% , this might allow for a new type of GIS web application, 
+% one which can operate 'serverless': Meaning no active server is required for using the web application. 
 
 
 \section{Research Objective}
 
+The overarching goal of this study is to allow \ac{GIS} practitioners without a background in software development, to access the full potential of core transformation and analysis capabilities found in native \ac{GIS} libraries.
 
+The study attempts to meet this goal by designing, implementing, and accessing a prototype based on the fields of visual programming, and static web applications. 
+% The prior works on static geo-web applications and \ac{GIS} \ac{VPL}s indicate that a strong theoretical framework is in place.
+% But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
+% This necessitates a practical approach in response. 
 
+The design of this prototype is as follows: 
+A VPL is used to present the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
+The format of web application is used to allow this prototype to be directly accessible to end users without installation or configuration. 
+% Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
+This prototype is statically hosted, to minimize operational costs, and is equipped with WebAssembly, so that libraries written in native languages can be used without resorting to active backend web services. 
+Finally, as this prototypes aspires to qualify as a \ac{VPL} specialized for \ac{GIS}, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders, text boxes, graphs), are primary design considerations and assessment criteria. 
 
+While VPLs and even Web-based VPLs have been studied before, the focus on direct utilization of native \ac{GIS} libraries, combined with bringing those in direct contact with various \ac{GUI} elements, and all without resorting to active web servers, is a combination unique to this study, at least to the best of the authors knowledge at this point in time. 
+A literature study on \ac{VPL}s found in the field of \ac{GIS}, Computer graphics, the web, and generic VPLs has been performed to ensure this.
+Additionally, assessment criteria are used to ensure this remains true after having performed the study.
+% Certain implementation details also offer a novel take on \ac{VPL}s as a whole.
 
-This study seeks to improve the state of browser-based geocomputation VPLs.
-This is done by studying a possible solution to the library portability problem found in existing browser-based geocomputation VPLs.
+The overall design of the prototype outlined above contains a number of technical challenges.
+The compilation of native \ac{GIS} libraries to Webassembly has several caveats, and achieving scalability with a VPL requires novel, untested methods. 
+Therefore, seeking and analyzing solutions to these challenges is required to making this prototype meet the specifications of the design mentioned. 
 
-The study poses that the library portability problem can only be overcome if native geocomputation libraries are able to be properly compiled, loaded and utilized in a browser-based dataflow-VPL format. 
-There are multitude of technical challenges present within each one of these steps, and in between these steps. 
-Seeking and analyzing solutions to these challenges is the focal point of this study. 
+% more direct access in a format which allows composability.
+% The study attempts to meet this goal by designing a visual programming language, implemented as a static web application.
+% This study
+% VPL for web-based, serverless geocomputation has not been tried yet. 
+% This study seeks to improve the state of browser-based geocomputation VPLs.
+% This is done by studying a possible solution to the library portability problem found in existing browser-based geocomputation VPLs.
+% The study poses that the library portability problem can only be overcome if native geocomputation libraries are able to be properly compiled, loaded and utilized in a browser-based dataflow-VPL format. 
+% There are multitude of technical challenges present within each one of these steps, and in between these steps. 
+% Seeking and analyzing solutions to these challenges is the focal point of this study. 
 
 
 \section{Research Questions}
-Based on this objective, the research question is formulated as follows: 
+The objectives outlined above lead to the following main and supporting research questions:  
 \begin{itemize}[ ]
-  \item \myMainRQ
+  \item \textit{Does a web-based, GUI-rich VPL improve the \textbf{accessibility} and \textbf{composability} of native GIS libraries, compared to similar VPLs?}
 \end{itemize}
-
 
 \subsection*{Supporting Questions}
-The following supporting questions are defined to aid in answering the main question.
-The first question serves as a prerequisite for attempting to answer the remaining three. 
-The other three research questions are based upon the three main categories of challenges of the library portability problem.  
-These questions are posed in such a way that answering them will require us to explore the extent of this challenge, and find possible solutions.
 
-\begin{note}
-  HUGO: What makes it Spatial?!?!
-
-  sub-questions: 
-- A GUI for supporting browser-based, serverless geocomputation.
-- Plugin system for portability & scalability
-
-
-\end{note}
+% \begin{note}
+%   QUESTION: What makes it Spatial?!?! ANSWER: scalability. dataflow VPL
+% \end{note}
 
 \begin{itemize}[-]
-  \item \mySubRQOne
-  \item \mySubRQTwo
-  \item \mySubRQThree
-  \item \mySubRQFour
+\item How can native GIS libraries be compiled, loaded, and utilized within a browser-based VPL?
+
+\item What measures are taken to make this VPL scalable to large geo-datasets, and how effective are these measures?
+%  (2. Are the functional properties of a dataflow-VPL uphold by this solution?)
+
+\item What GUI features are required to facilitate this VPL, and to what extend does the web platform aid or hurt these features?
+
+\item to what extend does this solution "take the best of both software applications and libraries", as described by (SOURCE)?
+% \item Which Input and Output features does the VPL need to effectively use GIS libraries?
+% \item How does this solution compare to similar VPLs? 
+
 \end{itemize}
 
-\subsection*{Evaluation}
+\subsection*{Assessment}
 In order to obtain answers to these questions, a literature review is performed,
 a prototype web-based geocomputation VPL is developed, 
 and this application is accessed on various aspects.
 
-This prototype vpl is both used as a test case to discover the extent of possible challenges, as well as a staging ground for possible solutions. 
-The specific way in which each sub-research question is evaluated is explained in \refchap{chap:methodology}.
+
+
+
+\begin{note}
+TODO: What is the assessment?? 
+
+Methodology: assessment lists and criteria are created. 
+
+When we do compare this VPL, we compare it to similar VPLs.
+-> similar in terms of computer graphics-related VPLs. 
+% How does this solution compare to similar VPLs? 
+
+\end{note}
+
 
 % \begin{note}
 % TODO: diagram: 4 research questions -> four possible barriers of geocomputation
@@ -342,7 +345,6 @@ The specific way in which each sub-research question is evaluated is explained i
 % - wholistic > specific    : Research in one sub-domain could have been more exhaustive in one of the specific sub-studies, instead of covering the full scope it does now. However, This would have been incomplete. What we do now is cover the full pipeline of using a geocomputation library: from creation to web export, to web import, to web utilization. by doing this, we can identify issues caused in one of these
 % - iterative > linear      : Given this vast scope, many questions can come up from different angles. The study has to be dynamic to adapt to these demands. 
 
-\newpage
 \section{Scope}
 The scope of this thesis is bounded in the following seven ways: 
 
@@ -391,22 +393,22 @@ And to clarify: Docker and WebAssembly are not mutually exclusive models, and co
 
 \subsection*{Mostly Point Cloud/ DTM focussed geocomputation}
 
-We are also required to concentrate the scope of 'geocomputation', which is a sizable phenomenon.
-The term is generally used to cover all operations on geodata, from rasters, tabular datasets, highly structured datasets such as the CityJSON or IndoorGML, and point clouds. 
+The scope of 'geocomputation' also needs to be concentrated, as it is a sizable phenomenon.
+The term is generally used to cover all operations on any type of geodata, from rasters, tabular datasets, highly structured datasets such as the CityJSON or IndoorGML, and point clouds. 
 Due to time limitations, we are forced to focus on particular type of geocomputation.
 3D-based geocomputation is chosen, with a particular focus on pointclouds and DTMs. 
-The hypothesis is that these types of data may fit the small-scale geocomputation of a VPL well due to the local optimality quality of many DTM procedures (Such as the \ac{DT}), 
+The hypothesis is that these types of data may fit the small-scale geocomputation of a VPL well due to the local optimality quality of many DTM procedures (Such as the \ac{DT}). 
 
-\subsection*{Assumption: a 'Geocomputation-VPL' is a Geometry VPL able to handle geodata}
-For the scope of this thesis, we assume a VPL for geocomputation is practically the same as a VPL for generic geometry processing.
-Examples of "Geometry VPLs" are Blender's Geometry Nodes, Houdini, and Grasshopper.
-More on this in chapter \refsec{sec:related-geovpl}.
+% \subsection*{Assumption: a 'Geocomputation-VPL' is a Geometry VPL able to handle geodata}
+% For the scope of this thesis, we assume a VPL for geocomputation is practically the same as a VPL for generic geometry processing.
+% Examples of "Geometry VPLs" are Blender's Geometry Nodes, Houdini, and Grasshopper.
+% More on this in chapter \refsec{sec:related-geovpl}.
 
-A Geocomputation VPL differs only in the fact that it supports additional geodata types, and offers functionalities specific to processing those types.  
-This assumption is safe to make since a geocomputation VPL will \emph{at the very least} require the same features as a 'normal' geometry VPL, due to their common dependency on the field of computer graphics and computational geometry.
+% A Geocomputation VPL differs only in the fact that it supports additional geodata types, and offers functionalities specific to processing those types.  
+% This assumption is safe to make since a geocomputation VPL will \emph{at the very least} require the same features as a 'normal' geometry VPL, due to their common dependency on the field of computer graphics and computational geometry.
 
-Still, in reality, a lot of differences and nuances exist between the field of geocomputation and the field of procedural modelling. 
-However, due to time limitations, these concerns are left to future research.
+% Still, in reality, a lot of differences and nuances exist between the field of geocomputation and the field of procedural modelling. 
+% However, due to time limitations, these concerns are left to future research.
 % these concerns will only be picked up at the final discussion, found at \refsec{sec:discussion}.
  
 \subsection*{Only geocomputation libraries written in C++ \& Rust}
