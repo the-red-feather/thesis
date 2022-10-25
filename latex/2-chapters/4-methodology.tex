@@ -3,98 +3,61 @@
 \label{chap:methodology}
 
 \begin{note}
+
+WHAT NEEDS TO BE DONE TO ANSWER THE MAIN AND SUB RESEARCH QUESTION
+
+A Prototype VPL is developed to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
+The format of web application is used to allow this prototype to be directly accessible to end users without installation or configuration. 
+% Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
+This prototype is statically hosted, to minimize operational costs, and is equipped with WebAssembly, so that libraries written in native languages can be used without resorting to active backend web services. 
+Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders, text boxes, graphs), are primary design considerations and assessment criteria.
+
 So, we are in need of a platform in which:
 - Native geocomputation libraries can be directly used by end-users.
 - These libraries can be composed into programs
-- 
 
+Does a web-based, GUI-rich VPL lead to more \textbf{accessible} and \textbf{composable} native GIS libraries, compared to alternatives?}
 
+How can native GIS libraries be compiled, loaded, and utilized within a static, web-based VPL?
+
+What GUI features are required to facilitate this VPL and these libraries, and to what extend does the web platform aid or hurt these features?
+
+What measures are taken to make this VPL scalable to large geo-datasets, and how effective are these measures?
+%  (2. Are the functional properties of a dataflow-VPL uphold by this solution?)
+
+tT what extend does this method "take the best of both software applications and libraries", as described by (SOURCE)?
+
+How does this method compare to existing, alternative VPLs and browser-based geocomputation methods?
 
 \end{note}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TAKEN FROM INTRODUCTION
-
-% Fortunately, on a theoretical level, it is possible to compile a native C++ library to a web-consumable format using the 'WebAssembly' binary format \citep{haas_bringing_2017}.
-% This way, only one library needs to be maintained to serve all platforms, both native and web.
-
-% \begin{note}
-%   HUGO: Make C++ into C / C++ 
-%   HUGO: Examples of this are Proj and Laz, no? 
-%   - hyperpink all abbreviations
-% \end{note}
-
-% However, to the best of the author's knowledge, no example exists of a web-based geocomputation VPLs which make use of native geocomputation libraries.
-% The theoretical possibility combined with the practical absence of any implementation, leads this study to assume that a practical inhibition is in place, preventing native geocomputation libraries to be used by a web VPL.
-
-% The source of this inhibition is unclear. 
-% There are many aspects and components to compiling a native geocomputation library, and using it on the web, in a VPL format. 
-% Given the absence of an implementation, the possibility remains that it could be any one of these aspects and components, or even an interplay between all of these factors. 
-% This study identifies three main challenges to using a native geocomputation library in a web-based VPL:
-
-% \subsubsection*{\mySubRQTwoTitle}
-
-% % Secondly, native geocomputation functionalities might not be able to be properly \textbf{compiled} into a format functional on the web.
-% % (wasm limitations)
-
-% % Making sure a \ac{geo-web-vpl} is able to make use of native, system-level libraries is a key component, since it will mean access to powerful, industry standard geocomputation libraries like CGAL and GDAL. 
-% Firstly, the challenge of compilation. 
-% As explained before, the most viable option for using a non-js library in a web browser, is by compiling it to WebAssembly \citep{haas_bringing_2017}.
-% Other options exist, like simply rewriting non-js languages to JavaScript, but these methods have significant drawbacks \citep{haas_bringing_2017,jangda_not_2019}.
-% However, as described in \refsec{sec:related-geoweb} compiling libraries to \ac{wasm} also may pose challenges:
-
-% % The study starts out with the assumption that WebAssembly must be utilized to properly compile and run existing geoprocessing libraries in a browser. This might not be as easy as using normal compilers, based on the experience gained by preliminary work (See \autoref{sec:preliminary-wasm}). WebAssembly is containerized and makes no assumptions about its source language \cite{haas_bringing_2017}, making aspects such as an SDK, sub-dependencies called using environment variables, and IO (file reading and writing) possible obstacles. 
-
-% \begin{enumerate}[-]
-%   \item \ac{wasm} promises a 'near native performance' \citep{haas_bringing_2017}. However, this can be quite situational, as multiple studies have shown \citep{jangda_not_2019, melch_performance_2019}. 
-%   \item \ac{wasm} cannot compile all code. Its containerized nature means that code accessing a file system for example, does not function without workarounds. 
-%   \item Compiled \ac{wasm} code could be difficult to access and interface in a web browser. Without third-party tools, functions exposed by \ac{wasm} can only accept primitive data types as input. There is no \m{string} data type, let alone a \m{struct} or \m{object} type. 
-%   \item Compiling a \emph{library} to \ac{wasm} is significantly different from compiling a full \emph{application} to \ac{wasm}. A library requires more complicated wasm-javascript interoperability, which third-party tools may or may not be able to provide.
-% \end{enumerate}
-% % Discovering the extent and relevance of these compilation challenges for geo-computation libraries is why the sub-question of \mySubRQTwoTitle \space was included in this study.
-
-% \subsubsection*{\mySubRQThreeTitle}
-
-% Secondly, even if the libraries are compiled to a web-ready format, geocomputation functionalities might not be able to \textbf{load} properly within a web-based VPL.
-
-% This is a challenge of designing an appropriate binding system or plugin loader. 
-% When writing Python bindings to a C++ library for example, one has to consider the way both languages operate, and make sure the discrepancies between the language models are accounted for, such as manual memory management. 
-% This is not different from a visual language interfacing with a web-compiled native library. 
-% However, this situation adds additional challenges, as the host \ac{VPL} does not necessarily know the source language of the binary. 
-
-
-% % This is a matter of bindings, 
-% \subsubsection*{\mySubRQFourTitle}
-
-% Finally, It might be the case that a web-based VPL \emph{is} able to load and run functions from native, non-js geo-computation libraries. 
-% And still, one might not be able to successfully \textbf{use} these libraries.
-
-% Central to this challenge of utilization is the aforementioned dataflow VPL format. 
-% The performance and reliability needed for geocomputation makes a strong argument that any geocomputation VPL should be implemented as a dataflow VPL. 
-% This is also evident from the fact that almost all geocomputation and geometry manipulation VPLs are implemented as a dataflow VPL (see \refsec{sec:related-geovpl}).
-
-% However, it may be that native geocomputation functionalities are unfit for this model. 
-% The model requires all functions to be pure, and all variables to be immutable. 
-% This might invalidate some of the operations found in these libraries, or make other operations complicated to use in practice.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TAKEN FROM INTRODUCTION
-
-% \begin{note}
-%   [JF]: should this be present or past tense? 
-% \end{note}
 
 This chapter explains the methodology used in this study. 
 The overall methodology is to first develop a base VPL (\refsec{sec:method:base-vpl}), followed up by developing a binding system for this VPL (\refsec{sec:method:plugin-system}). 
 The final step is to set up and execute a series of tests (\refsec{sec:method:tests}), to analyze the extent to which these implementations solve the various challenges raised by \refchap{chap:intro}.
 
+
+\section{Characteristics}
+
+This method is characterized by the following properties
+
+\begin{enumerate}[-]
+  \item Browser-based usage of native libraries
+  \subitem Compilation
+  \subitem Loading
+  \item Scalability
+  \subitem Portability
+  \subitem Minimum Abstraction
+  \subitem Locality
+  \item Rich GUI
+  \subitem Geodata visualization
+  \subitem parametrization 
+\end{enumerate}
+
+
 \section{Base VPL} 
 \label{sec:method:base-vpl}
 
-The first step of the methodology involves the question: \mySubRQOne.
+% The first step of the methodology involves the question: \mySubRQOne.
 This implementation is required as a host for all subsequent steps of the methodology. 
 While the initial plan was to re-use an existing web VPL, the related works review of \refchap{chap:related} showcased that no exiting browser-based geocomputation VPL would be an appropriate fit.
 The Mobius Modeller \citep{janssen_mobius_2021} came closest, but the sizable nature of this project makes aligning its goals with the goals of this study challenging. 
@@ -384,7 +347,7 @@ All this to say, the mutability of function parameters must be known in order to
 \label{sec:method:plugin-system}
 
 The second step of the methodology involves developing a method to use libraries from native sources within the VPL outlined above. 
-This aspect of the methodology seeks to design a base to answer the questions: \mySubRQTwo and \mySubRQThree.
+% This aspect of the methodology seeks to design a base to answer the questions: \mySubRQTwo and \mySubRQThree.
 
 The plugin system refers to the combination of the plugin model these libraries will need to adhere to, together with the importer of those libraries in the VPL. 
 This section will cover the design of both, as well as the proposed compilation workflow.
@@ -694,7 +657,7 @@ It also, just like CGAL, makes use of a high precision kernel, and offers geomet
 
 \subsection{Usage tests}
 
-The second set of tests seek the data needed to answer the question of \mySubRQFourTitle: \mySubRQFour.
+% The second set of tests seek the data needed to answer the question of \mySubRQFourTitle: \mySubRQFour.
 To acquire this data, an application will be created using the VPL, which will be subjected to a qualitative assessment. 
 
 \subsubsection{Feature Assessment}

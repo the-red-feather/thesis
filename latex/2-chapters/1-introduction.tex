@@ -90,7 +90,7 @@ To make the research goals of this study more precise, these two domains must br
 \end{figure}
 
 A \ac{VPL} is a type of programming language represented by a \ac{GUI}, rather than a text-based source code.
-A \ac{VPL} 'script' might take the shape of for example a graph, or a block-based instruction set.
+A \ac{VPL} 'script' might take the shape of for example a graph (\reffig{fig:1:geoflow}), or a block-based instruction set.
 
 The goal and purpose of a VPL can be framed in multiple ways. 
 This study draws from the perspective presented in \citep*{elliott_tangible_2007}.
@@ -195,14 +195,14 @@ Examples of this are how \citet{ammann_maplibre-rs_2022} built a map viewer whic
 %   - This is benefitial for the same reason as traditional cross-platform arguments: 
 %     - no duplicate libraries, no burden of synchronizing functionality across multiple libraries   
 
-% Both these developments taken together leads to a paradigm shift which is important to recognize.
+Both these developments taken together leads to a paradigm shift which is important to recognize.
+With both used in conjunction, applications can be conceived which use no active servers at all: Static websites, which can still be feature-complete \ac{GIS} applications.
+
+% This leads to valuable new options for web \ac{GIS}, such as making browser-based geocomputation more viable \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}. 
+
 % A current, regular GIS web application would likely utilize OGC standardized web services like WMS, WFS, WMTS, or WPS, \citep{open_geospatial_consortium_web_2015} to access or process all requested geodata. 
 % However, statically hosted geodata might mitigate the need for WMS, WFS and WMTS, and WebAssembly could replace certain WPS and backend geocomputation services.  
-With both developments used in conjunction, applications can be created which use no active servers at all: Static GIS web applications.
 
-\begin{note}
-  GEOCOMPUTATION
-\end{note}
 
 % more autonomous: Can operate more independently from its back-end counterpart.
 
@@ -238,26 +238,31 @@ With both developments used in conjunction, applications can be created which us
 
 The overarching goal of this study is to allow \ac{GIS} practitioners without a background in software development, to access the full potential of core transformation and analysis capabilities found in native \ac{GIS} libraries.
 
-The study attempts to meet this goal by designing, implementing, and accessing a prototype based on the fields of visual programming, and static web applications. 
+The study attempts to meet this goal by designing and implementing a novel method based on 
+the fields of visual programming, and static web applications. 
+This method is thereafter used to load various \ac{GIS} libraries, and used in demo applications, after which an assessment can be made on its quality and the extend of its achieved functionalities. 
+The study concludes by addressing if the method meets the overarching goal.
+
 % The prior works on static geo-web applications and \ac{GIS} \ac{VPL}s indicate that a strong theoretical framework is in place.
 % But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
 % This necessitates a practical approach in response. 
 
-The design of this prototype is as follows: 
-A VPL is used to present the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
+The design of this method is as follows: 
+A Prototype VPL is developed to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
 The format of web application is used to allow this prototype to be directly accessible to end users without installation or configuration. 
 % Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
 This prototype is statically hosted, to minimize operational costs, and is equipped with WebAssembly, so that libraries written in native languages can be used without resorting to active backend web services. 
-Finally, as this prototypes aspires to qualify as a \ac{VPL} specialized for \ac{GIS}, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders, text boxes, graphs), are primary design considerations and assessment criteria. 
+Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders, text boxes, graphs), are primary design considerations and assessment criteria. 
+% prototypes aspires to qualify as a \ac{VPL}
 
-While VPLs and even Web-based VPLs have been studied before, the focus on direct utilization of native \ac{GIS} libraries, combined with bringing those in direct contact with various \ac{GUI} elements, and all without resorting to active web servers, is a combination unique to this study, at least to the best of the authors knowledge at this point in time. 
+While VPLs and even Web-based VPLs have been studied before in the field of \ac{GIS}, the focus on direct utilization of native \ac{GIS} libraries on the web, combined with bringing those in direct contact with various \ac{GUI} elements, and all without resorting to active web servers, is a combination unique to this study, at least to the best of the authors knowledge at this point in time. 
 A literature study on \ac{VPL}s found in the field of \ac{GIS}, Computer graphics, the web, and generic VPLs has been performed to ensure this.
 Additionally, assessment criteria are used to ensure this remains true after having performed the study.
 % Certain implementation details also offer a novel take on \ac{VPL}s as a whole.
 
 The overall design of the prototype outlined above contains a number of technical challenges.
-The compilation of native \ac{GIS} libraries to Webassembly has several caveats, and achieving scalability with a VPL requires novel, untested methods. 
-Therefore, seeking and analyzing solutions to these challenges is required to making this prototype meet the specifications of the design mentioned. 
+The compilation of native \ac{GIS} libraries to Webassembly has several caveats, and achieving scalability with a VPL requires novel methods. 
+Therefore, seeking and analyzing solutions to these challenges is required to making this prototype meet the goals of the design mentioned. 
 
 % more direct access in a format which allows composability.
 % The study attempts to meet this goal by designing a visual programming language, implemented as a static web application.
@@ -273,48 +278,23 @@ Therefore, seeking and analyzing solutions to these challenges is required to ma
 \section{Research Questions}
 The objectives outlined above lead to the following main and supporting research questions:  
 \begin{itemize}[ ]
-  \item \textit{Does a web-based, GUI-rich VPL improve the \textbf{accessibility} and \textbf{composability} of native GIS libraries, compared to similar VPLs?}
+  \item \myNewMainRQ
 \end{itemize}
 
 \subsection*{Supporting Questions}
 
-% \begin{note}
-%   QUESTION: What makes it Spatial?!?! ANSWER: scalability. dataflow VPL
-% \end{note}
-
 \begin{itemize}[-]
-\item How can native GIS libraries be compiled, loaded, and utilized within a browser-based VPL?
-
-\item What measures are taken to make this VPL scalable to large geo-datasets, and how effective are these measures?
-%  (2. Are the functional properties of a dataflow-VPL uphold by this solution?)
-
-\item What GUI features are required to facilitate this VPL, and to what extend does the web platform aid or hurt these features?
-
-\item to what extend does this solution "take the best of both software applications and libraries", as described by (SOURCE)?
-% \item Which Input and Output features does the VPL need to effectively use GIS libraries?
-% \item How does this solution compare to similar VPLs? 
-
+\item \myNewSubRQOne
+\item \myNewSubRQTwo
+\item \myNewSubRQThree
+\item \myNewSubRQFour
+\item \myNewSubRQFive
 \end{itemize}
 
 \subsection*{Assessment}
 In order to obtain answers to these questions, a literature review is performed,
 a prototype web-based geocomputation VPL is developed, 
 and this application is accessed on various aspects.
-
-
-
-
-\begin{note}
-TODO: What is the assessment?? 
-
-Methodology: assessment lists and criteria are created. 
-
-When we do compare this VPL, we compare it to similar VPLs.
--> similar in terms of computer graphics-related VPLs. 
-% How does this solution compare to similar VPLs? 
-
-\end{note}
-
 
 % \begin{note}
 % TODO: diagram: 4 research questions -> four possible barriers of geocomputation
@@ -350,33 +330,43 @@ The scope of this thesis is bounded in the following seven ways:
 
 \subsection*{Only frontend geocomputation}
 
-% \begin{note}
-%   [KEN]: p.5 is backend geocomputation really browser-based geocomputation? I'd say no, could be used to shorten this section
-
-%   [JOS]: I would still include this part, when I explain my thesis to colleagues and other people, the difference between 'web-based geocomputation' and 'browser-based' comes up. Better safe than sorry.
-%   I have, however, trimmed this section down a bit
-% \end{note}
-
 There is a nuance between 'web-based geocomputation' and 'browser-based geocomputation'. 
 'Web' can refer to both frontend and backend computation methods, 'browser' refers purely to frontend computations. 
 This study focusses on browser-based geocomputation, and as such, excludes any \emph {backend} based geocomputation.
-% A web application \textit{could} be used to orchestrate geocomputation web-services, which could also deliver a form of browser-based geocomputation to end-users. 
-% However, for the scope of this thesis, we limit ourselves to purely client-side solutions, with calculations literally happening within the clients browser. 
-% This is also why this study excludes the OGC standard of the \ac{WPS} \cite{ogc_web_2015}.
 
-Adding backend-based geocomputation to a web VPL would be an excellent follow-up investigation to this study, following in the footsteps of studies like \cite{panidi_hybrid_2015}. 
+Adding backend-based geocomputation to a web VPL would be an excellent 
+follow-up investigation to this study, following in the footsteps of studies like \cite{panidi_hybrid_2015}. 
 
-\subsection*{No Usability Comparison} % 
+\subsection*{No user testing} % 
 
-This research attempts to solve the practical problem of library portability. 
-We must therefore access if a library can be \emph{used} in a VPL context. 
-But, while accessibility and usability are motivations for this study, and while usability will be analyzed to a limited extent, no claims will be made that this method of geocomputation is \emph{more} usable as opposed to existing geocomputation methods. 
+The main research question mentions \emph{accessibility}, a subjective concept.
+However, user testing is not part of this study, due to scope limitations. 
 
-If it turns out that library portability is viable enough technically, future research will be needed to definitively proof \emph{how} usable VPL usage of a library is compared to all other existing methods. 
-Similarly, a survey analyzing how users experience browser-based geocomputation in comparison to native geocomputation is also not part of this particular study.  
+To solve this, this study assesses accessibility without regarding subjective, psychological accessibility aspects: \emph{"does x feel nice to use?"}.
+Instead, an accessibility assessment is made by only regarding feature completeness: \emph{"Is is possible to do X with Y?"}.
+Moreover, certain presuppositions are made.
+It is safe to assume that a web application is more accessible than a native application, for it mitigates installation needs. 
+Additionally, a VPL is assumed to be more accessible than normal programming.
+This last aspect is safe to assume based on the findings of \citet{kuhail_characterizing_2021}, stating that based on 30 independent studies on the accessibility of VPLs, VPLs are generally considered more accessible than their textual counterparts.
+These studies involved user tests with professional programmers, amateur programmers, and non-programmers alike. 
 
-This distinction is made, because browser-based, VPL-based geocomputation is too new of a method to make a balanced comparison against any other methods. 
-Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
+Thus, these reasons together are why this study believes an adequate assessment can be made without user testing. 
+Nevertheless, a follow up study to reinforce or revoke these results would be valuable.
+
+% While accessibility and usability are motivations for this study, and while accessibility will be analyzed to a limited extent, 
+
+% no claims will be made that this method of geocomputation is \emph{more} usable as opposed to existing geocomputation methods. 
+
+% This research attempts to solve the practical problem of library portability. 
+% We must therefore access if a library can be \emph{used} in a VPL context. 
+
+
+
+% If it turns out that library portability is viable enough technically, future research will be needed to definitively proof \emph{how} usable VPL usage of a library is compared to all other existing methods. 
+% Similarly, a survey analyzing how users experience browser-based geocomputation in comparison to native geocomputation is also not part of this particular study.  
+
+% This distinction is made, because browser-based, VPL-based geocomputation is too new of a method to make a balanced comparison against any other methods. 
+% Native environments like QGIS, FME or ArcGIS simply have a twenty year lead in research and development. 
 
 % This paper seeks to first close this gap, limiting itself to overcoming the technical and design boundaries in the pursuit of practical client-side geocomputation.
 
@@ -418,10 +408,10 @@ Rust was chosen, for its extensive WebAssembly support.
 It also appears to be the most popular language for writing WebAssembly \citep{eberhardt_state_2022}.
 It contains a number of relevant geocomputation libraries, but not to the same extent as C++.
 
-\subsection*{Only core browser features}
-Lastly, the implementation of the prototype geocomputation VPL will limit itself to core browser features, keeping dependencies at a minimum, in an attempt to generalize the results of the study.
-If the study would use specific web frameworks and technologies to solve key issues, questions might arise if the results of the study counts in general for browser-based geocomputation or geocomputation VPLs, or if they only count in this specific scenario. 
-"Core browser features" is defined in \refsec{sec:method:base-vpl}.
+% \subsection*{Only core browser features}
+% Lastly, the implementation of the prototype geocomputation VPL will limit itself to core browser features, keeping dependencies at a minimum, in an attempt to generalize the results of the study.
+% If the study would use specific web frameworks and technologies to solve key issues, questions might arise if the results of the study counts in general for browser-based geocomputation or geocomputation VPLs, or if they only count in this specific scenario. 
+% "Core browser features" is defined in \refsec{sec:method:base-vpl}.
 
 \newpage
 \section{Reading Guide}

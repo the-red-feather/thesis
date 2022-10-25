@@ -21,7 +21,7 @@ While almost no studies exist at the intersection of all three of these fields, 
 \label{sec:related-geoweb}
 
 This section is dedicated to related works on client-side geocomputation, or browser-based geocomputation. 
-this study prefers to use "browser-based geocomputation" in order to circumvent the ambiguity between native clients like QGIS \cite{qgis_community_qgis_2022}, and web clients like omnibase.
+this study prefers to use "browser-based geocomputation" in order to circumvent the ambiguity between native clients like QGIS \cite{qgis_community_qgis_2022}, and web clients like Omnibase.
 
 % First, a small paragraph on the motivation behind browser based geocomputation.
 % As stated in \refsec{sec:background-web}, web applications offer safety, distribution and accessibility advantages over native applications.
@@ -35,7 +35,6 @@ this study prefers to use "browser-based geocomputation" in order to circumvent 
 
 Browser-based geocomputation has seen some academic interest throughout the last decade \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
 Interactive geospatial data manipulation and online geospatial data processing techniques have been described as "current highly valuable trends in evolution of the Web mapping and Web GIS" \cite{panidi_hybrid_2015}. 
-The central idea is to add browser-based geocomputation to web-mapping applications, allowing users not only to view geodata, but to analyze it, and even fine-tune the data to their own custom needs.
 An example of this is the Omnibase application \citep{geodelta_omnibase_2022} in \reffig{fig:1:omnibase}, used by Dutch municipalities to measure buildings and infrastructure based on point clouds and oblique multi-stereo imagery.
 
 \begin{figure}
@@ -53,7 +52,7 @@ Lastly, by performing these calculations in the browser rather than on a server,
 and customly computed geodata does not have to be resent to the user upon every computation request.
 
 However, browser-based geocomputation poses multiple challenges. 
-The big catch is that browsers \& javascript are not ideal hosts for geocomputation. 
+Browsers \& javascript are not ideal hosts for geocomputation. 
 As an interpreted language, Javascript is slower and more imprecise compared to system-level languages like C++.
 In addition, it has limited support regarding reading and writing files, and does not possess of a rich ecosystem of geocomputation libraries.  
 Novel browser features like WebAssembly may pose a solution to some of these open questions, but this has not seen substantial research. 

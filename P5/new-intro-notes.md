@@ -23,7 +23,7 @@ Zaterdag
 
 NOTES:
 
-Geofront: directly use libraries in an application, and subject them to a custom UI.
+Geofront: purpose: directly use libraries in an application, and subject them to a custom UI.
 
   - library + application becomes the central theme 
 
