@@ -14,11 +14,44 @@ because right now the final chapter often reads more like an essay
 
 
 
+DO NOT STAY DREAMING:
+
+Zaterdag
+- Write the aknowledgements BOEM
+- New research question and goal of the study (leave intro) BOEM
+- continue Putting clear TODO's everywhere in the thesis 
+
+NOTES:
+
+Geofront: directly use libraries in an application, and subject them to a custom UI.
+
+  - library + application becomes the central theme 
+
+unique about this thesis 
+- focus on GUI
+  - text inputs 
+  - number inputs
+  - buttons 
+  - file fetchers
+  - complete micro-apps (applets)
+
+- See a VPL less as a programming language, and more as a way for 
+end users to create their own UI
+
+- focus on direct library utilization
+    - Make geocomputation libraries more directly usable by end-users   
+
+
+
+
+
 
 Introduction
 ============
 
 visualization and analysis
+
+THE VPL as an end-user tool, rather than a "GIS specialist only" tool.
 
 
   <!-- - The preference slowly shifts from downloading geodata, and performing calculations locally, 
