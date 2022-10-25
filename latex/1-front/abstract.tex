@@ -1,18 +1,28 @@
 \chapter*{Abstract}
 
-This study proposes a new method 
-
-\begin{note}
-
-  
-[X} is an essential part of any 
+X is an essential part of any ...
 
 The problem ...
 
-This study presents and prototypes a novel method which ....
-That is based on visual programming, and static web applications. 
+The goal of this study is to
 
-[How]
+This study presents and prototypes a novel method which allows \ac{GIS} practitioners without a background in software development, to access the full potential of core transformation and analysis capabilities found in native \ac{GIS} libraries.
+
+% That is based on visual programming, and static web applications. 
+
+
+% The study attempts to meet this goal by designing and implementing a 
+novel method based on the fields of visual programming, and static web applications. 
+
+% The prior works on static geo-web applications and \ac{GIS} \ac{VPL}s indicate that a strong theoretical framework is in place.
+% But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
+% This necessitates a practical approach in response. 
+
+A Prototype VPL was developed to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
+The format of web application is used to allow this prototype to be directly accessible to end users without installation or configuration. 
+% Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
+This prototype is statically hosted, to minimize operational costs, and is equipped with WebAssembly, so that libraries written in native languages can be used without resorting to active backend web services. 
+Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders, text boxes, graphs), are primary design considerations and assessment criteria.
 
 Using this, ...
 
@@ -20,7 +30,10 @@ This method turned out to indeed provide solve
 
 The significance of this method lies herein that it ...
 
-\end{note}
+
+% This method is thereafter used to load various \ac{GIS} libraries, and used in demo applications, after which an assessment can be made on its quality and the extend of its achieved functionalities. 
+% The study concludes by addressing if the method meets the overarching goal.
+
 
 % Geocomputation is a cornerstone of GIS \& modern mapping needs.
 % While the last decades have seen major advancements, writing a geocomputational pipeline remains a complex, non-trivial exercise. 
@@ -29,27 +42,27 @@ The significance of this method lies herein that it ...
 % utilizing a dataflow model.
 % This model is the standard within VPLs dealing with geometry processing, and contains many advantages in terms of performance and reliability.
 
-In this context, the portability of existing geocomputation libraries is a common problem.
-This is often addressed by maintaining duplicate JavaScript alternatives to libraries such as GDAL, PROJ, and GEOS, complicating innovation.  
+% In this context, the portability of existing geocomputation libraries is a common problem.
+% This is often addressed by maintaining duplicate JavaScript alternatives to libraries such as GDAL, PROJ, and GEOS, complicating innovation.  
 
-This study seeks to improve the state of browser-based geocomputation VPLs by attempting to bring industry-standard geo-libraries to these environments. 
-The study poses that this can only be done if native geocomputation libraries can be \emph{compiled} to WebAssembly, \emph{loaded} into a VPL, and \emph{utilized} in a browser-based dataflow-VPL format.
-Discovering if and how these steps can be performed is the central question of this study. 
-% This study seeks to improve the state of web-based geocomputation VPLs 
-% by discovering if the library portability problem can be overcome, and if so, how.
+% This study seeks to improve the state of browser-based geocomputation VPLs by attempting to bring industry-standard geo-libraries to these environments. 
+% The study poses that this can only be done if native geocomputation libraries can be \emph{compiled} to WebAssembly, \emph{loaded} into a VPL, and \emph{utilized} in a browser-based dataflow-VPL format.
+% Discovering if and how these steps can be performed is the central question of this study. 
+% % This study seeks to improve the state of web-based geocomputation VPLs 
+% % by discovering if the library portability problem can be overcome, and if so, how.
 
-This question is answered by testing a possible solution.
-A proof of concept web-based VPL is designed, implemented and evaluated, which makes use of a novel plugin system, as well as a directed, acyclic graph-based data model \& interface.
+% This question is answered by testing a possible solution.
+% A proof of concept web-based VPL is designed, implemented and evaluated, which makes use of a novel plugin system, as well as a directed, acyclic graph-based data model \& interface.
 
-Using this proof of concept, the study was able to demonstrate that the web platform was sufficiently capable of representing a dataflow VPL capable of constructing geocomputation pipelines.
-The functional programming-properties of this dataflow VPL also makes geo-libraries sufficiently \emph{usable}, albeit with some well-known caveats of dataflow-VPLs, like the representation of conditionals and iteration.  
+% Using this proof of concept, the study was able to demonstrate that the web platform was sufficiently capable of representing a dataflow VPL capable of constructing geocomputation pipelines.
+% The functional programming-properties of this dataflow VPL also makes geo-libraries sufficiently \emph{usable}, albeit with some well-known caveats of dataflow-VPLs, like the representation of conditionals and iteration.  
 
-The current methods of \emph{compiling} existing C++ geocomputation libraries to the web turned out to be insufficient for the purposes of this study.  
-This is due to the Emscripten compiler's focus on compiling full C++ applications instead of separate libraries. 
-Despite this, the study wás able to demonstrate how a novel method can be used to sufficiently \emph{compile} and \emph{load} multiple Rust-libraries for usage in the VPL, thanks to more feature-rich WebAssembly tools in the Rust ecosystem. 
-While Rusts geocomputation libraries are young, the study presents this method to either offer emscripten contributors a blueprint of a desired workflow, or to offer geocomputation library contributors a powerful use-case for the Rust language. 
+% The current methods of \emph{compiling} existing C++ geocomputation libraries to the web turned out to be insufficient for the purposes of this study.  
+% This is due to the Emscripten compiler's focus on compiling full C++ applications instead of separate libraries. 
+% Despite this, the study wás able to demonstrate how a novel method can be used to sufficiently \emph{compile} and \emph{load} multiple Rust-libraries for usage in the VPL, thanks to more feature-rich WebAssembly tools in the Rust ecosystem. 
+% While Rusts geocomputation libraries are young, the study presents this method to either offer emscripten contributors a blueprint of a desired workflow, or to offer geocomputation library contributors a powerful use-case for the Rust language. 
 
-All in all, this means that either if the geocomputation libraries found in the Rust ecosystem mature, or if Emscripten's capabilities improve, then the code portability problem \& dataflow problem of existing web-based geocomputation VPLS can be solved. 
+% All in all, this means that either if the geocomputation libraries found in the Rust ecosystem mature, or if Emscripten's capabilities improve, then the code portability problem \& dataflow problem of existing web-based geocomputation VPLS can be solved. 
 
 
 % \begin{note}
@@ -191,10 +204,8 @@ All in all, this means that either if the geocomputation libraries found in the 
       - stronger tie to Geo & web
       - VPL + Web
   
-  [ ] rewrite and balance research questions
-  - [ ] than trickle down the consequences of those changes throughout the thesis
-  - [ ] and fix all that needs to be fixed (images and stuff)
-  - [ ] put TODO notes everywhere
+  [x] rewrite and balance research questions
+  - [x] then trickle down the consequences of those changes throughout the thesis
   mid-level
   ---------
   
@@ -221,13 +232,14 @@ All in all, this means that either if the geocomputation libraries found in the 
   [ ] finish chapter 6 properly 
     - Experiments: add a section on a use-case application, using potree + startin + geofront std + obj downloader
   
-  [ ] write stronger, more clear conclusions.
+  [x] write stronger, more clear conclusions.
     - hmm, i think they are already quite clear. But again, this is to be reconsidered when the overall story of the thesis changes  
   
   low-level: thursday & friday
   -------------------
 
-  - [ ] TODO: write Acknowledgements
+  - [ ] write 
+  - [x] TODO: write Acknowledgements
   - [x] Add arsclassica template to the thesis
   - [x] Make the code snippets / listings work properly
   - [x] replace all code screenshot with proper listings
@@ -241,4 +253,5 @@ All in all, this means that either if the geocomputation libraries found in the 
   - [ ] Capitalize all VPL / replace with acronyms
   - [ ] Sources need to be fixed (more data, check if I can do things like 'empscripten contributors')
   - [ ] Replace C++ into C / C++ everywhere, but especially the intro
+  - [ ] appendix: software implementation & link to video
 \end{note}

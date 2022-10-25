@@ -2,59 +2,70 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
-\begin{note}
+% This study consists of a design of the proposed method, an implementation of this design, and several test to assess this implementation. 
+This chapter present the design of the proposed method, and announces the assessment tests.
 
-WHAT NEEDS TO BE DONE TO ANSWER THE MAIN AND SUB RESEARCH QUESTION
+\section{Requirements}
 
-A Prototype VPL is developed to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
-The format of web application is used to allow this prototype to be directly accessible to end users without installation or configuration. 
-% Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
-This prototype is statically hosted, to minimize operational costs, and is equipped with WebAssembly, so that libraries written in native languages can be used without resorting to active backend web services. 
-Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders, text boxes, graphs), are primary design considerations and assessment criteria.
+Three supporting research questions ask to clarify requirements for the design of the methodology. 
+These questions can now be partially answered based on the literature presented at \refchap{chap:background} and \refchap{chap:related}, and based on insights granted by these works.
+The answers to these questions form the core features and design considerations of the proposed method.
 
-So, we are in need of a platform in which:
-- Native geocomputation libraries can be directly used by end-users.
-- These libraries can be composed into programs
 
-Does a web-based, GUI-rich VPL lead to more \textbf{accessible} and \textbf{composable} native GIS libraries, compared to alternatives?}
+\begin{itemize}[ ]
+  \item \emph{What GUI features are required to facilitate this method? (and to what extend does the
+  web platform aid or hurt these features?)}  
+\end{itemize}
 
-How can native GIS libraries be compiled, loaded, and utilized within a static, web-based VPL?
+Two layers of \ac{GUI} features are required:
 
-What GUI features are required to facilitate this VPL and these libraries, and to what extend does the web platform aid or hurt these features?
+\textbf{Framework application}: Firstly, a base application is required to host the visual programming language.
+This need to provide all basic application features, like saving, loading, undoing and redoing.
 
-What measures are taken to make this VPL scalable to large geo-datasets, and how effective are these measures?
-%  (2. Are the functional properties of a dataflow-VPL uphold by this solution?)
+\textbf{The VPL}: Secondly, UI elements are required to form the interactive elements of the visual program itself. 
+This forms a layer independent from the framework application, and will require a custom set of \ac{GUI} features. 
+That is to say, a text field within the framework is not the same as a text field within the visual program.
 
-tT what extend does this method "take the best of both software applications and libraries", as described by (SOURCE)?
 
-How does this method compare to existing, alternative VPLs and browser-based geocomputation methods?
 
-\end{note}
+\begin{itemize}[ ]
+  \item \emph{To what extend does this method intent to address the discrepancies between software
+applications and libraries, as described by Elliott (2007) (Does it succeed in doing so?)}
+\end{itemize}
 
-This chapter explains the methodology used in this study. 
-The overall methodology is to first develop a base VPL (\refsec{sec:method:base-vpl}), followed up by developing a binding system for this VPL (\refsec{sec:method:plugin-system}). 
+All three discrepancies described by the introduction are addressed by incorporating the following aspects: \\
+
+\textbf{Generic GUI}: The VPL must serve as a generic \ac{GUI} to serve practically any \ac{GIS} library. 
+As such, it requires a wide range of buttons, sliders, text fields, and other inputs.
+
+\textbf{Composable applications}: In order to make web applications themselves more composable, the \ac{GUI} of the VPL itself should incorporate other web applications, via for example a \m{<iframe>} or popup.
+
+\textbf{Direct utilization}: To make sure library capabilities do not get lost when used in an application, the VPL must be able to accept a wide range of libraries as plugins, with as little bindings or glue code as possible.
+
+
+\begin{itemize}[ ]
+  \item \emph{What measures are taken to make this VPL scalable to large geo-datasets? (and how
+  effective are these measures?)}
+\end{itemize}
+
+Three measures will be taken to offer scalability in principle: 
+
+\textbf{Portability}: The proposed solution requires to use native libraries compiled to WebAssembly, which allows the exact same binary to run on the frontend, and a potential scalable backend. 
+Keeping these binaries the same will lead to predicable behavior. 
+
+\textbf{Zero-cost abstraction}: A script created with the VPL should be able to be compiled to a format which can be run completely independent from the \ac{GUI} application, to ensure a scalable backend can use such a script.
+A requirement for this, is that there should be no difference between calling a function using the VPL, and calling the function in the library itself, by normal means. 
+
+\textbf{Locality}: The VPL should be designed as a Dataflow VPL, which shares characteristics with functional programming. This leads to source code which can be reasoned about in a local manner, instead of a global one. This allows for parallelization when scaled in a backend environment.
+
+\section{Overview}
+
+The overall methodology is to first develop the VPL and surrounding framework application (\refsec{sec:method:base-vpl}), followed up by developing a binding system for this VPL (\refsec{sec:method:plugin-system}). 
 The final step is to set up and execute a series of tests (\refsec{sec:method:tests}), to analyze the extent to which these implementations solve the various challenges raised by \refchap{chap:intro}.
 
 
-\section{Characteristics}
 
-This method is characterized by the following properties
-
-\begin{enumerate}[-]
-  \item Browser-based usage of native libraries
-  \subitem Compilation
-  \subitem Loading
-  \item Scalability
-  \subitem Portability
-  \subitem Minimum Abstraction
-  \subitem Locality
-  \item Rich GUI
-  \subitem Geodata visualization
-  \subitem parametrization 
-\end{enumerate}
-
-
-\section{Base VPL} 
+\section{The VPL} 
 \label{sec:method:base-vpl}
 
 % The first step of the methodology involves the question: \mySubRQOne.
@@ -354,15 +365,15 @@ This section will cover the design of both, as well as the proposed compilation 
 
 % to what extent can a web-consumable library be loaded into a web-vpl without explicit configuration?
 
-\subsection{Terminology}
+% \subsection{Terminology}
 
-Firstly, some confusion exists between 'libraries' and 'plugins'.
-The distinction between them is relevant to the design of the plugin system. 
-Typically, one would use the terminology 'libraries' and 'bindings' when referring to expanding the functionality of a codebase with a 'package of functions'.
-One would use 'plugins' when referring to practically the same phenomena, but within the context of an application.
+% Firstly, some confusion exists between 'libraries' and 'plugins'.
+% The distinction between them is relevant to the design of the plugin system. 
+% Typically, one would use the terminology 'libraries' and 'bindings' when referring to expanding the functionality of a codebase with a 'package of functions'.
+% One would use 'plugins' when referring to practically the same phenomena, but within the context of an application.
 
-With a VPL being something in between a programming language and an application, it remains difficult to determine the appropriate terminology.  
-This is further complicated if a plugin is able to double as a library, as will be explained.
+% With a VPL being something in between a programming language and an application, it remains difficult to determine the appropriate terminology.  
+% This is further complicated if a plugin is able to double as a library, as will be explained.
 
 \subsection{Requirements}
 

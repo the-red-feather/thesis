@@ -12,6 +12,35 @@ because right now the final chapter often reads more like an essay
 =========================================================================================
 =========================================================================================
 
+Wednesday:
+----------
+
+- BLOK 1:   Add Potree content
+- BLOK 2:   Add comparison table
+- BLOK 3:   Add comparison table 
+- BLOK 4:   Add writings about UI
+
+- BLOK 5:   Finish the conclusion
+- BLOK 6:   Adapt the methodology
+- BLOK 7:   Adapt the methodology
+- BLOK 8:   Write the abstract
+
+- add something about the sharable link aspect??
+- Add the graphs from the thesis
+
+
+
+=========================================================================================
+=========================================================================================
+=========================================================================================
+
+
+
+
+
+
+
+
 
 
 DO NOT STAY DREAMING:
@@ -19,15 +48,17 @@ DO NOT STAY DREAMING:
 Zaterdag
 - Write the aknowledgements BOEM
 - New research question and goal of the study (leave intro) BOEM
-- continue Putting clear TODO's everywhere in the thesis 
 
 NOTES:
 
 Geofront: purpose: directly use libraries in an application, and subject them to a custom UI.
+- focus on direct library utilization
 
   - library + application becomes the central theme 
 
 unique about this thesis 
+
+
 - focus on GUI
   - text inputs 
   - number inputs
@@ -36,10 +67,7 @@ unique about this thesis
   - complete micro-apps (applets)
 
 - See a VPL less as a programming language, and more as a way for 
-end users to create their own UI
-
-- focus on direct library utilization
-    - Make geocomputation libraries more directly usable by end-users   
+end users to create their own UItly usable by end-users   
 
 
 
