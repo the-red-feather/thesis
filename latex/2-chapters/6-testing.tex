@@ -404,7 +404,7 @@ Secondly, observe how by connecting \m{startin} to this arbitrary \ac{GUI}, the 
 Thirdly, recall that this sequence can be altered in real time, without any software alterations. 
 These functionalities in conjunction are all indicators that Geofront can indeed be used to inspect the capabilities and quality of native \ac{GIS} libraries.
 
-\subsection{Demo One: DTM \& DSM extraction}
+\subsection{Demo Two: DTM \& DSM extraction}
 
 \begin{figure}
   \centering
@@ -445,7 +445,7 @@ These functionalities in conjunction are all indicators that Geofront can indeed
     \centering
     \includegraphics[width=\linewidth]{potree-7.PNG}
   \end{subfigure}%
-  \caption{Resulting obj mesh, extracted from potree}
+  \caption{Resulting obj mesh, extracted from the Potree demo}
   \label{fig:potree-result}
 \end{figure}
 
@@ -508,64 +508,59 @@ Based on the above demo's, the following limitations in utilization were encount
 
 % - Show a bit of performance of said demo
 
-\section{Comparison}
+\section{Feature Comparison}
 \label{sec:testing:features}
 
-Geofront is 
+In (REF TABLE), Geofront is compared against the most similar \ac{VPL}s mentioned in \refsec{sec:related-geovpl}.
+This comparisons is made on the base of features relevant to the goal of this study:
+\begin{itemize}[-]
+  \item Does the VPL allow for plugins: Third party 'nodes'?  
+  \item In which language must a third party plugin be written?
+  \item Can third party nodes use customly defined types, such as a new class or struct?
+  \item Can the VPL be run headless, that is to say, without the \ac{GUI}?
+  \item Is the VPL accessible as a static web application?
+  \item Does the VPL contain GIS-specific nodes by default?
+  \item Does the VPL contain \ac{GUI} nodes, so that users can build custom interfaces?
+\end{itemize}
 
-TODO make a table, comparing features of geofront to grasshopper, geoflow, geometry nodes, and mobius modeller
+In this comparison, it becomes clear that the Geofront implementation offers a unique combination of features. 
+It offers relatively extensive plugin support compared to other VPLs, it is web based, and offers a range of \ac{GUI} nodes. 
+Moreover, it is unique in its ability to accept third party Plugins written in different types of languages, and in the fact that it allows custom types within those plugins. 
 
-
-
-
-
-
-
-
+Geofront's drawback is that it offers no GIS nodes by default, and relies on third party plugins to provide these aspects. 
+It can also not yet be regarded as scalable, despite certain design decisions which might aid scalability.
+No native runtime exist yet which can run a Geofront script in a headless, GUI-less manner.
 
 \begin{tabular}{||p{2.8cm}|l|l|l|l|l||}
                   & \emph{Grasshopper} & \emph{Blender} & \emph{Mobius} & \emph{Geoflow}    & \emph{Geofront}   \\
 Plugin support    & \textbf{Yes}  & No*    & No     & \textbf{Yes} & \textbf{Yes} \\
 Plugin language   & C\#  & -    & -     & C++ & Rust/Js/Ts** \\
-plugin types      & \textbf{Yes}  & No      & No     & Unknown    & \textbf{Yes} \\
-Scalable          & No          & No      & No               & \textbf{Yes} & No         \\
+Plugin types      & Partially & No      & No     & Unknown    & \textbf{Yes} \\
+Headless runtime  & No          & No      & No               & \textbf{Yes} & No         \\
 Web based         & No          & No      & \textbf{Yes}     & No           & \textbf{Yes} \\
 Base GIS Nodes    & No          & No      & \textbf{Yes}     & \textbf{Yes} & No \\
 GUI nodes         & \textbf{Yes} & \textbf{Yes}      & No     & No          & \textbf{Yes} \\
-
 \end{tabular}
 
 \begin{itemize}[ ]
-  \item * Not without altering the source code of blender itself.
+  \item * Not without altering the source code of Blender itself.
   \item ** theoretically, any language can  be used. 
   Practically, only Rust, JavasScript and TypeScript result in valid plugins. 
 \end{itemize}
 
-\subsection{Plugin Creation}
+\subsection{Minimum plugin comparison}
 
-Geofront:
-
-\begin{lstlisting}
-// lib.rs
-
-#[wasm_bindgen]
-fn add(a: i32, b: i32) -> i32 {
-  a + b
-}
-\end{lstlisting}
+An additional comparison was made between the VPLs which accept third party plugins.
+Specifically, the different ways in which a new node has to be registered in Geoflow, Grasshopper, and Geofront are regarded next to each other.
 
 
 
+\subsubsection{Geoflow}
 
-Blender Geometry nodes: 
-
-
-
-Geoflow:
+Geoflow offers an object-oriented approach of registering new nodes:
+... TODO 2 sentenses
 
 \begin{lstlisting}
-// ...
-
 class AddNode : public Node
 {
 public:
@@ -573,8 +568,8 @@ public:
 
   void init()
   {
-    add_input("in1", typeid(int));
-    add_input("in2", typeid(int));
+    add_input("a", typeid(int));
+    add_input("b", typeid(int));
     add_output("result", typeid(int));
   }
 
@@ -596,7 +591,10 @@ public:
 };
 \end{lstlisting}
 
-Grasshopper: 
+\subsubsection{Grasshopper}
+
+Grasshopper offers a similar interface, but written in C\# 
+... TODO 2 sentenses
 
 \begin{lstlisting}
 namespace MyPlugin
@@ -638,6 +636,26 @@ namespace MyPlugin
             get { return new Guid("197d2ec4-c3b1-47ed-8355-6af3b7612f01"); }
         }
     }
+}
+\end{lstlisting}
+
+
+
+\subsubsection{Geofront}
+
+As shown before, Geofront directly utilizes type and function declarations.
+This leads to the following minimum plugin: (REFFIG).
+Not only does this approach lead to no boilerplate code and classes, It also makes it so no separate binding projects are needed in principle: 
+Functions can be annotated directly where they are declared in the core library. 
+In practice, however, it still appears to be practical to create a separate library with annotated functions. 
+Functions annotated with \m{wasm\_bindgen} are constraint in certain ways, which might complicate a core library.
+% to allow them to be interfaced via WebAssembly (wrappers).  
+Still, it is safe to assume that this method speeds up plugin development compared to the aforementioned methods.
+
+\begin{lstlisting}
+#[wasm_bindgen]
+fn add(a: i32, b: i32) -> i32 {
+  a + b
 }
 \end{lstlisting}
 
