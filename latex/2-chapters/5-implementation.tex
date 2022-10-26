@@ -4,7 +4,7 @@ This chapter presents the execution of the first and second step of the methodol
 % an implementation of this design
 It discusses the achieved functionality, and mentions the ways this implementation fell short of the methodology.
 
-\section{The Geofront Application}
+\section{Introducing: Geofront}
 \label{sec:implementation:app}
 
 \begin{figure}
@@ -172,17 +172,17 @@ However, specific visualization convertors are not implemented, for these are re
 % \item a way to execute the language
 % \item a way to display or save output data
 
-\subsubsection*{Calculation}
-Execution of the graph is implemented as described by the methodology, albeit with a major setback: execution does not run on a separate thread. 
-This means that the interface freezes up during large calculations.
+% \subsubsection*{Calculation}
+% Execution of the graph is implemented as described by the methodology, albeit with a major setback: execution does not run on a separate thread. 
+% This means that the interface freezes up during large calculations.
 
-The reason for this is the difficulty in achieving concurrency in the browser. 
-Web workers have to be implemented and instantiated using separate javascript files. 
-Not only is this unusual, it forces a codebase to create separate files per multithreaded operation.
-The dynamic nature in which some of Geofront dependencies are loaded made splitting up the codebase like this difficult, let alone using multiple threads for calculating each node.
+% The reason for this is the difficulty in achieving concurrency in the browser. 
+% Web workers have to be implemented and instantiated using separate javascript files. 
+% Not only is this unusual, it forces a codebase to create separate files per multithreaded operation.
+% The dynamic nature in which some of Geofront dependencies are loaded made splitting up the codebase like this difficult, let alone using multiple threads for calculating each node.
 
-Additionally, both Typescript and WebAssembly do not make the mutability of variables explicit, nor was this implementation able to find a substitute method to add a mutability model on top of these languages. 
-This made implementing the concurrency model explained in \refsec{sec:method-controller} impossible.
+% Additionally, both Typescript and WebAssembly do not make the mutability of variables explicit, nor was this implementation able to find a substitute method to add a mutability model on top of these languages. 
+% This made implementing the concurrency model explained in \refsec{sec:method-controller} impossible.
 
 \subsubsection{Interaction}
 User Interaction is made possible through the \href{https://developer.mozilla.org/en-US/docs/web/api/event}{HTML DOM Events}. 

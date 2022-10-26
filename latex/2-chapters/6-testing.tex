@@ -326,16 +326,321 @@ This all could lead to a significant performance hit.
 \end{figure}
 
 
-\section{Demo application}
+\section{Demo applications}
 \label{sec:testing:demo}
 % - Show a demo
+This section demonstrates the extend to which Geofront is able to perform the main role it set out to fulfill: 
+Accessing functions from low level \ac{GIS} libraries from within a web VPL, and subjecting these functions to to interactive elements, so that these functions may be used in different ways by end users.
+
+Two related demo applications are presented, both featuring the \m{startin} library covered in \refsec{sec:testing:compilation}.
+The following two sections demonstrate the achieved functionality, and implications of said functionality. 
+the last section presents the limitations encountered during the writing and usage of these demo's.
+
+\subsection{Demo One: Perlin noise \& startin}
+
+\graphicspath{{../../assets/images/6/demo/}}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{products-1.PNG}
+    \caption{}\label{fig:in-between-products:a}
+  \end{subfigure}%
+  \\ 
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{products-2.PNG}
+    \caption{}\label{fig:in-between-products:b}
+  \end{subfigure}%
+  \\
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{products-3.PNG}
+    \caption{}\label{fig:in-between-products:c}
+  \end{subfigure}%
+  \caption[Types of \ac{vpl}s]{Visual inspection of in-between products}%
+  \label{fig:in-between-products}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{explore-1.PNG}
+  \end{subfigure}%
+  \\ 
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{explore-2.PNG}
+  \end{subfigure}%
+  \\
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{explore-3.PNG}
+  \end{subfigure}%
+  \caption[Types of \ac{vpl}s]{Exploration of the effects of different parameters}%
+  \label{fig:parametrization}
+\end{figure}
+
+
+The first demo application demonstrate Geofronts core ability to connect a native library to an arbitrary UI. 
+In this hypothetical scenario, we wish to discover how the \m{startin} triangulation reacts to various terrains by subjecting it to different point samples: Smooth samples, noisy samples, homogenous or heterogenous point distribution.
+
+In reality, the \m{startin} triangulation serves as a normal 2.5D delaunay triangulation, so we do not expect to see any strange behavior, but one can imagine other terrain extraction and generalization algorithms where a test like this would grant valuable insights.  
+An example of such an algorithm would be a plane fitting algorithm using RANSAC or least squares adjustment.
+
+A test setup is made to generate various terrains using Perlin Noise (SOURCE: KEN PERLIN), so that different landscapes can be simulated.
+
+The resulting geometry pipeline can be seen in \reffig{fig:in-between-products}. 
+A UI is created by using multiple slider widget as inputs numbers.
+These numbers are used to create a bounding box area, which is subsequently filled with a random distribution of points (\reffig{fig:in-between-products:a}).
+The input sliders are also used to construct a noise field, which is sampled using these points. These noise values are used as the heights of the points (\reffig{fig:in-between-products:b}).
+Lastly, these points are used as input for the \ac{TIN} (\reffig{fig:in-between-products:c}).
+
+Multiple observations can be made from this demo:
+Firstly, note how the various visualizations of in-between products could be inspected by selecting the corresponding operation (\reffig{fig:in-between-products}). 
+Secondly, observe how by connecting \m{startin} to this arbitrary \ac{GUI}, the behavior of the library can now be explored with different parameters (\reffig{fig:parametrization}).
+Thirdly, recall that this sequence can be altered in real time, without any software alterations. 
+These functionalities in conjunction are all indicators that Geofront can indeed be used to inspect the capabilities and quality of native \ac{GIS} libraries.
+
+\subsection{Demo One: DTM \& DSM extraction}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{potree-1.PNG}
+  \end{subfigure}%
+  \caption[]{DSM and DTM extraction using Potree within Geofront}%
+  \label{fig:potree-overview}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{potree-2.PNG}
+    \caption{}\label{fig:potree:a}
+  \end{subfigure}%
+  \\
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{potree-4.PNG}
+    \caption{}\label{fig:potree:b}
+  \end{subfigure}%
+  \\
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{potree-5.PNG}
+    \caption{}\label{fig:potree:c}
+  \end{subfigure}%
+  \\
+  \caption[]{Options when using Potree within Geofront}%
+  \label{fig:potree}
+\end{figure}
+
+\begin{figure}
+  \begin{subfigure}[b]{0.90\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{potree-7.PNG}
+  \end{subfigure}%
+  \caption{Resulting obj mesh, extracted from potree}
+  \label{fig:potree-result}
+\end{figure}
+
+Geofront was meant not only to be used to examine and visualize native libraries, but also to directly utilize them to fulfill real applications.
+This second application demonstrates the extend to which this is possible. 
+
+The hypothetical scenario used for this demo, is a situation in which a small scale DTM is required from a point cloud. 
+One could imagine a DSM or DTM of a construction site, required for creating an accurate render of a buildings surroundings. 
+
+the above \m{startin} demo is used as a starting point. 
+This time, however, the TIN will be generated from a real point cloud, instead of a simulated one, and will be converted to a \m{.obj} file, so that the DTM / DSM might be used in a different process. 
+
+The resulting pipeline can be seen in \reffig{fig:potree-overview}. 
+Central to this pipeline is the 'Potree applet', found at the start of the pipeline. This is a special type of \ac{UI} widget, which can be used to open a new browser window, running a second application, which was created using the Potree viewer (source: POTREE). 
+This application can run independently, but by opening it from within Geofront, a connection between the two applications can be established. 
+It allows Geofront to request a pointcloud, by pointing to a publicly hosted, potree-converted dataset. 
+The same connection allows Geofront to request parts of this pointcloud, so that a sub section can be used in the Geofront pipeline. 
+To query a specific subset, the Potree viewer itself can be used to:
+\begin{itemize}
+  \item Filter the density of the pointcloud to a desired LOD.
+  \item Filter the pointcloud to a certain bounding box or polygon.
+  \item Filter the pointcloud based on classifications, so that either 
+  a DSM with all point (\reffig{fig:potree:a}),
+  a DTM with only terrain (\reffig{fig:potree:b}), or
+  a DSM with only buildings (\reffig{fig:potree:c}) can be created.
+\end{itemize}
+
+The pointcloud subset is then loaded into the Geofront pipeline, after it can be used as input for any loaded plugin. 
+In this case, the points are inserted to the \m{startin} triangulator, after which the resulting mesh is converted to an \m{.obj} string, and made available for download using a 'save file' widget, so it could be used in a render (\reffig{fig:potree-result}).
+
+
+Multiple observations can be made based on this demo.
+First, notice again how all steps mentioned correspond to the nodes of the pipeline. 
+None of these steps are final. 
+A different application could be created at runtime, by for example, adding a \m{laz} writer component to save the resulting subset as a point cloud itself, or by using a component to perform a solar potential analysis. 
+This application strongly suggests that Geofront can indeed be used to directly utilize native libraries as part of a "real" use-case.
+Additionally, it demonstrates that Geofront allows not only composability between libraries, but also between libraries and full-scale, existing applications.
+
+\subsection{Limitations}
+
+Based on the above demo's, the following limitations in utilization were encountered: 
+\begin{itemize}
+  \item \textbf{Limited STD}: The standard operations and widgets present in geofront are limited. 
+  examples of these are scaling a vector, filtering lists, or getting the highest point from a set.
+  Additionally, standard \ac{GIS} functionalities, such as reprojections, are also not possible. 
+  Currently, plugin libraries add some of these basic functions as a workaround.    
+
+  \item \textbf{Types}: While the type system of Geofront is extensive and supports complex aspects such as generics, no clear design is present for interoperating between internal Geofront types, such as a Geofront Mesh, and a foreign type, such as \m{startin}s triangulation. 
+  The method used in the above demo's involves breaking down a type into a basic javascript data formats, and using that as an interoperable model. 
+  However, this relies on unsustainable parsers which use hardcoded strings, reflection, and "blind thrust".
+
+  \item \textbf{Visualization}: Currently, the application is only able to visualize a small number of data types, like points, lines, and meshes. Geofront's source code will have to be altered to support a library using images, for example.
+  Another visualization shortcoming is that meshes currently cannot support over 65.535 vertices. 
+  
+  \item \textbf{Performance}: The geofront runtime is not offloaded to a different thread, due to the difficulty of integrating web workers. 
+  This means that heavy calculations performed on the canvas will freeze up the \ac{GUI} of the  application. 
+  % which is not reasonable.  
+ 
+\end{itemize} 
 
 % - Show a bit of performance of said demo
 
-\section{Feature Comparison}
+\section{Comparison}
 \label{sec:testing:features}
 
+Geofront is 
+
 TODO make a table, comparing features of geofront to grasshopper, geoflow, geometry nodes, and mobius modeller
+
+
+
+
+
+
+
+
+
+\begin{tabular}{||p{2.8cm}|l|l|l|l|l||}
+                  & \emph{Grasshopper} & \emph{Blender} & \emph{Mobius} & \emph{Geoflow}    & \emph{Geofront}   \\
+Plugin support    & \textbf{Yes}  & No*    & No     & \textbf{Yes} & \textbf{Yes} \\
+Plugin language   & C\#  & -    & -     & C++ & Rust/Js/Ts** \\
+plugin types      & \textbf{Yes}  & No      & No     & Unknown    & \textbf{Yes} \\
+Scalable          & No          & No      & No               & \textbf{Yes} & No         \\
+Web based         & No          & No      & \textbf{Yes}     & No           & \textbf{Yes} \\
+Base GIS Nodes    & No          & No      & \textbf{Yes}     & \textbf{Yes} & No \\
+GUI nodes         & \textbf{Yes} & \textbf{Yes}      & No     & No          & \textbf{Yes} \\
+
+\end{tabular}
+
+\begin{itemize}[ ]
+  \item * Not without altering the source code of blender itself.
+  \item ** theoretically, any language can  be used. 
+  Practically, only Rust, JavasScript and TypeScript result in valid plugins. 
+\end{itemize}
+
+\subsection{Plugin Creation}
+
+Geofront:
+
+\begin{lstlisting}
+// lib.rs
+
+#[wasm_bindgen]
+fn add(a: i32, b: i32) -> i32 {
+  a + b
+}
+\end{lstlisting}
+
+
+
+
+Blender Geometry nodes: 
+
+
+
+Geoflow:
+
+\begin{lstlisting}
+// ...
+
+class AddNode : public Node
+{
+public:
+  using Node::Node;
+
+  void init()
+  {
+    add_input("in1", typeid(int));
+    add_input("in2", typeid(int));
+    add_output("result", typeid(int));
+  }
+
+  std::string info()
+  {
+    std::string s;
+    if (output("result").has_data())
+      s = std::to_string(output("result").get<int>());
+    return s;
+  }
+
+  void process()
+  {
+    auto in1 = input("a").get<int>();
+    auto in2 = input("b").get<int>();
+    std::this_thread::sleep_for(std::chrono::microseconds(200));
+    output("result").set(int(in1 + in2));
+  }
+};
+\end{lstlisting}
+
+Grasshopper: 
+
+\begin{lstlisting}
+namespace MyPlugin
+{
+    public class AdderNode : GH_Component
+    {
+        public ComponentNodeFromString()
+          : base("Add Integers",
+            "Add",
+            "This component adds two integer values",
+            "My Plugin",
+            "My Plugin Category")
+        {
+        }
+
+        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        {
+            pManager.AddIntegerParameter("a", "value A", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("b", "value B", GH_ParamAccess.item);
+        }
+
+        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        {
+            pManager.AddIntegerParameter("R", "result", GH_ParamAccess.item);
+        }
+
+        protected override void SolveInstance(IGH_DataAccess DA)
+        {
+            int a;
+            int b;
+            DA.GetData(0, ref a);
+            DA.GetData(1, ref b);
+            int c = a + b;
+            DA.SetData(0, c);
+        }
+
+        public override Guid ComponentGuid
+        {
+            get { return new Guid("197d2ec4-c3b1-47ed-8355-6af3b7612f01"); }
+        }
+    }
+}
+\end{lstlisting}
+
 
 \section{Utilization assessment}
 \label{sec:testing:usability}
