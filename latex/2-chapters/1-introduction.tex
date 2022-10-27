@@ -1,12 +1,32 @@
 \chapter{Introduction}
 \label{chap:intro}
 
+\graphicspath{{../../assets/images/1/}}
+
 The field of \ac{GIS} concerns itself with the collection, processing, storage, and visualization of geodata. 
 By doing so, we offer the world priceless information about the land we build on, the seas we traverse, the air we breath, and the climates we inhabit. 
 This information is foundational for many applications, including environmental modelling, infrastructure, urban planning, governance, navigation, the military, and agriculture.   
 As such, the field of \ac{GIS} is continuously looking for new ways to provide these fields and industries with both the data and tools they need to succeed. 
 
 \subsection*{Problem Statement and Goal}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{\linewidth}
+    \includegraphics[width=\linewidth]{layers.png}
+  \end{subfigure}%
+  \caption{The layers of indirection between end users and core GIS functions}
+  \label{fig:problem-statement}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.40\linewidth}
+  \includegraphics[width=\linewidth]{layers-simple.png}
+  \end{subfigure}%
+  \caption{The goal: More direct access}
+  \label{fig:goal}
+\end{figure}
 
 This thesis concerns itself with the latter: Providing tools. 
 The problem this study seeks to address, is that the core transformation and analysis tools found in certain \ac{GIS} software libraries, are normally not directly accessible by practitioners in the fields mentioned above: governance, infrastructure, urban planning, etc.
@@ -16,7 +36,7 @@ The tools can only be used indirectly, and only when a software developer has in
 Similarly, if research leads to a new \ac{GIS} library, end users are at the mercy of a software developer implementing the functionalities of said library as a usable application, or as a plugin for an existing \ac{GIS} environment like QGIS \citep*{qgis_community_qgis_2022}.
 Moreover, even if these capabilities are added to an application, the tools are almost always less feature rich, and non-composable: The output of one procedure cannot automatically be used as input for another. This leads to labor intensive procedures and repetitive workflows, as opposed to automated, re-usable procedures.
 % Not taking advantage of the full potential of these libraries
-At the same time, maintainers of a \ac{GIS} library often find themselves in the situation of having to maintain and synchronize a great number of bindings and plugins, which limits innovation.
+At the same time, maintainers of a \ac{GIS} library often find themselves in the situation of having to maintain and synchronize a great number of bindings and plugins, which limits innovation ((\reffig{fig:problem-statement})).
 
 It is safe to say that the limited reach of these libraries translates to a reduced societal impact, and with it, the \ac{GIS} research these libraries are based upon.
 
@@ -31,7 +51,7 @@ It is safe to say that the limited reach of these libraries translates to a redu
 % 3DCM includes the (re)generation of completely new iterations of the model from
 % scratch [Airaksinen et al., 2019], through, that a very small proportion of practitioners is able to perform.
 
-The overarching goal of this study is to allow end-users more \textbf{direct} access to core transformation and analysis capabilities found in native \ac{GIS} libraries, in a format which allows \textbf{composability}.
+The overarching goal of this study is to allow end-users more \textbf{direct} access to core transformation and analysis capabilities found in native \ac{GIS} libraries, in a format which allows \textbf{composability} (\reffig{fig:goal})).
 
 The study attempts to meet this goal by studying two domains in the field of \ac{GIS}, and developing a possible solution from them.
 The goal of \textbf{composability} is addressed by using the knowledge found within the field of \textbf{visual programming}.
@@ -183,12 +203,14 @@ Two major developments have occurred with great relevance to web GIS application
 The first development concerns static file hosting.
 Various geodata formats are increasingly becoming available as singular, statically hosted files, 
 as opposed to the active \ac{OGC} web services which query databases, and use dynamic routing \citep{open_geospatial_consortium_web_2015}.
-Examples of these static formats are the Cloud Optimized GeoTiff (SOURCE), and the COPC file format (SOURCE). 
-Static file hosting is orders of magnitude more cheap in terms of performance and literal cloud-host pricing, and scales more easily to accommodate high amounts of web requests.
+Examples of these static formats are the Cloud Optimized GeoTiff \citep{sarago_cloud_2021}, and the COPC file format \citep{bell_cloud_2021}. 
+Static file hosting is orders of magnitude more cheap in terms of performance and literal cloud-host pricing, and scales more easily to accommodate high amounts of web requests \citep{sarago_cloud_2021}.
 
 The second development is the introduction and adoption of the WebAssembly language \citep{haas_bringing_2017}. 
-WebAssembly is a compilation target, added to most major web browsers since late 2019 \citep{w3c_world_2019}. 
-Among many purposes, it offers a method to publish native software as (part of) a web application. 
+\ac{wasm} is a binary compilation target meant for a virtual runtime. 
+\ac{wasm} binaries can be run in any environment and language, as long as such a runtime is implemented. 
+Such a runtime has been added to most major web browsers since late 2019 \citep{w3c_world_2019}. 
+Among many purposes, it offers a method to run native software as (part of) a web application. 
 WebAssembly partially mitigates the need for web-based, javascript alternatives of native software applications and libraries. 
 It also allows software which previously could only be run on servers, to be executed in the browser. 
 Examples of this are how \citet{ammann_maplibre-rs_2022} built a map viewer which was both able to serve native and web needs.
@@ -197,7 +219,8 @@ Examples of this are how \citet{ammann_maplibre-rs_2022} built a map viewer whic
 %   - This is benefitial for the same reason as traditional cross-platform arguments: 
 %     - no duplicate libraries, no burden of synchronizing functionality across multiple libraries   
 
-Both these developments taken together leads to a paradigm shift which is important to recognize.
+Both these developments taken together leads to a 
+paradigm shift which is important to recognize.
 With both used in conjunction, applications can be conceived which use no active servers at all: Static websites, which can still be feature-complete \ac{GIS} applications.
 
 % This leads to valuable new options for web \ac{GIS}, such as making browser-based geocomputation more viable \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}. 
@@ -238,10 +261,21 @@ With both used in conjunction, applications can be conceived which use no active
 
 \section{Research Objective}
 
+\graphicspath{{../../assets/images/1/}}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.80\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{proposal.png}
+  \end{subfigure}%
+  \caption{The proposal}
+  \label{fig:proposal}
+\end{figure}
+
 The goal of this study is to allow \ac{GIS} practitioners without a background in software development, to access the full potential of core transformation and analysis capabilities found in native \ac{GIS} libraries.
 
-The study attempts to meet this goal by designing and implementing a novel method based on 
-the fields of visual programming, and static web applications. 
+The study attempts to meet this goal by designing and implementing a novel \\ method based on the fields of visual programming, and static web applications. 
 This method is thereafter used to load various \ac{GIS} libraries, and used in demo applications, after which an assessment can be made on its quality and the extend of its achieved functionalities. 
 The study concludes by addressing if the method meets the overarching goal.
 
@@ -249,21 +283,24 @@ The study concludes by addressing if the method meets the overarching goal.
 % But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
 % This necessitates a practical approach in response. 
 
-The design of this method is as follows: 
-A Prototype VPL is developed to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
+The design of this method is as visualized by \reffig{fig:proposal}: 
+A Prototype VPL is used to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
 The format of web application is used to allow this prototype to be directly accessible to end users without installation or configuration. 
 % Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
-This prototype is statically hosted, to minimize operational costs, and is equipped with WebAssembly, so that libraries written in native languages can be used without resorting to active backend web services. 
-Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders, text boxes, graphs), are primary design considerations and assessment criteria. 
+This prototype is statically hosted, to minimize operational costs.
+\ac{GIS} libraries are loaded within this platform by first compiling them into WebAssembly, and then loading this binary as a plugin directly. 
+This method is dubbed a 'no-boilerplate' method, and ensures that libraries can be used with as little in-between layers as possible.
+WebAssembly is also used to that libraries written in native languages can be used without resorting to active backend web services. 
+Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders), are primary design considerations and assessment criteria. 
 % prototypes aspires to qualify as a \ac{VPL}
 
-While VPLs and even Web-based VPLs have been studied before in the field of \ac{GIS}, the focus on direct utilization of native \ac{GIS} libraries on the web, combined with bringing those in direct contact with various \ac{GUI} elements, and all without resorting to active web servers, is a combination unique to this study, at least to the best of the authors knowledge at this point in time. 
+While VPLs and even Web-based VPLs have been studied before in the field of \ac{GIS}, the focus on direct utilization of native \ac{GIS} libraries on the web, combined with bringing those in direct contact with various \ac{GUI} elements, all without resorting to active web servers, is a combination unique to this study, at least to the best of the authors knowledge at this point in time. 
 A literature study on \ac{VPL}s found in the field of \ac{GIS}, Computer graphics, the web, and generic VPLs has been performed to ensure this.
 Additionally, assessment criteria are used to ensure this remains true after having performed the study.
 % Certain implementation details also offer a novel take on \ac{VPL}s as a whole.
 
 The overall design of the prototype outlined above contains a number of technical challenges.
-The compilation of native \ac{GIS} libraries to Webassembly has several caveats, and achieving scalability with a VPL requires novel methods. 
+The compilation of native \ac{GIS} libraries to Webassembly contain drawbacks, and achieving scalability with a VPL requires exploration of novel methods. 
 Therefore, seeking and analyzing solutions to these challenges is required to making this prototype meet the goals of the design mentioned. 
 
 % more direct access in a format which allows composability.
@@ -290,14 +327,10 @@ The objectives outlined above lead to the following main and supporting research
 \item \myNewSubRQTwo
 \item \myNewSubRQThree
 \item \myNewSubRQFour
-% \item \myNewSubRQFive
+\item \myNewSubRQFive
 \end{itemize}
 
 \subsection*{Assessment}
-In order to obtain answers to these questions, a literature review is performed,
-a prototype web-based geocomputation VPL is developed, 
-and this application is accessed on various aspects.
-
 In order to proof if the proposed method is viable or not, tests will be performed primarily based upon feature completeness.
 Within the context of this study, whether or not a feature was able to be implemented given the constraints of the method (web based, visual programming), was often deemed a more insightful indicator compared to measuring aspects like performance and memory footprint.
 The thesis sets out to proof or disproof technical viability. 
