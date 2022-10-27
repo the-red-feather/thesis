@@ -33,7 +33,6 @@ Wednesday:
 - BLOK 1:   Add Potree content DONE
 - BLOK 2:   Add comparison table DONE
 - BLOK 3:   Add comparison table DONE 
-- BLOK 4:   Add writings about UI ...
 
 - BLOK 5:   Finish the conclusion ...
 - BLOK 6:   Adapt the methodology
@@ -56,7 +55,6 @@ Thursday
 - [x] intro: make sure sources are made 
 - [x] intro: write where writing is needed
 
-
 - [ ] build a fake P5 to send to administration 
   - [ ] DAG UML thing
   - [ ] C++ minimum example
@@ -64,42 +62,44 @@ Thursday
   - [ ] Rust: exclude STD
 
 
-# overall
+# OVERALL
 [ ] capitalize VPL everywhere!
 [ ] capitalize GIS everywhere! 
 
-# 0 front
+# 0 FRONT [X]
 [x] abstract
 [x] aknowledgements
 [ ] sort acronyms
 
-# 1 intro 
+# 1 INTRO [X]
 [ ] Do the scope limitations still count? 
 
-# 2 background
-[ ] make a clear tier lists of VPLs ?
+# 2 BACKGROUND [X]
+<!-- [ ] make a clear tier lists of VPLs ? -->
 
-# 3 related works
+# 3 RELATED WORKS [X]
 [ ] seems ok...
 [ ] check read just in case
 
-# 4 methodology
+# 4 METHODOLOGY [ ] 
 [ ] connect the new stuff with the old stuff
-[ ] 
+[ ] proof read: make sure this fits
+[ ] explain various things better 
 
-# 5
-[ ] 
+# 5 IMPLEMENTATION [ ]
+[ ] proof read: make sure this fits
 
-# 6 tests
-[ ] TODO: make this better
+# 6 TESTS [ ]
+[ ] Fix the ranting on C++
    [ ] HUGO: please explain interfacing troubles better
+[ ] Add writings about UI 
+[ ] finalize the comparison 
 
-
-# 7 
-[ ] 
-[ ] Scope too large
-164 HUGO: ( not sure i f he l i k e s t h i s or disaproves , c l e a n i t j u s t i n c a s e )
-
+# 7 CONCLUSION [ ]
+[ ] sub question 1
+[ ] sub question 5
+[ ] fix main answer a bit 
+[x] Fix scope too large part 
 
 
 =======================================================================================

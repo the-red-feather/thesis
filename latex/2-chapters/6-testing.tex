@@ -531,6 +531,8 @@ Geofront's drawback is that it offers no GIS nodes by default, and relies on thi
 It can also not yet be regarded as scalable. 
 Despite certain design decisions which might aid scalability, no native runtime exist yet which can run a Geofront script in a headless, GUI-less manner.
 
+
+
 \begin{tabular}{||p{2.8cm}|l|l|l|l|l||}
                   & \emph{Grasshopper} & \emph{Blender} & \emph{Mobius} & \emph{Geoflow}    & \emph{Geofront}   \\
 Plugin support    & \textbf{Yes}  & No*    & No     & \textbf{Yes} & \textbf{Yes} \\
@@ -548,55 +550,19 @@ GUI nodes         & \textbf{Yes} & \textbf{Yes}      & No     & No          & \t
   Practically, only Rust, JavasScript and TypeScript result in valid plugins. 
 \end{itemize}
 
-\subsection{Minimum plugin comparison}
+\subsection{Plugin comparison}
 
 An additional comparison was made between the VPLs which accept third party plugins.
 Specifically, the different ways in which a new node has to be registered in Geoflow, Grasshopper, and Geofront are regarded next to each other.
 
-
-
-\subsubsection{Geoflow}
-
-Geoflow offers an object-oriented approach of registering new nodes:
-... TODO 2 sentenses
-
-\begin{lstlisting}
-class AddNode : public Node
-{
-public:
-  using Node::Node;
-
-  void init()
-  {
-    add_input("a", typeid(int));
-    add_input("b", typeid(int));
-    add_output("result", typeid(int));
-  }
-
-  std::string info()
-  {
-    std::string s;
-    if (output("result").has_data())
-      s = std::to_string(output("result").get<int>());
-    return s;
-  }
-
-  void process()
-  {
-    auto in1 = input("a").get<int>();
-    auto in2 = input("b").get<int>();
-    std::this_thread::sleep_for(std::chrono::microseconds(200));
-    output("result").set(int(in1 + in2));
-  }
-};
-\end{lstlisting}
-
 \subsubsection{Grasshopper}
 
-Grasshopper offers a similar interface, but written in C\# 
-... TODO 2 sentenses
+Grasshopper offers an object-oriented approach of registering new nodes: (\reffig{fig:boilerplate:grasshopper}).
+A derrived class has to be created and configured to represent an addition operation in this case.
 
-\begin{lstlisting}
+\begin{figure}
+\centering
+\begin{code}
 namespace MyPlugin
 {
     public class AdderNode : GH_Component
@@ -637,27 +603,74 @@ namespace MyPlugin
         }
     }
 }
-\end{lstlisting}
+\end{code}
+\caption[]{Grasshopper minimum plugin}
+\label{fig:boilerplate:grasshopper}
+\end{figure}
 
 
+\subsubsection{Geoflow}
+
+Geoflow offers a similar object-oriented interface of registering new nodes (\reffig{fig:boilerplate:geoflow}). 
+
+\begin{figure}
+\centering
+\begin{code}
+class AddNode : public Node
+{
+public:
+  using Node::Node;
+
+  void init()
+  {
+    add_input("a", typeid(int));
+    add_input("b", typeid(int));
+    add_output("result", typeid(int));
+  }
+
+  std::string info()
+  {
+    std::string s;
+    if (output("result").has_data())
+      s = std::to_string(output("result").get<int>());
+    return s;
+  }
+
+  void process()
+  {
+    auto in1 = input("a").get<int>();
+    auto in2 = input("b").get<int>();
+    std::this_thread::sleep_for(std::chrono::microseconds(200));
+    output("result").set(int(in1 + in2));
+  }
+};
+\end{code}
+\caption[]{Geoflow minimum plugin}
+\label{fig:boilerplate:geoflow}
+\end{figure}
 
 \subsubsection{Geofront}
 
-As shown before, Geofront directly utilizes type and function declarations.
-This leads to the following minimum plugin: (REFFIG).
+As shown before, Geofronts 'no boilerplate' approach directly utilizes type and function declarations.
+This leads to the following minimum plugin: (\reffig{fig:boilerplate:geofront}).
 Not only does this approach lead to no boilerplate code and classes, It also makes it so no separate binding projects are needed in principle: 
 Functions can be annotated directly where they are declared in the core library. 
 In practice, however, it still appears to be practical to create a separate library with annotated functions. 
-Functions annotated with \m{wasm\_bindgen} are constraint in certain ways, which might complicate a core library.
+Functions annotated with \m{wasm\_bindgen} are constraint in certain ways, which can complicate a core library.
 % to allow them to be interfaced via WebAssembly (wrappers).  
 Still, it is safe to assume that this method speeds up plugin development compared to the aforementioned methods.
 
-\begin{lstlisting}
+\begin{figure}
+\centering
+\begin{code}
 #[wasm_bindgen]
 fn add(a: i32, b: i32) -> i32 {
   a + b
 }
-\end{lstlisting}
+\end{code}
+\caption[]{Geofront minimum plugin}
+\label{fig:boilerplate:geofront}
+\end{figure}
 
 
 \section{Utilization assessment}

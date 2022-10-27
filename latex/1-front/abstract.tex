@@ -1,17 +1,17 @@
 \chapter*{Abstract}
 
-In the field of \ac{GIS}, transformation and analysis tools often take the shape of software libraries, written in system level programming languages. 
+In the field of \ac{GIS}, geodata transformation and analysis tools often take the shape of software libraries, written in system level programming languages. 
 A number of these libraries, like PROJ, GDAL, and CGAL, play a foundational role in almost all \ac{GIS} software applications.
 However, for end users, these libraries are only usable to a limited extend.
 When these libraries are distributed to other languages and applications, 
 features and performance get 'lost in translation'.
-Additionally, the applications end-users are left with are often not composable to the same degree as the libraries. 
+Additionally, the tools end-users are left with are often not composable to the same degree as the software they originated from. 
 % Performance and features get 'lost in translation' when using bindings for a different programming language, when using a plugin within an application, or worse, both.  
 % Additionally, the application end-users are left with are often not composable with other applications, leading to labor intensive workflows.  
-At the same time, maintainers of core libraries often find themselves in the situation of having to maintain and synchronize a great number of bindings and plugins, which limits innovation.
+% At the same time, maintainers of certain \ac{GIS} libraries often find themselves in the situation of having to maintain and synchronize a great number of bindings and plugins, which limits innovation.
 The limited reach of these libraries translates to a reduced societal impact, and with it, the research these libraries are based upon.
 
-As such, the goal of this study is to make core \ac{GIS} libraries more directly available to end-users.
+The goal of this study is to make core \ac{GIS} libraries more directly available to end-users.
 % This study presents and prototypes a novel method which allows \ac{GIS} practitioners without a background in software development, to access the full potential of core transformation and analysis capabilities found in native \ac{GIS} libraries.
 % That is based on visual programming, and static web applications. 
 % The study attempts to meet this goal by designing and implementing a 
@@ -30,9 +30,9 @@ Finally, as this prototype is intended for \ac{GIS} usage, both scalability to h
 % Using this, ...
 % indeed 
 
-The results of the study are carefully positive. 
-This specific web-based VPL appears to be a feasible method for providing direct access to some native \ac{GIS} libraries, and does offer a unique set of features not found in comparable visual languages. 
-The significance of this method, compared to other web-based geometry VPLs, lies in the fact that it offers a 'no-boilerplate' plugin system, in combination with a range of different \ac{GUI} nodes, certain "dataflow VPL" properties, and a proposed zero-cost abstraction runtime. 
+ 
+The results show that this specific web-based VPL appears to be a feasible method for providing direct access to some native \ac{GIS} libraries, and does offer a unique set of features not found in comparable visual languages. 
+The significance of this method, compared to other web-based geometry VPLs, lies in the fact that it offers a lenient plugin system, in combination with a range of different \ac{GUI} nodes, certain "dataflow VPL" properties, and a proposed zero-cost abstraction runtime. 
 All of these features combined lead to a VPL which is able to directly connect \ac{GUI} components with native \ac{GIS} libraries, all while remaining scalable in principle.
 
 On a practical level, more work remains to proof this feasibility.

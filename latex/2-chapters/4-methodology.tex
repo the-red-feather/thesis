@@ -195,15 +195,16 @@ TypeShims can be structured recursively to define a \m{List of List of strings} 
 \subsubsection*{Model}
 \label{sec:method-model}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/misc/} }
-  \includegraphics[width=\linewidth]{placeholder.png}
-  \caption[Shim Classes]{(TODO: MAKE A DAG UML)}
-  \label{fig:dag-model}
-\end{figure}
+% \begin{figure}
+%   \centering
+%   \graphicspath{ {../../assets/images/misc/} }
+%   \includegraphics[width=\linewidth]{placeholder.png}
+%   \caption[Shim Classes]{(TODO: MAKE A DAG UML)}
+%   \label{fig:dag-model}
+% \end{figure}
 
-From the Shims, the main model of a VPL script can be conceived (see \reffig{fig:dag-model}). 
+% TODO: ADD DAG UML REFERENCE
+From the Shims, the main model of a VPL script can be conceptualized. 
 This model is at its core a \ac{DAG}. 
 This \ac{DAG} should be a object-oriented, graph-like representation of the data flow of a regular programming language. 
 This design can be implemented by writing a \m{Graph} class, containing \m{Node} and \m{Cable} objects. 
@@ -276,34 +277,34 @@ The functions the graph muse be sorted in such a way that all dependencies are k
 Such a problem is known as a topological sorting problem, and can be solved using Kahn's algorithm (\refsec{fig:kahn}): 
 
 \begin{figure}
-  \centering
-  \begin{lstlisting}
-    Step -1: 
-      Make an `order` list
-    Step 0: 
-      Make a `visisted` counter, initialized at 0
-    Step 1: 
-      Make a `dependency` counter for each node, initialized at 0
-    Step 2: 
-      Add 1 to this counter for each input edge of this node.
-    Step 3: 
-      Fill a queue with all dependency 0 nodes. 
-      These are the starter nodes.
-    Step 4: 
-      Remove a node from the queue (Dequeue operation) and then:
-      add the nodes' id to the `order` list.
-      Increment `visisted` counter by 1.
-      Decrease `dependency` counter by 1 for all dependent nodes.
-      If one `dependency` counter reaches 0, 
-        add it to the queue.
-    Step 5: 
-      Repeat Step 4 until the queue is empty.
-    Step 6: 
-      If `visisted` counter is not equal to the number of nodes, 
-        then the graph was degenerate, and probably cyclical. 
-    \end{lstlisting}
-  \caption[Kahns algorithm]{Khan's algorithm in pseudo code}
-  \label{fig:kahn}
+\centering
+\begin{lstlisting}
+Step -1: 
+  Make an `order` list
+Step 0: 
+  Make a `visisted` counter, initialized at 0
+Step 1: 
+  Make a `dependency` counter for each node, initialized at 0
+Step 2: 
+  Add 1 to this counter for each input edge of this node.
+Step 3: 
+  Fill a queue with all dependency 0 nodes. 
+  These are the starter nodes.
+Step 4: 
+  Remove a node from the queue (Dequeue operation) and then:
+  add the nodes' id to the `order` list.
+  Increment `visisted` counter by 1.
+  Decrease `dependency` counter by 1 for all dependent nodes.
+  If one `dependency` counter reaches 0, 
+    add it to the queue.
+Step 5: 
+  Repeat Step 4 until the queue is empty.
+Step 6: 
+  If `visisted` counter is not equal to the number of nodes, 
+    then the graph was degenerate, and probably cyclical. 
+\end{lstlisting}
+\caption[Kahns algorithm]{Khan's algorithm in pseudo code}
+\label{fig:kahn}
 \end{figure}
 
 Using this algorithm for calculating a VPL has several important qualities. 
@@ -453,27 +454,76 @@ What is needed, however, is to make sure all dependencies do not use incompatibl
 Fortunately, most Rust libraries are written with 'no-std' use-cases in mind, and contain flags to easily exclude these features. 
 
 \begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/misc/} }
-  \includegraphics[width=\linewidth]{placeholder.png}
-  \caption{TODO:  C++: Minimum WebAssembly example}
-  \label{fig:minimum-cpp-wasm}
+\centering
+\begin{code}
+#include <emscripten/bind.h>
+#include <cmath>
+
+using namespace emscripten;
+
+float add(float left, float right) {
+    return left + right;
+}
+
+class Point {
+public:
+    double x;
+    double y;
+
+    Point(double x, double y) :
+        x(x),
+        y(y) {}
+
+    double distance(Point other) {
+        return std::pow(
+            std::pow(x - other.x, 2) + std::pow(y - other.y, 2), 
+            0.5);
+    }
+};
+
+EMSCRIPTEN_BINDINGS(cpp_min) {
+    function("add", &add);
+    class_<Point>("Point")
+        .constructor<double, double>()
+        .function("distance", &Point::distance)
+        .property("x", &Point::x)
+        .property("y", &Point::y);
+}
+\end{code}
+\caption{C++: Minimum WebAssembly example}
+\label{fig:minimum-cpp-wasm}
 \end{figure}
 
 \begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/misc/} }
-  \includegraphics[width=\linewidth]{placeholder.png}
-  \caption{TODO: Rust: Minimum WebAssembly example}
-  \label{fig:minimum-rust-wasm}
-\end{figure}
+\begin{code}
+use wasm_bindgen::prelude::*;
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/misc/} }
-  \includegraphics[width=\linewidth]{placeholder.png}
-  \caption{TODO: Rust: Exclude std features}
-  \label{fig:minimum-rust-wasm-no-std}
+#[wasm_bindgen]
+pub fn add(left: f32, right: f32) -> f32 {
+    left + right
+}
+
+#[wasm_bindgen]
+pub struct Point {
+    pub x: f32,
+    pub y: f32,
+}
+
+#[wasm_bindgen]
+impl Point {
+
+    pub fn new(x: f32, y: f32) -> Point {
+        Point { x, y }
+    }
+
+    pub fn distance(&self, other: &Point) -> f32 {
+        ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).powf(0.5) 
+    }
+}
+\end{code}
+\centering
+\caption{Rust: Minimum WebAssembly example}
+\label{fig:minimum-rust-wasm}
 \end{figure}
 
 \subsubsection{Wrapping}
@@ -486,7 +536,7 @@ This often leads to making copies of inputs / outputs, or grouping a series of s
   \centering
   \graphicspath{ {../../assets/images/6/3/} }
   \includegraphics[width=\linewidth]{ugly-oop.png}
-  \caption[]{This typescript is written in a non-functional manner, troubling its conversion to the functional model used by a dataflow VPL}
+  \caption[]{This API is written in a non-functional manner, troubling its conversion to the functional model used by a dataflow VPL}
   \label{fig:oop-considered-harmful}
 \end{figure}
 
