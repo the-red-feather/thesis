@@ -9,13 +9,15 @@ As such, the field of \ac{GIS} is continuously looking for new ways to provide t
 \subsection*{Problem Statement and Goal}
 
 This thesis concerns itself with the latter: Providing tools. 
-The problem this study seeks to address, is that the core transformation and analysis tools found in \ac{GIS} software libraries, are normally not directly accessible by practitioners in the fields mentioned above: governance, infrastructure, urban planning, etc.
+The problem this study seeks to address, is that the core transformation and analysis tools found in certain \ac{GIS} software libraries, are normally not directly accessible by practitioners in the fields mentioned above: governance, infrastructure, urban planning, etc.
 A small number of native software Libraries written in C/ C++, like PROJ, CGAL or GDAL, play a foundational role of almost all \ac{GIS} tools. 
 However, end users with a profession different than software developer, are often unable to directly access these libraries. 
 The tools can only be used indirectly, and only when a software developer has incorporated these functionalities in an application. 
 Similarly, if research leads to a new \ac{GIS} library, end users are at the mercy of a software developer implementing the functionalities of said library as a usable application, or as a plugin for an existing \ac{GIS} environment like QGIS \citep*{qgis_community_qgis_2022}.
-Moreover, even if these capabilities are added to an application, the tools are almost always added in a non-composable format (TODO: SEE IMAGE). This leads to labor intensive procedures and repetitive workflows, as opposed to automated, re-usable procedures.
-% Not taking advantage of the full potential of these libraries 
+Moreover, even if these capabilities are added to an application, the tools are almost always less feature rich, and non-composable: The output of one procedure cannot automatically be used as input for another. This leads to labor intensive procedures and repetitive workflows, as opposed to automated, re-usable procedures.
+% Not taking advantage of the full potential of these libraries
+At the same time, maintainers of a \ac{GIS} library often find themselves in the situation of having to maintain and synchronize a great number of bindings and plugins, which limits innovation.
+
 It is safe to say that the limited reach of these libraries translates to a reduced societal impact, and with it, the \ac{GIS} research these libraries are based upon.
 
 % Not taking advantage of the full potential of these libraries 
@@ -296,11 +298,13 @@ In order to obtain answers to these questions, a literature review is performed,
 a prototype web-based geocomputation VPL is developed, 
 and this application is accessed on various aspects.
 
-In order to proof if the proposed method is viable or not, tests will be performed based upon feature completeness.
-Within the context of this study, whether or not a feature of the method was able to be implemented was often deemed 
-more insightful than benchmarkable aspects like performance and memory footprint.  
-Such subjects are only relevant in comparison to similar methods, and this study in particular aims to develop a novel method, 
-which by definition should be differ to existing methods. 
+In order to proof if the proposed method is viable or not, tests will be performed primarily based upon feature completeness.
+Within the context of this study, whether or not a feature was able to be implemented given the constraints of the method (web based, visual programming), was often deemed a more insightful indicator compared to measuring aspects like performance and memory footprint.
+The thesis sets out to proof or disproof technical viability. 
+Future research is required to test \emph{How} viable it might be compared to other, comparable methods.
+
+% Such subjects are only relevant in comparison to similar methods, and this study in particular aims to develop a novel method, 
+% which by definition should be differ to existing methods. 
 
 % It must be tested if all required features are able to be
 
@@ -355,7 +359,7 @@ follow-up investigation to this study, following in the footsteps of studies lik
 
 \subsection*{No user testing} % 
 
-The main research question mentions \emph{accessibility}, a subjective concept.
+The introduction mentions \emph{accessibility} as a motivator, which is a subjective concept.
 However, user testing is not part of this study, due to scope limitations. 
 
 To solve this, this study assesses accessibility without regarding subjective, psychological accessibility aspects: \emph{"does x feel nice to use?"}.

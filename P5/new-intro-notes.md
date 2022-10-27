@@ -8,6 +8,21 @@
 because right now the final chapter often reads more like an essay
 
 
+NOTES:
+
+Geofront: purpose: directly use libraries in an application, and subject them to a custom UI.
+- focus on direct library utilization
+  - library + application becomes the central theme 
+unique about this thesis 
+- focus on GUI
+  - text inputs 
+  - number inputs
+  - buttons 
+  - file fetchers
+  - complete micro-apps (applets)
+- See a VPL less as a programming language, and more as a way for 
+end users to create their own UItly usable by end-users   
+
 =========================================================================================
 =========================================================================================
 =========================================================================================
@@ -15,17 +30,16 @@ because right now the final chapter often reads more like an essay
 Wednesday:
 ----------
 
-- BLOK 1:   Add Potree content
-- BLOK 2:   Add comparison table
-- BLOK 3:   Add comparison table 
-- BLOK 4:   Add writings about UI
+- BLOK 1:   Add Potree content DONE
+- BLOK 2:   Add comparison table DONE
+- BLOK 3:   Add comparison table DONE 
+- BLOK 4:   Add writings about UI ...
 
-- BLOK 5:   Finish the conclusion
+- BLOK 5:   Finish the conclusion ...
 - BLOK 6:   Adapt the methodology
 - BLOK 7:   Adapt the methodology
-- BLOK 8:   Write the abstract
+- BLOK 8:   Write the abstract DONE 
 
-- add something about the sharable link aspect??
 - Add the graphs from the thesis
 
 
@@ -34,43 +48,97 @@ Wednesday:
 =========================================================================================
 =========================================================================================
 
+Thursday
+- [X] abstract 
+- [ ] fix front page
+- [ ] add dramatic image to intro
+- [ ] intro: add more images
+- [ ] intro: make sure sources are made 
+- [ ] intro: write where writing is needed
+
+- [ ]   
 
 
 
 
+=======================================================================================
+=======================================================================================
+=======================================================================================
+
+  Lessons
+  ==========
+  
+  - give yourself clear todo's per day. 
+    Not too little, not too much.
+    Upon completion, the day falls apart
+  
+  
+  TODO
+  ============
+  
+  high-level
+  ----------
+  
+  [x] The intro / story needs to be altered 
+      - stronger tie to Geo & web
+      - VPL + Web
+  
+  [x] rewrite and balance research questions
+  - [x] then trickle down the consequences of those changes throughout the thesis
+  mid-level
+  ---------
+  
+  [x] TODO: rewrite abstract in accordance with new story
+
+  [x] Deep dive in Hugo's comments, fix those aspects 
+    - [x] sort acronyms
+  
+  [x] Add a stronger web-component in the introduction (presentation)
+  [x] Add cloud native / cloud-based geodata component to the introduction  
+  
+  [ ] Cleanup Chapter 2 and 3.  
+    - Some parts are still more relevant than other parts. 
+    - Also, there are some things I say or use in chapter 4, 5, and 6, that were not properly explained in chapter 2. Examples of this are emscripten, or CGAL. 
+    - However, a complete rewrite would be too much work.
+    - Would love to hear your take on this.
+  
+  [ ] Make chapter 4 and 5 more streamlined 
+    - I've noticed that I repeat myself quite often.
+    - I think this is because I was not sure if I already said something relevant in the chapter before.
+  
+  [ ] Show your results more clearly, do the coding you have done justice
+  
+  [ ] finish chapter 6 properly 
+    - Experiments: add a section on a use-case application, using potree + startin + geofront std + obj downloader
+  
+  [x] write stronger, more clear conclusions.
+    - hmm, i think they are already quite clear. But again, this is to be reconsidered when the overall story of the thesis changes  
+  
+  low-level: thursday & friday
+  -------------------
+
+  - [x] write abstract
+  - [x] TODO: write Acknowledgements
+  - [x] Add arsclassica template to the thesis
+  - [x] Make the code snippets / listings work properly
+  - [x] replace all code screenshot with proper listings
+  - [ ] cleanup introduction
+  - [ ] create all missing uml diagrams
+  - [ ] add proper graphs for the data you've gathered 
+  - [ ] Add all proper metadata to Zotero, for a nice bibliography
+  - [ ] Fix all TODO graphics
+  - [ ] Fix all acronyms,
+  - [ ] Sort the acronyms at the end 
+  - [ ] Make sure CiteT and citeP is properly used everywhere. No more raw 'et. al.' statments 
+  - [ ] Capitalize all VPL / replace with acronyms
+  - [ ] Sources need to be fixed (more data, check if I can do things like 'empscripten contributors')
+  - [ ] Replace C++ into C / C++ everywhere, but especially the intro
+  - [ ] appendix: software implementation & link to video
 
 
-
-
-
-DO NOT STAY DREAMING:
-
-Zaterdag
-- Write the aknowledgements BOEM
-- New research question and goal of the study (leave intro) BOEM
-
-NOTES:
-
-Geofront: purpose: directly use libraries in an application, and subject them to a custom UI.
-- focus on direct library utilization
-
-  - library + application becomes the central theme 
-
-unique about this thesis 
-
-
-- focus on GUI
-  - text inputs 
-  - number inputs
-  - buttons 
-  - file fetchers
-  - complete micro-apps (applets)
-
-- See a VPL less as a programming language, and more as a way for 
-end users to create their own UItly usable by end-users   
-
-
-
+=======================================================================================
+=======================================================================================
+=======================================================================================
 
 
 

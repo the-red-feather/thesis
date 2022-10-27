@@ -1,35 +1,45 @@
 \chapter*{Abstract}
 
-X is an essential part of any ...
+The results of GIS research often takes the form of software libraries, written in system level languages. 
+A number of these libraries, including  proj, GDAL, or CGAL, play a foundational role of almost all GIS tooling.
+However, for end users, many of those libraries are usable only to a limited extend.
+Features and performance get 'lost in translation' within bindings and plugins, and the applications end-users are left with are often not composable to the same degree as the libraries. 
+% Performance and features get 'lost in translation' when using bindings for a different programming language, when using a plugin within an application, or worse, both.  
+% Additionally, the application end-users are left with are often not composable with other applications, leading to labor intensive workflows.  
+At the same time, maintainers of core libraries often find themselves in the situation of having to maintain and synchronize a great number of bindings and plugins, which limits innovation.
+The limited reach of these libraries translates to a reduced societal impact, and with it, the research these libraries are based upon.
 
-The problem ...
-
-The goal of this study is to
-
-This study presents and prototypes a novel method which allows \ac{GIS} practitioners without a background in software development, to access the full potential of core transformation and analysis capabilities found in native \ac{GIS} libraries.
-
+As such, the goal of this study is to make core GIS libraries more directly available to end-users.
+% This study presents and prototypes a novel method which allows \ac{GIS} practitioners without a background in software development, to access the full potential of core transformation and analysis capabilities found in native \ac{GIS} libraries.
 % That is based on visual programming, and static web applications. 
-
-
 % The study attempts to meet this goal by designing and implementing a 
-novel method based on the fields of visual programming, and static web applications. 
-
+% novel method based on the fields of visual programming, and static web applications. 
 % The prior works on static geo-web applications and \ac{GIS} \ac{VPL}s indicate that a strong theoretical framework is in place.
 % But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
 % This necessitates a practical approach in response. 
-
-A Prototype VPL was developed to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
-The format of web application is used to allow this prototype to be directly accessible to end users without installation or configuration. 
+This study presents and prototypes a novel method, centered around a visual programming language to host the functionalities of GIS libraries from within an application, and in a composable manner. 
+Additionally, the visual language is used to connect these libraries to a user-definable graphical user interface. 
+This prototype is implemented as a static web application, so that these libraries are directly accessible to end users without installation or configuration. 
 % Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
-This prototype is statically hosted, to minimize operational costs, and is equipped with WebAssembly, so that libraries written in native languages can be used without resorting to active backend web services. 
-Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders, text boxes, graphs), are primary design considerations and assessment criteria.
+WebAssembly is used so that GIS libraries written in native languages only have to write one generic binding, which then can be used in any language, including this prototypical, web based visual language, thanks to a 'no boilerplate' plugin system. 
+% WebAssembly is also used to run  resorting to active backend web services. 
+Finally, as this prototype is intended for GIS usage, both scalability to handle sizable datasets, and rich GUI support (3D viewers, file inputs, sliders), are primary design considerations and assessment criteria.
+% be used without
+% Using this, ...
+% indeed 
 
-Using this, ...
+The results of the study are carefully positive. 
+This specific web-based VPL appears to be a feasible method for providing direct access to native \ac{GIS} libraries, and offers a unique set of features not found in comparable visual languages. 
+The significance of this method, compared to other web-based geometry VPLs, lies in the fact that it offers a 'no-boilerplate' plugin system, in combination with a range of different \ac{GUI} nodes, certain "dataflow VPL" properties, and a proposed zero-cost abstraction runtime. 
+All of these features combined lead to a VPL which is able to directly connect \ac{GUI} components with native \ac{GIS} libraries, all while remaining scalable in principle.
 
-This method turned out to indeed provide solve
+On a practical level, more work remains to proof this feasibility.
+The methodology developed by this study is only \emph{theoretically} accessible and composable, based on achieved features. 
+User-testing is required to confirm if this method indeed improves workflows, and actually saves time and energy of developers and end users. 
+Moreover, the prototypical software implementation used is limited and not production ready.
+Both the fact that the 'no-boilerplate' plugin system cannot be used with C / C++ \ac{GIS} libraries, and that the zero-cost abstraction runtime is not functional, must be improved upon in future work.
 
-The significance of this method lies herein that it ...
-
+Despite this, it is safe to say that visual programing methods, distribution using WebAssembly, and Rust-based geocomputation, all remain valuable directions of future \ac{GIS} research.
 
 % This method is thereafter used to load various \ac{GIS} libraries, and used in demo applications, after which an assessment can be made on its quality and the extend of its achieved functionalities. 
 % The study concludes by addressing if the method meets the overarching goal.
@@ -181,77 +191,3 @@ The significance of this method lies herein that it ...
 
 
 %%%%%
-
-
-
-\begin{note}
-
-  Lessons
-  ==========
-  
-  - give yourself clear todo's per day. 
-    Not too little, not too much.
-    Upon completion, the day falls apart
-  
-  
-  TODO
-  ============
-  
-  high-level
-  ----------
-  
-  [x] The intro / story needs to be altered 
-      - stronger tie to Geo & web
-      - VPL + Web
-  
-  [x] rewrite and balance research questions
-  - [x] then trickle down the consequences of those changes throughout the thesis
-  mid-level
-  ---------
-  
-  [ ] TODO: rewrite abstract in accordance with new story
-
-  [x] Deep dive in Hugo's comments, fix those aspects 
-    - [x] sort acronyms
-  
-  [x] Add a stronger web-component in the introduction (presentation)
-  [x] Add cloud native / cloud-based geodata component to the introduction  
-  
-  [ ] Cleanup Chapter 2 and 3.  
-    - Some parts are still more relevant than other parts. 
-    - Also, there are some things I say or use in chapter 4, 5, and 6, that were not properly explained in chapter 2. Examples of this are emscripten, or CGAL. 
-    - However, a complete rewrite would be too much work.
-    - Would love to hear your take on this.
-  
-  [ ] Make chapter 4 and 5 more streamlined 
-    - I've noticed that I repeat myself quite often.
-    - I think this is because I was not sure if I already said something relevant in the chapter before.
-  
-  [ ] Show your results more clearly, do the coding you have done justice
-  
-  [ ] finish chapter 6 properly 
-    - Experiments: add a section on a use-case application, using potree + startin + geofront std + obj downloader
-  
-  [x] write stronger, more clear conclusions.
-    - hmm, i think they are already quite clear. But again, this is to be reconsidered when the overall story of the thesis changes  
-  
-  low-level: thursday & friday
-  -------------------
-
-  - [ ] write 
-  - [x] TODO: write Acknowledgements
-  - [x] Add arsclassica template to the thesis
-  - [x] Make the code snippets / listings work properly
-  - [x] replace all code screenshot with proper listings
-  - [ ] create all missing uml diagrams
-  - [ ] add proper graphs for the data you've gathered 
-  - [ ] Add all proper metadata to Zotero, for a nice bibliography
-  - [ ] Fix all TODO graphics
-  - [ ] Fix all acronyms,
-  - [ ] Sort the acronyms at the end 
-  - [ ] Make sure CiteT and citeP is properly used everywhere. No more raw 'et. al.' statments 
-  - [ ] Capitalize all VPL / replace with acronyms
-  - [ ] Sources need to be fixed (more data, check if I can do things like 'empscripten contributors')
-  - [ ] Replace C++ into C / C++ everywhere, but especially the intro
-  - [ ] appendix: software implementation & link to video
-\end{note}
