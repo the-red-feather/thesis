@@ -53,23 +53,32 @@ It starts with answering the sub research questions, and concludes with the answ
 
 % % While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no meaningful distinction between number types (\m{int, float, double}), for example.
 
-Two 'layers' of \ac{GUI} features had to be created for the prototype to 
+Two 'layers' of \ac{GUI} features had to be created:
 
-- first-> a desktop-looking application to house the VPL
-- second layer-> UI features within the VPL itself to provide appropriate IO
+\textbf{Framework application}: Firstly, a base application is required to host the visual programming language.
+This need to provide all basic application features, like saving, loading, undoing and redoing.
 
-Both layers are fully implemented, and the web posed no fatal barriers. 
+\textbf{The VPL}: Secondly, UI elements are required to form the interactive elements of the visual program itself. 
+This forms a layer independent from the framework application, and will require a custom set of \ac{GUI} features. 
+That is to say, a text field within the framework is not the same as a text field within the visual program.
 
-PLUS: webgl, canvas API, and DOM: offered the right tools to build custom UI elements, and 3D viewers, with the advantage of not having to include UI libraries, leading to smaller data sizes 
+% \begin{note}
+% IMPORTANT
+% - first-> a desktop-looking application to house the VPL
+% - second layer-> UI features within the VPL itself to provide appropriate IO
 
-PLUS: web is very good in 'joining UI's'. This could be used 
+% Both layers are fully implemented, and the web posed no fatal barriers. 
 
-MINUS: most web tooling is 'locked into' the idea of websites. This made them hard to use for the purposes of a dynamic,
-'desktop-looking' application.
-- Lead to custom solutions, and time investments which could have been spend on more important things than the UI.
+% PLUS: webgl, canvas API, and DOM: offered the right tools to build custom UI elements, and 3D viewers, with the advantage of not having to include UI libraries, leading to smaller data sizes 
 
-MINUS: performance
+% PLUS: web is very good in 'joining UI's'. This could be used 
 
+% MINUS: most web tooling is 'locked into' the idea of websites. This made them hard to use for the purposes of a dynamic,
+% 'desktop-looking' application.
+% - Lead to custom solutions, and time investments which could have been spend on more important things than the UI.
+
+% MINUS: performance  
+% \end{note}
 
 \begin{itemize}[ ]
   \item 2. "\myNewSubRQTwo"
@@ -127,22 +136,24 @@ This second option seems counterproductive, but as stated by \citet{ammann_mapli
   \item 4. "\myNewSubRQFour"
 \end{itemize}
 
-Three measures were conceptualized and successfully implemented. However, all measures have certain caveats:
+Three measures were conceptualized and successfully implemented. 
+However, all measures have certain shortcomings:
 
 \begin{enumerate}
-  \item \textbf{Portability}: The application uses native geocomputation libraries compiled to WebAssembly, which makes the libraries behave the same way in the frontend, and in a potential back-end.
-  \subitem \textbf{Caveat}: The \ac{wasm} binaries must be wrapped using javascript, because \ac{wasm} does not support interface types yet (SOURCE: https://hacks.mozilla.org/2019/08/webassembly-interface-types/). This means that currently, a backend would require a javascript runtime to use these libraries.
+  \item \textbf{Portability}: The application uses native geocomputation libraries compiled to WebAssembly, 
+  which makes the libraries behave the same way in the frontend, and in a potential back-end.
+  \subitem \textbf{Shortcoming}: The \ac{wasm} binaries must be wrapped using javascript, because \ac{wasm} does not support interface types yet \citep{wagner_interface_2022}. This means that currently, a backend would require a javascript runtime to use these libraries.
 
   \item \textbf{Zero-cost abstraction}: The application uses a unique plugin system, to offer direct usage of javascript-wrapped libraries.
   This means that there is no difference between calling an operation in Geofront, and calling the function in the javascript-wrapped library.
   This allows a Geofront pipeline to be compiled to javascript, completely eliminating any explicit dependency to the 
   Geofront platform, the VPL model, or the \ac{GUI}.
   This is why Geofront can claim to use 'zero cost abstraction'.
-  \subitem \textbf{Caveat}: The zero-abstraction library system led to complication for incorporating C / C++ libraries.
+  \subitem \textbf{Shortcoming}: The no-boilerplate plugin system led to complication for incorporating C / C++ libraries.
   Additionally, the current implementation of the javascript converter requires improvement, as currently, it does not operate on complex Geofront Widgets. 
  
   \item \textbf{Locality}: The VPL prototype is designed as a Dataflow VPL, which shares characteristics with functional programming. This leads to source code which can be reasoned about in a local manner, instead of a global one. This allow for parallelization.
-  \subitem \textbf{Caveat}: The freedom of the zero-abstraction plugin system, combined with javascript limitations, made it so the functional programming properties of this DataFlow VPL could not be strictly enforced. 
+  \subitem \textbf{Shortcoming}: The freedom of the no-boilerplate plugin system, combined with javascript limitations, made it so the functional programming properties of this DataFlow VPL could not be strictly enforced. 
   Plugins must be trusted not to alter immutable input data, or call global, state-altering functions.
     
 \end{enumerate}
@@ -151,9 +162,9 @@ Three measures were conceptualized and successfully implemented. However, all me
   \item 5. "\myNewSubRQFive"
 \end{itemize}
 
-\begin{note}
-  TODO rewrite, this is a copy-paste from the overall conclusion!!
-\end{note}
+% \begin{note}
+%   TODO rewrite, this is a copy-paste from the overall conclusion!!
+% \end{note}
 
 Compared to the studied browser-based web applications, this method is more composable thanks to the dataflow-VPL implementation, 
 and compared to the studied native VPLs, these functionalities are much more directly available because of the static, web based implementation.
@@ -211,17 +222,19 @@ All of these features combined lead to a VPL which is able to directly connect \
 
 Based on the answers to all supporting questions, The answer is a careful \textbf{yes}.
 
-A web-based VPL is a feasible method for providing direct access to native \ac{GIS} libraries.
-The method is indeed capable of bringing native GIS capabilities from libraries directly into contact with end users, from within an application, without installation or configuration, and in a further composable manner. 
+% A web-based VPL is a feasible method for providing direct access to native \ac{GIS} libraries.
+The method is indeed capable of bringing native GIS capabilities from certain  libraries directly into contact with end users, from within an application, without installation or configuration, and in a further composable manner. 
 Compared to browser-based web applications, this method is more composable thanks to the dataflow-VPL implementation, 
-and compared to the studied native VPLs, these functionalities are much more directly available because of the static, web based implementation.
+and compared to the studied native VPLs, these functionalities are more directly available because of the static, web based implementation.
 The method is also unique compared to studied web-based geometry VPLs, because of the plugin system, the range of different \ac{GUI} nodes, the dataflow VPL properties, and the proposed zero-cost abstraction runtime. 
 All of these features combined lead to a VPL which is able to directly connect \ac{GUI} components with native \ac{GIS} libraries, all while remaining scalable in principle.
 
 On a practical level, more work remains to proof this feasibility.
-The methodology developed by this study is only \emph{theoretically} more accessible and composable, based on achieved features.
-User-testing is required to answer if this method indeed improves workflows, and actually saves time and energy of \ac{GIS} end users. 
-Moreover, the specific software implementation used is prototypical and not production ready, and various aspects, such as the plugin system with regards to C / C++ \ac{GIS} libraries, and the zero-cost abstraction runtime, can be improved upon in future work.
+The methodology developed by this study is only \emph{theoretically} accessible and composable, based on achieved features. 
+User-testing is required to confirm if this method indeed improves workflows, and actually saves time and energy of developers and end users. 
+Moreover, the prototypical software implementation used is limited and not production ready.
+The 'no-boilerplate' plugin system cannot be used with C / C++ \ac{GIS} libraries, currently, but this might be fixed when the emscripten compiler adopts the Interface Types proposal. 
+Additionally, the zero-cost abstraction runtime is non-functional, and must be improved upon in future work.
 
 Despite all of this, based on the completed work, it is safe to say that visual programing methods, distribution using WebAssembly, and Rust-based geocomputation, all remain promising, valuable directions of future \ac{GIS} research.
 
@@ -490,7 +503,7 @@ Additionally, rust Wasm binaries also tend to be smaller than C++ wasm binaries.
 
 This could be very interesting to the "cloud-native geospatial" movement. 
 This \ac{GIS} movement aims to create the tools necessary to send geocomputation to servers, rather than sending geodata to the places where they are processed.
-To do this, geocomputation must become much more portable than it currently is, and Rust compiled to WebAssembly might proof to be a strong candidate for creating exchangeable, performant, compact, and error-proof binaries.
+To do this, geocomputation must become more portable than it currently is, and Rust compiled to WebAssembly might proof to be a strong candidate for creating exchangeable, performant, compact, and error-proof binaries.
 It already sees usage on both cloud and edge servers (State of WebAssembly, 2022).  
 
 Therefore, studying Rust-based geocomputation for the purpose of cloud native and edge computing, would be a promising topic for subsequent research. 
@@ -604,13 +617,13 @@ After all, if a user is unable to convert retrieved geodata to their particular 
 % If I were to attempt to name this trend, I would
 
 
-\begin{note}
+% \begin{note}
   
-recommendations: 
-- go native, since it is better suited for these types of applications
-  - native VPL 
-  - use a native GUI library
-\end{note}
+% recommendations: 
+% - go native, since it is better suited for these types of applications
+%   - native VPL 
+%   - use a native GUI library
+% \end{note}
 
 \section{Reflection}
 \label{sec:reflection}
@@ -624,25 +637,21 @@ it could be that C++ was judged unfairly, due to the authors personal inexperien
 Many complications were encountered during compilation, leading to extensive editing of makefiles and attempts at recompiling forked subdependencies of CGAL using 'hacky fixes'.  
 It is unknown how much of this was due to personal C++ inexperience, inflexibility of the libraries in question, or the shortcomings of the toolchain. 
 
-Despite this, the study still did everything to make the judgement as non-biased as possible.
+Despite this, the study performed steps to make the judgement as non-biased as possible.
 Preliminary studies were conducted with both languages, and additional C++ courses were followed. 
 
 It could even be the case that this particular study is more fair than a study conducted by authors with more experience with C++, 
 since before the assessment between Rust and C++, approximately the same amount of time was spent with both languages. 
 
-\textbf{Scope too large}
+\textbf{Scope too wide}
 
-\begin{note}
-  HUGO: (not sure if he likes this or disaproves, clean it just in case)
-\end{note}
-
-Additionally, the scope generated by combining geocomputation, web applications and vpls, might have been too extensive. 
+Additionally, the scope generated by combining geocomputation, web applications and VPLs, might have been too extensive. 
 This is evident in the number of 'supporting studies' conducted, and the sizable workload of the implementation.
-It might have been better to focus the scope of the thesis down to only 'browser-based geocomputation', or 'visual programming and geo-computation', or 'geocomputation using rust', to allow for a more in-depth analysis.
+A better approach might have been to focus the scope of the thesis down to only 'browser-based geocomputation', or 'visual programming and geo-computation', or 'geocomputation using rust', to allow for a more in-depth analysis.
 
-Then again, the core of the contribution of this thesis lies precisely in the attempt to connect these subjects,
+On the other side, the core of the contribution of this thesis lies precisely in the attempt to connect these subjects,
 especially since prior studies remained by en large closely scoped to their respective domains.
-The hypothesis was that synergies exist, and that each separate domain stand to gain much from the ideas and knowledge found in the other ones. 
+The hypothesis was that a certain synergy may exist, and that each separate domain stand to gain from the ideas and knowledge found in the other ones. 
 In order to make this possible, the study had to acquire a scope to explore all in-between synergies and interactions, leading to geo-vpls, web-vpls, and browser-based geocomputation. 
 Now that this study has made these connections explicit, future studies can focus on more precise aspects of these cornerstones again.
 
@@ -659,15 +668,15 @@ Then, the question could be specified to \emph{geometry} and \emph{geo-web-vpl}.
 And only after that, the geodata and geoprocessing libraries specific to the field of GIS could be regarded. 
 By doing so, this study wishes to provide a foundation to assist any subsequent future study in this direction, which can then be more GIS focussed.
 
-\textbf{Imbalance between software implementation and study}
+% \textbf{Imbalance between software implementation and study}
 
-The fourth 'danger' which remained an ongoing balancing act during the execution of this study, is the balance between 'performing a study' and 'developing an application'. 
-Indeed, many of the aspects discussed throughout this study come down to implementation aspects of the geofront application. 
+% The fourth 'danger' which remained an ongoing balancing act during the execution of this study, is the balance between 'performing a study' and 'developing an application'. 
+% Indeed, many of the aspects discussed throughout this study come down to implementation aspects of the geofront application. 
 
 % PROBLEM: WHAT DO I TEST??
 
-This is why the study has attempted to generalized its findings as much as possible.
-Geofront is regarded as a proxy of geo-web-VPLS in general, in the sense that whatever was encountered during implementation of the application, must be the same for any attempt at creating a web-based vpl for geocomputation.
+% This is why the study has attempted to generalized its findings as much as possible.
+% Geofront is regarded as a proxy of geo-web-VPLS in general, in the sense that whatever was encountered during implementation of the application, must be the same for any attempt at creating a web-based vpl for geocomputation.
 
 
 \textbf{Subjectivity in qualitative assessment}

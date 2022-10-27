@@ -242,10 +242,6 @@ range of functions.
 It offers CGAL processes like alpha shape, triangulation and line simplification, as well as direct visualization of in-between products.
 Geoflow was used to model the 3D envelope of a building based on a pointcloud, which was subsequently scaled up in the creation of the 3D BAG dataset \citep{peters_geoflow_2019}.
 
-\begin{note}
-  Build something like a table with checkboxes of features included in other VPLs
-\end{note}
-
 % In comparison with the three aforementioned \ac{GIS} vpls, geoflow is much richer 
 
 \begin{figure}
@@ -310,14 +306,15 @@ One interesting fact is that we see a great number of parallels among all these 
 \end{itemize}
 Moreover, the persistence of visual programming within these computer graphics fields, suggests that visual programming languages are advantageous for calculations dealing with 2D and 3D data.
 
-The study speculates that this might be the case, because all these vpls, with exception to the behavior vpls, are essentially dealing with "functional data pipelines".
-No distributed systems or event driven architectures, just one calculation from start to finish, to produce a desired product.  
+One can only speculate why this might be. 
+One hypothesis is that all these VPLs, with exception to the behavior VPLs, are essentially dealing with "functional data pipelines".
+These VPLNo distributed systems or event driven architectures, just one calculation from start to finish, to produce a desired product.  
 However, the sheer amount of possible steps within these pipelines, together with the challenges of fine-tuning many relevant parameters, and the importance of inspecting in-between products visually, do not allow these pipelines to be configured by conventional UI's. 
 However, a \ac{VPL} does deliver these features.
-% vpls allow rapid debugging, rapid experimentation, and the straight-forward nature of 2D/3D pipelines mitigate the challenge vpls have with representing imperative flow statements (\m{if, else, for, while, break}). 
+% VPLs allow rapid debugging, rapid experimentation, and the straight-forward nature of 2D/3D pipelines mitigate the challenge VPLs have with representing imperative flow statements (\m{if, else, for, while, break}). 
 
 \subsubsection*{Material VPLs}
-By far the most commonplace type of vpl present in computer graphics are material Vpls. 
+By far the most commonplace type of VPL present in computer graphics are material VPLs. 
 In this context, the concept "material" often refers to a combination of 2D textures and shaders. 
 These include PBR settings, normal maps, bump maps, and / or custom shader programs. 
 The repetitive and time-consuming nature of manually creating textures, and the fact that some of these material properties can be inferred from each other, lead many CG applications to develop \ac{VPL}s for this particular purpose. 
@@ -336,12 +333,12 @@ The repetitive and time-consuming nature of manually creating textures, and the 
 
 Procedural Geometry \ac{VPL}s are not far behind the material \ac{VPL}s in terms of popularity.
 Applications like Blender's geometry nodes \citep{blender_foundation_geometry_2022}, Rhino's Grasshopper \citep{rutten_grasshopper_2012}, or Houdini \citep{sidefx_houdini_2022}, are all widely used to automate the creation of geometry. 
-Where Houdini and Blender's vpls are primarily used in games and special effects, Grasshopper sees usage in the Architecture, Engineering and construction industry. 
+Where Houdini and Blender's VPLs are primarily used in games and special effects, Grasshopper sees usage in the Architecture, Engineering and construction industry. 
 In this field, procedural geometry is often referred to as "parametric design".
 
 Alicevision's Meshroom application must also be mentioned \citep{alicevision_meshroom_2022}.
-While this can be regarded as procedural modelling, the complexity and computation involved in photogrammetry make a vpl offering it a class in of itself. 
-The vpl inside of Meshroom can be used to fine tune all stages of the 3D reconstruction process.
+While this can be regarded as procedural modelling, the complexity and computation involved in photogrammetry make a VPL offering it a class in of itself. 
+The VPL inside of Meshroom can be used to fine tune all stages of the 3D reconstruction process.
 
 \begin{figure}
   \centering
@@ -353,7 +350,7 @@ The vpl inside of Meshroom can be used to fine tune all stages of the 3D reconst
 \end{figure}
 
 \subsubsection*{Behavioral VPLs}
-The behavioral and logical vpls found in applications such as Unreal's Blueprint \citep{epic_games_blueprints_2022} and Unity's Bolt \citep{unity_technologies_bolt_2021} are less relevant to the activity of geocomputation.
+The behavioral and logical VPLs found in applications such as Unreal's Blueprint \citep{epic_games_blueprints_2022} and Unity's Bolt \citep{unity_technologies_bolt_2021} are less relevant to the activity of geocomputation.
 However, one interesting property worth mentioning, is that these languages have actually designed a way for end-users to define imperative flow statements, since these could not be overlooked for behavior and logic.
 \refsec{sec:background-vpl} named conditions and loops as one of the challenges of diagram-based vpls. 
 These languages both attempted to solve this problem by introducing a special "flow state" variable. 

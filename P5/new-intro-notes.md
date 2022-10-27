@@ -50,14 +50,55 @@ Wednesday:
 
 Thursday
 - [X] abstract 
-- [ ] fix front page
-- [ ] add dramatic image to intro
-- [ ] intro: add more images
-- [ ] intro: make sure sources are made 
-- [ ] intro: write where writing is needed
+- [x] fix front page
+- [x] add dramatic image to intro
+- [x] intro: add more images
+- [x] intro: make sure sources are made 
+- [x] intro: write where writing is needed
 
-- [ ]   
 
+- [ ] build a fake P5 to send to administration 
+  - [ ] DAG UML thing
+  - [ ] C++ minimum example
+  - [ ] Rust minimum example
+  - [ ] Rust: exclude STD
+
+
+# overall
+[ ] capitalize VPL everywhere!
+[ ] capitalize GIS everywhere! 
+
+# 0 front
+[x] abstract
+[x] aknowledgements
+[ ] sort acronyms
+
+# 1 intro 
+[ ] Do the scope limitations still count? 
+
+# 2 background
+[ ] make a clear tier lists of VPLs ?
+
+# 3 related works
+[ ] seems ok...
+[ ] check read just in case
+
+# 4 methodology
+[ ] connect the new stuff with the old stuff
+[ ] 
+
+# 5
+[ ] 
+
+# 6 tests
+[ ] TODO: make this better
+   [ ] HUGO: please explain interfacing troubles better
+
+
+# 7 
+[ ] 
+[ ] Scope too large
+164 HUGO: ( not sure i f he l i k e s t h i s or disaproves , c l e a n i t j u s t i n c a s e )
 
 
 

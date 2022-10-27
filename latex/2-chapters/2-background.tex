@@ -8,15 +8,6 @@
 \label{chap:background}
 
 
-\begin{note}
-
-  what does it mean to design a VPL?
-  What does it mean to design a VPL for computational geometry and Computer Graphics (CG)?
-  what does it mean to design a VPL for GIS?
-  What does it mean to design a VPL for web-based, cloud-native GIS?   
-  
-\end{note}
-
 This chapter offers an overview of the theoretical background that this study builds upon.
 The study takes place at the intersection of three prior bodies of work:
 \begin{enumerate}[-]
@@ -209,24 +200,21 @@ This study is focussed on the web usage of WebAssembly, and will treat it with m
 
 \subsection*{Limitations}
 
-\begin{note}
-  Look carefully at this
-\end{note}
-
 \emph{In principle}, and if the appropriate compilers exist, any application and library written in any language can be compiled to WebAssembly. 
 In practice, there are quite a few caveats to the format. 
-These limitations can be split up into two groups: 
-Limitations due to the web platform, and limitations due to the current state of the language and its host.
 
-First of all, WebAssembly is required to adhere to the same containerization restrictions as javascript and the web at large. 
+First of all, WebAssembly is required to adhere to containerization restrictions.
 There is no '\m{os}' or '\m{sys}' it can call out to, as it cannot ask for resources which could be a potential security risk, like the file system.
-Secondly, WebAssembly is in its early phases as a language, and is intended as a simple, low-level compile target. 
-This leads to limitations like how only simple, numerical values can be used when interfacing with \ac{wasm} functions, as well as the fact that the current version does not support concurrency features like multithreading.
+Secondly, WebAssembly is in its early phases as a language, and is intended as a low-level compile target. 
+This leads to limitations like how only simple, numerical values can be used when interfacing with \ac{wasm} functions.
+In the future, the WebAssembly Interface Types proposal will also allow interfacing with more complex types \citep*{wagner_interface_2022}.
+Lastly the current version of WebAssembly does not support concurrency features like multithreading.
 
-Many of these shortcomings can be mitigated by calling JavaScript using HTML5 features from WebAssembly. 
+This last shortcoming can be mitigated by calling JavaScript using HTML5 features from WebAssembly. 
 This is how many current WebAssembly projects are set up. 
 However, this layer of javascript 'boilerplate' or 'glue code' is inefficient, as it leads to duplication and redirection.
 Additionally, platforms wishing to support WebAssembly must now also support javascript. 
+
 
 \subsection*{Performance}
 
@@ -351,6 +339,13 @@ Even though geocomputation can fall in the category of scientific computation, t
 \section{Visual Programming}
 \label{sec:background-vpl}
  
+% \begin{note}TODO
+%   what does it mean to design a VPL?
+%   What does it mean to design a VPL for computational geometry and Computer Graphics (CG)?
+%   what does it mean to design a VPL for GIS?
+%   What does it mean to design a VPL for web-based, cloud-native GIS?   
+% \end{note}
+
 This section offers an overview on the topic of visual programming, after which \refsec{sec:related-geovpl} and \refsec{sec:related-webvpl} cover uses of visual programming in geocomputation and on the web, respectively. 
 
 \subsection*{Visual programming languages}
@@ -442,7 +437,7 @@ higher-level operators reduce the need for awkward combinations of primitives;
 and the order of activity is freer, so that programmers can proceed as seems best in putting the pieces of a program together."}. 
 Indeed, a vpl UI can be used to eliminate whole classes of errors on a UI level by, for example, not allowing the connection of two incompatible data types. 
 
-These properties together make visual programming also highly suitable for activities of \textbf{experimentation} and \textbf{debugability}, and not only for end users. 
+% These properties together make visual programming also highly suitable for activities of experimentation and debugability, and not only for end users. 
 
 % ADVANTAGE: PLAYFULNESS
 
