@@ -1,15 +1,17 @@
 \chapter*{Abstract}
 
-The results of GIS research often takes the form of software libraries, written in system level languages. 
-A number of these libraries, including  proj, GDAL, or CGAL, play a foundational role of almost all GIS tooling.
-However, for end users, many of those libraries are usable only to a limited extend.
-Features and performance get 'lost in translation' within bindings and plugins, and the applications end-users are left with are often not composable to the same degree as the libraries. 
+In the field of \ac{GIS}, transformation and analysis tools often take the shape of software libraries, written in system level programming languages. 
+A number of these libraries, like PROJ, GDAL, and CGAL, play a foundational role in almost all \ac{GIS} software applications.
+However, for end users, these libraries are only usable to a limited extend.
+When these libraries are distributed to other languages and applications, 
+features and performance get 'lost in translation'.
+Additionally, the applications end-users are left with are often not composable to the same degree as the libraries. 
 % Performance and features get 'lost in translation' when using bindings for a different programming language, when using a plugin within an application, or worse, both.  
 % Additionally, the application end-users are left with are often not composable with other applications, leading to labor intensive workflows.  
 At the same time, maintainers of core libraries often find themselves in the situation of having to maintain and synchronize a great number of bindings and plugins, which limits innovation.
 The limited reach of these libraries translates to a reduced societal impact, and with it, the research these libraries are based upon.
 
-As such, the goal of this study is to make core GIS libraries more directly available to end-users.
+As such, the goal of this study is to make core \ac{GIS} libraries more directly available to end-users.
 % This study presents and prototypes a novel method which allows \ac{GIS} practitioners without a background in software development, to access the full potential of core transformation and analysis capabilities found in native \ac{GIS} libraries.
 % That is based on visual programming, and static web applications. 
 % The study attempts to meet this goal by designing and implementing a 
@@ -17,19 +19,19 @@ As such, the goal of this study is to make core GIS libraries more directly avai
 % The prior works on static geo-web applications and \ac{GIS} \ac{VPL}s indicate that a strong theoretical framework is in place.
 % But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
 % This necessitates a practical approach in response. 
-This study presents and prototypes a novel method, centered around a visual programming language to host the functionalities of GIS libraries from within an application, and in a composable manner. 
+This study presents and prototypes a novel method, centered around a visual programming language to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. 
 Additionally, the visual language is used to connect these libraries to a user-definable graphical user interface. 
 This prototype is implemented as a static web application, so that these libraries are directly accessible to end users without installation or configuration. 
 % Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
-WebAssembly is used so that GIS libraries written in native languages only have to write one generic binding, which then can be used in any language, including this prototypical, web based visual language, thanks to a 'no boilerplate' plugin system. 
+WebAssembly is used so that \ac{GIS} libraries written in native languages only have to write one generic binding, which then can be used in any language, including this prototypical, web based visual language, thanks to a 'no boilerplate' plugin system. 
 % WebAssembly is also used to run  resorting to active backend web services. 
-Finally, as this prototype is intended for GIS usage, both scalability to handle sizable datasets, and rich GUI support (3D viewers, file inputs, sliders), are primary design considerations and assessment criteria.
+Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and a rich \ac{GUI} (3D viewers, file inputs, sliders), are primary design considerations and assessment criteria.
 % be used without
 % Using this, ...
 % indeed 
 
 The results of the study are carefully positive. 
-This specific web-based VPL appears to be a feasible method for providing direct access to native \ac{GIS} libraries, and offers a unique set of features not found in comparable visual languages. 
+This specific web-based VPL appears to be a feasible method for providing direct access to some native \ac{GIS} libraries, and does offer a unique set of features not found in comparable visual languages. 
 The significance of this method, compared to other web-based geometry VPLs, lies in the fact that it offers a 'no-boilerplate' plugin system, in combination with a range of different \ac{GUI} nodes, certain "dataflow VPL" properties, and a proposed zero-cost abstraction runtime. 
 All of these features combined lead to a VPL which is able to directly connect \ac{GUI} components with native \ac{GIS} libraries, all while remaining scalable in principle.
 
@@ -45,7 +47,7 @@ Despite this, it is safe to say that visual programing methods, distribution usi
 % The study concludes by addressing if the method meets the overarching goal.
 
 
-% Geocomputation is a cornerstone of GIS \& modern mapping needs.
+% Geocomputation is a cornerstone of \ac{GIS} \& modern mapping needs.
 % While the last decades have seen major advancements, writing a geocomputational pipeline remains a complex, non-trivial exercise. 
 % Performing geocomputations by utilizing a visual programming language (VPL) within a web browser is a novel development which seeks to simplify this process, allowing more people to write these types of pipelines more successfully.
 % It would, in theory, allow end-users to author geocomputation pipelines, without the need of a software development background, and without the need to install software.
