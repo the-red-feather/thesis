@@ -2,6 +2,16 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
+\begin{note}
+  I NEED TO MENTION THE FOLLOWING THINGS:
+  [ ] SHOW AMBIGUITY BETWEEN LIBRARY AND Application
+  [ ] EXPLAIN NO-boilerplate
+  [ ] EXPLAIN GENERIC BINDING (SAME THING)
+  [ ] EXPLAIN JAVASCRIPT RUNTIME & COMPILATION (chapter 5)
+     [ ] refer back to it, find and replace in chapter 7.
+      
+\end{note}
+
 % This study consists of a design of the proposed method, an implementation of this design, and several test to assess this implementation. 
 This chapter present the design of the proposed method
 
@@ -445,86 +455,13 @@ In other words, the requirements of the WebAssembly compiler compatible with the
 Both the C++ and Rust compilers require functions to be flagged explicitly for compilation. 
 Additionally, for a library to be compilable, all dependent libraries must also be able to compile to wasm.
 For C++, the Emscripten compiler can be used to compile to WebAssembly \citep*{emscripten_organization_emscripten_2022}. 
-A minimum example of what a 'emscripten-ready-library' looks like can be seen in \reffig{fig:minimum-cpp-wasm}.
+% A minimum example of what a 'emscripten-ready-library' looks like can be seen in \reffig{fig:minimum-cpp-wasm}.
 
 For Rust, the 'wasm-pack' and 'wasm-bindgen' toolkits enable \ac{wasm} compilation \citep{contributors_wasm-bindgen_2022,contributors_wasm-pack_2022}.
-A minimum example of what this looks like can be seen in \reffig{fig:minimum-rust-wasm}.
+% A minimum example of what this looks like can be seen in \reffig{fig:minimum-rust-wasm}.
 These toolkits do not require incremental compilation steps.
 What is needed, however, is to make sure all dependencies do not use incompatible features, like os file system access. 
 Fortunately, most Rust libraries are written with 'no-std' use-cases in mind, and contain flags to easily exclude these features. 
-
-\begin{figure}
-\centering
-\begin{code}
-#include <emscripten/bind.h>
-#include <cmath>
-
-using namespace emscripten;
-
-float add(float left, float right) {
-    return left + right;
-}
-
-class Point {
-public:
-    double x;
-    double y;
-
-    Point(double x, double y) :
-        x(x),
-        y(y) {}
-
-    double distance(Point other) {
-        return std::pow(
-            std::pow(x - other.x, 2) + std::pow(y - other.y, 2), 
-            0.5);
-    }
-};
-
-EMSCRIPTEN_BINDINGS(cpp_min) {
-    function("add", &add);
-    class_<Point>("Point")
-        .constructor<double, double>()
-        .function("distance", &Point::distance)
-        .property("x", &Point::x)
-        .property("y", &Point::y);
-}
-\end{code}
-\caption{C++: Minimum WebAssembly example}
-\label{fig:minimum-cpp-wasm}
-\end{figure}
-
-\begin{figure}
-\begin{code}
-use wasm_bindgen::prelude::*;
-
-#[wasm_bindgen]
-pub fn add(left: f32, right: f32) -> f32 {
-    left + right
-}
-
-#[wasm_bindgen]
-pub struct Point {
-    pub x: f32,
-    pub y: f32,
-}
-
-#[wasm_bindgen]
-impl Point {
-
-    pub fn new(x: f32, y: f32) -> Point {
-        Point { x, y }
-    }
-
-    pub fn distance(&self, other: &Point) -> f32 {
-        ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).powf(0.5) 
-    }
-}
-\end{code}
-\centering
-\caption{Rust: Minimum WebAssembly example}
-\label{fig:minimum-rust-wasm}
-\end{figure}
 
 \subsubsection{Wrapping}
 
@@ -629,6 +566,8 @@ With both the VPL and the plugin system in place, the final step of the methodol
 % \end{note}
 
 \subsection{Compilation Tests}
+\label{sec:method:tests:compilation}
+
 To test the ability of the VPl and the plugin system to host different libraries and different languages, four demo plugins are compiled and loaded within the VPL.  
 The Rust language and C++ are tested. 
 Per test, the workflow layed out in \refsec{sec:method:plugin-system} is followed. 
@@ -715,24 +654,33 @@ It also, just like CGAL, makes use of a high precision kernel, and offers geomet
 
 % \subsubsection{Second Experiment
 
+\subsection{Feature Comparrison}
+\label{sec:method:tests:features}
+
+In this third set of tests, the achieved functionality of Geofront is compared with the functionality of existing VPL methods. 
+This comparisons is made on the base of features relevant to the goal of this study:
+\begin{itemize}[-]
+  \item Does the VPL allow for plugins: Third party 'nodes'?  
+  \item In which language must a third party plugin be written?
+  \item Can third party nodes use customly defined types, such as a new class or struct?
+  \item Can the VPL be run headless, that is to say, without the \ac{GUI}?
+  \item Is the VPL accessible as a static web application?
+  \item Does the VPL contain GIS-specific nodes by default?
+  \item Does the VPL contain \ac{GUI} nodes, so that users can build custom interfaces?
+\end{itemize}
+
 \subsection{Usage tests}
 
 % The second set of tests seek the data needed to answer the question of \mySubRQFourTitle: \mySubRQFour.
-To acquire this data, an application will be created using the VPL, which will be subjected to a qualitative assessment. 
 
-\subsubsection{Feature Assessment}
+This final set of tests are meant to analyze the usability of the visual language itself. 
+It allows us to understand the advantages and disadvantages of the more granular language design decisions.
 
-\emph{Per requirement, to what extent is it successfully implemented by this dataflow-VPL?}.
-\emph{Per requirement, which role did the core browser features play in supporting or hindering it?}.
-
-\subsubsection{Assessment Framework}
-For the assessment criteria, the cognitive dimensions framework of \cite[]{green_usability_1996} will be used. 
+For the assessment criteria, the cognitive dimensions framework of \citet{green_usability_1996} will be used. 
 The framework is useful for its focus on language features. 
-This allows the assessment to be made within the scope of this study, and without performing user-testing.
 Also, as commented on in \refsec{sec:background-vpl}, the study has acquired a canonical nature among many VPL researchers for its elaborate examination of the "Psychology of Programming".
-The age of the study indicates that the principles have stood the test of time. 
 
-The framework presents the following 13 dimensions and accompanying descriptions \cite[]{green_usability_1996}:
+The framework presents the following 13 dimensions and accompanying descriptions \citep{green_usability_1996}:
 \begin{enumerate}
   \item Abstraction gradient: What are the minimum and maximum levels of abstraction? Can fragments be encapsulated? 
 
@@ -761,7 +709,7 @@ The framework presents the following 13 dimensions and accompanying descriptions
   \item Visibility: Is every part of the code simultaneously visible (assuming a large enough display), or it it at least possible to juxtapose any two parts side-by-side at will? If the code is dispersed, is it at least possible to know in what order to read it?
 \end{enumerate}
 
-As stated by the authors; the purpose of this framework is to make the trade-offs chosen by a language's designer explicit. It is not meant as a 'scoring' system.
+As stated by the authors; the purpose of this framework is to make the trade-offs chosen by a language's designer explicit. It is not meant as a 'scoring' system \citep{green_usability_1996}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -10,7 +10,7 @@
 % many promising use-cases, such as on-demand geodata processing apps, educational demo apps, and code sharing. 
 % However, extensive user-group testing is required before any definitive statements on accessibility and fitness for geo-computation can be made.  
 
-This chapter contains the conclusion of this study. 
+This chapter contains the conclusion of the study. 
 It starts out by answering the research questions posed in the introduction (\refsec{sec:conclusion}), followed up by a summary of the most significant contributions (\refsec{sec:contribution}) and the limitations of these contributions (\refsec{sec:limitations}).
 It continues by addressing points of discussion about this study (\refsec{sec:discussion}), which is followed by a number of theorized implications of this study (\refsec{sec:future-work}), and lastly, a reflection on the value and quality of this study
 (\refsec{sec:reflection}).
@@ -40,10 +40,25 @@ It starts with answering the sub research questions, and concludes with the answ
   \item 1. "\myNewSubRQOne"
 \end{itemize}
 
+It turned out that two layers of \ac{GUI} features had to be created:
+
+\textbf{Framework application}: Firstly, a base application was required to host the visual programming language, which needed to provide support for multiple windows, dropdown menu's, side menu's etc.
+For this, a custom framework using Web Components was created, due to the absence of a desktop application-like framework in the javascript ecosystem. 
+However, this did not provide the same level of tooling as a library like IMGUI \citep{cornut_dear_2022} or egui \citep{ernerfeldt_egui_2022}.
+Because of this, in this area, the web context lead to a sub-optimal experience.
+
+\textbf{The VPL}: Secondly, UI elements were required to form the interactive elements of the visual program itself. 
+This GUI was given shape using a custom implementation. 
+DOM events were used as inputs, and the Canvas API provided a way to visualize the VPL.
+The web context provided two advantages here.
+Firstly, a javascript program can access a large amount of features by default, such as this canvas API, but also WebGL. 
+These features do not need to be included within the source code of the application, leading to quick load times. 
+Secondly, by using \m{iframe's} and window pop-ups, the web context could be utilized to integrate third party UIs in a simple manner, as demonstrated with the Potree demo in \refsec{sec:testing:demo}.
+Summarized, for this second set of \ac{GUI} features, the web platform was advantageous.
+
 % Overall, the browser appears to be capable of representing a dataflow-type vpl graph to an acceptable degree, 
 % based on the implementation presented in \refsec{sec:implementation:app}.
-% The browsers biggest advantage for an application like this is the amount of features a javascript program can use by default, like the 2D canvas api, the DOM, and WebGL. 
-% These features do not need to be included within the source code of the application, leading to quick load times. 
+
 % All three of these features proved to be vital, and were performant enough to support an application like this. 
 % Only the 2D canvas Api can become slow when rendering a great number of components. 
 
@@ -52,15 +67,6 @@ It starts with answering the sub research questions, and concludes with the answ
 % However, TypeScript's limited type support at runtime, the absence of explicit immutability, and the limited precision in general (no integer atomic, only \m{number}), all hindered the implementation of the VPL model proposed.   
 
 % % While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no meaningful distinction between number types (\m{int, float, double}), for example.
-
-Two 'layers' of \ac{GUI} features had to be created:
-
-\textbf{Framework application}: Firstly, a base application is required to host the visual programming language.
-This need to provide all basic application features, like saving, loading, undoing and redoing.
-
-\textbf{The VPL}: Secondly, UI elements are required to form the interactive elements of the visual program itself. 
-This forms a layer independent from the framework application, and will require a custom set of \ac{GUI} features. 
-That is to say, a text field within the framework is not the same as a text field within the visual program.
 
 % \begin{note}
 % IMPORTANT
@@ -84,22 +90,21 @@ That is to say, a text field within the framework is not the same as a text fiel
   \item 2. "\myNewSubRQTwo"
 \end{itemize}
 
-The implementation was able to address three 'disconnects' between software libraries and applications, mentioned by \citet*{elliott_tangible_2007}: 
+Based on the features presented at \refsec{sec:testing:demo} and \refsec{sec:testing:features}, it can be stated that
+the implementation was able to address all three discrepancies to a certain extent:
 
-\textbf{1. Library capabilities get lost when used in an Application}:
-Using the plugin workflow, all functions which are exposed for wasm compilation can be accessed by a user. No capabilities get 'lost in translation'.
-Of course, this does mean that unannotated functions cannot be used. 
+\textbf{1. Library capabilities get lost when used in an application}:
+Because of the plugin system of this methodology, all functions which are included in a wasm compilation can eventually be accessed by a user. 
+Additionally, the plugin boilerplate comparison of \refsec{sec:testing:features} showed that the no-boilerplate setup makes it simpler to add a new library as a plugin. 
+Both features combined may lead to less features ending up 'lost in translation'.
 
 \textbf{2. Applications are not further composable}:
-The implementation can indeed be used make web applications composable, evident from the demo application presented in \refsec{sec:testing:demo}.
+The implementation showed that a web-based VPL can make existing applications composable, evident from the demo application presented in \refsec{sec:testing:demo}.
 In this example, the Potree application was composed within a pipeline to extract a DTM or DSM, while retaining full functionality as a standalone application.
 
 \textbf{3. A library offers no visualization or GUI by itself, and must be turned into an application before it can be used}:
-The Geofront implementation indeed allows end users to access functions within library without it 
-
-While this problem is not fully adressed, the Geofront implementation does act as a "custom GUI for all libraries". 
-This means end users cannot 
-In practice, 
+Because the method presented in this study succeeded in combining \ac{GUI} components with low-entry barrier plugins, and because it allows the usage of unaffiliated WebAssembly projects, Geofront pipelines may act as a "custom GUI for any library" to an extend. 
+In that sense, end users will only have to wait for a WebAssembly build, instead of a full application, before they are able to access a libraries content.
 
 \begin{itemize}[ ]
   \item 3. "\myNewSubRQThree"
@@ -110,52 +115,61 @@ In practice,
 % Despite this, the study wás able to demonstrate how a novel method can be used to  \emph{compile} and \emph{load} a Rust-library for usage in the VPL.
 % While not many contemporary geocomputation libraries are written in Rust, the study offers this method to either offer emscripten contributors a blueprint of a desired workflow, or to offer geocomputation library contributors a powerful use-case for the Rust language. 
 
-The conclusion of this component of the study is a dillema between C / C++ and Rust.
-Based on the experiments and analysis in \refsec{sec:testing:compilation}, it can be concluded that most contemporary, C/C++-based geocomputation libraries cannot be sufficiently compiled in a manner which would have allowed them to be loaded within the web-VPL.    
-This is due to the focus of the emscripten compiler, combined with the implementation requirements of this particular web-based VPL.
-Emscripten can be used to compile full-scale C++ applications, and offers an emulation of a POSIX environment.
-However, it lacks support for compiling libraries themselves, compared to other wasm-library compilers.
-libraries generated with emscripten's 'embind' tool use irregular syntax, which troubles its ability to be loaded programmatically.
-While web implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type vpl requiring pure functions.
-Finally, the experiments recognized certain discrepancies between the novelty of the WebAssembly format, juxtaposed to 50-year-old legacy of the C++ language, leading to larger wasm binaries, and less performant bindings compared to Rust.
+The differences between C++ and Rust compilation are caused by the \\ difference in their respective WebAssembly compilers:
+C / C++ requires the usage of emscripten and embind. 
+Rust requires the usage of wasm-pack, and wasm-bindgen.
 
-The study was able to provide a solution to these compilation shortcomings by expanding the range of 'system-level languages' beyond C and C++. 
-The Rust programming language offers a performance and level of control similar to C++, but its \m{wasm-bindgen} toolkit offers better wasm-library support. 
-Using this toolkit, the study could successfully expose a native geocomputation library in a manner properly consumable by a web-vpl.
-Regrettably, not many rust-based geocomputation libraries are written in pure rust, and the general pool of existing geocomputation libraries is limited due to the novelty of the language. 
+In the experiments performed by this study, significant differences were encountered between these compilers in terms of file size, supported features, and the performance of the produced 'glue code'.
+The results of \refsec{sec:testing:compilation} showed that the emscripten compiler produced a binary which requires more than three times the size of the same functionality compiled with wasm-pack.
+Interfacing this binary with JavaScript was between six and seven times as slow compared to the rust equivalent.
 
-Thus, the conclusion is a dilemma between Rust and C++.
-C++ has a strong foundation of existing geocomputation libraries compared to newer languages like Rust.  
-However, this same legacy inhibits its portability, which makes it harder to compile to web browsers. 
-Rust is for the forseeable future a better choice for writing easily consumable, portable libraries, but does not have a fully mature ecosystem of geocomputation libraries yet. 
+Moreover, emscripten lacked the interface features which were required to the purpose of using WebAssembly as a generic binding. 
+wasm-pack provides type declarations in the shape of a TypeScript file, or by embedding them in WebAssembly using the proposed interface types \citep{wagner_interface_2022}. 
+On top of that, it offered a strong binding system, allowing complex types such as a vector of floats (\m{Vec<f32>}) to be easily translatable to a javascript equivalent (\m{Float32Array}).
 
-To offer a solution, the study suggests that either the 'embind' tool must be expanded to the level of functionality of 'wasm-bindgen', or geocomputation libraries must be rewritten in Rust. 
-This second option seems counterproductive, but as stated by \citet{ammann_maplibre-rs_2022}: "innovation often requires selectively ignoring prior work."
+Regrettably, none of the above features were present in emscripten. 
+Custom interventions were necessary on both the C++ end, and the JavaScript end, to get to a similar level of functionality.
+However, these interventions made it so both ends need to be developed in relation to each other, which invalidates the  WebAssembly binary as a \emph{generic} interface.
+
+Because wam-pack produces WebAssembly binaries with generic, simple, typed interfaces, Rust libraries could be used within the methodology presented in this study.
+However, because binaries produced by emscripten did not possess these traits, C++ libraries could not be used within the methodology, meaning the goal of making core C / C++ GIS libraries more directly accessible could not be met.
+
+All in all, it must be concluded that Rust-based WebAssembly compilation is more performant, more lightweight, and more feature rich compared to C++-based compilation.
+
+% Emscripten can be used to compile full-scale C++ applications, and offers an emulation of a POSIX environment.
+% However, it lacks support for compiling libraries themselves, compared to other wasm-library compilers.
+% libraries generated with emscripten's 'embind' tool use irregular syntax, which troubles its ability to be loaded programmatically.
+% While web implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type vpl requiring pure functions.
+% Finally, the experiments recognized certain discrepancies between the novelty of the WebAssembly format, juxtaposed to 50-year-old legacy of the C++ language, leading to larger wasm binaries, and less performant bindings compared to Rust.
+
 
 \begin{itemize}[ ]
   \item 4. "\myNewSubRQFour"
 \end{itemize}
 
 Three measures were conceptualized and successfully implemented. 
-However, all measures have certain shortcomings:
+However, all measures do have certain shortcomings. 
+It must also be noted that all these measures are only presented 'in principle'.
+Future work is required to verify their impact.
 
 \begin{enumerate}
   \item \textbf{Portability}: The application uses native geocomputation libraries compiled to WebAssembly, 
-  which makes the libraries behave the same way in the frontend, and in a potential back-end.
-  \subitem \textbf{Shortcoming}: The \ac{wasm} binaries must be wrapped using javascript, because \ac{wasm} does not support interface types yet \citep{wagner_interface_2022}. This means that currently, a backend would require a javascript runtime to use these libraries.
+  which makes the libraries behave the same way in the frontend, and in a potential back-end. \\
+  \textbf{Effectiveness}: The effect of this is limited by the fact that \ac{wasm} binaries must for the time being be wrapped using javascript, due to the current lack of interface types. 
+  This means that currently, a backend would require a javascript runtime to use these libraries.
 
-  \item \textbf{Zero-cost abstraction}: The application uses a unique plugin system, to offer direct usage of javascript-wrapped libraries.
+  \item \textbf{Zero-cost abstraction}: The application uses a unique plugin system, to offer direct usage of javascript-wrapped libraries, and eventually WebAssembly-compiled libraries.
   This means that there is no difference between calling an operation in Geofront, and calling the function in the javascript-wrapped library.
   This allows a Geofront pipeline to be compiled to javascript, completely eliminating any explicit dependency to the 
   Geofront platform, the VPL model, or the \ac{GUI}.
-  This is why Geofront can claim to use 'zero cost abstraction'.
-  \subitem \textbf{Shortcoming}: The no-boilerplate plugin system led to complication for incorporating C / C++ libraries.
-  Additionally, the current implementation of the javascript converter requires improvement, as currently, it does not operate on complex Geofront Widgets. 
- 
-  \item \textbf{Locality}: The VPL prototype is designed as a Dataflow VPL, which shares characteristics with functional programming. This leads to source code which can be reasoned about in a local manner, instead of a global one. This allow for parallelization.
-  \subitem \textbf{Shortcoming}: The freedom of the no-boilerplate plugin system, combined with javascript limitations, made it so the functional programming properties of this DataFlow VPL could not be strictly enforced. 
-  Plugins must be trusted not to alter immutable input data, or call global, state-altering functions.
-    
+  This is why Geofront can claim to use 'zero cost abstraction'. \\
+  \textbf{Effectiveness}: A Geofront-to-javascript compiler was implemented and functional, but requires further study. 
+  For example, it does not compile complex \ac{GUI} Widgets, and does not support iteration.
+  
+  \item \textbf{Locality}: Geofront is designed as a Dataflow VPL, which shares characteristics with functional programming. This leads to source code which can be reasoned about in a local manner, instead of a global one. This allow for parallelization. \\
+  \textbf{Effectiveness}: The implementation of Geofront as a dataflow VPL was successful. However, due to limitations of the javascript language, the functional programming properties of the DataFlow VPL could not be strictly enforced. 
+  Plugins must be trusted not to alter input data, or call global, state-altering functions, as functions could not be declared as 'pure', and variables cannot be declared as 'immutable'.
+
 \end{enumerate}
 
 \begin{itemize}[ ]
@@ -166,14 +180,12 @@ However, all measures have certain shortcomings:
 %   TODO rewrite, this is a copy-paste from the overall conclusion!!
 % \end{note}
 
-Compared to the studied browser-based web applications, this method is more composable thanks to the dataflow-VPL implementation, 
-and compared to the studied native VPLs, these functionalities are much more directly available because of the static, web based implementation.
-The method is also unique compared to studied web-based geometry VPLs, because of the plugin system, the range of different \ac{GUI} nodes, the dataflow VPL properties, and the proposed zero-cost abstraction runtime. 
-All of these features combined lead to a VPL which is able to directly connect \ac{GUI} components with native \ac{GIS} libraries, all while remaining scalable in principle.
-
+Based on Table \ref{table:features} presented in \refsec{sec:testing:features}, Geofront provides a unique set of features. 
+Comparable visual languages do not possess this exact combination. 
+It offers relatively extensive plugin support compared to other VPLs, it is web based, and offers a range of \ac{GUI} nodes. 
+Moreover, it is unique in its ability to accept third party Plugins written in different types of languages, and in the fact that it allows custom types within those plugins. 
 
 % can be used to connect wasm-compiled libraries with almost any UI, making it able for end-users to access these 
-
 
 % \begin{itemize}[ ]
 %   \item 1. "\mySubRQOne"
@@ -223,7 +235,7 @@ All of these features combined lead to a VPL which is able to directly connect \
 Based on the answers to all supporting questions, The answer is a careful \textbf{yes}.
 
 % A web-based VPL is a feasible method for providing direct access to native \ac{GIS} libraries.
-The method is indeed capable of bringing native GIS capabilities from certain  libraries directly into contact with end users, from within an application, without installation or configuration, and in a further composable manner. 
+The method is indeed capable of bringing native GIS capabilities from certain libraries directly into contact with end users, from within an application, without installation or configuration, and in a further composable manner. 
 Compared to browser-based web applications, this method is more composable thanks to the dataflow-VPL implementation, 
 and compared to the studied native VPLs, these functionalities are more directly available because of the static, web based implementation.
 The method is also unique compared to studied web-based geometry VPLs, because of the plugin system, the range of different \ac{GUI} nodes, the dataflow VPL properties, and the proposed zero-cost abstraction runtime. 
@@ -233,10 +245,11 @@ On a practical level, more work remains to proof this feasibility.
 The methodology developed by this study is only \emph{theoretically} accessible and composable, based on achieved features. 
 User-testing is required to confirm if this method indeed improves workflows, and actually saves time and energy of developers and end users. 
 Moreover, the prototypical software implementation used is limited and not production ready.
-The 'no-boilerplate' plugin system cannot be used with C / C++ \ac{GIS} libraries, currently, but this might be fixed when the emscripten compiler adopts the Interface Types proposal. 
+% The 'no-boilerplate' plugin system cannot be used with
+C / C++ \ac{GIS} libraries cannot be used in the method presented, which may or may not be fixed when the emscripten compiler adopts the Interface Types proposal. 
 Additionally, the zero-cost abstraction runtime is non-functional, and must be improved upon in future work.
 
-Despite all of this, based on the completed work, it is safe to say that visual programing methods, distribution using WebAssembly, and Rust-based geocomputation, all remain promising, valuable directions of future \ac{GIS} research.
+Despite all of this, based on the presented work, it is safe to say that visual programing methods, distribution using WebAssembly, and Rust-based GIS, all remain promising, valuable directions of future \ac{GIS} research.
 
 % How can a VPL be used to support and execute existing geo-computation libraries in a browser?
 % So, Does Geofront succeed in "converting existing geocomputation libraries to a sharable VPL format?" 
@@ -248,6 +261,18 @@ Despite all of this, based on the completed work, it is safe to say that visual 
 
 
 % All in all, this means that either if the Rust ecosystem gains more mature geocomputation libraries, or if Emscripten's capabilities improve, then the code portability problem \& dataflow problem of existing web-based geocomputation VPLS can be overcome. 
+
+
+
+% This present a certain wider dilemma between Rust and C / C++.
+% C / C++ has a mature foundation of existing geocomputation libraries.  
+% However, this same legacy inhibits its portability, which makes it harder to use these libraries in novel ways, such as in web browsers. 
+% For this study, this meant that the original goal of making core GIS libraries more accessible could not be met. 
+% Rust is for the forseeable future a better choice for writing easily consumable, portable libraries, but does not have a fully mature ecosystem of geocomputation libraries yet. 
+
+% To offer a solution, the study suggests that either emscripten's embind tool must be expanded to the level of functionality of wasm-bindgen, or geocomputation libraries must be rewritten in Rust. 
+% This second option seems counterproductive, but as boldly stated by \citet{ammann_maplibre-rs_2022}: "innovation often requires selectively ignoring prior work."
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

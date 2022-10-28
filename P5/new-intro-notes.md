@@ -47,24 +47,21 @@ Wednesday:
 =========================================================================================
 =========================================================================================
 
-Thursday
-- [X] abstract 
-- [x] fix front page
-- [x] add dramatic image to intro
-- [x] intro: add more images
-- [x] intro: make sure sources are made 
-- [x] intro: write where writing is needed
-
-- [ ] build a fake P5 to send to administration 
-  - [ ] DAG UML thing
-  - [ ] C++ minimum example
-  - [ ] Rust minimum example
-  - [ ] Rust: exclude STD
+# SOMEWHERE 
+[ ] write something about no boilerplate plugin system
+[ ] show ambiguity between plugin and library
 
 
 # OVERALL
 [ ] capitalize VPL everywhere!
 [ ] capitalize GIS everywhere! 
+[ ] remove all strong words everywhere!
+   - very
+   - extremely 
+   - limiting 
+   - surprising
+   - 
+[ ] re-read the P4 feedback, and the feedback before that!!!
 
 # 0 FRONT [X]
 [x] abstract
