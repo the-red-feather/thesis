@@ -1,17 +1,16 @@
 \chapter*{Abstract}
 
-In the field of \ac{GIS}, geodata transformation and analysis tools often take the shape of software libraries, written in system level programming languages. 
-A number of these libraries, like PROJ, GDAL, and CGAL, play a foundational role in almost all \ac{GIS} software applications.
-However, for end users, these libraries are only usable to a limited extend.
-When these libraries are distributed to other languages and applications, 
-features and performance get 'lost in translation'.
-Additionally, the tools end-users are left with are often not composable to the same degree as the software they originated from. 
+In the field of \ac{GIS}, geodata transformation and analysis tools often take the shape of software libraries written in system level programming languages. 
+% A number of these libraries, like PROJ, GDAL, and CGAL, play a foundational role in almost all \ac{GIS} software applications.
+% However, when these libraries are referenced in to other languages and used in applications, 
+% functionality often get 'lost in translation'.
+However, the societal impact of these tools is often limited, as most end users only access these libraries via indirect means: Through bindings in other languages, through plugin in applications, or both. 
+Additionally, the tools end-users end up with are often not composable, and may contain other hurdles like installation or configuration. 
 % Performance and features get 'lost in translation' when using bindings for a different programming language, when using a plugin within an application, or worse, both.  
 % Additionally, the application end-users are left with are often not composable with other applications, leading to labor intensive workflows.  
 % At the same time, maintainers of certain \ac{GIS} libraries often find themselves in the situation of having to maintain and synchronize a great number of bindings and plugins, which limits innovation.
-The limited reach of these libraries translates to a reduced societal impact, and with it, the research these libraries are based upon.
 
-The goal of this study is to make core \ac{GIS} libraries more directly available to end-users.
+The goal of this study is to make core \ac{GIS} libraries more directly available and composable to end-users.
 % This study presents and prototypes a novel method which allows \ac{GIS} practitioners without a background in software development, to access the full potential of core transformation and analysis capabilities found in native \ac{GIS} libraries.
 % That is based on visual programming, and static web applications. 
 % The study attempts to meet this goal by designing and implementing a 
@@ -20,16 +19,15 @@ The goal of this study is to make core \ac{GIS} libraries more directly availabl
 % But, and this is especially evident in the prior studies regarding Browser-based geocomputation, the practical implementation of these theories were only partially successful, and limited in scope. 
 % This necessitates a practical approach in response. 
 This study presents and prototypes a novel method, centered around a visual programming language to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. 
-Additionally, the visual language is used to connect these libraries to a user-definable graphical user interface. 
-This prototype is implemented as a static web application, so that these libraries are directly accessible to end users without installation or configuration. 
+Additionally, the visual language is used to connect these libraries to a user-definable \ac{GUI}. 
+This prototype is implemented as a static web application, so that these libraries are directly accessible to end users without installation.
 % Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
-WebAssembly is used so that \ac{GIS} libraries written in native languages only have to write one generic binding, which then can be used in any language, including this prototypical, web based visual language, thanks to a 'no boilerplate' plugin system. 
+\ac{GIS} libraries are compiled to WebAssembly, making the library usable in any language, including this web based visual language by using a 'no boilerplate' plugin system. 
 % WebAssembly is also used to run  resorting to active backend web services. 
-Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and a rich \ac{GUI} (3D viewers, file inputs, sliders), are primary design considerations and assessment criteria.
+Finally, both scalability to handle sizable datasets, and a rich \ac{GUI} (3D viewers, file inputs, sliders), are primary design considerations and assessment criteria.
 % be used without
 % Using this, ...
 % indeed 
-
  
 The results show that this specific web-based VPL appears to be a feasible method for providing direct access to some native \ac{GIS} libraries, and does offer a unique set of features not found in comparable visual languages. 
 The significance of this method, compared to other web-based geometry VPLs, lies in the fact that it offers a lenient plugin system, in combination with a range of different \ac{GUI} nodes, certain "dataflow VPL" properties, and a proposed zero-cost abstraction runtime. 
@@ -39,9 +37,7 @@ On a practical level, more work remains to proof this feasibility.
 The methodology developed by this study is only \emph{theoretically} accessible and composable, based on achieved features. 
 User-testing is required to confirm if this method indeed improves workflows, and actually saves time and energy of developers and end users. 
 Moreover, the prototypical software implementation used is limited and not production ready.
-Both the fact that the 'no-boilerplate' plugin system cannot be used with C / C++ \ac{GIS} libraries, and that the zero-cost abstraction runtime is not functional, must be improved upon in future work.
-
-Despite this, it is safe to say that visual programing methods, distribution using WebAssembly, and Rust-based geocomputation, all remain valuable directions of future \ac{GIS} research.
+Both the fact that the 'no-boilerplate' plugin system cannot be used with C / C++ \ac{GIS} libraries, and that the zero-cost abstraction runtime is not functional, must be improved upon in future work. Despite this, visual programing, distribution using WebAssembly, and Rust-based geocomputation, all proved to be valuable directions of future \ac{GIS} research.
 
 % This method is thereafter used to load various \ac{GIS} libraries, and used in demo applications, after which an assessment can be made on its quality and the extend of its achieved functionalities. 
 % The study concludes by addressing if the method meets the overarching goal.

@@ -10,6 +10,10 @@ because right now the final chapter often reads more like an essay
 
 NOTES:
 
+another word for the same thing: operationalizing
+- the last mile problem
+- putting research in the hands of end-users
+
 Geofront: purpose: directly use libraries in an application, and subject them to a custom UI.
 - focus on direct library utilization
   - library + application becomes the central theme 
@@ -48,9 +52,7 @@ Wednesday:
 =========================================================================================
 
 # SOMEWHERE 
-[ ] write something about no boilerplate plugin system
-[ ] show ambiguity between plugin and library
-
+- 'safe to say'
 
 # OVERALL
 [ ] capitalize VPL everywhere!
@@ -82,20 +84,23 @@ Wednesday:
 [ ] connect the new stuff with the old stuff
 [ ] proof read: make sure this fits
 [ ] explain various things better 
+[ ] write something about no boilerplate plugin system
+[ ] show ambiguity between plugin and library
+[ ] a geofront script -> pipeline! 
 
 # 5 IMPLEMENTATION [ ]
 [ ] proof read: make sure this fits
+[ ] Add writings about UI
 
 # 6 TESTS [ ]
-[ ] Fix the ranting on C++
-   [ ] HUGO: please explain interfacing troubles better
-[ ] Add writings about UI 
-[ ] finalize the comparison 
+[x] Fix the ranting on C++
+   [x] HUGO: please explain interfacing troubles better 
+[x] finalize the comparison 
 
 # 7 CONCLUSION [ ]
-[ ] sub question 1
-[ ] sub question 5
-[ ] fix main answer a bit 
+[x] sub question 1
+[x] sub question 5
+[x] fix main answer a bit 
 [x] Fix scope too large part 
 
 
@@ -160,19 +165,18 @@ Wednesday:
   - [x] Add arsclassica template to the thesis
   - [x] Make the code snippets / listings work properly
   - [x] replace all code screenshot with proper listings
-  - [ ] cleanup introduction
-  - [ ] create all missing uml diagrams
-  - [ ] add proper graphs for the data you've gathered 
+  - [x] cleanup introduction
+  - [ ] create a uml diagrams
+  - [x] add proper graphs for the data you've gathered 
   - [ ] Add all proper metadata to Zotero, for a nice bibliography
-  - [ ] Fix all TODO graphics
+  - [x] Fix all TODO graphics
   - [ ] Fix all acronyms,
   - [ ] Sort the acronyms at the end 
   - [ ] Make sure CiteT and citeP is properly used everywhere. No more raw 'et. al.' statments 
   - [ ] Capitalize all VPL / replace with acronyms
-  - [ ] Sources need to be fixed (more data, check if I can do things like 'empscripten contributors')
+  - [x] Sources need to be fixed (more data, check if I can do things like 'empscripten contributors')
   - [ ] Replace C++ into C / C++ everywhere, but especially the intro
-  - [ ] appendix: software implementation & link to video
-
+  
 
 =======================================================================================
 =======================================================================================
