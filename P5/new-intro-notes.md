@@ -51,11 +51,16 @@ Wednesday:
 =========================================================================================
 =========================================================================================
 
+# presentation
+[ ] push the latest build.
+
+
 # SOMEWHERE 
 - 'safe to say'
 - remove \newpages, hugo doesnt like 'em
 
 # OVERALL
+[ ] javascript replace! -> JavaScript
 [ ] capitalize VPL everywhere!
 [ ] capitalize GIS everywhere! 
 [ ] remove all strong words everywhere!
@@ -66,6 +71,7 @@ Wednesday:
    - 
 [ ] re-read the P4 feedback, and the feedback before that!!!
 [ ] dag UML...
+[ ] appendix: geofront can be found here (geofront.nl)
 
 # 0 FRONT [X]
 [x] abstract

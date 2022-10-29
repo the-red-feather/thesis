@@ -446,9 +446,11 @@ In some cases, a library is be able to be loaded, but is then functionality impa
   \label{fig:early-geofront-compile-to-js}
 \end{figure}
 
+While the zero-cost abstraction runtime, proposed in \refsec{sec:method:plugin-system}, was said not to be part of the implementation, small scale experimentation has been done as a proof of concept. 
+
 An early build of Geofront had the ability to compile a Geofront script to regular javascript (see (\reffig{fig:early-geofront-compile-to-js})).  
 All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by a variable token. 
-This way, the application could be run headless (without the \ac{GUI}) either the browser or on a server, using a local javascript runtime like Deno \citep{contributors_deno_2022}.
-However, 
+This way, the application could be run headless either the browser or on a server, using a local javascript runtime like Deno \citep{contributors_deno_2022}.
+However, the Geofront to javascript compiler could not be maintained given the other requirements of the environment, such as complex \ac{GUI} nodes.
 
 
