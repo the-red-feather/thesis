@@ -11,12 +11,12 @@
 This chapter offers an overview of the theoretical background that this study builds upon.
 The study takes place at the intersection of three prior bodies of work:
 \begin{enumerate}[-]
-  \item Geocomputation
-  \item Web applications
+  \item Native GIS transformation \& analysis libraries
+  \item WebAssembly \& Static Web applications
   \item Visual Programming Languages
 \end{enumerate}
 
-Since giving a full overview of all aspects of these bodies of work is too extensive, only key elements within these bodies will be mentioned and elaborated, namely the visual programming language, and WebAssembly.  
+Since giving a full overview of all aspects of these bodies of work is too extensive, only key elements within these bodies will be mentioned and elaborated, namely visual programming, and WebAssembly.  
 
 % \section{Geocomputation Libraries}
 % \label{sec:background-geo}
@@ -138,7 +138,7 @@ Since giving a full overview of all aspects of these bodies of work is too exten
 
 % Geocomputation is mostly facilitated by a very select number of C++ libraries. 
 
-\section{WebAssembly \& Web Applications}
+\section{WebAssembly \& (Static) Web Applications}
 \label{sec:background-web}
 
 From all browser-based features, WebAssembly turned out to be a deciding factor of this study. This makes it important to be aware of the state of WebAssembly and its performance considerations.
@@ -482,7 +482,7 @@ In other words, every node of a program written using dataflow programming can b
 No global state or hidden side effects means no data-race issues, which allows parallel execution of the program by default.
 When using other paradigms, programmers need to manually spawn and manage threads to achieve the same effect. 
 
-This leads into an interesting side-effect of using dataflow programming / a diagram-based \ac{VPL}: 
+This leads into a valuable side-effect of using dataflow programming / a diagram-based \ac{VPL}: 
 By only permitting pure, stateless functions with no side-effect, and only immutable variables, end users automatically adopt a functional programming style (albeit without lambda functions).
 Functional programming has many benefits of its own besides concurrency, such as clear unit testing, hot code deployment, debugging advantages, and lending itself well for compile time optimizations \citep{akhmechet_functional_2006, elliott_tangible_2007}.
 
@@ -500,7 +500,7 @@ Functional programming has many benefits of its own besides concurrency, such as
 
 All that to say, creating a \ac{VPL} is not just a matter of designing a stylistic, user-friendly \ac{GUI} alternative to regular programming.
 This might be true for other types of VPLs, but not for diagram-based ones. 
-By closely resembling dataflow itself, and because of its functional programming nature, diagram-based vpls can actually lead to faster and more reliable software.
+By closely resembling dataflow itself, and because of its functional programming nature, diagram-based vpls may actually lead to faster and more reliable software.
 
 \subsection{Disadvantages and open problems}
 \label{sec:background:vpl:disadvantages}

@@ -305,19 +305,18 @@ One interesting fact is that we see a great number of parallels among all these 
   \item All emphasize a process of "parametrization": parameters of various functions can be configured using sliders, curves, and other \ac{GUI} elements. This allows quick experimentation of different settings.
 \end{itemize}
 Moreover, the persistence of visual programming within these computer graphics fields, suggests that visual programming languages are advantageous for calculations dealing with 2D and 3D data.
-
-One can only speculate why this might be. 
-One hypothesis is that all these VPLs, with exception to the behavior VPLs, are essentially dealing with "functional data pipelines".
-These VPLNo distributed systems or event driven architectures, just one calculation from start to finish, to produce a desired product.  
-However, the sheer amount of possible steps within these pipelines, together with the challenges of fine-tuning many relevant parameters, and the importance of inspecting in-between products visually, do not allow these pipelines to be configured by conventional UI's. 
-However, a \ac{VPL} does deliver these features.
+ 
+One hypothesis of why this might be, is that all these VPLs, with exception to the behavior VPLs, are essentially dealing with "functional data pipelines".
+These VPL pipelines are straightforward calculations, and do not require to handle distributed systems or use event driven architectures.  
+However, the sheer amount of possible steps within these pipelines, together with the challenges of fine-tuning many relevant parameters, and the importance of inspecting in-between products visually, may lead to \ac{VPL}s being a good fit.
 % VPLs allow rapid debugging, rapid experimentation, and the straight-forward nature of 2D/3D pipelines mitigate the challenge VPLs have with representing imperative flow statements (\m{if, else, for, while, break}). 
 
 \subsubsection*{Material VPLs}
-By far the most commonplace type of VPL present in computer graphics are material VPLs. 
-In this context, the concept "material" often refers to a combination of 2D textures and shaders. 
-These include PBR settings, normal maps, bump maps, and / or custom shader programs. 
-The repetitive and time-consuming nature of manually creating textures, and the fact that some of these material properties can be inferred from each other, lead many CG applications to develop \ac{VPL}s for this particular purpose. 
+One of the most commonplace types of VPL present in computer graphics is the material VPLs. 
+These types of VPLs can be found in special effects applications, modelling applications, and game engines. 
+In this context, the concept "material" often refers to a combination of procedural textures and shaders. 
+These may include PBR settings, normal maps, bump maps, and / or custom shader programs. 
+The repetitive and time-consuming nature of manually creating textures, and the fact that some of these material properties can be inferred from each other, lead many CG applications to develop \ac{VPL}s for this particular purpose.
 3D artists use these \ac{VPL}s to create procedural materials.
 
 \begin{figure}
@@ -332,7 +331,7 @@ The repetitive and time-consuming nature of manually creating textures, and the 
 \subsubsection*{Geometry, and photogrammetric VPLs}
 
 Procedural Geometry \ac{VPL}s are not far behind the material \ac{VPL}s in terms of popularity.
-Applications like Blender's geometry nodes \citep{blender_foundation_geometry_2022}, Rhino's Grasshopper \citep{rutten_grasshopper_2012}, or Houdini \citep{sidefx_houdini_2022}, are all widely used to automate the creation of geometry. 
+Applications like Blender's geometry nodes \citep{blender_foundation_geometry_2022}, Rhino's Grasshopper \citep{rutten_grasshopper_2012}, or \\ Houdini \citep{sidefx_houdini_2022}, are all widely used to automate the creation of geometry. 
 Where Houdini and Blender's VPLs are primarily used in games and special effects, Grasshopper sees usage in the Architecture, Engineering and construction industry. 
 In this field, procedural geometry is often referred to as "parametric design".
 

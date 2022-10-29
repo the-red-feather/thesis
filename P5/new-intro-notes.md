@@ -53,6 +53,7 @@ Wednesday:
 
 # SOMEWHERE 
 - 'safe to say'
+- remove \newpages, hugo doesnt like 'em
 
 # OVERALL
 [ ] capitalize VPL everywhere!
@@ -64,6 +65,7 @@ Wednesday:
    - surprising
    - 
 [ ] re-read the P4 feedback, and the feedback before that!!!
+[ ] dag UML...
 
 # 0 FRONT [X]
 [x] abstract
@@ -83,6 +85,7 @@ Wednesday:
 # 4 METHODOLOGY [ ] 
 [ ] connect the new stuff with the old stuff
 [ ] proof read: make sure this fits
+
 [ ] explain various things better 
 [ ] write something about no boilerplate plugin system
 [ ] show ambiguity between plugin and library

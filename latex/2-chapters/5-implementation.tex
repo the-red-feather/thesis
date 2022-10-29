@@ -431,3 +431,24 @@ In some cases, a library is be able to be loaded, but is then functionality impa
 %   It might even lower the barrier between visual and textual programming in general, making it easier for VPl end-users to adopt some forms of textual programming, and vice versa. 
   
 % \end{note}
+
+\subsection{CLI runtime}
+
+\begin{note}
+  TODOTODO
+\end{note}
+
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/images/implementation/} }
+  \includegraphics[width=\linewidth]{early-geofront.png}
+  \caption[Geofront to js]{An early build of geofront, showing compilation to javascript}
+  \label{fig:early-geofront-compile-to-js}
+\end{figure}
+
+An early build of Geofront had the ability to compile a Geofront script to regular javascript (see (\reffig{fig:early-geofront-compile-to-js})).  
+All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by a variable token. 
+This way, the application could be run headless (without the \ac{GUI}) either the browser or on a server, using a local javascript runtime like Deno \citep{contributors_deno_2022}.
+However, 
+
+

@@ -2,24 +2,18 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
-\begin{note}
-  I NEED TO MENTION THE FOLLOWING THINGS:
-  [ ] SHOW AMBIGUITY BETWEEN LIBRARY AND Application
-  [ ] EXPLAIN NO-boilerplate
-  [ ] EXPLAIN GENERIC BINDING (SAME THING)
-  [ ] EXPLAIN JAVASCRIPT RUNTIME & COMPILATION (chapter 5)
-     [ ] refer back to it, find and replace in chapter 7.
-
-\end{note}
-
 % This study consists of a design of the proposed method, an implementation of this design, and several test to assess this implementation. 
-This chapter present the design of the proposed method
+This chapter present the design of the proposed method. 
+It first sums up and clarifies all requirements of the method, proceeded by presenting and overview, followed up by the various aspects to the design of the method. 
+It finishes by elaborating on the assessments used to test the environment. 
+
 
 \section{Requirements}
+\label{sec:method:require}
 
 Three supporting research questions ask to clarify requirements for the design of the methodology. 
 These questions can now be partially answered based on the literature presented at \refchap{chap:background} and \refchap{chap:related}, and based on insights granted by these works.
-The answers to these questions form the core features and design considerations of the proposed method.
+The answers to these questions form the core requirements of the proposed method, and steer its features and design considerations.
 
 \begin{itemize}[ ]
   \item \emph{What GUI features are required to facilitate this method? (and to what extend does the
@@ -28,28 +22,29 @@ The answers to these questions form the core features and design considerations 
 
 Two layers of \ac{GUI} features are required:
 
-\textbf{Framework application}: Firstly, a base application is required to host the visual programming language.
-This need to provide all basic application features, like saving, loading, undoing and redoing.
+\textbf{Framework application}: Firstly, a base web application is required to host the visual programming language.
+This needs to provide a \ac{GUI} for all basic application features, like saving, loading, undoing and redoing.
 
 \textbf{The VPL}: Secondly, UI elements are required to form the interactive elements of the visual program itself. 
 This forms a layer independent from the framework application, and will require a custom set of \ac{GUI} features. 
 That is to say, a text field within the framework is not the same as a text field within the visual program.
-
-
+Existing VPLs differ in their level of support of certain '\ac{GUI} nodes'.
+This study has established that extensive support is required, for the sake of visualizing geodata, and parametrization of \ac{GIS} operators.
 
 \begin{itemize}[ ]
   \item \emph{To what extend does this method intent to address the discrepancies between software
 applications and libraries, as described by Elliott (2007) (Does it succeed in doing so?)}
 \end{itemize}
 
-All three discrepancies described by the introduction are addressed by incorporating the following aspects: \\
+All three discrepancies described by the introduction \\ are addressed by incorporating the following aspects: \\
 
 \textbf{Generic GUI}: The VPL must serve as a generic \ac{GUI} to serve practically any \ac{GIS} library. 
 As such, it requires a wide range of buttons, sliders, text fields, and other inputs.
 
 \textbf{Composable applications}: In order to make web applications themselves more composable, the \ac{GUI} of the VPL itself should incorporate other web applications, via for example a \m{<iframe>} or popup.
 
-\textbf{Direct utilization}: To make sure library capabilities do not get lost when used in an application, the VPL must be able to accept a wide range of libraries as plugins, with as little bindings or glue code as possible.
+\textbf{Direct utilization}: To allow direct utilization of a library, the solution must be distributed as a static web application. 
+To make sure library capabilities do not get lost when used in an application, the VPL must be able to accept a wide range of libraries as plugins, with as little bindings or glue code as possible.
 
 
 \begin{itemize}[ ]
@@ -62,35 +57,87 @@ Three measures will be taken to offer scalability in principle:
 \textbf{Portability}: The proposed solution requires to use native libraries compiled to WebAssembly, which allows the exact same binary to run on the frontend, and a potential scalable backend. 
 Keeping these binaries the same will lead to predicable behavior. 
 
-\textbf{Zero-cost abstraction}: A script created with the VPL should be able to be compiled to a format which can be run completely independent from the \ac{GUI} application, to ensure a scalable backend can use such a script.
+\textbf{Zero-cost abstraction}: A pipeline created with the VPL should be able to be compiled to a format which can be run completely independent from the \ac{GUI} application, to ensure a scalable backend can use such a pipeline.
 A requirement for this, is that there should be no difference between calling a function using the VPL, and calling the function in the library itself, by normal means. 
 
 \textbf{Locality}: The VPL should be designed as a Dataflow VPL, which shares characteristics with functional programming. This leads to source code which can be reasoned about in a local manner, instead of a global one. This allows for parallelization when scaled in a backend environment.
 
+
 \section{Overview}
 
-The overall methodology is to first develop the VPL and surrounding framework application (\refsec{sec:method:base-vpl}), followed up by developing a binding system for this VPL (\refsec{sec:method:plugin-system}). 
-The final step is to set up and execute a series of tests (\refsec{sec:method:tests}), to analyze the extent to which these implementations solve the various challenges raised by \refchap{chap:intro}.
+\graphicspath{{../../assets/images/1/}}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.80\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{proposal.png}
+  \end{subfigure}%
+  \caption{The proposed methodology}
+  \label{fig:proposal}
+\end{figure}
+
+The design of this method is as visualized by \reffig{fig:proposal}: 
+A Prototype VPL is used to host the functionalities of \ac{GIS} libraries from within an application, and in a composable manner. Additionally, it is used to connect these libraries to various \ac{GUI} features. 
+The format of web application is used to allow this prototype to be directly accessible to end users without installation or configuration. 
+% Geodata used within the application is also exclusively statically hosted geodata, or user-submitted data. 
+This prototype is statically hosted, to minimize operational costs.
+\ac{GIS} libraries are loaded within this platform by first compiling them into WebAssembly, and then loading this binary as a plugin directly. 
+This method is dubbed a 'no-boilerplate' method, and explores how libraries can be used with as little in-between layers as possible.
+WebAssembly is also used to that libraries written in native languages can be used without resorting to active backend web services. 
+Finally, as this prototype is intended for \ac{GIS} usage, both scalability to handle sizable datasets, and rich \ac{GUI} support (3D viewers, file inputs, sliders), are primary design considerations and assessment criteria. 
+% prototypes aspires to qualify as a \ac{VPL}
 
 
+\subsection{Definitions}
 
-\section{The VPL} 
+Throughout this and subsequent chapters, the following terms and phrases will be used.
+No claims are made that these definitions are 'right', they simply seemed appropriate for the situation.
+
+\textbf{Pipeline / Script}: A program 'written' within a VPL is referred to as a 'script' or a 'pipeline'.
+
+\textbf{VPL as Programming Language or Application}: An ambiguity exist of calling a VPL an application or a programming language. 
+Arguments can be made for both. 
+This study would describe the VPL developed as an application, which happens to possess a composable \ac{GUI}, and not a programming language.
+Nevertheless, depending on context, the VPL will be referred to as both.
+
+\textbf{Plugin vs Library}: A plugin represents additional, optional functionalities for a certain application.
+A library represents additional functionalities to be used within a programming language. 
+Due to aforementioned ambiguity of a VPL, 'additional functionalities' for a VPL could be called both. 
+To make matters worse, the upcoming plugin system will blur the lines between library and plugin. 
+To offer some clarification, the term 'plugin' will be used when referring to the 'functionalities' from a point of view of the VPL.
+The term 'library' will be reserved for referring to a software library itself. 
+
+
+\section{Framework Application}
+
+To serve the requirements of a \textbf{Framework application} and \textbf{direct utilization}, a framework web application was required. 
+For this, a custom framework must be used, due to the absence of a desktop application-like framework in the javascript ecosystem.
+Using HTML5 features like Web Components, custom components such as multiple windows, dropdown menu's, side menu's etc. can be created without resorting to JavaScript frameworks.
+
+
+\section{Web VPL} 
 \label{sec:method:base-vpl}
 
-% The first step of the methodology involves the question: \mySubRQOne.
-This implementation is required as a host for all subsequent steps of the methodology. 
+Secondly, a web-based VPL is required as a host for all subsequent steps of the methodology. 
+This VPL must serve the requirements of \textbf{The VPL}, a \textbf{Generic GUI}, \textbf{Composable applications} and \textbf{Locality}.
+
+A novel, custom VPL is needed to fit all requirements. 
+A dataflow VPL must be designed for web usage, which offers a range of \ac{GUI} nodes to serve as a generic GUI, and to allow applications to be composable. 
+
 While the initial plan was to re-use an existing web VPL, the related works review of \refchap{chap:related} showcased that no exiting browser-based geocomputation VPL would be an appropriate fit.
-The Mobius Modeller \citep{janssen_mobius_2021} came closest, but the sizable nature of this project makes aligning its goals with the goals of this study challenging. 
-Building a custom implementation would also allow more degrees of freedom, in terms of designing a VPL which takes hosting geocomputation libraries from multiple hosts  into account from the start. 
+The Mobius Modeller \citep{janssen_mobius_2021} came closest, but offered no dataflow VPL, no GUI components, and no plugin support. 
+Additionally, the sizable nature of the mobius modeller project made aligning its goals with the goals of this study challenging. 
+Building a custom implementation would also allow more degrees of freedom.
 
 The following approach was deemed as the most fitting method for implementing this VPL. 
-First, the requirements of a dataflow-VPL handling geometry have to be made clear.
+First, the components of a dataflow-VPL handling geometry have to be made clear.
 Secondly, in order to know what tools may be used to implement this VPl, a small analysis of "widely supported browser features" is made. 
 Then, with both these constraints known, a design for a web VPL can be layed out, which can be subsequently implemented. 
 
-\subsection{Requirements}
+\subsection{Components}
 
-The requirements of a dataflow-VPL implementation can be subdivided in requirements of a dataflow VPl in general, and a VPL for geo-computation specifically.
+The components of a dataflow-VPL implementation can be subdivided in components of a dataflow VPl in general, and a VPL for geo-computation specifically.
 Based on the literature study of \refsec{sec:background-vpl}, any dataflow-VPL must at least contain the following aspects: 
 \begin{enumerate}[-]
   \item a base 'programming language model'
@@ -213,7 +260,7 @@ TypeShims can be structured recursively to define a \m{List of List of strings} 
 % \end{figure}
 
 % TODO: ADD DAG UML REFERENCE
-From the Shims, the main model of a VPL script can be conceptualized. 
+From the Shims, the main model of a VPL pipeline can be conceptualized. 
 This model is at its core a \ac{DAG}. 
 This \ac{DAG} should be a object-oriented, graph-like representation of the data flow of a regular programming language. 
 This design can be implemented by writing a \m{Graph} class, containing \m{Node} and \m{Cable} objects. 
@@ -364,14 +411,76 @@ All this to say, the mutability of function parameters must be known in order to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+
+
 \section{Plugin System} 
 \label{sec:method:plugin-system}
 
-The second step of the methodology involves developing a method to use libraries from native sources within the VPL outlined above. 
+\begin{note}
+  [ ] EXPLAIN NO-boilerplate
+  [ ] EXPLAIN GENERIC BINDING (SAME THING)
+  [ ] write something about no boilerplate plugin system
+  [ ] EXPLAIN JAVASCRIPT RUNTIME & COMPILATION (chapter 5)
+  [ ] refer back to it, find and replace in chapter 7.
+\end{note}
+  
+
+The third step of the methodology involves developing a method to use GIS libraries from native sources within the VPL model outlined above. 
+In other words, a plugin system is required, existing of a plugin model these libraries will need to adhere to, together with a design for an importer of those libraries at the side of the VPL. 
+
+\subsection{Design}
+
+The requirements of \textbf{Portability}, \textbf{Zero-cost abstraction} and \textbf{Direct utilization} together, led to a novel plugin system design. 
+
+The design is centered around leveraging the ability of WebAssembly to be used as a generic interface. 
+Certain \ac{wasm} compilers, like Rusts wasm-pack compiler \citep*{contributors_wasm-pack_2022}, support interface types in the shape of TypeScript type declarations, or embedded within the WebAssembly binary itself. 
+This follows a design proposal which is soon to be part of the \ac{wasm} Standard itself \citep*{wagner_interface_2022}.
+These interface types allows \ac{wasm} to be used as an interoperable binding: One binary which could be used in any language, such as Python, C\#, Javascript, or Java. 
+Python and Java already possess of a runtime capable of this \citep*{clack_standardizing_2019}. 
+
+The central idea to the proposed plugin system, is to make the VPL utilize these bindings as well. 
+After all, a visual programming language is partially a programming language, with types and functions. 
+For this to work, a to-be-imported GIS library needs to be compiled to WebAssembly, published to a public \ac{CDN}, and then referenced by the proposed VPL. 
+This VPL must then translate the exposed functions and types into visual components which could be used in a VPL pipeline. 
+
+This may yield several advantages: 
+\begin{itemize}
+  \item \textbf{Portability}
+  \item zero boilerplate 
+  \item \textbf{Zero-cost abstraction}: 
+\end{itemize}
+
+% To explain it, we must elude to a proposed backend runtime of the VPL. 
+% This is not part of this study, but would be a valuable follow-up research.
+
+This expanded proposal is shown in \reffig{fig:proposal-extended}.
+
+
+
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.80\linewidth}
+    \centering
+    \graphicspath{{../../assets/images/1/}}
+    \includegraphics[width=\linewidth]{expanded-proposal.png}
+  \end{subfigure}%
+  \caption{An expanded proposed methodology, to provide a backend, cloud-based execution}
+  \label{fig:proposal-extended}
+\end{figure}
+
+
+
+
+
+
+So, to allow for zero-cost abstraction in the future, and allow the zero-boilerplate concept currently, The plugin system will designed as mentioned above. 
+
+
+
 % This aspect of the methodology seeks to design a base to answer the questions: \mySubRQTwo and \mySubRQThree.
 
-The plugin system refers to the combination of the plugin model these libraries will need to adhere to, together with the importer of those libraries in the VPL. 
-This section will cover the design of both, as well as the proposed compilation workflow.
+The plugin system refers to the 
 
 % to what extent can a web-consumable library be loaded into a web-vpl without explicit configuration?
 
@@ -385,7 +494,7 @@ This section will cover the design of both, as well as the proposed compilation 
 % With a VPL being something in between a programming language and an application, it remains difficult to determine the appropriate terminology.  
 % This is further complicated if a plugin is able to double as a library, as will be explained.
 
-\subsection{Requirements}
+\subsection{Components}
 
 First and foremost, in order to use software libraries written in system-level languages in a web browser, these libraries will need to be compiled to the WebAssembly binary format (see \refsec{sec:background-wasm}). 
 Secondly, in order to use these binaries on a VPL canvas, they must include some explanation of how to expose its inner functionality as VPL visual components.
@@ -397,7 +506,11 @@ And finally, the full workflow of bringing a geo-library to the web VPL should b
 \newpage
 \subsection{Design}
 
-These requirements lead to the following design for the plugin system.
+\begin{note}
+  remove all unwanted parts
+\end{note}
+
+These components lead to the following design for the plugin system.
 Both the model of what a plugin should look like, and the plugin loader on the side of the VPL must be designed in conjunction, to make sure the models match.  
 The plugin model:
 \begin{enumerate}[-]
@@ -416,18 +529,10 @@ Furthermore, the plugin loader of the VPL must be able to:
 
 This system utilizes the infrastructure of regular javascript libraries as much as possible. 
 This way, existing javascript tooling, such as \ac{CDN}s, can be utilized for distribution, updates and version control.
-Additionally, this setup addresses the portability requirement by making these libraries interoperable with unaffiliated projects on both the frontend and backend (see \reffig{fig:plugin-model}).
+Additionally, this setup addresses the portability requirement by making these libraries interoperable with unaffiliated projects on both the frontend and backend.
 It might even allow libraries to be loaded which were never intended to be used by the VPL.
 
 For the scope of this system, we will refer to a native geo-library wrapped with the appropriate VPL / javascript bindings as a 'plugin', even though these projects are javascript libraries, and can be loaded as a library into regular javascript projects. 
-
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/diagrams/} }
-  \includegraphics[width=\linewidth]{Model Proposal.png}
-  \caption{Plugin Design}
-  \label{fig:plugin-model}
-\end{figure}
 
 The components mentioned above fit together to propose the following workflow to use a native geo-library in a Web VPL: 
 \begin{enumerate}
@@ -553,7 +658,10 @@ Instead, these functions are programmatically called when the VPL engine or the 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
+
+
+
+
 \section{Tests}
 \label{sec:method:tests}
 % The purpose of this final step of the methodology
@@ -601,6 +709,14 @@ However, Rust is still a relatively unknown language in the field of GIS, making
 Startin was chosen, for the triangulation functionalities it provides makes for a good comparison against CGALs Triangulator. 
 It also, just like CGAL, makes use of a high precision kernel, and offers geometric robustness. 
 
+\subsection{Demo applications}
+
+Two demo applications are to be created for the purpose of testing the practical capabilities of the methodology. 
+The first demo focusses on the intended use case of 'library publication'. 
+We wish to see to what extend a library published using WebAssembly can directly be tested from within the proposed environment. 
+
+The second demo expands upon this first demo, and is intended to examine to what extend such a library can actually be composed as part of a 'real' application. 
+In this test, the interaction between this library and the composable \ac{GUI} will be elaborated upon.
 
 % This will be done by using the VPL and plugin loader to create an application. 
 % This application, and the process to create it, will then be assessed.
