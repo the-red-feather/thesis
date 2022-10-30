@@ -38,7 +38,7 @@ add license
 
 # Stretch goals
 [ ] table of GUI components 
-[ ] appendix: geofront can be found here (geofront.nl)
+[x] appendix: geofront can be found here (geofront.nl)
 [ ] replace all code screenshot with proper listings
 
 # must do
@@ -47,8 +47,7 @@ add license
 - [ ] Fix all acronyms,
 - [ ] Sort the acronyms at the end 
 - [ ] Make sure CiteT and citeP is properly used everywhere. No more raw 'et. al.' statments 
-  - [ ] Replace C++ into C / C++ everywhere, but especially the intro
-  
+
 
 
 
