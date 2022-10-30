@@ -36,18 +36,8 @@ add license
 =========================================================================================
 =========================================================================================
 
-# Stretch goals
-[ ] table of GUI components 
-[x] appendix: geofront can be found here (geofront.nl)
-[ ] replace all code screenshot with proper listings
-
-# must do
-[ ] Add all proper metadata to Zotero, for a nice bibliography 
-[ ] proof-read the full thing: destroy embarrassing errors
-- [ ] Fix all acronyms,
-- [ ] Sort the acronyms at the end 
-- [ ] Make sure CiteT and citeP is properly used everywhere. No more raw 'et. al.' statments 
-
+[ ] proof-read the full thing: destroy embarrassing errors.
+[ ] send the email.
 
 
 

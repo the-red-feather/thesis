@@ -360,33 +360,10 @@ These contributions are bound by following limitations:
 \label{sec:discussion}
 This section covers questions on the decisions made during the study, and the answer this study is able to provide as a response.
 
-\subsubsection*{Q: Geodata is almost always big data. Will this web environment be scalable to handle big datasets?}
-
-% 3. web interface
-% - Having no file system really hurts the usefulness of the VPL as a data processing application.
-% -> file system API is coming to fix this
-% -> This study recommends cloud-native as a solution to this problem, and has added 
-
-% One of the problems to address when considering the ergonomics of geocomputation, is the fact that geodata is almost always big data. 
-% A web application cannot be expected to process huge datasets. 
-% So how does geofront address this fundamental aspect of geoprocessing? 
-
-The sizeable nature of geodata is a component fundamental to geocomputation.
-However, scaling the application up to handle big data deviated too much from the core goal of this thesis to solve the problem of library portability, and had to be left to future work. 
-
-Still, to pose a solution, this study experimented with compiling a \\ full Geofront script to JavaScript.
-This can be regarded as a 'release' build of the Geocomputation pipeline: 
-It would have allowed native CLI-execution using Deno \citep{contributors_deno_2022}, without any dependency or reference to Geofront itself.
-Only the libraries used within the pipeline would need to be referenced, and this could have been done using regular JavaScript import statements, and npm.
-
-% While it seems convoluted to compile a native library to WebAssembly and then execute it natively again, it is actually a sound strategy for building scalable, containerized programs for the cloud. 
-% The 'WASI' project is a good example of this (Source: https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/). 
-However, this experiment turned out to be a full-sized study in itself, and so had to be left to subsequent studies due to time constraints. 
-
 \subsubsection*{Q: Why wasn't Geofront developed as a native application, and published to the web as a whole?}
 
 A native-first build of Geofront would indeed be more performant, especially if the application is fully hybridized:
-If both a native and web build of an application are available, then Users can choose for themselves if they wish to sacrifice the performance and native experience for the accessibility of a web build. 
+If both a native and web build of an application are available, then users can choose for themselves if they wish to sacrifice the performance and native experience for the accessibility of a web build. 
  
 However, many features key to the solution and workflow specific to Geofront would be lost in such a setup.  
 (Prospected) features like dynamically loading plugins, scriptable components, or the compilation to JavaScript would be lost, or would have to be regained by incorporating a browser engine \emph{within} this native application. 
@@ -492,7 +469,7 @@ Some of these aspects are listed here, and could lead to interesting topics for 
     \graphicspath{{../../assets/images/1/}}
     \includegraphics[width=\linewidth]{expanded-proposal.png}
   \end{subfigure}%
-  \caption{An expanded proposed methodology, to provide a backend, cloud-based execution}
+  \caption{An expanded proposed methodology, repeated}
   \label{fig:proposal-extended-again}
 \end{figure}
 
@@ -689,11 +666,12 @@ Now that this study has made these connections explicit, future studies can focu
 Where the exact boundary of one field of study is, and where another begins, remains of course a fuzzy question. 
 Still, the direction of this study appears to stray far from 'core GIS concerns', and appears more in one line with the  field of "End User Development (EUD)", and fields like "Computer-Human interactions". 
 
-In defense of this, the field of GIS, like all research, is built on top of more foundational work which came before it. 
-However, during the implementation of the study, it appeared that little foundation was in place for a web VPL specifically. 
+% the field of GIS, like all research, is built on top of more foundational work which came before it. 
+% However,
+In defense of this, during the implementation of the study, it appeared that little foundation was in place for a web VPL specifically. 
 This made it necessary to generalize, to build the missing foundation first.
-For example "How can \emph{any} library be compiled and loaded into \emph{any} web-vpl" is a question which had to be answered first. 
-Then, the question could be specified to \emph{geometry} and \emph{geo-web-vpl}. 
+For example "How can \emph{a} library be compiled and loaded into \emph{a} VPL" is a question which had to be answered first. 
+Then, the question could be specified to \emph{geometry} and \emph{Web VPL}. 
 And only after that, the geodata and geoprocessing libraries specific to the field of GIS could be regarded. 
 By doing so, this study wishes to provide a foundation to assist any subsequent future study in this direction, which can then be more GIS focussed.
 
