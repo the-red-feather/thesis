@@ -3,7 +3,7 @@
 
 % This study consists of a design of the proposed method, an implementation of this design, and several test to assess this implementation. 
 This chapter present the design of the proposed method. 
-It first sums up and clarifies all requirements of the method, proceeded by presenting and overview, followed up by the various aspects to the design of the method. 
+It first sums up and clarifies all requirements of the method, followed up by presenting an overview, and then the various aspects to the design of the method. 
 It finishes by elaborating on the assessments used to test the environment. 
 
 \section{Definitions}
@@ -15,8 +15,8 @@ Throughout this and subsequent chapters, the following terms and phrases will be
 
 \textbf{VPL as Programming Language or Application}: An ambiguity exist of calling a VPL an application or a programming language. 
 Arguments can be made for both. 
-This study would describe its VPL as an application, which happens to possess a composable \ac{GUI}, and not a programming language.
-Nevertheless, depending on context, the VPL will be referred to as both.
+This study would describe its VPL as an application, which so happens to possess a composable \ac{GUI}, and not a programming language.
+Nevertheless, it does possess language characteristics, and depending on context, the VPL will be referred to as both.
 
 \textbf{Plugin vs Library}: A plugin represents additional, optional functionalities for a certain application.
 A library represents additional functionalities to be used within a programming language. 
@@ -63,7 +63,7 @@ This study has established that extensive support is required, for the sake of v
 applications and libraries, as described by Elliott (2007) (Does it succeed in doing so?)}
 \end{itemize}
 
-All three discrepancies described by the introduction \\ are addressed by incorporating the following aspects: \\
+All three discrepancies described by the introduction \\ may be addressed by incorporating the following aspects: \\
 
 \textbf{Generic GUI}: The VPL must serve as a generic \ac{GUI} to serve practically any \ac{GIS} library. 
 As such, it requires a wide range of buttons, sliders, text fields, and other inputs.
@@ -79,10 +79,10 @@ To make sure library capabilities do not get lost when used in an application, t
   effective are these measures?)}
 \end{itemize}
 
-Three measures will be taken to offer scalability in principle: 
+Three measures can be taken to offer scalability in principle: 
 
 \textbf{Portability}: A Backend execution of a VPL pipeline must be predictable. 
-As such, GIS libraries run on the frontend by the VPL must behave exactly the same as if they were run on a backend. 
+As such, GIS libraries run on the frontend in the VPL must behave exactly the same as if they were run on a backend. 
 
 \textbf{Zero-cost abstraction}: A pipeline created with the VPL should be able to run headless, to ensure a scalable backend can use such a pipeline.
 
@@ -115,7 +115,7 @@ Finally, as this prototype is intended for \ac{GIS} usage, both scalability to h
 
 \section{Framework Application}
 
-To serve the requirements of a \textbf{Framework application} and \textbf{direct utilization}, a framework web application will be required. 
+To serve the requirements of a \textbf{Framework application} and \textbf{direct utilization}, a statically hosted web application will be required, to serve as a framework in which the VPL can be embedded.  
 A UI library akin to imgui \citep*{cornut_dear_2022} or egui \citep*{ernerfeldt_egui_2022} would be optimal in providing such an environment. 
 However, due to the absence of such a desktop application-like framework in the JavaScript ecosystem, a custom implementation will be needed. 
 Using HTML5 features like Web Components, custom components such as multiple windows, dropdown menu's, side menu's etc. can be created without resorting to JavaScript frameworks.
@@ -129,10 +129,10 @@ This VPL must serve the requirements of \textbf{The VPL}, a \textbf{Generic GUI}
 A novel, custom VPL is needed to fit all requirements. 
 A dataflow VPL must be designed for web usage, which offers a range of \ac{GUI} nodes to serve as a generic GUI, and to allow applications to be composable. 
 
-While the initial plan was to re-use an existing web VPL, the related works review of \refchap{chap:related} showcased that no exiting browser-based geocomputation VPL would be an appropriate fit.
+While the intention was to re-use an existing web VPL, the related works review of \refchap{chap:related} showcased that no exiting browser-based geocomputation VPL would be an appropriate fit.
 The Mobius Modeller \citep{janssen_mobius_2021} came closest, but offered no dataflow VPL, no GUI components, and no plugin support. 
 Additionally, the sizable nature of the mobius modeller project made aligning its goals with the goals of this study challenging. 
-Building a custom implementation would also allow more degrees of freedom.
+Building a custom implementation would allow more degrees of freedom.
 
 The following approach was deemed as the most fitting method for implementing this VPL. 
 First, the components of a dataflow-VPL handling geometry have to be made clear.
@@ -197,7 +197,7 @@ By supporting these three engines, the vast majority of end-users can be served.
 The set of features common in these three browser engines are well-documented on websites like MDN web docs \citep{mozilla_mdn_2022}. 
 This set includes the following features relevant for the 3D VPL:
 \begin{enumerate}[-]
-  \item WebGL \& WebGL2 (WebGPU is not fully covered yet)
+  \item WebGL \& WebGL2 (WebGPU is not widely supported yet)
   \item 2D Canvas API
   \item Web Workers
   \item Web Components
@@ -301,7 +301,7 @@ a custom 3D engine, specialized to the needs of the VPL, would be best option fo
 \subsubsection*{Controller}
 \label{sec:method-controller}
 
-Finally, a controller will be needed to modify and manipulate the VPL.
+Finally, a controller will be needed to modify and manipulate the VPL (NodesCanvas in \reffig{fig:geofront-uml}).
 It will need to house all types of interactions, such as loading and saving a VPL script, model manipulation and updating the view only when necessary.
 Two important aspects require further explanation: Keeping track of history, and calculating the graph. 
 
@@ -311,7 +311,7 @@ In order to support all these interactions, especially undo / redo support, we a
 A Command Pattern \citep{gamma_design_1994} makes for a good fit in this regard.
 Instead of directly editing the graph, all manipulation actions should be represented as \m{Action} objects. 
 Each Action can 'do' and 'undo' a specific action, and the data needed to make this do and undo are stored within the action. 
-By then introducing a \m{Bridge} class, the model and controller can be separated, only allowing interaction with the model by serving this bridge Action objects. The \m{Bridge} maintains a stack of undo and redo actions, which represents this history.  
+By then introducing a \m{GraphHistory} class (see \reffig{fig:geofront-uml}), the model and controller can be separated, only allowing interaction with the model by serving this bridge Action objects. The \m{GraphHistory} maintains a stack of undo and redo actions, which represents this history.  
 
 % Additionally, editing any graph data structure is never trivial. 
 % Special care must be taken to ensure the validity of a graph before and after changes, and is especially the case with Geofront's Doubly linked graph. 

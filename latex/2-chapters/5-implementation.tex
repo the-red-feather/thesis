@@ -17,14 +17,12 @@ It discusses the extent of the achieved functionality, as well as certain ways i
 
 This section discusses the extent of the prototype \ac{VPL} implementation. 
 The prototype is titled "Geofront", as a concatenation of "geometry" and "frontend".
-Geofront exists as a set of loosely coupled repositories, all published on the version control platform GitHub under the MIT license. These repositories are grouped under the GitHub Organization \m{thegeofront} .
-
 % TODO: do something with appendix
 % (SOURCE: https://github.com/thegeofront)
 
 The Geofront Application is implemented according to the design layed out in \refsec{sec:method:base-vpl}, and uses TypeScript as its main language. 
 \m{webpack} is used to compile this codebase into a singular JavaScript file, and this file practically serves as the full application. 
-the repository spend around 9.000 lines of code, divided into core categories and functionalities.
+the repository spend around 11.000 lines of code, divided into core categories and functionalities.
 What follows is a clarification of the implementation of some of these categories.
 
 % TODO make this!!!!
@@ -440,7 +438,7 @@ In some cases, a library is be able to be loaded, but is then functionality impa
 
 While the zero-cost abstraction runtime, proposed in \refsec{sec:method:plugin-system}, was said not to be part of the implementation, small scale experimentation has been done as a proof of concept. 
 
-An early build of Geofront had the ability to compile a Geofront script to a subset of regular JavaScript (see (\reffig{fig:early-geofront-compile-to-js})).  
+An early build of Geofront had the ability to compile a Geofront script to a subset of regular JavaScript (see \reffig{fig:early-geofront-compile-to-js}).  
 All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by a variable token. 
 Additionally, because of the no-boilerplate plugin system, this JavaScript file could be re-imported back into Geofront, to represent the exact graph it originated from. 
 A subset of JavaScript was supported, using inline comments to add the appropriate metadata.

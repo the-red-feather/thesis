@@ -201,9 +201,8 @@ EMSCRIPTEN_BINDINGS(cpp_min) {
 \label{fig:minimum-cpp-wasm}
 \end{figure}
 
-No unexpected shortcomings were encountered in making a minimal C++ WebAssembly build in Geofront.
-It was possible to compile the plugin file to WebAssembly, and to use it in a web demo, but this build was limited in its ability to be automatically interfaced with Geofront.
-The web demo itself was also more limited compared to the rust build.
+Unexpected shortcomings were encountered in making a minimal C++ WebAssembly build in Geofront.
+It was possible to compile the plugin file to WebAssembly, and to use it in a web demo, but this build was limited in its ability to be automatically interfaced.
 
 First of all, the construction of the C++ source code itself.
 Emscripten's \m{embind} tool uses a macro syntax to flag functions marked for JavaScript compilation, shown in \reffig{fig:min-cpp-source}. 
@@ -978,7 +977,7 @@ Viscosity could be improved by creating special actions in the editor to perform
 
 \subsubsection*{Visibility: Is every part of the code simultaneously visible (assuming a large enough display), or it it at least possible to juxtapose any two parts side-by-side at will? If the code is dispersed, is it at least possible to know in what order to read it?}
 
-All parts of the code are simultaneously visible, and geofront does not offer any way of creating new popups or screens.
+All parts of the code are simultaneously visible, and geofront does not offer any way of creating new popups or screens, with the exception of special \ac{GUI} widgets.
 
 % ## Case Studies
 
