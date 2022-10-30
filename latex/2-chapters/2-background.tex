@@ -365,7 +365,7 @@ This study bases itself on the classifications presented in \citet{kuhail_charac
 \end{enumerate}
 
 The meta analysis of \cite{kuhail_characterizing_2021} shows a great preference among researchers for block- and diagram-based languages. 
-Only 4 out of 30 of the analyzed articles chose a form-based vpl, and only 2 chose an icon-based approach.  
+Only 4 out of 30 of the analyzed articles chose a form-based VPL, and only 2 chose an icon-based approach.  
 
 This study requires to introduce a fifth type of VPL. 
 A \textbf{Dataflow} VPL is a subtype of a diagram based VPL which only uses pure functions as computation nodes, only uses immutable variables, and which disallows cyclical patterns. This makes this VPL not only a graph, but a \ac{DAG}.
@@ -409,8 +409,8 @@ and icon-based \citep{francese_iconic_2017}, respectively}%
 \end{figure}
 
 Visual programming languages are used in numerous domains. 
-The vpls of the 30 studies examined by \citet{kuhail_characterizing_2021} were aimed at domains such as the Internet of Things, robotics, mobile application development, and augmented reality. 
-Within the domain of systems control and engineering, The Ladder Diagram vpl \citep{control_automation_ladder_2018} is the industry-standard for programming Programmable Logic Controllers (PLCs).
+The VPLs of the 30 studies examined by \citet{kuhail_characterizing_2021} were aimed at domains such as the Internet of Things, robotics, mobile application development, and augmented reality. 
+Within the domain of systems control and engineering, The Ladder Diagram VPL \citep{control_automation_ladder_2018} is the industry-standard for programming Programmable Logic Controllers (PLCs).
 \ac{VPL}s are also widely used within computer graphics related applications, including the field of \ac{GIS}, 
 These will be covered in \refsec{sec:related-geovpl}.
 Lastly, \ac{VPL}s also have great educational applications. 
@@ -429,13 +429,13 @@ Harvard's introduction to computer science course, CS50, famously starts out wit
 
 \subsection{Usability}
 
-Studies on \ac{VPL}s indicate that generally speaking, VPLs make it easy for end users to visualize the logic of a program, and that vpls eliminate the burden of handling syntactical errors \cite{kuhail_characterizing_2021}.
+Studies on \ac{VPL}s indicate that generally speaking, VPLs make it easy for end users to visualize the logic of a program, and that VPLs eliminate the burden of handling syntactical errors \cite{kuhail_characterizing_2021}.
 
 The locally famous Cognitive Dimensions study \cite{green_usability_1996}, states that \emph{"The construction of programs is probably easier in VPLs than in textual languages, for several reasons: 
 there are fewer syntactic planning goals to be met, such as paired delimiters, discontinuous constructs, separators, or initializations of variables; 
 higher-level operators reduce the need for awkward combinations of primitives; 
 and the order of activity is freer, so that programmers can proceed as seems best in putting the pieces of a program together."}. 
-Indeed, a vpl UI can be used to eliminate whole classes of errors on a UI level by, for example, not allowing the connection of two incompatible data types. 
+Indeed, a VPL UI can be used to eliminate whole classes of errors on a UI level by, for example, not allowing the connection of two incompatible data types. 
 
 % These properties together make visual programming also highly suitable for activities of experimentation and debugability, and not only for end users. 
 
@@ -500,7 +500,7 @@ Functional programming has many benefits of its own besides concurrency, such as
 
 All that to say, creating a \ac{VPL} is not just a matter of designing a stylistic, user-friendly \ac{GUI} alternative to regular programming.
 This might be true for other types of VPLs, but not for diagram-based ones. 
-By closely resembling dataflow itself, and because of its functional programming nature, diagram-based vpls may actually lead to faster and more reliable software.
+By closely resembling dataflow itself, and because of its functional programming nature, diagram-based VPLs may actually lead to faster and more reliable software.
 
 \subsection{Disadvantages and open problems}
 \label{sec:background:vpl:disadvantages}
@@ -512,7 +512,7 @@ By closely resembling dataflow itself, and because of its functional programming
 % identified and despite the improvements, patterns for answering them are yet to
 % be achieved.)
 
-% block-based visual programming: just purely UI, diagram-based vpl add additional, functional programming qualities. 
+% block-based visual programming: just purely UI, diagram-based VPL add additional, functional programming qualities. 
 
 
 \subsubsection*{Iteration and conditionals}
@@ -532,11 +532,11 @@ By closely resembling dataflow itself, and because of its functional programming
     \includegraphics[width=\linewidth]{iteration-text.png}
     \caption{}\label{fig:vpl-iteration:2}
   \end{subfigure}%
-  \caption[Comparison of iteration]{A factorial function, written in a vpl, and in a textual language \citep{sousa_dataflow_2012}}%
+  \caption[Comparison of iteration]{A factorial function, written in a VPL, and in a textual language \citep{sousa_dataflow_2012}}%
   \label{fig:vpl-iteration}
 \end{figure}
 
-A problem described in almost all reviewed vpl literature \citep{green_usability_1996,sousa_dataflow_2012, kuhail_characterizing_2021}, is that the \ac{DAG} model of diagram-based vpls are ill-suited for representing even the most basic flow control statements: \m{if, else, for, while}.
+A problem described in almost all reviewed VPL literature \citep{green_usability_1996,sousa_dataflow_2012, kuhail_characterizing_2021}, is that the \ac{DAG} model of diagram-based VPLs are ill-suited for representing even the most basic flow control statements: \m{if, else, for, while}.
 Even if the acyclic quality of the dataflow graph is omitted, the resulting models are significantly more complicated compared to their textual counterparts, as shown by \reffig{fig:vpl-iteration}.
 
 \subsubsection*{Encapsulation \& reusability}
@@ -545,7 +545,7 @@ It is widely known that as a program scales in size, the complexity of managing 
 In textual languages, reducing this complexity is often achieved by means of encapsulating sub-routines and re-usable parts of the program into separate functions.
 Inner functionality is then hidden, and operations can be performed on a higher level of abstraction. 
 This hierarchy of abstraction is just as achievable for \ac{VPL}s as described by \citet{sousa_dataflow_2012}.
-However only a select number of \ac{VPL}s offer a form of encapsulation, and even less allow the creation of reusable functions, or creating reusable libraries from vpl scripts.
+However only a select number of \ac{VPL}s offer a form of encapsulation, and even less allow the creation of reusable functions, or creating reusable libraries from VPL scripts.
 It appears that \ac{VPL} researches and developers are either not aware of the importance of encapsulation, or have encountered problems in representing this feature in a graphical manner.
 
 % \subsubsection{High viscocsity}
@@ -562,7 +562,7 @@ The number of citations of this work is relatively high, and indeed, almost all 
 In so far as this study needs to address the usability of the prototype VPL, we will thus follow this consensus, and base any assessment on this framework.
 
 % - we will make no such attempt. usability serves as background motivation. 
-% - this study assumes vpl's are 'in general' more usable to end-users 
+% - this study assumes VPL's are 'in general' more usable to end-users 
 % than text-based alternatives, based on the positive results of most of the 
 % studies analysed by communicating_2021.
 
@@ -584,13 +584,13 @@ However, in such a situation, users are limited to the publication tools, versio
 % TODO: Formalize these ramblings, or don't. 
 
 % - no existing VPL ( that I know of ) has proper git-based version control. 
-%   - Most vpls use proprietary storage and collaboration methods. 
-% - vpls which are able to compile to a textual format are rare
-%   - vpls able to compile to a programming language, or a headless format, are even more rare. 
+%   - Most VPLs use proprietary storage and collaboration methods. 
+% - VPLs which are able to compile to a textual format are rare
+%   - VPLs able to compile to a programming language, or a headless format, are even more rare. 
 
 % - Let alone: on operational programming paradigms such as Test driven development (TDD), continuous integration (CI), continuous delivery (CD).  
 
-% - in general, the life-cycle support of most vpls found in the low-coding industry are closely tied to their business models. 
+% - in general, the life-cycle support of most VPLs found in the low-coding industry are closely tied to their business models. 
 %   - Users can only use the publication tools, version control tools, and package / library managers offered to them by the vendor.
 
 % \end{note}
@@ -600,8 +600,8 @@ It seems the lack of publication tooling might be partially due to a lack of pub
 
 \subsection{Conclusion}
 
-The background literature clearly indicates many advantageous properties of vpls, both in terms of (end) user experience and the dataflow programming properties. 
-Additionally, the studies showed important considerations which have to be taken into account in the design of any vpl.  
+The background literature clearly indicates many advantageous properties of VPLs, both in terms of (end) user experience and the dataflow programming properties. 
+Additionally, the studies showed important considerations which have to be taken into account in the design of any VPL.  
 Lastly, the studies agree on several open-ended issues of which a satisfying answer is yet to be found. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

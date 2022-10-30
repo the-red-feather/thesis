@@ -42,9 +42,6 @@ presentation
 - remove \newpages, hugo doesnt like 'em
 
 # OVERALL
-[ ] javascript replace! -> JavaScript
-[ ] capitalize VPL everywhere!
-[ ] capitalize GIS everywhere! 
 [ ] remove all strong words everywhere!
    - very
    - extremely 

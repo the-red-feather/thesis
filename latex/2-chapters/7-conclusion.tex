@@ -56,7 +56,7 @@ These features do not need to be included within the source code of the applicat
 Secondly, by using \m{iframe's} and window pop-ups, the web context could be utilized to integrate third party UIs in a simple manner, as demonstrated with the Potree demo in \refsec{sec:testing:demo}.
 Summarized, for this second set of \ac{GUI} features, the web platform was advantageous.
 
-% Overall, the browser appears to be capable of representing a dataflow-type vpl graph to an acceptable degree, 
+% Overall, the browser appears to be capable of representing a dataflow-type VPL graph to an acceptable degree, 
 % based on the implementation presented in \refsec{sec:implementation:app}.
 
 % All three of these features proved to be vital, and were performant enough to support an application like this. 
@@ -139,7 +139,7 @@ All in all, it must be concluded that Rust-based WebAssembly compilation is more
 % Emscripten can be used to compile full-scale C++ applications, and offers an emulation of a POSIX environment.
 % However, it lacks support for compiling libraries themselves, compared to other wasm-library compilers.
 % libraries generated with emscripten's 'embind' tool use irregular syntax, which troubles its ability to be loaded programmatically.
-% While web implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type vpl requiring pure functions.
+% While web implementations do exist like 'GDAL-js', these solutions are required to work though Web Workers, and use the emscripten virtual file systems, which again compromises their usage for the purpose of a dataflow-type VPL requiring pure functions.
 % Finally, the experiments recognized certain discrepancies between the novelty of the WebAssembly format, juxtaposed to 50-year-old legacy of the C++ language, leading to larger wasm binaries, and less performant bindings compared to Rust.
 
 
@@ -205,7 +205,7 @@ Moreover, it is unique in its ability to accept third party Plugins written in d
 % \end{itemize}
 
 % Based on the method described in \refsec{sec:method:plugin-system} and \refsec{sec:implementation:loading}, and the analysis of \refsec{sec:testing:compilation}, it can be concluded that it is possible and even sufficiently usable to load a web-library into a VPL without explicit configuration. 
-% It also had the desired effect of breaking down the barrier between vpl libraries and regular text-based libraries: Using this method, only one type of library is needed to serve both. 
+% It also had the desired effect of breaking down the barrier between VPL libraries and regular text-based libraries: Using this method, only one type of library is needed to serve both. 
 % Moreover, it led to a workflow in which rapid experimentation was possible, since this method allows users to develop a library locally, and then quickly experiment and test its usage online. 
 
 % The drawback of allowing this seamless interoperability and rapid experimentation, is that many important properties like descriptions and library metadata do not need to be explicitly specified, and could not be automatically extracted. 
@@ -339,7 +339,7 @@ These contributions are bound by following limitations:
   This means it cannot be used properly for big data, or other expensive processes. 
 
   % was not part of this study
-  % First of all, the purpose of this study was only to get geocomputation libraries to the web, and inside of a vpl format. 
+  % First of all, the purpose of this study was only to get geocomputation libraries to the web, and inside of a VPL format. 
   
   
   % But still, lets give the devil his due:
@@ -363,7 +363,7 @@ This section covers questions on the decisions made during the study, and the an
 \subsubsection*{Q: Geodata is almost always big data. Will this web environment be scalable to handle big datasets?}
 
 % 3. web interface
-% - Having no file system really hurts the usefulness of the vpl as a data processing application.
+% - Having no file system really hurts the usefulness of the VPL as a data processing application.
 % -> file system API is coming to fix this
 % -> This study recommends cloud-native as a solution to this problem, and has added 
 
@@ -411,22 +411,22 @@ However, a valid criticism can be made that this study could have opted for addi
 % \textbf{2. Disconnect between textual and visual programming}
 
 % Secondly, to turn a 'normal' function into a component usable in a dataflow graph, additional metadata needs to be specified.
-% This leads to specific config files and classes, which in turns creates a barrier between regular programming libraries, and vpl libraries. 
+% This leads to specific config files and classes, which in turns creates a barrier between regular programming libraries, and VPL libraries. 
 % \refsec{sec:implementation:loading} represents the attempted solution to this problem. 
 
 
 % \textbf{3. Web interfacing}
 
-% And lastly, having limited access to the file system really hurts the usefulness of the vpl as a data processing application.
+% And lastly, having limited access to the file system really hurts the usefulness of the VPL as a data processing application.
 % This aspect has not been properly addressed during this study.
 % This study recommends the novel web services cloud-native as a solution to this problem, and has added 
 
 
-% \subsubsection*{Q: Is a geo-web-vpl the same as a 3D vpl with existing geoprocessing functionalities attached? In other words, is geoprocessing nothing else than procedural modelling?}
+% \subsubsection*{Q: Is a geo-web-vpl the same as a 3D VPL with existing geoprocessing functionalities attached? In other words, is geoprocessing nothing else than procedural modelling?}
 
 % No, but it is a good start. 
 % A geo-web-vpl is \emph{at the very least} a Geometry VPL. 
-% Indeed, an actual geocomputation vpl might require more features, such as a global CRS, support of base-maps, more control on precision, etc. 
+% Indeed, an actual geocomputation VPL might require more features, such as a global CRS, support of base-maps, more control on precision, etc. 
 % These important aspects must be left for future work.
 
 % \subsubsection*{Q: Usage: Who benefits from a web-geo-vpl, and how? }
@@ -520,37 +520,37 @@ First, end-users can specify the scope and parameters of this process, making th
 Secondly, this could be a more cost-effective method, as cloud computation \& Terabytes of storage are time consuming and expensive phenomena.
 
 This type of \emph{on demand geocomputation} is certainly not a drop-in replacement for all use cases. 
-But, in situations which can guarantee a 'local correctness', and if the scope asked by the used is not too large, this should be possible. 
-Examples of this would be a streamed delaunay triangulation, TIN interpolation or color-band arithmetic. 
+But, in situations which can guarantee a 'local correctness', and if the scope asked by the user is appropriate, this may be possible. 
+Examples of this would be a streamed TIN interpolation or color-band arithmetic. 
 
 \subsection{Rust-based geocomputation \& cloud native geospatial}
 
-An interesting aspect this study was able to touch on is using Rust for geocomputation.
-The reason for this was the extensive support for webassembly, which was essential for browser-based geocomputation. 
+An interesting aspect this study was able to touch on is using the Rust language for GIS processing and analysis.
+The reason for this was the extensive support for webassembly, which was essential for allowing GIS tools to be used in the browser. 
 However, there are additional reasons one might want to perform geocomputation within Rust.
 One is that rust is widely considered as a more stable, less runtime error-prone language than C++, while offering similar performance and features.
 Additionally, rust Wasm binaries also tend to be smaller than C++ wasm binaries.  
 
-This could be very interesting to the "cloud-native geospatial" movement. 
+This could be valuable to the "cloud-native geospatial" movement. 
 This \ac{GIS} movement aims to create the tools necessary to send geocomputation to servers, rather than sending geodata to the places where they are processed.
 To do this, geocomputation must become more portable than it currently is, and Rust compiled to WebAssembly might proof to be a strong candidate for creating exchangeable, performant, compact, and error-proof binaries.
-It already sees usage on both cloud and edge servers (State of WebAssembly, 2022).  
+It already sees usage on both cloud and edge servers \citep{eberhardt_state_2022}.  
 
 Therefore, studying Rust-based geocomputation for the purpose of cloud native and edge computing, would be a promising topic for subsequent research. 
 
 \subsection{FAIR geocomputation}
 
 % The study has only scratched the surface on what is possible with combining geocomputation with the fields of Visual programming, and web applications. 
-The introduction theorized on how both VPLS and web-apps could be used to make geocomputation less cumbersome.
+The introduction theorized on how both VPLS and web-apps could be used to make GIS tools more directly available.
 The study chose to pursuit this on a practical, technical level. 
 
 However, a more theoretical study could also be performed. 
-It turns out that these ideas of 'less cumbersome geodata processing', have something in common with many of the geoweb studies on data accessibility and usability \citep{brink_geospatial_2018}.
-The ideas of 'data silo's', 'FAIR geodata', and 'denichifying of \ac{GIS} data' (see \citet{brink_geospatial_2018}) map well to geocomputation:
+It turns out that the concepts of 'accessible GIS tools', have something in common with many of the geoweb studies on data accessibility and usability \citep{brink_geospatial_2018}.
+The ideas of 'data silo's', 'FAIR geodata', and 'denichifying of \ac{GIS} data' (see \citet{brink_geospatial_2018}) may be used as well as well on GIS tooling:
 Functionality Silo's, FAIR geocomputation, denichifying of \ac{GIS} computation. 
 
 Therefore, an interesting question for a subsequent study could be: "How could geocomputation become more Findable, Accessible, Interoperable, and Reusable?", or "How to integrate the function-silo's of GIS, BIM \& CAD?"
-By focussing on data processing actions rather than the data itself, we could shed a new light on why data discrepancies and inaccessibility exist. 
+By focussing on data processing actions rather than the data itself, we may shed a new light on why data discrepancies and inaccessibility exist. 
 After all, if a user is unable to convert retrieved geodata to their particular use case, then the information they seek remains inaccessible.
 
 
@@ -705,7 +705,7 @@ By doing so, this study wishes to provide a foundation to assist any subsequent 
 % PROBLEM: WHAT DO I TEST??
 
 % This is why the study has attempted to generalized its findings as much as possible.
-% Geofront is regarded as a proxy of geo-web-VPLS in general, in the sense that whatever was encountered during implementation of the application, must be the same for any attempt at creating a web-based vpl for geocomputation.
+% Geofront is regarded as a proxy of geo-web-VPLS in general, in the sense that whatever was encountered during implementation of the application, must be the same for any attempt at creating a web-based VPL for geocomputation.
 
 
 \textbf{Subjectivity in qualitative assessment}
@@ -768,7 +768,7 @@ Nevertheless, the study has attempted to scope this subjectivity by basing its a
 
 % The disadvantage of this approach is that software development can lead a study astray, if the development needs of the application are put before the needs of the study itself.
 
-% This study was a battleground between "performing a study on if geocomputation benefits from the web \& a vpl", and "lets build an open-source tool to aid geocomputation"
+% This study was a battleground between "performing a study on if geocomputation benefits from the web \& a VPL", and "lets build an open-source tool to aid geocomputation"
 
 % It needed a bit of both.
 
@@ -829,7 +829,7 @@ Nevertheless, the study has attempted to scope this subjectivity by basing its a
   
 %   At the same time, many of our parametric designers could use grasshopper, and only grasshopper. 
   
-%   This led me to think about a vpl which can run client-side in a browser, and can produce client-side applications.
+%   This led me to think about a VPL which can run client-side in a browser, and can produce client-side applications.
   
 %   if the data is geodata or CAD data, does not matter besides the fact that geodata is often big data.
   
@@ -883,7 +883,7 @@ Nevertheless, the study has attempted to scope this subjectivity by basing its a
 
 
 % In one sentence: It was my goal to make your grandma use CGAL.
-% This requires making something extremely user-friendly compared to QGIS / python (the vpl)
+% This requires making something extremely user-friendly compared to QGIS / python (the VPL)
 % As well as making it extremely accessible (wasm: no install, direct usage)
 
 
