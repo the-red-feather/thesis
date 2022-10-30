@@ -98,8 +98,8 @@ To make the research goals of this study more precise, these two domains must br
 % Successful geocomputation pipelines often relies on operations found in a select number of libraries. 
 % Most major, industry-standard geocomputation libraries are native, C++-based libraries. 
 % Examples of these are GDAL, PROJ, and GEOS. 
-% However, A web based geocomputation VPL like the Mobius Modeller does not make use of these libraries, and uses javascript equivalents like Turf \citep{turf_contributors_turfjs_2022}.
-% While it is possible to port a library like GDAL to javascript, guarantying that these two versions show the same behavior will be complex and time consuming. Additionally, managing duplicate libraries like this will slow down development, or create large version discrepancies \citep{ammann_maplibre-rs_2022}.
+% However, A web based geocomputation VPL like the Mobius Modeller does not make use of these libraries, and usesJavaScript equivalents like Turf \citep{turf_contributors_turfjs_2022}.
+% While it is possible to port a library like GDAL toJavaScript, guarantying that these two versions show the same behavior will be complex and time consuming. Additionally, managing duplicate libraries like this will slow down development, or create large version discrepancies \citep{ammann_maplibre-rs_2022}.
 
 \subsection*{Composability: Visual Programming}
 
@@ -207,7 +207,7 @@ The second development is the introduction and adoption of the WebAssembly langu
 \ac{wasm} binaries can be run in any environment and language, as long as such a runtime is implemented. 
 Such a runtime has been added to most major web browsers since late 2019 \citep{w3c_world_2019}. 
 Among many purposes, it offers a method to run native software as (part of) a web application. 
-WebAssembly partially mitigates the need for web-based, javascript alternatives of native software applications and libraries. 
+WebAssembly partially mitigates the need for web-based, JavaScript alternatives of native software applications and libraries. 
 It also allows software which previously could only be run on servers, to be executed in the browser. 
 Examples of this are how \citet{ammann_maplibre-rs_2022} built a map viewer which was both able to serve native and web needs.
 

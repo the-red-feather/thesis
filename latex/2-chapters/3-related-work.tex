@@ -52,7 +52,7 @@ Lastly, by performing these calculations in the browser rather than on a server,
 and customly computed geodata does not have to be resent to the user upon every computation request.
 
 However, browser-based geocomputation poses multiple challenges. 
-Browsers \& javascript are not ideal hosts for geocomputation. 
+Browsers \& JavaScript are not ideal hosts for geocomputation. 
 As an interpreted language, Javascript is slower and more imprecise compared to system-level languages like C++.
 In addition, it has limited support regarding reading and writing files, and does not possess of a rich ecosystem of geocomputation libraries.  
 Novel browser features like WebAssembly may pose a solution to some of these open questions, but this has not seen substantial research. 
@@ -67,7 +67,7 @@ While these findings are insightful, they are not directly applicable to the eff
 \begin{itemize}
   \item The paper stems from 2014. Since then, web browsers have seen a significant increase in performance thanks to advancements in JavaScript JIT compilers \citep{haas_bringing_2017, kulawiak_analysis_2019}. 
   \item The paper does not utilize compile-time optimizations. The authors could have utilized 'asm.js' \citep{mozilla_asmjs_2013} which did exist at the time. 
-  \item The paper uses a javascript library which was never designed to handle large datasets.
+  \item The paper uses a JavaScript library which was never designed to handle large datasets.
 \end{itemize}
 
 The same statements can be made about similar efforts of \citet{panidi_hybrid_2015}. 
@@ -86,7 +86,7 @@ In this context, institutions [...] should consider implementing Web-GIS with cl
 
 From these papers we can summarize a true academic and even commercial interest \\ in browser based geoprocessing over the last decade. 
 However, practical implementation details remain highly experimental, or are simply not covered.  
-The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major javascript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
+The implementations of \cite{panidi_hybrid_2015, hamilton_client-side_2014} were written in a time before WebAssembly \& major JavaScript optimizations, and the study of \cite{kulawiak_analysis_2019} prioritized theory over practice. 
 Additionally, to the best of the authors's knowledge, all papers concerned with browser-based geoprocessing either tried to use existing JavaScript libraries, or tried to write their own experimental WebAssembly / JavaScript libraries. 
 No studies have been performed on the topic of compiling existing C++/Rust geoprocessing libraries to the web. 
 
@@ -99,7 +99,7 @@ These applications will briefly be mentioned.
  
 % https://geotiff.io/
 GeoTIFF (\citep{dufour_geotiffio_2022}, \reffig{fig:geotiff}), is a web-based, open source, geoTIFF processing tool. 
-It offers basic operations such as taking the median or \& mean of a certain area, color band arithmetic, and can plot histograms, all calculated within the browser using customly written javascript libraries.
+It offers basic operations such as taking the median or \& mean of a certain area, color band arithmetic, and can plot histograms, all calculated within the browser using customly written JavaScript libraries.
 
 \begin{figure}
   \centering
@@ -411,7 +411,7 @@ The web environment this vpl now occupies allows its users some life-cycle suppo
 Users can immediately publish their work, search for and run the work of others, and even "Remix / clone / fork" the source code of these other projects. 
 This encourages users to learn from each other.
 
-% [blockly-> can be compiled to python and javascript]
+% [blockly-> can be compiled to python and JavaScript]
 % Microsoft makecode arcade
 
 The second exemplary web vpl this study wishes to bring to the readers attention is the "nodeRED" application \citep{openjs_foundation_node-red_2022} (see \reffig{fig:webvpl:2}). 
@@ -426,7 +426,7 @@ For this reason the "nodeRED" application is a web application, even though it i
 % - Mobius Modeller : https://mobius.design-automation.net/pages/mobius_modeller.html
 To the best of the author's knowledge, only one publicly available visual programming language exist which is both able to be configured and executed in a browser, and is able to be used for geodata computation.
 This application is called the Möbius Modeller \citep{janssen_mobius_2021}, and is the closest equivalent to the geo-web-vpl proposed by this study.
-Though it only uses javascript, the tool is able to be successfully used for a number of applications, including CAD, BIM, urban planning, and GIS. 
+Though it only uses JavaScript, the tool is able to be successfully used for a number of applications, including CAD, BIM, urban planning, and GIS. 
 It uses a combination of a 'bare-bones' diagram-based vpl, together with a rich block-based vpl (See \reffig{fig:mobiusmodeller}).
 In fact, the block-based vpl is so rich that is almost ceases to be a vpl altogether, and starts to be python-like language with heavy IDE support.  
 

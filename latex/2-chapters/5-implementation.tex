@@ -27,7 +27,7 @@ Geofront exists as a set of loosely coupled repositories, all published on the v
 % (SOURCE: https://github.com/thegeofront)
 
 The Geofront Application is implemented according to the design layed out in \refsec{sec:method:base-vpl}, and uses TypeScript as its main language. 
-\m{webpack} is used to compile this codebase into a singular javascript file, and this file practically serves as the full application. 
+\m{webpack} is used to compile this codebase into a singular JavaScript file, and this file practically serves as the full application. 
 the repository spend around 9.000 lines of code, divided into core categories and functionalities.
 What follows is a clarification of the implementation of some of these categories.
 
@@ -189,7 +189,7 @@ However, specific visualization convertors are not implemented, for these are re
 % This means that the interface freezes up during large calculations.
 
 % The reason for this is the difficulty in achieving concurrency in the browser. 
-% Web workers have to be implemented and instantiated using separate javascript files. 
+% Web workers have to be implemented and instantiated using separate JavaScript files. 
 % Not only is this unusual, it forces a codebase to create separate files per multithreaded operation.
 % The dynamic nature in which some of Geofront dependencies are loaded made splitting up the codebase like this difficult, let alone using multiple threads for calculating each node.
 
@@ -240,20 +240,20 @@ The implementation comes down to a plugin loader written inside of the Geofront 
 \subsection{The plugin loader}
 \label{sec:implementation:loading:limits}
 
-The plugin loader implemented in Geofront can load a javascript / typescript library, and convert it into appropriate visual components. 
+The plugin loader implemented in Geofront can load a JavaScript / typescript library, and convert it into appropriate visual components. 
 
 As prescribed by the methodology, Typescript declaration files are loaded to determine the name, location, parameter types of functions. 
 This works similar for libraries which include a WebAssembly binary.
 
-While in theory any javascript / typescript library can be used, in practice some limitations are in place due to the specific implementation used:
+While in theory any JavaScript / typescript library can be used, in practice some limitations are in place due to the specific implementation used:
 
 \subsubsection*{Files}
 Firstly, the current loader accepts only one Javascript file, and one Typescript Declaration file per library.
 A library without a 'd.ts' declaration cannot be used. 
-If additional files are used, such as \ac{wasm} files, these will have to be explicitly fetched and run by the javascript file. 
+If additional files are used, such as \ac{wasm} files, these will have to be explicitly fetched and run by the JavaScript file. 
 For the purposes of this study this is acceptable, as the used \ac{wasm} compilers work in a manner compatible to these limitations.
 Javascript bundlers also help to adhere to these limitations.
-Still, this does mean that not just any javascript library can be imported. 
+Still, this does mean that not just any JavaScript library can be imported. 
 
 \subsubsection*{Library Structure}
 Secondly, while the loader does support namespaces and classes, not all types of libraries and programming styles are supported. 
@@ -266,9 +266,9 @@ The plugin loader can only load functions using acceptable input and output type
 Not all input and output arguments translate well to the format of a dataflow VPL. 
 The types may only include: 
 \begin{itemize}
-  \item basic javascript types (boolean / number / string)
+  \item basic JavaScript types (boolean / number / string)
   \item basic jsons (unnamed structs), objects, interfaces 
-  \item javascript ArrayBuffers like \m{Float32Array} (vital for performant data transfer)
+  \item JavaScript ArrayBuffers like \m{Float32Array} (vital for performant data transfer)
 \end{itemize}
 The typesystem of the plugin loader will pick up on types exposed by a library, and include them within the type safety system of Geofront. 
 However, this does mean that certain types are not supported, like asynchronous promises, or functions as variables. 
@@ -300,15 +300,15 @@ Finally, not all languages are equally supported:
 
   \item \textbf{Rust}:
     Libraries compiled to webassembly using the "\m{wasm-bindgen}" work "out of the box" in most cases.
-    \m{wasm-bindgen} is able to generate javascript wrapper bindings for a \ac{wasm} library, accompanied by TypeScript type definitions. 
+    \m{wasm-bindgen} is able to generate JavaScript wrapper bindings for a \ac{wasm} library, accompanied by TypeScript type definitions. 
     This wrapper handles type conversions. 
     
     However, rust libraries compiled to the web do require a initialization step. 
     As such, the loader now checks if the library looks like a Rust library, and if it does, it uses a slightly altered loading method.
   \item \textbf{C++}
     At the time of writing this study, the 'embind' compiler (explained in \refsec{sec:implementation:loading}) does not have an option to compile a typescript declaration file. 
-    Additionally, the javascript generated to wrap the wasm binary is not a wrapper handling type conversions and memory safety like Rust. 
-    Instead, it uses a custom architecture programmatically expose javascript wrapper functions one by one, and leaves it to the user of the library to deal with type conversions and memory safety. 
+    Additionally, the JavaScript generated to wrap the wasm binary is not a wrapper handling type conversions and memory safety like Rust. 
+    Instead, it uses a custom architecture programmatically expose JavaScript wrapper functions one by one, and leaves it to the user of the library to deal with type conversions and memory safety. 
     These two aspects combined makes it so C++ cannot use Geofront's loader directly, and must use an additional in-between wrapper libraries.
 
   \item \textbf{Other languages}
@@ -321,7 +321,7 @@ Finally, not all languages are equally supported:
 
 % \emph{show the insane (rust + wasm + npm) workflow}
 
-With all the above considerations in mind, the following workflow can now be used to create a Geofront Plugin, which, as explained, doubles as a normal javascript library. 
+With all the above considerations in mind, the following workflow can now be used to create a Geofront Plugin, which, as explained, doubles as a normal JavaScript library. 
 If Rust or C++ is used, this setup in a way triples as also a native geoprocessing library.
 The Geofront standard library is also implemented by using workflow with Rust.
 
@@ -393,12 +393,12 @@ in which developers are required to create a class per exposed function.
 
 This system creates seamless interoperability between a textual programming library, and a VPL plugin to an extent. 
 However, because of the reasons outlined above, it is also safe to say that this seamless interoperability is only one-directional: 
-Libraries intended for consumption by Geofront double as also a 'normal' javascript library. 
-The configuration demands of Geofront only impair the normal, javascript-based usage by forcing a functional style, and by including certain methods only intended for Geofront. 
+Libraries intended for consumption by Geofront double as also a 'normal' JavaScript library. 
+The configuration demands of Geofront only impair the normal, JavaScript-based usage by forcing a functional style, and by including certain methods only intended for Geofront. 
 Even these Geofront-specific methods might prove useful in certain scenarios, such as by providing a way to visualize data.
 
 This seamless interoperability is less prominent in the opposite direction. 
-A normal javascript library, or a javascript library using WebAssembly, can't be automatically used by Geofront in most cases. 
+A normal JavaScript library, or a JavaScript library using WebAssembly, can't be automatically used by Geofront in most cases. 
 Most libraries use an imperative programming style, use unsupported types, or consist of multiple files.
 In some cases, a library is be able to be loaded, but is then functionality impaired by the interface. 
 
@@ -446,13 +446,13 @@ In some cases, a library is be able to be loaded, but is then functionality impa
 
 While the zero-cost abstraction runtime, proposed in \refsec{sec:method:plugin-system}, was said not to be part of the implementation, small scale experimentation has been done as a proof of concept. 
 
-An early build of Geofront had the ability to compile a Geofront script to a subset of regular javascript (see (\reffig{fig:early-geofront-compile-to-js})).  
+An early build of Geofront had the ability to compile a Geofront script to a subset of regular JavaScript (see (\reffig{fig:early-geofront-compile-to-js})).  
 All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by a variable token. 
-Additionally, because of the no-boilerplate plugin system, this javascript file could be re-imported back into Geofront, to represent the exact graph it originated from. 
+Additionally, because of the no-boilerplate plugin system, this JavaScript file could be re-imported back into Geofront, to represent the exact graph it originated from. 
 A subset of JavaScript was supported, using inline comments to add the appropriate metadata.
 This allowed the setup shown above to be synchronized.
 That is to say, updating the textual representation led to a change in the graph, and vise-versa.
-This javascript representation could be executed headless in either a browser-based application, or using a local javascript runtime like Deno \citep{contributors_deno_2022}.
+This JavaScript representation could be executed headless in either a browser-based application, or using a local JavaScript runtime like Deno \citep{contributors_deno_2022}.
 
 However, both the Pipeline to JavaScript compiler, and the JavaScript to Pipeline compiler, could not be maintained given the other requirements of the environment, such as complex \ac{GUI} nodes.
 Auxiliary systems complicated the export and import workflow, like allowing a node to iterate through a list. 

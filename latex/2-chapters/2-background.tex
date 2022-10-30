@@ -151,11 +151,11 @@ The significance of the WebAssembly standard for the point of view of web applic
 This is why this explanation starts out by framing WebAssembly within this context.
 
 % In the starting years of the World Wide Web, web applications as we understand them know were not possible, and the web consisted of websites exclusively. 
-% Then, with the inclusion of the javascript scripting language in 199x (Source), and browser plugins like Adobe Flash (Source), the first couple of web application slowly started to be developed. 
+% Then, with the inclusion of the JavaScript scripting language in 199x (Source), and browser plugins like Adobe Flash (Source), the first couple of web application slowly started to be developed. 
 % Still, these early web applications exclusively used a centralized client-server model.
 % The clients were simple, and completely reliant on the server. 
 
-% In the decades that followed, the javascript runtime of web browsers saw continuous improvements, alongside additions like HTML5, facilitating more interactive usage of webpages.
+% In the decades that followed, the JavaScript runtime of web browsers saw continuous improvements, alongside additions like HTML5, facilitating more interactive usage of webpages.
 % As the web and web technologies matures, new ways of using these technologies are discovered.
 % Web applications became more interactive, and frontend functionalities were slowly moved from the server to the client. 
 
@@ -164,8 +164,8 @@ This is why this explanation starts out by framing WebAssembly within this conte
 Since 2012, a trend of rich web-clients can be widely recognized \cite{hamilton_client-side_2014, panidi_hybrid_2015, kulawiak_analysis_2019}.
 Around this time, browser engines had become performant enough to allow more decentralized client-server models.
 By reducing servers to just static file servers, and adding all routing and rendering responsibilities to the client, the interactivity of a web application could be maximized. 
-This led to models like "single page application", which are facilitated by javascript frameworks like Angular, React and Vue.
-However, the real facilitator of these developments are the browsers vendors themselves, as these frameworks would not be possible without the performance increase granted by improvements of the various javascript Just In Time compilers. 
+This led to models like "single page application", which are facilitated by JavaScript frameworks like Angular, React and Vue.
+However, the real facilitator of these developments are the browsers vendors themselves, as these frameworks would not be possible without the performance increase granted by improvements of the various JavaScript Just In Time compilers. 
 
 This growth has also lead to web applications being used 'natively'. 
 Tools like Electron \citep{contributors_electron_2022} allow web applications to be installed and 'run' on native machines by rendering them inside of a stripped down browser. 
@@ -212,8 +212,8 @@ Lastly the current version of WebAssembly does not support concurrency features 
 
 This last shortcoming can be mitigated by calling JavaScript using HTML5 features from WebAssembly. 
 This is how many current WebAssembly projects are set up. 
-However, this layer of javascript 'boilerplate' or 'glue code' is inefficient, as it leads to duplication and redirection.
-Additionally, platforms wishing to support WebAssembly must now also support javascript. 
+However, this layer of JavaScript 'boilerplate' or 'glue code' is inefficient, as it leads to duplication and redirection.
+Additionally, platforms wishing to support WebAssembly must now also support JavaScript. 
 
 
 \subsection*{Performance}
@@ -223,9 +223,9 @@ Jangda et. al. reason that some of this performance difference will disappear th
 One of these penalties is the extra translation step, shown in \reffig{fig:wasm-trajectory}, which is indeed unavoidable when utilizing an in-between compilation target. 
 
 Some studies have taken place evaluating \ac{wasm}'s performance  \\ for geospatial operations specifically. 
-\citet{melch_performance_2019} performed extensive benchmarks on polygon simplification algorithms written in both javascript and WebAssembly. 
+\citet{melch_performance_2019} performed extensive benchmarks on polygon simplification algorithms written in both JavaScript and WebAssembly. 
 The study concludes by showing WebAssembly was not always faster, but considerably more consistent. 
-The performance of the javascript implementation 
+The performance of the JavaScript implementation 
 \citet{melch_performance_2019} had this to say: "To call the WebAssembly code the coordinates will first have to be stored in a linear memory object. 
 With short run times this overhead can exceed the performance gain through WebAssembly. 
 The pure algorithm run time was always shorter with WebAssembly.". 
@@ -251,7 +251,7 @@ Even though geocomputation can fall in the category of scientific computation, t
 % \subsubsection{Background}
 
 % The original paper on WebAssembly was published on June 14, 2017 \cite{haas_bringing_2017}. The authors write that the reason behind the creation of WebAssembly is the observation that certain web applications started using JavaScript as a compile target, using a high-performance subset of JavaScript called 'asm.js' \cite{mozilla_asmjs_2013}. However, JavaScript remains a high-level, highly abstract programming language, which never intended to be used as a compile target. The discrepancy between intended use and actual use led to many complications for developers using JavaScript this way, but also for the developers of JavaScript itself \cite{haas_bringing_2017}. 
-% In order to relieve javascript of the responsibility of being a 'low-level' compilation target, developers of the four major browser vendors Mozilla, Google, Apple and Microsoft created WebAssembly and its corresponding paper, in a joined effort.
+% In order to relieveJavaScript of the responsibility of being a 'low-level' compilation target, developers of the four major browser vendors Mozilla, Google, Apple and Microsoft created WebAssembly and its corresponding paper, in a joined effort.
 
 % This paper starts by promising WebAssembly as a save, fast, portable and compact compilation target. It continues by showing how previous attempts at low-level code on the web fail in at least one of these criteria, and that WebAssembly is the first to deliver on all of them. The follow up chapters cover a proof of memory safety, a proof of soundness of the language design, and the design decisions which had to be made to live up to those four criteria. These details will become relevant to the proposed thesis when reasoning about why WebAssembly might be faster in one case versus another.
 

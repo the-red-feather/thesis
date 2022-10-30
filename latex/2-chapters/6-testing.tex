@@ -18,21 +18,21 @@ In this section, the tests outlined in \refsec{sec:method:tests:compilation} are
 The compilation of the minimum Rust plugin, which exposes a function, a class, and a method, occurred as expected.   
 % APPENDIX?
 \reffig{fig:minimum-rust-wasm} Shows the source code of this plugin. 
-The 'wasm-bindgen' library allows functions and classes to be annotated as 'expose to javascript' with a macro statement. 
+The 'wasm-bindgen' library allows functions and classes to be annotated as 'expose to JavaScript' with a macro statement. 
 This simplifies the compilation process to WebAssembly greatly. 
 Due to Rust's macro system, it also creates compile time errors with IDE integration, if a property or class are incompatible to be exposed. 
 This aids the construction of a wasm-compatible API. 
 
-This library was compiled to WebAssembly and javascript using 'wasm-pack'. 
+This library was compiled to WebAssembly and JavaScript using 'wasm-pack'. 
 This produces multiple artifacts, showcased in \reffig{fig:rust-plugin:compilation-results}. 
 This figure also showcases how wasm-pack wraps the functionality: 
-The \m{point\_distance} function exposed by the wasm file is wrapped by the javascript file, converting it to look like a regular javascript class.
-Keep in mind that as the Interface Type proposal gets accepted as 'standard webassembly' \citep*{wagner_interface_2022}, The javascript or typescript artifacts can be ommited, as this logic will be added to the \m{.wasm} binary itself.
+The \m{point\_distance} function exposed by the wasm file is wrapped by the JavaScript file, converting it to look like a regular JavaScript class.
+Keep in mind that as the Interface Type proposal gets accepted as 'standard webassembly' \citep*{wagner_interface_2022}, The JavaScript or typescript artifacts can be ommited, as this logic will be added to the \m{.wasm} binary itself.
 The wasm-pack library is already able to produce a WebAssembly build with interface types included. 
 However, as this is not standard WebAssembly yet, it hinders integration with WebAssembly produced from the emscripten compiler, so this study chose against using it.
 
 To check if the result is valid, a small html demo was created to load and use the library (see \reffig{fig:min-rust:demo}).
-Note how the JavaScript library wrapping the wasm file looks and works almost like a normal javascript library, the only difference being a 'init' function, which is required to be run before using the library, and the need to free the memory of used object with the \m{free()} method.
+Note how the JavaScript library wrapping the wasm file looks and works almost like a normal JavaScript library, the only difference being a 'init' function, which is required to be run before using the library, and the need to free the memory of used object with the \m{free()} method.
 
 To load this project into Geofront, a reference to the path of the compilation artifacts must be specified within the Geofront GUI, shown in \reffig{fig:min-rust-plugin-import}.
 A local path was used for convenience, instead of publishing this demo to npm, and accessing it via a \ac{CDN}.
@@ -91,7 +91,7 @@ impl Point {
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{13.PNG}
-  \caption[compilation artifacts]{wasm-pack Compilation artifacts: A Typescript Declaration file, a javascript file, and a WebAssembly binary, visualized as WebAssembly Text (WAT). }
+  \caption[compilation artifacts]{wasm-pack Compilation artifacts: A Typescript Declaration file, a JavaScript file, and a WebAssembly binary, visualized as WebAssembly Text (WAT). }
   \label{fig:rust-plugin:compilation-results}
 \end{figure}
 
@@ -205,12 +205,12 @@ It was possible to compile the plugin file to WebAssembly, and to use it in a we
 The web demo itself was also more limited compared to the rust build.
 
 First of all, the construction of the C++ source code itself.
-Emscripten's \m{embind} tool uses a macro syntax to flag functions marked for javascript compilation, shown in \reffig{fig:min-cpp-source}. 
+Emscripten's \m{embind} tool uses a macro syntax to flag functions marked for JavaScript compilation, shown in \reffig{fig:min-cpp-source}. 
 
 While it does work similar to Rusts \m{wasm-bindgen}, cpp macro's do not allow for any pre-compile-time code checking, and can produce hard to decipher error messages. 
 
-Secondly, to compile this file to the right binary with accompanied javascript wrapper, it had to be compiled using the \\ \m{-sMODULARIZE=1} and \m{-sEXPORT\_ES6=1} flags enabled.
-Otherwise, the javascript produced uses an import syntax too deviant from regular import statements to have any chance to be interfaced by Geofront. 
+Secondly, to compile this file to the right binary with accompanied JavaScript wrapper, it had to be compiled using the \\ \m{-sMODULARIZE=1} and \m{-sEXPORT\_ES6=1} flags enabled.
+Otherwise, the JavaScript produced uses an import syntax too deviant from regular import statements to have any chance to be interfaced by Geofront. 
 It must be noted that emscripten was behind on documentation compared to 'wasm-pack' and the rust-wasm organization \citep{contributors_wasm-pack_2022}. 
 it does not offer many examples, or thorough explanations on what many of the compiler flags do or mean \citep{emscripten_organization_emscripten_2022}.
 wasm-pack on the other hand offers complete tutorials, a range of starter projects, and elaborate documentation of most of its functionalities. 
@@ -220,20 +220,20 @@ Emscripten does not support typescript declaration files, and third-party toolin
 This study was also unable to find any developments indicating development towards Interface Types.
 All of this does allow for a working web demo similar to the Rust equivalent, shown in \reffig{fig:min-cpp-demo}. However, the absence of interface types, or the substitute typescript interface types, made automated interfacing with the binary difficult. 
 
-This study did eventually achieve a workaround by using javascript reflection.
-By creating a blacklist of all 134 default functions the emscripten javascript wrapper comes with with the aforementioned flags enabled, we can distill the imported module down to the 2 symbols exposed by embind in this case, the \m{add} function and \m{Point} class.
+This study did eventually achieve a workaround by using JavaScript reflection.
+By creating a blacklist of all 134 default functions the emscripten JavaScript wrapper comes with with the aforementioned flags enabled, we can distill the imported module down to the 2 symbols exposed by embind in this case, the \m{add} function and \m{Point} class.
 However, by doing this, all function types and the names of all parameters are lost, and can not be loaded into Geofront, which in turn does not allow the resulting Geofront graph to be type safe. 
 Another solution would have been to manually declare type definitions as strings in the CPP file or as a typescript file, but was deemed a too manual of a solution to a problem which should be able to be solved programmatically, as 'wasm-pack' did.
 
 with a custom system in place to load embind files, the plugin loader could attempt to load both the js and wasm file. 
 It is here were an obstacle was encountered, which could not be solved within the time frame of this study. 
 The JavaScript wrapper file dynamically fetches the WebAssembly file. 
-This is allowed when importing a javascript library using ES6 module syntax. 
+This is allowed when importing a JavaScript library using ES6 module syntax. 
 However, this is incompatible with the implementation choices of the Geofront plugin loader. 
 To load a plugin dynamically, it fetches and interprets the source files at runtime. 
 However, for security reasons, dynamically fetching a wasm file from within these runtime interpretations is not allowed.
 The \m{wasm-pack} solution does not have the same problem, for it allows the WebAssembly file to be parsed within its initialization function.
-A change within the emscripten javascript wrapper would allow this obstacle to be overcome, but this must be left to subsequent research. 
+A change within the emscripten JavaScript wrapper would allow this obstacle to be overcome, but this must be left to subsequent research. 
 
 A final workaround was made to still load the plugin within Geofront (\reffig{fig:min-cpp:workaround}). 
 However, this was done by forgoing the concept of a plugin, and by integrating the WebAssembly binary within the source code of Geofront itself.
@@ -293,7 +293,7 @@ Additionally, this is difficult to interface from within Geofront, as this would
 
 The GDAL.js project was analyzed in an attempt to find a possible solution to handling the great number of dependencies \citep*{dohler_gdal_2022}, and interfacing. 
 Regrettably, this project too has resorted to incorporating the source code of GDAL and all its dependencies, and has altered them heavily. 
-Interfacing was solved by heavy use of emscripten on the side of javascript, to workaround the limitations regarding parsing vectors and arrays. 
+Interfacing was solved by heavy use of emscripten on the side of JavaScript, to workaround the limitations regarding parsing vectors and arrays. 
 To illustrate, a fragment was taken from the \m{inspect\_geotiff} example, shown in \reffig{fig:gdaljs_ugly}.
 Actions like these cannot be directly interfaced from Geofronts visual language.
 
@@ -380,14 +380,14 @@ However, much of this would be simplified if emscripten adopts the features foun
 % The first one has to do with rewriting inputs and outputs to CGAL functionality.
 % The most common ways to provide CGAL functions with data, and to retrieve results, is to read and write files. 
 % While this can be used on the web, the virtual file system wrappers presented by Emscripten add irregular syntax to the plugin, again compromising any chance it can be loaded into Geofront.
-% So, a way is needed to present CGAL with data directly from javascript or other wasm binaries, without reading or writing files. 
+% So, a way is needed to present CGAL with data directly from JavaScript or other wasm binaries, without reading or writing files. 
 % Initial tests were performed by parsing input data as a string buffer, which could then be 'read' like a file by CGAL.
 
 % Additionally, many scientifically oriented C++ libraries like CGAL make extensive use of meta programming and template programming, paradigms which do not translate well to an environment outside of C++. 
 
 \subsection{Comparison}
 
-A couple of additional comparisons between the four WebAssembly projects mentioned above were made, both in terms of the file size of the compiler artifacts, as well as the performance of specifically the interoperability between WebAssembly and javascript. 
+A couple of additional comparisons between the four WebAssembly projects mentioned above were made, both in terms of the file size of the compiler artifacts, as well as the performance of specifically the interoperability between WebAssembly and JavaScript. 
 These are the results:
 
 \subsubsection*{Size}
@@ -404,8 +404,8 @@ These are the results:
 Compared to the Rust build of 20140 bytes, This is around 3.4 times more. 
 The CGAL TIN test compiled to 257994 bytes, and compared to startin's 114263 bytes, is around 2.3 times more heavy.
 
-The wasm-pack artifacts include the typescript header files, and both its typescript and javascript file were not optimized for size.
-Emscripten does not produce a typescript file, and compressed its javascript file maximally. 
+The wasm-pack artifacts include the typescript header files, and both its typescript and JavaScript file were not optimized for size.
+Emscripten does not produce a typescript file, and compressed its JavaScript file maximally. 
 
 All of these facts combined make it safe to say that the emscripten wrappers are significantly heavier.
 
@@ -424,15 +424,15 @@ However, apparently, emscripten is not able to distinguish between full applicat
   \label{fig:rust-cpp-performance}
 \end{figure}
 
-To test the performance of \ac{wasm} - javascript interaction, the minimum C++ and Rust plugins were again used. 
-This makes for a good comparison, since both projects deliver the exact same functionality from the point of view of javascript.  
-A pure javascript version was added however, to add a base comparison.
+To test the performance of \ac{wasm} - JavaScript interaction, the minimum C++ and Rust plugins were again used. 
+This makes for a good comparison, since both projects deliver the exact same functionality from the point of view of JavaScript.  
+A pure JavaScript version was added however, to add a base comparison.
 The web pages used for these tests are presented in \reffig{fig:perf-benchmark}.
 
 % fig:rust-cpp-performance
 
 % The performance benchmarks. 
-% These benchmarks primarily test how performant the \\ javascript - WebAssembly interactions are. 
+% These benchmarks primarily test how performant the \\ JavaScript - WebAssembly interactions are. 
 
 
 % TODO APPENDIX?
@@ -441,9 +441,9 @@ These results show the emscripten wrapper is not as performant as the wasm-pack 
 From experimentation, performance hit could be narrowed down to the initialization step of the 'Point' classes. 
 
 These results may suggest two phenomena:
-One, just like the artifact size comparison, this difference could be because emscripten is written from the point of view of a C++ application, and use case does not require custom javascript - C++ interoperability. 
-A full application seldom needs access to specific javascript processes the way this demo does. 
-such an application only needs to address javascript through emscripten own interface, which could be more performant. 
+One, just like the artifact size comparison, this difference could be because emscripten is written from the point of view of a C++ application, and use case does not require custom JavaScript - C++ interoperability. 
+A full application seldom needs access to specific JavaScript processes the way this demo does. 
+such an application only needs to address JavaScript through emscripten own interface, which could be more performant. 
 
 And two, the C++ builds may be suffering from 'legacy burden', as described by \citet{ammann_maplibre-rs_2022}. 
 The emscripten solution needs to take more edge cases into account, has more complicated dependencies, and software compiled using emscripten must be more heterogenous than a younger language like Rust.
@@ -646,7 +646,7 @@ Based on the above demo's, the following limitations in utilization were encount
   Currently, plugin libraries add some of these basic functions as a workaround.    
 
   \item \textbf{Types not interoperable}: While the type system of Geofront is extensive and supports complex aspects such as generics, no clear design is present for interoperating between internal Geofront types, such as a Geofront Mesh, and a foreign type, such as \m{startin}s triangulation. 
-  The method used in the above demo's involves breaking down a type into a basic javascript data formats, and using that as an interoperable model. 
+  The method used in the above demo's involves breaking down a type into a basic JavaScript data formats, and using that as an interoperable model. 
   However, this relies on unsustainable parsers which use hardcoded strings, reflection, and "blind thrust".
 
   \item \textbf{Limited visualization}: Currently, the application is only able to visualize a small number of data types, like points, lines, and meshes. Geofront's source code will have to be altered to support a library using images, for example.
@@ -838,13 +838,13 @@ This final set of tests offers an analysis on specifically the usability aspects
 \subsubsection*{Abstraction gradient: What are the minimum and maximum levels of abstraction? Can fragments be encapsulated?}
  
 The design of Geofront deemed the need for re-using parts of a script as components / functions as more important than the benefits of having no abstraction hierarchy (what you see is what you get).
-This is why a method for encapsulation was developed, by taking a part of a Geofront script, and compiling it to a javascript subset. This could then be loaded by the plugin loader. 
+This is why a method for encapsulation was developed, by taking a part of a Geofront script, and compiling it to a JavaScript subset. This could then be loaded by the plugin loader. 
 However, the addition of special types of nodes, and features like iteration, invalidated the \m{geofront -> js} translator.
 The translation is still possible, but not implemented.  
 As such, if a user desires re-usable components and a lower abstraction level, they will need to write a plugin.
 
 % \textbf{Suggestion for improvement:} re-implemented the 'compile to js' procedure.s
-% (image of abstracting away a javascript subset)
+% (image of abstracting away a JavaScript subset)
 
 \subsubsection*{Closeness of mapping: What 'programming games' need to be learned?}
 
@@ -890,9 +890,9 @@ This is apparent when representing simple mathematical calculations.
 
 Additionally, the flowchart can only represent linear processes. Many geoprocessing algorithms are iterative and make use of conditionals. These cannot easily be expressed in a Dataflow VPL. As such, these processes must happen within the context of a function, within a 'node'.
 
-A widget evaluating a line of javascript could help improve diffuseness. For now, if a user desires to use dense mathematical statements, or functions with many conditionals and complex iteration, a Geofront Plugin should be created.
+A widget evaluating a line of JavaScript could help improve diffuseness. For now, if a user desires to use dense mathematical statements, or functions with many conditionals and complex iteration, a Geofront Plugin should be created.
 
-% (image of complex / simple mathematical calcluation in javascript and in geofront)
+% (image of complex / simple mathematical calcluation in JavaScript and in geofront)
 
 % \textbf{Suggestion for improvement:} These situations could be prevented by allowing scriptable components. 
 

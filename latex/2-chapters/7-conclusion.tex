@@ -43,7 +43,7 @@ It starts with answering the sub research questions, and concludes with the answ
 It turned out that two layers of \ac{GUI} features had to be created:
 
 \textbf{Framework application}: Firstly, a base application was required to host the visual programming language, which needed to provide support for multiple windows, dropdown menu's, side menu's etc.
-For this, a custom framework using Web Components was created, due to the absence of a desktop application-like framework in the javascript ecosystem. 
+For this, a custom framework using Web Components was created, due to the absence of a desktop application-like framework in the JavaScript ecosystem. 
 However, this did not provide the same level of tooling as a library like IMGUI \citep{cornut_dear_2022} or egui \citep{ernerfeldt_egui_2022}.
 Because of this, in this area, the web context lead to a sub-optimal experience.
 
@@ -51,7 +51,7 @@ Because of this, in this area, the web context lead to a sub-optimal experience.
 This GUI was given shape using a custom implementation. 
 DOM events were used as inputs, and the Canvas API provided a way to visualize the VPL.
 The web context provided two advantages here.
-Firstly, a javascript program can access a large amount of features by default, such as this canvas API, but also WebGL. 
+Firstly, a JavaScript program can access a large amount of features by default, such as this canvas API, but also WebGL. 
 These features do not need to be included within the source code of the application, leading to quick load times. 
 Secondly, by using \m{iframe's} and window pop-ups, the web context could be utilized to integrate third party UIs in a simple manner, as demonstrated with the Potree demo in \refsec{sec:testing:demo}.
 Summarized, for this second set of \ac{GUI} features, the web platform was advantageous.
@@ -66,7 +66,7 @@ Summarized, for this second set of \ac{GUI} features, the web platform was advan
 % Javascript's flexibility proved to be useful to support features like dynamically loading and using libraries at runtime. 
 % However, TypeScript's limited type support at runtime, the absence of explicit immutability, and the limited precision in general (no integer atomic, only \m{number}), all hindered the implementation of the VPL model proposed.   
 
-% % While the language does offers powerful options for reflection, this cannot truly be used if javascript itself makes no meaningful distinction between number types (\m{int, float, double}), for example.
+% % While the language does offers powerful options for reflection, this cannot truly be used if JavaScript itself makes no meaningful distinction between number types (\m{int, float, double}), for example.
 
 % \begin{note}
 % IMPORTANT
@@ -125,7 +125,7 @@ Interfacing this binary with JavaScript was between six and seven times as slow 
 
 Moreover, emscripten lacked the interface features which were required to the purpose of using WebAssembly as a generic binding. 
 wasm-pack provides type declarations in the shape of a TypeScript file, or by embedding them in WebAssembly using the proposed interface types \citep{wagner_interface_2022}. 
-On top of that, it offered a strong binding system, allowing complex types such as a vector of floats (\m{Vec<f32>}) to be easily translatable to a javascript equivalent (\m{Float32Array}).
+On top of that, it offered a strong binding system, allowing complex types such as a vector of floats (\m{Vec<f32>}) to be easily translatable to a JavaScript equivalent (\m{Float32Array}).
 
 Regrettably, none of the above features were present in emscripten. 
 Custom interventions were necessary on both the C++ end, and the JavaScript end, to get to a similar level of functionality.
@@ -155,19 +155,19 @@ Future work is required to verify their impact.
 \begin{enumerate}
   \item \textbf{Portability}: The application uses native geocomputation libraries compiled to WebAssembly, 
   which makes the libraries behave the same way in the frontend, and in a potential back-end. \\
-  \textbf{Effectiveness}: The effect of this is limited by the fact that \ac{wasm} binaries must for the time being be wrapped using javascript, due to the current lack of interface types. 
-  This means that currently, a backend would require a javascript runtime to use these libraries.
+  \textbf{Effectiveness}: The effect of this is limited by the fact that \ac{wasm} binaries must for the time being be wrapped using JavaScript, due to the current lack of interface types. 
+  This means that currently, a backend would require a JavaScript runtime to use these libraries.
 
-  \item \textbf{Zero-cost abstraction}: The application uses a unique plugin system, to offer direct usage of javascript-wrapped libraries, and eventually WebAssembly-compiled libraries.
-  This means that there is no difference between calling an operation in Geofront, and calling the function in the javascript-wrapped library.
-  This allows a Geofront pipeline to be compiled to javascript, completely eliminating any explicit dependency to the 
+  \item \textbf{Zero-cost abstraction}: The application uses a unique plugin system, to offer direct usage of JavaScript-wrapped libraries, and eventually WebAssembly-compiled libraries.
+  This means that there is no difference between calling an operation in Geofront, and calling the function in the JavaScript-wrapped library.
+  This allows a Geofront pipeline to be compiled to JavaScript, completely eliminating any explicit dependency to the 
   Geofront platform, the VPL model, or the \ac{GUI}.
   This is why Geofront can claim to use 'zero cost abstraction'. \\
   \textbf{Effectiveness}: A Geofront-to-javascript compiler was implemented and functional, but requires further study. 
   For example, it does not compile complex \ac{GUI} Widgets, and does not support iteration.
   
   \item \textbf{Locality}: Geofront is designed as a Dataflow VPL, which shares characteristics with functional programming. This leads to source code which can be reasoned about in a local manner, instead of a global one. This allow for parallelization. \\
-  \textbf{Effectiveness}: The implementation of Geofront as a dataflow VPL was successful. However, due to limitations of the javascript language, the functional programming properties of the DataFlow VPL could not be strictly enforced. 
+  \textbf{Effectiveness}: The implementation of Geofront as a dataflow VPL was successful. However, due to limitations of the JavaScript language, the functional programming properties of the DataFlow VPL could not be strictly enforced. 
   Plugins must be trusted not to alter input data, or call global, state-altering functions, as functions could not be declared as 'pure', and variables cannot be declared as 'immutable'.
 
 \end{enumerate}
@@ -256,7 +256,7 @@ Despite all of this, based on the presented work, it is safe to say that visual 
 
 % A VPL can support existing geocomputation libraries if and only if these libraries are able to be \emph{compiled}, \emph{loaded}, and \emph{utilized} in a dataflow VPL format.
 
-% Using a new javascript implementation of an acyclic, graph-based VPL, the study was able to demonstrate how the web platform can be used to represent a dataflow-VPL capable of hosting these libraries.
+% Using a new JavaScript implementation of an acyclic, graph-based VPL, the study was able to demonstrate how the web platform can be used to represent a dataflow-VPL capable of hosting these libraries.
 % The dataflow-properties of a graph-based VPL like this also makes this libraries sufficiently \emph{usable}, albeit with some well-known caveats of dataflow-VPLS, like the representation of conditionals and iteration. 
 
 
@@ -292,7 +292,7 @@ Despite all of this, based on the presented work, it is safe to say that visual 
 The study was able to deliver two major contributions:
 \begin{itemize}[-]
   \item \textbf{A new implementation of a web-based geocomputation VPL}
-    This study introduces a novel javascript implementation of a web-based dataflow-VPL capable of both geometry processing, as well as geocomputation.
+    This study introduces a novel JavaScript implementation of a web-based dataflow-VPL capable of both geometry processing, as well as geocomputation.
     Compared to existing web-based alternatives, this VPL is closer in design and functionality to common geometry VPLs like grasshopper, as it adheres to being a graph-based dataflow VPL. 
 % We introduce the \"Geofront\" application, which achieves this accessibility in two ways: 
 % Firstly, geoprocessing libraries, written in either Rust or C++, are compiled to WebAssembly: binaries which can be run in any modern browser, client-side. This mitigates the need for any installation, and allows the software to be directly used as soon as a website is fully loaded. WebAssembly offers a performance comparable to native usage. Geofront accepts these binaries as plugins.
@@ -374,10 +374,10 @@ This section covers questions on the decisions made during the study, and the an
 The sizeable nature of geodata is a component fundamental to geocomputation.
 However, scaling the application up to handle big data deviated too much from the core goal of this thesis to solve the problem of library portability, and had to be left to future work. 
 
-Still, to pose a solution, this study experimented with compiling a \\ full Geofront script to javascript.
+Still, to pose a solution, this study experimented with compiling a \\ full Geofront script to JavaScript.
 This can be regarded as a 'release' build of the Geocomputation pipeline: 
 It would have allowed native CLI-execution using Deno \citep{contributors_deno_2022}, without any dependency or reference to Geofront itself.
-Only the libraries used within the pipeline would need to be referenced, and this could have been done using regular javascript import statements, and npm.
+Only the libraries used within the pipeline would need to be referenced, and this could have been done using regular JavaScript import statements, and npm.
 
 % While it seems convoluted to compile a native library to WebAssembly and then execute it natively again, it is actually a sound strategy for building scalable, containerized programs for the cloud. 
 % The 'WASI' project is a good example of this (Source: https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/). 
@@ -389,7 +389,7 @@ A native-first build of Geofront would indeed be more performant, especially if 
 If both a native and web build of an application are available, then Users can choose for themselves if they wish to sacrifice the performance and native experience for the accessibility of a web build. 
  
 However, many features key to the solution and workflow specific to Geofront would be lost in such a setup.  
-(Prospected) features like dynamically loading plugins, scriptable components, or the compilation to javascript would be lost, or would have to be regained by incorporating a browser engine \emph{within} this native application. 
+(Prospected) features like dynamically loading plugins, scriptable components, or the compilation to JavaScript would be lost, or would have to be regained by incorporating a browser engine \emph{within} this native application. 
 
 However, a valid criticism can be made that this study could have opted for adding more native-first components, such as the maplibre renderer \citep{ammann_maplibre-rs_2022}
 
@@ -404,7 +404,7 @@ However, a valid criticism can be made that this study could have opted for addi
 
 % Firstly, it turned out to be challenging to expose existing libraries in a way usable by a dataflow-vpl. 
 % - "just compiling to wasm" was not enough.
-% - Webassembly is a double edged sword. Interfacing with wasm binaries from javascript is slow: lots of duplication of data. 
+% - Webassembly is a double edged sword. Interfacing with wasm binaries from JavaScript is slow: lots of duplication of data. 
 % -> catch 22 beyween rust and C++
 
 
@@ -496,9 +496,9 @@ Some of these aspects are listed here, and could lead to interesting topics for 
   \label{fig:proposal-extended-again}
 \end{figure}
 
-As presented, an early build of Geofront had the ability to compile a Geofront script to regular javascript (see (\reffig{fig:early-geofront-compile-to-js})).  
+As presented, an early build of Geofront had the ability to compile a Geofront script to regular JavaScript (see (\reffig{fig:early-geofront-compile-to-js})).  
 All libraries were converted to normal import statement, all nodes were replaced by function calls, and the cables substituted by a variable token. 
-This way, the application could be run headless in either the browser or natively, using a local javascript runtime like Deno \citep{contributors_deno_2022}.
+This way, the application could be run headless in either the browser or natively, using a local JavaScript runtime like Deno \citep{contributors_deno_2022}.
 However, time constraints led this feature to be abandoned in favor for other aspects.
 
 A future study could re-implement this feature, opening up the possibility for deployment and scalability: 
