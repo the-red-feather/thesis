@@ -1,4 +1,5 @@
-\chapter{Testing}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%
+\chapter{Testing} 
 \label{chap:testing}
 
 In this chapter the various software implementations and design choices made in \refchap{chap:implementation} are used and tested on various aspects. 
@@ -212,7 +213,7 @@ While it does work similar to Rusts \m{wasm-bindgen}, cpp macro's do not allow f
 Secondly, to compile this file to the right binary with accompanied JavaScript wrapper, it had to be compiled using the \\ \m{-sMODULARIZE=1} and \m{-sEXPORT\_ES6=1} flags enabled.
 Otherwise, the JavaScript produced uses an import syntax too deviant from regular import statements to have any chance to be interfaced by Geofront. 
 It must be noted that emscripten was behind on documentation compared to 'wasm-pack' and the rust-wasm organization \citep{contributors_wasm-pack_2022}. 
-it does not offer many examples, or thorough explanations on what many of the compiler flags do or mean \citep{emscripten_organization_emscripten_2022}.
+it does not offer many examples, or thorough explanations on what many of the compiler flags do or mean \citep{zakai_emscripten_2011}.
 wasm-pack on the other hand offers complete tutorials, a range of starter projects, and elaborate documentation of most of its functionalities. 
 
 Thirdly, the compilation with the right flags enabled resulted in a valid '\m{wasm}' and '\m{js}' file, but not a '\m{d.ts}' file.

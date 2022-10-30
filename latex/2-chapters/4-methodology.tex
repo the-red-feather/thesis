@@ -501,17 +501,16 @@ For Rust, the 'wasm-pack' and 'wasm-bindgen' toolkits enable \ac{wasm} compilati
 
 \subsubsection{Wrapping}
 
-Secondly, sometimes some level of function wrapping is still required. 
-Some GIS libraries are written in an imperative style, troubling its conversion to the functional model used by a dataflow VPL (See \reffig{fig:oop-considered-harmful}).
+Secondly, in certain situations, some level of function wrapping may still be required. 
+Some libraries are written in an imperative style, troubling its conversion to the functional model used by a dataflow VPL (See \reffig{fig:oop-considered-harmful}).
 This is why the implementation of this plugin model must take cases like these into account. 
-This comes down to wrapping the functionality of the GIS library as pure functions. 
-This often leads to making copies of inputs / outputs, or grouping a series of steps to make an imperative interface functional.
+This comes down to wrapping the functionality of the GIS library as pure functions, by making copies of inputs / outputs, or grouping a series of imperative steps.
 
 \begin{figure}
   \centering
   \graphicspath{ {../../assets/images/6/3/} }
   \includegraphics[width=\linewidth]{ugly-oop.png}
-  \caption[]{This API is written in a non-functional manner, }
+  \caption[]{An API which can only be used in an imperative, non-functional manner}
   \label{fig:oop-considered-harmful}
 \end{figure}
 
