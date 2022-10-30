@@ -94,16 +94,16 @@ Based on the features presented at \refsec{sec:testing:demo} and \refsec{sec:tes
 the implementation was able to address all three discrepancies to a certain extent:
 
 \textbf{1. Library capabilities get lost when used in an application}:
-Because of the plugin system of this methodology, all functions which are included in a wasm compilation can eventually be accessed by a user. 
+Because of the plugin system of this method, all functions which are included in a wasm compilation can be accessed by a user from within an application. 
 Additionally, the plugin boilerplate comparison of \refsec{sec:testing:features} showed that the no-boilerplate setup makes it simpler to add a new library as a plugin. 
 Both features combined may lead to less features ending up 'lost in translation'.
 
 \textbf{2. Applications are not further composable}:
-The implementation showed that a web-based VPL can make existing applications composable, evident from the demo application presented in \refsec{sec:testing:demo}.
+The implementation showed that this web-based VPL can make existing applications composable, evident from the demo application presented in \refsec{sec:testing:demo}.
 In this example, the Potree application was composed within a pipeline to extract a DTM or DSM, while retaining full functionality as a standalone application.
 
 \textbf{3. A library offers no visualization or GUI by itself, and must be turned into an application before it can be used}:
-Because the method presented in this study succeeded in combining \ac{GUI} components with low-entry barrier plugins, and because it allows the usage of unaffiliated WebAssembly projects, Geofront pipelines may act as a "custom GUI for any library" to an extend. 
+Because the method presented in this study succeeded in combining \ac{GUI} components with low-entry barrier plugins, and because it allows the usage of unaffiliated WebAssembly projects, Geofront pipelines may act as a "custom GUI for any library" to an extent. 
 In that sense, end users will only have to wait for a WebAssembly build, instead of a full application, before they are able to access a libraries content.
 
 \begin{itemize}[ ]
@@ -123,7 +123,7 @@ In the experiments performed by this study, significant differences were encount
 The results of \refsec{sec:testing:compilation} showed that the emscripten compiler produced a binary which requires more than three times the size of the same functionality compiled with wasm-pack.
 Interfacing this binary with JavaScript was between six and seven times as slow compared to the rust equivalent.
 
-Moreover, emscripten lacked the interface features which were required to the purpose of using WebAssembly as a generic binding. 
+Moreover, emscripten lacked interface features which were required for the purpose of using WebAssembly to compile libraries for generic use by any language.
 wasm-pack provides type declarations in the shape of a TypeScript file, or by embedding them in WebAssembly using the proposed interface types \citep{wagner_interface_2022}. 
 On top of that, it offered a strong binding system, allowing complex types such as a vector of floats (\m{Vec<f32>}) to be easily translatable to a JavaScript equivalent (\m{Float32Array}).
 
@@ -148,9 +148,9 @@ All in all, it must be concluded that Rust-based WebAssembly compilation is more
 \end{itemize}
 
 Three measures were conceptualized and successfully implemented. 
-However, all measures do have certain shortcomings. 
+However, all measures do possess certain shortcomings. 
 It must also be noted that all these measures are only presented 'in principle'.
-Future work is required to verify their impact.
+Future work is required to verify their impact in practice.
 
 \begin{enumerate}
   \item \textbf{Portability}: The application uses native geocomputation libraries compiled to WebAssembly, 
@@ -158,7 +158,7 @@ Future work is required to verify their impact.
   \textbf{Effectiveness}: The effect of this is limited by the fact that \ac{wasm} binaries must for the time being be wrapped using JavaScript, due to the current lack of interface types. 
   This means that currently, a backend would require a JavaScript runtime to use these libraries.
 
-  \item \textbf{Zero-cost abstraction}: The application uses a unique plugin system, to offer direct usage of JavaScript-wrapped libraries, and eventually WebAssembly-compiled libraries.
+  \item \textbf{Zero-cost abstraction}: The application uses a \\ zero-boilerplate plugin system, to offer direct usage of JavaScript-wrapped libraries, and eventually WebAssembly-compiled libraries.
   This means that there is no difference between calling an operation in Geofront, and calling the function in the JavaScript-wrapped library.
   This allows a Geofront pipeline to be compiled to JavaScript, completely eliminating any explicit dependency to the 
   Geofront platform, the VPL model, or the \ac{GUI}.
@@ -232,7 +232,7 @@ Moreover, it is unique in its ability to accept third party Plugins written in d
     \item "\myNewMainRQ"
 \end{itemize}
 
-Based on the answers to all supporting questions, The answer is a careful \textbf{yes}.
+Based on the answers to all supporting questions, The answer is a reserved \textbf{yes}.
 
 % A web-based VPL is a feasible method for providing direct access to native \ac{GIS} libraries.
 The method is indeed capable of bringing native GIS capabilities from certain libraries directly into contact with end users, from within an application, without installation or configuration, and in a further composable manner. 

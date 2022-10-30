@@ -400,12 +400,12 @@ These are the results:
   \label{fig:rust-cpp-compilation}
 \end{figure}
 
-\reffig{fig:rust-cpp-compilation} shows how the minimum C++ plugin compiles to a binary of 68424 bytes. 
-Compared to the Rust build of 20140 bytes, This is around 3.4 times more. 
-The CGAL TIN test compiled to 257994 bytes, and compared to startin's 114263 bytes, is around 2.3 times more heavy.
+\reffig{fig:rust-cpp-compilation} shows how the minimum C++ plugin compiles to a binary of 68 kb. 
+Compared to the Rust build of 20 kb, This is around 3.4 times more. 
+The CGAL TIN test compiled to 258 kb bytes, and compared to startin's 114 kb, is around 2.3 times more heavy.
 
 The wasm-pack artifacts include the typescript header files, and both its typescript and JavaScript file were not optimized for size.
-Emscripten does not produce a typescript file, and compressed its JavaScript file maximally. 
+Emscripten does not produce a typescript file, and compressed its JavaScript file. 
 
 All of these facts combined make it safe to say that the emscripten wrappers are significantly heavier.
 
@@ -479,7 +479,7 @@ This all could lead to a significant performance hit.
 \section{Demo applications}
 \label{sec:testing:demo}
 % - Show a demo
-This section demonstrates the extend to which Geofront is able to perform the main role it set out to fulfill: 
+This section demonstrates the extent to which Geofront is able to perform the main role it set out to fulfill: 
 Accessing functions from low level \ac{GIS} libraries from within a web VPL, and subjecting these functions to to interactive elements, so that these functions may be used in different ways by end users.
 
 Two related demo applications are presented, both featuring the \m{startin} library covered in \refsec{sec:testing:compilation}.
@@ -601,7 +601,7 @@ These functionalities in conjunction are all indicators that Geofront can indeed
 \end{figure}
 
 Geofront was meant not only to be used to examine and visualize native libraries, but also to directly utilize them to fulfill real applications.
-This second application demonstrates the extend to which this is possible. 
+This second application demonstrates the extent to which this is possible. 
 
 The hypothetical scenario used for this demo, is a situation in which a small scale \ac{DTM} is required from a point cloud. 
 One could imagine a \ac{DSM} or \ac{DTM} of a construction site, required for creating an accurate render of a buildings surroundings. 

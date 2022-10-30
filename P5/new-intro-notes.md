@@ -1,15 +1,5 @@
 
 [ken]
-- and indeed: don't go back to the drawing board!: you have a good base, better to build on that to fix things
-1. zooming in: research question/subquestions that cover other aspects (not just loading libraries into webassembly) so that you can 
-2. adequately present the UI/UX aspects, this also solves issues with the research questions
-3. and conclusions: should be partially fixed by changing subquestions
-4. try to be more precise bring numbers, examples, tables, etc to back your statements
-because right now the final chapter often reads more like an essay
-
-
-NOTES:
-
 another word for the same thing: operationalizing
 - the last mile problem
 - putting research in the hands of end-users
@@ -27,144 +17,79 @@ unique about this thesis
 - See a VPL less as a programming language, and more as a way for 
 end users to create their own UItly usable by end-users   
 
+Lessons
+==========
+
+- give yourself clear todo's per day. 
+  Not too little, not too much.
+  Upon completion, the day falls apart
+  
 
 presentation
 [ ] push the latest build.
 
 
+add license
+
 
 =========================================================================================
 =========================================================================================
 =========================================================================================
 
-# SOMEWHERE 
-- 'safe to say'
-- remove \newpages, hugo doesnt like 'em
-
-# OVERALL
-[ ] remove all strong words everywhere!
-   - very
-   - extremely 
-   - limiting 
-   - surprising
-   - 
-[ ] re-read the P4 feedback, and the feedback before that!!!
-[ ] dag UML...
+# Stretch goals
+[ ] table of GUI components 
 [ ] appendix: geofront can be found here (geofront.nl)
+[ ] replace all code screenshot with proper listings
 
-# 0 FRONT [X]
-[x] abstract
-[x] aknowledgements
-[ ] sort acronyms
-
-# 1 INTRO [X]
-[ ] Do the scope limitations still count? 
-
-# 2 BACKGROUND [X]
-<!-- [ ] make a clear tier lists of VPLs ? -->
-
-# 3 RELATED WORKS [X]
-[ ] seems ok...
-[ ] check read just in case
-
-# 4 METHODOLOGY [ ] 
-[ ] connect the new stuff with the old stuff
-[ ] proof read: make sure this fits
-
-[ ] explain various things better 
-[ ] write something about no boilerplate plugin system
-[ ] show ambiguity between plugin and library
-[ ] a geofront script -> pipeline! 
-
-# 5 IMPLEMENTATION [ ]
-[ ] proof read: make sure this fits
-[ ] Add writings about UI
-
-# 6 TESTS [ ]
-[x] Fix the ranting on C++
-   [x] HUGO: please explain interfacing troubles better 
-[x] finalize the comparison 
-
-# 7 CONCLUSION [ ]
-[x] sub question 1
-[x] sub question 5
-[x] fix main answer a bit 
-[x] Fix scope too large part 
-
-
-=======================================================================================
-=======================================================================================
-=======================================================================================
-
-  Lessons
-  ==========
-  
-  - give yourself clear todo's per day. 
-    Not too little, not too much.
-    Upon completion, the day falls apart
-  
-  
-  TODO
-  ============
-  
-  high-level
-  ----------
-  
-  [x] The intro / story needs to be altered 
-      - stronger tie to Geo & web
-      - VPL + Web
-  
-  [x] rewrite and balance research questions
-  - [x] then trickle down the consequences of those changes throughout the thesis
-  mid-level
-  ---------
-  
-  [x] TODO: rewrite abstract in accordance with new story
-
-  [x] Deep dive in Hugo's comments, fix those aspects 
-    - [x] sort acronyms
-  
-  [x] Add a stronger web-component in the introduction (presentation)
-  [x] Add cloud native / cloud-based geodata component to the introduction  
-  
-  [ ] Cleanup Chapter 2 and 3.  
-    - Some parts are still more relevant than other parts. 
-    - Also, there are some things I say or use in chapter 4, 5, and 6, that were not properly explained in chapter 2. Examples of this are emscripten, or CGAL. 
-    - However, a complete rewrite would be too much work.
-    - Would love to hear your take on this.
-  
-  [ ] Make chapter 4 and 5 more streamlined 
-    - I've noticed that I repeat myself quite often.
-    - I think this is because I was not sure if I already said something relevant in the chapter before.
-  
-  [ ] Show your results more clearly, do the coding you have done justice
-  
-  [ ] finish chapter 6 properly 
-    - Experiments: add a section on a use-case application, using potree + startin + geofront std + obj downloader
-  
-  [x] write stronger, more clear conclusions.
-    - hmm, i think they are already quite clear. But again, this is to be reconsidered when the overall story of the thesis changes  
-  
-  low-level: thursday & friday
-  -------------------
-
-  - [x] write abstract
-  - [x] TODO: write Acknowledgements
-  - [x] Add arsclassica template to the thesis
-  - [x] Make the code snippets / listings work properly
-  - [x] replace all code screenshot with proper listings
-  - [x] cleanup introduction
-  - [ ] create a uml diagrams
-  - [x] add proper graphs for the data you've gathered 
-  - [ ] Add all proper metadata to Zotero, for a nice bibliography
-  - [x] Fix all TODO graphics
-  - [ ] Fix all acronyms,
-  - [ ] Sort the acronyms at the end 
-  - [ ] Make sure CiteT and citeP is properly used everywhere. No more raw 'et. al.' statments 
-  - [ ] Capitalize all VPL / replace with acronyms
-  - [x] Sources need to be fixed (more data, check if I can do things like 'empscripten contributors')
+# must do
+[ ] Add all proper metadata to Zotero, for a nice bibliography 
+[ ] proof-read the full thing: destroy embarrassing errors
+- [ ] Fix all acronyms,
+- [ ] Sort the acronyms at the end 
+- [ ] Make sure CiteT and citeP is properly used everywhere. No more raw 'et. al.' statments 
   - [ ] Replace C++ into C / C++ everywhere, but especially the intro
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 =======================================================================================
 =======================================================================================
@@ -296,7 +221,7 @@ This study
 ==========
 
 More precisely: Design and develop a proof of concept application which attempts to adhere to the three aforementioned principles for a browser- and cloud-ready geocomputation pipeline mentioned above.
-Then, perform a series of tests and assessments to judge to what extend the implementation adheres to these principles.
+Then, perform a series of tests and assessments to judge to what extent the implementation adheres to these principles.
 
 
 Research Questions
