@@ -34,10 +34,6 @@ end users to create their own UItly usable by end-users
 Wednesday:
 ----------
 
-- BLOK 1:   Add Potree content DONE
-- BLOK 2:   Add comparison table DONE
-- BLOK 3:   Add comparison table DONE 
-
 - BLOK 5:   Finish the conclusion ...
 - BLOK 6:   Adapt the methodology
 - BLOK 7:   Adapt the methodology

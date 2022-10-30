@@ -200,12 +200,6 @@ EMSCRIPTEN_BINDINGS(cpp_min) {
 \label{fig:minimum-cpp-wasm}
 \end{figure}
 
-
-% \begin{note}
-%   TODO: make this better
-%   HUGO: please explain interfacing troubles better
-% \end{note}
-
 No unexpected shortcomings were encountered in making a minimal C++ WebAssembly build in Geofront.
 It was possible to compile the plugin file to WebAssembly, and to use it in a web demo, but this build was limited in its ability to be automatically interfaced with Geofront.
 The web demo itself was also more limited compared to the rust build.
@@ -625,10 +619,10 @@ To query a specific subset, the Potree viewer itself can be used to:
 \begin{itemize}[-]
   \item Filter the density of the pointcloud to a desired LOD.
   \item Filter the pointcloud to a certain bounding box or polygon.
-  \item Filter the pointcloud based on classifications, so that either 
-  \subitem a DSM with all points (\reffig{fig:potree:a}),
+  \item Filter the pointcloud based on classifications, to create either: 
+  \subitem a DSM using all samples (\reffig{fig:potree:a}),
   \subitem a DTM with only terrain (\reffig{fig:potree:b}), or
-  \subitem a DSM with only buildings (\reffig{fig:potree:c}) can be created.
+  \subitem a DSM with only buildings (\reffig{fig:potree:c}).
 \end{itemize}
 
 The pointcloud subset is then loaded into the Geofront pipeline, after it can be used as input for any loaded plugin. 

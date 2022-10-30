@@ -1,4 +1,3 @@
-% Define the scope, extend, and how of the study
 \chapter{Methodology}
 \label{chap:methodology}
 
@@ -44,7 +43,7 @@ These questions can now be partially answered based on the literature presented 
 The answers to these questions form the core requirements of the proposed method, and steer its features and design considerations.
 
 \begin{itemize}[ ]
-  \item \emph{What GUI features are required to facilitate this method? (and to what extend does the
+  \item \emph{What GUI features are required to facilitate this method? (and to what extent does the
   web platform aid or hurt these features?)}  
 \end{itemize}
 
@@ -60,7 +59,7 @@ Existing VPLs differ in their level of support of certain '\ac{GUI} nodes'.
 This study has established that extensive support is required, for the sake of visualizing geodata, and parametrization of \ac{GIS} operators.
 
 \begin{itemize}[ ]
-  \item \emph{To what extend does this method intent to address the discrepancies between software
+  \item \emph{To what extent does this method intent to address the discrepancies between software
 applications and libraries, as described by Elliott (2007) (Does it succeed in doing so?)}
 \end{itemize}
 
@@ -116,10 +115,10 @@ Finally, as this prototype is intended for \ac{GIS} usage, both scalability to h
 
 \section{Framework Application}
 
-To serve the requirements of a \textbf{Framework application} and \textbf{direct utilization}, a framework web application was required. 
-For this, a custom framework must be used, due to the absence of a desktop application-like framework in the javascript ecosystem.
+To serve the requirements of a \textbf{Framework application} and \textbf{direct utilization}, a framework web application will be required. 
+A UI library akin to imgui \citep*{cornut_dear_2022} or egui \citep*{ernerfeldt_egui_2022} would be optimal in providing such an environment. 
+However, due to the absence of such a desktop application-like framework in the javascript ecosystem, a custom implementation will be needed. 
 Using HTML5 features like Web Components, custom components such as multiple windows, dropdown menu's, side menu's etc. can be created without resorting to JavaScript frameworks.
-
 
 \section{Web VPL} 
 \label{sec:method:base-vpl}
@@ -180,12 +179,6 @@ Finally, a geometry VPL should contain a set of 'internal', basic types and oper
 All aforementioned features are difficult to implement without defining some set of internally recognized data types. 
 Basic operations are needed in particular to transform between the types.
 
-% \begin{note}
-%   Figure out what to do with this: 
-%     Interactivity is the defining factor of the vpl. 
-%     a list of standard VPL features & application features required as a base-line:  
-%   - Users must be able to construct a script by visual means.
-
 \subsection{Widely supported browser features}
 
 \begin{figure}
@@ -213,9 +206,13 @@ This set includes the following features relevant for the 3D VPL:
 
 \subsection{Design}
 
-% \begin{note}
-%   TODO: MAKE SOME UML DIAGRAMS
-% \end{note}
+\begin{figure}
+  \centering
+  \graphicspath{ {../../assets/uml/} }
+  \includegraphics[width=\linewidth]{geofront-uml.png}
+  \caption{A UML diagram of the proposed VPL}
+  \label{fig:geofront-uml}
+\end{figure}
 
 A software application of a VPL adhering to the specifications mentioned can be implemented in several ways. 
 The design chosen is a \ac{MVC} setup written in javascript.  
@@ -229,20 +226,11 @@ This design is further elaborated in the subsequent sections, first by covering 
 
 \subsubsection*{Shim Types}
 
-\begin{figure}
-  \centering
-  \graphicspath{ {../../assets/images/implementation/} }
-  \includegraphics[width=\linewidth]{shim-uml.png}
-  \caption[Shim Classes]{Shim classes. (pseudo) code is presented instead of a UML diagram, to be clear about the recursive aspects. (TODO: add modules) }
-  \label{fig:shim-classes}
-\end{figure}
-
 Firstly, since a VPL is partially a programming language, a model is needed to reason about some of the features of a programming language, such as functions, types, variables, and modules / libraries / plugins.
 For example, we desire to store a description of a function, how many input parameters it needs, and which variable types each input requires. 
 
 These needs led to the design of classes serving as equivalents of these language features, called shims. 
-\reffig{fig:shim-classes} shows a type-shim and function-shim respectively. 
-A Shim equivalents of a module, and a VPL graph are also required. 
+The UML diagram (\reffig{fig:geofront-uml}) shows a TypeShim and FunctionShim, and ModuleShim. 
 
 The shim classes are designed using the Object Type design pattern \citep{gamma_design_1994}. 
 This means that these objects are used as types. 
@@ -267,7 +255,7 @@ TypeShims can be structured recursively to define a \m{List of List of strings} 
 % TODO: ADD DAG UML REFERENCE
 From the Shims, the main model of a VPL pipeline can be conceptualized. 
 This model is at its core a \ac{DAG}. 
-This \ac{DAG} should be a object-oriented, graph-like representation of the data flow of a regular programming language. 
+This \ac{DAG} should be an object-oriented, graph-like representation of the data flow of a regular programming language. 
 This design can be implemented by writing a \m{Graph} class, containing \m{Node} and \m{Cable} objects. 
 
 In this model, Nodes are analogous to function \emph{invocations} of normal programming languages. 
@@ -459,7 +447,7 @@ This setup may provide answers to the requirements of \textbf{Portability}, \tex
     \graphicspath{{../../assets/images/1/}}
     \includegraphics[width=\linewidth]{expanded-proposal.png}
   \end{subfigure}%
-  \caption{An expanded proposed methodology, to provide a backend, cloud-based execution}
+  \caption{The methodology expanded beyond the scope of this study, to provide a method for backend, cloud-based execution}
   \label{fig:proposal-extended}
 \end{figure}
 
@@ -613,11 +601,6 @@ Instead, these functions are programmatically called when the VPL engine or the 
 % The purpose of this final step of the methodology
 With both the VPL and the plugin system in place, the final step of the methodology is introduced to gather the results and data needed for properly answering the second, third fourth sub-research questions.
 
-% \begin{note}
-%   - see how well the plugin system is able to handle C++ and Rust native libraries. 
-%   - see how usable the resulting applications created within the VPL are.     
-% \end{note}
-
 \subsection{Compilation Tests}
 \label{sec:method:tests:compilation}
 
@@ -633,19 +616,19 @@ The study is conducted by compiling both libraries using their respective \ac{wa
 
 The libraries must be compiled without 'disruption': They must be kept the exact same for normal, native usage. 
 
-% \begin{note}
-%   HUGO: GDAL-JS ???
-%     L takes some time to convert it to a functional model
-%     L cannot be used by the plugin system directly, but can be used as a dependency in geofront itself.
-%   STARTIN: small s
-% \end{note}
-
 \subsubsection{C++ Library: CGAL} 
 The library tested for C++ is CGAL, compiled using \m{emscriptem}. 
 For one, this library is well established and very relevant to geoprocessing as a whole. 
 Many other C++ geo-libraries depend on it.
 Moreover, it is a sizable and complex project, making it highly likely the problems described by \refsec{sec:background-wasm} are encountered. 
 We could choose more simple libraries, but this is not representative of most C++ geoprocessing libraries. 
+
+% \begin{note}
+%   HUGO: GDAL-JS ???
+%     L takes some time to convert it to a functional model
+%     L cannot be used by the plugin system directly, but can be used as a dependency in geofront itself.
+%   STARTIN: small s
+% \end{note}
 
 \subsubsection{Rust Library: Startin}
 The second library tested is the Startin library, written in Rust, compiled using \m{wasm-bindgen}.  
@@ -659,9 +642,9 @@ It also, just like CGAL, makes use of a high precision kernel, and offers geomet
 
 Two demo applications are to be created for the purpose of testing the practical capabilities of the methodology. 
 The first demo focusses on the intended use case of 'library publication'. 
-We wish to see to what extend a library published using WebAssembly can directly be tested from within the proposed environment. 
+We wish to see to what extent a library published using WebAssembly can directly be tested from within the proposed environment. 
 
-The second demo expands upon this first demo, and is intended to examine to what extend such a library can actually be composed as part of a 'real' application. 
+The second demo expands upon this first demo, and is intended to examine to what extent such a library can actually be composed as part of a 'real' application. 
 In this test, the interaction between this library and the composable \ac{GUI} will be elaborated upon.
 
 % This will be done by using the VPL and plugin loader to create an application. 
@@ -687,25 +670,6 @@ In this test, the interaction between this library and the composable \ac{GUI} w
 
 % The procedure chosen is a 2D convex hull calculation of a set of sample points. 
 % The chosen procedure must be small enough to clearly reason about performance differences, and yet large enough to pose a substantial computational challenge, validating the usage of \ac{wasm}.
-
-% \begin{note}
-%   Expand upon the procedure
-% \end{note}
-
-% The three methods will be compared in terms of:
-% \begin{enumerate}[-]
-%   \item performance
-%   \item load times
-%   \item memory usage
-% \end{enumerate}
-
-% \begin{note}
-%   - todo: turn features around into assessment criteria
-%   - performance: load times, run times
-%   - current state of webassembly & js. how much faster is it? is it even faster? 
-%      - data translation steps, do they mitigate performance gains? 
-%      - also given the fact that we are doing 'functions on sets'/ declarative instead of imperative styles, forced by the format of dataflow programming. 
-% \end{note}
 
 % The studies on browser-based geocomputation (\refsec{sec:related-geoweb}) appear to have conducted a similar experiment, by comparing the same procedure written in C++ and javascript. 
 % However, these studies compared javascript against a native, non-web compilation of C++. 
